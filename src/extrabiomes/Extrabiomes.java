@@ -30,7 +30,7 @@ import extrabiomes.terrain.TerrainGenerator;
 public class Extrabiomes {
 	static BaseMod instance;
 
-	private static final String VERSION = "2.1.0";
+	private static final String VERSION = "2.1.1";
 	private static final String PRIORITIES = "";
 
 	public static int addFuel(int id, int damage) {

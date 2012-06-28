@@ -22,16 +22,6 @@ public class BiomeDecorationPlants implements IBiomeDecoration {
 
 	@Override
 	public void decorate(World world, Random rand, int chunkX, int chunkZ) {
-		if (!generatePlants)
-			return;
-		if (PluginRedPower.idPlants == 0) {
-			PluginRedPower.initBlockId();
-			if (PluginRedPower.idPlants == 0) {
-				generatePlants = false;
-				return;
-			}
-		}
-
 		for (int a = 0; a < iterations; a++) {
 			int x = chunkX + rand.nextInt(16) + 8;
 			int y = rand.nextInt(128);

@@ -1,15 +1,5 @@
-2.1.0:
+2.1.1:
 =====
- - Various performance enhancements.
- - Rewrote API to be much simpler and more powerful.
- - Nerfed cracked sand to only grow within the boundaries of a wasteland. Configurable through a config file option.
- - Added a config file directive to enable/disable cracked sand's ability to grow in a wasteland
- - Added EMC values for custom blocks to support EquivalentExchange.
- - Added saplings, flowers and biomes to Forestry using Forestry API v1.4.6.0
- - Added Buildcraft oil spawns as appropriate
- - Added RedPower rubber tree spawns
- - Bug Fixes
-    - Removed blank achievement page
-    - Fixed "Already Decorationg" exception for cattails.
-    - Removed any possiblity of "Already Decorating" errors when using the API to decorating custom biomes
-    - Removed most possibility for any future "Already Decorating" errors.
+ - Added Redpower indigo spawns in appropriate biomes. When RedPower and this
+   mod are installed together, a config file item appears in
+   config/extrabiomes.cfg. Follow the instructions in the config file to activate.
