@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import net.minecraft.src.forge.ForgeHooks;
+
 public class Chunk
 {
     /**
@@ -131,7 +133,7 @@ public class Chunk
                             this.storageArrays[var10] = new ExtendedBlockStorage(var10 << 4);
                         }
 
-                        this.storageArrays[var10].setExtBlockID(var6, var8 & 15, var7, (int)var9 & 0xff);
+                        this.storageArrays[var10].setExtBlockID(var6, var8 & 15, var7, var9 & 0xff);
                     }
                 }
             }
@@ -942,6 +944,7 @@ public class Chunk
         {
             this.worldObj.addLoadedEntities(this.entityLists[var1]);
         }
+        ForgeHooks.onChunkLoad(worldObj, this);
     }
 
     /**
@@ -962,6 +965,7 @@ public class Chunk
         {
             this.worldObj.unloadEntities(this.entityLists[var3]);
         }
+        ForgeHooks.onChunkUnload(worldObj, this);
     }
 
     /**
@@ -1402,9 +1406,10 @@ public class Chunk
     }
 
     /**
-     * Called once-per-chunk-per-tick, and advances the round-robin relight check index by up to 8 blocks at a time. In
-     * a worst-case scenario, can potentially take up to 25.6 seconds, calculated via (4096/8)/20, to re-check all
-     * blocks in a chunk, which may explain lagging light updates on initial world generation.
+     * Called once-per-chunk-per-tick, and advances the round-robin relight check index per-storage-block by up to 8
+     * blocks at a time. In a worst-case scenario, can potentially take up to 1.6 seconds, calculated via
+     * (4096/(8*16))/20, to re-check all blocks in a chunk, which could explain both lagging light updates in certain
+     * cases as well as Nether relight
      */
     public void enqueueRelightChecks()
     {

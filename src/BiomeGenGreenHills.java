@@ -10,16 +10,16 @@ public class BiomeGenGreenHills extends BiomeGenBase
         biomeDecorator.whiteFlowerPerChunk = 1;
     }
 
-    public int func_48415_j()
+    public int getBiomeGrassColor()
     {
-    	double var1 = (double)this.getFloatTemperature();
+        double var1 = (double)this.getFloatTemperature();
         double var3 = (double)this.getFloatRainfall();
         return ((ColorizerGrass.getGrassColor(var1, var3) & 0xBFFF00) + 0x2B2B21);
     }
-
-    public int func_48412_k()
+    
+    public int getBiomeFoliageColor()
     {
-    	double var1 = (double)this.getFloatTemperature();
+        double var1 = (double)this.getFloatTemperature();
         double var3 = (double)this.getFloatRainfall();
         return ((ColorizerFoliage.getFoliageColor(var1, var3) & 0xBFFF00) + 0x2B2B21);
     }

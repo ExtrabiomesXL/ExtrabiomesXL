@@ -1,7 +1,6 @@
 package net.minecraft.src;
 
 import java.util.*;
-
 import net.minecraft.src.forge.*;
 
 public class BlockCoverGrass extends BlockFlower implements ITextureProvider
@@ -14,17 +13,19 @@ public class BlockCoverGrass extends BlockFlower implements ITextureProvider
 
     public int getBlockColor()
     {
-        return ColorizerFoliage.getFoliageColorBasic();
+        double var1 = 0.5D;
+        double var3 = 1.0D;
+        return ColorizerGrass.getGrassColor(var1, var3);
     }
     
     public int getRenderColor(int par1)
     {
-        return ColorizerFoliage.getFoliageColorBasic();
+        return par1 == 0 ? 16777215 : ColorizerFoliage.getFoliageColorBasic();
     }
     
     public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
-        return par1IBlockAccess.getBiomeGenForCoords(par2, par4).getBiomeFoliageColor();
+        return par1IBlockAccess.getBiomeGenForCoords(par2, par4).getBiomeGrassColor();
     }
     
     public int idDropped(int par1, Random par2Random, int par3)

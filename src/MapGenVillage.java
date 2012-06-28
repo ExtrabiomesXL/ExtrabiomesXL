@@ -7,10 +7,10 @@ import java.util.Random;
 public class MapGenVillage extends MapGenStructure
 {
     /** A list of all the biomes villages can spawn in. */
-    public static List villageSpawnBiomes = Arrays.asList(new BiomeGenBase[] {BiomeGenBase.plains, BiomeGenBase.desert, BiomeGenBase.jungleExtreme, BiomeGenBase.alps, 
-    		BiomeGenBase.autumnWoods, BiomeGenBase.birchForest, BiomeGenBase.mountainRidge, BiomeGenBase.desertMountain, BiomeGenBase.forestedHills, BiomeGenBase.forestedIsland, BiomeGenBase.greenHills, 
-            BiomeGenBase.greenSwamp, BiomeGenBase.meadow, BiomeGenBase.miniJungle, BiomeGenBase.rainForest, BiomeGenBase.savanna, BiomeGenBase.shrubland, BiomeGenBase.snowForest, BiomeGenBase.taigaMountain, 
-            BiomeGenBase.temperateRainforest, BiomeGenBase.temperateRainforestSnow, BiomeGenBase.woodlands, BiomeGenBase.redwoodForest, BiomeGenBase.redwoodLush, BiomeGenBase.pineForest, BiomeGenBase.tundra});
+    public static List villageSpawnBiomes = Arrays.asList(new BiomeGenBase[] {BiomeGenBase.plains, BiomeGenBase.desert, BiomeGenBase.jungleExtreme, BiomeGenBase.alps, BiomeGenBase.autumnWoods, BiomeGenBase.birchForest,
+    		BiomeGenBase.mountainRidge, BiomeGenBase.desertMountain, BiomeGenBase.forestedHills, BiomeGenBase.forestedIsland, BiomeGenBase.greenHills, BiomeGenBase.greenSwamp, BiomeGenBase.meadow, BiomeGenBase.miniJungle, 
+    		BiomeGenBase.rainForest, BiomeGenBase.savanna, BiomeGenBase.shrubland, BiomeGenBase.snowForest, BiomeGenBase.taigaMountain, BiomeGenBase.temperateRainforest, BiomeGenBase.temperateRainforestSnow, 
+    		BiomeGenBase.woodlands, BiomeGenBase.redwoodForest, BiomeGenBase.redwoodLush, BiomeGenBase.pineForest, BiomeGenBase.tundra});
 
     /** World terrain type, 0 for normal, 1 for flat map */
     private final int terrainType;

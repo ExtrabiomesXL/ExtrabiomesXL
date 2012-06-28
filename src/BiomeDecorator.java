@@ -130,6 +130,7 @@ public class BiomeDecorator
 
     /** Amount of big mushrooms per chunk */
     protected int bigMushroomsPerChunk;
+    
     protected int oasisPerChunk;
     protected int oasisPerChunk2;
     protected int shortGrassPerChunk;
@@ -175,12 +176,6 @@ public class BiomeDecorator
         this.reedGen = new WorldGenReed();
         this.cactusGen = new WorldGenCactus();
         this.waterlilyGen = new WorldGenWaterlily();
-        this.oasisGen = new WorldGenOasis(7, Block.grass.blockID);
-        this.tinyCactusGen = new WorldGenTinyCactus();
-        this.catTailGen = new WorldGenCatTail();
-        this.rootGen = new WorldGenRoot();
-        this.cactiPerChunk = 0;
-        this.sandPerChunk2 = 3;
         this.waterlilyPerChunk = 0;
         this.treesPerChunk = 0;
         this.flowersPerChunk = 2;
@@ -193,6 +188,11 @@ public class BiomeDecorator
         this.sandPerChunk2 = 3;
         this.clayPerChunk = 1;
         this.bigMushroomsPerChunk = 0;
+        
+        this.oasisGen = new WorldGenOasis(7, Block.grass.blockID);
+        this.tinyCactusGen = new WorldGenTinyCactus();
+        this.catTailGen = new WorldGenCatTail();
+        this.rootGen = new WorldGenRoot();
         this.shortGrassPerChunk = 1;
         this.coverPerChunk = 2;
         this.deadGrassPerChunk = 0;
@@ -225,7 +225,7 @@ public class BiomeDecorator
     {
         if (this.currentWorld != null)
         {
-        	if (this.currentWorld != null);
+            throw new RuntimeException("Already decorating!!");
         }
         else
         {

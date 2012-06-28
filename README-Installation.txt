@@ -1,8 +1,8 @@
 -----------------------------------------------------------------
 
-Please remember that ModLoader, ModLoaderMP, and Minecraft Forge is required for ExtraBiomes to work!
+Please remember that you need to install ModLoader and Minecraft Forge for ExtraBiomesXL to work!
 
-Thank you so much for downloading ExtraBiomesXL!
+Thank you so much for downloading ExtraBiomesXL! :D
 
 -----------------------------------------------------------------
 

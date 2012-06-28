@@ -9,22 +9,25 @@ public class BlockThickGrass extends BlockFlower implements ITextureProvider
     protected BlockThickGrass(int par1, int par2)
     {
     	super(par1, par2, Material.vine);
-    	this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.8F, 1.0F);
+    	float var3 = 0.4F;
+        this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.7F, 0.5F + var3);
     }
 
     public int getBlockColor()
     {
-        return ColorizerFoliage.getFoliageColorBasic();
+        double var1 = 0.5D;
+        double var3 = 1.0D;
+        return ColorizerGrass.getGrassColor(var1, var3);
     }
     
     public int getRenderColor(int par1)
     {
-        return ColorizerFoliage.getFoliageColorBasic();
+        return par1 == 0 ? 16777215 : ColorizerFoliage.getFoliageColorBasic();
     }
     
     public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
-        return par1IBlockAccess.getBiomeGenForCoords(par2, par4).getBiomeFoliageColor();
+        return par1IBlockAccess.getBiomeGenForCoords(par2, par4).getBiomeGrassColor();
     }
     
     public int idDropped(int par1, Random par2Random, int par3)

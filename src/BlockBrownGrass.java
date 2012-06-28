@@ -9,7 +9,8 @@ public class BlockBrownGrass extends BlockFlower implements ITextureProvider
     protected BlockBrownGrass(int par1, int par2)
     {
         super(par1, par2, Material.vine);
-        setBlockBounds(0.0F, 0.0F, 0.0F, 0.01F, 0.125F, 0.01F);
+        float var3 = 0.4F;
+        this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.5F, 0.5F + var3);
 	}
 
     protected boolean canThisPlantGrowOnThisBlockID(int par1)
@@ -21,11 +22,6 @@ public class BlockBrownGrass extends BlockFlower implements ITextureProvider
     {
         return -1;
 	}
-    
-    public void addCreativeItems(ArrayList itemList)
-    {
-            itemList.add(new ItemStack(this));
-    }
     
     public String getTextureFile()
     {

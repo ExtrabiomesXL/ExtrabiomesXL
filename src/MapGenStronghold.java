@@ -16,7 +16,7 @@ public class MapGenStronghold extends MapGenStructure
 
     public MapGenStronghold()
     {
-        this.allowedBiomeGenBases = new BiomeGenBase[] {BiomeGenBase.desert, BiomeGenBase.forest, BiomeGenBase.extremeHills, BiomeGenBase.swampland, BiomeGenBase.taiga, BiomeGenBase.icePlains, BiomeGenBase.iceMountains, 
+        this.allowedBiomeGenBases = new BiomeGenBase[] {BiomeGenBase.desert, BiomeGenBase.forest, BiomeGenBase.extremeHills, BiomeGenBase.swampland, BiomeGenBase.taiga, BiomeGenBase.icePlains, BiomeGenBase.iceMountains,
         		BiomeGenBase.desertHills, BiomeGenBase.forestHills, BiomeGenBase.extremeHillsEdge, BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.jungleExtreme, BiomeGenBase.alps, BiomeGenBase.autumnWoods, 
         		BiomeGenBase.birchForest, BiomeGenBase.mountainRidge, BiomeGenBase.desertMountain, BiomeGenBase.forestedHills, BiomeGenBase.forestedIsland, BiomeGenBase.glacier, BiomeGenBase.greenHills, 
         		BiomeGenBase.greenSwamp, BiomeGenBase.meadow, BiomeGenBase.miniJungle, BiomeGenBase.miniJungleMountain, BiomeGenBase.rainForest, BiomeGenBase.savanna, BiomeGenBase.shrubland, BiomeGenBase.snowForest, 
@@ -74,7 +74,7 @@ public class MapGenStronghold extends MapGenStructure
         {
             ChunkCoordIntPair var18 = var16[var5];
 
-            if (par1 == var18.chunkXPos && par2 == var18.chunkZPos)
+            if (par1 == var18.chunkXPos && par2 == var18.chunkZPosition)
             {
                 System.out.println(par1 + ", " + par2);
                 return true;

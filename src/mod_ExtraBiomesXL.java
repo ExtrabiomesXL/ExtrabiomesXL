@@ -41,6 +41,8 @@ public class mod_ExtraBiomesXL extends BaseMod
     
     static int catTailItemID;
     static int fertilizerID;
+    static int scarecrowID;
+
     
     public static Block coverGrass = new BlockCoverGrass(coverGrassID, 111).setHardness(0F).setResistance(0F).setBlockName("shortGrass").setStepSound(Block.soundGrassFootstep);
 	public static Block crackedSand = new BlockCrackedSand(crackedSandID, 0).setHardness(1.2F).setResistance(0F).setBlockName("crackedSand").setStepSound(Block.soundStoneFootstep);
@@ -71,8 +73,13 @@ public class mod_ExtraBiomesXL extends BaseMod
 	public static Block root = new BlockRoot(rootID, 255).setHardness(0F).setResistance(0F).setBlockName("root").setStepSound(Block.soundGrassFootstep);
     public static Block leafPile = new BlockLeafPile(leafPileID, 11).setHardness(0F).setResistance(0F).setBlockName("leafPile").setStepSound(Block.soundGrassFootstep);
     public static Block redwoodSapling = new BlockRedwoodSapling(redwoodSaplingID, 110).setHardness(0F).setBlockName("redwoodSapling").setStepSound(Block.soundGrassFootstep);
+    
     public static Item fertilizer = (new ItemFertilizer(fertilizerID)).setIconIndex(175).setItemName("fertilizer");
     public static Item catTailItem = (new ItemCatTail(catTailItemID, mod_ExtraBiomesXL.catTail)).setIconIndex(95).setItemName("catTailItem");
+    public static Item scarecrow = (new ItemScarecrow(scarecrowID)).setIconIndex(126).setItemName("scarecrow");
+    
+    static Achievement mineWood = AchievementList.mineWood;
+    public static Achievement scarecrowGet = new Achievement(3070, "Obtain Scarecrow!", -1, 2, mod_ExtraBiomesXL.scarecrow, mineWood).setSpecial().registerAchievement();
     
     public mod_ExtraBiomesXL()
 	{
@@ -144,10 +151,20 @@ public class mod_ExtraBiomesXL extends BaseMod
         
         ModLoader.addName(fertilizer, "Fertilizer");
         ModLoader.addName(catTailItem, "Cattail");
+        ModLoader.addName(scarecrow, "Scarecrow");
         
         ModLoader.addShapelessRecipe(new ItemStack(firSapling, 3), new Object[] {new ItemStack(Item.dyePowder, 1, 15), new ItemStack(Block.sapling, 1, 1)});
         ModLoader.addShapelessRecipe(new ItemStack(redwoodSapling, 3), new Object[] {new ItemStack(Item.dyePowder, 1, 15), new ItemStack(Block.sapling, 0, 0)});
         ModLoader.addShapelessRecipe(new ItemStack(fertilizer, 6), new Object[] {new ItemStack(Block.dirt), new ItemStack(Item.egg), new ItemStack(Item.seeds)});
+        ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder, 2, 12), new Object[] {new ItemStack(hydrangea)});
+        ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder, 2, 14), new Object[] {new ItemStack(orangeFlower)});
+        ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder, 2, 7), new Object[] {new ItemStack(whiteFlower)});
+        ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder, 2, 13), new Object[] {new ItemStack(purpleFlower)});
+        ModLoader.addRecipe(new ItemStack(scarecrow, 1), new Object[] {" a ", "cbc", " c ", Character.valueOf('a'), Block.pumpkin, Character.valueOf('b'), Block.melon, Character.valueOf('c'), Item.stick});
+        
+        ModLoader.registerEntityID(EntityScarecrow.class, "scarecrow", ModLoader.getUniqueEntityId());
+        
+        ModLoader.addAchievementDesc(scarecrowGet, "Obtain Scarecrow!", "Obtain the Scarecrow!");
     }
 	
     public static int configurationProperties()
@@ -185,13 +202,27 @@ public class mod_ExtraBiomesXL extends BaseMod
         
         fertilizerID = Integer.parseInt(configuration.getOrCreateIntProperty("Fertilizer", Configuration.CATEGORY_ITEM, 2870).value);
         catTailItemID = Integer.parseInt(configuration.getOrCreateIntProperty("Cattail", Configuration.CATEGORY_ITEM, 2871).value);
+        scarecrowID = Integer.parseInt(configuration.getOrCreateIntProperty("Scarecrow", Configuration.CATEGORY_ITEM, 2872).value);
         
         configuration.save();
         return coverGrassID;
     }
+    
+    public void takenFromCrafting(EntityPlayer entityplayer, ItemStack itemstack, IInventory iinventory)
+	{
+		if (itemstack.itemID == scarecrow.shiftedIndex)
+		{
+			entityplayer.addStat(scarecrowGet, 1);
+		}
+	}
+    
+    public void addRenderer(Map map)
+	{
+		map.put(EntityScarecrow.class, new RenderScarecrow(new ModelScarecrow(), 0.4F));
+	}
 	
     public String getVersion()
 	{
-		return "ExtraBiomesXL V1.13 for Minecraft 1.2.4";
+		return "V1.15 for Minecraft 1.2.5";
 	}
 }

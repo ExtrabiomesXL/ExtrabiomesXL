@@ -9,7 +9,8 @@ public class BlockDeadGrass extends BlockFlower implements ITextureProvider
 	protected BlockDeadGrass(int i, int j)
 	{
 		super(i, j);
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.2F, 1.0F);
+		float var3 = 0.4F;
+        this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.5F, 0.5F + var3);
 	}
 
 	protected boolean canThisPlantGrowOnThisBlockID(int i)
