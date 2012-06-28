@@ -225,7 +225,7 @@ public class BiomeDecorator
     {
         if (this.currentWorld != null)
         {
-            throw new RuntimeException("Already decorating!!");
+        	if (this.currentWorld != null);
         }
         else
         {

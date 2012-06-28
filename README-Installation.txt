@@ -1,6 +1,6 @@
 -----------------------------------------------------------------
 
-Please remember that ModLoader, ModLoaderMP, and Forge is required!
+Please remember that ModLoader, ModLoaderMP, and Minecraft Forge is required for ExtraBiomes to work!
 
 Thank you so much for downloading ExtraBiomesXL!
 
@@ -70,4 +70,3 @@ Linux (Debain and debian derivatives such as Ubuntu, Linux Mint, ElementaryOS, e
 
 
 -----------------------------------------------------------------
-Ignore the .DS_Store and _MACOSX stuff, they're the result of me using a Mac… -_-

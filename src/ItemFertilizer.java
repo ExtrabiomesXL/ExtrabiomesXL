@@ -8,7 +8,7 @@ public class ItemFertilizer extends Item implements ITextureProvider {
 	public ItemFertilizer(int par1)
     {
         super(par1);
-        setMaxDamage(0);
+        setMaxDamage(12);
     }
 	
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7)
@@ -47,6 +47,17 @@ public class ItemFertilizer extends Item implements ITextureProvider {
                 if (!par3World.isRemote)
                 {
                     ((BlockFirSapling)mod_ExtraBiomesXL.firSapling).growTree(par3World, par4, par5, par6, par3World.rand);
+                    par1ItemStack.stackSize--;
+                }
+
+                return true;
+            }
+            
+            if (i == mod_ExtraBiomesXL.redwoodSapling.blockID)
+            {
+                if (!par3World.isRemote)
+                {
+                    ((BlockRedwoodSapling)mod_ExtraBiomesXL.redwoodSapling).growTree(par3World, par4, par5, par6, par3World.rand);
                     par1ItemStack.stackSize--;
                 }
 

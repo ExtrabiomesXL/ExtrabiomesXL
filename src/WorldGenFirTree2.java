@@ -2,19 +2,19 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public class WorldGenRedwood extends WorldGenerator
+public class WorldGenFirTree2 extends WorldGenerator
 {
-    public WorldGenRedwood(boolean par1)
+    public WorldGenFirTree2(boolean par1)
     {
         super(par1);
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
-        int i = par2Random.nextInt(8) + 24;
+        int i = par2Random.nextInt(16) + 32;
         int j = 1 + par2Random.nextInt(12);
         int k = i - j;
-        int l = 2 + par2Random.nextInt(6);
+        int l = 2 + par2Random.nextInt(9);
         boolean flag = true;
 
         if (par4 < 1 || par4 + i + 1 > 256)
@@ -69,9 +69,9 @@ public class WorldGenRedwood extends WorldGenerator
         }
 
         par1World.setBlock(par3, par4 - 1, par5, Block.dirt.blockID);
-		par1World.setBlock(par3 - 1, par4 - 1, par5, Block.dirt.blockID);
-		par1World.setBlock(par3, par4 - 1, par5 - 1, Block.dirt.blockID);
-		par1World.setBlock(par3 - 1, par4 - 1, par5 - 1, Block.dirt.blockID);
+        par1World.setBlock(par3 - 1, par4 - 1, par5, Block.dirt.blockID);
+        par1World.setBlock(par3, par4 - 1, par5 - 1, Block.dirt.blockID);
+        par1World.setBlock(par3 - 1, par4 - 1, par5 - 1, Block.dirt.blockID);
         int l1 = par2Random.nextInt(2);
         int j2 = 1;
         boolean flag1 = false;
@@ -90,10 +90,10 @@ public class WorldGenRedwood extends WorldGenerator
 
                     if ((Math.abs(k4) != l1 || Math.abs(i5) != l1 || l1 <= 0) && !Block.opaqueCubeLookup[par1World.getBlockId(i4, k3, l4)])
                     {
-                        setBlockAndMetadata(par1World, i4, k3, l4, Block.leaves.blockID, 0);
-						setBlockAndMetadata(par1World, i4 - 1, k3, l4, Block.leaves.blockID, 0);
-						setBlockAndMetadata(par1World, i4, k3, l4 - 1, Block.leaves.blockID, 0);
-						setBlockAndMetadata(par1World, i4 - 1, k3, l4 - 1, Block.leaves.blockID, 0);
+                        setBlockAndMetadata(par1World, i4, k3, l4, Block.leaves.blockID, 1);
+						setBlockAndMetadata(par1World, i4 - 1, k3, l4, Block.leaves.blockID, 1);
+						setBlockAndMetadata(par1World, i4, k3, l4 - 1, Block.leaves.blockID, 1);
+						setBlockAndMetadata(par1World, i4 - 1, k3, l4 - 1, Block.leaves.blockID, 1);
                     }
                 }
             }
@@ -122,10 +122,10 @@ public class WorldGenRedwood extends WorldGenerator
 
             if (j4 == 0 || j4 == Block.leaves.blockID)
             {
-                setBlockAndMetadata(par1World, par3, par4 + l3, par5, Block.wood.blockID, 0);
-				setBlockAndMetadata(par1World, par3 - 1, par4 + l3, par5, Block.wood.blockID, 0);
-				setBlockAndMetadata(par1World, par3, par4 + l3, par5 - 1, Block.wood.blockID, 0);
-				setBlockAndMetadata(par1World, par3 - 1, par4 + l3, par5 - 1, Block.wood.blockID, 0);
+                setBlockAndMetadata(par1World, par3, par4 + l3, par5, Block.wood.blockID, 1);
+				setBlockAndMetadata(par1World, par3 - 1, par4 + l3, par5, Block.wood.blockID, 1);
+				setBlockAndMetadata(par1World, par3, par4 + l3, par5 - 1, Block.wood.blockID, 1);
+				setBlockAndMetadata(par1World, par3 - 1, par4 + l3, par5 - 1, Block.wood.blockID, 1);
             }
         }
 

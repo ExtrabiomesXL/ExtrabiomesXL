@@ -1,7 +1,6 @@
 package net.minecraft.src;
 
 import java.util.ArrayList;
-
 import net.minecraft.src.forge.ITextureProvider;
 
 public class BlockLeafPile extends Block implements ITextureProvider
@@ -31,24 +30,23 @@ public class BlockLeafPile extends Block implements ITextureProvider
 
     public int getBlockColor()
     {
-        double d = 0.5D;
-        double d1 = 1.0D;
-        return ColorizerGrass.getGrassColor(d, d1);
-    }
-	
-    public boolean isOpaqueCube()
-    {
-        return false;
+        return ColorizerFoliage.getFoliageColorBasic();
     }
     
     public int getRenderColor(int par1)
     {
-            return ColorizerFoliage.getFoliageColorBasic();
+        return ColorizerFoliage.getFoliageColorBasic();
     }
     
-    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
+    public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
-        return super.canPlaceBlockAt(par1World, par2, par3, par4);
+        return par1IBlockAccess.getBiomeGenForCoords(par2, par4).getBiomeFoliageColor();
+    }
+
+	
+    public boolean isOpaqueCube()
+    {
+        return false;
     }
     
     protected boolean canThisPlantGrowOnThisBlockID(int par1)

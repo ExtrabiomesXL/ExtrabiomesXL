@@ -5,12 +5,10 @@ import java.util.*;
 import net.minecraft.client.Minecraft;
 import java.io.*;
 
-public class mod_ExtraBiomesXL extends BaseMod {
+public class mod_ExtraBiomesXL extends BaseMod
+{
+	static Configuration configuration = new Configuration(new File(Minecraft.getMinecraftDir(), "/ExtraBiomesXL.cfg"));
 	
-	//Generate a configuration file named "ExtraBiomesXL.cfg" in the config folder.
-	static Configuration configuration = new Configuration(new File(Minecraft.getMinecraftDir(), "config/ExtraBiomesXL.cfg"));
-	
-	//Initializing the custom ID's
 	static int coverGrassID = configurationProperties();
     static int crackedSandID;
     static int deadGrassID;
@@ -23,7 +21,6 @@ public class mod_ExtraBiomesXL extends BaseMod {
     static int shortGrassID;
     static int redRockID;
     static int catTailID;
-    static int catTailItemID;
     static int hydrangeaID;
     static int brownGrassID;
     static int brownGrassShortID;
@@ -40,9 +37,11 @@ public class mod_ExtraBiomesXL extends BaseMod {
     static int firSaplingID;
     static int rootID;
     static int leafPileID;
+    static int redwoodSaplingID;
+    
+    static int catTailItemID;
     static int fertilizerID;
     
-	//Initializing the blocks and items.
     public static Block coverGrass = new BlockCoverGrass(coverGrassID, 111).setHardness(0F).setResistance(0F).setBlockName("shortGrass").setStepSound(Block.soundGrassFootstep);
 	public static Block crackedSand = new BlockCrackedSand(crackedSandID, 0).setHardness(1.2F).setResistance(0F).setBlockName("crackedSand").setStepSound(Block.soundStoneFootstep);
 	public static Block deadGrass = new BlockDeadGrass(deadGrassID, 127).setHardness(0F).setResistance(0F).setBlockName("deadGrass").setStepSound(Block.soundGrassFootstep);
@@ -71,21 +70,18 @@ public class mod_ExtraBiomesXL extends BaseMod {
 	public static Block firSapling = new BlockFirSapling(firSaplingID, 191).setHardness(0F).setResistance(0F).setBlockName("firSapling").setStepSound(Block.soundGrassFootstep);
 	public static Block root = new BlockRoot(rootID, 255).setHardness(0F).setResistance(0F).setBlockName("root").setStepSound(Block.soundGrassFootstep);
     public static Block leafPile = new BlockLeafPile(leafPileID, 11).setHardness(0F).setResistance(0F).setBlockName("leafPile").setStepSound(Block.soundGrassFootstep);
+    public static Block redwoodSapling = new BlockRedwoodSapling(redwoodSaplingID, 110).setHardness(0F).setBlockName("redwoodSapling").setStepSound(Block.soundGrassFootstep);
     public static Item fertilizer = (new ItemFertilizer(fertilizerID)).setIconIndex(175).setItemName("fertilizer");
     public static Item catTailItem = (new ItemCatTail(catTailItemID, mod_ExtraBiomesXL.catTail)).setIconIndex(95).setItemName("catTailItem");
-	
-	//I dunno. I'm assuming you need this. XD
+    
     public mod_ExtraBiomesXL()
 	{
-		
 	}
     
     public void load()
 	{
-    	//Fetching the extrabiomes.png texture.
 		MinecraftForgeClient.preloadTexture("/ExtraBiomesXL/extrabiomes.png");
 		
-		//Registering blocks.
 		ModLoader.registerBlock(coverGrass);
 		ModLoader.registerBlock(crackedSand);
 		ModLoader.registerBlock(deadGrass);
@@ -114,17 +110,17 @@ public class mod_ExtraBiomesXL extends BaseMod {
 		ModLoader.registerBlock(firSapling);
 		ModLoader.registerBlock(root);
         ModLoader.registerBlock(leafPile);
+        ModLoader.registerBlock(redwoodSapling);
 		
-		//Assigning in-game names.
-        ModLoader.addName(coverGrass, "Cover Grass");
+        ModLoader.addName(coverGrass, "Grass");
 		ModLoader.addName(crackedSand, "Cracked Sand");
 		ModLoader.addName(deadGrass, "Dead Grass");
         ModLoader.addName(deadGrassY, "Dead Grass");
         ModLoader.addName(deadTallGrass, "Dead Grass");
-        ModLoader.addName(leavesBrown, "Leaves Brown");
-        ModLoader.addName(leavesOrange, "Leaves Orange");
-        ModLoader.addName(leavesRed, "Leaves Red");
-        ModLoader.addName(leavesYellow, "Leaves Yellow");
+        ModLoader.addName(leavesBrown, "Leaves");
+        ModLoader.addName(leavesOrange, "Leaves");
+        ModLoader.addName(leavesRed, "Leaves");
+        ModLoader.addName(leavesYellow, "Leaves");
         ModLoader.addName(shortGrass, "Short Grass");
         ModLoader.addName(redRock, "Red Rock");
         ModLoader.addName(catTail, "Cattail");
@@ -138,23 +134,22 @@ public class mod_ExtraBiomesXL extends BaseMod {
         ModLoader.addName(toadstool, "Toadstool");
         ModLoader.addName(tinyCactus, "Tiny Cactus");
         ModLoader.addName(wheatGrass, "Wheatgrass");
-        ModLoader.addName(thickGrass, "Thick Grass");
+        ModLoader.addName(thickGrass, "Grass");
         ModLoader.addName(quicksand, "Quicksand");
         ModLoader.addName(autumnSapling, "Autumn Sapling");
 		ModLoader.addName(firSapling, "Fir Sapling");
 		ModLoader.addName(root, "Root");
         ModLoader.addName(leafPile, "Leaf Pile");
+        ModLoader.addName(redwoodSapling, "Redwood Sapling");
+        
         ModLoader.addName(fertilizer, "Fertilizer");
         ModLoader.addName(catTailItem, "Cattail");
         
-        //Building crafting recipes.
-        ModLoader.addShapelessRecipe(new ItemStack(firSapling, 1), new Object[] {new ItemStack(Item.dyePowder, 1, 15), new ItemStack(Block.sapling, 1, 1)
-        });
-        ModLoader.addShapelessRecipe(new ItemStack(fertilizer, 1), new Object[] {new ItemStack(Block.dirt), new ItemStack(Item.egg), new ItemStack(Item.seeds)
-        });
+        ModLoader.addShapelessRecipe(new ItemStack(firSapling, 3), new Object[] {new ItemStack(Item.dyePowder, 1, 15), new ItemStack(Block.sapling, 1, 1)});
+        ModLoader.addShapelessRecipe(new ItemStack(redwoodSapling, 3), new Object[] {new ItemStack(Item.dyePowder, 1, 15), new ItemStack(Block.sapling, 0, 0)});
+        ModLoader.addShapelessRecipe(new ItemStack(fertilizer, 6), new Object[] {new ItemStack(Block.dirt), new ItemStack(Item.egg), new ItemStack(Item.seeds)});
     }
 	
-	//Defaul configuration file values.
     public static int configurationProperties()
     {
     	configuration.load();
@@ -186,6 +181,8 @@ public class mod_ExtraBiomesXL extends BaseMod {
         firSaplingID = Integer.parseInt(configuration.getOrCreateBlockIdProperty("Fir Sapling", 175).value);
         rootID = Integer.parseInt(configuration.getOrCreateBlockIdProperty("Root", 176).value);
         leafPileID = Integer.parseInt(configuration.getOrCreateBlockIdProperty("Leaf Pile", 177).value);
+        redwoodSaplingID = Integer.parseInt(configuration.getOrCreateBlockIdProperty("Redwood Sapling", 178).value);
+        
         fertilizerID = Integer.parseInt(configuration.getOrCreateIntProperty("Fertilizer", Configuration.CATEGORY_ITEM, 2870).value);
         catTailItemID = Integer.parseInt(configuration.getOrCreateIntProperty("Cattail", Configuration.CATEGORY_ITEM, 2871).value);
         
@@ -193,10 +190,8 @@ public class mod_ExtraBiomesXL extends BaseMod {
         return coverGrassID;
     }
 	
-	//Returns the version number in error reports. This will certainly help!
     public String getVersion()
 	{
-		return "ExtraBiomesXL V1.11 for Minecraft 1.2.3";
+		return "ExtraBiomesXL V1.13 for Minecraft 1.2.4";
 	}
-
 }

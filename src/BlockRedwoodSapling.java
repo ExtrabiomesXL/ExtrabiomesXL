@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import net.minecraft.src.forge.*;
 
-public class BlockFirSapling extends BlockFlower implements ITextureProvider
+public class BlockRedwoodSapling extends BlockFlower implements ITextureProvider
 {
-    protected BlockFirSapling(int par1, int par2)
+    protected BlockRedwoodSapling(int par1, int par2)
     {
         super(par1, par2);
         float f = 0.4F;
@@ -45,7 +45,7 @@ public class BlockFirSapling extends BlockFlower implements ITextureProvider
         int k = 0;
         boolean flag = false;
         {
-        	 obj = new WorldGenFirTree(true);
+        	 obj = new WorldGenRedwood(true);
         }
 
         if (flag)

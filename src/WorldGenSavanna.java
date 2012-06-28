@@ -25,7 +25,7 @@ public class WorldGenSavanna extends WorldGenerator
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
-    	int i = par2Random.nextInt(3) + field_48202_a;
+    	int i = par2Random.nextInt(6) + field_48202_a;
         boolean flag = true;
 
         if (par4 < 1 || par4 + i + 1 > 256)
@@ -87,7 +87,7 @@ public class WorldGenSavanna extends WorldGenerator
         for (int k1 = (par4 - byte1) + i; k1 <= par4 + i; k1++)
         {
             int k2 = k1 - (par4 + i);
-            int j3 = (i1 + 1) - k2 / 2;
+            int j3 = (i1 + 1) - k2;
 
             for (int l3 = par3 - j3; l3 <= par3 + j3; l3++)
             {
