@@ -10,6 +10,8 @@ pero: $10.00
 
 David: $5.00
 
+Krystyna: $2.50
+
 Elijah: $1.00
 
 

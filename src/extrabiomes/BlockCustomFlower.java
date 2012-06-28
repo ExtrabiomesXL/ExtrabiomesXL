@@ -149,6 +149,7 @@ class BlockCustomFlower extends Block implements ITextureProvider, MultiBlock {
 		setBlockBounds(0.5F - var4, 0.0F, 0.5F - var4, 0.5F + var4,
 				var4 * 3.0F, 0.5F + var4);
 		setHardness(0F);
+		setStepSound(Block.soundGrassFootstep);
 		setBlockName(BLOCK_NAME);
 	}
 

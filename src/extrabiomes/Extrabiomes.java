@@ -11,17 +11,12 @@ public enum Extrabiomes {
 	INSTANCE;
 
 	private static final String NAME = "Extrabiomes XL";
-	private static final String VERSION = "2.0.1";
+	private static final String VERSION = "2.0.2";
 	private boolean initialized;
 	private static Item scarecrow;
 
 	public int addFuel(int id, int damage) {
 		return BlockControl.INSTANCE.getFuelValue(id, damage);
-	}
-
-	public void addRenderer(Map map) {
-		map.put(EntityScarecrow.class, new RenderScarecrow(
-				new ModelScarecrow(), 0.4F));
 	}
 
 	private void addScarecrow() {
@@ -56,7 +51,7 @@ public enum Extrabiomes {
 		BlockControl.INSTANCE.doAddOnsBlockSubstitutions(); // Allow AddOns to
 															// substitute blocks
 		BiomeControl.doAddOnsAddBiomes();
-		//addScarecrow();
+		addScarecrow();
 	}
 
 	public String getName() {

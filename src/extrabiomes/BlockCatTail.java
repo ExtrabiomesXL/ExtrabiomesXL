@@ -17,24 +17,33 @@ public class BlockCatTail extends BlockFlower implements ITextureProvider {
 	private static final String DISPLAY_NAME = "Cat Tail";
 	private static final int TEXTURE_INDEX = 79;
 	private static final float HARDNESS = 0.0F;
-	private static final int RANGE_WATER_REQUIRED = 1;
+	private static final int RANGE_WATER_REQUIRED = 2;
 
 	static private boolean canGrownOnBlock(final int id) {
 		return id == Block.grass.blockID && id == Block.dirt.blockID
 				&& id == Block.sand.blockID;
 	}
 
-	static private boolean isNextToWater(final World world, final int x,
-			final int y, final int z) {
-		final int range = RANGE_WATER_REQUIRED;
-		for (int x1 = x - range; x1 <= x + range; x1++)
-			for (int z1 = z - range; z1 <= z + range; z1++) {
-				if (x1 == x && z1 == z)
-					continue;
-				if (world.getBlockMaterial(x - 1, y, z) == Material.water)
-					return true;
-			}
-		return false;
+	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
+		int i = par1World.getBlockId(par2, par3 - 1, par4);
+
+		if (i != Block.grass.blockID && i != Block.dirt.blockID) {
+			return false;
+		}
+
+		if (par1World.getBlockMaterial(par2 - 1, par3 - 1, par4) == Material.water) {
+			return true;
+		}
+
+		if (par1World.getBlockMaterial(par2 + 1, par3 - 1, par4) == Material.water) {
+			return true;
+		}
+
+		if (par1World.getBlockMaterial(par2, par3 - 1, par4 - 1) == Material.water) {
+			return true;
+		}
+
+		return par1World.getBlockMaterial(par2, par3 - 1, par4 + 1) == Material.water;
 	}
 
 	public BlockCatTail(final int id) {
@@ -60,13 +69,6 @@ public class BlockCatTail extends BlockFlower implements ITextureProvider {
 	public boolean canBlockStay(final World world, final int x, final int y,
 			final int z) {
 		return canPlaceBlockAt(world, x, y, z);
-	}
-
-	@Override
-	public boolean canPlaceBlockAt(final World world, final int x, final int y,
-			final int z) {
-		return canGrownOnBlock(world.getBlockId(x, y - 1, z))
-				&& isNextToWater(world, x, y - 1, z);
 	}
 
 	@Override
