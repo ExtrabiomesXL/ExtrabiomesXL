@@ -1,22 +1,20 @@
 package extrabiomes;
 
-import java.lang.reflect.Field;
-
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.MapGenVillage;
 import extrabiomes.api.Extrabiome;
 import extrabiomes.api.TerrainGenBlock;
 
-public class BiomeWasteland extends BiomeGenBase {
+public class BiomeWasteland extends BiomeBase {
 
-	private static final Extrabiome biome = Extrabiome.WASTELAND;
+	private static final String NAME = "Wasteland";
+	private static final Extrabiome BIOME = Extrabiome.WASTELAND;
 
-	public BiomeWasteland(int par1) {
-		super(par1);
+	public BiomeWasteland() {
+		super(BIOME);
 
 		setColor(0x9E7C41);
-		setBiomeName("Wasteland");
+		setBiomeName(NAME);
 		temperature = 2.0F;
 		rainfall = 0.0F;
 		minHeight = 0.0F;
@@ -25,32 +23,14 @@ public class BiomeWasteland extends BiomeGenBase {
 
 		spawnableCreatureList.clear();
 
-		MetaBlock crackedSand = BlockControl.INSTANCE
-				.getTerrainGenBlock(TerrainGenBlock.CRACKED_SAND);
-		topBlock = (byte) crackedSand.blockId();
-		fillerBlock = (byte) crackedSand.blockId();
-		setDisabledRain();
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
+		disableRain();
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome)
-				.setDeadBushPerChunk(3).setDeadGrassPerChunk(9)
-				.setDeadGrassYPerChunk(9).setDeadTallGrassPerChunk(7);
-	}
-
-	void setDisabledRain() {
-		Field enabledRainField;
-		try {
-			enabledRainField = BiomeGenBase.class
-					.getDeclaredField("field_27079_v"); // enabled rain
-			enabledRainField.setAccessible(true);
-			enabledRainField.setBoolean(this, false);
-		} catch (Throwable e) {
-			// Do nothing... (This is NOT critical)
-		}
+		return new CustomDecorator(this, BIOME).setDeadBushPerChunk(3)
+				.setDeadGrassPerChunk(9).setDeadGrassYPerChunk(9)
+				.setDeadTallGrassPerChunk(7);
 	}
 
 }

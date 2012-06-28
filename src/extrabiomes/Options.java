@@ -72,50 +72,9 @@ public enum Options {
 		}
 		return false;
 	}
-	private boolean initialized = false;
-	final private Map<BaseBlock, Integer> baseBlockIds = new EnumMap<BaseBlock, Integer>(
-			BaseBlock.class);
-	final private Map<CustomItem, Integer> itemIds = new EnumMap<CustomItem, Integer>(
-			CustomItem.class);
-	final private Set<ConfigSwitch> configSwitches = EnumSet
-			.noneOf(ConfigSwitch.class);
-	final private Set<Extrabiome> enabledBiomes = EnumSet
-			.noneOf(Extrabiome.class);
-	final private Set<Extrabiome> villageSpawnBiomes = EnumSet
-			.noneOf(Extrabiome.class);
 
-	final private Set<RemovableVanillaBiome> disabledVanillaBiomes = EnumSet
-			.noneOf(RemovableVanillaBiome.class);
-
-	void addDisabledVanillaBiomes(
-			final Collection<RemovableVanillaBiome> biomesToDisable) {
-		disabledVanillaBiomes.addAll(biomesToDisable);
-	}
-
-	boolean canSpawnVillage(Extrabiome biome) {
-		return villageSpawnBiomes.contains(biome);
-	}
-
-	Set<RemovableVanillaBiome> getDisabledVanillaBiomes() {
-		return EnumSet.copyOf(disabledVanillaBiomes);
-	}
-
-	Set<Extrabiome> getEnabledBiomes() {
-		return EnumSet.copyOf(enabledBiomes);
-	}
-
-	public int getId(final BaseBlock block) {
-		if (isClassicMode())
-			return 0;
-		return baseBlockIds.get(block);
-	}
-
-	public int getId(CustomItem item) {
-		return itemIds.get(item);
-	}
-
-	int getId(final Extrabiome biome) {
-		switch (biome){
+	static int getId(final Extrabiome biome) {
+		switch (biome) {
 		case ALPINE:
 			return 32;
 		case AUTUMN_WOODS:
@@ -176,6 +135,53 @@ public enum Options {
 		return 0;
 	}
 
+	private boolean initialized = false;
+	final private Map<BaseBlock, Integer> baseBlockIds = new EnumMap<BaseBlock, Integer>(
+			BaseBlock.class);
+	final private Map<CustomItem, Integer> itemIds = new EnumMap<CustomItem, Integer>(
+			CustomItem.class);
+	final private Set<ConfigSwitch> configSwitches = EnumSet
+			.noneOf(ConfigSwitch.class);
+	final private Set<Extrabiome> enabledBiomes = EnumSet
+			.noneOf(Extrabiome.class);
+
+	final private Set<Extrabiome> villageSpawnBiomes = EnumSet
+			.noneOf(Extrabiome.class);
+
+	final private Set<RemovableVanillaBiome> disabledVanillaBiomes = EnumSet
+			.noneOf(RemovableVanillaBiome.class);
+
+	void addDisabledVanillaBiomes(
+			final Collection<RemovableVanillaBiome> biomesToDisable) {
+		disabledVanillaBiomes.addAll(biomesToDisable);
+	}
+
+	boolean canSpawnVillage(Extrabiome biome) {
+		return villageSpawnBiomes.contains(biome);
+	}
+
+	public void deselectBiomes(Collection<Extrabiome> biomesToDisable) {
+		enabledBiomes.removeAll(biomesToDisable);
+	}
+
+	Set<RemovableVanillaBiome> getDisabledVanillaBiomes() {
+		return EnumSet.copyOf(disabledVanillaBiomes);
+	}
+
+	Set<Extrabiome> getEnabledBiomes() {
+		return EnumSet.copyOf(enabledBiomes);
+	}
+
+	public int getId(final BaseBlock block) {
+		if (isClassicMode())
+			return 0;
+		return baseBlockIds.get(block);
+	}
+
+	public int getId(CustomItem item) {
+		return itemIds.get(item);
+	}
+
 	void initialize() {
 		if (initialized)
 			return;
@@ -185,6 +191,17 @@ public enum Options {
 		Configuration config = new Configuration(CONF_FILE);
 		config.load();
 
+		// Preload with getOrCreateIntProperty to prevent 4096 patch auto
+		// reassign
+		Property property = config.getOrCreateIntProperty("redrock.id",
+				Configuration.CATEGORY_BLOCK, 152);
+		property.value = String.valueOf(Integer.parseInt(property.value) & 0xff);
+		property.comment = "Due to a hole in the 4096 patch redrock.id must be set to a value less than 256.";
+		property = config.getOrCreateIntProperty("crackedsand.id",
+				Configuration.CATEGORY_BLOCK, 153);
+		property.value = String.valueOf(Integer.parseInt(property.value) & 0xff);
+		property.comment = "Due to a hole in the 4096 patch crackedsand.id must be set to a value less than 256.";
+
 		// load block id for each custom block
 		final int BASE_DEFAULT_BLOCK_ID = 150;
 		for (BaseBlock b : BaseBlock.values())
@@ -192,20 +209,14 @@ public enum Options {
 					.getOrCreateBlockIdProperty(formatKey(b) + ".id",
 							b.ordinal() + BASE_DEFAULT_BLOCK_ID).value));
 
-		Property property = config.getOrCreateIntProperty("redrock.id",
-				Configuration.CATEGORY_BLOCK, 152);
-		property.comment = "If using a 4096 blockID patch, do not set redrock,id above 255. Doing so will cause unpredictable results.";
-		property = config.getOrCreateIntProperty("crackedsand.id",
-				Configuration.CATEGORY_BLOCK, 153);
-		property.comment = "If using a 4096 blockID patch, do not set crackedsand.id above 255. Doing so will cause unpredictable results.";
-
 		// remove biomeIDs from config file
-		Map<String, Property> biomeProperties = config.categories.get(CATEGORY_BIOME.toLowerCase());
+		Map<String, Property> biomeProperties = config.categories
+				.get(CATEGORY_BIOME.toLowerCase());
 		if (biomeProperties != null)
 			for (Extrabiome biome : Extrabiome.values()) {
 				biomeProperties.remove(formatKey(biome) + ".id");
 			}
-			
+
 		// load item id for each custom item
 		final int BASE_DEFAULT_ITEM_ID = 2870;
 		for (CustomItem item : CustomItem.values())
@@ -263,9 +274,5 @@ public enum Options {
 		if (s == null)
 			return false;
 		return configSwitches.contains(s);
-	}
-
-	public void deselectBiomes(Collection<Extrabiome> biomesToDisable) {
-		enabledBiomes.removeAll(biomesToDisable);
 	}
 }

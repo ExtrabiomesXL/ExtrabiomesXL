@@ -11,9 +11,8 @@ public enum Extrabiomes {
 	INSTANCE;
 
 	private static final String NAME = "Extrabiomes XL";
-	private static final String VERSION = "2.0.3";
-	private boolean initialized;
-	private static Item scarecrow;
+	private static final String VERSION = "2.0.4";
+	private static Item scarecrow = null;
 
 	public int addFuel(int id, int damage) {
 		return BlockControl.INSTANCE.getFuelValue(id, damage);
@@ -35,22 +34,27 @@ public enum Extrabiomes {
 	public String getVersion() {
 		return VERSION;
 	}
+	
+	public void addRenderer(Map map) {
+		map.put(EntityScarecrow.class, new RenderScarecrow(
+				new ModelScarecrow(), 0.4F));
+	}
 
-	public void initialize() {
-		if (initialized)
-			return;
+	public void onModsLoaded() {
 
-		Options.INSTANCE.initialize();
-		BlockControl.setClassicModeBlocks();
 		AddOnControl.INSTANCE.initialize();
 		BiomeControl.configureVanillaBiomes();
 		AddOnControl.doDisableComponents();
-		BlockControl.INSTANCE.initialize();
 		BiomeControl.INSTANCE.initialize();
 		AddOnControl.INSTANCE.notifyAPIInitialized();
 		BlockControl.INSTANCE.doAddOnsBlockSubstitutions(); // Allow AddOns to
 															// substitute blocks
 		BiomeControl.doAddOnsAddBiomes();
 		addScarecrow();
+	}
+
+	public void onModLoad() {
+		Options.INSTANCE.initialize();
+		BlockControl.INSTANCE.initialize();
 	}
 }

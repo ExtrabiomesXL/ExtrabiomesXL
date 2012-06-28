@@ -3,7 +3,6 @@ package extrabiomes;
 import java.util.Random;
 
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.EntityWolf;
 import net.minecraft.src.MapGenVillage;
 import net.minecraft.src.SpawnListEntry;
@@ -14,9 +13,9 @@ import extrabiomes.api.Extrabiome;
 import extrabiomes.api.Flora;
 import extrabiomes.api.TerrainGenBlock;
 
-class BiomeAutumnWoods extends BiomeGenBase {
+public class BiomeAutumnWoods extends BiomeBase {
 
-	private static final String DISPLAY_NAME = "Autumn Woods";
+	private static final String NAME = "Autumn Woods";
 	private static final int COLOR = 0xF29C11;
 	private static final float MAX_HEIGHT = 0.8F;
 	private static final float MIN_HEIGHT = 0.2F;
@@ -24,7 +23,7 @@ class BiomeAutumnWoods extends BiomeGenBase {
 	private static final float TEMPERATURE = 2.0F;
 	private static final int BIG_TREE_RARITY = 10;
 	private static final int COLOR_RARITY = 3;
-	private static final Extrabiome biome = Extrabiome.AUTUMN_WOODS;
+	private static final Extrabiome BIOME = Extrabiome.AUTUMN_WOODS;
 
 	static private boolean shouldChooseColor(final Random rand) {
 		return rand.nextInt(COLOR_RARITY) == 0;
@@ -34,19 +33,17 @@ class BiomeAutumnWoods extends BiomeGenBase {
 		return rand.nextInt(BIG_TREE_RARITY) == 0;
 	}
 
-	public BiomeAutumnWoods(int id) {
-		super(id);
+	public BiomeAutumnWoods() {
+		super(BIOME);
 		setProperties();
+
 		spawnableCreatureList
 				.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
-
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome).setTreesPerChunk(9)
+		return new CustomDecorator(this, BIOME).setTreesPerChunk(9)
 				.setGrassPerChunk(6).setMushroomsPerChunk(3)
 				.setToadStoolsPerChunk(2).setAutumnShrubsPerChunk(2);
 	}
@@ -54,7 +51,7 @@ class BiomeAutumnWoods extends BiomeGenBase {
 	@Override
 	public WorldGenerator getRandomWorldGenForTrees(final Random rand) {
 
-		if (!FloraControl.INSTANCE.isEnabled(biome, Flora.AUTUMN_TREE))
+		if (!FloraControl.INSTANCE.isEnabled(BIOME, Flora.AUTUMN_TREE))
 			return new WorldGenNoOp();
 
 		TerrainGenBlock leaf = null;
@@ -80,7 +77,7 @@ class BiomeAutumnWoods extends BiomeGenBase {
 
 	private void setProperties() {
 		setColor(COLOR);
-		setBiomeName(DISPLAY_NAME);
+		setBiomeName(NAME);
 		temperature = TEMPERATURE;
 		rainfall = RAINFALL;
 		minHeight = MIN_HEIGHT;

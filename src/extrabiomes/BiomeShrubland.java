@@ -1,30 +1,28 @@
 package extrabiomes;
 
-import extrabiomes.api.Extrabiome;
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.MapGenVillage;
+import extrabiomes.api.Extrabiome;
 
-public class BiomeShrubland extends BiomeGenBase {
+public class BiomeShrubland extends BiomeBase {
 
-	private static final Extrabiome biome = Extrabiome.SHRUBLAND;
+	private static final String NAME = "Shrubland";
+	private static final Extrabiome BIOME = Extrabiome.SHRUBLAND;
 
-	public BiomeShrubland(int par1) {
-		super(par1);
+	public BiomeShrubland() {
+		super(BIOME);
 
 		setColor(0x51B57D);
-		setBiomeName("Shrubland");
+		setBiomeName(NAME);
 		temperature = 0.4F;
 		rainfall = 0.6F;
 		minHeight = 0.1F;
 		maxHeight = 0.3F;
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome).setTreesPerChunk(0)
+		return new CustomDecorator(this, BIOME).setTreesPerChunk(0)
 				.setFlowersPerChunk(3).setGrassPerChunk(0);
 	}
 

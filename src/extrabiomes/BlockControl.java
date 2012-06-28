@@ -81,6 +81,7 @@ public enum BlockControl {
 			return;
 		initialized = true;
 
+		setClassicModeBlocks();
 		initializeBaseBlocks(); // Initialize blocks based on user config
 
 		registerLeaves(Block.leaves.blockID);

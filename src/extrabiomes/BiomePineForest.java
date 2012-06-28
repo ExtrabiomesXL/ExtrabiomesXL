@@ -7,15 +7,16 @@ import net.minecraft.src.EntityWolf;
 import net.minecraft.src.MapGenVillage;
 import net.minecraft.src.SpawnListEntry;
 
-public class BiomePineForest extends BiomeGenTaiga {
+public class BiomePineForest extends BiomeBase {
 
-	private static final Extrabiome biome = Extrabiome.PINE_FOREST;
+	private static final String NAME = "Pine Forest";
+	private static final Extrabiome BIOME = Extrabiome.PINE_FOREST;
 
-	public BiomePineForest(int par1) {
-		super(par1);
+	public BiomePineForest() {
+		super(BIOME);
 
 		setColor(0x469C7E);
-		setBiomeName("Pine Forest");
+		setBiomeName(NAME);
 		temperature = 0.4F;
 		rainfall = 0.6F;
 		minHeight = 0.1F;
@@ -23,13 +24,12 @@ public class BiomePineForest extends BiomeGenTaiga {
 
 		spawnableCreatureList
 				.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome);
+		return new CustomDecorator(this, BIOME).setTreesPerChunk(10)
+		.setGrassPerChunk(1);
 	}
 
 }

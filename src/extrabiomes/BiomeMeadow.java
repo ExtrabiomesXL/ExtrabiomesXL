@@ -1,25 +1,23 @@
 package extrabiomes;
 
-import extrabiomes.api.Extrabiome;
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.MapGenVillage;
+import extrabiomes.api.Extrabiome;
 
-public class BiomeMeadow extends BiomeGenBase {
+public class BiomeMeadow extends BiomeBase {
 
-	private static final Extrabiome biome = Extrabiome.MEADOW;
+	private static final String NAME = "Meadow";
+	private static final Extrabiome BIOME = Extrabiome.MEADOW;
 
-	public BiomeMeadow(int id) {
-		super(id);
-		setBiomeName("Meadow");
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
+	public BiomeMeadow() {
+		super(BIOME);
+		setBiomeName(NAME);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome)
-				.setFlowersPerChunk(9).setGrassPerChunk(12).setTreesPerChunk(0);
+		return new CustomDecorator(this, BIOME).setFlowersPerChunk(9)
+				.setGrassPerChunk(12).setTreesPerChunk(0);
 	}
 
 }

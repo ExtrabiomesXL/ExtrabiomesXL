@@ -236,8 +236,8 @@ public class CustomDecorator extends BiomeDecorator {
 		if (blockToGen != null && opt.isEnabled(biome, Flora.CATTAIL))
 			for (int i = 0; i < catTailPerChunk; i++) {
 				final int x = chunk_X + randomGenerator.nextInt(16) + 8;
-				final int y = chunk_Z + randomGenerator.nextInt(16) + 8;
-				final int z = randomGenerator.nextInt(128);
+				final int y = randomGenerator.nextInt(128);
+				final int z = chunk_Z + randomGenerator.nextInt(16) + 8;
 				final WorldGenerator wg = new WorldGenCatTail();
 				wg.generate(currentWorld, randomGenerator, x, z, y);
 			}
@@ -463,6 +463,10 @@ public class CustomDecorator extends BiomeDecorator {
 
 	public CustomDecorator setWhiteFlowerPerChunk(int whiteFlowerPerChunk) {
 		this.whiteFlowerPerChunk = whiteFlowerPerChunk;
+		return this;
+	}
+	public CustomDecorator setCactiPerChunk(int cactiPerChunk) {
+		this.cactiPerChunk = cactiPerChunk;
 		return this;
 	}
 

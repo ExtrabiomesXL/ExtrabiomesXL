@@ -1,20 +1,20 @@
 package extrabiomes;
 
-import extrabiomes.api.Extrabiome;
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.MapGenVillage;
 import net.minecraft.src.SpawnListEntry;
+import extrabiomes.api.Extrabiome;
 
-public class BiomeSnowForest extends BiomeGenBase {
+public class BiomeSnowForest extends BiomeBase {
 
-	private static final Extrabiome biome = Extrabiome.SNOW_FOREST;
+	private static final String NAME = "Snow Forest";
+	private static final Extrabiome BIOME = Extrabiome.SNOW_FOREST;
 
-	public BiomeSnowForest(int id) {
-		super(id);
+	public BiomeSnowForest() {
+		super(BIOME);
 
 		setColor(0x5BA68D);
-		setBiomeName("Snow Forest");
+		setBiomeName(NAME);
 		temperature = 0.0F;
 		rainfall = 0.2F;
 		minHeight = 0.1F;
@@ -23,13 +23,12 @@ public class BiomeSnowForest extends BiomeGenBase {
 
 		spawnableCreatureList.add(new SpawnListEntry(
 				net.minecraft.src.EntityWolf.class, 5, 4, 4));
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome).setTreesPerChunk(8).setFlowersPerChunk(1).setGrassPerChunk(4);
+		return new CustomDecorator(this, BIOME).setTreesPerChunk(8)
+				.setFlowersPerChunk(1).setGrassPerChunk(4);
 	}
 
 }

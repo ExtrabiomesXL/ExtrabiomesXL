@@ -2,47 +2,34 @@ package extrabiomes;
 
 import java.util.Random;
 
-import extrabiomes.api.Extrabiome;
-import extrabiomes.api.Flora;
-
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.MapGenVillage;
 import net.minecraft.src.WorldGenTallGrass;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.api.Extrabiome;
+import extrabiomes.api.Flora;
 
-public class BiomeRedwoodLush extends BiomeGenBase {
+public class BiomeRedwoodLush extends BiomeBase {
 
-	private static final Extrabiome biome = Extrabiome.REDWOOD_LUSH;
-	final WorldGenerator worldGenRedwood;
-	final WorldGenerator worldGenFirTree;
+	private static final String NAME = "Lush Redwoods";
+	private static final Extrabiome BIOME = Extrabiome.REDWOOD_LUSH;
+	private WorldGenerator worldGenRedwood = null;
+	private WorldGenerator worldGenFirTree = null;
 
-	public BiomeRedwoodLush(int par1) {
-		super(par1);
+	public BiomeRedwoodLush() {
+		super(BIOME);
 		setColor(0x4AC758);
-		setBiomeName("Lush Redwoods");
+		setBiomeName(NAME);
 		temperature = 1.1F;
 		rainfall = 1.4F;
 		minHeight = 0.9F;
 		maxHeight = 1.5F;
-
-		if (FloraControl.INSTANCE.isEnabled(biome, Flora.REDWOOD_TREE))
-			worldGenRedwood = new WorldGenRedwood(false);
-		else
-			worldGenRedwood = new WorldGenNoOp();
-
-		if (FloraControl.INSTANCE.isEnabled(biome, Flora.FIR_TREE))
-			worldGenFirTree = new WorldGenFirTree(false);
-		else
-			worldGenFirTree = new WorldGenNoOp();
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome).setTreesPerChunk(17)
+		return new CustomDecorator(this, BIOME).setTreesPerChunk(17)
 				.setRootsPerChunk(15).setLeafPilePerChunk(15);
 	}
 
@@ -55,8 +42,20 @@ public class BiomeRedwoodLush extends BiomeGenBase {
 
 	@Override
 	public WorldGenerator getRandomWorldGenForTrees(Random random) {
-		if (random.nextInt(2) == 0)
+		if (random.nextInt(2) == 0) {
+			if (worldGenRedwood == null)
+				if (FloraControl.INSTANCE.isEnabled(BIOME, Flora.REDWOOD_TREE))
+					worldGenRedwood = new WorldGenRedwood(false);
+				else
+					worldGenRedwood = new WorldGenNoOp();
 			return worldGenRedwood;
+		}
+
+		if (worldGenFirTree == null)
+			if (FloraControl.INSTANCE.isEnabled(BIOME, Flora.FIR_TREE))
+				worldGenFirTree = new WorldGenFirTree(false);
+			else
+				worldGenFirTree = new WorldGenNoOp();
 		return worldGenFirTree;
 
 	}

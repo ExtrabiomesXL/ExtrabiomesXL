@@ -6,15 +6,16 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.MapGenVillage;
 import net.minecraft.src.SpawnListEntry;
 
-public class BiomeWoodlands extends BiomeGenBase {
+public class BiomeWoodlands extends BiomeBase {
 
-	private static final Extrabiome biome = Extrabiome.WOODLANDS;
+	private static final String NAME = "Woodlands";
+	private static final Extrabiome BIOME = Extrabiome.WOODLANDS;
 
-	public BiomeWoodlands(int id) {
-		super(id);
+	public BiomeWoodlands() {
+		super(BIOME);
 
 		setColor(0x85B53E);
-		setBiomeName("Woodlands");
+		setBiomeName(NAME);
 		temperature = 2.0F;
 		rainfall = 0.2F;
 		minHeight = 0.2F;
@@ -22,13 +23,11 @@ public class BiomeWoodlands extends BiomeGenBase {
 
 		spawnableCreatureList.add(new SpawnListEntry(
 				net.minecraft.src.EntityWolf.class, 5, 4, 4));
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome).setTreesPerChunk(8)
+		return new CustomDecorator(this, BIOME).setTreesPerChunk(8)
 				.setGrassPerChunk(3).setLeafPilePerChunk(30);
 	}
 

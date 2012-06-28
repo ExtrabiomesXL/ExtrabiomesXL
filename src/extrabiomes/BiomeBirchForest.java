@@ -10,15 +10,16 @@ import net.minecraft.src.MapGenVillage;
 import net.minecraft.src.SpawnListEntry;
 import net.minecraft.src.WorldGenerator;
 
-public class BiomeBirchForest extends BiomeGenBase {
+public class BiomeBirchForest extends BiomeBase {
 
-	private static final Extrabiome biome = Extrabiome.BIRCH_FOREST;
+	private static final String NAME = "Birch Forest";
+	private static final Extrabiome BIOME = Extrabiome.BIRCH_FOREST;
 	
-	public BiomeBirchForest(int id) {
-		super(id);
+	public BiomeBirchForest() {
+		super(BIOME);
 
 		setColor(0x62BF6C);
-		setBiomeName("Birch Forest");
+		setBiomeName(NAME);
 		temperature = 0.4F;
 		rainfall = 0.7F;
 		minHeight = 0.0F;
@@ -26,13 +27,11 @@ public class BiomeBirchForest extends BiomeGenBase {
 
 		spawnableCreatureList.add(new SpawnListEntry(
 				net.minecraft.src.EntityWolf.class, 5, 4, 4));
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome).setTreesPerChunk(7)
+		return new CustomDecorator(this, BIOME).setTreesPerChunk(7)
 				.setGrassPerChunk(1);
 	}
 

@@ -3,7 +3,6 @@ package extrabiomes;
 import java.util.Random;
 
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityChicken;
 import net.minecraft.src.EntityOcelot;
@@ -14,31 +13,24 @@ import net.minecraft.src.WorldGenTallGrass;
 import net.minecraft.src.WorldGenerator;
 import extrabiomes.api.Extrabiome;
 
-public class BiomeMiniJungle extends BiomeGenBase {
+public class BiomeMiniJungle extends BiomeBase {
 
-	private static Extrabiome biome = Extrabiome.MINI_JUNGLE;
+	private static final String NAME = "Mini Jungle";
+	private static Extrabiome BIOME = Extrabiome.MINI_JUNGLE;
 
-	public BiomeMiniJungle(int id) {
-		super(id);
-		setColor(0x41D923);
-		setBiomeName("Mini Jungle");
-		temperature = 1.2F;
-		rainfall = 0.9F;
-		minHeight = 0.2F;
-		maxHeight = 0.6F;
-		waterColorMultiplier = 0x24b01c;
+	public BiomeMiniJungle() {
+		super(BIOME);
+		setProperties();
 
 		spawnableMonsterList
 				.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));
 		spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10,
 				4, 4));
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome).setTreesPerChunk(15)
+		return new CustomDecorator(this, BIOME).setTreesPerChunk(15)
 				.setGrassPerChunk(9).setFlowersPerChunk(5).setReedsPerChunk(70)
 				.setClayPerChunk(3).setMushroomsPerChunk(2)
 				.setWaterLilliesPerChunk(12);
@@ -85,5 +77,15 @@ public class BiomeMiniJungle extends BiomeGenBase {
 		if (rand.nextInt(100) == 0)
 			return worldGenTrees;
 		return worldGenBigTree;
+	}
+
+	private void setProperties() {
+		setColor(0x41D923);
+		setBiomeName(NAME);
+		temperature = 1.2F;
+		rainfall = 0.9F;
+		minHeight = 0.2F;
+		maxHeight = 0.6F;
+		waterColorMultiplier = 0x24b01c;
 	}
 }

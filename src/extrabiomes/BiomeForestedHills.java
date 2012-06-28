@@ -7,24 +7,23 @@ import net.minecraft.src.EntityWolf;
 import net.minecraft.src.MapGenVillage;
 import net.minecraft.src.SpawnListEntry;
 
-public class BiomeForestedHills extends BiomeGenBase {
+public class BiomeForestedHills extends BiomeBase {
 
-	private static final  Extrabiome biome = Extrabiome.FORESTED_HILLS;
-	
-	public BiomeForestedHills(int id) {
-		super(id);
-		
-		setBiomeName("Forested Hills");
+	private static final String NAME = "Forested Hills";
+	private static final Extrabiome BIOME = Extrabiome.FORESTED_HILLS;
+
+	public BiomeForestedHills() {
+		super(BIOME);
+
+		setBiomeName(NAME);
 
 		spawnableCreatureList
 				.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome).setTreesPerChunk(7)
+		return new CustomDecorator(this, BIOME).setTreesPerChunk(7)
 				.setFlowersPerChunk(1).setGrassPerChunk(5);
 	}
 

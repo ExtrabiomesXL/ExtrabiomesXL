@@ -8,29 +8,26 @@ import net.minecraft.src.MapGenVillage;
 import net.minecraft.src.WorldGenerator;
 import extrabiomes.api.Extrabiome;
 
-public class BiomeGreenSwamp extends BiomeGenBase {
+public class BiomeGreenSwamp extends BiomeBase {
 
-	private static final Extrabiome biome = Extrabiome.GREEN_SWAMP;
+	private static final String NAME = "Green Swamplands";
+	private static final Extrabiome BIOME = Extrabiome.GREEN_SWAMP;
 
-	private static WorldGenerator genCustomSwampTree;
+	private static WorldGenerator genCustomSwampTree = null;
 
-	BiomeGreenSwamp(int par1) {
-		super(par1);
+	public BiomeGreenSwamp() {
+		super(BIOME);
 		setColor(0x68C474);
-		setBiomeName("Green Swamplands");
+		setBiomeName(NAME);
 		temperature = 0.7F;
 		rainfall = 0.8F;
 		minHeight = -0.2F;
 		maxHeight = 0.1F;
-
-		genCustomSwampTree = new WorldGenCustomSwamp();
-		if (Options.INSTANCE.canSpawnVillage(biome))
-			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, biome).setTreesPerChunk(4)
+		return new CustomDecorator(this, BIOME).setTreesPerChunk(4)
 				.setFlowersPerChunk(0).setDeadBushPerChunk(1)
 				.setMushroomsPerChunk(8).setReedsPerChunk(10)
 				.setClayPerChunk(1).setWaterLilliesPerChunk(4)
@@ -44,6 +41,9 @@ public class BiomeGreenSwamp extends BiomeGenBase {
 		if (rand.nextInt(5) == 0)
 			return worldGenSwamp;
 
+		if (genCustomSwampTree == null)
+			genCustomSwampTree = new WorldGenCustomSwamp();
+		
 		return genCustomSwampTree;
 	}
 

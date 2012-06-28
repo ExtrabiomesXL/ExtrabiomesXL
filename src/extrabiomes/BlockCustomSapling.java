@@ -157,8 +157,6 @@ class BlockCustomSapling extends BlockFlower implements MultiBlock,
 						else
 							tree = new WorldGenRedwood(true);
 						isHuge = true;
-						x++;
-						z++;
 						break;
 					}
 				}
@@ -183,7 +181,10 @@ class BlockCustomSapling extends BlockFlower implements MultiBlock,
 				world.setBlock(x, y, z, 0);
 			}
 
-			if (!tree.generate(world, rand, x + x1, y, z + z1)) {
+			final int offset = isHuge ? 1 : 0;
+
+			if (!tree
+					.generate(world, rand, x + x1 + offset, y, z + z1 + offset)) {
 				if (isHuge) {
 					world.setBlockAndMetadata(x + x1, y, z + z1, blockID,
 							metadata);
@@ -219,8 +220,7 @@ class BlockCustomSapling extends BlockFlower implements MultiBlock,
 
 	private void registerBlocksForTerrainGen(final int id) {
 		for (SaplingType i : SaplingType.values())
-			BlockControl.setTerrainGenBlock(
-					i.getAliasUsedInTerrainGen(),
+			BlockControl.setTerrainGenBlock(i.getAliasUsedInTerrainGen(),
 					new MetaBlock(id, i.metadata()));
 	}
 
