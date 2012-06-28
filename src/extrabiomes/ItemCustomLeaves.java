@@ -1,7 +1,5 @@
 package extrabiomes;
 
-import net.minecraft.src.Block;
-
 public class ItemCustomLeaves extends MultiItemBlock {
 
 	private static final int METADATA_USERPLACEDBIT = 0x4;

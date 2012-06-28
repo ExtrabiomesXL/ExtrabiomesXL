@@ -10,10 +10,6 @@ public class MultiItemBlock extends ItemBlock {
 		super(id);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
-
-		if (!(getBlock() instanceof MultiBlock))
-			throw new IllegalArgumentException(
-					"MultiItemBlock must be paired with a MultiBlock.");
 	}
 
 	Block getBlock() {
@@ -32,12 +28,12 @@ public class MultiItemBlock extends ItemBlock {
 
 	@Override
 	public String getItemNameIS(ItemStack itemstack) {
-		return ((MultiBlock) getBlock()).getNameFromMetadata(itemstack
-				.getItemDamage());
+		return "tile." + Block.blocksList[getBlockID()].getBlockName() + "."
+				+ itemstack.getItemDamage();
 	}
 
 	@Override
-	public int getMetadata(int md) {
-		return md;
+	public int getMetadata(int damage) {
+		return damage;
 	}
 }

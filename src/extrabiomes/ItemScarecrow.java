@@ -1,7 +1,5 @@
 package extrabiomes;
 
-import net.minecraft.src.Achievement;
-import net.minecraft.src.AchievementList;
 import net.minecraft.src.Block;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityList;
@@ -9,13 +7,10 @@ import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Facing;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
-import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
 import net.minecraft.src.forge.ITextureProvider;
 
 public class ItemScarecrow extends Item implements ITextureProvider {
-
-	static Achievement buildScarecrow;
 	
 	public static boolean func_48440_a(World par0World, int par1, double par2,
 			double par4, double par6) {
@@ -35,14 +30,6 @@ public class ItemScarecrow extends Item implements ITextureProvider {
 
 	public ItemScarecrow(int par1) {
 		super(par1);
-		buildScarecrow = new Achievement(3070, "buildScarecrow", -1, 2, this, AchievementList.buildWorkBench).registerAchievement();
-        ModLoader.addAchievementDesc(buildScarecrow, "If I Only Had A Brain!", "Use a pumpkin, a melon and sticks to make a scarecrow.")	;
-	}
-
-	@Override
-	public int func_46057_a(int par1, int par2) {
-		return par2 > 0 ? super.func_46057_a(par1, par2) + 16 : super
-				.func_46057_a(par1, par2);
 	}
 
 	@Override
@@ -53,14 +40,6 @@ public class ItemScarecrow extends Item implements ITextureProvider {
 	@Override
 	public String getTextureFile() {
 		return "/extrabiomes/extrabiomes.png";
-	}
-
-	@Override
-	public void onCreated(ItemStack par1ItemStack, World par2World,
-			EntityPlayer par3EntityPlayer) {
-
-		par3EntityPlayer.addStat(buildScarecrow, 1);
-		super.onCreated(par1ItemStack, par2World, par3EntityPlayer);
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import net.minecraft.src.ModLoader;
 public final class Log {
 
 	public static void write(String message) {
-		ModLoader.getLogger().fine("Extrabiomes XL: " + message);
+		ModLoader.getLogger().finer(message);
 		System.out.println("Extrabiomes XL: " + message);
 	}
 
