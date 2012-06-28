@@ -17,7 +17,7 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 
 	@Override
 	public boolean clientSideRequired() {
-		return true;
+		return Extrabiomes.clientSideRequired();
 	}
 
 	@Override

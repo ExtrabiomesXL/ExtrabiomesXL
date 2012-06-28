@@ -1,6 +1,6 @@
-2.2.1:
+2.2.2
 =====
- - Fixed crash when near autumn leaves.
- - Added receipes for toadstools. (Substitute 2 toadstools for a mushroom to make soup.)
- - Fixed server crash when using Forestry logger with Extrabiomes saplings
- 
+ - Fixed so cracked sand must have maximum light (full sunlight) to grow.
+ - Fixed server/client version mismatch
+ - Changed requirements so that classic mode server does not require Extrabiomes to be installed on the client. (Though the client still needs to have Forge.)
+ - Fixed broken tree generation on client.

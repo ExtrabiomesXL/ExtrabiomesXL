@@ -74,7 +74,7 @@ public class BlockCrackedSand extends Block implements ITextureProvider {
 			if (restrictGrowthToBiome
 					&& world.getBiomeGenForCoords(x, z) != BiomeManager.wasteland)
 				return;
-			if (world.getBlockLightValue(x, y + 1, z) < 9)
+			if (world.getBlockLightValue(x, y + 1, z) < 15)
 				return;
 			for (int i = 0; i < 4; ++i) {
 				int x1 = x + rand.nextInt(3) - 1;

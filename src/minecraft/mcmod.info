@@ -1,8 +1,8 @@
 [
 {
   "modid" : "mod_ExtrabiomesXL",
-  "name" : "Extrabiomes XL",
-  "version" : "2.1.1",
+  "name" : "ExtraBiomesXL",
+  "version" : "2.2.2",
   "url" : "http://www.minecraftforum.net/topic/1090288-",
   "credits" : "See Credits.txt in mod archive.",
   "authors": [
@@ -10,7 +10,7 @@
     "ScottKillen"
   ],
   "description": "ExtraBiomesXL adds new aesthetic content that greatly enhances Minecraft's landscapes and exploration.",
-  "logoFile" : "",
+  "logoFile" : "/extrabiomes/eb-logo.png",
   "updateUrl" : "http://www.minecraftforum.net/topic/1090288-",
   "parent" : "",
   "screenshots": [

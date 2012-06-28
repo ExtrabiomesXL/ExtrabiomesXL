@@ -9,8 +9,6 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.ForgeHooks;
-import net.minecraft.src.forge.MinecraftForge;
 import net.minecraft.src.forge.NetworkMod;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.ExtrabiomesItem;
@@ -27,9 +25,9 @@ import extrabiomes.terrain.TerrainGenerator;
 
 public class Extrabiomes {
 
-	private static final String NAME = "Extrabiomes XL";
+	private static final String NAME = "ExtraBiomes XL";
 	private static final String PRIORITIES = "";
-	private static final String VERSION = "2.2.0b Server";
+	private static final String VERSION = "2.2.2";
 
 	public static int addFuel(int id, int damage) {
 		if (id == ExtrabiomesBlock.sapling.blockID)
@@ -37,8 +35,26 @@ public class Extrabiomes {
 		return 0;
 	}
 
+	public static boolean clientSideRequired() {
+		// Don't require client unless custom blocks are defined
+		return ExtrabiomesBlock.autumnLeaves != null
+				|| ExtrabiomesBlock.catTail != null
+				|| ExtrabiomesBlock.crackedSand != null
+				|| ExtrabiomesBlock.flower != null
+				|| ExtrabiomesBlock.grass != null
+				|| ExtrabiomesBlock.greenLeaves != null
+				|| ExtrabiomesBlock.leafPile != null
+				|| ExtrabiomesBlock.quickSand != null
+				|| ExtrabiomesBlock.redRock != null
+				|| ExtrabiomesBlock.sapling != null;
+	}
+
 	public static void generateSurface(World world, Random random, int x, int z) {
 		TerrainGenerator.generateSurface(world, random, x, z);
+	}
+
+	public static String getName() {
+		return NAME;
 	}
 
 	public static String getPriorities() {
@@ -59,10 +75,6 @@ public class Extrabiomes {
 	}
 
 	public static void load() {
-		MinecraftForge.versionDetect("Extrabiomes XL", 3, 2, 5);
-		if (ForgeHooks.getBuildVersion() < 126)
-			Log.write("IMPORTANT: Due to FML bugs, you must use a forge build of 126 or greater.");
-
 		Config.load();
 	}
 
@@ -144,9 +156,5 @@ public class Extrabiomes {
 	public static void takenFromCrafting(EntityPlayer player,
 			ItemStack itemstack, IInventory var3) {
 		AchievementManager.craftingAchievement(player, itemstack);
-	}
-
-	public static String getName() {
-		return NAME;
 	}
 }
