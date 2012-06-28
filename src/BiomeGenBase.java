@@ -51,7 +51,7 @@ public abstract class BiomeGenBase
     public static final BiomeGenBase autumnWoods = (new BiomeGenAutumnWoods(25)).setColor(0xF29C11).setBiomeName("Autumn Woods").setTemperatureRainfall(2.0F, 0.1F).setMinMaxHeight(0.2F, 0.8F);
     public static final BiomeGenBase birchForest = (new BiomeGenBirchForest(26)).setColor(0x62BF6C).setBiomeName("Birch Forest").setTemperatureRainfall(0.4F, 0.7F).setMinMaxHeight(0.0F, 0.4F);
     public static final BiomeGenBase mountainRidge = (new BiomeGenMountainRidge(27)).setColor(0xC4722F).setBiomeName("Mountain Ridge").setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(1.7F, 1.7F);
-    public static final BiomeGenBase desertMountain = (new BiomeGenDesert(28)).setColor(0xFA9418).setBiomeName("Mountainous Desert").setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.4F, 1.4F).setDisableRain();
+    public static final BiomeGenBase desertMountain = (new BiomeGenDesertMountain(28)).setColor(0xFA9418).setBiomeName("Mountainous Desert").setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.4F, 1.4F).setDisableRain();
     public static final BiomeGenBase forestedHills = (new BiomeGenForestedHills(29)).setColor(0x2BF042).setBiomeName("Forested Hills").setTemperatureRainfall(0.8F, 1.2F).setMinMaxHeight(0.2F, 1.8F);
     public static final BiomeGenBase forestedIsland = (new BiomeGenForestedIsland(30)).setColor(0x62BF6C).setBiomeName("Forested Island").setTemperatureRainfall(0.4F, 0.7F).setMinMaxHeight(-0.8F, 0.8F);
     public static final BiomeGenBase glacier = (new BiomeGenGlacier(31)).setColor(0x77A696).setBiomeName("Glacier").setTemperatureRainfall(0.0F, 0.0F).setMinMaxHeight(1.4F, 2.1F);

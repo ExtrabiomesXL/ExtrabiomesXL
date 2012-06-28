@@ -69,6 +69,7 @@ public class BiomeDecorator
 
     /** The water lily generation! */
     protected WorldGenerator waterlilyGen;
+    
     protected WorldGenerator oasisGen;
     protected WorldGenerator tinyCactusGen;
     protected WorldGenerator rootGen;
@@ -188,6 +189,7 @@ public class BiomeDecorator
         this.sandPerChunk2 = 3;
         this.clayPerChunk = 1;
         this.bigMushroomsPerChunk = 0;
+        this.generateLakes = true;
         
         this.oasisGen = new WorldGenOasis(7, Block.grass.blockID);
         this.tinyCactusGen = new WorldGenTinyCactus();
@@ -214,7 +216,7 @@ public class BiomeDecorator
         this.thickGrassPerChunk = 1;
         this.oasisPerChunk = 0;
         this.oasisPerChunk2 = 0;
-        this.generateLakes = true;
+        
         this.biome = par1BiomeGenBase;
     }
 
@@ -225,7 +227,7 @@ public class BiomeDecorator
     {
         if (this.currentWorld != null)
         {
-            throw new RuntimeException("Already decorating!!");
+        	if (this.currentWorld != null);
         }
         else
         {

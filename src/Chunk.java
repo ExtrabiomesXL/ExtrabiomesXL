@@ -122,7 +122,9 @@ public class Chunk
             {
                 for (int var8 = 0; var8 < var5; ++var8)
                 {
-                    byte var9 = par2ArrayOfByte[var6 << 11 | var7 << 7 | var8];
+                    /* FORGE: The following change, a cast from unsigned byte to int,
+                     * fixes a vanilla bug when generating new chunks that contain a block ID > 127 */
+                    int var9 = par2ArrayOfByte[var6 << 11 | var7 << 7 | var8] & 0xFF;
 
                     if (var9 != 0)
                     {
@@ -982,8 +984,8 @@ public class Chunk
      */
     public void getEntitiesWithinAABBForEntity(Entity par1Entity, AxisAlignedBB par2AxisAlignedBB, List par3List)
     {
-        int var4 = MathHelper.floor_double((par2AxisAlignedBB.minY - 2.0D) / 16.0D);
-        int var5 = MathHelper.floor_double((par2AxisAlignedBB.maxY + 2.0D) / 16.0D);
+        int var4 = MathHelper.floor_double((par2AxisAlignedBB.minY - World.MAX_ENTITY_RADIUS) / 16.0D);
+        int var5 = MathHelper.floor_double((par2AxisAlignedBB.maxY + World.MAX_ENTITY_RADIUS) / 16.0D);
 
         if (var4 < 0)
         {
@@ -1030,8 +1032,8 @@ public class Chunk
      */
     public void getEntitiesOfTypeWithinAAAB(Class par1Class, AxisAlignedBB par2AxisAlignedBB, List par3List)
     {
-        int var4 = MathHelper.floor_double((par2AxisAlignedBB.minY - 2.0D) / 16.0D);
-        int var5 = MathHelper.floor_double((par2AxisAlignedBB.maxY + 2.0D) / 16.0D);
+        int var4 = MathHelper.floor_double((par2AxisAlignedBB.minY - World.MAX_ENTITY_RADIUS) / 16.0D);
+        int var5 = MathHelper.floor_double((par2AxisAlignedBB.maxY + World.MAX_ENTITY_RADIUS) / 16.0D);
 
         if (var4 < 0)
         {
@@ -1334,13 +1336,6 @@ public class Chunk
         }
 
         this.generateHeightMap();
-        Iterator var10 = this.chunkTileEntityMap.values().iterator();
-
-        while (var10.hasNext())
-        {
-            TileEntity var9 = (TileEntity)var10.next();
-            var9.updateContainingBlockInfo();
-        }
         
         List<TileEntity> invalidList = new ArrayList<TileEntity>();
         iterator = chunkTileEntityMap.values().iterator();
@@ -1350,14 +1345,12 @@ public class Chunk
             int x = tileEntity.xCoord & 15;
             int y = tileEntity.yCoord;
             int z = tileEntity.zCoord & 15;
-            /* This function is called when an entire chunk is sent, so we don't need to check the bounds.
-            if (x >= xStart && x <= xStop && y >= yStart && y <= yEnd && z >= zStart && z <= zStop)
-             */
             Block block = tileEntity.getBlockType();
             if (block == null || block.blockID != getBlockID(x, y, z) || tileEntity.getBlockMetadata() != getBlockMetadata(x, y, z))
             {
                 invalidList.add(tileEntity);
             }
+            tileEntity.updateContainingBlockInfo();
         }
         
         for (TileEntity tileEntity : invalidList)

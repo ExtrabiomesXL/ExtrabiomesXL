@@ -38,7 +38,7 @@ public class WorldChunkManager
         this.biomesToSpawnIn.add(BiomeGenBase.forestedIsland);
         this.biomesToSpawnIn.add(BiomeGenBase.greenHills);
         this.biomesToSpawnIn.add(BiomeGenBase.greenSwamp);
-		this.biomesToSpawnIn.add(BiomeGenBase.glacier);
+        this.biomesToSpawnIn.add(BiomeGenBase.glacier);
         this.biomesToSpawnIn.add(BiomeGenBase.meadow);
         this.biomesToSpawnIn.add(BiomeGenBase.miniJungle);
         this.biomesToSpawnIn.add(BiomeGenBase.rainForest);

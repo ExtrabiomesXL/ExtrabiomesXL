@@ -10,8 +10,8 @@ public class BiomeGenIceWasteland extends BiomeGenBase
     {
         super(i);
         spawnableCreatureList.clear();
-        topBlock = (byte)Block.ice.blockID;
-        fillerBlock = (byte)Block.ice.blockID;
+        topBlock = (byte)Block.blockSnow.blockID;
+        fillerBlock = (byte)Block.blockSnow.blockID;
         biomeDecorator.treesPerChunk = -999;
     }
 }

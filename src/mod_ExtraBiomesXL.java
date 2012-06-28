@@ -223,6 +223,6 @@ public class mod_ExtraBiomesXL extends BaseMod
 	
     public String getVersion()
 	{
-		return "V1.15 for Minecraft 1.2.5";
+		return "V1.18 for Minecraft 1.2.5";
 	}
 }
