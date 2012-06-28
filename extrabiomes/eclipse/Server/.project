@@ -21,7 +21,7 @@
 			<locationURI>MCP_LOC/extrabiomes/src/common</locationURI>
 		</link>
 		<link>
-			<name>iterrain_server</name>
+			<name>extrabiomes_server</name>
 			<type>2</type>
 			<locationURI>MCP_LOC/extrabiomes/src/minecraft_server</locationURI>
 		</link>

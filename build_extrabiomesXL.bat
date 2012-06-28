@@ -14,6 +14,13 @@ echo.
 call recompile.bat
 call reobfuscate.bat
 echo.
+echo Adding release assets
+XCOPY extrabiomes\*.txt reobf\minecraft /E /Q
+XCOPY extrabiomes\*.txt reobf\minecraft_server /E /Q
+XCOPY extrabiomes\src\minecraft\extrabiomes\*.png reobf\minecraft\extrabiomes /E /Q
+XCOPY extrabiomes\artwork\eb-logo.png reobf\minecraft\extrabiomes /E /Q
+XCOPY extrabiomes\artwork\eb-logo.png reobf\minecraft_server\extrabiomes /E /Q
+echo.
 echo Restoring src-bak
 RMDIR /S /Q src
 REN src-bak src
