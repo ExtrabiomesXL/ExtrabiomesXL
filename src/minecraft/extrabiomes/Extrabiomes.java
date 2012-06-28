@@ -30,7 +30,7 @@ public class Extrabiomes {
 
 	private static final String NAME = "ExtraBiomes XL";
 	private static final String PRIORITIES = "";
-	private static final String VERSION = "2.2.2";
+	private static final String VERSION = "2.2.3";
 
 	public static int addFuel(int id, int damage) {
 		if (id == ExtrabiomesBlock.sapling.blockID)

@@ -119,7 +119,7 @@ public class WorldGenAutumnTree extends WorldGenerator {
 			final int id = world.getBlockId(x, y + y1, z);
 
 			if (Block.blocksList[id] == null
-					|| Block.blocksList[id].isWood(world, x, y + y1, z))
+					|| Block.blocksList[id].isLeaves(world, x, y + y1, z))
 				setBlockAndMetadata(world, x, y + y1, z,
 						wood.getItem().shiftedIndex, wood.getItemDamage());
 		}

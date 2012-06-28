@@ -22,11 +22,12 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 		ITextureProvider {
 
 	private static final int METADATA_BITMASK = 0x3;
+
 	private static final int METADATA_USERPLACEDBIT = 0x4;
 	private static final int METADATA_DECAYBIT = 0x8;
 	private static final int METADATA_CLEARDECAYBIT = -METADATA_DECAYBIT - 1;
-
 	public static final int metaBrown = 0;
+
 	public static final int metaOrange = 1;
 	public static final int metaPurple = 2;
 	public static final int metaYellow = 3;
@@ -80,8 +81,8 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 
 	@Override
 	public void beginLeavesDecay(World world, int x, int y, int z) {
-		// TODO Auto-generated method stub
-		super.beginLeavesDecay(world, x, y, z);
+		world.setBlockMetadata(x, y, z,
+				setDecayOnMetadata(world.getBlockMetadata(x, y, z)));
 	}
 
 	@Override
@@ -152,6 +153,11 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 	}
 
 	@Override
+	public boolean isLeaves(World world, int x, int y, int z) {
+		return true;
+	}
+
+	@Override
 	public boolean isOpaqueCube() {
 		return Block.leaves.isOpaqueCube();
 	}
@@ -190,8 +196,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 	@Override
 	public void onEntityWalking(final World world, final int x, final int y,
 			final int z, final Entity entity) {
-		world.setBlockMetadata(x, y, z,
-				setDecayOnMetadata(world.getBlockMetadata(x, y, z)));
+		beginLeavesDecay(world, x, y, z);
 	}
 
 	@Override
@@ -254,8 +259,8 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 						final int id = world.getBlockId(x + var12, y + var13, z
 								+ var14);
 						if (Block.blocksList[id] != null
-								&& Block.blocksList[id].isWood(world, x + var12,
-										y + var13, z + var14)) {
+								&& Block.blocksList[id].isWood(world,
+										x + var12, y + var13, z + var14)) {
 							adjacentTreeBlocks[(var12 + var11) * var10
 									+ (var13 + var11) * var9 + var14 + var11] = 0;
 						} else if (Block.blocksList[id] != null

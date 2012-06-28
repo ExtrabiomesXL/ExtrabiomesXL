@@ -7,6 +7,7 @@ import net.minecraft.src.Block;
 import net.minecraft.src.BlockLeavesBase;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
@@ -73,7 +74,8 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable,
 
 	@Override
 	public void beginLeavesDecay(World world, int x, int y, int z) {
-        world.setBlockMetadata(x, y, z, setDecayOnMetadata(world.getBlockMetadata(x, y, z)));
+		world.setBlockMetadata(x, y, z,
+				setDecayOnMetadata(world.getBlockMetadata(x, y, z)));
 	}
 
 	@Override
@@ -166,9 +168,9 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable,
 	}
 
 	@Override
-	public void onEntityWalking(final World par1World, final int par2,
-			final int par3, final int par4, final Entity par5Entity) {
-		super.onEntityWalking(par1World, par2, par3, par4, par5Entity);
+	public void onEntityWalking(final World world, final int x, final int y,
+			final int z, final Entity entity) {
+		beginLeavesDecay(world, x, y, z);
 	}
 
 	@Override
@@ -306,6 +308,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable,
 		if (adjacentTreeBlocks[var11 * var10 + var11 * var9 + var11] >= 0)
 			world.setBlockMetadata(x, y, z, clearDecayOnMetadata(metadata));
 		else
-			removeLeaves(world, x, y, z);
+			this.removeLeaves(world, x, y, z);
 	}
+
 }

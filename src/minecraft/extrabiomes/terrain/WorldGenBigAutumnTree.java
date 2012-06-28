@@ -412,9 +412,16 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 						+ var15 * var10 + 0.5D);
 				var14[var8] = MathHelper.floor_double(par1ArrayOfInteger[var8]
 						+ var15 * var12 + 0.5D);
-				this.setBlockAndMetadata(worldObj, var14[0], var14[1],
-						var14[2], wood.getItem().shiftedIndex,
-						wood.getItemDamage());
+
+				Block block = Block.blocksList[worldObj.getBlockId(var14[0],
+						var14[1], var14[2])];
+
+				if (block == null
+						|| block.isLeaves(worldObj, var14[0], var14[1],
+								var14[2]))
+					this.setBlockAndMetadata(worldObj, var14[0], var14[1],
+							var14[2], wood.getItem().shiftedIndex,
+							wood.getItemDamage());
 			}
 		}
 	}

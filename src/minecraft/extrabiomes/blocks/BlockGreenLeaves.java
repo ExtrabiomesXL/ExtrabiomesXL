@@ -93,6 +93,12 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable,
 	}
 
 	@Override
+	public void beginLeavesDecay(World world, int x, int y, int z) {
+		world.setBlockMetadata(x, y, z,
+				setDecayOnMetadata(world.getBlockMetadata(x, y, z)));
+	}
+
+	@Override
 	public int colorMultiplier(final IBlockAccess iBlockAccess, final int x,
 			final int y, final int z) {
 		final int metadata = unmarkedMetadata(iBlockAccess.getBlockMetadata(x,
@@ -167,6 +173,11 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable,
 	}
 
 	@Override
+	public boolean isLeaves(World world, int x, int y, int z) {
+		return true;
+	}
+
+	@Override
 	public boolean isOpaqueCube() {
 		return Block.leaves.isOpaqueCube();
 	}
@@ -203,9 +214,9 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable,
 	}
 
 	@Override
-	public void onEntityWalking(final World par1World, final int par2,
-			final int par3, final int par4, final Entity par5Entity) {
-		super.onEntityWalking(par1World, par2, par3, par4, par5Entity);
+	public void onEntityWalking(final World world, final int x, final int y,
+			final int z, final Entity entity) {
+		beginLeavesDecay(world, x, y, z);
 	}
 
 	@Override
@@ -353,4 +364,5 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable,
 		else
 			this.removeLeaves(world, x, y, z);
 	}
+
 }

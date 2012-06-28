@@ -7,7 +7,6 @@ import net.minecraft.src.Block;
 import net.minecraft.src.BlockLeavesBase;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -23,12 +22,11 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 	private static final int METADATA_BITMASK = 0x3;
 
 	private static final int METADATA_USERPLACEDBIT = 0x4;
-
 	private static final int METADATA_DECAYBIT = 0x8;
 	private static final int METADATA_CLEARDECAYBIT = -METADATA_DECAYBIT - 1;
 	public static final int metaBrown = 0;
-	public static final int metaOrange = 1;
 
+	public static final int metaOrange = 1;
 	public static final int metaPurple = 2;
 	public static final int metaYellow = 3;
 
@@ -81,7 +79,8 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 
 	@Override
 	public void beginLeavesDecay(World world, int x, int y, int z) {
-        world.setBlockMetadata(x, y, z, setDecayOnMetadata(world.getBlockMetadata(x, y, z)));
+		world.setBlockMetadata(x, y, z,
+				setDecayOnMetadata(world.getBlockMetadata(x, y, z)));
 	}
 
 	@Override
@@ -154,12 +153,32 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 	@Override
 	public void onBlockRemoval(final World world, final int x, final int y,
 			final int z) {
+		final int leafDecayRadius = 1;
+		final int chuckCheckRadius = leafDecayRadius + 1;
+
+		if (!world.checkChunksExist(x - chuckCheckRadius, y - chuckCheckRadius,
+				z - chuckCheckRadius, x + chuckCheckRadius, y
+						+ chuckCheckRadius, z + chuckCheckRadius))
+			return;
+
+		for (int x1 = -leafDecayRadius; x1 <= leafDecayRadius; ++x1) {
+			for (int y1 = -leafDecayRadius; y1 <= leafDecayRadius; ++y1) {
+				for (int z1 = -leafDecayRadius; z1 <= leafDecayRadius; ++z1) {
+					int id = world.getBlockId(x + x1, y + y1, z + z1);
+
+					if (Block.blocksList[id] != null) {
+						Block.blocksList[id].beginLeavesDecay(world, x + x1, y
+								+ y1, z + z1);
+					}
+				}
+			}
+		}
 	}
 
 	@Override
 	public void onEntityWalking(final World world, final int x, final int y,
 			final int z, final Entity entity) {
-		super.onEntityWalking(world, x, y, z, entity);
+		beginLeavesDecay(world, x, y, z);
 	}
 
 	@Override
@@ -213,15 +232,14 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 					for (int var14 = -rangeWood; var14 <= rangeWood; ++var14) {
 						final int id = world.getBlockId(x + var12, y + var13, z
 								+ var14);
-						Block block = Block.blocksList[id];
-						if (block != null
-								&& block.canSustainLeaves(world, x + var12, y
-										+ var13, z + var14)) {
+						if (Block.blocksList[id] != null
+								&& Block.blocksList[id].isWood(world,
+										x + var12, y + var13, z + var14)) {
 							adjacentTreeBlocks[(var12 + var11) * var10
 									+ (var13 + var11) * var9 + var14 + var11] = 0;
-						} else if (block != null
-								&& block.isLeaves(world, x + var12, y + var13,
-										z + var14)) {
+						} else if (Block.blocksList[id] != null
+								&& Block.blocksList[id].isLeaves(world, x
+										+ var12, y + var13, z + var14)) {
 							adjacentTreeBlocks[(var12 + var11) * var10
 									+ (var13 + var11) * var9 + var14 + var11] = -2;
 						} else {
@@ -295,6 +313,6 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 		if (adjacentTreeBlocks[var11 * var10 + var11 * var9 + var11] >= 0)
 			world.setBlockMetadata(x, y, z, clearDecayOnMetadata(metadata));
 		else
-			removeLeaves(world, x, y, z);
+			this.removeLeaves(world, x, y, z);
 	}
 }
