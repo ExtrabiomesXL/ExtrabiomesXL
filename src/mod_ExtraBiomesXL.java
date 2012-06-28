@@ -186,8 +186,8 @@ public class mod_ExtraBiomesXL extends BaseMod {
         firSaplingID = Integer.parseInt(configuration.getOrCreateBlockIdProperty("Fir Sapling", 175).value);
         rootID = Integer.parseInt(configuration.getOrCreateBlockIdProperty("Root", 176).value);
         leafPileID = Integer.parseInt(configuration.getOrCreateBlockIdProperty("Leaf Pile", 177).value);
-        fertilizerID = Integer.parseInt(configuration.getOrCreateIntProperty("Fertilizer", Configuration.ITEM_PROPERTY, 2870).value);
-        catTailItemID = Integer.parseInt(configuration.getOrCreateIntProperty("Cattail", Configuration.ITEM_PROPERTY, 2871).value);
+        fertilizerID = Integer.parseInt(configuration.getOrCreateIntProperty("Fertilizer", Configuration.CATEGORY_ITEM, 2870).value);
+        catTailItemID = Integer.parseInt(configuration.getOrCreateIntProperty("Cattail", Configuration.CATEGORY_ITEM, 2871).value);
         
         configuration.save();
         return coverGrassID;

@@ -39,14 +39,14 @@ public class Chunk
 
     /** Reference to the World object. */
     public World worldObj;
-    public int[] field_48501_f;
+    public int[] heightMap;
 
     /** The x coordinate of the chunk. */
     public final int xPosition;
 
     /** The z coordinate of the chunk. */
     public final int zPosition;
-    private boolean field_40741_v;
+    private boolean isGapLightingUpdated;
 
     /** A Map of ChunkPositions to TileEntities in this chunk */
     public Map chunkTileEntityMap;
@@ -71,6 +71,7 @@ public class Chunk
 
     /** The time according to World.worldTime when this chunk was last saved */
     public long lastSaveTime;
+    public boolean field_50120_o;
 
     /**
      * Contains the current round-robin relight check index, and is implied as the relight check location as well.
@@ -84,19 +85,20 @@ public class Chunk
         this.blockBiomeArray = new byte[256];
         this.precipitationHeightMap = new int[256];
         this.updateSkylightColumns = new boolean[256];
-        this.field_40741_v = false;
+        this.isGapLightingUpdated = false;
         this.chunkTileEntityMap = new HashMap();
         this.isTerrainPopulated = false;
         this.isModified = false;
         this.hasEntities = false;
         this.lastSaveTime = 0L;
+        this.field_50120_o = false;
         this.queuedLightChecks = 4096;
         this.field_35846_u = false;
         this.entityLists = new List[16];
         this.worldObj = par1World;
         this.xPosition = par2;
         this.zPosition = par3;
-        this.field_48501_f = new int[256];
+        this.heightMap = new int[256];
 
         for (int var4 = 0; var4 < this.entityLists.length; ++var4)
         {
@@ -149,7 +151,7 @@ public class Chunk
      */
     public int getHeightValue(int par1, int par2)
     {
-        return this.field_48501_f[par2 << 4 | par1];
+        return this.heightMap[par2 << 4 | par1];
     }
 
     /**
@@ -204,7 +206,7 @@ public class Chunk
                             continue;
                         }
 
-                        this.field_48501_f[var3 << 4 | var2] = var4;
+                        this.heightMap[var3 << 4 | var2] = var4;
                     }
 
                     ++var3;
@@ -238,13 +240,13 @@ public class Chunk
                 {
                     if (var4 > 0)
                     {
-                        if (this.func_48499_b(var2, var4 - 1, var3) == 0)
+                        if (this.getBlockLightOpacity(var2, var4 - 1, var3) == 0)
                         {
                             --var4;
                             continue;
                         }
 
-                        this.field_48501_f[var3 << 4 | var2] = var4;
+                        this.heightMap[var3 << 4 | var2] = var4;
                     }
 
                     if (!this.worldObj.worldProvider.hasNoSky)
@@ -254,7 +256,7 @@ public class Chunk
 
                         do
                         {
-                            var4 -= this.func_48499_b(var2, var5, var3);
+                            var4 -= this.getBlockLightOpacity(var2, var5, var3);
 
                             if (var4 > 0)
                             {
@@ -297,7 +299,7 @@ public class Chunk
     private void propagateSkylightOcclusion(int par1, int par2)
     {
         this.updateSkylightColumns[par1 + par2 * 16] = true;
-        this.field_40741_v = true;
+        this.isGapLightingUpdated = true;
     }
 
     /**
@@ -348,7 +350,7 @@ public class Chunk
                 }
             }
 
-            this.field_40741_v = false;
+            this.isGapLightingUpdated = false;
         }
 
         Profiler.endSection();
@@ -389,7 +391,7 @@ public class Chunk
      */
     private void relightBlock(int par1, int par2, int par3)
     {
-        int var4 = this.field_48501_f[par3 << 4 | par1];
+        int var4 = this.heightMap[par3 << 4 | par1] & 255;
         int var5 = var4;
 
         if (par2 > var4)
@@ -397,7 +399,7 @@ public class Chunk
             var5 = par2;
         }
 
-        while (var5 > 0 && this.func_48499_b(par1, var5 - 1, par3) == 0)
+        while (var5 > 0 && this.getBlockLightOpacity(par1, var5 - 1, par3) == 0)
         {
             --var5;
         }
@@ -405,7 +407,7 @@ public class Chunk
         if (var5 != var4)
         {
             this.worldObj.markBlocksDirtyVertical(par1, par3, var5, var4);
-            this.field_48501_f[par3 << 4 | par1] = var5;
+            this.heightMap[par3 << 4 | par1] = var5;
             int var6 = this.xPosition * 16 + par1;
             int var7 = this.zPosition * 16 + par3;
             int var8;
@@ -447,7 +449,7 @@ public class Chunk
                 while (var5 > 0 && var8 > 0)
                 {
                     --var5;
-                    var12 = this.func_48499_b(par1, var5, par3);
+                    var12 = this.getBlockLightOpacity(par1, var5, par3);
 
                     if (var12 == 0)
                     {
@@ -470,7 +472,7 @@ public class Chunk
                 }
             }
 
-            var8 = this.field_48501_f[par3 << 4 | par1];
+            var8 = this.heightMap[par3 << 4 | par1];
             var12 = var4;
             int var13 = var8;
 
@@ -493,7 +495,7 @@ public class Chunk
         }
     }
 
-    public int func_48499_b(int par1, int par2, int par3)
+    public int getBlockLightOpacity(int par1, int par2, int par3)
     {
         return Block.lightOpacity[this.getBlockID(par1, par2, par3)];
     }
@@ -503,8 +505,15 @@ public class Chunk
      */
     public int getBlockID(int par1, int par2, int par3)
     {
-        ExtendedBlockStorage var4 = this.storageArrays[par2 >> 4];
-        return var4 != null ? var4.getExtBlockID(par1, par2 & 15, par3) : 0;
+        if (par2 >> 4 >= this.storageArrays.length)
+        {
+            return 0;
+        }
+        else
+        {
+            ExtendedBlockStorage var4 = this.storageArrays[par2 >> 4];
+            return var4 != null ? var4.getExtBlockID(par1, par2 & 15, par3) : 0;
+        }
     }
 
     /**
@@ -512,8 +521,15 @@ public class Chunk
      */
     public int getBlockMetadata(int par1, int par2, int par3)
     {
-        ExtendedBlockStorage var4 = this.storageArrays[par2 >> 4];
-        return var4 != null ? var4.getExtBlockMetadata(par1, par2 & 15, par3) : 0;
+        if (par2 >> 4 >= this.storageArrays.length)
+        {
+            return 0;
+        }
+        else
+        {
+            ExtendedBlockStorage var4 = this.storageArrays[par2 >> 4];
+            return var4 != null ? var4.getExtBlockMetadata(par1, par2 & 15, par3) : 0;
+        }
     }
 
     /**
@@ -536,7 +552,7 @@ public class Chunk
             this.precipitationHeightMap[var6] = -999;
         }
 
-        int var7 = this.field_48501_f[var6];
+        int var7 = this.heightMap[var6];
         int var8 = this.getBlockID(par1, par2, par3);
 
         if (var8 == par4 && this.getBlockMetadata(par1, par2, par3) == par5)
@@ -575,57 +591,64 @@ public class Chunk
                 }
             }
 
-            var9.setExtBlockMetadata(par1, par2 & 15, par3, par5);
-
-            if (var10)
+            if (var9.getExtBlockID(par1, par2 & 15, par3) != par4)
             {
-                this.generateSkylightMap();
+                return false;
             }
             else
             {
-                if (Block.lightOpacity[par4 & 4095] > 0)
+                var9.setExtBlockMetadata(par1, par2 & 15, par3, par5);
+
+                if (var10)
                 {
-                    if (par2 > var7)
-                    {
-                        this.relightBlock(par1, par2 + 1, par3);
-                    }
+                    this.generateSkylightMap();
                 }
-                else if (par2 == var7 - 1)
+                else
                 {
-                    this.relightBlock(par1, par2, par3);
+                    if (Block.lightOpacity[par4 & 4095] > 0)
+                    {
+                        if (par2 >= var7)
+                        {
+                            this.relightBlock(par1, par2 + 1, par3);
+                        }
+                    }
+                    else if (par2 == var7 - 1)
+                    {
+                        this.relightBlock(par1, par2, par3);
+                    }
+
+                    this.propagateSkylightOcclusion(par1, par3);
                 }
 
-                this.propagateSkylightOcclusion(par1, par3);
+                TileEntity var13;
+
+                if (par4 != 0)
+                {
+                    if (!this.worldObj.isRemote)
+                    {
+                        Block.blocksList[par4].onBlockAdded(this.worldObj, var11, par2, var12);
+                    }
+
+                    if (Block.blocksList[par4] != null && Block.blocksList[par4].hasTileEntity(par5))
+                    {
+                        var13 = this.getChunkBlockTileEntity(par1, par2, par3);
+
+                        if (var13 == null)
+                        {
+                            var13 = Block.blocksList[par4].getTileEntity(par5);
+                            this.worldObj.setBlockTileEntity(var11, par2, var12, var13);
+                        }
+
+                        if (var13 != null)
+                        {
+                            var13.updateContainingBlockInfo();
+                            var13.blockMetadata = par5;
+                        }
+                    }
+                }
+                this.isModified = true;
+                return true;
             }
-
-            TileEntity var13;
-
-            if (par4 != 0)
-            {
-                if (!this.worldObj.isRemote)
-                {
-                    Block.blocksList[par4].onBlockAdded(this.worldObj, var11, par2, var12);
-                }
-
-                if (Block.blocksList[par4] != null && Block.blocksList[par4].hasTileEntity(par5))
-                {
-                    var13 = this.getChunkBlockTileEntity(par1, par2, par3);
-
-                    if (var13 == null)
-                    {
-                        var13 = Block.blocksList[par4].getTileEntity(par5);
-                        this.worldObj.setBlockTileEntity(var11, par2, var12, var13);
-                    }
-
-                    if (var13 != null)
-                    {
-                        var13.updateContainingBlockInfo();
-                        var13.blockMetadata = par5;
-                    }
-                }
-            }
-            this.isModified = true;
-            return true;
         }
     }
 
@@ -810,7 +833,7 @@ public class Chunk
      */
     public boolean canBlockSeeTheSky(int par1, int par2, int par3)
     {
-        return par2 >= this.field_48501_f[par3 << 4 | par1];
+        return par2 >= this.heightMap[par3 << 4 | par1];
     }
 
     /**
@@ -820,17 +843,18 @@ public class Chunk
     {
         ChunkPosition var4 = new ChunkPosition(par1, par2, par3);
         TileEntity var5 = (TileEntity)this.chunkTileEntityMap.get(var4);
-
+        
         if (var5 != null && var5.isInvalid())
         {
             chunkTileEntityMap.remove(var4);
             var5 = null;
         }
-        
+
         if (var5 == null)
         {
             int var6 = this.getBlockID(par1, par2, par3);
             int meta = getBlockMetadata(par1, par2, par3);
+            
             if (var6 <= 0 || Block.blocksList[var6] == null || !Block.blocksList[var6].hasTileEntity(meta))
             {
                 return null;
@@ -1146,11 +1170,11 @@ public class Chunk
     }
 
     /**
-     * Checks whether skylight needs updated; if it does, calls updateSkylight_do ( aka updateSkylight_do() ).
+     * Checks whether skylight needs updated; if it does, calls updateSkylight_do
      */
     public void updateSkylight()
     {
-        if (this.field_40741_v && !this.worldObj.worldProvider.hasNoSky)
+        if (this.isGapLightingUpdated && !this.worldObj.worldProvider.hasNoSky)
         {
             this.updateSkylight_do();
         }
@@ -1164,7 +1188,11 @@ public class Chunk
         return new ChunkCoordIntPair(this.xPosition, this.zPosition);
     }
 
-    public boolean func_48492_c(int par1, int par2)
+    /**
+     * Returns whether the ExtendedBlockStorages containing levels (in blocks) from arg 1 to arg 2 are fully empty
+     * (true) or not (false).
+     */
+    public boolean getAreLevelsEmpty(int par1, int par2)
     {
         if (par1 < 0)
         {
@@ -1189,7 +1217,7 @@ public class Chunk
         return true;
     }
 
-    public void func_48500_a(ExtendedBlockStorage[] par1ArrayOfExtendedBlockStorage)
+    public void setStorageArrays(ExtendedBlockStorage[] par1ArrayOfExtendedBlockStorage)
     {
         this.storageArrays = par1ArrayOfExtendedBlockStorage;
     }

@@ -9,33 +9,32 @@ public class BlockWheatGrass extends BlockFlower implements ITextureProvider
     protected BlockWheatGrass(int par1, int par2)
     {
     	super(par1, par2, Material.vine);
-    	setBlockBounds(0.0F, 0.0F, 0.0F, 0.01F, 0.125F, 0.01F);
+    	this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.3F, 1.0F);
     }
 
     public int getBlockColor()
     {
-        double d = 0.5D;
-        double d1 = 1.0D;
-        return ColorizerGrass.getGrassColor(d, d1);
+        double var1 = 0.5D;
+        double var3 = 1.0D;
+        return ColorizerGrass.getGrassColor(var1, var3);
     }
     
     public int getRenderColor(int par1)
     {
-            return ColorizerFoliage.getFoliageColorBasic();
+        return par1 == 0 ? 16777215 : ColorizerFoliage.getFoliageColorBasic();
     }
     
     public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
-        int i = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
-
-        return par1IBlockAccess.func_48454_a(par2, par4).func_48415_j();
+        int var5 = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+        return var5 == 0 ? 16777215 : par1IBlockAccess.getBiomeGenForCoords(par2, par4).getBiomeGrassColor();
     }
     
     public int idDropped(int par1, Random par2Random, int par3)
     {
         if (par2Random.nextInt(8) == 0)
         {
-            return Item.wheat.shiftedIndex;
+            return Item.seeds.shiftedIndex;
         }
         else
         {

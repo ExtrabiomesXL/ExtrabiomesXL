@@ -7,8 +7,7 @@ import java.util.Random;
 public class MapGenVillage extends MapGenStructure
 {
     /** A list of all the biomes villages can spawn in. */
-    public static List villageSpawnBiomes = Arrays.asList(new BiomeGenBase[] {BiomeGenBase.desert, BiomeGenBase.forest, BiomeGenBase.extremeHills, BiomeGenBase.swampland, BiomeGenBase.taiga, BiomeGenBase.icePlains, 
-    		BiomeGenBase.iceMountains, BiomeGenBase.desertHills, BiomeGenBase.forestHills, BiomeGenBase.extremeHillsEdge, BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.jungleExtreme, BiomeGenBase.alps, 
+    public static List villageSpawnBiomes = Arrays.asList(new BiomeGenBase[] {BiomeGenBase.plains, BiomeGenBase.desert, BiomeGenBase.jungleExtreme, BiomeGenBase.alps, 
     		BiomeGenBase.autumnWoods, BiomeGenBase.birchForest, BiomeGenBase.mountainRidge, BiomeGenBase.desertMountain, BiomeGenBase.forestedHills, BiomeGenBase.forestedIsland, BiomeGenBase.greenHills, 
             BiomeGenBase.greenSwamp, BiomeGenBase.meadow, BiomeGenBase.miniJungle, BiomeGenBase.rainForest, BiomeGenBase.savanna, BiomeGenBase.shrubland, BiomeGenBase.snowForest, BiomeGenBase.taigaMountain, 
             BiomeGenBase.temperateRainforest, BiomeGenBase.temperateRainforestSnow, BiomeGenBase.woodlands, BiomeGenBase.redwoodForest, BiomeGenBase.redwoodLush, BiomeGenBase.pineForest, BiomeGenBase.tundra});

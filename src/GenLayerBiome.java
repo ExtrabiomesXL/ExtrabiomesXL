@@ -17,7 +17,7 @@ public class GenLayerBiome extends GenLayer
         this.allowedBiomes = biomeArray;
         this.parent = par3GenLayer;
 
-        if (par4WorldType == WorldType.field_48634_d)
+        if (par4WorldType == WorldType.DEFAULT_1_1)
         {
             this.allowedBiomes = new BiomeGenBase[] {BiomeGenBase.desert, BiomeGenBase.forest, BiomeGenBase.extremeHills, BiomeGenBase.swampland, BiomeGenBase.plains, BiomeGenBase.taiga};
         }

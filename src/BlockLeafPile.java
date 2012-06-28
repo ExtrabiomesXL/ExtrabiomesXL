@@ -46,13 +46,6 @@ public class BlockLeafPile extends Block implements ITextureProvider
             return ColorizerFoliage.getFoliageColorBasic();
     }
     
-    public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
-    {
-        int i = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
-
-        return par1IBlockAccess.func_48454_a(par2, par4).func_48415_j();
-    }
-    
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
     {
         return super.canPlaceBlockAt(par1World, par2, par3, par4);
