@@ -11,13 +11,14 @@ public class BiomeMeadow extends BiomeGenBase {
 
 	public BiomeMeadow(int id) {
 		super(id);
-		MapGenVillage.villageSpawnBiomes.add(this);
 		setBiomeName("Meadow");
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.MEADOW)
+		return new CustomDecorator(this, biome)
 				.setFlowersPerChunk(9).setGrassPerChunk(12).setTreesPerChunk(0);
 	}
 

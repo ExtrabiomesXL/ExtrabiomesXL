@@ -23,12 +23,13 @@ public class BiomeMountainTaiga extends BiomeGenTaiga {
 
 		spawnableCreatureList
 				.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.MOUNTAIN_TAIGA);
+		return new CustomDecorator(this, biome);
 	}
 
 }

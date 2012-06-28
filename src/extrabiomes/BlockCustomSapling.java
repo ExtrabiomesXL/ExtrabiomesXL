@@ -5,7 +5,6 @@ import java.util.Random;
 
 import net.minecraft.src.BlockFlower;
 import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
@@ -19,45 +18,34 @@ class BlockCustomSapling extends BlockFlower implements MultiBlock,
 
 	private static final String BLOCK_NAME = "extrabiomes.sapling";
 
-	private static final int METADATA_BITMASK = 0x7; 
+	private static final int METADATA_BITMASK = 0x7;
 	private static final int METADATA_MARKBIT = 0x8;
 
 	private static final int FUEL_VALUE = 100;
 	private static final int LIGHT_NEEDED_TO_GROW = 9;
 	private static final int TEXTURE_INDEX = 16;
 
-	static private WorldGenerator chooseTreeForSapling(final Random rand,
-			final SaplingType sapling) {
-		BlockControl bc = BlockControl.INSTANCE;
-		TerrainGenBlock leaf = null;
-		TerrainGenBlock wood = TerrainGenBlock.AUTUMN_WOOD;
+	private static WorldGenerator ChooseAutumnTree(SaplingType sapling,
+			Random rand) {
+		final TerrainGenBlock leaf;
+		final TerrainGenBlock wood = TerrainGenBlock.AUTUMN_WOOD;
 		switch (sapling) {
 		case BROWN:
 			leaf = TerrainGenBlock.BROWN_LEAVES;
+			break;
 		case ORANGE:
-			if (leaf == null) leaf = TerrainGenBlock.ORANGE_LEAVES;
+			leaf = TerrainGenBlock.ORANGE_LEAVES;
+			break;
 		case PURPLE:
-			if (leaf == null) leaf = TerrainGenBlock.PURPLE_LEAVES;
-		case YELLOW:
-			if (leaf == null) leaf = TerrainGenBlock.YELLOW_LEAVES;
+			leaf = TerrainGenBlock.PURPLE_LEAVES;
+			break;
+		default:
+			leaf = TerrainGenBlock.YELLOW_LEAVES;
+		}
 
 		if (rand.nextInt(20) == 0)
-				return new WorldGenBigAutumnTree(true, leaf,wood);
-			return new WorldGenAutumnTree(true, leaf,wood);
-
-		case FIR:
-			if (rand.nextInt(2) == 0)
-				return new WorldGenFirTree(true);
-			return new WorldGenFirTree2(true);
-
-		case REDWOOD:
-			return new WorldGenRedwood(true);
-
-		case ACACIA:
-			return new WorldGenAcacia(true);
-
-		}
-		return null;
+			return new WorldGenBigAutumnTree(true, leaf, wood);
+		return new WorldGenAutumnTree(true, leaf, wood);
 	}
 
 	static private boolean isEnoughLightToGrow(final World world, final int x,
@@ -88,8 +76,8 @@ class BlockCustomSapling extends BlockFlower implements MultiBlock,
 		MinecraftForge.registerBonemealHandler(this);
 		BlockControl.INSTANCE.registerFuel(id, this);
 
-		Log.write(String.format("%s block initialized with id %d.",
-				BLOCK_NAME, id));
+		Log.write(String.format("%s block initialized with id %d.", BLOCK_NAME,
+				id));
 	}
 
 	@Override
@@ -139,17 +127,82 @@ class BlockCustomSapling extends BlockFlower implements MultiBlock,
 		return "/extrabiomes/extrabiomes.png";
 	}
 
-	public void growTree(final World world, final int x, final int y,
-			final int z, final Random rand) {
-		final BlockControl blockControl = BlockControl.INSTANCE;
-		final int md = unmarkedMetadata(world.getBlockMetadata(x, y, z));
-		final WorldGenerator tree = chooseTreeForSapling(rand,
-				SaplingType.fromMetadata(md));
+	public void growTree(World world, int x, int y, int z, Random rand) {
+		final int metadata = unmarkedMetadata(world.getBlockMetadata(x, y, z));
+		final SaplingType sapling = SaplingType.fromMetadata(metadata);
+		WorldGenerator tree = null;
+		int x1 = 0;
+		int z1 = 0;
+		boolean isHuge = false;
 
-		// Remove sapling and put it back if tree doesn't grow.
-		world.setBlock(x, y, z, 0);
-		if (!tree.generate(world, rand, x, y, z))
-			world.setBlockAndMetadata(x, y, z, blockID, md);
+		if (sapling == SaplingType.BROWN || sapling == SaplingType.ORANGE
+				|| sapling == SaplingType.PURPLE
+				|| sapling == SaplingType.YELLOW)
+			tree = ChooseAutumnTree(sapling, rand);
+		else if (sapling == SaplingType.ACACIA)
+			tree = new WorldGenAcacia(true);
+		else {
+			// Check for 2x2 firs and redwoods
+			for (x1 = 0; x1 >= -1; --x1) {
+				for (z1 = 0; z1 >= -1; --z1) {
+					if (isSameSapling(world, x + x1, y, z + z1, metadata)
+							&& isSameSapling(world, x + x1 + 1, y, z + z1,
+									metadata)
+							&& isSameSapling(world, x + x1, y, z + z1 + 1,
+									metadata)
+							&& isSameSapling(world, x + x1 + 1, y, z + z1 + 1,
+									metadata)) {
+						if (sapling == SaplingType.FIR)
+							tree = new WorldGenFirTree2(true);
+						else
+							tree = new WorldGenRedwood(true);
+						isHuge = true;
+						x++;
+						z++;
+						break;
+					}
+				}
+				if (tree != null)
+					break;
+			}
+			if (tree == null && sapling == SaplingType.FIR) {
+				// Single fir sapling generates 1x1 tree
+				z1 = 0;
+				x1 = 0;
+				tree = new WorldGenFirTree(true);
+			}
+		}
+
+		if (tree != null) {
+			if (isHuge) {
+				world.setBlock(x + x1, y, z + z1, 0);
+				world.setBlock(x + x1 + 1, y, z + z1, 0);
+				world.setBlock(x + x1, y, z + z1 + 1, 0);
+				world.setBlock(x + x1 + 1, y, z + z1 + 1, 0);
+			} else {
+				world.setBlock(x, y, z, 0);
+			}
+
+			if (!tree.generate(world, rand, x + x1, y, z + z1)) {
+				if (isHuge) {
+					world.setBlockAndMetadata(x + x1, y, z + z1, blockID,
+							metadata);
+					world.setBlockAndMetadata(x + x1 + 1, y, z + z1, blockID,
+							metadata);
+					world.setBlockAndMetadata(x + x1, y, z + z1 + 1, blockID,
+							metadata);
+					world.setBlockAndMetadata(x + x1 + 1, y, z + z1 + 1,
+							blockID, metadata);
+				} else {
+					world.setBlockAndMetadata(x, y, z, blockID, metadata);
+				}
+			}
+		}
+	}
+
+	public boolean isSameSapling(World world, int x, int y, int z, int metadata) {
+		return world.getBlockId(x, y, z) == blockID
+				&& unmarkedMetadata(world.getBlockMetadata(x, y, z)) == metadata;
 	}
 
 	@Override
@@ -166,7 +219,7 @@ class BlockCustomSapling extends BlockFlower implements MultiBlock,
 
 	private void registerBlocksForTerrainGen(final int id) {
 		for (SaplingType i : SaplingType.values())
-			BlockControl.INSTANCE.setTerrainGenBlock(
+			BlockControl.setTerrainGenBlock(
 					i.getAliasUsedInTerrainGen(),
 					new MetaBlock(id, i.metadata()));
 	}

@@ -29,12 +29,13 @@ public class BiomeSavanna extends BiomeGenBase {
 			treeGen = new WorldGenAcacia(false);
 		else
 			treeGen = new WorldGenNoOp();
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.SAVANNA).setTreesPerChunk(0)
+		return new CustomDecorator(this, biome).setTreesPerChunk(0)
 				.setFlowersPerChunk(1).setGrassPerChunk(17)
 				.setPurpleFlowerPerChunk(1);
 	}

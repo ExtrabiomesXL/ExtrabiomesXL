@@ -30,7 +30,8 @@ public class BiomeAlpine extends BiomeGenBase {
 		minHeight = 1.3F;
 		maxHeight = 2.1F;
 
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 
 		spawnableCreatureList
 				.add(new SpawnListEntry(EntityWolf.class, 8, 4, 4));

@@ -39,12 +39,14 @@ class BiomeAutumnWoods extends BiomeGenBase {
 		setProperties();
 		spawnableCreatureList
 				.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
-		MapGenVillage.villageSpawnBiomes.add(this);
+
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.AUTUMN_WOODS).setTreesPerChunk(9)
+		return new CustomDecorator(this, biome).setTreesPerChunk(9)
 				.setGrassPerChunk(6).setMushroomsPerChunk(3)
 				.setToadStoolsPerChunk(2).setAutumnShrubsPerChunk(2);
 	}

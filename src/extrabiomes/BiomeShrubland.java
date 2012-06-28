@@ -18,12 +18,13 @@ public class BiomeShrubland extends BiomeGenBase {
 		rainfall = 0.6F;
 		minHeight = 0.1F;
 		maxHeight = 0.3F;
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.SHRUBLAND).setTreesPerChunk(0)
+		return new CustomDecorator(this, biome).setTreesPerChunk(0)
 				.setFlowersPerChunk(3).setGrassPerChunk(0);
 	}
 

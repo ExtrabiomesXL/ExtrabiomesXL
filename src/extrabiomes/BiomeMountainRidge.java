@@ -23,12 +23,13 @@ public class BiomeMountainRidge extends BiomeGenBase {
 		super(id);
 		setProperties();
 		spawnableCreatureList.clear();
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.MOUNTAIN_RIDGE)
+		return new CustomDecorator(this, biome)
 				.setBrownGrassPerChunk(100).setBrownGrassShortPerChunk(100)
 				.setTinyCactiPerChunk(10).setOasisPerChunk(999)
 				.setGrassPerChunk(0).setTreesPerChunk(0);

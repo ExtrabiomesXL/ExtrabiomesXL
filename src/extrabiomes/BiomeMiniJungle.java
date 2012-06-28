@@ -32,12 +32,13 @@ public class BiomeMiniJungle extends BiomeGenBase {
 				.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));
 		spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10,
 				4, 4));
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.MINI_JUNGLE).setTreesPerChunk(15)
+		return new CustomDecorator(this, biome).setTreesPerChunk(15)
 				.setGrassPerChunk(9).setFlowersPerChunk(5).setReedsPerChunk(70)
 				.setClayPerChunk(3).setMushroomsPerChunk(2)
 				.setWaterLilliesPerChunk(12);

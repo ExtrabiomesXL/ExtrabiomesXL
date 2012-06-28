@@ -36,12 +36,13 @@ public class BiomeRedwoodLush extends BiomeGenBase {
 			worldGenFirTree = new WorldGenFirTree(false);
 		else
 			worldGenFirTree = new WorldGenNoOp();
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.REDWOOD_LUSH).setTreesPerChunk(17)
+		return new CustomDecorator(this, biome).setTreesPerChunk(17)
 				.setRootsPerChunk(15).setLeafPilePerChunk(15);
 	}
 

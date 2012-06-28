@@ -20,13 +20,14 @@ public class BiomeExtremeJungle extends BiomeGenJungle {
 		minHeight = 2.1F;
 		maxHeight = 2.3F;
 
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.EXTREME_JUNGLE);
+		return new CustomDecorator(this, biome);
 	}
 
 }

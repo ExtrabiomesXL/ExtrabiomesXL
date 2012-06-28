@@ -23,12 +23,14 @@ public class BiomeGreenHills extends BiomeGenBase {
 		rainfall = 0.8F;
 		minHeight = 0.6F;
 		maxHeight = 1.2F;
-		MapGenVillage.villageSpawnBiomes.add(this);
+		
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.GREEN_HILLS)
+		return new CustomDecorator(this, biome)
 				.setTreesPerChunk(1).setOrangeFlowerPerChunk(1)
 				.setWhiteFlowerPerChunk(1);
 	}

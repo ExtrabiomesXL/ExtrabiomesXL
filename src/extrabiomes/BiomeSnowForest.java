@@ -23,12 +23,13 @@ public class BiomeSnowForest extends BiomeGenBase {
 
 		spawnableCreatureList.add(new SpawnListEntry(
 				net.minecraft.src.EntityWolf.class, 5, 4, 4));
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.SNOW_FOREST).setTreesPerChunk(8).setFlowersPerChunk(1).setGrassPerChunk(4);
+		return new CustomDecorator(this, biome).setTreesPerChunk(8).setFlowersPerChunk(1).setGrassPerChunk(4);
 	}
 
 }

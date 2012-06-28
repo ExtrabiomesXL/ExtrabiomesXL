@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.MapGenVillage;
 import extrabiomes.api.Extrabiome;
 import extrabiomes.api.TerrainGenBlock;
 
@@ -29,11 +30,13 @@ public class BiomeWasteland extends BiomeGenBase {
 		topBlock = (byte) crackedSand.blockId();
 		fillerBlock = (byte) crackedSand.blockId();
 		setDisabledRain();
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.WASTELAND)
+		return new CustomDecorator(this, biome)
 				.setDeadBushPerChunk(3).setDeadGrassPerChunk(9)
 				.setDeadGrassYPerChunk(9).setDeadTallGrassPerChunk(7);
 	}

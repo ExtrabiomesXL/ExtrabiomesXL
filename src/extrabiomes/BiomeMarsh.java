@@ -6,6 +6,7 @@ import extrabiomes.api.Extrabiome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.MapGenVillage;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 
@@ -23,11 +24,13 @@ public class BiomeMarsh extends BiomeGenBase {
 		rainfall = 0.9F;
 		minHeight = -0.4F;
 		maxHeight = 0.0F;
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.MARSH).setTreesPerChunk(0)
+		return new CustomDecorator(this, biome).setTreesPerChunk(0)
 				.setGrassPerChunk(999);
 	}
 

@@ -22,11 +22,6 @@ public class mod_ExtraBiomesXL extends BaseMod {
 	}
 
 	@Override
-	public String getName() {
-		return Extrabiomes.INSTANCE.getName();
-	}
-
-	@Override
 	public void load() {
 		MinecraftForge.versionDetect("Extrabiomes XL", 3, 1, 3);
 		MinecraftForgeClient.preloadTexture("/extrabiomes/extrabiomes.png");

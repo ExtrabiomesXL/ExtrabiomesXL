@@ -20,13 +20,14 @@ public class BiomeMountainDesert extends BiomeGenDesert {
 		rainfall = 0.0F;
 		minHeight = 0.4F;
 		maxHeight = 1.4F;
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 		setDisabledRain();
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.MOUNTAIN_DESERT);
+		return new CustomDecorator(this, biome);
 	}
 
 	void setDisabledRain() {

@@ -18,12 +18,13 @@ public class BiomeTundra extends BiomeGenBase {
 		rainfall = 0.0F;
 		minHeight = 0.0F;
 		maxHeight = 0.2F;
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.TUNDRA).setFlowersPerChunk(0)
+		return new CustomDecorator(this, biome).setFlowersPerChunk(0)
 				.setGrassPerChunk(0).setSandPerChunk(0, 0);
 	}
 

@@ -24,12 +24,13 @@ public class BiomeRainforest extends BiomeGenBase {
 		rainfall = 1.4F;
 		minHeight = 0.4F;
 		maxHeight = 1.3F;
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.RAINFOREST).setTreesPerChunk(7)
+		return new CustomDecorator(this, biome).setTreesPerChunk(7)
 				.setFlowersPerChunk(2).setGrassPerChunk(4);
 	}
 

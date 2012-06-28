@@ -26,7 +26,8 @@ public class BiomeSnowRainforest extends BiomeTemporateRainforest {
 			treeGen = new WorldGenNoOp();
 			treeGen2 = treeGen;
 		}
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override

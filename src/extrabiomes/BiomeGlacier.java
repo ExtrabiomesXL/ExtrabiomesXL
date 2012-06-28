@@ -3,6 +3,7 @@ package extrabiomes;
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
+import net.minecraft.src.MapGenVillage;
 import extrabiomes.api.Extrabiome;
 
 public class BiomeGlacier extends BiomeGenBase {
@@ -21,11 +22,14 @@ public class BiomeGlacier extends BiomeGenBase {
 		rainfall = 0.0F;
 		minHeight = 1.4F;
 		maxHeight = 2.1F;
+
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.GLACIER);
+		return new CustomDecorator(this, biome);
 	}
 
 }

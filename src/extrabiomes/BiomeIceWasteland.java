@@ -4,6 +4,7 @@ import extrabiomes.api.Extrabiome;
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
+import net.minecraft.src.MapGenVillage;
 
 public class BiomeIceWasteland extends BiomeGenBase {
 
@@ -21,11 +22,13 @@ public class BiomeIceWasteland extends BiomeGenBase {
 		rainfall = 0.1F;
 		minHeight = 0.3F;
 		maxHeight = 0.4F;
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.ICE_WASTELAND).setTreesPerChunk(0);
+		return new CustomDecorator(this, biome).setTreesPerChunk(0);
 	}
 
 }

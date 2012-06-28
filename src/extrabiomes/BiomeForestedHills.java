@@ -18,12 +18,13 @@ public class BiomeForestedHills extends BiomeGenBase {
 
 		spawnableCreatureList
 				.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.FORESTED_HILLS).setTreesPerChunk(7)
+		return new CustomDecorator(this, biome).setTreesPerChunk(7)
 				.setFlowersPerChunk(1).setGrassPerChunk(5);
 	}
 

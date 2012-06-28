@@ -24,12 +24,13 @@ public class BiomeGreenSwamp extends BiomeGenBase {
 		maxHeight = 0.1F;
 
 		genCustomSwampTree = new WorldGenCustomSwamp();
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.GREEN_SWAMP).setTreesPerChunk(4)
+		return new CustomDecorator(this, biome).setTreesPerChunk(4)
 				.setFlowersPerChunk(0).setDeadBushPerChunk(1)
 				.setMushroomsPerChunk(8).setReedsPerChunk(10)
 				.setClayPerChunk(1).setWaterLilliesPerChunk(4)

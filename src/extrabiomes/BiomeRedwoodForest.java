@@ -30,12 +30,13 @@ public class BiomeRedwoodForest extends BiomeGenBase {
 			treeGen = new WorldGenRedwood(false);
 		else
 			treeGen = new WorldGenNoOp();
-		MapGenVillage.villageSpawnBiomes.add(this);
+		if (Options.INSTANCE.canSpawnVillage(biome))
+			MapGenVillage.villageSpawnBiomes.add(this);
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomDecorator(this, Extrabiome.REDWOOD_FOREST).setTreesPerChunk(17);
+		return new CustomDecorator(this, biome).setTreesPerChunk(17);
 	}
 
 	@Override

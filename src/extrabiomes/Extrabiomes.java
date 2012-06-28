@@ -11,7 +11,7 @@ public enum Extrabiomes {
 	INSTANCE;
 
 	private static final String NAME = "Extrabiomes XL";
-	private static final String VERSION = "2.0.2";
+	private static final String VERSION = "2.0.3";
 	private boolean initialized;
 	private static Item scarecrow;
 
@@ -52,9 +52,5 @@ public enum Extrabiomes {
 															// substitute blocks
 		BiomeControl.doAddOnsAddBiomes();
 		addScarecrow();
-	}
-
-	public String getName() {
-		return NAME;
 	}
 }
