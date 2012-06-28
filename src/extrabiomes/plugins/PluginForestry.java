@@ -35,63 +35,86 @@ public enum PluginForestry implements IPlugin {
 	private static final int ADVENTURER = 4;
 
 	private static void addBackpackItems() {
-		BackpackManager.backpackItems[DIGGER].add(new ItemStack(
-				ExtrabiomesBlock.crackedSand));
-		BackpackManager.backpackItems[DIGGER].add(new ItemStack(
-				ExtrabiomesBlock.redRock));
+		if (ExtrabiomesBlock.crackedSand != null)
+			BackpackManager.backpackItems[DIGGER].add(new ItemStack(
+					ExtrabiomesBlock.crackedSand));
+		if (ExtrabiomesBlock.redRock != null)
+			BackpackManager.backpackItems[DIGGER].add(new ItemStack(
+					ExtrabiomesBlock.redRock));
 
-		BackpackManager.backpackItems[ADVENTURER].add(new ItemStack(
-				ExtrabiomesBlock.quickSand));
+		if (ExtrabiomesBlock.quickSand != null)
+			BackpackManager.backpackItems[ADVENTURER].add(new ItemStack(
+					ExtrabiomesBlock.quickSand));
 
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.autumnLeaves, 1, BlockAutumnLeaves.metaBrown));
-		BackpackManager.backpackItems[FORESTER]
-				.add(new ItemStack(ExtrabiomesBlock.autumnLeaves, 1,
-						BlockAutumnLeaves.metaOrange));
-		BackpackManager.backpackItems[FORESTER]
-				.add(new ItemStack(ExtrabiomesBlock.autumnLeaves, 1,
-						BlockAutumnLeaves.metaPurple));
-		BackpackManager.backpackItems[FORESTER]
-				.add(new ItemStack(ExtrabiomesBlock.autumnLeaves, 1,
-						BlockAutumnLeaves.metaYellow));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.greenLeaves, 1, BlockGreenLeaves.metaFir));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.greenLeaves, 1, BlockGreenLeaves.metaRedwood));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.greenLeaves, 1, BlockGreenLeaves.metaAcacia));
+		if (ExtrabiomesBlock.autumnLeaves != null) {
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.autumnLeaves, 1,
+					BlockAutumnLeaves.metaBrown));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.autumnLeaves, 1,
+					BlockAutumnLeaves.metaOrange));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.autumnLeaves, 1,
+					BlockAutumnLeaves.metaPurple));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.autumnLeaves, 1,
+					BlockAutumnLeaves.metaYellow));
+		}
+		if (ExtrabiomesBlock.greenLeaves != null) {
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.greenLeaves, 1, BlockGreenLeaves.metaFir));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.greenLeaves, 1,
+					BlockGreenLeaves.metaRedwood));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.greenLeaves, 1,
+					BlockGreenLeaves.metaAcacia));
+		}
 
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaBrown));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaOrange));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaPurple));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaYellow));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaFir));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaRedWood));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaAcacia));
+		if (ExtrabiomesBlock.sapling != null) {
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaBrown));
+			BackpackManager.backpackItems[FORESTER]
+					.add(new ItemStack(ExtrabiomesBlock.sapling, 1,
+							BlockCustomSapling.metaOrange));
+			BackpackManager.backpackItems[FORESTER]
+					.add(new ItemStack(ExtrabiomesBlock.sapling, 1,
+							BlockCustomSapling.metaPurple));
+			BackpackManager.backpackItems[FORESTER]
+					.add(new ItemStack(ExtrabiomesBlock.sapling, 1,
+							BlockCustomSapling.metaYellow));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaFir));
+			BackpackManager.backpackItems[FORESTER]
+					.add(new ItemStack(ExtrabiomesBlock.sapling, 1,
+							BlockCustomSapling.metaRedWood));
+			BackpackManager.backpackItems[FORESTER]
+					.add(new ItemStack(ExtrabiomesBlock.sapling, 1,
+							BlockCustomSapling.metaAcacia));
+		}
 
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaAutumnShrub));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaHydrangea));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaOrange));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaPurple));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaRoot));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaTinyCactus));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaToadstool));
-		BackpackManager.backpackItems[FORESTER].add(new ItemStack(
-				ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaWhite));
+		if (ExtrabiomesBlock.flower != null) {
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.flower, 1,
+					BlockCustomFlower.metaAutumnShrub));
+			BackpackManager.backpackItems[FORESTER]
+					.add(new ItemStack(ExtrabiomesBlock.flower, 1,
+							BlockCustomFlower.metaHydrangea));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaOrange));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaPurple));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaRoot));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.flower, 1,
+					BlockCustomFlower.metaTinyCactus));
+			BackpackManager.backpackItems[FORESTER]
+					.add(new ItemStack(ExtrabiomesBlock.flower, 1,
+							BlockCustomFlower.metaToadstool));
+			BackpackManager.backpackItems[FORESTER].add(new ItemStack(
+					ExtrabiomesBlock.flower, 1, BlockCustomFlower.metaWhite));
+		}
 	}
 
 	private static void addBasicFlowers() {

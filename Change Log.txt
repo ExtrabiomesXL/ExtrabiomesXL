@@ -1,5 +1,3 @@
-2.1.1:
+2.1.2:
 =====
- - Added Redpower indigo spawns in appropriate biomes. When RedPower and this
-   mod are installed together, a config file item appears in
-   config/extrabiomes.cfg. Follow the instructions in the config file to activate.
+ - Fixed crash when blocks were disabled and Forestry mod was installed.
