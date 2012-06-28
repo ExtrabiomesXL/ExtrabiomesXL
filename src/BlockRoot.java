@@ -1,8 +1,10 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
 import java.util.Random;
+import net.minecraft.src.forge.*;
 
-public class BlockRoot extends BlockFlower {
+public class BlockRoot extends BlockFlower implements ITextureProvider {
 	protected BlockRoot(int i, int j) {
 		super (i, j);
         blockIndexInTexture = j;
@@ -29,8 +31,13 @@ public class BlockRoot extends BlockFlower {
         }
     }
 	
-	public int idDropped(int i, Random random, int j)
+	public void addCreativeItems(ArrayList itemList)
     {
-        return mod_ExtraBiomesXL.rootItem.shiftedIndex;
+            itemList.add(new ItemStack(this));
+    }
+    
+    public String getTextureFile()
+    {
+    	return "/ExtraBiomesXL/extrabiomes.png";
     }
 }

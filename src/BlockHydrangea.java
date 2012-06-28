@@ -1,8 +1,10 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
 import java.util.Random;
+import net.minecraft.src.forge.*;
 
-public class BlockHydrangea extends BlockFlower
+public class BlockHydrangea extends BlockFlower implements ITextureProvider
 {
     protected BlockHydrangea(int par1, int par2)
     {
@@ -10,9 +12,14 @@ public class BlockHydrangea extends BlockFlower
         float f = 0.4F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
 	}
-	
-    public int idDropped(int par1, Random par2Random, int par3)
+    
+    public void addCreativeItems(ArrayList itemList)
     {
-        return mod_ExtraBiomesXL.hydrangeaItem.shiftedIndex;
+            itemList.add(new ItemStack(this));
+    }
+	
+	public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
     }
 }

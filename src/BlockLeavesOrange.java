@@ -1,8 +1,11 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
 import java.util.Random;
+import net.minecraft.src.forge.*;
+import net.minecraft.src.forge.IShearable;
 
-public class BlockLeavesOrange extends BlockLeavesBase
+public class BlockLeavesOrange extends BlockLeavesBase implements ITextureProvider
 {
     private int baseIndexInPNG;
     int adjacentTreeBlocks[];
@@ -148,7 +151,7 @@ public class BlockLeavesOrange extends BlockLeavesBase
 
     public int idDropped(int i, Random random, int j)
     {
-        return mod_ExtraBiomesXL.autumnSaplingItem.shiftedIndex;
+        return mod_ExtraBiomesXL.autumnSapling.blockID;
     }
 
     public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int i1)
@@ -183,26 +186,29 @@ public class BlockLeavesOrange extends BlockLeavesBase
         return !graphicsLevel;
     }
 
-    public int getBlockTextureFromSideAndMetadata(int i, int j)
+    public void onEntityWalking(World world, int i, int j, int k, Entity entity)
     {
-        if ((j & 3) == 1)
-        {
-            return blockIndexInTexture + 80;
-        }
-        else
-        {
-            return blockIndexInTexture;
-        }
+        super.onEntityWalking(world, i, j, k, entity);
     }
-
+    
+    public void addCreativeItems(ArrayList itemList)
+    {
+            itemList.add(new ItemStack(this));
+    }
+    
+    public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
+    }
+    
+    public int getBlockTextureFromSideAndMetadata(int par1, int par2)
+    {
+        return (par2 & 3) == 1 ? this.blockIndexInTexture + 80 : ((par2 & 3) == 3 ? this.blockIndexInTexture + 144 : this.blockIndexInTexture);
+    }
+    
     public void setGraphicsLevel(boolean flag)
     {
         graphicsLevel = flag;
         blockIndexInTexture = baseIndexInPNG + (flag ? 0 : 1);
-    }
-
-    public void onEntityWalking(World world, int i, int j, int k, Entity entity)
-    {
-        super.onEntityWalking(world, i, j, k, entity);
     }
 }

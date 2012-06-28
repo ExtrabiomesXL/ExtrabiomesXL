@@ -1,20 +1,18 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
 import java.util.Random;
+import net.minecraft.src.forge.*;
 
-public class BlockToadstool extends BlockFlower
+public class BlockToadstool extends BlockFlower implements ITextureProvider
 {
     protected BlockToadstool(int par1, int par2)
     {
         super(par1, par2);
-        float f = 0.2F;
-        setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         setTickRandomly(true);
     }
-
-    /**
-     * Ticks the block if it's been scheduled
-     */
+    
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         if (par5Random.nextInt(25) == 0)
@@ -61,23 +59,11 @@ public class BlockToadstool extends BlockFlower
         }
     }
 	
-	public int idDropped(int i, Random random, int j)
-    {
-        return mod_ExtraBiomesXL.toadstoolItem.shiftedIndex;
-    }
-	
-    /**
-     * Gets passed in the blockID of the block below and supposed to return true if its allowed to grow on the type of
-     * blockID passed in. Args: blockID
-     */
     protected boolean canThisPlantGrowOnThisBlockID(int par1)
     {
         return Block.opaqueCubeLookup[par1];
     }
-
-    /**
-     * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
-     */
+    
     public boolean canBlockStay(World par1World, int par2, int par3, int par4)
     {
         if (par3 < 0 || par3 >= 256)
@@ -89,5 +75,15 @@ public class BlockToadstool extends BlockFlower
             int i = par1World.getBlockId(par2, par3 - 1, par4);
             return i == Block.mycelium.blockID || par1World.getFullBlockLightValue(par2, par3, par4) < 13 && canThisPlantGrowOnThisBlockID(i);
         }
+    }
+    
+    public void addCreativeItems(ArrayList itemList)
+    {
+            itemList.add(new ItemStack(this));
+    }
+    
+    public String getTextureFile()
+    {
+    	return "/ExtraBiomesXL/extrabiomes.png";
     }
 }

@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class WorldGenLeafPile extends WorldGenerator
 {
-    /** Stores ID for WorldGenTallGrass */
     private int pileID;
     private int pileMetadata;
 

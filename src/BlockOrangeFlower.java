@@ -1,8 +1,10 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
 import java.util.Random;
+import net.minecraft.src.forge.*;
 
-public class BlockOrangeFlower extends BlockFlower
+public class BlockOrangeFlower extends BlockFlower implements ITextureProvider
 {
     protected BlockOrangeFlower(int par1, int par2)
     {
@@ -10,9 +12,14 @@ public class BlockOrangeFlower extends BlockFlower
         float f = 0.4F;
         setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
 	}
-	
-    public int idDropped(int par1, Random par2Random, int par3)
+    
+    public void addCreativeItems(ArrayList itemList)
     {
-        return mod_ExtraBiomesXL.orangeFlowerItem.shiftedIndex;
+            itemList.add(new ItemStack(this));
+    }
+    
+    public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
     }
 }

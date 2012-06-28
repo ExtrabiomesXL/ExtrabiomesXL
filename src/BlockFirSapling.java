@@ -1,8 +1,10 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
 import java.util.Random;
+import net.minecraft.src.forge.*;
 
-public class BlockFirSapling extends BlockFlower
+public class BlockFirSapling extends BlockFlower implements ITextureProvider
 {
     protected BlockFirSapling(int par1, int par2)
     {
@@ -80,8 +82,13 @@ public class BlockFirSapling extends BlockFlower
         return par1 & 3;
     }
     
-    public int idDropped(int par1, Random par2Random, int par3)
+    public void addCreativeItems(ArrayList itemList)
     {
-        return mod_ExtraBiomesXL.firSaplingItem.shiftedIndex;
+            itemList.add(new ItemStack(this));
+    }
+	
+	public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
     }
 }

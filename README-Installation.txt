@@ -1,8 +1,8 @@
 -----------------------------------------------------------------
 
-Please remember that ModLoader is required for ExtraBiomes to work!
+Please remember that ModLoader, ModLoaderMP, and Forge is required!
 
-Thank you so much for downloading ExtraBiomes V1.5!
+Thank you so much for downloading ExtraBiomesXL!
 
 -----------------------------------------------------------------
 

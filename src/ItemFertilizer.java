@@ -1,8 +1,9 @@
 package net.minecraft.src;
 
 import java.util.Random;
+import net.minecraft.src.forge.*;
 
-public class ItemFertilizer extends Item {
+public class ItemFertilizer extends Item implements ITextureProvider {
 	
 	public ItemFertilizer(int par1)
     {
@@ -136,5 +137,10 @@ public class ItemFertilizer extends Item {
         }
 
         return false;
+    }
+	
+	public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
     }
 }

@@ -1,8 +1,10 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
 import java.util.Random;
+import net.minecraft.src.forge.*;
 
-public class BlockAutumnShrub extends BlockFlower {
+public class BlockAutumnShrub extends BlockFlower implements ITextureProvider {
 	protected BlockAutumnShrub(int i, int j) {
 		super (i, j);
         blockIndexInTexture = j;
@@ -12,8 +14,12 @@ public class BlockAutumnShrub extends BlockFlower {
 
 	}
 	
-	public int idDropped(int i, Random random, int j)
+	public void addCreativeItems(ArrayList itemList)
     {
-        return mod_ExtraBiomesXL.autumnShrubItem.shiftedIndex;
+            itemList.add(new ItemStack(this));
+    }
+	public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
     }
 }

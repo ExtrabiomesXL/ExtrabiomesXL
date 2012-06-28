@@ -15,17 +15,6 @@ public class BiomeGenMountainRidge extends BiomeGenBase
         biomeDecorator.tinyCactiPerChunk = 10;
         biomeDecorator.oasisPerChunk = 999;
         biomeDecorator.grassPerChunk = 999;
-    }
-
-    public WorldGenerator getRandomWorldGenForTrees(Random random)
-    {
-        if (random.nextInt(10) == 0)
-        {
-            return worldGenBluff;
-        }
-        else
-        {
-            return worldGenSavanna;
-        }
+        biomeDecorator.treesPerChunk = -999;
     }
 }

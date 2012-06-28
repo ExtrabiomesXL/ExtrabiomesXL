@@ -1,8 +1,10 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
 import java.util.Random;
+import net.minecraft.src.forge.*;
 
-public class BlockBrownGrass extends BlockFlower
+public class BlockBrownGrass extends BlockFlower implements ITextureProvider
 {
     protected BlockBrownGrass(int par1, int par2)
     {
@@ -18,6 +20,15 @@ public class BlockBrownGrass extends BlockFlower
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return -1;
-	
+	}
+    
+    public void addCreativeItems(ArrayList itemList)
+    {
+            itemList.add(new ItemStack(this));
+    }
+    
+    public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
     }
 }

@@ -12,15 +12,15 @@ public class BiomeGenGreenHills extends BiomeGenBase
 
     public int func_48415_j()
     {
-        double d = func_48411_i();
-        double d1 = func_48414_h();
-        return ((ColorizerGrass.getGrassColor(d, d1) & 0xBFFF00) + 0x2B2B21);
+    	double var1 = (double)this.getFloatTemperature();
+        double var3 = (double)this.getFloatRainfall();
+        return ((ColorizerGrass.getGrassColor(var1, var3) & 0xBFFF00) + 0x2B2B21);
     }
 
     public int func_48412_k()
     {
-        double d = func_48411_i();
-        double d1 = func_48414_h();
-        return ((ColorizerFoliage.getFoliageColor(d, d1) & 0xBFFF00) + 0x2B2B21);
+    	double var1 = (double)this.getFloatTemperature();
+        double var3 = (double)this.getFloatRainfall();
+        return ((ColorizerFoliage.getFoliageColor(var1, var3) & 0xBFFF00) + 0x2B2B21);
     }
 }

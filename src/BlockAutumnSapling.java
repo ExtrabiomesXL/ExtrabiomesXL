@@ -1,8 +1,10 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
 import java.util.Random;
+import net.minecraft.src.forge.*;
 
-public class BlockAutumnSapling extends BlockFlower
+public class BlockAutumnSapling extends BlockFlower implements ITextureProvider
 {
     protected BlockAutumnSapling(int par1, int par2)
     {
@@ -100,5 +102,15 @@ public class BlockAutumnSapling extends BlockFlower
     protected int damageDropped(int par1)
     {
         return par1 & 3;
+    }
+    
+    public void addCreativeItems(ArrayList itemList)
+    {
+            itemList.add(new ItemStack(this));
+    }
+    
+    public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
     }
 }

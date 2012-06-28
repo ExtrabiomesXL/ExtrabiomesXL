@@ -1,6 +1,8 @@
 package net.minecraft.src;
 
-public class ItemCatTail extends Item
+import net.minecraft.src.forge.*;
+
+public class ItemCatTail extends Item implements ITextureProvider
 {
     private int spawnID;
 
@@ -8,6 +10,11 @@ public class ItemCatTail extends Item
     {
         super(par1);
         spawnID = mod_ExtraBiomesXL.catTail.blockID;
+    }
+    
+    public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
     }
 
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7)

@@ -1,6 +1,10 @@
 package net.minecraft.src;
 
-public class BlockLeafPile extends Block
+import java.util.ArrayList;
+
+import net.minecraft.src.forge.ITextureProvider;
+
+public class BlockLeafPile extends Block implements ITextureProvider
 {
     protected BlockLeafPile(int par1, int par2)
     {
@@ -69,5 +73,15 @@ public class BlockLeafPile extends Block
         {
             return par1World.getBlockMaterial(par2, par3 - 1, par4) == Material.grass && par1World.getBlockMetadata(par2, par3 - 1, par4) == 0;
         }
+    }
+    
+    public void addCreativeItems(ArrayList itemList)
+    {
+            itemList.add(new ItemStack(this));
+    }
+	
+	public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
     }
 }

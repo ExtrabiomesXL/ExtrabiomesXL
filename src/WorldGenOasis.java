@@ -4,10 +4,7 @@ import java.util.Random;
 
 public class WorldGenOasis extends WorldGenerator
 {
-    /** Stores ID for WorldGenSand */
     private int grassID;
-
-    /** The maximum radius used when generating a patch of blocks. */
     private int radius;
 
     public WorldGenOasis(int par1, int par2)

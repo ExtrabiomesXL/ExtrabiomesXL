@@ -1,8 +1,11 @@
 package net.minecraft.src;
 
+import java.util.ArrayList;
 import java.util.Random;
+import net.minecraft.src.forge.*;
+import net.minecraft.src.forge.IShearable;
 
-public class BlockLeavesBrown extends BlockLeavesBase
+public class BlockLeavesBrown extends BlockLeavesBase implements ITextureProvider
 {
     private int baseIndexInPNG;
     int adjacentTreeBlocks[];
@@ -148,7 +151,7 @@ public class BlockLeavesBrown extends BlockLeavesBase
 
     public int idDropped(int i, Random random, int j)
     {
-        return mod_ExtraBiomesXL.autumnSaplingItem.shiftedIndex;
+        return mod_ExtraBiomesXL.autumnSapling.blockID;
     }
 
     public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int i1)
@@ -180,23 +183,32 @@ public class BlockLeavesBrown extends BlockLeavesBase
 
     public boolean isOpaqueCube()
     {
-        return false;
-    }
-
-    public int getBlockTextureFromSideAndMetadata(int i, int j)
-    {
-        if ((j & 3) == 1)
-        {
-            return blockIndexInTexture + 80;
-        }
-        else
-        {
-            return blockIndexInTexture;
-        }
+        return !this.graphicsLevel;
     }
 
     public void onEntityWalking(World world, int i, int j, int k, Entity entity)
     {
         super.onEntityWalking(world, i, j, k, entity);
+    }
+    
+    public void addCreativeItems(ArrayList itemList)
+    {
+            itemList.add(new ItemStack(this));
+    }
+	
+	public String getTextureFile()
+    {
+            return "/ExtraBiomesXL/extrabiomes.png";
+    }
+	
+	public int getBlockTextureFromSideAndMetadata(int par1, int par2)
+    {
+        return (par2 & 3) == 1 ? this.blockIndexInTexture + 80 : ((par2 & 3) == 3 ? this.blockIndexInTexture + 144 : this.blockIndexInTexture);
+    }
+	
+	public void setGraphicsLevel(boolean par1)
+    {
+        this.graphicsLevel = par1;
+        this.blockIndexInTexture = this.baseIndexInPNG + (par1 ? 0 : 1);
     }
 }
