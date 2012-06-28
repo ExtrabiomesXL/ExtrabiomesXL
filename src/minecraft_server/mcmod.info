@@ -1,0 +1,19 @@
+[
+{
+  "modid" : "mod_ExtrabiomesXL",
+  "name" : "Extrabiomes XL",
+  "version" : "Server 2.2",
+  "url" : "http://www.minecraftforum.net/topic/1090288-",
+  "credits" : "See Credits.txt in mod archive.",
+  "authors": [
+    "MisterFiber",
+    "ScottKillen"
+  ],
+  "description": "ExtraBiomesXL adds new aesthetic content that greatly enhances Minecraft's landscapes and exploration.",
+  "logoFile" : "",
+  "updateUrl" : "http://www.minecraftforum.net/topic/1090288-",
+  "parent" : "",
+  "screenshots": [
+  ]
+}
+]

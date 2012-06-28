@@ -1,3 +1,6 @@
-2.1.2:
+2.2.0:
 =====
- - Fixed crash when blocks were disabled and Forestry mod was installed.
+ - Fixed crash when flowers or grass are disabled.
+ - Added multiplayer support!
+ - API: Removed leaf and wood registries because this code was moved to Forge itself.
+ - Fixed compatibility with latest Forge/FMl features (ModLoader not longer required)
