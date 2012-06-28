@@ -2,8 +2,11 @@ package net.minecraft.src;
 
 import java.util.Random;
 
+import net.minecraft.src.forge.ForgeHooks;
+import net.minecraft.src.forge.MinecraftForge;
 import net.minecraft.src.forge.NetworkMod;
 import extrabiomes.Extrabiomes;
+import extrabiomes.Log;
 
 public class mod_ExtrabiomesXL extends NetworkMod {
 
@@ -24,6 +27,11 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 	}
 
 	@Override
+	public String getName() {
+		return Extrabiomes.getName();
+	}
+
+	@Override
 	public String getPriorities() {
 		return Extrabiomes.getPriorities();
 	}
@@ -35,6 +43,9 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 
 	@Override
 	public void load() {
+		MinecraftForge.versionDetect(getName(), 3, 2, 5);
+		if (ForgeHooks.getBuildVersion() < 126)
+			Log.write("IMPORTANT: Due to FML bugs, you must use Minecraft Forge build 126 or later.");
 		Extrabiomes.load();
 	}
 

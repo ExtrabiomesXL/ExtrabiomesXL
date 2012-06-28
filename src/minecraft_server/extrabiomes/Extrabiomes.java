@@ -27,8 +27,9 @@ import extrabiomes.terrain.TerrainGenerator;
 
 public class Extrabiomes {
 
-	private static final String VERSION = "2.2.0";
+	private static final String NAME = "Extrabiomes XL";
 	private static final String PRIORITIES = "";
+	private static final String VERSION = "2.2.0b Server";
 
 	public static int addFuel(int id, int damage) {
 		if (id == ExtrabiomesBlock.sapling.blockID)
@@ -100,6 +101,22 @@ public class Extrabiomes {
 			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder, 1, 7),
 					new Object[] { new ItemStack(ExtrabiomesBlock.flower, 1,
 							BlockCustomFlower.metaWhite) });
+			ModLoader.addShapelessRecipe(new ItemStack(Item.bowlSoup),
+					new Object[] {
+							Block.mushroomBrown,
+							new ItemStack(ExtrabiomesBlock.flower, 1,
+									BlockCustomFlower.metaToadstool),
+							new ItemStack(ExtrabiomesBlock.flower, 1,
+									BlockCustomFlower.metaToadstool),
+							Item.bowlEmpty });
+			ModLoader.addShapelessRecipe(new ItemStack(Item.bowlSoup),
+					new Object[] {
+							Block.mushroomRed,
+							new ItemStack(ExtrabiomesBlock.flower, 1,
+									BlockCustomFlower.metaToadstool),
+							new ItemStack(ExtrabiomesBlock.flower, 1,
+									BlockCustomFlower.metaToadstool),
+							Item.bowlEmpty });
 		}
 
 		Config.addNames();
@@ -127,5 +144,9 @@ public class Extrabiomes {
 	public static void takenFromCrafting(EntityPlayer player,
 			ItemStack itemstack, IInventory var3) {
 		AchievementManager.craftingAchievement(player, itemstack);
+	}
+
+	public static String getName() {
+		return NAME;
 	}
 }

@@ -1,6 +1,6 @@
-2.2.0:
+2.2.1:
 =====
- - Fixed crash when flowers or grass are disabled.
- - Added multiplayer support!
- - API: Removed leaf and wood registries because this code was moved to Forge itself.
- - Fixed compatibility with latest Forge/FMl features (ModLoader not longer required)
+ - Fixed crash when near autumn leaves.
+ - Added receipes for toadstools. (Substitute 2 toadstools for a mushroom to make soup.)
+ - Fixed server crash when using Forestry logger with Extrabiomes saplings
+ 

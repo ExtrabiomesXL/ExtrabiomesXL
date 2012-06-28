@@ -254,12 +254,12 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable,
 						final int id = world.getBlockId(x + var12, y + var13, z
 								+ var14);
 						if (Block.blocksList[id] != null
-								& Block.blocksList[id].isWood(world, x + var12,
+								&& Block.blocksList[id].isWood(world, x + var12,
 										y + var13, z + var14)) {
 							adjacentTreeBlocks[(var12 + var11) * var10
 									+ (var13 + var11) * var9 + var14 + var11] = 0;
 						} else if (Block.blocksList[id] != null
-								& Block.blocksList[id].isLeaves(world, x
+								&& Block.blocksList[id].isLeaves(world, x
 										+ var12, y + var13, z + var14)) {
 							adjacentTreeBlocks[(var12 + var11) * var10
 									+ (var13 + var11) * var9 + var14 + var11] = -2;

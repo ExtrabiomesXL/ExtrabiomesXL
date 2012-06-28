@@ -11,8 +11,6 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.ForgeHooks;
-import net.minecraft.src.forge.MinecraftForge;
 import net.minecraft.src.forge.MinecraftForgeClient;
 import net.minecraft.src.forge.NetworkMod;
 import extrabiomes.api.ExtrabiomesBlock;
@@ -30,8 +28,9 @@ import extrabiomes.terrain.TerrainGenerator;
 
 public class Extrabiomes {
 
-	private static final String VERSION = "2.2.0";
+	private static final String NAME = "Extrabiomes XL";
 	private static final String PRIORITIES = "";
+	private static final String VERSION = "2.2.1";
 
 	public static int addFuel(int id, int damage) {
 		if (id == ExtrabiomesBlock.sapling.blockID)
@@ -47,6 +46,10 @@ public class Extrabiomes {
 
 	public static void generateSurface(World world, Random random, int x, int z) {
 		TerrainGenerator.generateSurface(world, random, x, z);
+	}
+
+	public static String getName() {
+		return NAME;
 	}
 
 	public static String getPriorities() {
@@ -67,9 +70,6 @@ public class Extrabiomes {
 	}
 
 	public static void load() {
-		MinecraftForge.versionDetect("Extrabiomes XL", 3, 2, 5);
-		if (ForgeHooks.getBuildVersion() < 126)
-			Log.write("IMPORTANT: Due to FML bugs, you must use a forge build of 126 or greater.");
 		preloadTexture("/extrabiomes/extrabiomes.png");
 
 		Config.load();
@@ -110,6 +110,22 @@ public class Extrabiomes {
 			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder, 1, 7),
 					new Object[] { new ItemStack(ExtrabiomesBlock.flower, 1,
 							BlockCustomFlower.metaWhite) });
+			ModLoader.addShapelessRecipe(new ItemStack(Item.bowlSoup),
+					new Object[] {
+							Block.mushroomBrown,
+							new ItemStack(ExtrabiomesBlock.flower, 1,
+									BlockCustomFlower.metaToadstool),
+							new ItemStack(ExtrabiomesBlock.flower, 1,
+									BlockCustomFlower.metaToadstool),
+							Item.bowlEmpty });
+			ModLoader.addShapelessRecipe(new ItemStack(Item.bowlSoup),
+					new Object[] {
+							Block.mushroomRed,
+							new ItemStack(ExtrabiomesBlock.flower, 1,
+									BlockCustomFlower.metaToadstool),
+							new ItemStack(ExtrabiomesBlock.flower, 1,
+									BlockCustomFlower.metaToadstool),
+							Item.bowlEmpty });
 		}
 
 		Config.addNames();
@@ -134,6 +150,12 @@ public class Extrabiomes {
 		injectPlugins();
 	}
 
+	public static boolean onTickInGame(float var1, Minecraft var2) {
+		// For future expansion (returning false removes this hook from the
+		// loop)
+		return false;
+	}
+
 	public static void preloadTexture(String filename) {
 		MinecraftForgeClient.preloadTexture(filename);
 	}
@@ -141,11 +163,5 @@ public class Extrabiomes {
 	public static void takenFromCrafting(EntityPlayer player,
 			ItemStack itemstack, IInventory var3) {
 		AchievementManager.craftingAchievement(player, itemstack);
-	}
-
-	public static boolean onTickInGame(float var1, Minecraft var2) {
-		// For future expansion (returning false removes this hook from the
-		// loop)
-		return false;
 	}
 }

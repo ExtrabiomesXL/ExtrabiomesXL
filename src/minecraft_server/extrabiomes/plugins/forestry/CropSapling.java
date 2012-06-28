@@ -18,16 +18,14 @@ public class CropSapling implements ICropEntity {
 
 	public CropSapling(World world, int x, int y, int z) {
 		this.world = world;
-		xCoord = x;
-		yCoord = y;
-		zCoord = z;
+		this.xCoord = x;
+		this.yCoord = y;
+		this.zCoord = z;
+		this.blockid = world.getBlockId(x, y, z);
 	}
 
 	@Override
 	public ArrayList<ItemStack> doHarvest() {
-		int blockId = world.getBlockId(xCoord, yCoord, zCoord);
-		if (Block.blocksList[blockId] == null)
-			return new ArrayList<ItemStack>();
 		ArrayList harvest = Block.blocksList[blockid].getBlockDropped(world,
 				xCoord, yCoord, zCoord, 0, 0);
 		world.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, 0, 0);
