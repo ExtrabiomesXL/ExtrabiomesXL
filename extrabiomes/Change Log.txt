@@ -3,6 +3,7 @@
  - Repair broken trees in classic mode.
  - Added function to API to allow other mods to replace the tree
    generators used by this mod.
+ - Removed unneccesary Forge version check code.
 
 2.2.3
 =====

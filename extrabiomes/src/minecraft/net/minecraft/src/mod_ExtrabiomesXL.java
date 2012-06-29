@@ -50,9 +50,6 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 
 	@Override
 	public void load() {
-		MinecraftForge.versionDetect(getName(), 3, 2, 5);
-		if (ForgeHooks.getBuildVersion() < 126)
-			Log.write("IMPORTANT: Due to FML bugs, you must use Minecraft Forge build 126 or later.");
 		Extrabiomes.load();
 	}
 
