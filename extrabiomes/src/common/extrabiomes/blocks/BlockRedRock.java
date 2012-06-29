@@ -1,13 +1,19 @@
+/**
+ * Copyright (c) Scott Killen and MisterFiber, 2012
+ * 
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.blocks;
 
 import java.util.ArrayList;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.EnumCreatureType;
-import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
-import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
 import net.minecraft.src.forge.ITextureProvider;
 import extrabiomes.api.TerrainGenManager;
@@ -20,10 +26,6 @@ public class BlockRedRock extends Block implements ITextureProvider {
 		setResistance(2.0F);
 
 		TerrainGenManager.blockMountainRidge = this;
-
-		ModLoader.addShapelessRecipe(new ItemStack(Item.clay, 4), new Object[] {
-				new ItemStack(this), new ItemStack(Item.bucketWater),
-				new ItemStack(Item.bucketWater) });
 	}
 
 	@Override
@@ -32,8 +34,9 @@ public class BlockRedRock extends Block implements ITextureProvider {
 	}
 
 	@Override
-	public boolean canCreatureSpawn(EnumCreatureType type, World world, int x,
-			int y, int z) {
+	public boolean canCreatureSpawn(EnumCreatureType type, World world,
+			int x, int y, int z)
+	{
 		return true;
 	}
 
