@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) Scott Killen and MisterFiber, 2012
+ * 
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes;
 
 import java.util.Map;
@@ -28,13 +36,12 @@ import extrabiomes.terrain.TerrainGenerator;
 
 public class Extrabiomes {
 
-	private static final String NAME = "ExtraBiomes XL";
-	private static final String PRIORITIES = "";
-	private static final String VERSION = "2.2.3";
+	private static final String	NAME		= "ExtraBiomes XL";
+	private static final String	PRIORITIES	= "";
+	private static final String	VERSION		= "2.2.4";
 
 	public static int addFuel(int id, int damage) {
-		if (id == ExtrabiomesBlock.sapling.blockID)
-			return 100;
+		if (id == ExtrabiomesBlock.sapling.blockID) return 100;
 		return 0;
 	}
 
@@ -44,7 +51,9 @@ public class Extrabiomes {
 					new ModelScarecrow(), 0.4F));
 	}
 
-	public static void generateSurface(World world, Random random, int x, int z) {
+	public static void generateSurface(World world, Random random,
+			int x, int z)
+	{
 		TerrainGenerator.generateSurface(world, random, x, z);
 	}
 
@@ -57,11 +66,15 @@ public class Extrabiomes {
 	}
 
 	public static String getVersion() {
+		return getVersionNumber() + " Client";
+	}
+
+	public static String getVersionNumber() {
 		return VERSION;
 	}
 
 	private static void injectPlugins() {
-		for (IPlugin plugin : PluginManager.plugins)
+		for (final IPlugin plugin : PluginManager.plugins)
 			if (plugin != null && plugin.isEnabled()) {
 				Log.write("Injecting the " + plugin.getName()
 						+ " plugin into ExtrabiomesXL.");
@@ -78,38 +91,46 @@ public class Extrabiomes {
 	public static void modsLoaded(NetworkMod mod) {
 		Config.modsLoaded();
 
-		if (ExtrabiomesItem.scarecrow != null) {
-			Proxy.addRecipe(new ItemStack(ExtrabiomesItem.scarecrow, 1),
-					new Object[] { " a ", "cbc", " c ", Character.valueOf('a'),
-							Block.pumpkin, Character.valueOf('b'), Block.melon,
+		if (ExtrabiomesItem.scarecrow != null)
+			Proxy.addRecipe(
+					new ItemStack(ExtrabiomesItem.scarecrow, 1),
+					new Object[] { " a ", "cbc", " c ",
+							Character.valueOf('a'), Block.pumpkin,
+							Character.valueOf('b'), Block.melon,
 							Character.valueOf('c'), Item.stick });
-		}
 
 		if (ExtrabiomesBlock.redRock != null)
-			Proxy.addShapelessRecipe(new ItemStack(Item.clay, 4), new Object[] {
-					new ItemStack(ExtrabiomesBlock.redRock),
-					new ItemStack(Item.bucketWater),
-					new ItemStack(Item.bucketWater),
-					new ItemStack(Item.bucketWater) });
+			Proxy.addShapelessRecipe(new ItemStack(Item.clay, 4),
+					new Object[] {
+							new ItemStack(ExtrabiomesBlock.redRock),
+							new ItemStack(Item.bucketWater),
+							new ItemStack(Item.bucketWater),
+							new ItemStack(Item.bucketWater) });
 
 		if (ExtrabiomesBlock.crackedSand != null)
-			Proxy.addShapelessRecipe(new ItemStack(Block.sand), new Object[] {
-					new ItemStack(ExtrabiomesBlock.crackedSand),
-					new ItemStack(Item.bucketWater) });
+			Proxy.addShapelessRecipe(
+					new ItemStack(Block.sand),
+					new Object[] {
+							new ItemStack(ExtrabiomesBlock.crackedSand),
+							new ItemStack(Item.bucketWater) });
 
 		if (ExtrabiomesBlock.flower != null) {
-			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder, 1, 12),
-					new Object[] { new ItemStack(ExtrabiomesBlock.flower, 1,
-							BlockCustomFlower.metaHydrangea) });
-			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder, 1, 14),
-					new Object[] { new ItemStack(ExtrabiomesBlock.flower, 1,
-							BlockCustomFlower.metaOrange) });
-			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder, 1, 13),
-					new Object[] { new ItemStack(ExtrabiomesBlock.flower, 1,
-							BlockCustomFlower.metaPurple) });
-			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder, 1, 7),
-					new Object[] { new ItemStack(ExtrabiomesBlock.flower, 1,
-							BlockCustomFlower.metaWhite) });
+			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder,
+					1, 12), new Object[] { new ItemStack(
+					ExtrabiomesBlock.flower, 1,
+					BlockCustomFlower.metaHydrangea) });
+			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder,
+					1, 14), new Object[] { new ItemStack(
+					ExtrabiomesBlock.flower, 1,
+					BlockCustomFlower.metaOrange) });
+			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder,
+					1, 13), new Object[] { new ItemStack(
+					ExtrabiomesBlock.flower, 1,
+					BlockCustomFlower.metaPurple) });
+			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder,
+					1, 7), new Object[] { new ItemStack(
+					ExtrabiomesBlock.flower, 1,
+					BlockCustomFlower.metaWhite) });
 			ModLoader.addShapelessRecipe(new ItemStack(Item.bowlSoup),
 					new Object[] {
 							Block.mushroomBrown,
@@ -151,7 +172,8 @@ public class Extrabiomes {
 	}
 
 	public static boolean onTickInGame(float var1, Minecraft var2) {
-		// For future expansion (returning false removes this hook from the
+		// For future expansion (returning false removes this hook from
+		// the
 		// loop)
 		return false;
 	}
@@ -161,7 +183,8 @@ public class Extrabiomes {
 	}
 
 	public static void takenFromCrafting(EntityPlayer player,
-			ItemStack itemstack, IInventory var3) {
+			ItemStack itemstack, IInventory var3)
+	{
 		AchievementManager.craftingAchievement(player, itemstack);
 	}
 }

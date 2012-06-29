@@ -1,14 +1,19 @@
+/**
+ * Copyright (c) Scott Killen and MisterFiber, 2012
+ * 
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package net.minecraft.src;
 
 import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.src.forge.ForgeHooks;
-import net.minecraft.src.forge.MinecraftForge;
 import net.minecraft.src.forge.NetworkMod;
 import extrabiomes.Extrabiomes;
-import extrabiomes.Log;
 
 public class mod_ExtrabiomesXL extends NetworkMod {
 
@@ -29,7 +34,8 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 
 	@Override
 	public void generateSurface(World world, Random random, int chunkX,
-			int chunkZ) {
+			int chunkZ)
+	{
 		Extrabiomes.generateSurface(world, random, chunkX, chunkZ);
 	}
 
@@ -69,8 +75,14 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 	}
 
 	@Override
-	public void takenFromCrafting(EntityPlayer player, ItemStack itemstack,
-			IInventory var3) {
+	public void takenFromCrafting(EntityPlayer player,
+			ItemStack itemstack, IInventory var3)
+	{
 		Extrabiomes.takenFromCrafting(player, itemstack, var3);
+	}
+
+	@Override
+	public String toString() {
+		return getName() + " " + Extrabiomes.getVersionNumber();
 	}
 }

@@ -4,6 +4,7 @@
  - Added function to API to allow other mods to replace the tree
    generators used by this mod.
  - Removed unneccesary Forge version check code.
+ - Fixed custom grass blocks to be replaceable (like vanilla grass)
 
 2.2.3
 =====
