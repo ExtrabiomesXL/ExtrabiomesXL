@@ -1,3 +1,4 @@
+
 package extrabiomes.config;
 
 import java.util.Collection;
@@ -21,7 +22,7 @@ import extrabiomes.terrain.WorldGenChunkOasis;
 public class ConfigureTerrainGen {
 
 	private static void configureAutumnWoodsDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.autumnWoods);
 		if (ExtrabiomesBlock.flower != null) {
 			decorations.add(new BiomeDecoration(2,
@@ -34,74 +35,82 @@ public class ConfigureTerrainGen {
 	}
 
 	private static void configureGreenHillsDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.greenHills);
 		if (ExtrabiomesBlock.flower != null) {
-			decorations.add(new BiomeDecoration(new WorldGenChunkCustomFlower(
-					BlockCustomFlower.metaOrange)));
-			decorations.add(new BiomeDecoration(new WorldGenChunkCustomFlower(
-					BlockCustomFlower.metaWhite)));
+			decorations.add(new BiomeDecoration(
+					new WorldGenChunkCustomFlower(
+							BlockCustomFlower.metaOrange)));
+			decorations.add(new BiomeDecoration(
+					new WorldGenChunkCustomFlower(
+							BlockCustomFlower.metaWhite)));
 		}
 	}
 
 	private static void configureGreenSwampDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.greenSwamp);
 		if (ExtrabiomesBlock.flower != null) {
-			decorations.add(new BiomeDecoration(new WorldGenChunkCustomFlower(
-					BlockCustomFlower.metaHydrangea)));
+			decorations.add(new BiomeDecoration(
+					new WorldGenChunkCustomFlower(
+							BlockCustomFlower.metaHydrangea)));
 			decorations.add(new BiomeDecoration(15,
-					new WorldGenChunkCustomFlower(BlockCustomFlower.metaRoot)));
+					new WorldGenChunkCustomFlower(
+							BlockCustomFlower.metaRoot)));
 		}
 		if (ExtrabiomesBlock.catTail != null)
-			decorations
-					.add(new BiomeDecoration(999, new WorldGenChunkCatTail()));
+			decorations.add(new BiomeDecoration(999,
+					new WorldGenChunkCatTail()));
 		if (ExtrabiomesBlock.leafPile != null)
-			decorations
-					.add(new BiomeDecoration(10, new WorldGenChunkLeafPile()));
+			decorations.add(new BiomeDecoration(10,
+					new WorldGenChunkLeafPile()));
 	}
 
 	private static void configureMountainRidgeDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.mountainRidge);
 		if (ExtrabiomesBlock.flower != null)
 			decorations.add(new BiomeDecoration(10,
 					new WorldGenChunkCustomFlower(
 							BlockCustomFlower.metaTinyCactus)));
 		if (ExtrabiomesBlock.grass != null) {
-			decorations.add(new BiomeDecoration(100, new WorldGenChunkGrass(
-					BlockCustomTallGrass.metaBrown)));
-			decorations.add(new BiomeDecoration(100, new WorldGenChunkGrass(
-					BlockCustomTallGrass.metaShortBrown)));
+			decorations.add(new BiomeDecoration(100,
+					new WorldGenChunkGrass(
+							BlockCustomTallGrass.metaBrown)));
+			decorations.add(new BiomeDecoration(100,
+					new WorldGenChunkGrass(
+							BlockCustomTallGrass.metaShortBrown)));
 		}
-		if (ExtrabiomesBlock.leafPile != null) {
-			decorations
-					.add(new BiomeDecoration(10, new WorldGenChunkLeafPile()));
-		}
-		decorations.add(new BiomeDecoration(999, new WorldGenChunkOasis()));
+		if (ExtrabiomesBlock.leafPile != null)
+			decorations.add(new BiomeDecoration(10,
+					new WorldGenChunkLeafPile()));
+		decorations.add(new BiomeDecoration(999,
+				new WorldGenChunkOasis()));
 	}
 
 	private static void configureRedwoodLushDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.redwoodLush);
 		if (ExtrabiomesBlock.flower != null)
 			decorations.add(new BiomeDecoration(15,
-					new WorldGenChunkCustomFlower(BlockCustomFlower.metaRoot)));
+					new WorldGenChunkCustomFlower(
+							BlockCustomFlower.metaRoot)));
 		if (ExtrabiomesBlock.leafPile != null)
-			decorations
-					.add(new BiomeDecoration(15, new WorldGenChunkLeafPile()));
+			decorations.add(new BiomeDecoration(15,
+					new WorldGenChunkLeafPile()));
 	}
 
 	private static void configureSavannaDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.savanna);
 		if (ExtrabiomesBlock.flower != null)
-			decorations.add(new BiomeDecoration(new WorldGenChunkCustomFlower(
-					BlockCustomFlower.metaPurple)));
+			decorations.add(new BiomeDecoration(
+					new WorldGenChunkCustomFlower(
+							BlockCustomFlower.metaPurple)));
 	}
 
 	private static void configureSnowRainforestDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.snowRainForest);
 		if (ExtrabiomesBlock.flower != null)
 			decorations.add(new BiomeDecoration(2,
@@ -110,7 +119,7 @@ public class ConfigureTerrainGen {
 	}
 
 	private static void configureTemperateRainforestDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.temperateRainForest);
 		if (ExtrabiomesBlock.flower != null)
 			decorations.add(new BiomeDecoration(2,
@@ -118,8 +127,19 @@ public class ConfigureTerrainGen {
 							BlockCustomFlower.metaToadstool)));
 	}
 
+	private static void configureTrees() {
+		TerrainGenManager.treeFactory = new TreeFactory();
+
+		TerrainGenManager.treesCanGrowOnIDs.add(Integer
+				.valueOf(Block.grass.blockID));
+		TerrainGenManager.treesCanGrowOnIDs.add(Integer
+				.valueOf(Block.dirt.blockID));
+		TerrainGenManager.treesCanGrowOnIDs.add(Integer
+				.valueOf(Block.tilledField.blockID));
+	}
+
 	private static void configureTundraDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.tundra);
 		if (ExtrabiomesBlock.flower != null)
 			decorations.add(new BiomeDecoration(2,
@@ -128,28 +148,32 @@ public class ConfigureTerrainGen {
 	}
 
 	private static void configureWastelandDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.wasteland);
 		if (ExtrabiomesBlock.grass != null) {
-			decorations.add(new BiomeDecoration(9, new WorldGenChunkGrass(
-					BlockCustomTallGrass.metaDead)));
-			decorations.add(new BiomeDecoration(9, new WorldGenChunkGrass(
-					BlockCustomTallGrass.metaDeadYellow)));
-			decorations.add(new BiomeDecoration(7, new WorldGenChunkGrass(
-					BlockCustomTallGrass.metaDeadTall)));
+			decorations.add(new BiomeDecoration(9,
+					new WorldGenChunkGrass(
+							BlockCustomTallGrass.metaDead)));
+			decorations.add(new BiomeDecoration(9,
+					new WorldGenChunkGrass(
+							BlockCustomTallGrass.metaDeadYellow)));
+			decorations.add(new BiomeDecoration(7,
+					new WorldGenChunkGrass(
+							BlockCustomTallGrass.metaDeadTall)));
 		}
 	}
 
 	private static void configureWoodlandsDecorations() {
-		Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
+		final Collection<IBiomeDecoration> decorations = BiomeDecorationsManager.biomeDecorations
 				.get(CustomBiomeManager.woodlands);
 		if (ExtrabiomesBlock.leafPile != null)
-			decorations
-					.add(new BiomeDecoration(30, new WorldGenChunkLeafPile()));
+			decorations.add(new BiomeDecoration(30,
+					new WorldGenChunkLeafPile()));
 	}
 
 	public static void initialize() {
-		TerrainGenManager.treeFactory = new TreeFactory();
+
+		configureTrees();
 
 		configureAutumnWoodsDecorations();
 		configureGreenHillsDecorations();
