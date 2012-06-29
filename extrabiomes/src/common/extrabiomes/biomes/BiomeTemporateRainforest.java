@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) Scott Killen and MisterFiber, 2012
+ * 
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.biomes;
 
 import java.util.Random;
@@ -7,16 +15,15 @@ import net.minecraft.src.Block;
 import net.minecraft.src.SpawnListEntry;
 import net.minecraft.src.WorldGenTallGrass;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
 import extrabiomes.terrain.CustomBiomeDecorator;
-import extrabiomes.terrain.WorldGenFirTree;
-import extrabiomes.terrain.WorldGenFirTree2;
 import extrabiomes.terrain.WorldGenNoOp;
 
 public class BiomeTemporateRainforest extends ExtrabiomeGenBase {
 
-	protected WorldGenerator treeGen = null;
-	protected WorldGenerator treeGen2 = null;
+	protected WorldGenerator	treeGen		= null;
+	protected WorldGenerator	treeGen2	= null;
 
 	public BiomeTemporateRainforest(int id) {
 		super(id);
@@ -49,17 +56,20 @@ public class BiomeTemporateRainforest extends ExtrabiomeGenBase {
 	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
 		if (rand.nextInt(3) == 0) {
 			if (treeGen == null)
-				if (TerrainGenManager.enableFirGen) {
-					treeGen = new WorldGenFirTree(false);
-				} else {
+				if (TerrainGenManager.enableFirGen)
+					treeGen = TerrainGenManager.treeFactory
+							.makeTreeGenerator(false,
+									ITreeFactory.TreeType.FIR);
+				else
 					treeGen = new WorldGenNoOp();
-				}
 
 			return treeGen;
 		}
 		if (treeGen2 == null)
 			if (TerrainGenManager.enableFirGen)
-				treeGen2 = new WorldGenFirTree2(false);
+				treeGen2 = TerrainGenManager.treeFactory
+						.makeTreeGenerator(false,
+								ITreeFactory.TreeType.FIR_HUGE);
 			else
 				treeGen2 = new WorldGenNoOp();
 

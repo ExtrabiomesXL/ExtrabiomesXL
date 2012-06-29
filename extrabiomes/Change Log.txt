@@ -1,6 +1,8 @@
 2.2.4
 =====
- - Repairs broken trees in classic mode.
+ - Repair broken trees in classic mode.
+ - Added function to API to allow other mods to replace the tree
+   generators used by this mod.
 
 2.2.3
 =====
@@ -8,24 +10,31 @@
 
 2.2.2
 =====
- - Fixed so cracked sand must have maximum light (full sunlight) to grow.
+ - Fixed so cracked sand must have maximum light (full sunlight) to
+   grow.
  - Fixed server/client version mismatch
- - Changed requirements so that classic mode server does not require Extrabiomes to be installed on the client. (Though the client still needs to have Forge.)
+ - Changed requirements so that classic mode server does not require
+   Extrabiomes to be installed on the client. (Though the client still
+   needs to have Forge.)
  - Fixed broken tree generation on client.
  
 2.2.1
 =====
  - Fixed crash when near autumn leaves
- - Added receipes for toadstools. (Substitute 2 toadstools for a mushroom to make soup.)
- - Fixed server crash when using Forestry logger with Extrabiomes saplings
+ - Added receipes for toadstools. (Substitute 2 toadstools for a
+   mushroom to make soup.)
+ - Fixed server crash when using Forestry logger with Extrabiomes
+   saplings
  
 
 2.2.0
 =====
  - Fixed crash when flowers or grass are disabled
  - Added multiplayer support!
- - API: Removed leaf and wood registries because this code was moved to Forge itself
- - Fixed compatibility with latest Forge/FMl features (ModLoader not longer required)
+ - API: Removed leaf and wood registries because this code was moved to
+   Forge itself
+ - Fixed compatibility with latest Forge/FMl features (ModLoader not
+   longer required)
  
 2.1.2
 =====
@@ -33,33 +42,45 @@
  
 2.1.1
 =====
- - Added Redpower indigo spawns in appropriate biomes. When RedPower and this mod are installed together, a config file item appears in config/extrabiomes.cfg. Follow the instructions in the config file to activate.
+ - Added Redpower indigo spawns in appropriate biomes. When RedPower and
+   this mod are installed together, a config file item appears in
+   config/extrabiomes.cfg. Follow the instructions in the config file to
+   activate.
 
 2.1.0
 =====
  - Various performance enhancements
  - Rewrote API to be much simpler and more powerful
- - Nerfed cracked sand to only grow within the boundaries of a wasteland. Configurable through a config file option
- - Added a config file directive to enable/disable cracked sand's ability to grow in a wasteland
+ - Nerfed cracked sand to only grow within the boundaries of a
+   wasteland. Configurable through a config file option
+ - Added a config file directive to enable/disable cracked sand's
+   ability to grow in a wasteland
  - Added EMC values for custom blocks to support EquivalentExchange
- - Added saplings, flowers and biomes to Forestry using Forestry API v1.4.6.0
+ - Added saplings, flowers and biomes to Forestry using Forestry API
+   v1.4.6.0
  - Added Buildcraft oil spawns as appropriate
  - Added RedPower rubber tree spawns
  - Removed blank achievement page
  - Fixed "Already Decorationg" exception for cattails
- - Removed any possiblity of "Already Decorating" errors when using the API to decorating custom biomes
+ - Removed any possiblity of "Already Decorating" errors when using the
+   API to decorating custom biomes
  - Removed most possibility for any future "Already Decorating" errors
 
 2.0.4
 =====
  - Reinstate prior Mystcraft functionality
- - Fixed bug where using bonemeal on cramped 2x2 saplings caused rapid duplication of saplings.
- - Added safety measures to prevent corrupt worlds due to hole in 4096 blockID patch when blocks are used in terrain gen. It is no longer possible to set blockIDs of Cracked Sand and Red Rock higher than 255.
+ - Fixed bug where using bonemeal on cramped 2x2 saplings caused rapid
+   duplication of saplings.
+ - Added safety measures to prevent corrupt worlds due to hole in 4096
+   blockID patch when blocks are used in terrain gen. It is no longer
+   possible to set blockIDs of Cracked Sand and Red Rock higher than 255.
 
 2.0.3
 =====
- - Updated Redwood and Fir saplings so that huge trees can be grown by placing saplings in a 2x2 configuration.
- - Added config file directives to allow control over villages spawning in custom biomes
+ - Updated Redwood and Fir saplings so that huge trees can be grown by
+   placing saplings in a 2x2 configuration.
+ - Added config file directives to allow control over villages spawning
+   in custom biomes
 
 2.0.2
 =====
@@ -78,42 +99,51 @@
 2.0
 ===
  - ExtraBiomesXL must now be installed through the mod folder
- - Created ExtraBiomesAPI for creation of add-ons and enabling other mods to take advantage of ExtraBiomesXL
+ - Created ExtraBiomesAPI for creation of add-ons and enabling other
+   mods to take advantage of ExtraBiomesXL
  - No more jar edits. 99% better compatibility
  - Biomes may now be enabled/disabled
  - You can now configure biome ID's
- - Classic mode is now enabled though config. This will also remove all blocks from generating and using ID's
+ - Classic mode is now enabled though config. This will also remove all
+   blocks from generating and using ID's
  - Cut block ID count down to 9 thanks to metadata
- - Blocks can be removed (and their ID's!) by setting their ID value to 0. All disabled blocks will generate using their classic equivalent
+ - Blocks can be removed (and their ID's!) by setting their ID value to
+   0. All disabled blocks will generate using their classic equivalent
  - Removed custom tall grasses
  - Removed Fertilizer
  - Saplings now react to Bonemeal
- - Bonemeal has a chance to include some of our flowers when it is used anywhere on green grass
- - 7 trees growable from saplings (8 if you include 2 x2 firs separately)
+ - Bonemeal has a chance to include some of our flowers when it is used
+   anywhere on green grass
+ - 7 trees growable from saplings (8 if you include 2 x2 firs
+   separately)
  - All trees have proper saplings
  - Custom leaves have new textures by Delocuro
  - Leaves now have fancy/fast graphics modes
  - Leaves finally drop their corresponding saplings
- - Config is now located in .minecraft/config/extrabiomes/extrabiomes.cfg
+ - Config is now located in
+   .minecraft/config/extrabiomes/extrabiomes.cfg
  - New texture layout
  - Temporarily removed Scarecrows
  
 1.18
 ====
  - Fixed "Already decorating!" error.
- - Ice Wastelands are now filled with snow blocks as opposed to ice in earlier versions. Updated screenshot coming eventually.
+ - Ice Wastelands are now filled with snow blocks as opposed to ice in
+   earlier versions. Updated screenshot coming eventually.
 
 1.17
 ====
  - Updated to Forge .90,
- - Changed Autumn Sapling texture to be match the new sapling texture as of 1.2,
+ - Changed Autumn Sapling texture to be match the new sapling texture
+   as of 1.2,
  - Updated donor list,
  - .txt files should now be formatted properly for Windows machines.
 
 1.16
 ====
  - Fixed "Already decorating!" error,
- - Gave Desert Mountain's their own BiomeGen file to enable Tiny Cactus generation along with a couple other tweaks.
+ - Gave Desert Mountain's their own BiomeGen file to enable Tiny Cactus
+   generation along with a couple other tweaks.
 
 1.15
 ====
@@ -136,20 +166,25 @@
 Classic 1.15
 =============
  - Updated for Minecraft 1.2.5,
- - Jumped to 1.15 to match the new version number of the main version, and skipped V1.14 because the chinese pronunciation of the number four sounds very similar to death. I'd say that's a good reason.
+ - Jumped to 1.15 to match the new version number of the main version,
+   and skipped V1.14 because the chinese pronunciation of the number
+   four sounds very similar to death. I'd say that's a good reason.
 
 1.13
 ====
  - Added Redwood saplings,
  - Added a thicker variety of Fir trees,
- - Made all Redwood trees thicker (dropped the one with roots and the other one),
+ - Made all Redwood trees thicker (dropped the one with roots and the
+   other one),
  - Added temporary fix for Acacia trees,
  - Tweaked texture for Short Grass,
- - Fixed B&amp;amp;W biome colors on blocks not rendering upon placement,
+ - Fixed B&amp;amp;W biome colors on blocks not rendering upon
+   placement,
  - Fixed "Already decorating!" error,
  - Optimized Temperate Rainforests,
  - Moved config file directory to the root minecraft folder.
- - Crafting Fertilizer will return 6 Fertilizer now, and crafting all saplings will return 3 of 'em.
+ - Crafting Fertilizer will return 6 Fertilizer now, and crafting all
+   saplings will return 3 of 'em.
 
 1.12
 ====

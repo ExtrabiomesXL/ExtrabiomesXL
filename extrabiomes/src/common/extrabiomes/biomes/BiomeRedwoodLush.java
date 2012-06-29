@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) Scott Killen and MisterFiber, 2012
+ * 
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.biomes;
 
 import java.util.Random;
@@ -6,16 +14,15 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.Block;
 import net.minecraft.src.WorldGenTallGrass;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
 import extrabiomes.terrain.CustomBiomeDecorator;
-import extrabiomes.terrain.WorldGenFirTree;
 import extrabiomes.terrain.WorldGenNoOp;
-import extrabiomes.terrain.WorldGenRedwood;
 
 public class BiomeRedwoodLush extends ExtrabiomeGenBase {
 
-	private WorldGenerator worldGenRedwood = null;
-	private WorldGenerator worldGenFirTree = null;
+	private WorldGenerator	worldGenRedwood	= null;
+	private WorldGenerator	worldGenFirTree	= null;
 
 	public BiomeRedwoodLush(int id) {
 		super(id);
@@ -29,7 +36,8 @@ public class BiomeRedwoodLush extends ExtrabiomeGenBase {
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(17).build();
+		return new CustomBiomeDecorator.Builder(this).treesPerChunk(17)
+				.build();
 	}
 
 	@Override
@@ -44,7 +52,9 @@ public class BiomeRedwoodLush extends ExtrabiomeGenBase {
 		if (random.nextInt(2) == 0) {
 			if (worldGenRedwood == null)
 				if (TerrainGenManager.enableRedwoodGen)
-					worldGenRedwood = new WorldGenRedwood(false);
+					worldGenRedwood = TerrainGenManager.treeFactory
+							.makeTreeGenerator(false,
+									ITreeFactory.TreeType.REDWOOD);
 				else
 					worldGenRedwood = new WorldGenNoOp();
 			return worldGenRedwood;
@@ -52,7 +62,9 @@ public class BiomeRedwoodLush extends ExtrabiomeGenBase {
 
 		if (worldGenFirTree == null)
 			if (TerrainGenManager.enableFirGen)
-				worldGenFirTree = new WorldGenFirTree(false);
+				worldGenFirTree = TerrainGenManager.treeFactory
+						.makeTreeGenerator(false,
+								ITreeFactory.TreeType.FIR);
 			else
 				worldGenFirTree = new WorldGenNoOp();
 		return worldGenFirTree;
