@@ -5,5 +5,7 @@ author: ScottKillen
     desc: "ExtraBiomesXL adds new aesthetic content that greatly enhances Minecraft's landscapes and exploration."
     url: http://github.com/downloads/ScottKillen/ExtrabiomesXL/Extrabiomes%202.2.4-bukkit.zip
     filename: extrabiomes-2.2.4-bukkit
+    depends:
+      - MinecraftForge
     protect:
       - "extrabiomes/api/"
