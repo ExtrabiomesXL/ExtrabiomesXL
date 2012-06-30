@@ -18,12 +18,12 @@
 		<link>
 			<name>jars</name>
 			<type>2</type>
-			<locationURI>MCP_LOC/jars</locationURI>
+			<locationURI>PARENT-1-MCP_LOC/jars</locationURI>
 		</link>
 		<link>
 			<name>src</name>
 			<type>2</type>
-			<locationURI>MCP_LOC/extrabiomes/src/bukkit</locationURI>
+			<locationURI>PARENT-1-MCP_LOC/extrabiomes/src/bukkit</locationURI>
 		</link>
 	</linkedResources>
 	<filteredResources>

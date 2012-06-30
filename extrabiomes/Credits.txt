@@ -14,6 +14,7 @@ Ancetras - Love that texture pack.
 Delocuro - textures for biome colored leaves.
 SirSengir - For providing a great example of a simple yet powerful API
 Eloraam - For graciously providing help with RedPower integration
+AtomicStryker - For helping with the final step of porting to bukkit
 
 The Buildcraft Development Team
   Extrabiomes XL uses a modified version of OilPopulate.java from BuildCraft.
