@@ -33,6 +33,7 @@ public class TreeFactory implements ITreeFactory {
 				wood = new ItemStack(
 						TerrainGenManager.blockBrownAutumnWood, 1,
 						TerrainGenManager.metaBrownAutumnWood);
+				break;
 			case ORANGE:
 				leaf = new ItemStack(
 						TerrainGenManager.blockOrangeAutumnLeaves, 1,
@@ -40,6 +41,7 @@ public class TreeFactory implements ITreeFactory {
 				wood = new ItemStack(
 						TerrainGenManager.blockOrangeAutumnWood, 1,
 						TerrainGenManager.metaOrangeAutumnWood);
+				break;
 			case PURPLE:
 				leaf = new ItemStack(
 						TerrainGenManager.blockPurpleAutumnLeaves, 1,
@@ -47,6 +49,7 @@ public class TreeFactory implements ITreeFactory {
 				wood = new ItemStack(
 						TerrainGenManager.blockPurpleAutumnWood, 1,
 						TerrainGenManager.metaPurpleAutumnWood);
+				break;
 			case YELLOW:
 				leaf = new ItemStack(
 						TerrainGenManager.blockYellowAutumnLeaves, 1,
@@ -168,24 +171,24 @@ public class TreeFactory implements ITreeFactory {
 				if (doBlockNotify) {
 					if (treeAutumnYellowNotify == null)
 						treeAutumnYellowNotify = makeAutumnTree(
-								doBlockNotify, TreeColor.PURPLE, false);
+								doBlockNotify, TreeColor.YELLOW, false);
 					return treeAutumnYellowNotify;
 				}
 				if (treeAutumnYellow == null)
 					treeAutumnYellow = makeAutumnTree(doBlockNotify,
-							TreeColor.PURPLE, false);
+							TreeColor.YELLOW, false);
 				return treeAutumnYellow;
 
 			case YELLOW_AUTUMN_BIG:
 				if (doBlockNotify) {
 					if (treeAutumnYellowBigNotify == null)
 						treeAutumnYellowBigNotify = makeAutumnTree(
-								doBlockNotify, TreeColor.PURPLE, true);
+								doBlockNotify, TreeColor.YELLOW, true);
 					return treeAutumnYellowBigNotify;
 				}
 				if (treeAutumnYellowBig == null)
 					treeAutumnYellowBig = makeAutumnTree(doBlockNotify,
-							TreeColor.PURPLE, true);
+							TreeColor.YELLOW, true);
 				return treeAutumnYellowBig;
 
 			case FIR:
