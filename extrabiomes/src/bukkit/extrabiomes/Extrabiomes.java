@@ -62,7 +62,7 @@ public class Extrabiomes {
 	}
 
 	public static String getVersionNumber() {
-		return "2.2.4";
+		return "2.2.5";
 	}
 
 	private static void injectPlugins() {
