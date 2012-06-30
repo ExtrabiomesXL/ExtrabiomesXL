@@ -3,7 +3,7 @@ author: ScottKillen
   - mod: ExtraBiomesXL
     name: ExtrabiomesXL 2.2.5
     desc: "ExtraBiomesXL adds new aesthetic content that greatly enhances Minecraft's landscapes and exploration."
-    url: http://github.com/downloads/ScottKillen/ExtrabiomesXL/Extrabiomes%202.2.4-bukkit.zip
+    url: http://github.com/downloads/ScottKillen/ExtrabiomesXL/extrabiomes-xl-2.2.5-bukkit.zip
     filename: extrabiomes-2.2.5-bukkit
     depends:
       - MinecraftForge
