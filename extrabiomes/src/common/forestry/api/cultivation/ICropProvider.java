@@ -1,4 +1,4 @@
-package net.minecraft.src.forestry.api.cultivation;
+package forestry.api.cultivation;
 
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
@@ -22,13 +22,16 @@ public interface ICropProvider {
 
 	/**
 	 * Called once to configure possible windfall created by harvested crops managed by this provider.
+	 * 
 	 * @return Array of item stacks representing possible windfall.
 	 */
 	public ItemStack[] getWindfall();
 
 	/**
 	 * Plant a crop in the world with the germling given. Planter will have called isGermling beforehand.
-	 * @param germling ItemStack representing the germling available. Stack is decreased by the planter, not by the provider.
+	 * 
+	 * @param germling
+	 *            ItemStack representing the germling available. Stack is decreased by the planter, not by the provider.
 	 * @param world
 	 * @param x
 	 * @param y
@@ -39,6 +42,7 @@ public interface ICropProvider {
 
 	/**
 	 * Returns the crop at the given location. Planter will have called isCrop beforehand.
+	 * 
 	 * @param world
 	 * @param x
 	 * @param y

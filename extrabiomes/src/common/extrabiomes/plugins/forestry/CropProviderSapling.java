@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
-import net.minecraft.src.forestry.api.core.ForestryAPI;
-import net.minecraft.src.forestry.api.core.ForestryBlock;
-import net.minecraft.src.forestry.api.cultivation.ICropEntity;
-import net.minecraft.src.forestry.api.cultivation.ICropProvider;
+import forestry.api.core.ForestryAPI;
+import forestry.api.core.ForestryBlock;
+import forestry.api.cultivation.ICropEntity;
+import forestry.api.cultivation.ICropProvider;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.TerrainGenManager;
 

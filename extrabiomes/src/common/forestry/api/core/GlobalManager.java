@@ -1,11 +1,11 @@
-package net.minecraft.src.forestry.api.core;
+package forestry.api.core;
 
 import java.util.ArrayList;
 
 public class GlobalManager {
 
 	public static ArrayList<Integer> holyBlockIds = new ArrayList<Integer>();
-	
+
 	public static ArrayList<Integer> dirtBlockIds = new ArrayList<Integer>();
 	public static ArrayList<Integer> sandBlockIds = new ArrayList<Integer>();
 	public static ArrayList<Integer> leafBlockIds = new ArrayList<Integer>();
