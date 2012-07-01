@@ -1,11 +1,9 @@
-package net.minecraft.src.forestry.api.core;
+package forestry.api.core;
 
 import java.util.ArrayList;
 
 public enum EnumHumidity {
-	ARID("Arid", 2),
-	NORMAL("Normal", 1),
-	DAMP("Damp", 4);
+	ARID("Arid", 2), NORMAL("Normal", 1), DAMP("Damp", 4);
 
 	/**
 	 * Populated by Forestry with vanilla biomes. Add additional arid biomes here. (ex. desert)
@@ -22,22 +20,22 @@ public enum EnumHumidity {
 
 	public final String name;
 	public final int iconIndex;
-	
+
 	private EnumHumidity(String name, int iconIndex) {
 		this.name = name;
 		this.iconIndex = iconIndex;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public int getIconIndex() {
 		return this.iconIndex;
 	}
-	
+
 	public static ArrayList<Integer> getBiomeIds(EnumHumidity humidity) {
-		switch(humidity) {
+		switch (humidity) {
 		case ARID:
 			return aridBiomeIds;
 		case DAMP:
