@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
-import net.minecraft.src.forestry.api.cultivation.ICropEntity;
+import forestry.api.cultivation.ICropEntity;
 import extrabiomes.api.TerrainGenManager;
 
 public class CropSapling implements ICropEntity {

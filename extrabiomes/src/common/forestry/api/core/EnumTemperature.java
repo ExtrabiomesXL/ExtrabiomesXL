@@ -1,15 +1,9 @@
-package net.minecraft.src.forestry.api.core;
+package forestry.api.core;
 
 import java.util.ArrayList;
 
 public enum EnumTemperature {
-	NONE("None", 0),
-	ICY("Icy", 8),
-	COLD("Cold", 6),
-	NORMAL("Normal", 1),
-	WARM("Warm", 4),
-	HOT("Hot", 2),
-	HELLISH("Hellish", 10);
+	NONE("None", 0), ICY("Icy", 8), COLD("Cold", 6), NORMAL("Normal", 1), WARM("Warm", 4), HOT("Hot", 2), HELLISH("Hellish", 10);
 
 	/**
 	 * Populated by Forestry with vanilla biomes. Add additional icy/snow biomes here. (ex. snow plains)
@@ -38,23 +32,23 @@ public enum EnumTemperature {
 
 	public final String name;
 	public final int iconIndex;
-	
+
 	private EnumTemperature(String name, int iconIndex) {
 		this.name = name;
 		this.iconIndex = iconIndex;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public int getIconIndex() {
 		return this.iconIndex;
 	}
-	
+
 	public static ArrayList<Integer> getBiomeIds(EnumTemperature temperature) {
 
-		switch(temperature) {
+		switch (temperature) {
 		case ICY:
 			return icyBiomeIds;
 		case COLD:
