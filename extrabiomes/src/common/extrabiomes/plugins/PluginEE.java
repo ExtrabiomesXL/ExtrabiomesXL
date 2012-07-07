@@ -1,7 +1,19 @@
+/**
+ * Copyright (c) Scott Killen and MisterFiber, 2012
+ * 
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.plugins;
 
 import java.lang.reflect.Method;
 
+import net.minecraft.src.Block;
+import net.minecraft.src.Item;
+import net.minecraft.src.ItemStack;
+import net.minecraft.src.ModLoader;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.IPlugin;
 import extrabiomes.blocks.BlockAutumnLeaves;
@@ -10,33 +22,29 @@ import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockCustomTallGrass;
 import extrabiomes.blocks.BlockGreenLeaves;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.ModLoader;
-
 public enum PluginEE implements IPlugin {
 	INSTANCE;
 
-	public static Method setEMC;
-	public static Method getEMC;
+	public static Method	setEMC;
+	public static Method	getEMC;
 
 	public static int getEMC(int id) {
 		return getEMC(id, 0);
 	}
 
 	public static int getEMC(int id, int metadata) {
-		ItemStack itemstack = new ItemStack(id, 1, metadata);
+		final ItemStack itemstack = new ItemStack(id, 1, metadata);
 		return getEMC(itemstack);
 	}
 
 	public static int getEMC(ItemStack itemstack) {
-		Object arglist[] = new Object[1];
+		final Object arglist[] = new Object[1];
 		arglist[0] = itemstack;
 		Object retobj;
 		try {
 			retobj = getEMC.invoke(null, arglist);
 			return ((Integer) retobj).intValue();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			ModLoader.getLogger().fine("Could not get EMC.");
 			return 0;
 		}
@@ -47,13 +55,13 @@ public enum PluginEE implements IPlugin {
 	}
 
 	public static void setEMC(int id, int metadata, int emcValue) {
-		Object arglist[] = new Object[3];
+		final Object arglist[] = new Object[3];
 		arglist[0] = new Integer(id);
 		arglist[1] = new Integer(metadata);
 		arglist[2] = new Integer(emcValue);
 		try {
 			setEMC.invoke(null, arglist);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			ModLoader.getLogger().fine("Could not set EMC.");
 		}
 	}
@@ -63,14 +71,17 @@ public enum PluginEE implements IPlugin {
 	}
 
 	static private void setEMCValues() {
-		int emcLeaves = getEMC(Block.leaves.blockID);
-		int emcCattail = getEMC(Block.reed.blockID);
-		int emcCrackedSand = getEMC(Block.sand.blockID);
-		int emcFlower = getEMC(Block.plantRed.blockID);
-		int emcGrass = getEMC(Block.tallGrass.blockID);
-		int emcQuickSand = getEMC(Block.sand.blockID);
-		int emcRedRock = getEMC(Block.stone.blockID);
-		int emcSapling = getEMC(Block.sapling.blockID);
+		final int emcLeaves = getEMC(Block.leaves.blockID);
+		final int emcCattail = getEMC(Block.reed.blockID);
+		final int emcCrackedSand = getEMC(Block.sand.blockID);
+		final int emcFlower = getEMC(Block.plantRed.blockID);
+		final int emcGrass = getEMC(Block.tallGrass.blockID);
+		final int emcQuickSand = getEMC(Block.sand.blockID);
+		final int emcSapling = getEMC(Block.sapling.blockID);
+		final int emcClay = getEMC(new ItemStack(Item.clay));
+		final int emcWater = getEMC(new ItemStack(Item.bucketWater))
+				- getEMC(new ItemStack(Item.bucketEmpty));;
+		final int emcRedRock = emcClay * 4 - emcWater * 3;
 
 		if (ExtrabiomesBlock.autumnLeaves != null && emcLeaves > 0) {
 			setEMC(ExtrabiomesBlock.autumnLeaves.blockID,
@@ -103,8 +114,8 @@ public enum PluginEE implements IPlugin {
 					BlockCustomFlower.metaOrange, emcLeaves);
 			setEMC(ExtrabiomesBlock.flower.blockID,
 					BlockCustomFlower.metaPurple, emcLeaves);
-			setEMC(ExtrabiomesBlock.flower.blockID, BlockCustomFlower.metaRoot,
-					emcLeaves);
+			setEMC(ExtrabiomesBlock.flower.blockID,
+					BlockCustomFlower.metaRoot, emcLeaves);
 			setEMC(ExtrabiomesBlock.flower.blockID,
 					BlockCustomFlower.metaTinyCactus, emcLeaves);
 			setEMC(ExtrabiomesBlock.flower.blockID,
@@ -156,12 +167,13 @@ public enum PluginEE implements IPlugin {
 		Class proxy;
 		try {
 			proxy = Class.forName("EEProxy");
-			Class partypes[] = { Integer.TYPE, Integer.TYPE, Integer.TYPE };
+			final Class partypes[] = { Integer.TYPE, Integer.TYPE,
+					Integer.TYPE };
 			setEMC = proxy.getMethod("setEMC", partypes);
 
-			Class partypes2[] = { ItemStack.class };
+			final Class partypes2[] = { ItemStack.class };
 			getEMC = proxy.getMethod("getEMC", partypes2);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			ModLoader.getLogger().fine("Could not find EE proxy.");
 			return;
 		}
