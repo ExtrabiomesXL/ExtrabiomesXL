@@ -35,8 +35,12 @@ public class ConfigureBlocks {
 		Proxy.addName(ExtrabiomesBlock.crackedSand, "Cracked Sand");
 		Proxy.addName(ExtrabiomesBlock.leafPile, "Leaf Pile");
 		Proxy.addName(ExtrabiomesBlock.quickSand, "Quick Sand");
-		Proxy.addName(ExtrabiomesBlock.redRock, "Red Rock");
 
+		if (ExtrabiomesBlock.redRock != null) {
+			Proxy.addName(new ItemStack(ExtrabiomesBlock.redRock, 1, BlockRedRock.metaRedRock), "Red Rock");
+			Proxy.addName(new ItemStack(ExtrabiomesBlock.redRock, 1, BlockRedRock.metaRedCobble), "Red Cobblestone");
+			Proxy.addName(new ItemStack(ExtrabiomesBlock.redRock, 1, BlockRedRock.metaRedRockBrick), "Red Rock Brick");
+		}
 		if (ExtrabiomesBlock.autumnLeaves != null) {
 			Proxy.addName(new ItemStack(ExtrabiomesBlock.autumnLeaves,
 					1, 0), "Brown Autumn Leaves");
@@ -212,8 +216,9 @@ public class ConfigureBlocks {
 		Proxy.registerBlock(ExtrabiomesBlock.crackedSand);
 		Proxy.registerBlock(ExtrabiomesBlock.leafPile);
 		Proxy.registerBlock(ExtrabiomesBlock.quickSand);
-		Proxy.registerBlock(ExtrabiomesBlock.redRock);
 
+		Proxy.registerBlock(ExtrabiomesBlock.redRock,
+				extrabiomes.MultiItemBlock.class);
 		Proxy.registerBlock(ExtrabiomesBlock.autumnLeaves,
 				extrabiomes.ItemCustomLeaves.class);
 		Proxy.registerBlock(ExtrabiomesBlock.catTail,
