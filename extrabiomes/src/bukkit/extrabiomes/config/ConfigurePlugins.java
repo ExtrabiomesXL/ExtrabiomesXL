@@ -5,6 +5,7 @@ import extrabiomes.api.PluginManager;
 import extrabiomes.plugins.PluginBuildCraft;
 import extrabiomes.plugins.PluginEE;
 import extrabiomes.plugins.PluginForestry;
+import extrabiomes.plugins.PluginHarvestcraft;
 import extrabiomes.plugins.PluginRedPower;
 
 public class ConfigurePlugins {
@@ -12,6 +13,7 @@ public class ConfigurePlugins {
 		PluginManager.plugins.add(PluginBuildCraft.INSTANCE);
 		PluginManager.plugins.add(PluginEE.INSTANCE);
 		PluginManager.plugins.add(PluginForestry.INSTANCE);
+		PluginManager.plugins.add(PluginHarvestcraft.INSTANCE);
 		PluginManager.plugins.add(PluginRedPower.INSTANCE);
 	}
 
