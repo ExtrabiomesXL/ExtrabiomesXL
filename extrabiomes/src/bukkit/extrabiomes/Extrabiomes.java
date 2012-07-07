@@ -26,7 +26,9 @@ import forge.NetworkMod;
 
 public class Extrabiomes {
 	public static int addFuel(int i, int j) {
-		return i != ExtrabiomesBlock.sapling.id ? 0 : 100;
+		if (ExtrabiomesBlock.sapling != null
+				&& id == ExtrabiomesBlock.sapling.blockID) return 100;
+		return 0;
 	}
 
 	public static boolean clientSideRequired() {
