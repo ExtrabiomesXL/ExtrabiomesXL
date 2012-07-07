@@ -66,7 +66,7 @@ public enum PluginEE implements IPlugin {
 		final int l = getEMC(Block.RED_ROSE.id);
 		final int i1 = getEMC(Block.LONG_GRASS.id);
 		final int j1 = getEMC(Block.SAND.id);
-		final int k1 = getEMC(Block.STONE.id);
+		final int k1 = 61;
 		final int l1 = getEMC(Block.SAPLING.id);
 
 		if (ExtrabiomesBlock.autumnLeaves != null && i > 0) {
