@@ -202,13 +202,14 @@ public class ConfigureBlocks {
 			ExtrabiomesBlock.leafPile = new BlockLeafPile(j2)
 					.a("leafpile");
 
-		Proxy.registerBlock(ExtrabiomesBlock.catTail);
 		Proxy.registerBlock(ExtrabiomesBlock.crackedSand);
 		Proxy.registerBlock(ExtrabiomesBlock.leafPile);
 		Proxy.registerBlock(ExtrabiomesBlock.quickSand);
 		Proxy.registerBlock(ExtrabiomesBlock.redRock);
 		Proxy.registerBlock(ExtrabiomesBlock.autumnLeaves,
 				extrabiomes.ItemCustomLeaves.class);
+		Proxy.registerBlock(ExtrabiomesBlock.catTail,
+				extrabiomes.ItemCatTail.class);
 		Proxy.registerBlock(ExtrabiomesBlock.flower,
 				extrabiomes.MultiItemBlock.class);
 		Proxy.registerBlock(ExtrabiomesBlock.grass,
