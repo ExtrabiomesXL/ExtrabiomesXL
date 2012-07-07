@@ -41,7 +41,8 @@ public class Extrabiomes {
 	private static final String	VERSION		= "2.2.5";
 
 	public static int addFuel(int id, int damage) {
-		if (id == ExtrabiomesBlock.sapling.blockID) return 100;
+		if (ExtrabiomesBlock.sapling != null
+				&& id == ExtrabiomesBlock.sapling.blockID) return 100;
 		return 0;
 	}
 
