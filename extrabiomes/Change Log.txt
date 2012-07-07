@@ -1,3 +1,23 @@
+2.2.6
+=====
+ - Updated Forestry API to v 1.4.8 (Thank you, SirSengir!)
+ - Added support for Pam's Mods -- specifically HarvestCraft.
+ - Fixed smaelting crash bug.
+ - Made redwoods generate taller than firs. Thank you for the
+   suggestion, Aerasoria!
+ - Corrected EMC exploits caused by value given to red rock. Thanks for
+   the report, mistaqur!
+ - Fixed a long overlooked problem of cattail items not using their item
+   texture.
+ - Gave cattails an EMc value.
+ - New recipe: Nine leaf piles = one leaf block. Per several suggestions
+   on the thread. Thanks, all!
+ - New blocks: Red Cobblestone and Red Rock Brick. No new blockIDs used.
+   Red Rock now drops Red Cobble, which can be smelted to Red Rock. Red
+   Cobble replaces Red Rock to make clay when combined with water. Four
+   Red Rocks combine to make Red Rock Brick. Thank you for the
+   suggestions, Streetwalker!
+
 2.2.5
 =====
  - Fixed derped autumn trees...
