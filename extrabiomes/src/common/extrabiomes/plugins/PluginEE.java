@@ -21,6 +21,7 @@ import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockCustomTallGrass;
 import extrabiomes.blocks.BlockGreenLeaves;
+import extrabiomes.blocks.BlockRedRock;
 
 public enum PluginEE implements IPlugin {
 	INSTANCE;
@@ -136,8 +137,14 @@ public enum PluginEE implements IPlugin {
 		}
 		if (ExtrabiomesBlock.quickSand != null && emcQuickSand > 0)
 			setEMC(ExtrabiomesBlock.quickSand.blockID, emcQuickSand);
-		if (ExtrabiomesBlock.redRock != null && emcRedRock > 0)
-			setEMC(ExtrabiomesBlock.redRock.blockID, emcRedRock);
+		if (ExtrabiomesBlock.redRock != null && emcRedRock > 0) {
+			setEMC(ExtrabiomesBlock.redRock.blockID,
+					BlockRedRock.metaRedCobble, emcRedRock);
+			setEMC(ExtrabiomesBlock.redRock.blockID,
+					BlockRedRock.metaRedRock, emcRedRock);
+			setEMC(ExtrabiomesBlock.redRock.blockID,
+					BlockRedRock.metaRedRockBrick, emcRedRock * 4);
+		}
 		if (ExtrabiomesBlock.sapling != null && emcSapling > 0) {
 			setEMC(ExtrabiomesBlock.sapling.blockID,
 					BlockCustomSapling.metaBrown, emcGrass);
