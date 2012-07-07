@@ -9,12 +9,14 @@
 package extrabiomes.config;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import extrabiomes.Proxy;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.ExtrabiomesItem;
 import extrabiomes.blocks.BlockCustomFlower;
+import extrabiomes.blocks.BlockRedRock;
 
 public class ConfigureRecipes {
 
@@ -27,13 +29,27 @@ public class ConfigureRecipes {
 							Character.valueOf('b'), Block.melon,
 							Character.valueOf('c'), Item.stick });
 
-		if (ExtrabiomesBlock.redRock != null)
+		if (ExtrabiomesBlock.redRock != null) {
 			Proxy.addShapelessRecipe(new ItemStack(Item.clay, 4),
 					new Object[] {
-							new ItemStack(ExtrabiomesBlock.redRock),
+							new ItemStack(ExtrabiomesBlock.redRock, 1,
+									BlockRedRock.metaRedCobble),
 							new ItemStack(Item.bucketWater),
 							new ItemStack(Item.bucketWater),
 							new ItemStack(Item.bucketWater) });
+			Proxy.addRecipe(new ItemStack(ExtrabiomesBlock.redRock, 1,
+					BlockRedRock.metaRedRockBrick), new Object[] {
+					"##",
+					"##",
+					Character.valueOf('#'),
+					new ItemStack(ExtrabiomesBlock.redRock, 1,
+							BlockRedRock.metaRedRock) });
+			FurnaceRecipes.smelting().addSmelting(
+					ExtrabiomesBlock.redRock.blockID,
+					BlockRedRock.metaRedCobble,
+					new ItemStack(ExtrabiomesBlock.redRock.blockID, 1,
+							BlockRedRock.metaRedRock));
+		}
 
 		if (ExtrabiomesBlock.crackedSand != null)
 			Proxy.addShapelessRecipe(
