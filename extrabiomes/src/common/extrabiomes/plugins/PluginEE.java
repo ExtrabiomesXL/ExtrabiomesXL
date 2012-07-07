@@ -72,7 +72,6 @@ public enum PluginEE implements IPlugin {
 
 	static private void setEMCValues() {
 		final int emcLeaves = getEMC(Block.leaves.blockID);
-		final int emcCattail = getEMC(Block.reed.blockID);
 		final int emcCrackedSand = getEMC(Block.sand.blockID);
 		final int emcFlower = getEMC(Block.plantRed.blockID);
 		final int emcGrass = getEMC(Block.tallGrass.blockID);
@@ -101,8 +100,8 @@ public enum PluginEE implements IPlugin {
 			setEMC(ExtrabiomesBlock.greenLeaves.blockID,
 					BlockGreenLeaves.metaAcacia, emcLeaves);
 		}
-		if (ExtrabiomesBlock.catTail != null && emcCattail > 0)
-			setEMC(ExtrabiomesBlock.catTail.blockID, emcCattail);
+		if (ExtrabiomesBlock.catTail != null && emcGrass > 0)
+			setEMC(new ItemStack(ExtrabiomesBlock.catTail), emcGrass);
 		if (ExtrabiomesBlock.crackedSand != null && emcCrackedSand > 0)
 			setEMC(ExtrabiomesBlock.crackedSand.blockID, emcCrackedSand);
 		if (ExtrabiomesBlock.flower != null && emcFlower > 0) {
