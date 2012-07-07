@@ -1,7 +1,9 @@
 ExtrabiomesXL
 =============
+The ExtrabiomesXL Mod for Minecraft
 
-The ExtrabiomesXL Minecraft Mod
+### Table of Contents
+ - [How to install and use this code](#how-to-install-and-use-the-source-code)
 
 ![Extrabiomes XL](http://i.imgur.com/zoY3L.png)
 
