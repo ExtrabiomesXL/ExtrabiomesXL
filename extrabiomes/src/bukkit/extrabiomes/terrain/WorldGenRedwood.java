@@ -33,7 +33,7 @@ public class WorldGenRedwood extends WorldGenerator {
 	}
 
 	public boolean generate(BlockChangeDelegate arg0, Random random, int i, int j, int k) {
-		final int l = random.nextInt(8) + 24;
+		final int l = random.nextInt(30) + 32;
 		final int i1 = 1 + random.nextInt(12);
 		final int j1 = l - i1;
 		final int k1 = 2 + random.nextInt(6);
