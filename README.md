@@ -23,8 +23,5 @@ The ExtrabiomesXL Mod for Minecraft
 
 * * *
 
-<div class="footer">
-Copyright &copy; 2012 Scott Killen and MisterFiber
-</div>
- 
+Copyright &copy; 2012 Scott Killen and MisterFiber.
 This mod is distributed under the terms of the [Minecraft Mod Public License 1.0.1](https://raw.github.com/ScottKillen/ExtrabiomesXL/master/MMPL-1.0.txt), or MMPL. Please check the contents of the license.
