@@ -2,13 +2,14 @@ ExtrabiomesXL
 =============
 The ExtrabiomesXL Mod for Minecraft
 
-### Table of Contents
- - [How to install and use this code](#how-to-install-and-use-the-source-code)
+### Links of Interest
+ - [Official Extrabiomes XL Wiki](/ScottKillen/ExtrabiomesXL/wiki)
+ - [Downloads](/ScottKillen/ExtrabiomesXL/downloads)
+ - [Issue Tracking System](/ScottKillen/ExtrabiomesXL/issues)
+ 
+* * *
 
-![Extrabiomes XL](http://i.imgur.com/zoY3L.png)
-
-How to install and use the source code
---------------------------------------
+## How to install and use the source code
 
 1. Properly install MCP and Forge source code into a folder.
 2. Clone this git into the folder.
@@ -16,3 +17,7 @@ How to install and use the source code
 4. To manually build the mod, execute build_extrabiomesXL.bat from within the MCP folder.
 5. Zip the files found in reobf/minecraft and reobf/minecraft_server for the respective client and server versions.
 6. Install the resulting zips by dropping appropriate file in the mods folder on the client or server.
+
+* * *
+
+![Extrabiomes XL](http://i.imgur.com/zoY3L.png)
