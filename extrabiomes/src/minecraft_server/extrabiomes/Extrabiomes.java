@@ -10,12 +10,9 @@ package extrabiomes;
 
 import java.util.Random;
 
-import net.minecraft.src.Block;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
-import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
-import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
 import net.minecraft.src.forge.NetworkMod;
 import extrabiomes.api.ExtrabiomesBlock;
@@ -24,10 +21,10 @@ import extrabiomes.api.IPlugin;
 import extrabiomes.api.PluginManager;
 import extrabiomes.api.TerrainGenManager;
 import extrabiomes.biomes.CustomBiomeManager;
-import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.config.AchievementManager;
 import extrabiomes.config.Config;
 import extrabiomes.config.ConfigureCustomBiomes;
+import extrabiomes.config.ConfigureRecipes;
 import extrabiomes.config.ConfigureVanillaBiomes;
 import extrabiomes.terrain.TerrainGenerator;
 
@@ -95,63 +92,7 @@ public class Extrabiomes {
 	public static void modsLoaded(NetworkMod mod) {
 		Config.modsLoaded();
 
-		if (ExtrabiomesItem.scarecrow != null)
-			Proxy.addRecipe(
-					new ItemStack(ExtrabiomesItem.scarecrow, 1),
-					new Object[] { " a ", "cbc", " c ",
-							Character.valueOf('a'), Block.pumpkin,
-							Character.valueOf('b'), Block.melon,
-							Character.valueOf('c'), Item.stick });
-
-		if (ExtrabiomesBlock.redRock != null)
-			Proxy.addShapelessRecipe(new ItemStack(Item.clay, 4),
-					new Object[] {
-							new ItemStack(ExtrabiomesBlock.redRock),
-							new ItemStack(Item.bucketWater),
-							new ItemStack(Item.bucketWater),
-							new ItemStack(Item.bucketWater) });
-
-		if (ExtrabiomesBlock.crackedSand != null)
-			Proxy.addShapelessRecipe(
-					new ItemStack(Block.sand),
-					new Object[] {
-							new ItemStack(ExtrabiomesBlock.crackedSand),
-							new ItemStack(Item.bucketWater) });
-
-		if (ExtrabiomesBlock.flower != null) {
-			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder,
-					1, 12), new Object[] { new ItemStack(
-					ExtrabiomesBlock.flower, 1,
-					BlockCustomFlower.metaHydrangea) });
-			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder,
-					1, 14), new Object[] { new ItemStack(
-					ExtrabiomesBlock.flower, 1,
-					BlockCustomFlower.metaOrange) });
-			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder,
-					1, 13), new Object[] { new ItemStack(
-					ExtrabiomesBlock.flower, 1,
-					BlockCustomFlower.metaPurple) });
-			ModLoader.addShapelessRecipe(new ItemStack(Item.dyePowder,
-					1, 7), new Object[] { new ItemStack(
-					ExtrabiomesBlock.flower, 1,
-					BlockCustomFlower.metaWhite) });
-			ModLoader.addShapelessRecipe(new ItemStack(Item.bowlSoup),
-					new Object[] {
-							Block.mushroomBrown,
-							new ItemStack(ExtrabiomesBlock.flower, 1,
-									BlockCustomFlower.metaToadstool),
-							new ItemStack(ExtrabiomesBlock.flower, 1,
-									BlockCustomFlower.metaToadstool),
-							Item.bowlEmpty });
-			ModLoader.addShapelessRecipe(new ItemStack(Item.bowlSoup),
-					new Object[] {
-							Block.mushroomRed,
-							new ItemStack(ExtrabiomesBlock.flower, 1,
-									BlockCustomFlower.metaToadstool),
-							new ItemStack(ExtrabiomesBlock.flower, 1,
-									BlockCustomFlower.metaToadstool),
-							Item.bowlEmpty });
-		}
+		ConfigureRecipes.initialize();
 
 		Config.addNames();
 
