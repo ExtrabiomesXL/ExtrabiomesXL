@@ -21,8 +21,8 @@ public class WorldGenGrass extends WorldGenerator {
 	public boolean generate(World world, Random rand, int x, int y, int z) {
 		if (ExtrabiomesBlock.grass != null) {
 			int i;
-			while (Block.blocksList[(i = world.getBlockId(x, y, z))] == null
-					|| Block.blocksList[i].isLeaves(world, x, y, z) && y > 0)
+			while ((Block.blocksList[(i = world.getBlockId(x, y, z))] == null
+					|| Block.blocksList[i].isLeaves(world, x, y, z)) && y > 0)
 				y--;
 
 			for (int j = 0; j < 4; j++) {
