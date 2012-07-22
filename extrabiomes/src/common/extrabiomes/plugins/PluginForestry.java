@@ -3,6 +3,7 @@ package extrabiomes.plugins;
 import java.util.Collection;
 
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ModLoader;
 import forestry.api.apiculture.FlowerManager;
@@ -10,8 +11,11 @@ import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.ForestryBlock;
 import forestry.api.core.GlobalManager;
+import forestry.api.core.ItemInterface;
 import forestry.api.cultivation.CropProviders;
+import forestry.api.liquids.LiquidStack;
 import forestry.api.storage.BackpackManager;
+import forestry.api.recipes.RecipeManagers;
 import extrabiomes.api.BiomeDecorationsManager;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.IBiomeDecoration;
@@ -33,6 +37,9 @@ public enum PluginForestry implements IPlugin {
 	private static final int DIGGER = 1;
 	private static final int FORESTER = 2;
 	private static final int ADVENTURER = 4;
+	private static ItemStack liquidJuice;
+	private static ItemStack liquidHoney;
+	private static ItemStack liquidBiomass;
 
 	private static void addBackpackItems() {
 		if (ExtrabiomesBlock.crackedSand != null)
@@ -176,6 +183,31 @@ public enum PluginForestry implements IPlugin {
 			GlobalManager.leafBlockIds
 					.add(ExtrabiomesBlock.greenLeaves.blockID);
 	}
+	private static void addFermenterRecipeSapling(ItemStack resource) {
+		RecipeManagers.fermenterManager.addRecipe(resource, 800, 1.0f, new LiquidStack(liquidBiomass.itemID, 1, liquidBiomass.getItemDamage()),
+				new LiquidStack(Block.waterStill, 1));
+		RecipeManagers.fermenterManager.addRecipe(resource, 800, 1.5f, new LiquidStack(liquidBiomass.itemID, 1, liquidBiomass.getItemDamage()),
+				new LiquidStack(liquidJuice.itemID, 1, liquidJuice.getItemDamage()));
+		RecipeManagers.fermenterManager.addRecipe(resource, 800, 1.5f, new LiquidStack(liquidBiomass.itemID, 1, liquidBiomass.getItemDamage()),
+				new LiquidStack(liquidHoney.itemID, 1, liquidHoney.getItemDamage()));
+		
+	}
+	private static void addRecipes() {
+		if (RecipeManagers.fermenterManager == null)
+			return;
+		liquidJuice = ItemInterface.getItem("liquidJuice");
+		liquidHoney = ItemInterface.getItem("liquidHoney");
+		liquidBiomass = ItemInterface.getItem("liquidBiomass");
+		if (ExtrabiomesBlock.sapling != null) {
+			addFermenterRecipeSapling(new ItemStack(ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaBrown));
+			addFermenterRecipeSapling(new ItemStack(ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaOrange));
+			addFermenterRecipeSapling(new ItemStack(ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaPurple));
+			addFermenterRecipeSapling(new ItemStack(ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaYellow));
+			addFermenterRecipeSapling(new ItemStack(ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaFir));
+			addFermenterRecipeSapling(new ItemStack(ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaRedWood));
+			addFermenterRecipeSapling(new ItemStack(ExtrabiomesBlock.sapling, 1, BlockCustomSapling.metaAcacia));
+		}		
+	}
 
 	private static void addSaplings() {
 		if (ExtrabiomesBlock.sapling == null)
@@ -199,6 +231,7 @@ public enum PluginForestry implements IPlugin {
 		addClimates();
 		addGlobals();
 		addBackpackItems();
+		addRecipes();
 	}
 
 	@Override

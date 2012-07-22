@@ -21,6 +21,8 @@ public class CropProviderSapling implements ICropProvider {
 		if (blockid != 0) {
 			return false;
 		}
+		if (germling.itemID != ExtrabiomesBlock.sapling.blockID || germling.getItemDamage() >= 4)
+			return false;
 
 		int below = world.getBlockId(x, y - 1, z);
 		int meta = world.getBlockMetadata(x, y - 1, z);
@@ -28,7 +30,7 @@ public class CropProviderSapling implements ICropProvider {
 			return false;
 		}
 		world.setBlockAndMetadataWithNotify(x, y, z,
-				ExtrabiomesBlock.sapling.blockID, 0);
+				ExtrabiomesBlock.sapling.blockID, germling.getItemDamage());
 		return true;
 	}
 
@@ -40,8 +42,9 @@ public class CropProviderSapling implements ICropProvider {
 	@Override
 	public ItemStack[] getWindfall() {
 		ArrayList windfall = new ArrayList();
-		windfall.add(new ItemStack(ExtrabiomesBlock.sapling));
-
+		for (int i=0; i < 7; i++) {
+			windfall.add(new ItemStack(ExtrabiomesBlock.sapling,1,i));
+		}
 		for (ItemStack fruit : ForestryAPI.loggerWindfall) {
 			windfall.add(fruit);
 		}
@@ -59,7 +62,7 @@ public class CropProviderSapling implements ICropProvider {
 
 	@Override
 	public boolean isGermling(ItemStack germling) {
-		return germling.itemID == ExtrabiomesBlock.sapling.blockID;
+		return germling.itemID == ExtrabiomesBlock.sapling.blockID && germling.getItemDamage() < 4;
 	}
 
 }
