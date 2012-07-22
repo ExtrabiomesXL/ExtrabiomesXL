@@ -15,6 +15,7 @@ public class CropSapling implements ICropEntity {
 	private int yCoord;
 	private int zCoord;
 	private int blockid;
+	private int meta;
 
 	public CropSapling(World world, int x, int y, int z) {
 		this.world = world;
@@ -22,12 +23,13 @@ public class CropSapling implements ICropEntity {
 		this.yCoord = y;
 		this.zCoord = z;
 		this.blockid = world.getBlockId(x, y, z);
+		this.meta = world.getBlockMetadata(x, y, z);
 	}
 
 	@Override
 	public ArrayList<ItemStack> doHarvest() {
 		ArrayList harvest = Block.blocksList[blockid].getBlockDropped(world,
-				xCoord, yCoord, zCoord, 0, 0);
+				xCoord, yCoord, zCoord, meta, 0);
 		world.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, 0, 0);
 		return harvest;
 	}
