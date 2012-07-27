@@ -258,6 +258,11 @@ public enum PluginForestry implements IPlugin {
 	private static void addSaplings() {
 		if (ExtrabiomesBlock.sapling == null) return;
 
+		if (ForestryBlock.soil != null) {
+			BlockCustomSapling.forestryHumusID = ForestryBlock.soil.blockID;
+			BlockCustomSapling.forestryHumusMeta = 0;
+		}
+
 		CropProviders.arborealCrops.add(new CropProviderSapling());
 		TerrainGenManager.treesCanGrowOnIDs.add(Integer
 				.valueOf(ForestryBlock.soil.blockID));

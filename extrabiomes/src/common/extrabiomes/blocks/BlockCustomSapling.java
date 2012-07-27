@@ -29,6 +29,9 @@ public class BlockCustomSapling extends BlockFlower implements
 	public static final int		metaRedWood			= 5;
 	public static final int		metaAcacia			= 6;
 
+	public static int			forestryHumusID		= 0;
+	public static int			forestryHumusMeta	= 0;
+
 	static private boolean isEnoughLightToGrow(World world, int x,
 			int y, int z)
 	{
@@ -118,8 +121,14 @@ public class BlockCustomSapling extends BlockFlower implements
 		int z1 = 0;
 		boolean isHuge = false;
 
+		final int soilId = world.getBlockId(x, y - 1, z);
+		final int soilMeta = world.getBlockMetadata(x, y - 1, z);
+
+		final boolean restrictGrowth = soilId == forestryHumusID
+				&& soilMeta == forestryHumusMeta;
+
 		if (metadata == metaBrown) {
-			if (rand.nextInt(20) == 0)
+			if (!restrictGrowth && rand.nextInt(20) == 0)
 				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
 						true, ITreeFactory.TreeType.BROWN_AUTUMN_BIG);
 			else
@@ -128,7 +137,7 @@ public class BlockCustomSapling extends BlockFlower implements
 		}
 
 		else if (metadata == metaOrange) {
-			if (rand.nextInt(20) == 0)
+			if (!restrictGrowth && rand.nextInt(20) == 0)
 				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
 						true, ITreeFactory.TreeType.ORANGE_AUTUMN_BIG);
 			else
@@ -137,7 +146,7 @@ public class BlockCustomSapling extends BlockFlower implements
 		}
 
 		else if (metadata == metaPurple) {
-			if (rand.nextInt(20) == 0)
+			if (!restrictGrowth && rand.nextInt(20) == 0)
 				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
 						true, ITreeFactory.TreeType.PURPLE_AUTUMN_BIG);
 			else
@@ -146,7 +155,7 @@ public class BlockCustomSapling extends BlockFlower implements
 		}
 
 		else if (metadata == metaYellow) {
-			if (rand.nextInt(20) == 0)
+			if (!restrictGrowth && rand.nextInt(20) == 0)
 				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
 						true, ITreeFactory.TreeType.YELLOW_AUTUMN_BIG);
 			else
