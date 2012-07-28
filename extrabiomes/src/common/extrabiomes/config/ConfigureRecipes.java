@@ -37,7 +37,7 @@ public class ConfigureRecipes {
 							new ItemStack(Item.bucketWater),
 							new ItemStack(Item.bucketWater),
 							new ItemStack(Item.bucketWater) });
-			Proxy.addRecipe(new ItemStack(ExtrabiomesBlock.redRock, 1,
+			Proxy.addRecipe(new ItemStack(ExtrabiomesBlock.redRock, 4,
 					BlockRedRock.metaRedRockBrick), new Object[] {
 					"##",
 					"##",
