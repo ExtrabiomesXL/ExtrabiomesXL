@@ -10,7 +10,6 @@ package extrabiomes.updatemanager;
 
 import vazkii.um.UpdateManagerMod;
 import cpw.mods.fml.common.modloader.BaseMod;
-import extrabiomes.Extrabiomes;
 import extrabiomes.Proxy;
 
 public class UpdateHandler extends UpdateManagerMod {
@@ -23,18 +22,12 @@ public class UpdateHandler extends UpdateManagerMod {
 		super(m);
 	}
 
-	
 	public String getChangelogURL() {
 		return CHANGELOG_URL;
 	}
 
 	public String getDirectDownloadURL() {
 		return Proxy.getModDownloadURL();
-	}
-
-	@Override
-	public String getModName() {
-		return Extrabiomes.getName();
 	}
 
 	public String getModURL() {

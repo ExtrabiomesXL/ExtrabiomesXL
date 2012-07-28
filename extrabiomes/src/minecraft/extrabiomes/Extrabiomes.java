@@ -34,7 +34,6 @@ import extrabiomes.updatemanager.UpdateHandler;
 
 public class Extrabiomes {
 
-	private static final String	NAME		= "ExtraBiomes XL";
 	private static final String	PRIORITIES	= "";
 	private static final String	VERSION		= "2.2.7";
 
@@ -54,10 +53,6 @@ public class Extrabiomes {
 			int x, int z)
 	{
 		TerrainGenerator.generateSurface(world, random, x, z);
-	}
-
-	public static String getName() {
-		return NAME;
 	}
 
 	public static String getPriorities() {

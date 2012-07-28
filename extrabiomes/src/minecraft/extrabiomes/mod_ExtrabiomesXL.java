@@ -11,11 +11,14 @@ package extrabiomes;
 import java.util.Map;
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.GuiScreen;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.forge.NetworkMod;
+import vazkii.um.UpdateManagerFacade;
 
 public class mod_ExtrabiomesXL extends NetworkMod {
 
@@ -42,11 +45,6 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 	}
 
 	@Override
-	public String getName() {
-		return Extrabiomes.getName();
-	}
-
-	@Override
 	public String getPriorities() {
 		return Extrabiomes.getPriorities();
 	}
@@ -59,11 +57,20 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 	@Override
 	public void load() {
 		Extrabiomes.onLoad(this);
+		UpdateManagerFacade.INSTANCE.load(this);
 	}
 
 	@Override
 	public void modsLoaded() {
 		Extrabiomes.onModsLoaded(this);
+		UpdateManagerFacade.INSTANCE.modsLoaded();
+	}
+
+	@Override
+	public boolean onTickInGUI(float tick, Minecraft game, GuiScreen gui)
+	{
+		return UpdateManagerFacade.INSTANCE
+				.onTickInGUI(tick, game, gui);
 	}
 
 	@Override
