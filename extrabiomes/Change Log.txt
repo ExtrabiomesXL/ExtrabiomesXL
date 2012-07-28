@@ -1,3 +1,16 @@
+2.2.7
+=====
+ - Fixed autumn saplings to be more forestry friendly by restricting them
+   to only grow normal sized when on forestry humus soil.
+ - Included mistaqur's bugfix for Forestry arboretums where every sapling
+   was planted as a brown autumn sapling, instead of what it actually
+   was.
+ - Included mistaqur's addition of Forestry fermenter support (all
+   saplings can now be run throught the fermenter)
+ - Added support for Forestry's new leaf registry to improve hive
+   generation. Thank you, Rorax, for the report and testing!
+ - Fixed the redrock brick recipe to output four bricks.
+
 2.2.6
 =====
  - Updated Forestry API to v 1.4.8 (Thank you, SirSengir!)
