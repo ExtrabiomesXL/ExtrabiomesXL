@@ -16,10 +16,12 @@ SirSengir - For providing a great example of a simple yet powerful API
 Eloraam - For graciously providing help with RedPower integration
 AtomicStryker - For helping with the final step of porting to bukkit
 mushroomhostage - For embracing the job of porting to bukkit
+Rorax - For providing great data regarding Forestry bee generation and testing the fix.
+mistaqur - for embracing the concept of opensource and being the first community member to fix a bug and ass a feature.
 
 The Buildcraft Development Team
   Extrabiomes XL uses a modified version of OilPopulate.java from BuildCraft.
   The modified source is available here:
-  https://github.com/downloads/ScottKillen/ExtrabiomesXL/Extrabiomes%20XL%20Modified%20Buildcraft%20%20Source.zip
+  https://github.com/ScottKillen/ExtrabiomesXL/tree/master/extrabiomes/src/common/extrabiomes/plugins/buildcraft
   BuildCraft is distributed under the Minecraft Mod Public License 1.0 at
   https://github.com/SirSengir/BuildCraft/
