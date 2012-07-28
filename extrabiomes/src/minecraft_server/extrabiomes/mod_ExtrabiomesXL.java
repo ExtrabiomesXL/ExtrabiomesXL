@@ -36,11 +36,6 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 	}
 
 	@Override
-	public String getName() {
-		return Extrabiomes.getName();
-	}
-
-	@Override
 	public String getPriorities() {
 		return Extrabiomes.getPriorities();
 	}
