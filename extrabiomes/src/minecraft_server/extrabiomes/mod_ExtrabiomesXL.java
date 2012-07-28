@@ -6,14 +6,15 @@
  * located in /MMPL-1.0.txt
  */
 
-package net.minecraft.src;
+package extrabiomes;
 
-import java.util.Map;
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.IInventory;
+import net.minecraft.src.ItemStack;
+import net.minecraft.src.World;
 import net.minecraft.src.forge.NetworkMod;
-import extrabiomes.Extrabiomes;
 
 public class mod_ExtrabiomesXL extends NetworkMod {
 
@@ -23,13 +24,8 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 	}
 
 	@Override
-	public void addRenderer(Map map) {
-		Extrabiomes.addRenderer(map);
-	}
-
-	@Override
 	public boolean clientSideRequired() {
-		return true;
+		return Extrabiomes.clientSideRequired();
 	}
 
 	@Override
@@ -62,16 +58,6 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 	@Override
 	public void modsLoaded() {
 		Extrabiomes.modsLoaded(this);
-	}
-
-	@Override
-	public boolean onTickInGame(float var1, Minecraft var2) {
-		return Extrabiomes.onTickInGame(var1, var2);
-	}
-
-	@Override
-	public boolean serverSideRequired() {
-		return true;
 	}
 
 	@Override
