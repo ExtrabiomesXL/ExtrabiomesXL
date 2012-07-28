@@ -1,3 +1,4 @@
+
 package extrabiomes.config;
 
 import extrabiomes.api.PluginManager;

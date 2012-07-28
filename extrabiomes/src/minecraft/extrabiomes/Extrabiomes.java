@@ -11,7 +11,7 @@ package extrabiomes;
 import java.util.Map;
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.src.BaseMod;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
@@ -30,6 +30,7 @@ import extrabiomes.config.ConfigureCustomBiomes;
 import extrabiomes.config.ConfigureRecipes;
 import extrabiomes.config.ConfigureVanillaBiomes;
 import extrabiomes.terrain.TerrainGenerator;
+import extrabiomes.updatemanager.UpdateHandler;
 
 public class Extrabiomes {
 
@@ -64,10 +65,6 @@ public class Extrabiomes {
 	}
 
 	public static String getVersion() {
-		return getVersionNumber() + " Client";
-	}
-
-	public static String getVersionNumber() {
 		return VERSION;
 	}
 
@@ -80,13 +77,14 @@ public class Extrabiomes {
 			}
 	}
 
-	public static void load() {
+	public static void onLoad(BaseMod mod) {
 		preloadTexture("/extrabiomes/extrabiomes.png");
+		new UpdateHandler(mod);
 
 		Config.load();
 	}
 
-	public static void modsLoaded(NetworkMod mod) {
+	public static void onModsLoaded(NetworkMod mod) {
 		Config.modsLoaded();
 
 		ConfigureRecipes.initialize();
@@ -110,13 +108,6 @@ public class Extrabiomes {
 		ConfigureCustomBiomes.enableCustomBiomes();
 
 		injectPlugins();
-	}
-
-	public static boolean onTickInGame(float var1, Minecraft var2) {
-		// For future expansion (returning false removes this hook from
-		// the
-		// loop)
-		return false;
 	}
 
 	public static void preloadTexture(String filename) {
