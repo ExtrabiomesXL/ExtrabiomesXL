@@ -102,7 +102,7 @@ public class Extrabiomes {
 		ConfigureVanillaBiomes.disableVanillaBiomes();
 
 		if (TerrainGenManager.blockWasteland != null)
-			CustomBiomeManager.wasteland.topBlock = CustomBiomeManager.wasteland.fillerBlock = (byte) TerrainGenManager.blockWasteland.blockID;
+			CustomBiomeManager.wasteland.topBlock = (byte) TerrainGenManager.blockWasteland.blockID;
 		if (TerrainGenManager.blockWasteland != null)
 			CustomBiomeManager.mountainRidge.topBlock = CustomBiomeManager.mountainRidge.fillerBlock = (byte) TerrainGenManager.blockMountainRidge.blockID;
 
