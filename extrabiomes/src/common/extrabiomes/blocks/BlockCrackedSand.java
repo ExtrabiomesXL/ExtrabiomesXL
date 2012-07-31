@@ -46,7 +46,7 @@ public class BlockCrackedSand extends Block implements ITextureProvider
 	}
 
 	private void changeNeighbor(World world, int x, int y, int z) {
-		if (world.getBlockLightValue(x, y + 1, z) < 9) return;
+		if (world.getBlockLightValue(x, y + 1, z) < 15) return;
 
 		decayBlock(world, x, y, z);
 	}
@@ -105,9 +105,9 @@ public class BlockCrackedSand extends Block implements ITextureProvider
 				return;
 			if (world.getBlockLightValue(x, y + 1, z) < 15) return;
 			for (int i = 0; i < 4; ++i) {
-				final int x1 = x + rand.nextInt(3) - 1;
-				final int y1 = y + rand.nextInt(5) - 3;
-				final int z1 = z + rand.nextInt(3) - 1;
+				final int x1 = x + rand.nextInt(3) - rand.nextInt(3);
+				final int y1 = y + rand.nextInt(5) - rand.nextInt(5);
+				final int z1 = z + rand.nextInt(3) - rand.nextInt(3);
 				if (!restrictGrowthToBiome
 						|| world.getBiomeGenForCoords(x1, z1) == BiomeManager.wasteland)
 					changeNeighbor(world, x1, y1, z1);
