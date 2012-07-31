@@ -37,9 +37,12 @@ public class ConfigureBlocks {
 		Proxy.addName(ExtrabiomesBlock.quickSand, "Quick Sand");
 
 		if (ExtrabiomesBlock.redRock != null) {
-			Proxy.addName(new ItemStack(ExtrabiomesBlock.redRock, 1, BlockRedRock.metaRedRock), "Red Rock");
-			Proxy.addName(new ItemStack(ExtrabiomesBlock.redRock, 1, BlockRedRock.metaRedCobble), "Red Cobblestone");
-			Proxy.addName(new ItemStack(ExtrabiomesBlock.redRock, 1, BlockRedRock.metaRedRockBrick), "Red Rock Brick");
+			Proxy.addName(new ItemStack(ExtrabiomesBlock.redRock, 1,
+					BlockRedRock.metaRedRock), "Red Rock");
+			Proxy.addName(new ItemStack(ExtrabiomesBlock.redRock, 1,
+					BlockRedRock.metaRedCobble), "Red Cobblestone");
+			Proxy.addName(new ItemStack(ExtrabiomesBlock.redRock, 1,
+					BlockRedRock.metaRedRockBrick), "Red Rock Brick");
 		}
 		if (ExtrabiomesBlock.autumnLeaves != null) {
 			Proxy.addName(new ItemStack(ExtrabiomesBlock.autumnLeaves,
@@ -196,19 +199,19 @@ public class ConfigureBlocks {
 					.setBlockName("grass");
 
 		final int saplingID = Config.getOrCreateBlockIdProperty(
-				"sapling.id", 156);
+				"sapling.id", 157);
 		if (saplingID != 0)
 			ExtrabiomesBlock.sapling = new BlockCustomSapling(saplingID)
 					.setBlockName("sapling");
 
 		final int catTailID = Config.getOrCreateBlockIdProperty(
-				"cattail.id", 156);
+				"cattail.id", 158);
 		if (catTailID != 0)
 			ExtrabiomesBlock.catTail = new BlockCatTail(catTailID)
 					.setBlockName("cattail");
 
 		final int leafPileID = Config.getOrCreateBlockIdProperty(
-				"leafpile.id", 156);
+				"leafpile.id", 159);
 		if (leafPileID != 0)
 			ExtrabiomesBlock.leafPile = new BlockLeafPile(leafPileID)
 					.setBlockName("leafpile");
