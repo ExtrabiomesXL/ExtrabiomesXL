@@ -28,7 +28,7 @@ import extrabiomes.blocks.BlockRedRock;
 public class ConfigureBlocks {
 
 	public static boolean	crackedSandCanGrow						= true;
-	public static boolean	crackedSandGrowthRestrictedToWasteland	= false;
+	public static boolean	crackedSandGrowthRestrictedToWasteland	= true;
 
 	public static void addNames() {
 		Proxy.addName(ExtrabiomesBlock.catTail, "Cat Tail");
