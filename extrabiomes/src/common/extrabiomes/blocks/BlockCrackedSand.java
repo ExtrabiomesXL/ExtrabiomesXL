@@ -63,7 +63,10 @@ public class BlockCrackedSand extends Block implements ITextureProvider
 		} else if (id == grass.blockID)
 			world.setBlockWithNotify(x, y, z, dirt.blockID);
 		else if (id == dirt.blockID)
-			world.setBlockWithNotify(x, y, z, sandStone.blockID);
+			world.setBlockWithNotify(x, y, z, sand.blockID);
+		else if (id == sand.blockID) {
+			world.setBlockWithNotify(x, y, z, sandStone.blockID);			
+		}
 		else if (id == sandStone.blockID) {
 			final int metadata = world.getBlockMetadata(x, y, z);
 			if (metadata != 0)
