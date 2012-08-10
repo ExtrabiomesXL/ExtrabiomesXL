@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
+import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ModLoader;
 import extrabiomes.api.BiomeDecorationsManager;
@@ -18,6 +19,7 @@ import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockGreenLeaves;
+import extrabiomes.blocks.BlockRedRock;
 import extrabiomes.plugins.forestry.CropProviderSapling;
 import extrabiomes.plugins.forestry.WorldGenChunkBogEarth;
 import extrabiomes.terrain.BiomeDecoration;
@@ -252,6 +254,10 @@ public enum PluginForestry implements IPlugin {
 			addFermenterRecipeSapling(new ItemStack(
 					ExtrabiomesBlock.sapling, 1,
 					BlockCustomSapling.metaAcacia));
+		}
+		if (ExtrabiomesBlock.redRock != null && RecipeManagers.carpenterManager != null) {
+			RecipeManagers.carpenterManager.addRecipe(5, new LiquidStack(Block.waterStill, 3000), null, new ItemStack(Item.clay, 4),
+				new Object[] { "#", Character.valueOf('#'), new ItemStack(ExtrabiomesBlock.redRock, 1, BlockRedRock.metaRedCobble) });
 		}
 	}
 
