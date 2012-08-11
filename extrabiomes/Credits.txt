@@ -18,6 +18,7 @@ AtomicStryker - For helping with the final step of porting to bukkit
 mushroomhostage - For embracing the job of porting to bukkit
 Rorax - For providing great data regarding Forestry bee generation and testing the fix.
 mistaqur - for embracing the concept of opensource and being the first community member to fix a bug and ass a feature.
+MrAndrew430 - for being the first to embrace the wiki and post screenshots of nearly every biome
 
 The Buildcraft Development Team
   Extrabiomes XL uses a modified version of OilPopulate.java from BuildCraft.
