@@ -18,22 +18,32 @@
 		<link>
 			<name>common</name>
 			<type>2</type>
-			<locationURI>MCP_LOC/extrabiomes/src/common</locationURI>
+			<locationURI>PARENT-1-MCP_LOC/src/common</locationURI>
+		</link>
+		<link>
+			<name>extrabiomes_common</name>
+			<type>2</type>
+			<locationURI>MCP_LOC/src/common</locationURI>
 		</link>
 		<link>
 			<name>extrabiomes_server</name>
 			<type>2</type>
-			<locationURI>MCP_LOC/extrabiomes/src/minecraft_server</locationURI>
+			<locationURI>MCP_LOC/src/minecraft_server</locationURI>
 		</link>
 		<link>
 			<name>jars</name>
 			<type>2</type>
-			<locationURI>MCP_LOC/jars</locationURI>
+			<locationURI>PARENT-1-MCP_LOC/jars</locationURI>
+		</link>
+		<link>
+			<name>lib</name>
+			<type>2</type>
+			<locationURI>PARENT-1-MCP_LOC/lib</locationURI>
 		</link>
 		<link>
 			<name>src</name>
 			<type>2</type>
-			<locationURI>MCP_LOC/src/minecraft_server</locationURI>
+			<locationURI>PARENT-1-MCP_LOC/src/minecraft_server</locationURI>
 		</link>
 	</linkedResources>
 	<filteredResources>
@@ -50,7 +60,7 @@
 	<variableList>
 		<variable>
 			<name>MCP_LOC</name>
-			<value>$%7BPARENT-2-WORKSPACE_LOC%7D</value>
+			<value>$%7BPARENT-1-WORKSPACE_LOC%7D</value>
 		</variable>
 	</variableList>
 </projectDescription>
