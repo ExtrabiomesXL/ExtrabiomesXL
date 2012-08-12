@@ -1,3 +1,4 @@
+
 package extrabiomes.blocks;
 
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ import net.minecraft.src.Entity;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.ITextureProvider;
 
 public class BlockQuickSand extends Block implements ITextureProvider {
 
@@ -24,8 +24,9 @@ public class BlockQuickSand extends Block implements ITextureProvider {
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(final World world,
-			final int x, final int y, final int z) {
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(
+			final World world, final int x, final int y, final int z)
+	{
 		return null;
 	}
 
@@ -40,8 +41,9 @@ public class BlockQuickSand extends Block implements ITextureProvider {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(final World world, final int x,
-			final int y, final int z, final Entity entity) {
+	public void onEntityCollidedWithBlock(final World world,
+			final int x, final int y, final int z, final Entity entity)
+	{
 		entity.setInWeb();
 	}
 

@@ -1,6 +1,7 @@
+
 package extrabiomes.config;
 
-import net.minecraft.src.forge.Configuration;
+import net.minecraftforge.common.Configuration;
 import extrabiomes.ItemScarecrow;
 import extrabiomes.Proxy;
 import extrabiomes.api.ExtrabiomesItem;
@@ -13,8 +14,8 @@ public class ConfigureItems {
 	}
 
 	public static void initialize() {
-		int scarecrowID = Config.getOrCreateIntProperty("scarecrow.id",
-				Configuration.CATEGORY_ITEM, 2870);
+		final int scarecrowID = Config.getOrCreateIntProperty(
+				"scarecrow.id", Configuration.CATEGORY_ITEM, 2870);
 		if (scarecrowID != 0)
 			ExtrabiomesItem.scarecrow = new ItemScarecrow(scarecrowID)
 					.setItemName("scarecrow").setIconIndex(96);

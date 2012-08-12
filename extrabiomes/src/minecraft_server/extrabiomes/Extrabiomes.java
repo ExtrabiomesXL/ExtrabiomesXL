@@ -14,7 +14,7 @@ import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.NetworkMod;
+import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.ExtrabiomesItem;
 import extrabiomes.api.IPlugin;

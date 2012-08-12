@@ -17,7 +17,6 @@ import net.minecraft.src.GuiScreen;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.NetworkMod;
 import vazkii.um.UpdateManagerFacade;
 
 public class mod_ExtrabiomesXL extends NetworkMod {

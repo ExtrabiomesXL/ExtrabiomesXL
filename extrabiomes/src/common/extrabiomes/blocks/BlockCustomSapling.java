@@ -8,9 +8,7 @@ import net.minecraft.src.BlockFlower;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import net.minecraft.src.forge.IBonemealHandler;
-import net.minecraft.src.forge.ITextureProvider;
-import net.minecraft.src.forge.MinecraftForge;
+import net.minecraftforge.common.MinecraftForge;
 import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
 

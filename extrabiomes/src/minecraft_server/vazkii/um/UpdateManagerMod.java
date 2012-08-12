@@ -8,12 +8,11 @@
 
 package vazkii.um;
 
-import cpw.mods.fml.common.modloader.BaseMod;
+import net.minecraft.src.BaseMod;
 
 public class UpdateManagerMod {
 
-	public UpdateManagerMod(BaseMod m) {
-	}
+	public UpdateManagerMod(BaseMod m) {}
 
 	public String getUpdateURL() {
 		return "";

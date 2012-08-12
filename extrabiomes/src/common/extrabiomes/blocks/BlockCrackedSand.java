@@ -9,7 +9,6 @@ import net.minecraft.src.EnumCreatureType;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.ITextureProvider;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.TerrainGenManager;
 import extrabiomes.config.ConfigureBlocks;
@@ -64,9 +63,8 @@ public class BlockCrackedSand extends Block implements ITextureProvider
 			world.setBlockWithNotify(x, y, z, dirt.blockID);
 		else if (id == dirt.blockID)
 			world.setBlockWithNotify(x, y, z, sand.blockID);
-		else if (id == sand.blockID) {
-			world.setBlockWithNotify(x, y, z, sandStone.blockID);			
-		}
+		else if (id == sand.blockID)
+			world.setBlockWithNotify(x, y, z, sandStone.blockID);
 		else if (id == sandStone.blockID) {
 			final int metadata = world.getBlockMetadata(x, y, z);
 			if (metadata != 0)

@@ -8,8 +8,8 @@
 
 package extrabiomes.updatemanager;
 
+import net.minecraft.src.BaseMod;
 import vazkii.um.UpdateManagerMod;
-import cpw.mods.fml.common.modloader.BaseMod;
 import extrabiomes.Proxy;
 
 public class UpdateHandler extends UpdateManagerMod {
@@ -22,14 +22,17 @@ public class UpdateHandler extends UpdateManagerMod {
 		super(m);
 	}
 
+	@Override
 	public String getChangelogURL() {
 		return CHANGELOG_URL;
 	}
 
+	@Override
 	public String getDirectDownloadURL() {
 		return Proxy.getModDownloadURL();
 	}
 
+	@Override
 	public String getModURL() {
 		return MOD_URL;
 	}

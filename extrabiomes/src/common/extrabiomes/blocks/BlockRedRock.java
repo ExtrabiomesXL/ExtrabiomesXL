@@ -16,7 +16,6 @@ import net.minecraft.src.EnumCreatureType;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.ITextureProvider;
 import extrabiomes.api.TerrainGenManager;
 
 public class BlockRedRock extends Block implements ITextureProvider {

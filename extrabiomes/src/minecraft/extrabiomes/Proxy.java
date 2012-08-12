@@ -8,8 +8,8 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ModLoader;
-import net.minecraft.src.forge.MinecraftForge;
-import net.minecraft.src.forge.NetworkMod;
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.network.NetworkMod;
 
 public class Proxy {
 

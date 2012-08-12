@@ -14,7 +14,6 @@ import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.NetworkMod;
 
 public class mod_ExtrabiomesXL extends NetworkMod {
 

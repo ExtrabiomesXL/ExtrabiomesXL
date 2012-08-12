@@ -18,9 +18,8 @@ import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.ForgeHooks;
-import net.minecraft.src.forge.IShearable;
-import net.minecraft.src.forge.ITextureProvider;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.IShearable;
 import extrabiomes.ColorizerExtraBiomes;
 import extrabiomes.api.TerrainGenManager;
 

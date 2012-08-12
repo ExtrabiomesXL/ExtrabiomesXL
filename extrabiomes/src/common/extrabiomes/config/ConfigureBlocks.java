@@ -9,9 +9,9 @@
 package extrabiomes.config;
 
 import net.minecraft.src.ItemStack;
-import net.minecraft.src.forge.Configuration;
-import net.minecraft.src.forge.MinecraftForge;
-import net.minecraft.src.forge.Property;
+import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.Property;
 import extrabiomes.Proxy;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.blocks.BlockAutumnLeaves;

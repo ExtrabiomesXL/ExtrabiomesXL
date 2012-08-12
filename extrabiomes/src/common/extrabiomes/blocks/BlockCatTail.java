@@ -16,10 +16,11 @@ import net.minecraft.src.BlockFlower;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.ITextureProvider;
 import extrabiomes.api.TerrainGenManager;
 
-public class BlockCatTail extends BlockFlower implements ITextureProvider {
+public class BlockCatTail extends BlockFlower implements
+		ITextureProvider
+{
 
 	static private boolean canGrownOnBlock(final int id) {
 		return id == Block.grass.blockID && id == Block.dirt.blockID
@@ -31,9 +32,10 @@ public class BlockCatTail extends BlockFlower implements ITextureProvider {
 		setHardness(0.0F);
 		setStepSound(Block.soundGrassFootstep);
 		disableStats();
-		float f = 0.375F;
-		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F, 0.5F + f);
-		
+		final float f = 0.375F;
+		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F,
+				0.5F + f);
+
 		TerrainGenManager.enableCattailGen = true;
 	}
 
@@ -43,37 +45,37 @@ public class BlockCatTail extends BlockFlower implements ITextureProvider {
 	}
 
 	@Override
-	public boolean canBlockStay(final World world, final int x, final int y,
-			final int z) {
+	public boolean canBlockStay(final World world, final int x,
+			final int y, final int z)
+	{
 		return canPlaceBlockAt(world, x, y, z);
 	}
 
 	@Override
-	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-		int i = par1World.getBlockId(par2, par3 - 1, par4);
+	public boolean canPlaceBlockAt(World par1World, int par2, int par3,
+			int par4)
+	{
+		final int i = par1World.getBlockId(par2, par3 - 1, par4);
 
-		if (i != Block.grass.blockID && i != Block.dirt.blockID) {
+		if (i != Block.grass.blockID && i != Block.dirt.blockID)
 			return false;
-		}
 
-		if (par1World.getBlockMaterial(par2 - 1, par3 - 1, par4) == Material.water) {
+		if (par1World.getBlockMaterial(par2 - 1, par3 - 1, par4) == Material.water)
 			return true;
-		}
 
-		if (par1World.getBlockMaterial(par2 + 1, par3 - 1, par4) == Material.water) {
+		if (par1World.getBlockMaterial(par2 + 1, par3 - 1, par4) == Material.water)
 			return true;
-		}
 
-		if (par1World.getBlockMaterial(par2, par3 - 1, par4 - 1) == Material.water) {
+		if (par1World.getBlockMaterial(par2, par3 - 1, par4 - 1) == Material.water)
 			return true;
-		}
 
 		return par1World.getBlockMaterial(par2, par3 - 1, par4 + 1) == Material.water;
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(final World world,
-			final int x, final int y, final int z) {
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(
+			final World world, final int x, final int y, final int z)
+	{
 		return null;
 	}
 
@@ -94,9 +96,11 @@ public class BlockCatTail extends BlockFlower implements ITextureProvider {
 
 	@Override
 	public void onNeighborBlockChange(final World world, final int x,
-			final int y, final int z, final int idNeighbor) {
+			final int y, final int z, final int idNeighbor)
+	{
 		if (!canBlockStay(world, x, y, z)) {
-			dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+			dropBlockAsItem(world, x, y, z,
+					world.getBlockMetadata(x, y, z), 0);
 			world.setBlockWithNotify(x, y, z, 0);
 		}
 	}

@@ -1,3 +1,4 @@
+
 package extrabiomes.blocks;
 
 import java.util.ArrayList;
@@ -8,25 +9,26 @@ import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.ITextureProvider;
-import net.minecraft.src.forge.MinecraftForge;
+import net.minecraftforge.common.MinecraftForge;
 
-public class BlockCustomFlower extends Block implements ITextureProvider {
+public class BlockCustomFlower extends Block implements
+		ITextureProvider
+{
 
-	public static final int metaAutumnShrub = 0;
-	public static final int metaHydrangea = 1;
-	public static final int metaOrange = 2;
-	public static final int metaPurple = 3;
-	public static final int metaTinyCactus = 4;
-	public static final int metaRoot = 5;
-	public static final int metaToadstool = 6;
-	public static final int metaWhite = 7;
+	public static final int	metaAutumnShrub	= 0;
+	public static final int	metaHydrangea	= 1;
+	public static final int	metaOrange		= 2;
+	public static final int	metaPurple		= 3;
+	public static final int	metaTinyCactus	= 4;
+	public static final int	metaRoot		= 5;
+	public static final int	metaToadstool	= 6;
+	public static final int	metaWhite		= 7;
 
 	public BlockCustomFlower(final int id) {
 		super(id, Material.plants);
 		blockIndexInTexture = 32;
 		setTickRandomly(true);
-		float var4 = 0.2F;
+		final float var4 = 0.2F;
 		setBlockBounds(0.5F - var4, 0.0F, 0.5F - var4, 0.5F + var4,
 				var4 * 3.0F, 0.5F + var4);
 		setHardness(0.0F);
@@ -52,18 +54,22 @@ public class BlockCustomFlower extends Block implements ITextureProvider {
 	}
 
 	@Override
-	public boolean canBlockStay(final World world, final int x, final int y,
-			final int z) {
+	public boolean canBlockStay(final World world, final int x,
+			final int y, final int z)
+	{
 		return (world.getFullBlockLightValue(x, y, z) >= 8 || world
 				.canBlockSeeTheSky(x, y, z))
-				&& canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
+				&& canThisPlantGrowOnThisBlockID(world.getBlockId(x,
+						y - 1, z));
 	}
 
 	@Override
-	public boolean canPlaceBlockAt(final World world, final int x, final int y,
-			final int z) {
+	public boolean canPlaceBlockAt(final World world, final int x,
+			final int y, final int z)
+	{
 		return super.canPlaceBlockAt(world, x, y, z)
-				&& canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
+				&& canThisPlantGrowOnThisBlockID(world.getBlockId(x,
+						y - 1, z));
 	}
 
 	protected boolean canThisPlantGrowOnThisBlockID(final int id) {
@@ -71,10 +77,12 @@ public class BlockCustomFlower extends Block implements ITextureProvider {
 				|| id == Block.tilledField.blockID;
 	}
 
-	protected final void checkFlowerChange(final World world, final int x,
-			final int y, final int z) {
+	protected final void checkFlowerChange(final World world,
+			final int x, final int y, final int z)
+	{
 		if (!canBlockStay(world, x, y, z)) {
-			dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+			dropBlockAsItem(world, x, y, z,
+					world.getBlockMetadata(x, y, z), 0);
 			world.setBlockWithNotify(x, y, z, 0);
 		}
 	}
@@ -85,13 +93,16 @@ public class BlockCustomFlower extends Block implements ITextureProvider {
 	}
 
 	@Override
-	public int getBlockTextureFromSideAndMetadata(final int side, final int md) {
+	public int getBlockTextureFromSideAndMetadata(final int side,
+			final int md)
+	{
 		return super.getBlockTextureFromSideAndMetadata(side, md) + md;
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(final World world,
-			final int x, final int y, final int z) {
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(
+			final World world, final int x, final int y, final int z)
+	{
 		return null;
 	}
 
@@ -112,7 +123,8 @@ public class BlockCustomFlower extends Block implements ITextureProvider {
 
 	@Override
 	public void onNeighborBlockChange(final World world, final int x,
-			final int y, final int z, final int id) {
+			final int y, final int z, final int id)
+	{
 		super.onNeighborBlockChange(world, x, y, z, id);
 		checkFlowerChange(world, x, y, z);
 	}
@@ -124,7 +136,8 @@ public class BlockCustomFlower extends Block implements ITextureProvider {
 
 	@Override
 	public void updateTick(final World world, final int x, final int y,
-			final int z, final Random rand) {
+			final int z, final Random rand)
+	{
 		checkFlowerChange(world, x, y, z);
 	}
 }

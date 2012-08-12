@@ -16,9 +16,8 @@ import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import net.minecraft.src.forge.ForgeHooks;
-import net.minecraft.src.forge.IShearable;
-import net.minecraft.src.forge.ITextureProvider;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.IShearable;
 import extrabiomes.api.TerrainGenManager;
 
 public class BlockCustomTallGrass extends BlockFlower implements
