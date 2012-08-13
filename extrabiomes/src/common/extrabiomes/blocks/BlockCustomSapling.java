@@ -8,13 +8,12 @@ import net.minecraft.src.BlockFlower;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.player.BonemealEvent;
 import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
 
-public class BlockCustomSapling extends BlockFlower implements
-		IBonemealHandler, ITextureProvider
-{
+public class BlockCustomSapling extends BlockFlower {
 
 	private static final int	METADATA_BITMASK	= 0x7;
 	private static final int	METADATA_MARKBIT	= 0x8;
@@ -57,7 +56,6 @@ public class BlockCustomSapling extends BlockFlower implements
 		setStepSound(soundGrassFootstep);
 		setRequiresSelfNotify();
 
-		MinecraftForge.registerBonemealHandler(this);
 	}
 
 	@Override
@@ -234,15 +232,13 @@ public class BlockCustomSapling extends BlockFlower implements
 				&& unmarkedMetadata(world.getBlockMetadata(x, y, z)) == metadata;
 	}
 
-	@Override
-	public boolean onUseBonemeal(World world, int blockID, int x,
-			int y, int z)
-	{
-		if (blockID == this.blockID) {
-			if (!world.isRemote) growTree(world, x, y, z, world.rand);
-			return true;
+	@ForgeSubscribe
+	void reactToBonemeal(BonemealEvent e) {
+		if (!e.isHandeled() && e.ID == blockID) {
+			if (!e.world.isRemote)
+				growTree(e.world, e.X, e.Y, e.Z, e.world.rand);
+			e.setHandeled();
 		}
-		return false;
 	}
 
 	@Override
