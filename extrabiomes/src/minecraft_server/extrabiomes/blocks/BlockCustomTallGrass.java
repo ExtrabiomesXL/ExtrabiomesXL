@@ -21,7 +21,7 @@ import net.minecraftforge.common.IShearable;
 import extrabiomes.api.TerrainGenManager;
 
 public class BlockCustomTallGrass extends BlockFlower implements
-		IShearable, ITextureProvider
+		IShearable
 {
 
 	public static final int	metaBrown		= 0;

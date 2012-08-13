@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Scott Killen and MisterFiber, 2012
+ * 
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
 
 package extrabiomes.blocks;
 
@@ -16,7 +23,7 @@ import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.TerrainGenManager;
 
 public class BlockGreenLeaves extends BlockLeavesBase implements
-		IShearable, ITextureProvider
+		IShearable
 {
 
 	private static final int	METADATA_BITMASK		= 0x3;

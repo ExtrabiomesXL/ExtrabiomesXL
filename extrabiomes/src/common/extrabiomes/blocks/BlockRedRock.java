@@ -18,7 +18,7 @@ import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import extrabiomes.api.TerrainGenManager;
 
-public class BlockRedRock extends Block implements ITextureProvider {
+public class BlockRedRock extends Block {
 
 	public static final int	metaRedRock			= 0;
 	public static final int	metaRedCobble		= 1;

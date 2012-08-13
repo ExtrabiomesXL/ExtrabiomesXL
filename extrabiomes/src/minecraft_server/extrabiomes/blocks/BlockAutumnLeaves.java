@@ -17,7 +17,7 @@ import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.TerrainGenManager;
 
 public class BlockAutumnLeaves extends BlockLeavesBase implements
-		IShearable, ITextureProvider
+		IShearable
 {
 
 	private static final int	METADATA_BITMASK		= 0x3;

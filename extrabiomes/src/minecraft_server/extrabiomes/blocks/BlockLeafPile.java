@@ -10,7 +10,7 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 
-public class BlockLeafPile extends Block implements ITextureProvider {
+public class BlockLeafPile extends Block {
 
 	static private boolean canThisPlantGrowOnThisBlockID(
 			final int blockId)

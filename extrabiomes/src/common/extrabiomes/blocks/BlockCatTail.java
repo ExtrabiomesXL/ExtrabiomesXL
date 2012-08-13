@@ -18,14 +18,7 @@ import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import extrabiomes.api.TerrainGenManager;
 
-public class BlockCatTail extends BlockFlower implements
-		ITextureProvider
-{
-
-	static private boolean canGrownOnBlock(final int id) {
-		return id == Block.grass.blockID && id == Block.dirt.blockID
-				&& id == Block.sand.blockID;
-	}
+public class BlockCatTail extends BlockFlower {
 
 	public BlockCatTail(final int id) {
 		super(id, 79, Material.plants);
