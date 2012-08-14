@@ -12,14 +12,17 @@ import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.src.BaseMod;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import vazkii.um.UpdateManagerFacade;
+import cpw.mods.fml.common.network.NetworkMod;
 
-public class mod_ExtrabiomesXL extends NetworkMod {
+@NetworkMod
+public class mod_ExtrabiomesXL extends BaseMod {
 
 	@Override
 	public int addFuel(int id, int damage) {
@@ -31,7 +34,6 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 		Extrabiomes.addRenderer(map);
 	}
 
-	@Override
 	public boolean clientSideRequired() {
 		return true;
 	}
@@ -72,7 +74,6 @@ public class mod_ExtrabiomesXL extends NetworkMod {
 				.onTickInGUI(tick, game, gui);
 	}
 
-	@Override
 	public boolean serverSideRequired() {
 		return true;
 	}

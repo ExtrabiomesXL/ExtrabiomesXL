@@ -39,11 +39,11 @@ public class BlockCustomFlower extends Block {
 		setHardness(0.0F);
 		setStepSound(Block.soundGrassFootstep);
 
-		MinecraftForge.addGrassPlant(id, metaAutumnShrub, 2);
-		MinecraftForge.addGrassPlant(id, metaHydrangea, 2);
-		MinecraftForge.addGrassPlant(id, metaOrange, 5);
-		MinecraftForge.addGrassPlant(id, metaPurple, 5);
-		MinecraftForge.addGrassPlant(id, metaWhite, 5);
+		MinecraftForge.addGrassPlant(this, metaAutumnShrub, 2);
+		MinecraftForge.addGrassPlant(this, metaHydrangea, 2);
+		MinecraftForge.addGrassPlant(this, metaOrange, 5);
+		MinecraftForge.addGrassPlant(this, metaPurple, 5);
+		MinecraftForge.addGrassPlant(this, metaWhite, 5);
 	}
 
 	@Override

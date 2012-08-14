@@ -87,6 +87,31 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
+	public void breakBlock(World world, int x, int y, int z,
+			int blockID, int metadata)
+	{
+		final int leafDecayRadius = 1;
+		final int chuckCheckRadius = leafDecayRadius + 1;
+
+		if (!world.checkChunksExist(x - chuckCheckRadius, y
+				- chuckCheckRadius, z - chuckCheckRadius, x
+				+ chuckCheckRadius, y + chuckCheckRadius, z
+				+ chuckCheckRadius)) return;
+
+		for (int x1 = -leafDecayRadius; x1 <= leafDecayRadius; ++x1)
+			for (int y1 = -leafDecayRadius; y1 <= leafDecayRadius; ++y1)
+				for (int z1 = -leafDecayRadius; z1 <= leafDecayRadius; ++z1)
+				{
+					final int id = world.getBlockId(x + x1, y + y1, z
+							+ z1);
+
+					if (Block.blocksList[id] != null)
+						Block.blocksList[id].beginLeavesDecay(world, x
+								+ x1, y + y1, z + z1);
+				}
+	}
+
+	@Override
 	public int colorMultiplier(final IBlockAccess iBlockAccess,
 			final int x, final int y, final int z)
 	{
@@ -175,31 +200,6 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 			final int x, final int y, final int z)
 	{
 		return true;
-	}
-
-	@Override
-	public void onBlockRemoval(final World world, final int x,
-			final int y, final int z)
-	{
-		final int leafDecayRadius = 1;
-		final int chuckCheckRadius = leafDecayRadius + 1;
-
-		if (!world.checkChunksExist(x - chuckCheckRadius, y
-				- chuckCheckRadius, z - chuckCheckRadius, x
-				+ chuckCheckRadius, y + chuckCheckRadius, z
-				+ chuckCheckRadius)) return;
-
-		for (int x1 = -leafDecayRadius; x1 <= leafDecayRadius; ++x1)
-			for (int y1 = -leafDecayRadius; y1 <= leafDecayRadius; ++y1)
-				for (int z1 = -leafDecayRadius; z1 <= leafDecayRadius; ++z1)
-				{
-					final int id = world.getBlockId(x + x1, y + y1, z
-							+ z1);
-
-					if (Block.blocksList[id] != null)
-						Block.blocksList[id].beginLeavesDecay(world, x
-								+ x1, y + y1, z + z1);
-				}
 	}
 
 	@Override

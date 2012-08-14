@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Scott Killen and MisterFiber, 2012
+ * 
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
 
 package extrabiomes.blocks;
 
@@ -85,6 +92,31 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
+	public void breakBlock(World world, int x, int y, int z,
+			int blockID, int metadata)
+	{
+		final int leafDecayRadius = 1;
+		final int chuckCheckRadius = leafDecayRadius + 1;
+
+		if (!world.checkChunksExist(x - chuckCheckRadius, y
+				- chuckCheckRadius, z - chuckCheckRadius, x
+				+ chuckCheckRadius, y + chuckCheckRadius, z
+				+ chuckCheckRadius)) return;
+
+		for (int x1 = -leafDecayRadius; x1 <= leafDecayRadius; ++x1)
+			for (int y1 = -leafDecayRadius; y1 <= leafDecayRadius; ++y1)
+				for (int z1 = -leafDecayRadius; z1 <= leafDecayRadius; ++z1)
+				{
+					final int id = world.getBlockId(x + x1, y + y1, z
+							+ z1);
+
+					if (Block.blocksList[id] != null)
+						Block.blocksList[id].beginLeavesDecay(world, x
+								+ x1, y + y1, z + z1);
+				}
+	}
+
+	@Override
 	protected int damageDropped(final int metadata) {
 		// Autumn saplings and autumn leaves have corresponding metadata
 		return unmarkedMetadata(metadata);
@@ -156,31 +188,6 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 			final int x, final int y, final int z)
 	{
 		return true;
-	}
-
-	@Override
-	public void onBlockRemoval(final World world, final int x,
-			final int y, final int z)
-	{
-		final int leafDecayRadius = 1;
-		final int chuckCheckRadius = leafDecayRadius + 1;
-
-		if (!world.checkChunksExist(x - chuckCheckRadius, y
-				- chuckCheckRadius, z - chuckCheckRadius, x
-				+ chuckCheckRadius, y + chuckCheckRadius, z
-				+ chuckCheckRadius)) return;
-
-		for (int x1 = -leafDecayRadius; x1 <= leafDecayRadius; ++x1)
-			for (int y1 = -leafDecayRadius; y1 <= leafDecayRadius; ++y1)
-				for (int z1 = -leafDecayRadius; z1 <= leafDecayRadius; ++z1)
-				{
-					final int id = world.getBlockId(x + x1, y + y1, z
-							+ z1);
-
-					if (Block.blocksList[id] != null)
-						Block.blocksList[id].beginLeavesDecay(world, x
-								+ x1, y + y1, z + z1);
-				}
 	}
 
 	@Override

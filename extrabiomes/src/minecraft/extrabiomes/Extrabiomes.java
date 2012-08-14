@@ -79,7 +79,7 @@ public class Extrabiomes {
 		Config.load();
 	}
 
-	public static void onModsLoaded(NetworkMod mod) {
+	public static void onModsLoaded(BaseMod mod) {
 		Config.modsLoaded();
 
 		ConfigureRecipes.initialize();
