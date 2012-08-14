@@ -33,7 +33,7 @@ public class BiomeGreenSwamp extends ExtrabiomeGenBase {
 	@Override
 	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
 		if (rand.nextInt(5) == 0)
-			return worldGenSwamp;
+			return worldGeneratorSwamp;
 
 		if (genCustomSwampTree == null)
 			genCustomSwampTree = new WorldGenCustomSwamp();

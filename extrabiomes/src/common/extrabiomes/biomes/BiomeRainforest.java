@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) Scott Killen and MisterFiber, 2012
+ * 
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.biomes;
 
 import java.util.Random;
@@ -38,12 +46,10 @@ public class BiomeRainforest extends ExtrabiomeGenBase {
 	@Override
 	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
 
-		if (rand.nextInt(99999) == 0)
-			return worldGenForest;
-		if (rand.nextInt(4) == 0)
-			return worldGenBigTree;
+		if (rand.nextInt(99999) == 0) return worldGeneratorForest;
+		if (rand.nextInt(4) == 0) return worldGeneratorBigTree;
 
-		return worldGenTrees;
+		return worldGeneratorTrees;
 	}
 
 }

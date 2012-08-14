@@ -63,7 +63,7 @@ public class BiomeExtremeJungle extends ExtrabiomeGenBase {
 
 	@Override
 	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
-		return rand.nextInt(10) == 0 ? worldGenBigTree : rand
+		return rand.nextInt(10) == 0 ? worldGeneratorBigTree : rand
 				.nextInt(2) == 0 ? new WorldGenShrub(3, 0) : rand
 				.nextInt(3) == 0 ? new WorldGenHugeTrees(false,
 				10 + rand.nextInt(20), 3, 3) : new WorldGenTrees(false,

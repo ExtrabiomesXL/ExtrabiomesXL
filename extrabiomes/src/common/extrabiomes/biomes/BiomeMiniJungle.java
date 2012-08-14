@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) Scott Killen and MisterFiber, 2012
+ * 
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.biomes;
 
 import java.util.Random;
@@ -27,18 +35,18 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase {
 		maxHeight = 0.6F;
 		waterColorMultiplier = 0x24b01c;
 
-		spawnableMonsterList
-				.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));
-		spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10,
-				4, 4));
+		spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class,
+				2, 1, 1));
+		spawnableCreatureList.add(new SpawnListEntry(
+				EntityChicken.class, 10, 4, 4));
 	}
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(15)
 				.grassPerChunk(9).flowersPerChunk(5).reedsPerChunk(70)
-				.clayPerChunk(3).mushroomsPerChunk(2).waterlilyPerChunk(12)
-				.build();
+				.clayPerChunk(3).mushroomsPerChunk(2)
+				.waterlilyPerChunk(12).build();
 	}
 
 	@Override
@@ -46,9 +54,9 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase {
 		super.decorate(world, rand, x, z);
 
 		if (rand.nextInt(1) == 0) {
-			int x1 = x + rand.nextInt(16) + 8;
-			int z1 = z + rand.nextInt(16) + 8;
-			WorldGenPit2 worldgenpit2 = new WorldGenPit2();
+			final int x1 = x + rand.nextInt(16) + 8;
+			final int z1 = z + rand.nextInt(16) + 8;
+			final WorldGenPit2 worldgenpit2 = new WorldGenPit2();
 			worldgenpit2.generate(world, rand, x1,
 					world.getHeightValue(x1, z1) + 1, z1);
 			worldgenpit2.generate(world, rand, x1,
@@ -58,9 +66,9 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase {
 		}
 
 		if (rand.nextInt(1) == 0) {
-			int x1 = x + rand.nextInt(16) + 8;
-			int y1 = z + rand.nextInt(16) + 8;
-			WorldGenPit worldgenpit = new WorldGenPit();
+			final int x1 = x + rand.nextInt(16) + 8;
+			final int y1 = z + rand.nextInt(16) + 8;
+			final WorldGenPit worldgenpit = new WorldGenPit();
 			worldgenpit.generate(world, rand, x1,
 					world.getHeightValue(x1, y1) + 1, y1);
 		}
@@ -77,10 +85,8 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase {
 
 	@Override
 	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
-		if (rand.nextInt(2) == 0)
-			return worldGenSwamp;
-		if (rand.nextInt(100) == 0)
-			return worldGenTrees;
-		return worldGenBigTree;
+		if (rand.nextInt(2) == 0) return worldGeneratorSwamp;
+		if (rand.nextInt(100) == 0) return worldGeneratorTrees;
+		return worldGeneratorBigTree;
 	}
 }
