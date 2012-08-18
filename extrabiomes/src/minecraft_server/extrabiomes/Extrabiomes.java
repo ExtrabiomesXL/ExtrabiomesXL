@@ -15,7 +15,6 @@ import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
-import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.ExtrabiomesItem;
 import extrabiomes.api.IPlugin;
@@ -96,8 +95,8 @@ public class Extrabiomes {
 			ExtrabiomesEntity.scarecrow = 127;
 			Proxy.registerEntityID(EntityScarecrow.class, "scarecrow",
 					ExtrabiomesEntity.scarecrow);
-			Proxy.registerEntity(EntityScarecrow.class, mod,
-					ExtrabiomesEntity.scarecrow);
+			Proxy.registerEntity(EntityScarecrow.class, "scarecrow",
+					mod, ExtrabiomesEntity.scarecrow);
 		}
 
 		ConfigureVanillaBiomes.disableVanillaBiomes();

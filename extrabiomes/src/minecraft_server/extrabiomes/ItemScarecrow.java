@@ -1,3 +1,4 @@
+
 package extrabiomes;
 
 import net.minecraft.src.Block;
@@ -11,10 +12,12 @@ import net.minecraft.src.World;
 
 public class ItemScarecrow extends Item {
 
-	public static boolean spawnCreature(World world, double x, double y,
-			double z) {
+	public static boolean spawnCreature(World world, double x,
+			double y, double z)
+	{
 		{
-			Entity entity = EntityList.createEntityByName("scarecrow", world);
+			final Entity entity = EntityList.createEntityByName(
+					"scarecrow", world);
 
 			if (entity != null) {
 				entity.setLocationAndAngles(x, y, z,
@@ -31,26 +34,26 @@ public class ItemScarecrow extends Item {
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack itemStack, EntityPlayer player,
-			World world, int x, int y, int z, int side) {
-		if (world.isRemote) {
+	public boolean onItemUseFirst(ItemStack itemStack,
+			EntityPlayer player, World world, int x, int y, int z,
+			int side)
+	{
+		if (world.isRemote)
 			return true;
-		} else {
-			int blockId = world.getBlockId(x, y, z);
+		else {
+			final int blockId = world.getBlockId(x, y, z);
 			x += Facing.offsetsXForSide[side];
 			y += Facing.offsetsYForSide[side];
 			z += Facing.offsetsZForSide[side];
 			double yOffset = 0.0D;
 
 			if (side == 1 && blockId == Block.fence.blockID
-					|| blockId == Block.netherFence.blockID) {
+					|| blockId == Block.netherFence.blockID)
 				yOffset = 0.5D;
-			}
 
 			if (spawnCreature(world, x + 0.5D, y + yOffset, z + 0.5D)
-					&& !player.capabilities.isCreativeMode) {
+					&& !player.capabilities.isCreativeMode)
 				--itemStack.stackSize;
-			}
 
 			return true;
 		}

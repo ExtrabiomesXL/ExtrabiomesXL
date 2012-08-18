@@ -46,8 +46,9 @@ public class ItemScarecrow extends Item {
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack itemStack, EntityPlayer player,
-			World world, int x, int y, int z, int side)
+	public boolean onItemUseFirst(ItemStack itemStack,
+			EntityPlayer player, World world, int x, int y, int z,
+			int side)
 	{
 		if (world.isRemote)
 			return true;

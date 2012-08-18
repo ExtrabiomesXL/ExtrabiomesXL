@@ -11,14 +11,11 @@ package extrabiomes;
 import java.util.Map;
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.src.BaseMod;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.GuiScreen;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
-import vazkii.um.UpdateManagerFacade;
 import cpw.mods.fml.common.network.NetworkMod;
 
 @NetworkMod
@@ -58,20 +55,11 @@ public class mod_ExtrabiomesXL extends BaseMod {
 	@Override
 	public void load() {
 		Extrabiomes.onLoad(this);
-		UpdateManagerFacade.INSTANCE.load(this);
 	}
 
 	@Override
 	public void modsLoaded() {
 		Extrabiomes.onModsLoaded(this);
-		UpdateManagerFacade.INSTANCE.modsLoaded();
-	}
-
-	@Override
-	public boolean onTickInGUI(float tick, Minecraft game, GuiScreen gui)
-	{
-		return UpdateManagerFacade.INSTANCE
-				.onTickInGUI(tick, game, gui);
 	}
 
 	public boolean serverSideRequired() {

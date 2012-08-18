@@ -17,7 +17,6 @@ import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraftforge.client.MinecraftForgeClient;
-import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.ExtrabiomesItem;
 import extrabiomes.api.IPlugin;
@@ -30,7 +29,6 @@ import extrabiomes.config.ConfigureCustomBiomes;
 import extrabiomes.config.ConfigureRecipes;
 import extrabiomes.config.ConfigureVanillaBiomes;
 import extrabiomes.terrain.TerrainGenerator;
-import extrabiomes.updatemanager.UpdateHandler;
 
 public class Extrabiomes {
 
@@ -74,7 +72,6 @@ public class Extrabiomes {
 
 	public static void onLoad(BaseMod mod) {
 		preloadTexture("/extrabiomes/extrabiomes.png");
-		new UpdateHandler(mod);
 
 		Config.load();
 	}
@@ -89,7 +86,7 @@ public class Extrabiomes {
 			ExtrabiomesEntity.scarecrow = 127;
 			Proxy.registerEntityID(EntityScarecrow.class, "scarecrow",
 					ExtrabiomesEntity.scarecrow);
-			Proxy.registerEntity(EntityScarecrow.class, mod,
+			Proxy.registerEntity(EntityScarecrow.class, "scarecrow", mod,
 					ExtrabiomesEntity.scarecrow);
 		}
 
