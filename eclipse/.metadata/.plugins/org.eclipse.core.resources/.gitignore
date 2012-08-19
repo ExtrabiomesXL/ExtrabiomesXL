@@ -1,0 +1,8 @@
+/.safetable/
+/.history/
+/.projects/*/*.snap
+/.projects/*/.syncinfo
+/.projects/*/.markers
+/.projects/*/*/
+/.root/
+/*.snap
