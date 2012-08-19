@@ -23,7 +23,7 @@
 		<link>
 			<name>extrabiomes</name>
 			<type>2</type>
-			<locationURI>MCP_LOC/extrabiomes/src/common</locationURI>
+			<locationURI>EXTRABIOMES_LOC/src</locationURI>
 		</link>
 		<link>
 			<name>jars</name>
@@ -71,6 +71,10 @@
 		</filter>
 	</filteredResources>
 	<variableList>
+		<variable>
+			<name>EXTRABIOMES_LOC</name>
+			<value>$%7BMCP_LOC%7D/extrabiomes</value>
+		</variable>
 		<variable>
 			<name>MCP_LOC</name>
 			<value>$%7BPARENT-1-WORKSPACE_LOC%7D</value>
