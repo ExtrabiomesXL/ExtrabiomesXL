@@ -11,6 +11,8 @@ package extrabiomes;
 import java.util.Map;
 import java.util.Random;
 
+import scottkillen.mods.extrabiomes.Extrabiomes;
+
 import net.minecraft.src.BaseMod;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
