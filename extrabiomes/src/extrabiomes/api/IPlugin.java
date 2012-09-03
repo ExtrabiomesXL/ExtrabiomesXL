@@ -36,20 +36,23 @@ public interface IPlugin {
 	/**
 	 * @return boolean true if the plugin's prerequisites have been met.
 	 *         If this function returns false, this plugin will not be
-	 *         activated.
+	 *         activated. Plugins are invoked in the order they were
+	 *         registered.
 	 */
 	public boolean isEnabled();
 
 	/**
 	 * Plugins requiring post initialization should override this
 	 * method. This method is called during the @Mod @PostInit event.
-	 * This method is called after all plugins' initialization.
+	 * This method is called after all plugins' initialization. Plugins
+	 * are invoked in the order they were registered.
 	 */
 	public void postInit();
 
 	/**
 	 * Plugins requiring pre initialization should override this method.
-	 * This method is called before any plugin's initialization.
+	 * This method is called before any plugin's initialization. Plugins
+	 * are invoked in the order they were registered.
 	 */
 	public void preInit();
 

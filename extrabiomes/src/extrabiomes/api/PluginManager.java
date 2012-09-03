@@ -9,6 +9,8 @@ package extrabiomes.api;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Collection;
+
 import com.google.common.base.Optional;
 
 /**
@@ -20,6 +22,16 @@ public abstract class PluginManager {
 
 	protected static Optional<PluginManager>	instance	= Optional
 																	.absent();
+
+	/**
+	 * @return An immutable list of the installed plugins sorted by
+	 *         insertion order.
+	 */
+	public static Collection<IPlugin> getPlugins() {
+		checkArgument(instance.isPresent(),
+				"Plugin list not available until after Plugin Manager is initialized.");
+		return instance.get().getPluginCollection();
+	}
 
 	/**
 	 * Registers a plugin to extend Extrabiomes.
@@ -49,5 +61,7 @@ public abstract class PluginManager {
 	 *         plugin was found.
 	 */
 	public abstract Optional<IPlugin> getPlugin(String pluginUniqueID);
+
+	protected abstract Collection<IPlugin> getPluginCollection();
 
 }

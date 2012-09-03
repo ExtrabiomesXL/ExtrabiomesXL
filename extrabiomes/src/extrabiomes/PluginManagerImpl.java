@@ -7,19 +7,20 @@
 package extrabiomes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import com.google.common.base.Optional;
+import com.google.common.collect.ImmutableSet;
 
 import extrabiomes.api.IPlugin;
 import extrabiomes.api.PluginManager;
 
 public class PluginManagerImpl extends PluginManager {
 
-	private final Map<String, IPlugin>	plugins	= new HashMap<String, IPlugin>();
+	private final Map<String, IPlugin>	plugins	= new LinkedHashMap<String, IPlugin>();
 
 	PluginManagerImpl() {
 		instance = Optional.of((PluginManager) this);
@@ -51,6 +52,11 @@ public class PluginManagerImpl extends PluginManager {
 		return Optional.fromNullable(plugins.get(pluginUniqueID));
 	}
 
+	@Override
+	protected Collection<IPlugin> getPluginCollection() {
+		return ImmutableSet.copyOf(plugins.values());
+	}
+
 	private void removeDeactivatedPlugins() {
 		final List<IPlugin> pluginList = new ArrayList<IPlugin>(
 				plugins.values());
@@ -59,5 +65,4 @@ public class PluginManagerImpl extends PluginManager {
 			if (!plugin.isEnabled())
 				plugins.remove(plugin.getUniqueID());
 	}
-
 }
