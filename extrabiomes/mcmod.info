@@ -9,6 +9,8 @@
   "updateUrl": "",
   "authors": [
     "ScottKillen",
+    "MisterFiber",
+    "TDWP_FTP"
   ],
   "credits": "Concept and original mod created by MisterFiber. Some artwork courtesy of: bonemouse and Delocuro. Code contributors: Eloraam, mistaqur, SirSengir",
   "logoFile": "/extrabiomes/eb-logo.png",
@@ -16,6 +18,7 @@
   ],
   "parent":"",
   "dependencies": [
+  "mod_MinecraftForge"
   ]
 }
 ]
