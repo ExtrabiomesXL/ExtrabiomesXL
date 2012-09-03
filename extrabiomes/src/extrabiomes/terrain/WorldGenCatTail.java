@@ -1,11 +1,19 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.terrain;
 
 import java.util.Random;
 
+import extrabiomes.api.ExtrabiomesBlock;
+
+
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.api.ExtrabiomesBlock;
 
 public class WorldGenCatTail extends WorldGenerator {
 
@@ -27,10 +35,10 @@ public class WorldGenCatTail extends WorldGenerator {
 				final int i1 = 1 + rand.nextInt(rand.nextInt(1) + 1);
 
 				for (int i = 0; i < i1; i++) {
-					if (ExtrabiomesBlock.catTail.canBlockStay(world, x1,
+					if (ExtrabiomesBlock.catTail.get().canBlockStay(world, x1,
 							y1 + i, z1)) {
 						world.setBlock(x1, y1 + i, z1,
-								ExtrabiomesBlock.catTail.blockID);
+								ExtrabiomesBlock.catTail.get().blockID);
 					}
 				}
 			}

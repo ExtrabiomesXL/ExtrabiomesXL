@@ -1,6 +1,4 @@
 /**
- * Copyright (c) Scott Killen and MisterFiber, 2012
- * 
  * This mod is distributed under the terms of the Minecraft Mod Public
  * License 1.0, or MMPL. Please check the contents of the license
  * located in /MMPL-1.0.txt
@@ -11,17 +9,16 @@ package extrabiomes.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
+import extrabiomes.api.TerrainGenManager;
+
 import net.minecraft.src.BlockFlower;
 import net.minecraft.src.ColorizerGrass;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IShearable;
-import extrabiomes.ColorizerExtraBiomes;
-import extrabiomes.api.TerrainGenManager;
 
 public class BlockCustomTallGrass extends BlockFlower implements
 		IShearable
@@ -41,6 +38,7 @@ public class BlockCustomTallGrass extends BlockFlower implements
 				0.8F, 0.5F + var3);
 		setHardness(0F);
 		setStepSound(soundGrassFootstep);
+		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
 	@Override
@@ -80,13 +78,6 @@ public class BlockCustomTallGrass extends BlockFlower implements
 	}
 
 	@Override
-	public int colorMultiplier(IBlockAccess iBlockAccess, int x, int y,
-			int z)
-	{
-		return ColorizerExtraBiomes.getNonBiomeColor();
-	}
-
-	@Override
 	public int getBlockColor() {
 		final double temperature = 0.5D;
 		final double hunmidity = 1.0D;
@@ -116,16 +107,6 @@ public class BlockCustomTallGrass extends BlockFlower implements
 	{
 		return super.getBlockTextureFromSideAndMetadata(side, metadata)
 				+ metadata;
-	}
-
-	@Override
-	public int getRenderColor(int metadata) {
-		return ColorizerExtraBiomes.getNonBiomeColor();
-	}
-
-	@Override
-	public String getTextureFile() {
-		return "/extrabiomes/extrabiomes.png";
 	}
 
 	@Override

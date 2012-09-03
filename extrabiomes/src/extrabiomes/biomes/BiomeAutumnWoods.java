@@ -1,4 +1,12 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.biomes;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Random;
 
@@ -9,10 +17,14 @@ import net.minecraft.src.SpawnListEntry;
 import net.minecraft.src.WorldGenBigTree;
 import net.minecraft.src.WorldGenTrees;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.terrain.CustomBiomeDecorator;
-import extrabiomes.terrain.WorldGenNoOp;
+
+import com.google.common.base.Optional;
+
 import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
+import extrabiomes.terrain.CustomBiomeDecorator;
+import extrabiomes.terrain.WorldGenNoOp;
+
 
 public class BiomeAutumnWoods extends ExtrabiomeGenBase {
 
@@ -33,8 +45,8 @@ public class BiomeAutumnWoods extends ExtrabiomeGenBase {
 		minHeight = 0.2F;
 		maxHeight = 0.8F;
 
-		spawnableCreatureList
-				.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
+		spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class,
+				5, 4, 4));
 	}
 
 	@Override
@@ -49,27 +61,32 @@ public class BiomeAutumnWoods extends ExtrabiomeGenBase {
 		if (!TerrainGenManager.enableAutumnTreeGen)
 			return new WorldGenNoOp();
 
-		ITreeFactory.TreeType tree = null;
-		final boolean bigTree = shouldGrowBigTree(rand);
+		Optional<ITreeFactory.TreeType> tree = Optional.absent();
+		final boolean bigTree = shouldGrowBigTree(checkNotNull(rand));
 
 		if (shouldChooseColor(rand))
-			tree = bigTree ? ITreeFactory.TreeType.BROWN_AUTUMN_BIG
-					: ITreeFactory.TreeType.BROWN_AUTUMN;
+			tree = Optional
+					.of(bigTree ? ITreeFactory.TreeType.BROWN_AUTUMN_BIG
+							: ITreeFactory.TreeType.BROWN_AUTUMN);
 		else if (shouldChooseColor(rand))
-			tree = bigTree ? ITreeFactory.TreeType.ORANGE_AUTUMN_BIG
-					: ITreeFactory.TreeType.ORANGE_AUTUMN;
+			tree = Optional
+					.of(bigTree ? ITreeFactory.TreeType.ORANGE_AUTUMN_BIG
+							: ITreeFactory.TreeType.ORANGE_AUTUMN);
 		else if (shouldChooseColor(rand))
-			tree = bigTree ? ITreeFactory.TreeType.PURPLE_AUTUMN_BIG
-					: ITreeFactory.TreeType.PURPLE_AUTUMN;
+			tree = Optional
+					.of(bigTree ? ITreeFactory.TreeType.PURPLE_AUTUMN_BIG
+							: ITreeFactory.TreeType.PURPLE_AUTUMN);
 		else if (shouldChooseColor(rand))
-			tree = bigTree ? ITreeFactory.TreeType.YELLOW_AUTUMN_BIG
-					: ITreeFactory.TreeType.YELLOW_AUTUMN;
+			tree = Optional
+					.of(bigTree ? ITreeFactory.TreeType.YELLOW_AUTUMN_BIG
+							: ITreeFactory.TreeType.YELLOW_AUTUMN);
 
-		if (tree != null) {
-			return TerrainGenManager.treeFactory.makeTreeGenerator(false, tree);
-		}
+		if (tree.isPresent())
+			return TerrainGenManager.treeFactory.get()
+					.makeTreeGenerator(false, tree.get());
 
-		return bigTree ? new WorldGenBigTree(false) : new WorldGenTrees(false);
+		return bigTree ? new WorldGenBigTree(false)
+				: new WorldGenTrees(false);
 	}
 
 }

@@ -1,6 +1,4 @@
 /**
- * Copyright (c) Scott Killen and MisterFiber, 2012
- * 
  * This mod is distributed under the terms of the Minecraft Mod Public
  * License 1.0, or MMPL. Please check the contents of the license
  * located in /MMPL-1.0.txt
@@ -8,14 +6,17 @@
 
 package extrabiomes.blocks;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
+
+import extrabiomes.api.TerrainGenManager;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.EnumCreatureType;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import extrabiomes.api.TerrainGenManager;
 
 public class BlockRedRock extends Block {
 
@@ -23,17 +24,18 @@ public class BlockRedRock extends Block {
 	public static final int	metaRedCobble		= 1;
 	public static final int	metaRedRockBrick	= 2;
 
-	public BlockRedRock(final int id) {
+	public BlockRedRock(int id) {
 		super(id, 2, Material.rock);
 		setHardness(1.5F);
 		setResistance(2.0F);
 
 		TerrainGenManager.blockMountainRidge = this;
+		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
 	@Override
-	public void addCreativeItems(final ArrayList itemList) {
-		itemList.add(new ItemStack(this, 1, metaRedRock));
+	public void addCreativeItems(ArrayList itemList) {
+		checkNotNull(itemList).add(new ItemStack(this, 1, metaRedRock));
 		itemList.add(new ItemStack(this, 1, metaRedCobble));
 		itemList.add(new ItemStack(this, 1, metaRedRockBrick));
 	}
@@ -65,10 +67,4 @@ public class BlockRedRock extends Block {
 						.getBlockTextureFromSideAndMetadata(side,
 								metadata);
 	}
-
-	@Override
-	public String getTextureFile() {
-		return "/extrabiomes/extrabiomes.png";
-	}
-
 }

@@ -1,12 +1,20 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.terrain;
 
 import java.util.Random;
 
+import extrabiomes.api.ExtrabiomesBlock;
+import extrabiomes.api.TerrainGenManager;
+
+
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.api.ExtrabiomesBlock;
-import extrabiomes.api.TerrainGenManager;
 
 public class WorldGenLeafPile extends WorldGenerator {
 	@Override
@@ -23,10 +31,10 @@ public class WorldGenLeafPile extends WorldGenerator {
 				final int z1 = (z + rand.nextInt(8)) - rand.nextInt(8);
 
 				if (world.isAirBlock(x1, y1, z1)
-						&& ExtrabiomesBlock.leafPile.canBlockStay(world, x1,
+						&& ExtrabiomesBlock.leafPile.get().canBlockStay(world, x1,
 								y1, z1)) {
 					world.setBlock(x1, y1, z1,
-							ExtrabiomesBlock.leafPile.blockID);
+							ExtrabiomesBlock.leafPile.get().blockID);
 				}
 			}
 		}

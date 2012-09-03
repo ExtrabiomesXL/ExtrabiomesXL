@@ -1,6 +1,4 @@
 /**
- * Copyright (c) Scott Killen and MisterFiber, 2012
- * 
  * This mod is distributed under the terms of the Minecraft Mod Public
  * License 1.0, or MMPL. Please check the contents of the license
  * located in /MMPL-1.0.txt
@@ -8,15 +6,19 @@
 
 package extrabiomes.blocks;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
 import java.util.Random;
+
+import extrabiomes.CommonProxy;
+import extrabiomes.Extrabiomes;
 
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import net.minecraftforge.common.MinecraftForge;
 
 public class BlockCustomFlower extends Block {
 
@@ -29,7 +31,7 @@ public class BlockCustomFlower extends Block {
 	public static final int	metaToadstool	= 6;
 	public static final int	metaWhite		= 7;
 
-	public BlockCustomFlower(final int id) {
+	public BlockCustomFlower(int id) {
 		super(id, Material.plants);
 		blockIndexInTexture = 32;
 		setTickRandomly(true);
@@ -39,16 +41,20 @@ public class BlockCustomFlower extends Block {
 		setHardness(0.0F);
 		setStepSound(Block.soundGrassFootstep);
 
-		MinecraftForge.addGrassPlant(this, metaAutumnShrub, 2);
-		MinecraftForge.addGrassPlant(this, metaHydrangea, 2);
-		MinecraftForge.addGrassPlant(this, metaOrange, 5);
-		MinecraftForge.addGrassPlant(this, metaPurple, 5);
-		MinecraftForge.addGrassPlant(this, metaWhite, 5);
+		final CommonProxy proxy = Extrabiomes.proxy;
+		CommonProxy.addGrassPlant(this, metaAutumnShrub, 2);
+		CommonProxy.addGrassPlant(this, metaHydrangea, 2);
+		CommonProxy.addGrassPlant(this, metaOrange, 5);
+		CommonProxy.addGrassPlant(this, metaPurple, 5);
+		CommonProxy.addGrassPlant(this, metaWhite, 5);
+
+		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
 	@Override
-	public void addCreativeItems(final ArrayList itemList) {
-		itemList.add(new ItemStack(this, 1, metaAutumnShrub));
+	public void addCreativeItems(ArrayList itemList) {
+		checkNotNull(itemList).add(
+				new ItemStack(this, 1, metaAutumnShrub));
 		itemList.add(new ItemStack(this, 1, metaHydrangea));
 		itemList.add(new ItemStack(this, 1, metaOrange));
 		itemList.add(new ItemStack(this, 1, metaPurple));
@@ -59,35 +65,29 @@ public class BlockCustomFlower extends Block {
 	}
 
 	@Override
-	public boolean canBlockStay(final World world, final int x,
-			final int y, final int z)
-	{
-		return (world.getFullBlockLightValue(x, y, z) >= 8 || world
+	public boolean canBlockStay(World world, int x, int y, int z) {
+		return (checkNotNull(world).getFullBlockLightValue(x, y, z) >= 8 || world
 				.canBlockSeeTheSky(x, y, z))
 				&& canThisPlantGrowOnThisBlockID(world.getBlockId(x,
 						y - 1, z));
 	}
 
 	@Override
-	public boolean canPlaceBlockAt(final World world, final int x,
-			final int y, final int z)
-	{
+	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		return super.canPlaceBlockAt(world, x, y, z)
-				&& canThisPlantGrowOnThisBlockID(world.getBlockId(x,
-						y - 1, z));
+				&& canThisPlantGrowOnThisBlockID(checkNotNull(world)
+						.getBlockId(x, y - 1, z));
 	}
 
-	protected boolean canThisPlantGrowOnThisBlockID(final int id) {
+	protected boolean canThisPlantGrowOnThisBlockID(int id) {
 		return id == Block.grass.blockID || id == Block.dirt.blockID
 				|| id == Block.tilledField.blockID;
 	}
 
-	protected final void checkFlowerChange(final World world,
-			final int x, final int y, final int z)
-	{
+	protected void checkFlowerChange(World world, int x, int y, int z) {
 		if (!canBlockStay(world, x, y, z)) {
-			dropBlockAsItem(world, x, y, z,
-					world.getBlockMetadata(x, y, z), 0);
+			dropBlockAsItem(world, x, y, z, checkNotNull(world)
+					.getBlockMetadata(x, y, z), 0);
 			world.setBlockWithNotify(x, y, z, 0);
 		}
 	}
@@ -98,15 +98,13 @@ public class BlockCustomFlower extends Block {
 	}
 
 	@Override
-	public int getBlockTextureFromSideAndMetadata(final int side,
-			final int md)
-	{
+	public int getBlockTextureFromSideAndMetadata(int side, int md) {
 		return super.getBlockTextureFromSideAndMetadata(side, md) + md;
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(
-			final World world, final int x, final int y, final int z)
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world,
+			int x, int y, int z)
 	{
 		return null;
 	}
@@ -117,18 +115,13 @@ public class BlockCustomFlower extends Block {
 	}
 
 	@Override
-	public String getTextureFile() {
-		return "/extrabiomes/extrabiomes.png";
-	}
-
-	@Override
 	public boolean isOpaqueCube() {
 		return false;
 	}
 
 	@Override
-	public void onNeighborBlockChange(final World world, final int x,
-			final int y, final int z, final int id)
+	public void onNeighborBlockChange(World world, int x, int y, int z,
+			int id)
 	{
 		super.onNeighborBlockChange(world, x, y, z, id);
 		checkFlowerChange(world, x, y, z);
@@ -140,8 +133,7 @@ public class BlockCustomFlower extends Block {
 	}
 
 	@Override
-	public void updateTick(final World world, final int x, final int y,
-			final int z, final Random rand)
+	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
 		checkFlowerChange(world, x, y, z);
 	}

@@ -1,11 +1,19 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.terrain;
 
 import java.util.Random;
 
-import net.minecraft.src.World;
-import net.minecraft.src.WorldGenerator;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.blocks.BlockCustomFlower;
+
+
+import net.minecraft.src.World;
+import net.minecraft.src.WorldGenerator;
 
 public class WorldGenRoot extends WorldGenerator {
 	@Override
@@ -23,10 +31,10 @@ public class WorldGenRoot extends WorldGenerator {
 				final int i1 = 1 + rand.nextInt(rand.nextInt(3) + 1);
 
 				for (int y2 = 0; y2 < i1; y2++) {
-					if (ExtrabiomesBlock.flower.canBlockStay(world, x1,
+					if (ExtrabiomesBlock.flower.get().canBlockStay(world, x1,
 							y1 + y2, z1)) {
 						world.setBlockAndMetadata(x1, y1 + y2, z1,
-								ExtrabiomesBlock.flower.blockID,
+								ExtrabiomesBlock.flower.get().blockID,
 								BlockCustomFlower.metaRoot);
 					}
 				}

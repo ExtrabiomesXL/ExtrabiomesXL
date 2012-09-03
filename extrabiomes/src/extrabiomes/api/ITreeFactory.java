@@ -1,11 +1,8 @@
 /**
- * Copyright (c) Scott Killen and MisterFiber, 2012
- * 
  * This mod is distributed under the terms of the Minecraft Mod Public
  * License 1.0, or MMPL. Please check the contents of the license
  * located in /MMPL-1.0.txt
  */
-
 
 package extrabiomes.api;
 
@@ -13,8 +10,7 @@ import net.minecraft.src.WorldGenerator;
 
 /**
  * This interface is used by the treeFactory object in
- * {@link TerrainGenManager} . Use it to get a WorldGenerator that will
- * produce any of the trees created by Extrabiomes.
+ * {@link TerrainGenManager}.
  * 
  * @author ScottKillen
  * 

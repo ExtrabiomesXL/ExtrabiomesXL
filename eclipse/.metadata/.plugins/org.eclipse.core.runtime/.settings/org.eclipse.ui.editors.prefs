@@ -1,4 +1,24 @@
-#Sun Jun 05 18:58:05 CEST 2011
-spacesForTabs=true
+AbstractTextEditor.Color.Background=253,246,227
+AbstractTextEditor.Color.Background.SystemDefault=false
+AbstractTextEditor.Color.FindScope=188,173,173
+AbstractTextEditor.Color.Foreground=101,122,129
+AbstractTextEditor.Color.Foreground.SystemDefault=false
+AbstractTextEditor.Color.SelectionBackground=236,231,213
+AbstractTextEditor.Color.SelectionBackground.SystemDefault=false
+AbstractTextEditor.Color.SelectionForeground=89,109,115
+AbstractTextEditor.Color.SelectionForeground.SystemDefault=false
+PHPReadOccurrenceIndicationColor=236,231,213
+PHPWriteOccurrenceIndicationColor=236,231,213
+currentLineColor=253,246,227
+deletionIndicationColor=101,122,129
 eclipse.preferences.version=1
+filteredSearchResultIndicationColor=236,231,213
+javaScriptOccurrenceIndicationColor=236,231,213
+lineNumberColor=88,110,117
+occurrenceIndicationColor=236,231,213
 overviewRuler_migration=migrated_3.1
+printMarginColor=88,110,117
+searchResultIndicationColor=236,231,213
+spacesForTabs=true
+spellingEnabled=false
+writeOccurrenceIndicationColor=236,231,213

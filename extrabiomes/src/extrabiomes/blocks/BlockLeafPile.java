@@ -1,5 +1,12 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
 
 package extrabiomes.blocks;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,14 +21,12 @@ import net.minecraft.src.World;
 
 public class BlockLeafPile extends Block {
 
-	static private boolean canThisPlantGrowOnThisBlockID(
-			final int blockId)
-	{
+	static private boolean canThisPlantGrowOnThisBlockID(int blockId) {
 		return blockId == Block.grass.blockID
 				|| blockId == Block.dirt.blockID;
 	}
 
-	public BlockLeafPile(final int id) {
+	public BlockLeafPile(int id) {
 		super(id, 64, Material.vine);
 		final float f = 0.5F;
 		final float f1 = 0.015625F;
@@ -29,34 +34,29 @@ public class BlockLeafPile extends Block {
 		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f1, 0.5F + f);
 		setStepSound(soundGrassFootstep);
 		Block.setBurnProperties(id, 30, 60);
+		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
 	@Override
-	public void addCreativeItems(final ArrayList itemList) {
-		itemList.add(new ItemStack(this));
+	public void addCreativeItems(ArrayList itemList) {
+		checkNotNull(itemList).add(new ItemStack(this));
 	}
 
 	@Override
-	public boolean canBlockStay(final World world, final int x,
-			final int y, final int z)
-	{
-		return canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1,
-				z));
+	public boolean canBlockStay(World world, int x, int y, int z) {
+		return canThisPlantGrowOnThisBlockID(checkNotNull(world)
+				.getBlockId(x, y - 1, z));
 	}
 
 	@Override
-	public boolean canPlaceBlockAt(final World world, final int x,
-			final int y, final int z)
-	{
-		return super.canPlaceBlockAt(world, x, y, z)
+	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+		return super.canPlaceBlockAt(checkNotNull(world), x, y, z)
 				&& canThisPlantGrowOnThisBlockID(world.getBlockId(x,
 						y - 1, z));
 	}
 
-	private void checkFlowerChange(final World world, final int x,
-			final int y, final int z)
-	{
-		if (!canBlockStay(world, x, y, z)) {
+	private void checkFlowerChange(World world, int x, int y, int z) {
+		if (!canBlockStay(checkNotNull(world), x, y, z)) {
 			dropBlockAsItem(world, x, y, z,
 					world.getBlockMetadata(x, y, z), 0);
 			world.setBlockWithNotify(x, y, z, 0);
@@ -64,10 +64,10 @@ public class BlockLeafPile extends Block {
 	}
 
 	@Override
-	public int colorMultiplier(final IBlockAccess iBlockAccess,
-			final int x, final int y, final int z)
+	public int colorMultiplier(IBlockAccess iBlockAccess, int x, int y,
+			int z)
 	{
-		return iBlockAccess.getBiomeGenForCoords(x, z)
+		return checkNotNull(iBlockAccess).getBiomeGenForCoords(x, z)
 				.getBiomeFoliageColor();
 	}
 
@@ -77,25 +77,19 @@ public class BlockLeafPile extends Block {
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(
-			final World world, final int x, final int y, final int z)
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world,
+			int x, int y, int z)
 	{
 		return null;
 	}
 
 	@Override
-	public int getRenderColor(final int metadata) {
+	public int getRenderColor(int metadata) {
 		return getBlockColor();
 	}
 
 	@Override
-	public String getTextureFile() {
-		return "/extrabiomes/extrabiomes.png";
-	}
-
-	@Override
-	public boolean isBlockReplaceable(final World world, final int x,
-			final int y, final int z)
+	public boolean isBlockReplaceable(World world, int x, int y, int z)
 	{
 		return true;
 	}
@@ -106,8 +100,8 @@ public class BlockLeafPile extends Block {
 	}
 
 	@Override
-	public void onNeighborBlockChange(final World world, final int x,
-			final int y, final int z, final int neigborId)
+	public void onNeighborBlockChange(World world, int x, int y, int z,
+			int neigborId)
 	{
 		super.onNeighborBlockChange(world, x, y, z, neigborId);
 		checkFlowerChange(world, x, y, z);
@@ -119,10 +113,8 @@ public class BlockLeafPile extends Block {
 	}
 
 	@Override
-	public void updateTick(final World world, final int x, final int y,
-			final int z, final Random rand)
+	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
 		checkFlowerChange(world, x, y, z);
 	}
-
 }

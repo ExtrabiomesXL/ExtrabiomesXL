@@ -1,3 +1,9 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes;
 
 import net.minecraft.src.Entity;
@@ -5,10 +11,10 @@ import net.minecraft.src.ModelBase;
 import net.minecraft.src.ModelRenderer;
 
 public class ModelScarecrow extends ModelBase {
-	ModelRenderer leg;
-	ModelRenderer body;
-	ModelRenderer head;
-	ModelRenderer arms;
+	private final ModelRenderer	leg;
+	private final ModelRenderer	body;
+	private final ModelRenderer	head;
+	private final ModelRenderer	arms;
 
 	public ModelScarecrow() {
 		textureWidth = 128;
@@ -41,25 +47,20 @@ public class ModelScarecrow extends ModelBase {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3,
-			float f4, float f5) {
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5);
+	public void render(Entity entity, float f, float f1, float f2,
+			float f3, float f4, float f5)
+	{
 		leg.render(f5);
 		body.render(f5);
 		head.render(f5);
 		arms.render(f5);
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
+	private void setRotation(ModelRenderer model, float x, float y,
+			float z)
+	{
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
-	}
-
-	@Override
-	public void setRotationAngles(float f, float f1, float f2, float f3,
-			float f4, float f5) {
-		super.setRotationAngles(f, f1, f2, f3, f4, f5);
 	}
 }

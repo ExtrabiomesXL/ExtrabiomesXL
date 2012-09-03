@@ -1,3 +1,9 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.terrain;
 
 import java.lang.instrument.UnmodifiableClassException;
@@ -8,9 +14,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import extrabiomes.api.IBiomeDecoration;
+
+
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.ModLoader;
-import extrabiomes.api.IBiomeDecoration;
 
 public class BiomeDecorationsMap implements
 		Map<BiomeGenBase, Collection<IBiomeDecoration>> {

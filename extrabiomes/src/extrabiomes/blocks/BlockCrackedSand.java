@@ -1,6 +1,4 @@
 /**
- * Copyright (c) Scott Killen and MisterFiber, 2012
- * 
  * This mod is distributed under the terms of the Minecraft Mod Public
  * License 1.0, or MMPL. Please check the contents of the license
  * located in /MMPL-1.0.txt
@@ -11,29 +9,32 @@ package extrabiomes.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
+import extrabiomes.Extrabiomes;
+import extrabiomes.api.ExtrabiomesBiome;
+import extrabiomes.api.TerrainGenManager;
+
 import net.minecraft.src.Block;
 import net.minecraft.src.EnumCreatureType;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import extrabiomes.api.BiomeManager;
-import extrabiomes.api.TerrainGenManager;
-import extrabiomes.config.ConfigureBlocks;
 
 public class BlockCrackedSand extends Block {
 
 	private static boolean	canGrow;
-
 	private static boolean	restrictGrowthToBiome;
 
 	public BlockCrackedSand(int id) {
 		super(id, 0, Material.rock);
 		setHardness(1.2F);
 		setStepSound(Block.soundStoneFootstep);
-		if (ConfigureBlocks.crackedSandCanGrow) setTickRandomly(true);
 
-		canGrow = ConfigureBlocks.crackedSandCanGrow;
-		restrictGrowthToBiome = ConfigureBlocks.crackedSandGrowthRestrictedToWasteland;
+		canGrow = Extrabiomes.getBlockManager().canCrackedSandGrow();
+		if (canGrow) setTickRandomly(true);
+		restrictGrowthToBiome = !Extrabiomes.getBlockManager()
+				.canCrackedSandGrowOutsideWasteland();
+
+		setTextureFile("/extrabiomes/extrabiomes.png");
 
 		TerrainGenManager.blockWasteland = this;
 	}
@@ -83,11 +84,6 @@ public class BlockCrackedSand extends Block {
 						waterMoving.blockID, 7);
 	}
 
-	@Override
-	public String getTextureFile() {
-		return "/extrabiomes/extrabiomes.png";
-	}
-
 	private boolean isThreeSidesCrackedSand(World world, int x, int y,
 			int z)
 	{
@@ -105,15 +101,16 @@ public class BlockCrackedSand extends Block {
 		if (!canGrow) return;
 		if (!world.isRemote) {
 			if (restrictGrowthToBiome
-					&& world.getBiomeGenForCoords(x, z) != BiomeManager.wasteland)
-				return;
+					&& world.getBiomeGenForCoords(x, z) != ExtrabiomesBiome.wasteland
+							.get()) return;
 			if (world.getBlockLightValue(x, y + 1, z) < 15) return;
 			for (int i = 0; i < 4; ++i) {
 				final int x1 = x + rand.nextInt(3) - rand.nextInt(3);
 				final int y1 = y + rand.nextInt(5) - rand.nextInt(5);
 				final int z1 = z + rand.nextInt(3) - rand.nextInt(3);
 				if (!restrictGrowthToBiome
-						|| world.getBiomeGenForCoords(x1, z1) == BiomeManager.wasteland)
+						|| world.getBiomeGenForCoords(x1, z1) == ExtrabiomesBiome.wasteland
+								.get())
 					changeNeighbor(world, x1, y1, z1);
 			}
 		}

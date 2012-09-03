@@ -1,8 +1,17 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
 
 package extrabiomes.blocks;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import extrabiomes.api.ExtrabiomesBlock;
+import extrabiomes.api.TerrainGenManager;
+
 
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockLeavesBase;
@@ -14,9 +23,7 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import net.minecraftforge.common.IShearable;
-import extrabiomes.ColorizerExtraBiomes;
-import extrabiomes.api.ExtrabiomesBlock;
-import extrabiomes.api.TerrainGenManager;
+import static com.google.common.base.Preconditions.*;
 
 public class BlockAutumnLeaves extends BlockLeavesBase implements
 		IShearable
@@ -33,29 +40,29 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	public static final int		metaPurple				= 2;
 	public static final int		metaYellow				= 3;
 
-	static private int clearDecayOnMetadata(final int metadata) {
+	static private int clearDecayOnMetadata( int metadata) {
 		return metadata & METADATA_CLEARDECAYBIT;
 	}
 
-	private static boolean isDecaying(final int metadata) {
+	private static boolean isDecaying( int metadata) {
 		return (metadata & METADATA_DECAYBIT) != 0;
 	}
 
-	private static boolean isUserPlaced(final int metadata) {
+	private static boolean isUserPlaced( int metadata) {
 		return (metadata & METADATA_USERPLACEDBIT) != 0;
 	}
 
-	private static int setDecayOnMetadata(final int metadata) {
+	private static int setDecayOnMetadata( int metadata) {
 		return metadata | METADATA_DECAYBIT;
 	}
 
-	private static int unmarkedMetadata(final int metadata) {
+	private static int unmarkedMetadata( int metadata) {
 		return metadata & METADATA_BITMASK;
 	}
 
 	int[]	adjacentTreeBlocks;
 
-	public BlockAutumnLeaves(final int id) {
+	public BlockAutumnLeaves( int id) {
 		super(id, 3, Material.leaves, false);
 		setTickRandomly(true);
 		setHardness(0.2F);
@@ -63,6 +70,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 		setStepSound(soundGrassFootstep);
 		setRequiresSelfNotify();
 		Block.setBurnProperties(id, 30, 60);
+		setTextureFile("/extrabiomes/extrabiomes.png");
 
 		TerrainGenManager.blockBrownAutumnLeaves = TerrainGenManager.blockOrangeAutumnLeaves = TerrainGenManager.blockPurpleAutumnLeaves = TerrainGenManager.blockYellowAutumnLeaves = this;
 		TerrainGenManager.metaBrownAutumnLeaves = metaBrown;
@@ -73,7 +81,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
-	public void addCreativeItems(final ArrayList itemList) {
+	public void addCreativeItems( ArrayList itemList) {
 		itemList.add(new ItemStack(this, 1, metaBrown));
 		itemList.add(new ItemStack(this, 1, metaOrange));
 		itemList.add(new ItemStack(this, 1, metaPurple));
@@ -112,20 +120,13 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
-	public int colorMultiplier(final IBlockAccess iBlockAccess,
-			final int x, final int y, final int z)
-	{
-		return ColorizerExtraBiomes.getNonBiomeColor();
-	}
-
-	@Override
-	protected int damageDropped(final int metadata) {
+	protected int damageDropped( int metadata) {
 		// Autumn saplings and autumn leaves have corresponding metadata
 		return unmarkedMetadata(metadata);
 	}
 
-	private void doSaplingDrop(final World world, final int x,
-			final int y, final int z, final int metadata, final int par7)
+	private void doSaplingDrop( World world,  int x,
+			 int y,  int z,  int metadata,  int par7)
 	{
 		dropBlockAsItem_do(world, x, y, z,
 				new ItemStack(idDropped(metadata, world.rand, par7), 1,
@@ -133,9 +134,9 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
-	public void dropBlockAsItemWithChance(final World world,
-			final int x, final int y, final int z, final int metadata,
-			final float chance, final int par7)
+	public void dropBlockAsItemWithChance( World world,
+			 int x,  int y,  int z,  int metadata,
+			 float chance,  int par7)
 	{
 		if (world.isRemote) return;
 
@@ -148,12 +149,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
-	public int getBlockColor() {
-		return ColorizerExtraBiomes.getNonBiomeColor();
-	}
-
-	@Override
-	public int getBlockTextureFromSideAndMetadata(final int side,
+	public int getBlockTextureFromSideAndMetadata( int side,
 			final int metadata)
 	{
 		return blockIndexInTexture + 2 * unmarkedMetadata(metadata)
@@ -161,28 +157,10 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
-	public int getRenderColor(final int metadata) {
-		return ColorizerExtraBiomes.getNonBiomeColor();
-	}
-
-	@Override
-	public String getTextureFile() {
-		return "/extrabiomes/extrabiomes.png";
-	}
-
-	@Override
-	public void harvestBlock(final World world,
-			final EntityPlayer player, final int i, final int j,
-			final int k, final int l)
+	public int idDropped( int metadata,  Random rand,
+			 int par3)
 	{
-		super.harvestBlock(world, player, i, j, k, l);
-	}
-
-	@Override
-	public int idDropped(final int metadata, final Random rand,
-			final int par3)
-	{
-		return ExtrabiomesBlock.sapling.blockID;
+		return ExtrabiomesBlock.sapling.get().blockID;
 	}
 
 	@Override
@@ -196,23 +174,23 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
-	public boolean isShearable(final ItemStack item, final World world,
-			final int x, final int y, final int z)
+	public boolean isShearable( ItemStack item,  World world,
+			 int x,  int y,  int z)
 	{
 		return true;
 	}
 
 	@Override
-	public void onEntityWalking(final World world, final int x,
-			final int y, final int z, final Entity entity)
+	public void onEntityWalking( World world,  int x,
+			 int y,  int z,  Entity entity)
 	{
 		beginLeavesDecay(world, x, y, z);
 	}
 
 	@Override
-	public ArrayList<ItemStack> onSheared(final ItemStack item,
-			final World world, final int x, final int y, final int z,
-			final int fortune)
+	public ArrayList<ItemStack> onSheared( ItemStack item,
+			 World world,  int x,  int y,  int z,
+			 int fortune)
 	{
 		final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 		ret.add(new ItemStack(this, 1, unmarkedMetadata(world
@@ -221,11 +199,11 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
-	public int quantityDropped(final Random rand) {
+	public int quantityDropped( Random rand) {
 		return rand.nextInt(20) == 0 ? 1 : 0;
 	}
 
-	private void removeLeaves(final World world, final int x,
+	private void removeLeaves( World world,  int x,
 			final int y, final int z)
 	{
 		dropBlockAsItem(world, x, y, z,
@@ -244,8 +222,8 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
-	public void updateTick(final World world, final int x, final int y,
-			final int z, final Random rand)
+	public void updateTick( World world,  int x,  int y,
+			 int z,  Random rand)
 	{
 		if (world.isRemote) return;
 

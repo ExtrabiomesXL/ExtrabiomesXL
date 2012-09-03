@@ -1,6 +1,12 @@
+
 package extrabiomes.biomes;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Random;
+
+import extrabiomes.terrain.CustomBiomeDecorator;
+
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
@@ -9,7 +15,6 @@ import net.minecraft.src.SpawnListEntry;
 import net.minecraft.src.WorldGenTaiga1;
 import net.minecraft.src.WorldGenTaiga2;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeMountainTaiga extends ExtrabiomeGenBase {
 
@@ -23,8 +28,8 @@ public class BiomeMountainTaiga extends ExtrabiomeGenBase {
 		minHeight = 0.3F;
 		maxHeight = 1.2F;
 
-		spawnableCreatureList
-				.add(new SpawnListEntry(EntityWolf.class, 8, 4, 4));
+		spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class,
+				8, 4, 4));
 	}
 
 	@Override
@@ -34,9 +39,9 @@ public class BiomeMountainTaiga extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	public WorldGenerator getRandomWorldGenForTrees(Random random) {
-		return (random.nextInt(3) == 0 ? new WorldGenTaiga1()
-				: new WorldGenTaiga2(false));
+	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
+		return checkNotNull(rand).nextInt(3) == 0 ? new WorldGenTaiga1()
+				: new WorldGenTaiga2(false);
 	}
 
 }

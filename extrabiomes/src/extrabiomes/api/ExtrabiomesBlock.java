@@ -1,14 +1,17 @@
-package extrabiomes.api;
 
+package extrabiomes.api;
 
 import net.minecraft.src.Block;
 
+import com.google.common.base.Optional;
+
 /**
- * Allows direct access to Extrabiome's blocks. Will be populated during
- * BaseMod.load(). If block is null, then it has been deactivated by user
- * configuration.
+ * Allows direct access to Extrabiome's blocks. This class' members will
+ * be populated during the @Init event. If a block is absent after the
+ * Init event, then it has been deactivated by user configuration.
  * <p>
- * <b>NOTE:</b> Make sure to only reference it in ModsLoaded() or later.
+ * <b>NOTE:</b> Make sure to only reference members of this class in the
+ * PostInit event or later.
  * 
  * @author ScottKillen
  * 
@@ -21,11 +24,11 @@ public class ExtrabiomesBlock {
 	 * 2 - Purple<br>
 	 * 3 - Yellow
 	 */
-	public static Block autumnLeaves = null;
-	
-	public static Block catTail = null;
-	public static Block crackedSand = null;
-	
+	public static Optional<Block>	autumnLeaves	= Optional.absent();
+
+	public static Optional<Block>	catTail			= Optional.absent();
+	public static Optional<Block>	crackedSand		= Optional.absent();
+
 	/**
 	 * 0 - Autumn Shrub<br>
 	 * 1 - Hydrangea<br>
@@ -36,8 +39,8 @@ public class ExtrabiomesBlock {
 	 * 6 - Toadstool<br>
 	 * 7 - White Flower
 	 */
-	public static Block flower = null;
-	
+	public static Optional<Block>	flower			= Optional.absent();
+
 	/**
 	 * 0 - Brown<br>
 	 * 1 - Short Brown<br>
@@ -45,17 +48,17 @@ public class ExtrabiomesBlock {
 	 * 3 - Tall Dead<br>
 	 * 4 - Yellow Dead
 	 */
-	public static Block grass = null;
+	public static Optional<Block>	grass			= Optional.absent();
 
 	/**
 	 * 0 - Fir<br>
 	 * 1 - Redwood<br>
 	 * 2 - Acacia
 	 */
-	public static Block greenLeaves = null;
-	public static Block leafPile = null;
-	public static Block quickSand = null;
-	public static Block redRock = null;
+	public static Optional<Block>	greenLeaves		= Optional.absent();
+	public static Optional<Block>	leafPile		= Optional.absent();
+	public static Optional<Block>	quickSand		= Optional.absent();
+	public static Optional<Block>	redRock			= Optional.absent();
 
 	/**
 	 * 0 - Brown Autumn<br>
@@ -66,6 +69,6 @@ public class ExtrabiomesBlock {
 	 * 5 - Redwood<br>
 	 * 6 - Acacia
 	 */
-	public static Block sapling = null;
-	
+	public static Optional<Block>	sapling			= Optional.absent();
+
 }

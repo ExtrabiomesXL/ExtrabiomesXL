@@ -1,7 +1,17 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
 
 package extrabiomes.biomes;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Random;
+
+import extrabiomes.terrain.CustomBiomeDecorator;
+
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
@@ -16,7 +26,6 @@ import net.minecraft.src.WorldGenTallGrass;
 import net.minecraft.src.WorldGenTrees;
 import net.minecraft.src.WorldGenVines;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeExtremeJungle extends ExtrabiomeGenBase {
 
@@ -44,7 +53,7 @@ public class BiomeExtremeJungle extends ExtrabiomeGenBase {
 
 	@Override
 	public void decorate(World world, Random rand, int x, int z) {
-		super.decorate(world, rand, x, z);
+		super.decorate(checkNotNull(world), checkNotNull(rand), x, z);
 		final WorldGenVines vineGen = new WorldGenVines();
 
 		for (int i = 0; i < 50; ++i) {

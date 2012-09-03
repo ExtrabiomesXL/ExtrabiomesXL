@@ -1,11 +1,19 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.terrain;
 
 import java.util.Random;
 
+import extrabiomes.api.ExtrabiomesBlock;
+
+
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.api.ExtrabiomesBlock;
 
 public class WorldGenPit extends WorldGenerator {
 
@@ -35,7 +43,7 @@ public class WorldGenPit extends WorldGenerator {
 				for (int z1 = -1; z1 <= 1; z1++)
 					for (int y1 = -2; y1 <= 0; y1++)
 						world.setBlock(x + x1, y + y1, z + z1,
-								ExtrabiomesBlock.quickSand.blockID);
+								ExtrabiomesBlock.quickSand.get().blockID);
 		}
 
 		return true;

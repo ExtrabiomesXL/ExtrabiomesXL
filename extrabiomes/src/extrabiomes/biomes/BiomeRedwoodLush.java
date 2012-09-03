@@ -1,6 +1,4 @@
 /**
- * Copyright (c) Scott Killen and MisterFiber, 2012
- * 
  * This mod is distributed under the terms of the Minecraft Mod Public
  * License 1.0, or MMPL. Please check the contents of the license
  * located in /MMPL-1.0.txt
@@ -8,21 +6,29 @@
 
 package extrabiomes.biomes;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Random;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.Block;
 import net.minecraft.src.WorldGenTallGrass;
 import net.minecraft.src.WorldGenerator;
+
+import com.google.common.base.Optional;
+
 import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
 import extrabiomes.terrain.CustomBiomeDecorator;
 import extrabiomes.terrain.WorldGenNoOp;
 
+
 public class BiomeRedwoodLush extends ExtrabiomeGenBase {
 
-	private WorldGenerator	worldGenRedwood	= null;
-	private WorldGenerator	worldGenFirTree	= null;
+	private Optional<WorldGenerator>	worldGenRedwood	= Optional
+																.absent();
+	private Optional<WorldGenerator>	worldGenFirTree	= Optional
+																.absent();
 
 	public BiomeRedwoodLush(int id) {
 		super(id);
@@ -41,34 +47,39 @@ public class BiomeRedwoodLush extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	public WorldGenerator getRandomWorldGenForGrass(Random par1Random) {
-		if (par1Random.nextInt(4) == 0)
+	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
+		if (checkNotNull(rand).nextInt(4) == 0)
 			return new WorldGenTallGrass(Block.tallGrass.blockID, 2);
-		return super.getRandomWorldGenForGrass(par1Random);
+		return super.getRandomWorldGenForGrass(rand);
 	}
 
 	@Override
-	public WorldGenerator getRandomWorldGenForTrees(Random random) {
-		if (random.nextInt(2) == 0) {
-			if (worldGenRedwood == null)
+	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
+		if (checkNotNull(rand).nextInt(2) == 0) {
+			if (!worldGenRedwood.isPresent())
 				if (TerrainGenManager.enableRedwoodGen)
-					worldGenRedwood = TerrainGenManager.treeFactory
-							.makeTreeGenerator(false,
-									ITreeFactory.TreeType.REDWOOD);
+					worldGenRedwood = Optional
+							.of(TerrainGenManager.treeFactory
+									.get()
+									.makeTreeGenerator(
+											false,
+											ITreeFactory.TreeType.REDWOOD));
 				else
-					worldGenRedwood = new WorldGenNoOp();
-			return worldGenRedwood;
+					worldGenRedwood = Optional
+							.of((WorldGenerator) new WorldGenNoOp());
+			return worldGenRedwood.get();
 		}
 
-		if (worldGenFirTree == null)
+		if (!worldGenFirTree.isPresent())
 			if (TerrainGenManager.enableFirGen)
-				worldGenFirTree = TerrainGenManager.treeFactory
-						.makeTreeGenerator(false,
-								ITreeFactory.TreeType.FIR);
+				worldGenFirTree = Optional
+						.of(TerrainGenManager.treeFactory.get()
+								.makeTreeGenerator(false,
+										ITreeFactory.TreeType.FIR));
 			else
-				worldGenFirTree = new WorldGenNoOp();
-		return worldGenFirTree;
-
+				worldGenFirTree = Optional
+						.of((WorldGenerator) new WorldGenNoOp());
+		return worldGenFirTree.get();
 	}
 
 }

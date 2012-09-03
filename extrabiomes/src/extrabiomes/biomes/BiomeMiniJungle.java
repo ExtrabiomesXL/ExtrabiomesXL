@@ -1,6 +1,4 @@
 /**
- * Copyright (c) Scott Killen and MisterFiber, 2012
- * 
  * This mod is distributed under the terms of the Minecraft Mod Public
  * License 1.0, or MMPL. Please check the contents of the license
  * located in /MMPL-1.0.txt
@@ -8,7 +6,14 @@
 
 package extrabiomes.biomes;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Random;
+
+import extrabiomes.terrain.CustomBiomeDecorator;
+import extrabiomes.terrain.WorldGenPit;
+import extrabiomes.terrain.WorldGenPit2;
+
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
@@ -19,9 +24,6 @@ import net.minecraft.src.SpawnListEntry;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenTallGrass;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.terrain.CustomBiomeDecorator;
-import extrabiomes.terrain.WorldGenPit;
-import extrabiomes.terrain.WorldGenPit2;
 
 public class BiomeMiniJungle extends ExtrabiomeGenBase {
 
@@ -51,7 +53,7 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase {
 
 	@Override
 	public void decorate(World world, Random rand, int x, int z) {
-		super.decorate(world, rand, x, z);
+		super.decorate(checkNotNull(world), checkNotNull(rand), x, z);
 
 		if (rand.nextInt(1) == 0) {
 			final int x1 = x + rand.nextInt(16) + 8;
@@ -76,7 +78,7 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase {
 
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-		if (rand.nextInt(4) == 0)
+		if (checkNotNull(rand).nextInt(4) == 0)
 			return new WorldGenTallGrass(Block.tallGrass.blockID, 2);
 
 		return super.getRandomWorldGenForGrass(rand);
@@ -85,7 +87,8 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase {
 
 	@Override
 	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
-		if (rand.nextInt(2) == 0) return worldGeneratorSwamp;
+		if (checkNotNull(rand).nextInt(2) == 0)
+			return worldGeneratorSwamp;
 		if (rand.nextInt(100) == 0) return worldGeneratorTrees;
 		return worldGeneratorBigTree;
 	}

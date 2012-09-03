@@ -1,8 +1,16 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
 
 package extrabiomes.blocks;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import extrabiomes.api.ITreeFactory;
+import extrabiomes.api.TerrainGenManager;
 
 import net.minecraft.src.BlockFlower;
 import net.minecraft.src.ItemStack;
@@ -10,8 +18,6 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import extrabiomes.api.ITreeFactory;
-import extrabiomes.api.TerrainGenManager;
 
 public class BlockCustomSapling extends BlockFlower {
 
@@ -55,7 +61,7 @@ public class BlockCustomSapling extends BlockFlower {
 		setHardness(0F);
 		setStepSound(soundGrassFootstep);
 		setRequiresSelfNotify();
-
+		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
 	@Override
@@ -103,11 +109,6 @@ public class BlockCustomSapling extends BlockFlower {
 				+ unmarkedMetadata(metadata);
 	}
 
-	@Override
-	public String getTextureFile() {
-		return "/extrabiomes/extrabiomes.png";
-	}
-
 	public void growTree(World world, int x, int y, int z, Random rand)
 	{
 		final int metadata = unmarkedMetadata(world.getBlockMetadata(x,
@@ -125,41 +126,53 @@ public class BlockCustomSapling extends BlockFlower {
 
 		if (metadata == metaBrown) {
 			if (!restrictGrowth && rand.nextInt(20) == 0)
-				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
-						true, ITreeFactory.TreeType.BROWN_AUTUMN_BIG);
+				tree = TerrainGenManager.treeFactory.get()
+						.makeTreeGenerator(true,
+								ITreeFactory.TreeType.BROWN_AUTUMN_BIG);
 			else
-				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
-						true, ITreeFactory.TreeType.BROWN_AUTUMN);
+				tree = TerrainGenManager.treeFactory.get()
+						.makeTreeGenerator(true,
+								ITreeFactory.TreeType.BROWN_AUTUMN);
 		}
 
 		else if (metadata == metaOrange) {
 			if (!restrictGrowth && rand.nextInt(20) == 0)
-				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
-						true, ITreeFactory.TreeType.ORANGE_AUTUMN_BIG);
+				tree = TerrainGenManager.treeFactory
+						.get()
+						.makeTreeGenerator(true,
+								ITreeFactory.TreeType.ORANGE_AUTUMN_BIG);
 			else
-				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
-						true, ITreeFactory.TreeType.ORANGE_AUTUMN);
+				tree = TerrainGenManager.treeFactory.get()
+						.makeTreeGenerator(true,
+								ITreeFactory.TreeType.ORANGE_AUTUMN);
 		}
 
 		else if (metadata == metaPurple) {
 			if (!restrictGrowth && rand.nextInt(20) == 0)
-				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
-						true, ITreeFactory.TreeType.PURPLE_AUTUMN_BIG);
+				tree = TerrainGenManager.treeFactory
+						.get()
+						.makeTreeGenerator(true,
+								ITreeFactory.TreeType.PURPLE_AUTUMN_BIG);
 			else
-				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
-						true, ITreeFactory.TreeType.PURPLE_AUTUMN);
+				tree = TerrainGenManager.treeFactory.get()
+						.makeTreeGenerator(true,
+								ITreeFactory.TreeType.PURPLE_AUTUMN);
 		}
 
 		else if (metadata == metaYellow) {
 			if (!restrictGrowth && rand.nextInt(20) == 0)
-				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
-						true, ITreeFactory.TreeType.YELLOW_AUTUMN_BIG);
+				tree = TerrainGenManager.treeFactory
+						.get()
+						.makeTreeGenerator(true,
+								ITreeFactory.TreeType.YELLOW_AUTUMN_BIG);
 			else
-				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
-						true, ITreeFactory.TreeType.YELLOW_AUTUMN);
+				tree = TerrainGenManager.treeFactory.get()
+						.makeTreeGenerator(true,
+								ITreeFactory.TreeType.YELLOW_AUTUMN);
 		} else if (metadata == metaAcacia)
-			tree = TerrainGenManager.treeFactory.makeTreeGenerator(
-					true, ITreeFactory.TreeType.ACACIA);
+			tree = TerrainGenManager.treeFactory.get()
+					.makeTreeGenerator(true,
+							ITreeFactory.TreeType.ACACIA);
 		else {
 			// Check for 2x2 firs and redwoods
 			for (x1 = 0; x1 >= -1; --x1) {
@@ -175,11 +188,13 @@ public class BlockCustomSapling extends BlockFlower {
 					{
 						if (metadata == metaFir)
 							tree = TerrainGenManager.treeFactory
+									.get()
 									.makeTreeGenerator(
 											true,
 											ITreeFactory.TreeType.FIR_HUGE);
 						else
 							tree = TerrainGenManager.treeFactory
+									.get()
 									.makeTreeGenerator(
 											true,
 											ITreeFactory.TreeType.REDWOOD);
@@ -192,8 +207,9 @@ public class BlockCustomSapling extends BlockFlower {
 				// Single fir sapling generates 1x1 tree
 				z1 = 0;
 				x1 = 0;
-				tree = TerrainGenManager.treeFactory.makeTreeGenerator(
-						true, ITreeFactory.TreeType.FIR);
+				tree = TerrainGenManager.treeFactory.get()
+						.makeTreeGenerator(true,
+								ITreeFactory.TreeType.FIR);
 			}
 		}
 

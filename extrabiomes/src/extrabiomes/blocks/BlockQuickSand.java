@@ -8,6 +8,8 @@
 
 package extrabiomes.blocks;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
 
 import net.minecraft.src.AxisAlignedBB;
@@ -19,27 +21,23 @@ import net.minecraft.src.World;
 
 public class BlockQuickSand extends Block {
 
-	public BlockQuickSand(final int id) {
+	public BlockQuickSand(int id) {
 		super(id, 1, Material.sand);
 		setHardness(4.0F);
 		setStepSound(Block.soundSandFootstep);
+		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
 	@Override
-	public void addCreativeItems(final ArrayList itemList) {
-		itemList.add(new ItemStack(this));
+	public void addCreativeItems(ArrayList itemList) {
+		checkNotNull(itemList).add(new ItemStack(this));
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(
-			final World world, final int x, final int y, final int z)
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world,
+			int x, int y, int z)
 	{
 		return null;
-	}
-
-	@Override
-	public String getTextureFile() {
-		return "/extrabiomes/extrabiomes.png";
 	}
 
 	@Override
@@ -48,10 +46,10 @@ public class BlockQuickSand extends Block {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(final World world,
-			final int x, final int y, final int z, final Entity entity)
+	public void onEntityCollidedWithBlock(World world, int x, int y,
+			int z, Entity entity)
 	{
-		entity.setInWeb();
+		checkNotNull(entity).setInWeb();
 	}
 
 }

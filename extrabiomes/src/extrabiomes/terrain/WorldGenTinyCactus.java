@@ -1,12 +1,20 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
+
 package extrabiomes.terrain;
 
 import java.util.Random;
 
+import extrabiomes.api.ExtrabiomesBlock;
+import extrabiomes.blocks.BlockCustomFlower;
+
+
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.api.ExtrabiomesBlock;
-import extrabiomes.blocks.BlockCustomFlower;
 
 public class WorldGenTinyCactus extends WorldGenerator {
 
@@ -27,7 +35,7 @@ public class WorldGenTinyCactus extends WorldGenerator {
 				for (int y2 = 0; y2 < i1; y2++) {
 					if (world.getBlockId(x1, y1 + y2 - 1, z1) == Block.sand.blockID) {
 						world.setBlockAndMetadata(x1, y1 + y2, z1,
-								ExtrabiomesBlock.flower.blockID,
+								ExtrabiomesBlock.flower.get().blockID,
 								BlockCustomFlower.metaTinyCactus);
 					}
 				}

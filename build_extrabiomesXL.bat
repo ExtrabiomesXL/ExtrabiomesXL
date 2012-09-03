@@ -10,15 +10,10 @@ call recompile.bat
 call reobfuscate.bat
 echo.
 echo Adding release assets
-REM XCOPY MMPL-1.0.txt reobf\minecraft /Q
-REM XCOPY MMPL-1.0.txt reobf\minecraft_server /Q
-REM XCOPY extrabiomes\*.txt reobf\minecraft /Q
-REM XCOPY extrabiomes\*.txt reobf\minecraft_server /Q
-REM XCOPY extrabiomes\mcmod.info reobf\minecraft /Q
-REM XCOPY extrabiomes\mcmod.info reobf\minecraft_server /Q
-REM XCOPY extrabiomes\src\minecraft\extrabiomes\*.png reobf\minecraft\extrabiomes /E /Q
-REM XCOPY extrabiomes\artwork\eb-logo.png reobf\minecraft\extrabiomes /Q
-REM XCOPY extrabiomes\artwork\eb-logo.png reobf\minecraft_server\extrabiomes /Q
+XCOPY MMPL-1.0.txt reobf\minecraft /Q
+XCOPY extrabiomes\*.txt reobf\minecraft /Q
+XCOPY extrabiomes\mcmod.info reobf\minecraft /Q
+XCOPY extrabiomes\src\extrabiomes\*.png reobf\minecraft\extrabiomes /E /Q
 echo.
 echo Restoring src-bak
 RMDIR /S /Q src
