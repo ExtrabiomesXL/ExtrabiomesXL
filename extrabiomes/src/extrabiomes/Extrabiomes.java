@@ -185,7 +185,6 @@ public class Extrabiomes {
 				"/extrabiomes/extrabiomes.cfg"));
 		try {
 			cfg.load();
-			cfg.reconcileConfigFileVersions("3.0");
 			final ConfigSettingAnnotationParser parser = new ConfigSettingAnnotationParser(
 					cfg);
 
