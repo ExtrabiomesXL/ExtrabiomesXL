@@ -63,7 +63,7 @@ public class ConfigSettingAnnotationParser {
 	{
 		final Property property = cfg.getOrCreateBlockIdProperty(key,
 				field.getInt(obj));
-		property.comment = comment;
+		if (!comment.isEmpty()) property.comment = comment;
 		return Integer.parseInt(property.value);
 	}
 
@@ -82,13 +82,13 @@ public class ConfigSettingAnnotationParser {
 
 		final Property property = cfg.getOrCreateProperty(key,
 				category, defaultValue);
-		property.comment = comment;
+		if (!comment.isEmpty()) property.comment = comment;
 
 		if (fieldType.equals(FieldType.BOOLEAN))
 			return property.getBoolean(false);
 		else if (fieldType.equals(FieldType.INTEGER))
 			return property.getInt();
-		
+
 		return defaultValue;
 	}
 
@@ -100,7 +100,7 @@ public class ConfigSettingAnnotationParser {
 		final Property property = cfg
 				.getOrCreateRestrictedBlockIdProperty(key,
 						field.getInt(obj));
-		property.comment = comment;
+		if (!comment.isEmpty()) property.comment = comment;
 		return Integer.parseInt(property.value);
 	}
 
