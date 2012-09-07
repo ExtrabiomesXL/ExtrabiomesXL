@@ -18,17 +18,9 @@ import net.minecraft.src.WorldGenerator;
 
 import com.google.common.base.Optional;
 
-import extrabiomes.api.ITreeFactory;
-import extrabiomes.api.TerrainGenManager;
 import extrabiomes.terrain.CustomBiomeDecorator;
-import extrabiomes.terrain.WorldGenNoOp;
-
 
 public class BiomeTemporateRainforest extends ExtrabiomeGenBase {
-
-	protected Optional<WorldGenerator>	treeGen		= Optional.absent();
-	protected Optional<WorldGenerator>	treeGen2	= Optional.absent();
-
 	public BiomeTemporateRainforest(int id) {
 		super(id);
 
@@ -48,38 +40,4 @@ public class BiomeTemporateRainforest extends ExtrabiomeGenBase {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(17)
 				.mushroomsPerChunk(2).grassPerChunk(16).build();
 	}
-
-	@Override
-	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-		if (checkNotNull(rand).nextInt(4) == 0)
-			return new WorldGenTallGrass(Block.tallGrass.blockID, 2);
-		return super.getRandomWorldGenForGrass(rand);
-	}
-
-	@Override
-	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
-		if (checkNotNull(rand).nextInt(3) == 0) {
-			if (!treeGen.isPresent())
-				if (TerrainGenManager.enableFirGen)
-					treeGen = Optional.of(TerrainGenManager.treeFactory
-							.get().makeTreeGenerator(false,
-									ITreeFactory.TreeType.FIR));
-				else
-					treeGen = Optional
-							.of((WorldGenerator) new WorldGenNoOp());
-
-			return treeGen.get();
-		}
-		if (!treeGen2.isPresent())
-			if (TerrainGenManager.enableFirGen)
-				treeGen2 = Optional.of(TerrainGenManager.treeFactory
-						.get().makeTreeGenerator(false,
-								ITreeFactory.TreeType.FIR_HUGE));
-			else
-				treeGen2 = Optional
-						.of((WorldGenerator) new WorldGenNoOp());
-
-		return treeGen2.get();
-	}
-
 }

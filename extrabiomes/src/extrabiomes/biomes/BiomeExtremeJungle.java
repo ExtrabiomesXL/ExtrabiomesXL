@@ -10,6 +10,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Random;
 
+import extrabiomes.api.BiomeManager;
 import extrabiomes.terrain.CustomBiomeDecorator;
 
 
@@ -62,21 +63,4 @@ public class BiomeExtremeJungle extends ExtrabiomeGenBase {
 			vineGen.generate(world, rand, x1, 64, z1);
 		}
 	}
-
-	@Override
-	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-		return rand.nextInt(4) == 0 ? new WorldGenTallGrass(
-				Block.tallGrass.blockID, 2) : new WorldGenTallGrass(
-				Block.tallGrass.blockID, 1);
-	}
-
-	@Override
-	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
-		return rand.nextInt(10) == 0 ? worldGeneratorBigTree : rand
-				.nextInt(2) == 0 ? new WorldGenShrub(3, 0) : rand
-				.nextInt(3) == 0 ? new WorldGenHugeTrees(false,
-				10 + rand.nextInt(20), 3, 3) : new WorldGenTrees(false,
-				4 + rand.nextInt(7), 3, 3, true);
-	}
-
 }

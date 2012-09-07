@@ -24,12 +24,26 @@ public abstract class PluginManager {
 																	.absent();
 
 	/**
-	 * @return An immutable list of the installed plugins sorted by
-	 *         insertion order.
+	 * @param pluginUniqueID
+	 *            the unique identifier of the plugin to retrieve
+	 * @return The plugin requested. the value will be absent if no
+	 *         plugin was found.
+	 */
+	public static Optional<IPlugin> getPlugin(String pluginUniqueID) {
+		checkArgument(instance.isPresent(),
+				"Plugin list not available until after PluginManager is initialized.");
+		if (pluginUniqueID == null) return null;
+		return instance.get().getPluginById(pluginUniqueID);
+
+	}
+
+	/**
+	 * @return An immutable collection of the installed plugins sorted
+	 *         by insertion order.
 	 */
 	public static Collection<IPlugin> getPlugins() {
 		checkArgument(instance.isPresent(),
-				"Plugin list not available until after Plugin Manager is initialized.");
+				"Plugin list not available until after PluginManager is initialized.");
 		return instance.get().getPluginCollection();
 	}
 
@@ -42,25 +56,15 @@ public abstract class PluginManager {
 	public static void registerPlugin(IPlugin plugin) {
 		checkArgument(
 				instance.isPresent(),
-				"Plugins cannot be registered until after Plugin Manager is initialized.");
+				"Plugins cannot be registered until after PluginManager is initialized.");
 		checkNotNull(plugin, "Cannot register null plugin.");
 		instance.get().doPluginRegistration(plugin);
 	}
 
-	/**
-	 * Used internally. Any other use has no effect.
-	 */
-	public abstract void activatePlugins();
-
 	protected abstract void doPluginRegistration(IPlugin plugin);
 
-	/**
-	 * @param pluginUniqueID
-	 *            the unique identifier of the plugin to retrieve
-	 * @return The plugin requested. the value will be absent if no
-	 *         plugin was found.
-	 */
-	public abstract Optional<IPlugin> getPlugin(String pluginUniqueID);
+	protected abstract Optional<IPlugin> getPluginById(
+			String pluginUniqueID);
 
 	protected abstract Collection<IPlugin> getPluginCollection();
 

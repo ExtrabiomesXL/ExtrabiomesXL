@@ -9,15 +9,14 @@ package extrabiomes.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
-import extrabiomes.Extrabiomes;
-import extrabiomes.api.ExtrabiomesBiome;
-import extrabiomes.api.TerrainGenManager;
-
 import net.minecraft.src.Block;
 import net.minecraft.src.EnumCreatureType;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
+import extrabiomes.Extrabiomes;
+import extrabiomes.api.BiomeManager;
+import extrabiomes.api.TerrainGenManager;
 
 public class BlockCrackedSand extends Block {
 
@@ -101,7 +100,7 @@ public class BlockCrackedSand extends Block {
 		if (!canGrow) return;
 		if (!world.isRemote) {
 			if (restrictGrowthToBiome
-					&& world.getBiomeGenForCoords(x, z) != ExtrabiomesBiome.wasteland
+					&& world.getBiomeGenForCoords(x, z) != BiomeManager.wasteland
 							.get()) return;
 			if (world.getBlockLightValue(x, y + 1, z) < 15) return;
 			for (int i = 0; i < 4; ++i) {
@@ -109,7 +108,7 @@ public class BlockCrackedSand extends Block {
 				final int y1 = y + rand.nextInt(5) - rand.nextInt(5);
 				final int z1 = z + rand.nextInt(3) - rand.nextInt(3);
 				if (!restrictGrowthToBiome
-						|| world.getBiomeGenForCoords(x1, z1) == ExtrabiomesBiome.wasteland
+						|| world.getBiomeGenForCoords(x1, z1) == BiomeManager.wasteland
 								.get())
 					changeNeighbor(world, x1, y1, z1);
 			}

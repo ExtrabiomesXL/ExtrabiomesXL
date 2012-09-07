@@ -10,11 +10,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Random;
 
-import extrabiomes.terrain.CustomBiomeDecorator;
-import extrabiomes.terrain.WorldGenPit;
-import extrabiomes.terrain.WorldGenPit2;
-
-
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
@@ -24,6 +19,9 @@ import net.minecraft.src.SpawnListEntry;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenTallGrass;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.terrain.CustomBiomeDecorator;
+import extrabiomes.terrain.WorldGenPit;
+import extrabiomes.terrain.WorldGenPit2;
 
 public class BiomeMiniJungle extends ExtrabiomeGenBase {
 
@@ -74,22 +72,5 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase {
 			worldgenpit.generate(world, rand, x1,
 					world.getHeightValue(x1, y1) + 1, y1);
 		}
-	}
-
-	@Override
-	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-		if (checkNotNull(rand).nextInt(4) == 0)
-			return new WorldGenTallGrass(Block.tallGrass.blockID, 2);
-
-		return super.getRandomWorldGenForGrass(rand);
-
-	}
-
-	@Override
-	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
-		if (checkNotNull(rand).nextInt(2) == 0)
-			return worldGeneratorSwamp;
-		if (rand.nextInt(100) == 0) return worldGeneratorTrees;
-		return worldGeneratorBigTree;
 	}
 }

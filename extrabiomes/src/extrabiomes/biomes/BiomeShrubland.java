@@ -6,17 +6,8 @@
 
 package extrabiomes.biomes;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.Random;
-
-import extrabiomes.terrain.CustomBiomeDecorator;
-import extrabiomes.terrain.WorldGenNoOp;
-
-
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.WorldGenShrub;
-import net.minecraft.src.WorldGenerator;
+import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeShrubland extends ExtrabiomeGenBase {
 
@@ -36,11 +27,4 @@ public class BiomeShrubland extends ExtrabiomeGenBase {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
 				.flowersPerChunk(3).grassPerChunk(1).build();
 	}
-
-	@Override
-	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
-		return checkNotNull(rand).nextInt(3) <= 1 ? new WorldGenShrub(
-				3, rand.nextInt(3)) : new WorldGenNoOp();
-	}
-
 }

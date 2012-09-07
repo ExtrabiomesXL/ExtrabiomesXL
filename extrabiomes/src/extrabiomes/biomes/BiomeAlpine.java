@@ -6,18 +6,11 @@
 
 package extrabiomes.biomes;
 
-import java.util.Random;
-
-import extrabiomes.api.ITreeFactory;
-import extrabiomes.api.TerrainGenManager;
-import extrabiomes.terrain.CustomBiomeDecorator;
-import extrabiomes.terrain.WorldGenNoOp;
-
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityWolf;
 import net.minecraft.src.SpawnListEntry;
-import net.minecraft.src.WorldGenerator;
+import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeAlpine extends ExtrabiomeGenBase {
 
@@ -35,6 +28,7 @@ public class BiomeAlpine extends ExtrabiomeGenBase {
 
 		spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class,
 				8, 4, 4));
+
 	}
 
 	@Override
@@ -42,14 +36,4 @@ public class BiomeAlpine extends ExtrabiomeGenBase {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(7)
 				.flowersPerChunk(0).grassPerChunk(0).build();
 	}
-
-	@Override
-	public WorldGenerator getRandomWorldGenForTrees(Random random) {
-		if (TerrainGenManager.enableFirGen)
-			return TerrainGenManager.treeFactory
-					.get()
-					.makeTreeGenerator(false, ITreeFactory.TreeType.FIR);
-		return new WorldGenNoOp();
-	}
-
 }

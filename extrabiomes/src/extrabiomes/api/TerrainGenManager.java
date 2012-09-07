@@ -31,9 +31,6 @@ public class TerrainGenManager {
 
 	public static boolean					enableQuickSandGen		= false;
 	public static boolean					enableCattailGen		= false;
-	public static boolean					enableAutumnTreeGen		= true;
-	public static boolean					enableFirGen			= true;
-	public static boolean					enableRedwoodGen		= true;
 	public static boolean					enableAcaciaGen			= true;
 
 	/**
@@ -91,7 +88,7 @@ public class TerrainGenManager {
 	/**
 	 * The instantiation of {@link ITreeFactory}
 	 */
-	public static Optional<ITreeFactory>	treeFactory;
+	public static Optional<? extends ITreeFactory>	treeFactory;
 
 	/**
 	 * The list of ids of blocks upon which saplings and trees may grow.

@@ -26,10 +26,7 @@ public class PluginManagerImpl extends PluginManager {
 		instance = Optional.of((PluginManager) this);
 	}
 
-	@Override
 	public void activatePlugins() {
-		if (!Extrabiomes.canActivatePlugins()) return;
-
 		removeDeactivatedPlugins();
 
 		for (final IPlugin plugin : plugins.values())
@@ -48,7 +45,7 @@ public class PluginManagerImpl extends PluginManager {
 	}
 
 	@Override
-	public Optional<IPlugin> getPlugin(String pluginUniqueID) {
+	protected Optional<IPlugin> getPluginById(String pluginUniqueID) {
 		return Optional.fromNullable(plugins.get(pluginUniqueID));
 	}
 

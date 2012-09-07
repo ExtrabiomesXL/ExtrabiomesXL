@@ -73,12 +73,6 @@ public class CommonProxy {
 					checkNotNull(itemclass));
 	}
 
-	public void registerCraftingHandler(CraftingHandler craftingHandler)
-	{
-		GameRegistry
-				.registerCraftingHandler(checkNotNull(craftingHandler));
-	}
-
 	public void registerEntity(Class entityClass, String entityName,
 			Object mod, int entityID, int trackingRange,
 			int updateFrequency, boolean sendsVelocityUpdates)

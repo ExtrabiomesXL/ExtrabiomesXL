@@ -20,6 +20,6 @@ public class ExtrabiomesConfig extends ConfigFile {
 
 	public ExtrabiomesConfig(File file) {
 		super(file);
-		categories.put(CATEGORY_BIOME, blockProperties);
+		categories.put(CATEGORY_BIOME, biomeProperties);
 	}
 }

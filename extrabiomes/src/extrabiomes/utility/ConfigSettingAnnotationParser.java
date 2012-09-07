@@ -10,6 +10,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.lang.reflect.Field;
+import java.util.Locale;
 
 import net.minecraftforge.common.Property;
 
@@ -148,12 +149,12 @@ public class ConfigSettingAnnotationParser {
 		final String category = configSetting.get().category();
 		final String comment = configSetting.get().comment();
 		String key = configSetting.get().key();
-		if (key.isEmpty()) key = field.getName().toLowerCase();
+		if (key.isEmpty()) key = field.getName().toLowerCase(Locale.US);
 
 		final Optional<FieldType> fieldType = determineFieldType(field,
 				settingType);
 		if (key.isEmpty())
-			key = field.getName().toLowerCase()
+			key = field.getName().toLowerCase(Locale.US)
 					+ (fieldType.get().equals(FieldType.BLOCK_ID)
 							|| fieldType.get().equals(
 									FieldType.RESTRICTED_BLOCK_ID) ? ".id"

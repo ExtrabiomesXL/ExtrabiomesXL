@@ -6,22 +6,10 @@
 
 package extrabiomes.biomes;
 
-import java.util.Random;
-
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.WorldGenerator;
-
-import com.google.common.base.Optional;
-
-import extrabiomes.api.ITreeFactory;
-import extrabiomes.api.TerrainGenManager;
 import extrabiomes.terrain.CustomBiomeDecorator;
-import extrabiomes.terrain.WorldGenNoOp;
-
 
 public class BiomeRedwoodForest extends ExtrabiomeGenBase {
-
-	private Optional<WorldGenerator>	treeGen	= Optional.absent();
 
 	public BiomeRedwoodForest(int id) {
 		super(id);
@@ -39,19 +27,4 @@ public class BiomeRedwoodForest extends ExtrabiomeGenBase {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(17)
 				.build();
 	}
-
-	@Override
-	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
-		if (!treeGen.isPresent())
-			if (TerrainGenManager.enableRedwoodGen)
-				treeGen = Optional.of(TerrainGenManager.treeFactory
-						.get().makeTreeGenerator(false,
-								ITreeFactory.TreeType.REDWOOD));
-			else
-				treeGen = Optional
-						.of((WorldGenerator) new WorldGenNoOp());
-
-		return treeGen.get();
-	}
-
 }
