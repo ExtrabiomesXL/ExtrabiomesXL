@@ -27,7 +27,6 @@ public class ExtrabiomesBlock {
 	public static Optional<Block>	autumnLeaves	= Optional.absent();
 
 	public static Optional<Block>	catTail			= Optional.absent();
-	public static Optional<Block>	crackedSand		= Optional.absent();
 
 	/**
 	 * 0 - Autumn Shrub<br>

@@ -85,10 +85,7 @@ public class Extrabiomes {
 
 		BlockManager.addNames();
 
-		if (TerrainGenManager.blockWasteland != null)
-			BiomeManager.wasteland.get().topBlock = BiomeManager.wasteland
-					.get().fillerBlock = (byte) TerrainGenManager.blockWasteland.blockID;
-		if (TerrainGenManager.blockWasteland != null)
+		if (TerrainGenManager.blockMountainRidge != null)
 			BiomeManager.mountainridge.get().topBlock = BiomeManager.mountainridge
 					.get().fillerBlock = (byte) TerrainGenManager.blockMountainRidge.blockID;
 

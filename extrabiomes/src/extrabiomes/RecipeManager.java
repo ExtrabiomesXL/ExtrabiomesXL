@@ -43,14 +43,6 @@ public class RecipeManager {
 							BlockRedRock.metaRedRock));
 		}
 
-		if (ExtrabiomesBlock.crackedSand.isPresent()) {
-			OreDictionary.registerOre("sandCracked",
-					ExtrabiomesBlock.crackedSand.get());
-			final IRecipe recipe = new ShapelessOreRecipe(Block.sand,
-					"sandCracked", Item.bucketWater);
-			Extrabiomes.proxy.addRecipe(recipe);
-		}
-
 		if (ExtrabiomesBlock.flower.isPresent()) {
 			final ItemStack dyeLightBlue = new ItemStack(
 					Item.dyePowder, 1, 12);

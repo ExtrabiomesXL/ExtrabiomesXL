@@ -18,6 +18,7 @@ import com.google.common.base.Optional;
 import extrabiomes.CommonProxy;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.ExtrabiomesBlock;
+import extrabiomes.plugin.crackedsand.BlockCrackedSand;
 import extrabiomes.utility.ConfigSetting;
 
 
@@ -28,11 +29,9 @@ public class BlockManager {
 		final CommonProxy proxy = Extrabiomes.proxy;
 
 		if (ExtrabiomesBlock.catTail.isPresent())
-			proxy.addName(ExtrabiomesBlock.crackedSand.get(),
+			proxy.addName(ExtrabiomesBlock.catTail.get(),
 					"Cat Tail");
-		if (ExtrabiomesBlock.catTail.isPresent())
-			proxy.addName(ExtrabiomesBlock.crackedSand.get(),
-					"Cracked Sand");
+
 		if (ExtrabiomesBlock.leafPile.isPresent())
 			proxy.addName(ExtrabiomesBlock.leafPile.get(), "Leaf Pile");
 		if (ExtrabiomesBlock.quickSand.isPresent())
@@ -109,28 +108,11 @@ public class BlockManager {
 	@ConfigSetting(key = "classicmode.enable", comment = "Set to true to disable all custom blocks.")
 	boolean					enableClassicMode						= false;
 
-	@ConfigSetting(key = "crackedsand.growth.enable", comment = "Set to false to disable Cracked Sand growth.")
-	boolean					enableCrackedSandGrowth					= true;
-
-	public boolean canCrackedSandGrow() {
-		return enableCrackedSandGrowth;
-	}
-
-	public boolean canCrackedSandGrowOutsideWasteland() {
-		return enableCrackedSandGrowth && allowCrackedSandGrowOutsideWasteland;
-	}
-
-	@ConfigSetting(key = "crackedsand.growthoutsidewasteland.allow", comment = "Set to true to restrict Cracked Sand growth to Wasteland biome.")
-	boolean					allowCrackedSandGrowOutsideWasteland	= false;
-
 	@ConfigSetting(integerType = BLOCK_ID)
 	int						autumnLeaves							= 150;
 
 	@ConfigSetting(integerType = BLOCK_ID)
 	int						catTail									= 151;
-
-	@ConfigSetting(integerType = RESTRICTED_BLOCK_ID, comment = "CrackedSand is used in terrain generation. Its id must be less than 256.")
-	int						crackedSand								= 152;
 
 	@ConfigSetting(integerType = BLOCK_ID)
 	int						flower									= 153;
@@ -160,14 +142,6 @@ public class BlockManager {
 		blocksRegistered = true;
 
 		if (enableClassicMode) return;
-
-		if (crackedSand > 0) {
-			ExtrabiomesBlock.crackedSand = Optional
-					.of(new BlockCrackedSand(crackedSand)
-							.setBlockName("crackedsand"));
-			Extrabiomes.proxy.setBlockHarvestLevel(
-					ExtrabiomesBlock.crackedSand.get(), "pickaxe", 0);
-		}
 
 		if (redRock > 0) {
 			ExtrabiomesBlock.redRock = Optional.of(new BlockRedRock(
@@ -217,7 +191,6 @@ public class BlockManager {
 			ExtrabiomesBlock.leafPile = Optional.of(new BlockLeafPile(
 					leafPile).setBlockName("leafpile"));
 
-		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.crackedSand);
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.leafPile);
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.quickSand);
 

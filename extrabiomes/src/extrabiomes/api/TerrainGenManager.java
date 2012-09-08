@@ -34,11 +34,6 @@ public class TerrainGenManager {
 	public static boolean					enableAcaciaGen			= true;
 
 	/**
-	 * The predominant block in Wasteland biomes.
-	 */
-	public static Block						blockWasteland			= Block.sandStone;
-
-	/**
 	 * The predominant block in Mountain Ridge biomes.
 	 */
 	public static Block						blockMountainRidge		= Block.stone;

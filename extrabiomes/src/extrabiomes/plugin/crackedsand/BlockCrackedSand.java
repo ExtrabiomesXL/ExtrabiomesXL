@@ -4,50 +4,41 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.blocks;
+package extrabiomes.plugin.crackedsand;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.src.Block;
-import net.minecraft.src.EnumCreatureType;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
-import extrabiomes.api.TerrainGenManager;
 
 public class BlockCrackedSand extends Block {
 
 	private static boolean	canGrow;
 	private static boolean	restrictGrowthToBiome;
 
-	public BlockCrackedSand(int id) {
+	public BlockCrackedSand(int id, boolean canGrow,
+			boolean restrictGrowthToBiome)
+	{
 		super(id, 0, Material.rock);
 		setHardness(1.2F);
 		setStepSound(Block.soundStoneFootstep);
 
-		canGrow = Extrabiomes.getBlockManager().canCrackedSandGrow();
+		BlockCrackedSand.canGrow = canGrow;
 		if (canGrow) setTickRandomly(true);
-		restrictGrowthToBiome = !Extrabiomes.getBlockManager()
-				.canCrackedSandGrowOutsideWasteland();
+		BlockCrackedSand.restrictGrowthToBiome = restrictGrowthToBiome;
 
 		setTextureFile("/extrabiomes/extrabiomes.png");
-
-		TerrainGenManager.blockWasteland = this;
+		setCreativeTab(CreativeTabs.tabBlock);
 	}
 
 	@Override
 	public void addCreativeItems(ArrayList itemList) {
 		itemList.add(new ItemStack(this));
-	}
-
-	@Override
-	public boolean canCreatureSpawn(EnumCreatureType type, World world,
-			int x, int y, int z)
-	{
-		return true;
 	}
 
 	private void changeNeighbor(World world, int x, int y, int z) {
