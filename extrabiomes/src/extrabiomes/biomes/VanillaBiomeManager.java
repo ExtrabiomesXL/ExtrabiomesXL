@@ -6,11 +6,11 @@
 
 package extrabiomes.biomes;
 
+import net.minecraft.src.BiomeGenBase;
 import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesConfig;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.utility.ConfigSetting;
-import net.minecraft.src.BiomeGenBase;
 
 public class VanillaBiomeManager {
 

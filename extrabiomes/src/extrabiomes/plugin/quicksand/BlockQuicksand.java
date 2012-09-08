@@ -6,31 +6,31 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.blocks;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+package extrabiomes.plugin.quicksand;
 
 import java.util.ArrayList;
 
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Entity;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 
-public class BlockQuickSand extends Block {
+public class BlockQuicksand extends Block {
 
-	public BlockQuickSand(int id) {
+	BlockQuicksand(int id) {
 		super(id, 1, Material.sand);
 		setHardness(4.0F);
 		setStepSound(Block.soundSandFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");
+		setCreativeTab(CreativeTabs.tabBlock);
 	}
 
 	@Override
 	public void addCreativeItems(ArrayList itemList) {
-		checkNotNull(itemList).add(new ItemStack(this));
+		itemList.add(new ItemStack(this));
 	}
 
 	@Override
@@ -42,14 +42,14 @@ public class BlockQuickSand extends Block {
 
 	@Override
 	public boolean isOpaqueCube() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y,
 			int z, Entity entity)
 	{
-		checkNotNull(entity).setInWeb();
+		entity.setInWeb();
 	}
 
 }

@@ -34,9 +34,6 @@ public class BlockManager {
 
 		if (ExtrabiomesBlock.leafPile.isPresent())
 			proxy.addName(ExtrabiomesBlock.leafPile.get(), "Leaf Pile");
-		if (ExtrabiomesBlock.quickSand.isPresent())
-			proxy.addName(ExtrabiomesBlock.quickSand.get(),
-					"Quick Sand");
 
 		if (ExtrabiomesBlock.redRock.isPresent()) {
 			final Block block = ExtrabiomesBlock.redRock.get();
@@ -126,9 +123,6 @@ public class BlockManager {
 	@ConfigSetting(integerType = BLOCK_ID)
 	int						leafPile								= 156;
 
-	@ConfigSetting(integerType = BLOCK_ID)
-	int						quickSand								= 157;
-
 	@ConfigSetting(integerType = RESTRICTED_BLOCK_ID, comment = "RedRock is used in terrain generation. Its id must be less than 256.")
 	int						redRock									= 158;
 
@@ -148,14 +142,6 @@ public class BlockManager {
 					redRock).setBlockName("redrock"));
 			Extrabiomes.proxy.setBlockHarvestLevel(
 					ExtrabiomesBlock.redRock.get(), "pickaxe", 0);
-		}
-
-		if (quickSand > 0) {
-			ExtrabiomesBlock.quickSand = Optional
-					.of(new BlockQuickSand(quickSand)
-							.setBlockName("quicksand"));
-			Extrabiomes.proxy.setBlockHarvestLevel(
-					ExtrabiomesBlock.quickSand.get(), "shovel", 0);
 		}
 
 		if (autumnLeaves > 0)
@@ -192,7 +178,6 @@ public class BlockManager {
 					leafPile).setBlockName("leafpile"));
 
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.leafPile);
-		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.quickSand);
 
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.redRock,
 				extrabiomes.MultiItemBlock.class);

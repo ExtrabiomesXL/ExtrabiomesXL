@@ -21,7 +21,7 @@ public class BlockCrackedSand extends Block {
 	private static boolean	canGrow;
 	private static boolean	restrictGrowthToBiome;
 
-	public BlockCrackedSand(int id, boolean canGrow,
+	BlockCrackedSand(int id, boolean canGrow,
 			boolean restrictGrowthToBiome)
 	{
 		super(id, 0, Material.rock);

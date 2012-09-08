@@ -37,21 +37,25 @@ import extrabiomes.api.PluginManager;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class CrackedSand {
 
-	private static final String	CRACKEDSAND_COMMENT	= "CrackedSand is used in terrain generation. Its id must be less than 256.";
+	// @formatter:off
 	@SidedProxy(clientSide = "extrabiomes.client.ClientProxy", serverSide = "extrabiomes.CommonProxy")
-	public static CommonProxy	proxy;
-	@Instance("EBXLCrackedSand")
-	public static CrackedSand	instance;
+	public static CommonProxy proxy;
 
-	private static int			crackedSandID;
+	@Instance("EBXLCrackedSand")
+	public static CrackedSand instance;
+
+	private static Optional<Block>	crackedSand = Optional .absent();
+	private static int				crackedSandID;
+
+	private static boolean			canGrow;
+	private static boolean			restrictGrowthToBiome;
+
+	private static final String		CRACKEDSAND_COMMENT	= "CrackedSand is used in terrain generation. Its id must be less than 256.";
+	// @formatter:on
 
 	public static boolean isEnabled() {
 		return 0 < crackedSandID;
 	}
-
-	private Optional<Block>	crackedSand	= Optional.absent();
-	private static boolean	canGrow;
-	private static boolean	restrictGrowthToBiome;
 
 	@Init
 	public void init(FMLInitializationEvent event) {
@@ -94,7 +98,7 @@ public class CrackedSand {
 
 			if (!isEnabled())
 				ExtrabiomesLog
-						.info("scarecrow.id = 0, so scarecrow has been disabled.");
+						.info("crackedsand.id = 0, so cracked sand has been disabled.");
 
 			property = cfg.getOrCreateBooleanProperty(
 					"crackedsand.growth.enable",

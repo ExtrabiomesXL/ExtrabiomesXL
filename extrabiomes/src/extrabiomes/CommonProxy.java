@@ -18,6 +18,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -71,9 +72,8 @@ public class CommonProxy {
 
 	public void registerRenderInformation() {}
 
-	public void registerWorldGenerator(WorldGenerator worldGenerator) {
-		GameRegistry
-				.registerWorldGenerator(checkNotNull(worldGenerator));
+	public void registerWorldGenerator(IWorldGenerator worldGenerator) {
+		GameRegistry.registerWorldGenerator(worldGenerator);
 	}
 
 	public void removeBiome(BiomeGenBase biome) {
