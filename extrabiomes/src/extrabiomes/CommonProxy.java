@@ -19,7 +19,6 @@ import net.minecraftforge.common.MinecraftForge;
 
 import com.google.common.base.Optional;
 
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -51,10 +50,6 @@ public class CommonProxy {
 				.add(checkNotNull(recipe));
 	}
 
-	public int findGlobalUniqueEntityId() {
-		return EntityRegistry.findGlobalUniqueEntityId();
-	}
-
 	/**
 	 * @see GameRegistry#registerBlock(Block) for details.
 	 */
@@ -71,22 +66,6 @@ public class CommonProxy {
 		if (block.isPresent())
 			GameRegistry.registerBlock(block.get(),
 					checkNotNull(itemclass));
-	}
-
-	public void registerEntity(Class entityClass, String entityName,
-			Object mod, int entityID, int trackingRange,
-			int updateFrequency, boolean sendsVelocityUpdates)
-	{
-		EntityRegistry.registerModEntity(entityClass, entityName,
-				entityID, mod, trackingRange, updateFrequency,
-				sendsVelocityUpdates);
-	}
-
-	public void registerEntityID(Class entityClass, String entityName,
-			int entityID)
-	{
-		EntityRegistry.registerGlobalEntityID(entityClass, entityName,
-				entityID);
 	}
 
 	public void registerFuelHandler(FuelHandler fuelHandler) {

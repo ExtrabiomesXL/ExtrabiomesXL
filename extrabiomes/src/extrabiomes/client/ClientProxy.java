@@ -7,35 +7,13 @@
 
 package extrabiomes.client;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import net.minecraft.src.Achievement;
-import net.minecraft.src.ModLoader;
 import net.minecraftforge.client.MinecraftForgeClient;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import extrabiomes.CommonProxy;
-import extrabiomes.EntityScarecrow;
-import extrabiomes.ModelScarecrow;
-import extrabiomes.RenderScarecrow;
-import extrabiomes.api.ExtrabiomesItem;
 
 public class ClientProxy extends CommonProxy {
-
-	@Override
-	public void addAchievementDesc(Achievement achievement,
-			String name, String description)
-	{
-		ModLoader.addAchievementDesc(checkNotNull(achievement), name,
-				description);
-	}
-
 	@Override
 	public void registerRenderInformation() {
 		MinecraftForgeClient
 				.preloadTexture("/extrabiomes/extrabiomes.png");
-
-		if (ExtrabiomesItem.scarecrow.isPresent())
-			RenderingRegistry.registerEntityRenderingHandler(
-					EntityScarecrow.class, new RenderScarecrow(
-							new ModelScarecrow(), 0.4F));
 	}
 }

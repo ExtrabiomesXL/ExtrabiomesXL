@@ -4,10 +4,11 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.items;
+package extrabiomes.plugin.scarecrow;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import net.minecraft.src.Block;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityList;
 import net.minecraft.src.EntityPlayer;
@@ -41,6 +42,7 @@ public class ItemScarecrow extends Item {
 	public ItemScarecrow(int id) {
 		super(id);
 		setTextureFile("/extrabiomes/extrabiomes.png");
+		setTabToDisplayOn(CreativeTabs.tabMisc);
 	}
 
 	@Override

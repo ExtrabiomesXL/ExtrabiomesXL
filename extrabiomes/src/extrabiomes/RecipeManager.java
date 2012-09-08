@@ -6,10 +6,6 @@
 
 package extrabiomes;
 
-import extrabiomes.api.ExtrabiomesBlock;
-import extrabiomes.api.ExtrabiomesItem;
-import extrabiomes.blocks.BlockCustomFlower;
-import extrabiomes.blocks.BlockRedRock;
 import net.minecraft.src.Block;
 import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.IRecipe;
@@ -18,17 +14,13 @@ import net.minecraft.src.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import extrabiomes.api.ExtrabiomesBlock;
+import extrabiomes.blocks.BlockCustomFlower;
+import extrabiomes.blocks.BlockRedRock;
 
 public class RecipeManager {
 
 	void registerRecipes() {
-		if (ExtrabiomesItem.scarecrow.isPresent()) {
-			final IRecipe recipe = new ShapedOreRecipe(
-					ExtrabiomesItem.scarecrow.get(), new String[] {
-							" p ", "sms", " s " }, 'p', Block.pumpkin,
-					'm', Block.melon, 's', Item.stick);
-			Extrabiomes.proxy.addRecipe(recipe);
-		}
 		if (ExtrabiomesBlock.redRock.isPresent()) {
 			OreDictionary.registerOre("rockRed", new ItemStack(
 					ExtrabiomesBlock.redRock.get(), 1,

@@ -4,7 +4,7 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes;
+package extrabiomes.plugin.scarecrow;
 
 import net.minecraft.src.Entity;
 import net.minecraft.src.ModelBase;

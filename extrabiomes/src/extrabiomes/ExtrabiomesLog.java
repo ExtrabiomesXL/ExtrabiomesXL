@@ -27,9 +27,6 @@ public enum ExtrabiomesLog {
 		myLog.setParent(Logger.getLogger("ForgeModLoader"));
 	}
 	
-	private static final String	EXTRABIOMES_LOG_FORMAT	= "[ExtrabiomesXL] %s";
-
-
     public static void log(Level level, String format, Object... data)
     {
     	myLog.log(level, String.format(format, data));
