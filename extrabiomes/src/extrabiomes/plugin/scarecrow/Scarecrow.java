@@ -25,13 +25,14 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import extrabiomes.ExtrabiomesLog;
 
 @Mod(modid = "EBXLScarecrow", name = "ExtrabiomesXL Scarecrow Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Scarecrow {
 
 	private static final String				SCARECROW_NAME	= "scarecrow";
-	@SidedProxy(clientSide = "extrabiomes.plugin.scarecrow.ScarecrowClientProxy", serverSide = "extrabiomes.plugin.scarecrow.ScarecrowProxy")
+	@SidedProxy(clientSide = "extrabiomes.plugin.scarecrow.ScarecrowProxy", serverSide = "extrabiomes.plugin.scarecrow.ScarecrowProxy")
 	public static ScarecrowProxy			proxy;
 	@Instance("EBXLScarecrow")
 	public static Scarecrow					instance;
@@ -57,6 +58,7 @@ public class Scarecrow {
 					new String[] { " p ", "sms", " s " }, 'p',
 					Block.pumpkin, 'm', Block.melon, 's', Item.stick);
 			proxy.addRecipe(recipe);
+			ExtrabiomesLog.info("Added recipe for scarecrow.");
 
 			proxy.addName(scarecrow.get(), "Scarecrow");
 
@@ -70,7 +72,7 @@ public class Scarecrow {
 
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
-		ScarecrowLog.configureLogging();
+		ExtrabiomesLog.configureLogging();
 		final Configuration cfg = new Configuration(new File(
 				event.getModConfigurationDirectory(),
 				"/extrabiomes/extrabiomes.cfg"));
@@ -79,8 +81,13 @@ public class Scarecrow {
 
 			scarecrowID = cfg.getOrCreateIntProperty("scarecrow.id",
 					Configuration.CATEGORY_ITEM, 12870).getInt(0);
+
+			if (!isEnabled())
+				ExtrabiomesLog
+						.info("scarecrow.id = 0, so scarecrow has been disabled.");
+
 		} catch (final Exception e) {
-			ScarecrowLog
+			ExtrabiomesLog
 					.log(Level.SEVERE, e,
 							"EBXL Scarecrow had a problem loading it's configuration.");
 		} finally {

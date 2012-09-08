@@ -8,11 +8,12 @@ package extrabiomes.plugin.scarecrow;
 
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import extrabiomes.CommonProxy;
 
 public class ScarecrowClientProxy extends ScarecrowProxy {
 
 	@Override
-	void registerRenderInformation() {
+	public void registerRenderInformation() {
 		MinecraftForgeClient
 				.preloadTexture("/extrabiomes/extrabiomes.png");
 

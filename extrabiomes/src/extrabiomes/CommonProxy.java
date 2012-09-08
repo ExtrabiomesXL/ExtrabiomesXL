@@ -6,7 +6,6 @@
 
 package extrabiomes;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import net.minecraft.src.Achievement;
 import net.minecraft.src.BiomeGenBase;
@@ -40,14 +39,12 @@ public class CommonProxy {
 	}
 
 	public void addName(Object object, String name) {
-		checkArgument(!name.isEmpty());
 		LanguageRegistry.instance();
-		LanguageRegistry.addName(checkNotNull(object), name);
+		LanguageRegistry.addName(object, name);
 	}
 
 	public void addRecipe(IRecipe recipe) {
-		CraftingManager.getInstance().getRecipeList()
-				.add(checkNotNull(recipe));
+		CraftingManager.getInstance().getRecipeList().add(recipe);
 	}
 
 	/**

@@ -6,21 +6,10 @@
 
 package extrabiomes.plugin.scarecrow;
 
-import net.minecraft.src.CraftingManager;
-import net.minecraft.src.IRecipe;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+import extrabiomes.CommonProxy;
 
-public class ScarecrowProxy {
-
-	public void addName(Object object, String name) {
-		LanguageRegistry.instance();
-		LanguageRegistry.addName(object, name);
-	}
-
-	void addRecipe(IRecipe recipe) {
-		CraftingManager.getInstance().getRecipeList().add(recipe);
-	}
+public class ScarecrowProxy extends CommonProxy {
 
 	public int findGlobalUniqueEntityId() {
 		return EntityRegistry.findGlobalUniqueEntityId();
@@ -41,6 +30,4 @@ public class ScarecrowProxy {
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName,
 				entityID);
 	}
-
-	void registerRenderInformation() {}
 }
