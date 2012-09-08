@@ -38,7 +38,8 @@ public class Scarecrow {
 	public static Scarecrow					instance;
 
 	private static int						scarecrowID		= 0;
-	private static Optional<? extends Item>	scarecrow;
+	private static Optional<? extends Item>	scarecrow		= Optional
+																	.absent();
 
 	private static int						scarecrowEntityID;
 
