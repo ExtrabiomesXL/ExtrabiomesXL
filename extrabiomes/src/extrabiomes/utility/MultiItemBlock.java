@@ -4,7 +4,7 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes;
+package extrabiomes.utility;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemBlock;
@@ -39,8 +39,8 @@ public class MultiItemBlock extends ItemBlock {
 
 	@Override
 	public String getItemNameIS(ItemStack itemstack) {
-		return "tile." + Block.blocksList[getBlockID()].getBlockName()
-				+ "." + itemstack.getItemDamage();
+		return super.getItemNameIS(itemstack) + "."
+				+ itemstack.getItemDamage();
 	}
 
 	@Override

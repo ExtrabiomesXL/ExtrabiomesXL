@@ -6,6 +6,8 @@
 
 package extrabiomes;
 
+import extrabiomes.utility.MultiItemBlock;
+
 
 public class ItemCustomLeaves extends MultiItemBlock {
 
