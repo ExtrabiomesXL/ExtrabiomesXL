@@ -20,7 +20,7 @@ public class ExtrabiomesPlugin implements IPlugin {
 
 	@Override
 	public String getName() {
-		return "CrackedSand";
+		return "Cracked Sand";
 	}
 
 	@Override
@@ -32,8 +32,7 @@ public class ExtrabiomesPlugin implements IPlugin {
 	public void init() {
 		BiomeManager.wasteland.get().topBlock = (byte) crackedSandID;
 		BiomeManager.wasteland.get().fillerBlock = (byte) crackedSandID;
-		ExtrabiomesLog
-				.info("Installed cracked sand to wasteland biome.");
+		ExtrabiomesLog.info("Added cracked sand to wasteland biome.");
 	}
 
 	@Override

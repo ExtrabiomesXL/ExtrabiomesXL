@@ -33,7 +33,7 @@ import extrabiomes.CommonProxy;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.PluginManager;
 
-@Mod(modid = "EBXLCrackedSand", name = "ExtrabiomesXL CrackedSand Plugin", version = "3.0")
+@Mod(modid = "EBXLCrackedSand", name = "ExtrabiomesXL Cracked Sand Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class CrackedSand {
 
