@@ -13,7 +13,6 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.ExtrabiomesBlock;
-import extrabiomes.api.TerrainGenManager;
 import extrabiomes.blocks.BlockCustomTallGrass;
 
 public class WorldGenGrass extends WorldGenerator {
@@ -52,7 +51,8 @@ public class WorldGenGrass extends WorldGenerator {
 							&& world.canBlockSeeTheSky(k, l, i1);
 				else if (metaToPlace == BlockCustomTallGrass.metaBrown
 						|| metaToPlace == BlockCustomTallGrass.metaShortBrown)
-					canStay = blockUnder == TerrainGenManager.blockMountainRidge.blockID
+					canStay = blockUnder == BiomeManager.mountainridge
+							.get().topBlock
 							&& world.getFullBlockLightValue(k, l, i1) >= 8
 							&& world.canBlockSeeTheSky(k, l, i1);
 				else

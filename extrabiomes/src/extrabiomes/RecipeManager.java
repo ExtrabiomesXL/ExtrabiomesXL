@@ -7,42 +7,17 @@
 package extrabiomes;
 
 import net.minecraft.src.Block;
-import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.IRecipe;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.blocks.BlockCustomFlower;
-import extrabiomes.blocks.BlockRedRock;
 
 public class RecipeManager {
 
 	void registerRecipes() {
-		if (ExtrabiomesBlock.redRock.isPresent()) {
-			OreDictionary.registerOre("rockRed", new ItemStack(
-					ExtrabiomesBlock.redRock.get(), 1,
-					BlockRedRock.metaRedRock));
-			IRecipe recipe = new ShapelessOreRecipe(new ItemStack(
-					Item.clay, 4), "rockRed", Item.bucketWater,
-					Item.bucketWater, Item.bucketWater);
-			Extrabiomes.proxy.addRecipe(recipe);
-
-			recipe = new ShapedOreRecipe(new ItemStack(
-					ExtrabiomesBlock.redRock.get(), 4,
-					BlockRedRock.metaRedRockBrick), new String[] {
-					"rr", "rr" }, 'r', "rockRed");
-			Extrabiomes.proxy.addRecipe(recipe);
-
-			FurnaceRecipes.smelting().addSmelting(
-					ExtrabiomesBlock.redRock.get().blockID,
-					BlockRedRock.metaRedCobble,
-					new ItemStack(ExtrabiomesBlock.redRock.get(), 1,
-							BlockRedRock.metaRedRock));
-		}
-
 		if (ExtrabiomesBlock.flower.isPresent()) {
 			final ItemStack dyeLightBlue = new ItemStack(
 					Item.dyePowder, 1, 12);

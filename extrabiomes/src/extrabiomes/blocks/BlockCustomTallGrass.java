@@ -18,7 +18,6 @@ import net.minecraft.src.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IShearable;
 import extrabiomes.api.BiomeManager;
-import extrabiomes.api.TerrainGenManager;
 
 public class BlockCustomTallGrass extends BlockFlower implements
 		IShearable
@@ -56,7 +55,7 @@ public class BlockCustomTallGrass extends BlockFlower implements
 		final int blockUnder = world.getBlockId(x, y - 1, z);
 
 		return (metaGrass == metaBrown || metaGrass == metaShortBrown)
-				&& blockUnder == TerrainGenManager.blockMountainRidge.blockID
+				&& blockUnder == BiomeManager.mountainridge.get().topBlock
 				|| (metaGrass == metaDead || metaGrass == metaDeadTall || metaGrass == metaDeadYellow)
 				&& blockUnder == BiomeManager.wasteland.get().topBlock
 				|| super.canBlockStay(world, x, y, z);
@@ -65,14 +64,14 @@ public class BlockCustomTallGrass extends BlockFlower implements
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		final int blockUnder = world.getBlockId(x, y, z);
-		return blockUnder == TerrainGenManager.blockMountainRidge.blockID
+		return blockUnder == BiomeManager.mountainridge.get().topBlock
 				|| blockUnder == BiomeManager.wasteland.get().topBlock
 				|| super.canPlaceBlockAt(world, x, y, z);
 	}
 
 	@Override
 	protected boolean canThisPlantGrowOnThisBlockID(int id) {
-		return id == TerrainGenManager.blockMountainRidge.blockID
+		return id == BiomeManager.mountainridge.get().topBlock
 				|| id == BiomeManager.wasteland.get().topBlock
 				|| super.canThisPlantGrowOnThisBlockID(id);
 	}

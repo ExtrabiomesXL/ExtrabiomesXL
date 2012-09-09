@@ -25,10 +25,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import extrabiomes.api.BiomeManager;
 import extrabiomes.api.ExtrabiomesBiomeDecorations;
 import extrabiomes.api.IBiomeDecoration;
-import extrabiomes.api.TerrainGenManager;
 import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.biomes.VanillaBiomeManager;
 import extrabiomes.blocks.BlockManager;
@@ -84,10 +82,6 @@ public class Extrabiomes {
 		recipeManager.registerRecipes();
 
 		BlockManager.addNames();
-
-		if (TerrainGenManager.blockMountainRidge != null)
-			BiomeManager.mountainridge.get().topBlock = BiomeManager.mountainridge
-					.get().fillerBlock = (byte) TerrainGenManager.blockMountainRidge.blockID;
 
 		pluginManager.activatePlugins();
 	}

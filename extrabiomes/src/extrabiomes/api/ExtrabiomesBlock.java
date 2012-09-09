@@ -56,7 +56,6 @@ public class ExtrabiomesBlock {
 	 */
 	public static Optional<Block>	greenLeaves		= Optional.absent();
 	public static Optional<Block>	leafPile		= Optional.absent();
-	public static Optional<Block>	redRock			= Optional.absent();
 
 	/**
 	 * 0 - Brown Autumn<br>

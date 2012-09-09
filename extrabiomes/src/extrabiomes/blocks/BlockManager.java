@@ -9,7 +9,6 @@
 package extrabiomes.blocks;
 
 import static extrabiomes.utility.ConfigSetting.IntegerSettingType.BLOCK_ID;
-import static extrabiomes.utility.ConfigSetting.IntegerSettingType.RESTRICTED_BLOCK_ID;
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 
@@ -18,9 +17,8 @@ import com.google.common.base.Optional;
 import extrabiomes.CommonProxy;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.ExtrabiomesBlock;
-import extrabiomes.plugin.crackedsand.BlockCrackedSand;
+import extrabiomes.plugin.redrock.BlockRedRock;
 import extrabiomes.utility.ConfigSetting;
-
 
 public class BlockManager {
 
@@ -29,21 +27,11 @@ public class BlockManager {
 		final CommonProxy proxy = Extrabiomes.proxy;
 
 		if (ExtrabiomesBlock.catTail.isPresent())
-			proxy.addName(ExtrabiomesBlock.catTail.get(),
-					"Cat Tail");
+			proxy.addName(ExtrabiomesBlock.catTail.get(), "Cat Tail");
 
 		if (ExtrabiomesBlock.leafPile.isPresent())
 			proxy.addName(ExtrabiomesBlock.leafPile.get(), "Leaf Pile");
 
-		if (ExtrabiomesBlock.redRock.isPresent()) {
-			final Block block = ExtrabiomesBlock.redRock.get();
-			proxy.addName(new ItemStack(block, 1,
-					BlockRedRock.metaRedRock), "Red Rock");
-			proxy.addName(new ItemStack(block, 1,
-					BlockRedRock.metaRedCobble), "Red Cobblestone");
-			proxy.addName(new ItemStack(block, 1,
-					BlockRedRock.metaRedRockBrick), "Red Rock Brick");
-		}
 		if (ExtrabiomesBlock.autumnLeaves.isPresent()) {
 			final Block block = ExtrabiomesBlock.autumnLeaves.get();
 			proxy.addName(new ItemStack(block, 1, 0),
@@ -103,46 +91,36 @@ public class BlockManager {
 	}
 
 	@ConfigSetting(key = "classicmode.enable", comment = "Set to true to disable all custom blocks.")
-	boolean					enableClassicMode						= false;
+	boolean					enableClassicMode	= false;
 
 	@ConfigSetting(integerType = BLOCK_ID)
-	int						autumnLeaves							= 150;
+	int						autumnLeaves		= 150;
 
 	@ConfigSetting(integerType = BLOCK_ID)
-	int						catTail									= 151;
+	int						catTail				= 151;
 
 	@ConfigSetting(integerType = BLOCK_ID)
-	int						flower									= 153;
+	int						flower				= 153;
 
 	@ConfigSetting(integerType = BLOCK_ID)
-	int						grass									= 154;
+	int						grass				= 154;
 
 	@ConfigSetting(integerType = BLOCK_ID)
-	int						greenLeaves								= 155;
+	int						greenLeaves			= 155;
 
 	@ConfigSetting(integerType = BLOCK_ID)
-	int						leafPile								= 156;
-
-	@ConfigSetting(integerType = RESTRICTED_BLOCK_ID, comment = "RedRock is used in terrain generation. Its id must be less than 256.")
-	int						redRock									= 158;
+	int						leafPile			= 156;
 
 	@ConfigSetting(integerType = BLOCK_ID)
-	int						sapling									= 159;
+	int						sapling				= 159;
 
-	private static boolean	blocksRegistered						= false;
+	private static boolean	blocksRegistered	= false;
 
 	public void registerBlocks() {
 		if (blocksRegistered) return;
 		blocksRegistered = true;
 
 		if (enableClassicMode) return;
-
-		if (redRock > 0) {
-			ExtrabiomesBlock.redRock = Optional.of(new BlockRedRock(
-					redRock).setBlockName("redrock"));
-			Extrabiomes.proxy.setBlockHarvestLevel(
-					ExtrabiomesBlock.redRock.get(), "pickaxe", 0);
-		}
 
 		if (autumnLeaves > 0)
 			ExtrabiomesBlock.autumnLeaves = Optional
@@ -179,20 +157,18 @@ public class BlockManager {
 
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.leafPile);
 
-		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.redRock,
-				extrabiomes.MultiItemBlock.class);
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.autumnLeaves,
 				extrabiomes.ItemCustomLeaves.class);
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.catTail,
 				extrabiomes.items.ItemCatTail.class);
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.flower,
-				extrabiomes.MultiItemBlock.class);
+				extrabiomes.utility.MultiItemBlock.class);
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.grass,
-				extrabiomes.MultiItemBlock.class);
+				extrabiomes.utility.MultiItemBlock.class);
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.greenLeaves,
 				extrabiomes.ItemCustomLeaves.class);
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.sapling,
-				extrabiomes.MultiItemBlock.class);
+				extrabiomes.utility.MultiItemBlock.class);
 	}
 
 }

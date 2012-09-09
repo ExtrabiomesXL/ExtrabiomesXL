@@ -4,66 +4,52 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.blocks;
+package extrabiomes.plugin.redrock;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static extrabiomes.plugin.redrock.BlockType.RED_COBBLE;
+import static extrabiomes.plugin.redrock.BlockType.RED_ROCK_BRICK;
 
 import java.util.ArrayList;
 
-import extrabiomes.api.TerrainGenManager;
-
 import net.minecraft.src.Block;
-import net.minecraft.src.EnumCreatureType;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 
 public class BlockRedRock extends Block {
-
-	public static final int	metaRedRock			= 0;
-	public static final int	metaRedCobble		= 1;
-	public static final int	metaRedRockBrick	= 2;
-
 	public BlockRedRock(int id) {
 		super(id, 2, Material.rock);
 		setHardness(1.5F);
 		setResistance(2.0F);
 
-		TerrainGenManager.blockMountainRidge = this;
 		setTextureFile("/extrabiomes/extrabiomes.png");
+		setCreativeTab(CreativeTabs.tabBlock);
 	}
 
 	@Override
 	public void addCreativeItems(ArrayList itemList) {
-		checkNotNull(itemList).add(new ItemStack(this, 1, metaRedRock));
-		itemList.add(new ItemStack(this, 1, metaRedCobble));
-		itemList.add(new ItemStack(this, 1, metaRedRockBrick));
-	}
-
-	@Override
-	public boolean canCreatureSpawn(EnumCreatureType type, World world,
-			int x, int y, int z)
-	{
-		return true;
+		for (final BlockType blockType : BlockType.values())
+			itemList.add(new ItemStack(this, 1, blockType.metadata()));
 	}
 
 	@Override
 	protected int damageDropped(int metadata) {
-		return metadata == metaRedRockBrick ? metaRedRockBrick
-				: metaRedCobble;
+		return metadata == RED_ROCK_BRICK.metadata() ? RED_ROCK_BRICK
+				.metadata() : RED_COBBLE.metadata();
 	}
 
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
 		final int meta = world.getBlockMetadata(x, y, z);
-		return meta == metaRedCobble ? 2.0F : blockHardness;
+		return meta == RED_COBBLE.metadata() ? 2.0F : blockHardness;
 	}
 
 	@Override
 	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
-		return metadata == metaRedRockBrick ? 11
-				: metadata == metaRedCobble ? 12 : super
+		return metadata == RED_ROCK_BRICK.metadata() ? 11
+				: metadata == RED_COBBLE.metadata() ? 12 : super
 						.getBlockTextureFromSideAndMetadata(side,
 								metadata);
 	}
