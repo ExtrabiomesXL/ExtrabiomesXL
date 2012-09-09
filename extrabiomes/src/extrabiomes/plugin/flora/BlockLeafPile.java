@@ -4,9 +4,7 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.blocks;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+package extrabiomes.plugin.flora;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,10 +12,13 @@ import java.util.Random;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
 import net.minecraft.src.ColorizerFoliage;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 public class BlockLeafPile extends Block {
 
@@ -35,28 +36,29 @@ public class BlockLeafPile extends Block {
 		setStepSound(soundGrassFootstep);
 		Block.setBurnProperties(id, 30, 60);
 		setTextureFile("/extrabiomes/extrabiomes.png");
+		setCreativeTab(CreativeTabs.tabDeco);
 	}
 
 	@Override
 	public void addCreativeItems(ArrayList itemList) {
-		checkNotNull(itemList).add(new ItemStack(this));
+		itemList.add(new ItemStack(this));
 	}
 
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
-		return canThisPlantGrowOnThisBlockID(checkNotNull(world)
-				.getBlockId(x, y - 1, z));
+		return canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1,
+				z));
 	}
 
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		return super.canPlaceBlockAt(checkNotNull(world), x, y, z)
+		return super.canPlaceBlockAt(world, x, y, z)
 				&& canThisPlantGrowOnThisBlockID(world.getBlockId(x,
 						y - 1, z));
 	}
 
 	private void checkFlowerChange(World world, int x, int y, int z) {
-		if (!canBlockStay(checkNotNull(world), x, y, z)) {
+		if (!canBlockStay(world, x, y, z)) {
 			dropBlockAsItem(world, x, y, z,
 					world.getBlockMetadata(x, y, z), 0);
 			world.setBlockWithNotify(x, y, z, 0);
@@ -64,14 +66,16 @@ public class BlockLeafPile extends Block {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess iBlockAccess, int x, int y,
 			int z)
 	{
-		return checkNotNull(iBlockAccess).getBiomeGenForCoords(x, z)
+		return iBlockAccess.getBiomeGenForCoords(x, z)
 				.getBiomeFoliageColor();
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public int getBlockColor() {
 		return ColorizerFoliage.getFoliageColorBasic();
 	}
@@ -84,6 +88,7 @@ public class BlockLeafPile extends Block {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public int getRenderColor(int metadata) {
 		return getBlockColor();
 	}

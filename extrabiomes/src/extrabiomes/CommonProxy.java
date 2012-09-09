@@ -7,13 +7,15 @@
 package extrabiomes;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import net.minecraft.src.Achievement;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.CraftingManager;
 import net.minecraft.src.IRecipe;
 import net.minecraft.src.ItemBlock;
+import net.minecraft.src.ItemStack;
+import net.minecraft.src.World;
 import net.minecraft.src.WorldType;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.google.common.base.Optional;
@@ -24,19 +26,13 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class CommonProxy {
 
-	public static void addGrassPlant(Block block, int metadata,
-			int weight)
-	{
-		MinecraftForge.addGrassPlant(block, metadata, weight);
-	}
-
-	public void addAchievementDesc(Achievement achievement,
-			String name, String description)
-	{}
-
 	public void addBiome(BiomeGenBase biome) {
 		WorldType.DEFAULT.addNewBiome(checkNotNull(biome));
 		WorldType.LARGE_BIOMES.addNewBiome(biome);
+	}
+
+	public void addGrassPlant(Block block, int metadata, int weight) {
+		MinecraftForge.addGrassPlant(block, metadata, weight);
 	}
 
 	public void addName(Object object, String name) {
@@ -46,6 +42,10 @@ public class CommonProxy {
 
 	public void addRecipe(IRecipe recipe) {
 		CraftingManager.getInstance().getRecipeList().add(recipe);
+	}
+
+	public Optional<ItemStack> getGrassSeed(World world) {
+		return Optional.fromNullable(ForgeHooks.getGrassSeed(world));
 	}
 
 	/**

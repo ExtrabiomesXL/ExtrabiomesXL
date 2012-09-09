@@ -28,7 +28,6 @@ import com.google.common.base.Optional;
  */
 public class TerrainGenManager {
 
-	public static boolean							enableCattailGen		= false;
 	public static boolean							enableAcaciaGen			= true;
 
 	public static Block								blockBrownAutumnLeaves	= Block.leaves;

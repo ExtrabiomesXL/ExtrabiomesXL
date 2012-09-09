@@ -15,8 +15,6 @@ import extrabiomes.api.ExtrabiomesBiomeDecorations;
 import extrabiomes.api.ExtrabiomesBlock;
 import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
-import extrabiomes.blocks.BlockCustomFlower;
-import extrabiomes.blocks.BlockCustomTallGrass;
 import extrabiomes.terrain.BiomeDecoration;
 import extrabiomes.terrain.TreeFactory;
 import extrabiomes.terrain.WorldGenChunkCatTail;
@@ -29,48 +27,7 @@ public class FloraManager {
 
 	private static boolean	initialized	= false;
 
-	private static void configureAutumnWoodsDecorations() {
-		if (ExtrabiomesBlock.flower.isPresent()) {
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.autumnwoods.get(),
-					new BiomeDecoration(2,
-							new WorldGenChunkCustomFlower(
-									BlockCustomFlower.metaToadstool)));
-			ExtrabiomesBiomeDecorations.biomeDecorations
-					.get()
-					.put(BiomeManager.autumnwoods.get(),
-							new BiomeDecoration(
-									2,
-									new WorldGenChunkCustomFlower(
-											BlockCustomFlower.metaAutumnShrub)));
-		}
-	}
-
-	private static void configureGreenHillsDecorations() {
-		if (ExtrabiomesBlock.flower.isPresent()) {
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.greenhills.get(),
-					new BiomeDecoration(new WorldGenChunkCustomFlower(
-							BlockCustomFlower.metaOrange)));
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.greenhills.get(),
-					new BiomeDecoration(new WorldGenChunkCustomFlower(
-							BlockCustomFlower.metaWhite)));
-		}
-	}
-
 	private static void configureGreenSwampDecorations() {
-		if (ExtrabiomesBlock.flower.isPresent()) {
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.greenswamp.get(),
-					new BiomeDecoration(new WorldGenChunkCustomFlower(
-							BlockCustomFlower.metaHydrangea)));
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.greenhills.get(),
-					new BiomeDecoration(15,
-							new WorldGenChunkCustomFlower(
-									BlockCustomFlower.metaRoot)));
-		}
 		if (ExtrabiomesBlock.catTail.isPresent())
 			ExtrabiomesBiomeDecorations.biomeDecorations.get()
 					.put(BiomeManager.greenswamp.get(),
@@ -84,12 +41,6 @@ public class FloraManager {
 	}
 
 	private static void configureMountainRidgeDecorations() {
-		if (ExtrabiomesBlock.flower.isPresent())
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.mountainridge.get(),
-					new BiomeDecoration(10,
-							new WorldGenChunkCustomFlower(
-									BlockCustomFlower.metaTinyCactus)));
 		if (ExtrabiomesBlock.grass.isPresent()) {
 			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
 					BiomeManager.mountainridge.get(),
@@ -111,43 +62,11 @@ public class FloraManager {
 	}
 
 	private static void configureRedwoodLushDecorations() {
-		if (ExtrabiomesBlock.flower.isPresent())
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.redwoodlush.get(),
-					new BiomeDecoration(15,
-							new WorldGenChunkCustomFlower(
-									BlockCustomFlower.metaRoot)));
 		if (ExtrabiomesBlock.leafPile.isPresent())
 			ExtrabiomesBiomeDecorations.biomeDecorations.get()
 					.put(BiomeManager.redwoodlush.get(),
 							new BiomeDecoration(15,
 									new WorldGenChunkLeafPile()));
-	}
-
-	private static void configureSavannaDecorations() {
-		if (ExtrabiomesBlock.flower.isPresent())
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.savanna.get(),
-					new BiomeDecoration(new WorldGenChunkCustomFlower(
-							BlockCustomFlower.metaPurple)));
-	}
-
-	private static void configureSnowRainforestDecorations() {
-		if (ExtrabiomesBlock.flower.isPresent())
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.snowyrainforest.get(),
-					new BiomeDecoration(2,
-							new WorldGenChunkCustomFlower(
-									BlockCustomFlower.metaToadstool)));
-	}
-
-	private static void configureTemperateRainforestDecorations() {
-		if (ExtrabiomesBlock.flower.isPresent())
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.temperaterainforest.get(),
-					new BiomeDecoration(2,
-							new WorldGenChunkCustomFlower(
-									BlockCustomFlower.metaToadstool)));
 	}
 
 	private static void configureTrees() {
@@ -157,15 +76,6 @@ public class FloraManager {
 				.valueOf(Block.dirt.blockID));
 		TerrainGenManager.treesCanGrowOnIDs.add(Integer
 				.valueOf(Block.tilledField.blockID));
-	}
-
-	private static void configureTundraDecorations() {
-		if (ExtrabiomesBlock.flower.isPresent())
-			ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-					BiomeManager.tundra.get(),
-					new BiomeDecoration(2,
-							new WorldGenChunkCustomFlower(
-									BlockCustomFlower.metaToadstool)));
 	}
 
 	private static void configureWastelandDecorations() {
@@ -199,15 +109,9 @@ public class FloraManager {
 
 		configureTrees();
 
-		configureAutumnWoodsDecorations();
-		configureGreenHillsDecorations();
 		configureGreenSwampDecorations();
 		configureMountainRidgeDecorations();
 		configureRedwoodLushDecorations();
-		configureSavannaDecorations();
-		configureSnowRainforestDecorations();
-		configureTemperateRainforestDecorations();
-		configureTundraDecorations();
 		configureWastelandDecorations();
 		configureWoodlandsDecorations();
 	}

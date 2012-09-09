@@ -4,32 +4,26 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.blocks;
+package extrabiomes.plugin.flora;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static extrabiomes.plugin.flora.FlowerType.AUTUMN_SHRUB;
+import static extrabiomes.plugin.flora.FlowerType.HYDRANGEA;
+import static extrabiomes.plugin.flora.FlowerType.ORANGE;
+import static extrabiomes.plugin.flora.FlowerType.PURPLE;
+import static extrabiomes.plugin.flora.FlowerType.WHITE;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import extrabiomes.CommonProxy;
-import extrabiomes.Extrabiomes;
-
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
+import extrabiomes.CommonProxy;
 
 public class BlockCustomFlower extends Block {
-
-	public static final int	metaAutumnShrub	= 0;
-	public static final int	metaHydrangea	= 1;
-	public static final int	metaOrange		= 2;
-	public static final int	metaPurple		= 3;
-	public static final int	metaTinyCactus	= 4;
-	public static final int	metaRoot		= 5;
-	public static final int	metaToadstool	= 6;
-	public static final int	metaWhite		= 7;
 
 	public BlockCustomFlower(int id) {
 		super(id, Material.plants);
@@ -41,32 +35,26 @@ public class BlockCustomFlower extends Block {
 		setHardness(0.0F);
 		setStepSound(Block.soundGrassFootstep);
 
-		final CommonProxy proxy = Extrabiomes.proxy;
-		CommonProxy.addGrassPlant(this, metaAutumnShrub, 2);
-		CommonProxy.addGrassPlant(this, metaHydrangea, 2);
-		CommonProxy.addGrassPlant(this, metaOrange, 5);
-		CommonProxy.addGrassPlant(this, metaPurple, 5);
-		CommonProxy.addGrassPlant(this, metaWhite, 5);
+		final CommonProxy proxy = Flora.proxy;
+		proxy.addGrassPlant(this, AUTUMN_SHRUB.metadata(), 2);
+		proxy.addGrassPlant(this, HYDRANGEA.metadata(), 2);
+		proxy.addGrassPlant(this, ORANGE.metadata(), 5);
+		proxy.addGrassPlant(this, PURPLE.metadata(), 5);
+		proxy.addGrassPlant(this, WHITE.metadata(), 5);
 
+		setCreativeTab(CreativeTabs.tabDeco);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
 	@Override
 	public void addCreativeItems(ArrayList itemList) {
-		checkNotNull(itemList).add(
-				new ItemStack(this, 1, metaAutumnShrub));
-		itemList.add(new ItemStack(this, 1, metaHydrangea));
-		itemList.add(new ItemStack(this, 1, metaOrange));
-		itemList.add(new ItemStack(this, 1, metaPurple));
-		itemList.add(new ItemStack(this, 1, metaTinyCactus));
-		itemList.add(new ItemStack(this, 1, metaRoot));
-		itemList.add(new ItemStack(this, 1, metaToadstool));
-		itemList.add(new ItemStack(this, 1, metaWhite));
+		for (final FlowerType type : FlowerType.values())
+			itemList.add(new ItemStack(this, 1, type.metadata()));
 	}
 
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
-		return (checkNotNull(world).getFullBlockLightValue(x, y, z) >= 8 || world
+		return (world.getFullBlockLightValue(x, y, z) >= 8 || world
 				.canBlockSeeTheSky(x, y, z))
 				&& canThisPlantGrowOnThisBlockID(world.getBlockId(x,
 						y - 1, z));
@@ -75,19 +63,19 @@ public class BlockCustomFlower extends Block {
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		return super.canPlaceBlockAt(world, x, y, z)
-				&& canThisPlantGrowOnThisBlockID(checkNotNull(world)
-						.getBlockId(x, y - 1, z));
+				&& canThisPlantGrowOnThisBlockID(world.getBlockId(x,
+						y - 1, z));
 	}
 
-	protected boolean canThisPlantGrowOnThisBlockID(int id) {
+	private boolean canThisPlantGrowOnThisBlockID(int id) {
 		return id == Block.grass.blockID || id == Block.dirt.blockID
 				|| id == Block.tilledField.blockID;
 	}
 
-	protected void checkFlowerChange(World world, int x, int y, int z) {
+	private void checkFlowerChange(World world, int x, int y, int z) {
 		if (!canBlockStay(world, x, y, z)) {
-			dropBlockAsItem(world, x, y, z, checkNotNull(world)
-					.getBlockMetadata(x, y, z), 0);
+			dropBlockAsItem(world, x, y, z,
+					world.getBlockMetadata(x, y, z), 0);
 			world.setBlockWithNotify(x, y, z, 0);
 		}
 	}
@@ -98,8 +86,10 @@ public class BlockCustomFlower extends Block {
 	}
 
 	@Override
-	public int getBlockTextureFromSideAndMetadata(int side, int md) {
-		return super.getBlockTextureFromSideAndMetadata(side, md) + md;
+	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
+	{
+		return super.getBlockTextureFromSideAndMetadata(side, metadata)
+				+ metadata;
 	}
 
 	@Override
@@ -123,7 +113,6 @@ public class BlockCustomFlower extends Block {
 	public void onNeighborBlockChange(World world, int x, int y, int z,
 			int id)
 	{
-		super.onNeighborBlockChange(world, x, y, z, id);
 		checkFlowerChange(world, x, y, z);
 	}
 

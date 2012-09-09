@@ -4,16 +4,13 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.blocks;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+package extrabiomes.plugin.flora;
 
 import java.util.ArrayList;
 
-import extrabiomes.api.TerrainGenManager;
-
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockFlower;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
@@ -28,38 +25,35 @@ public class BlockCatTail extends BlockFlower {
 		final float f = 0.375F;
 		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F,
 				0.5F + f);
-
-		TerrainGenManager.enableCattailGen = true;
+		setCreativeTab(CreativeTabs.tabDeco);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
 	@Override
 	public void addCreativeItems(ArrayList itemList) {
-		checkNotNull(itemList).add(new ItemStack(this));
+		itemList.add(new ItemStack(this));
 	}
 
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
-		return canPlaceBlockAt(checkNotNull(world), x, y, z);
+		return canPlaceBlockAt(world, x, y, z);
 	}
 
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		final int blockId = checkNotNull(world).getBlockId(x, y - 1, z);
+		final int blockId = world.getBlockId(x, y - 1, z);
 
 		if (blockId != Block.grass.blockID
 				&& blockId != Block.dirt.blockID) return false;
 
-		if (world.getBlockMaterial(x - 1, y - 1, z) == Material.water)
-			return true;
+		y--;
 
-		if (world.getBlockMaterial(x + 1, y - 1, z) == Material.water)
-			return true;
+		for (int offset = -1; offset < 2; offset += 2)
+			if (world.getBlockMaterial(x + offset, y, z) == Material.water
+					|| world.getBlockMaterial(x, y, z + offset) == Material.water)
+				return true;
 
-		if (world.getBlockMaterial(x, y - 1, z - 1) == Material.water)
-			return true;
-
-		return world.getBlockMaterial(x, y - 1, z + 1) == Material.water;
+		return false;
 	}
 
 	@Override
@@ -71,7 +65,7 @@ public class BlockCatTail extends BlockFlower {
 	public void onNeighborBlockChange(World world, int x, int y, int z,
 			int idNeighbor)
 	{
-		if (!canBlockStay(checkNotNull(world), x, y, z)) {
+		if (!canBlockStay(world, x, y, z)) {
 			dropBlockAsItem(world, x, y, z,
 					world.getBlockMetadata(x, y, z), 0);
 			world.setBlockWithNotify(x, y, z, 0);

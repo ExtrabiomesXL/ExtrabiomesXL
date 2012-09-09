@@ -26,36 +26,12 @@ public class ExtrabiomesBlock {
 	 */
 	public static Optional<Block>	autumnLeaves	= Optional.absent();
 
-	public static Optional<Block>	catTail			= Optional.absent();
-
-	/**
-	 * 0 - Autumn Shrub<br>
-	 * 1 - Hydrangea<br>
-	 * 2 - Orange Flower<br>
-	 * 3 - Purple Flower<br>
-	 * 4 - Tiny Cactus<br>
-	 * 5 - Root<br>
-	 * 6 - Toadstool<br>
-	 * 7 - White Flower
-	 */
-	public static Optional<Block>	flower			= Optional.absent();
-
-	/**
-	 * 0 - Brown<br>
-	 * 1 - Short Brown<br>
-	 * 2 - Dead<br>
-	 * 3 - Tall Dead<br>
-	 * 4 - Yellow Dead
-	 */
-	public static Optional<Block>	grass			= Optional.absent();
-
 	/**
 	 * 0 - Fir<br>
 	 * 1 - Redwood<br>
 	 * 2 - Acacia
 	 */
 	public static Optional<Block>	greenLeaves		= Optional.absent();
-	public static Optional<Block>	leafPile		= Optional.absent();
 
 	/**
 	 * 0 - Brown Autumn<br>

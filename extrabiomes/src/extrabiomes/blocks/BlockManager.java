@@ -17,7 +17,6 @@ import com.google.common.base.Optional;
 import extrabiomes.CommonProxy;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.ExtrabiomesBlock;
-import extrabiomes.plugin.redrock.BlockRedRock;
 import extrabiomes.utility.ConfigSetting;
 
 public class BlockManager {
@@ -25,12 +24,6 @@ public class BlockManager {
 	public static void addNames() {
 
 		final CommonProxy proxy = Extrabiomes.proxy;
-
-		if (ExtrabiomesBlock.catTail.isPresent())
-			proxy.addName(ExtrabiomesBlock.catTail.get(), "Cat Tail");
-
-		if (ExtrabiomesBlock.leafPile.isPresent())
-			proxy.addName(ExtrabiomesBlock.leafPile.get(), "Leaf Pile");
 
 		if (ExtrabiomesBlock.autumnLeaves.isPresent()) {
 			final Block block = ExtrabiomesBlock.autumnLeaves.get();
@@ -42,29 +35,6 @@ public class BlockManager {
 					"Purple Autumn Leaves");
 			proxy.addName(new ItemStack(block, 1, 3),
 					"Yellow Autumn Leaves");
-		}
-
-		if (ExtrabiomesBlock.flower.isPresent()) {
-			final Block block = ExtrabiomesBlock.flower.get();
-			proxy.addName(new ItemStack(block, 1, 0), "Autumn Shrub");
-			proxy.addName(new ItemStack(block, 1, 1), "Hydrangea");
-			proxy.addName(new ItemStack(block, 1, 2), "Orange Flower");
-			proxy.addName(new ItemStack(block, 1, 3), "Purple Flower");
-			proxy.addName(new ItemStack(block, 1, 4), "Tiny Cactus");
-			proxy.addName(new ItemStack(block, 1, 5), "Root");
-			proxy.addName(new ItemStack(block, 1, 6), "Toad Stool");
-			proxy.addName(new ItemStack(block, 1, 7), "White Flower");
-		}
-
-		if (ExtrabiomesBlock.grass.isPresent()) {
-			final Block block = ExtrabiomesBlock.grass.get();
-			proxy.addName(new ItemStack(block, 1, 0), "Brown Grass");
-			proxy.addName(new ItemStack(block, 1, 1),
-					"Short Brown Grass");
-			proxy.addName(new ItemStack(block, 1, 2), "Dead Grass");
-			proxy.addName(new ItemStack(block, 1, 3), "Tall Dead Grass");
-			proxy.addName(new ItemStack(block, 1, 4),
-					"Yellow Dead Grass");
 		}
 
 		if (ExtrabiomesBlock.greenLeaves.isPresent()) {
@@ -97,19 +67,7 @@ public class BlockManager {
 	int						autumnLeaves		= 150;
 
 	@ConfigSetting(integerType = BLOCK_ID)
-	int						catTail				= 151;
-
-	@ConfigSetting(integerType = BLOCK_ID)
-	int						flower				= 153;
-
-	@ConfigSetting(integerType = BLOCK_ID)
-	int						grass				= 154;
-
-	@ConfigSetting(integerType = BLOCK_ID)
 	int						greenLeaves			= 155;
-
-	@ConfigSetting(integerType = BLOCK_ID)
-	int						leafPile			= 156;
 
 	@ConfigSetting(integerType = BLOCK_ID)
 	int						sapling				= 159;
@@ -132,39 +90,13 @@ public class BlockManager {
 					.of(new BlockGreenLeaves(greenLeaves)
 							.setBlockName("greenleaves"));
 
-		if (flower > 0)
-			ExtrabiomesBlock.flower = Optional
-					.of(new BlockCustomFlower(flower)
-							.setBlockName("flower"));
-
-		if (grass > 0)
-			ExtrabiomesBlock.grass = Optional
-					.of(new BlockCustomTallGrass(grass)
-							.setBlockName("grass"));
-
 		if (sapling > 0)
 			ExtrabiomesBlock.sapling = Optional
 					.of(new BlockCustomSapling(sapling)
 							.setBlockName("sapling"));
 
-		if (catTail > 0)
-			ExtrabiomesBlock.catTail = Optional.of(new BlockCatTail(
-					catTail).setBlockName("cattail"));
-
-		if (leafPile > 0)
-			ExtrabiomesBlock.leafPile = Optional.of(new BlockLeafPile(
-					leafPile).setBlockName("leafpile"));
-
-		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.leafPile);
-
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.autumnLeaves,
 				extrabiomes.ItemCustomLeaves.class);
-		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.catTail,
-				extrabiomes.items.ItemCatTail.class);
-		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.flower,
-				extrabiomes.utility.MultiItemBlock.class);
-		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.grass,
-				extrabiomes.utility.MultiItemBlock.class);
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.greenLeaves,
 				extrabiomes.ItemCustomLeaves.class);
 		Extrabiomes.proxy.registerBlock(ExtrabiomesBlock.sapling,
