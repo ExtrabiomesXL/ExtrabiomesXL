@@ -51,32 +51,9 @@ public class BlockCustomTallGrass extends BlockFlower implements
 	}
 
 	@Override
-	public boolean canBlockStay(World world, int x, int y, int z) {
-		final int metaGrass = world.getBlockMetadata(x, y, z);
-		final int blockUnder = world.getBlockId(x, y - 1, z);
-
-		if (metaGrass == BROWN.metadata()
-				|| metaGrass == SHORT_BROWN.metadata())
-			return blockUnder == BiomeManager.mountainridge.get().topBlock;
-		if (metaGrass == DEAD.metadata()
-				|| metaGrass == DEAD_TALL.metadata()
-				|| metaGrass == DEAD_YELLOW.metadata())
-			return blockUnder == BiomeManager.wasteland.get().topBlock;
-		return super.canBlockStay(world, x, y, z);
-	}
-
-	@Override
-	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		final int blockUnder = world.getBlockId(x, y, z);
-		return blockUnder == BiomeManager.mountainridge.get().topBlock
-				|| blockUnder == BiomeManager.wasteland.get().topBlock
-				|| super.canPlaceBlockAt(world, x, y, z);
-	}
-
-	@Override
 	protected boolean canThisPlantGrowOnThisBlockID(int id) {
-		return id == BiomeManager.mountainridge.get().topBlock
-				|| id == BiomeManager.wasteland.get().topBlock
+		return ((byte)id) == BiomeManager.mountainridge.get().topBlock
+				|| ((byte)id) == BiomeManager.wasteland.get().topBlock
 				|| super.canThisPlantGrowOnThisBlockID(id);
 	}
 

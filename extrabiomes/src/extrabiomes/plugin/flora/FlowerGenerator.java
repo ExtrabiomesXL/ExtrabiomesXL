@@ -44,8 +44,8 @@ public class FlowerGenerator implements IWorldGenerator {
 				ORANGE.metadata());
 		purpleGen = new WorldGenMetadataFlowers(flowerID,
 				PURPLE.metadata());
-		rootGen = new WorldGenMetadataFlowers(flowerID, ROOT.metadata());
-		tinyCactusGen = new WorldGenMetadataFlowers(flowerID,
+		rootGen = new WorldGenRoot(flowerID, ROOT.metadata());
+		tinyCactusGen = new WorldGenTinyCactus(flowerID,
 				TINY_CACTUS.metadata());
 		toadStoolGen = new WorldGenMetadataFlowers(flowerID,
 				TOADSTOOL.metadata());

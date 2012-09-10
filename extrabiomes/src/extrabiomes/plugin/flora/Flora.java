@@ -11,14 +11,23 @@ import static extrabiomes.plugin.flora.FlowerType.ORANGE;
 import static extrabiomes.plugin.flora.FlowerType.PURPLE;
 import static extrabiomes.plugin.flora.FlowerType.TOADSTOOL;
 import static extrabiomes.plugin.flora.FlowerType.WHITE;
+import static extrabiomes.plugin.flora.GrassType.BROWN;
+import static extrabiomes.plugin.flora.GrassType.DEAD;
+import static extrabiomes.plugin.flora.GrassType.DEAD_TALL;
+import static extrabiomes.plugin.flora.GrassType.DEAD_YELLOW;
+import static extrabiomes.plugin.flora.GrassType.SHORT_BROWN;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Level;
 
+import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.IRecipe;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.WorldGenTallGrass;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -35,6 +44,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.CommonProxy;
 import extrabiomes.ExtrabiomesLog;
+import extrabiomes.api.BiomeManager;
+import extrabiomes.biomes.BiomeManagerImpl;
 
 @Mod(modid = "EBXLFlora", name = "ExtrabiomesXL Flora Plugin", version = "3.0 PR1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -42,7 +53,7 @@ public class Flora {
 
 	@SidedProxy(clientSide = "extrabiomes.client.ClientProxy", serverSide = "extrabiomes.CommonProxy")
 	public static CommonProxy		proxy;
-	@Instance("ExtrabiomesXL")
+	@Instance("EBXLFlora")
 	public static Flora				instance;
 	private static int				catTailId;
 	private static int				flowerId;
@@ -71,6 +82,8 @@ public class Flora {
 				extrabiomes.plugin.flora.ItemCatTail.class);
 
 		proxy.addName(catTail.get(), "Cat Tail");
+
+		proxy.registerWorldGenerator(new CatTailGenerator(catTailId));
 	}
 
 	private static void initFlower() {
@@ -101,6 +114,26 @@ public class Flora {
 			proxy.addName(
 					new ItemStack(grass.get(), 1, blockType.metadata()),
 					blockType.itemName());
+
+		BiomeManager.addWeightedGrassGenForBiome(
+				BiomeManager.mountainridge.get(),
+				new WorldGenTallGrass(grassId, BROWN.metadata()), 100);
+		BiomeManager.addWeightedGrassGenForBiome(
+				BiomeManager.mountainridge.get(),
+				new WorldGenTallGrass(grassId, SHORT_BROWN.metadata()),
+				100);
+
+		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
+				.get(),
+				new WorldGenTallGrass(grassId, DEAD.metadata()), 90);
+		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
+				.get(),
+				new WorldGenTallGrass(grassId, DEAD_YELLOW.metadata()),
+				90);
+		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
+				.get(),
+				new WorldGenTallGrass(grassId, DEAD_TALL.metadata()),
+				70);
 	}
 
 	private static void initLeafPile() {
@@ -115,6 +148,7 @@ public class Flora {
 		proxy.addRecipe(recipe);
 
 		proxy.addName(leafPile.get(), "Leaf Pile");
+		proxy.registerWorldGenerator(new LeafPileGenerator(leafPileId));
 	}
 
 	public static boolean isCatTailEnabled() {
@@ -133,42 +167,6 @@ public class Flora {
 		return 0 < leafPileId;
 	}
 
-	private static void loadCatTailSettings(Configuration cfg) {
-		catTailId = cfg.getOrCreateBlockIdProperty("cattail.id", 151)
-				.getInt(0);
-
-		if (!isCatTailEnabled())
-			ExtrabiomesLog
-					.info("cattail.id = 0, so cat tail has been disabled.");
-	}
-
-	private static void loadFlowerSettings(Configuration cfg) {
-		flowerId = cfg.getOrCreateBlockIdProperty("flower.id", 153)
-				.getInt(0);
-
-		if (!isFlowerEnabled())
-			ExtrabiomesLog
-					.info("flower.id = 0, so flower has been disabled.");
-	}
-
-	private static void loadGrassSettings(Configuration cfg) {
-		grassId = cfg.getOrCreateBlockIdProperty("grass.id", 154)
-				.getInt(0);
-
-		if (!isGrassEnabled())
-			ExtrabiomesLog
-					.info("grass.id = 0, so grass has been disabled.");
-	}
-
-	private static void loadLeafPileSettings(Configuration cfg) {
-		leafPileId = cfg.getOrCreateBlockIdProperty("leafpile.id", 156)
-				.getInt(0);
-
-		if (!isLeafPileEnabled())
-			ExtrabiomesLog
-					.info("leafpile.id = 0, so leaf pile has been disabled.");
-	}
-
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
@@ -178,10 +176,10 @@ public class Flora {
 		try {
 			cfg.load();
 
-			loadCatTailSettings(cfg);
-			loadFlowerSettings(cfg);
-			loadGrassSettings(cfg);
-			loadLeafPileSettings(cfg);
+			preInitCatTail(cfg);
+			preInitFlower(cfg);
+			preInitGrass(cfg);
+			preInitLeafPile(cfg);
 
 		} catch (final Exception e) {
 			ExtrabiomesLog
@@ -190,6 +188,47 @@ public class Flora {
 		} finally {
 			cfg.save();
 		}
+	}
+
+	private static void preInitCatTail(Configuration cfg) {
+		catTailId = cfg.getOrCreateBlockIdProperty("cattail.id", 151)
+				.getInt(0);
+
+		if (!isCatTailEnabled())
+			ExtrabiomesLog
+					.info("cattail.id = 0, so cat tail has been disabled.");
+	}
+
+	private static void preInitFlower(Configuration cfg) {
+		flowerId = cfg.getOrCreateBlockIdProperty("flower.id", 153)
+				.getInt(0);
+
+		if (!isFlowerEnabled())
+			ExtrabiomesLog
+					.info("flower.id = 0, so flower has been disabled.");
+	}
+
+	private static void preInitGrass(Configuration cfg) {
+		grassId = cfg.getOrCreateBlockIdProperty("grass.id", 154)
+				.getInt(0);
+
+		if (!isGrassEnabled())
+			ExtrabiomesLog
+					.info("grass.id = 0, so grass has been disabled.");
+
+		final Collection<BiomeGenBase> biomes = new ArrayList();
+		biomes.add(BiomeManager.mountainridge.get());
+		biomes.add(BiomeManager.wasteland.get());
+		BiomeManagerImpl.disableDefaultGrassforBiomes(biomes);
+	}
+
+	private static void preInitLeafPile(Configuration cfg) {
+		leafPileId = cfg.getOrCreateBlockIdProperty("leafpile.id", 156)
+				.getInt(0);
+
+		if (!isLeafPileEnabled())
+			ExtrabiomesLog
+					.info("leafpile.id = 0, so leaf pile has been disabled.");
 	}
 
 	private static void setFlowerRecipes() {

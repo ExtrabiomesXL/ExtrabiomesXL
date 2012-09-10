@@ -6,9 +6,9 @@
 
 package extrabiomes.biomes;
 
-import extrabiomes.terrain.CustomBiomeDecorator;
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeWasteland extends ExtrabiomeGenBase {
 
@@ -30,8 +30,8 @@ public class BiomeWasteland extends ExtrabiomeGenBase {
 
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).deadBushPerChunk(3)
-				.build();
+		return new CustomBiomeDecorator.Builder(this)
+				.deadBushPerChunk(3).grassPerChunk(4).build();
 	}
 
 }
