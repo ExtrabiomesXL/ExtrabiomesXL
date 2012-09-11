@@ -30,11 +30,6 @@ public class BlockCatTail extends BlockFlower {
 	}
 
 	@Override
-	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(this));
-	}
-
-	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
 		return canPlaceBlockAt(world, x, y, z);
 	}

@@ -10,12 +10,15 @@ import static extrabiomes.plugin.redrock.BlockType.RED_COBBLE;
 import static extrabiomes.plugin.redrock.BlockType.RED_ROCK_BRICK;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 public class BlockRedRock extends Block {
 	public BlockRedRock(int id) {
@@ -52,5 +55,14 @@ public class BlockRedRock extends Block {
 				: metadata == RED_COBBLE.metadata() ? 12 : super
 						.getBlockTextureFromSideAndMetadata(side,
 								metadata);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
+		if (tab == CreativeTabs.tabBlock)
+			for (final BlockType blockType : BlockType.values())
+				itemList.add(new ItemStack(this, 1, blockType
+						.metadata()));
 	}
 }

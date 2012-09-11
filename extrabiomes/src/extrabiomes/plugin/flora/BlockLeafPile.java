@@ -6,7 +6,6 @@
 
 package extrabiomes.plugin.flora;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.src.AxisAlignedBB;
@@ -14,7 +13,6 @@ import net.minecraft.src.Block;
 import net.minecraft.src.ColorizerFoliage;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.IBlockAccess;
-import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
@@ -37,11 +35,6 @@ public class BlockLeafPile extends Block {
 		Block.setBurnProperties(id, 30, 60);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 		setCreativeTab(CreativeTabs.tabDeco);
-	}
-
-	@Override
-	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(this));
 	}
 
 	@Override

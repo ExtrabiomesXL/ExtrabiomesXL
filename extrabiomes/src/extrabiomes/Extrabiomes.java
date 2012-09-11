@@ -78,6 +78,9 @@ public class Extrabiomes {
 	@PostInit
 	public static void postInit(FMLPostInitializationEvent event) {
 
+		final RecipeManager recipeManager = new RecipeManager();
+		recipeManager.registerRecipes();
+
 		BlockManager.addNames();
 
 		pluginManager.activatePlugins();

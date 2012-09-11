@@ -36,11 +36,6 @@ public class BlockCrackedSand extends Block {
 		setCreativeTab(CreativeTabs.tabBlock);
 	}
 
-	@Override
-	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(this));
-	}
-
 	private void changeNeighbor(World world, int x, int y, int z) {
 		if (world.getBlockLightValue(x, y + 1, z) < 15) return;
 

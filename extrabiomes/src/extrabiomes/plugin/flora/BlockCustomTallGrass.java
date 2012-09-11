@@ -6,13 +6,12 @@
 
 package extrabiomes.plugin.flora;
 
-import static extrabiomes.plugin.flora.GrassType.BROWN;
 import static extrabiomes.plugin.flora.GrassType.DEAD;
 import static extrabiomes.plugin.flora.GrassType.DEAD_TALL;
 import static extrabiomes.plugin.flora.GrassType.DEAD_YELLOW;
-import static extrabiomes.plugin.flora.GrassType.SHORT_BROWN;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.src.BlockFlower;
@@ -45,15 +44,9 @@ public class BlockCustomTallGrass extends BlockFlower implements
 	}
 
 	@Override
-	public void addCreativeItems(ArrayList itemList) {
-		for (final GrassType type : GrassType.values())
-			itemList.add(new ItemStack(this, 1, type.metadata()));
-	}
-
-	@Override
 	protected boolean canThisPlantGrowOnThisBlockID(int id) {
-		return ((byte)id) == BiomeManager.mountainridge.get().topBlock
-				|| ((byte)id) == BiomeManager.wasteland.get().topBlock
+		return (byte) id == BiomeManager.mountainridge.get().topBlock
+				|| (byte) id == BiomeManager.wasteland.get().topBlock
 				|| super.canThisPlantGrowOnThisBlockID(id);
 	}
 
@@ -88,6 +81,14 @@ public class BlockCustomTallGrass extends BlockFlower implements
 	{
 		return super.getBlockTextureFromSideAndMetadata(side, metadata)
 				+ metadata;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
+		if (tab == CreativeTabs.tabDeco)
+			for (final GrassType type : GrassType.values())
+				itemList.add(new ItemStack(this, 1, type.metadata()));
 	}
 
 	@Override
