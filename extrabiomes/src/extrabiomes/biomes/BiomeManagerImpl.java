@@ -54,7 +54,6 @@ import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
-import extrabiomes.flora.FloraManager;
 import extrabiomes.terrain.TreeFactory;
 import extrabiomes.terrain.WorldGenCustomSwamp;
 import extrabiomes.utility.WeightedRandomChooser;
@@ -139,6 +138,8 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 
+
+
 	// @formatter:off
 	private static final WorldGenerator	ALT_TAIGA_GEN		  = new WorldGenTaiga2(false);
 	private static final WorldGenerator	BIG_OAK_TREE_GEN	  = new WorldGenBigTree(false);
@@ -164,6 +165,8 @@ public class BiomeManagerImpl extends BiomeManager {
 
 	private static boolean initialized	= false;
 	// @formatter:on
+
+	private static final Collection<BiomeGenBase>										disableDefaultGrassBiomes	= new ArrayList();
 
 	private static void addAlpineTrees(BiomeGenBase biome) {
 		addWeightedTreeGenForBiome(biome, TerrainGenManager.treeFactory
@@ -255,7 +258,8 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 	private static void addGrass(BiomeGenBase biome) {
-		addWeightedGrassGenForBiome(biome, GRASS_GEN, 100);
+		if (!disableDefaultGrassBiomes.contains(biome))
+			addWeightedGrassGenForBiome(biome, GRASS_GEN, 100);
 	}
 
 	private static void addGrassandFerns(BiomeGenBase biome) {
@@ -398,6 +402,12 @@ public class BiomeManagerImpl extends BiomeManager {
 		addDefaultTrees(woodlands.get());
 	}
 
+	public static void disableDefaultGrassforBiomes(
+			Collection<BiomeGenBase> biomes)
+	{
+		disableDefaultGrassBiomes.addAll(biomes);
+	}
+
 	private static void enableVillages() {
 		for (final BiomeEnum biome : BiomeEnum
 				.getBiomesAllowingVillages())
@@ -444,6 +454,10 @@ public class BiomeManagerImpl extends BiomeManager {
 		woodlands = Optional.of(BiomeEnum.WOODLANDS.getBiome());
 	}
 
+	public static void preInit() {
+		populateAPIBiomes();
+	}
+
 	public BiomeManagerImpl() {
 		instance = Optional.of(this);
 	}
@@ -484,7 +498,6 @@ public class BiomeManagerImpl extends BiomeManager {
 
 		addEnabledBiomes();
 		enableVillages();
-		populateAPIBiomes();
 		buildBiomeList();
 		buildWeightedBiomeTreeList();
 		buildWeightedBiomeGrassList();

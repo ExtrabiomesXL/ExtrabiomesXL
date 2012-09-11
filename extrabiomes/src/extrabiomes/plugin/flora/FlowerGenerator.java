@@ -44,8 +44,8 @@ public class FlowerGenerator implements IWorldGenerator {
 				ORANGE.metadata());
 		purpleGen = new WorldGenMetadataFlowers(flowerID,
 				PURPLE.metadata());
-		rootGen = new WorldGenMetadataFlowers(flowerID, ROOT.metadata());
-		tinyCactusGen = new WorldGenMetadataFlowers(flowerID,
+		rootGen = new WorldGenRoot(flowerID, ROOT.metadata());
+		tinyCactusGen = new WorldGenTinyCactus(flowerID,
 				TINY_CACTUS.metadata());
 		toadStoolGen = new WorldGenMetadataFlowers(flowerID,
 				TOADSTOOL.metadata());
@@ -82,17 +82,18 @@ public class FlowerGenerator implements IWorldGenerator {
 				toadStoolGen.generate(world, rand, x, y, z);
 			}
 
-		if (biome == BiomeManager.greenhills.get()) {
-			int x = chunkX + rand.nextInt(16) + 8;
-			int y = rand.nextInt(128);
-			int z = chunkZ + rand.nextInt(16) + 8;
-			orangeGen.generate(world, rand, x, y, z);
+		if (biome == BiomeManager.greenhills.get())
+			for (int i = 0; i < 3; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				orangeGen.generate(world, rand, x, y, z);
 
-			x = chunkX + rand.nextInt(16) + 8;
-			y = rand.nextInt(128);
-			z = chunkZ + rand.nextInt(16) + 8;
-			whiteGen.generate(world, rand, x, y, z);
-		}
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				whiteGen.generate(world, rand, x, y, z);
+			}
 
 		if (biome == BiomeManager.greenswamp.get()) {
 			final int x = chunkX + rand.nextInt(16) + 8;
@@ -111,19 +112,28 @@ public class FlowerGenerator implements IWorldGenerator {
 			}
 
 		if (biome == BiomeManager.mountainridge.get())
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 50; i++) {
 				final int x = chunkX + rand.nextInt(16) + 8;
 				final int y = rand.nextInt(128);
 				final int z = chunkZ + rand.nextInt(16) + 8;
 				tinyCactusGen.generate(world, rand, x, y, z);
 			}
 
-		if (biome == BiomeManager.savanna.get()) {
-			final int x = chunkX + rand.nextInt(16) + 8;
-			final int y = rand.nextInt(128);
-			final int z = chunkZ + rand.nextInt(16) + 8;
-			purpleGen.generate(world, rand, x, y, z);
-		}
+		if (biome == BiomeManager.mountaindesert.get())
+			for (int i = 0; i < 12; i++) {
+				final int x = chunkX + rand.nextInt(16) + 8;
+				final int y = rand.nextInt(128);
+				final int z = chunkZ + rand.nextInt(16) + 8;
+				tinyCactusGen.generate(world, rand, x, y, z);
+			}
+
+		if (biome == BiomeManager.savanna.get())
+			for (int i = 0; i < 15; i++) {
+				final int x = chunkX + rand.nextInt(16) + 8;
+				final int y = rand.nextInt(128);
+				final int z = chunkZ + rand.nextInt(16) + 8;
+				purpleGen.generate(world, rand, x, y, z);
+			}
 	}
 
 }

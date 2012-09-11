@@ -12,7 +12,7 @@ import static extrabiomes.plugin.flora.FlowerType.ORANGE;
 import static extrabiomes.plugin.flora.FlowerType.PURPLE;
 import static extrabiomes.plugin.flora.FlowerType.WHITE;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.src.AxisAlignedBB;
@@ -21,7 +21,10 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.CommonProxy;
+import extrabiomes.api.BiomeManager;
 
 public class BlockCustomFlower extends Block {
 
@@ -47,12 +50,6 @@ public class BlockCustomFlower extends Block {
 	}
 
 	@Override
-	public void addCreativeItems(ArrayList itemList) {
-		for (final FlowerType type : FlowerType.values())
-			itemList.add(new ItemStack(this, 1, type.metadata()));
-	}
-
-	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
 		return (world.getFullBlockLightValue(x, y, z) >= 8 || world
 				.canBlockSeeTheSky(x, y, z))
@@ -68,8 +65,11 @@ public class BlockCustomFlower extends Block {
 	}
 
 	private boolean canThisPlantGrowOnThisBlockID(int id) {
-		return id == Block.grass.blockID || id == Block.dirt.blockID
-				|| id == Block.tilledField.blockID;
+		return id == Block.grass.blockID
+				|| id == Block.dirt.blockID
+				|| id == Block.tilledField.blockID
+				|| id == Block.sand.blockID
+				|| (byte) id == BiomeManager.mountainridge.get().topBlock;
 	}
 
 	private void checkFlowerChange(World world, int x, int y, int z) {
@@ -102,6 +102,29 @@ public class BlockCustomFlower extends Block {
 	@Override
 	public int getRenderType() {
 		return 1;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world,
+			int x, int y, int z)
+	{
+		final int metadata = world.getBlockMetadata(x, y, z);
+
+		if (metadata == FlowerType.TINY_CACTUS.metadata())
+			return super.getSelectedBoundingBoxFromPool(world, x, y, z);
+
+		return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool(x, y,
+				z, x + 1, y + maxY, z + 1);
+
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
+		if (tab == CreativeTabs.tabDeco)
+			for (final FlowerType type : FlowerType.values())
+				itemList.add(new ItemStack(this, 1, type.metadata()));
 	}
 
 	@Override
