@@ -6,10 +6,10 @@
 
 package extrabiomes.terrain;
 
-import extrabiomes.api.ITreeFactory;
-import extrabiomes.api.TerrainGenManager;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.api.ITreeFactory;
+import extrabiomes.api.TerrainGenManager;
 
 public class TreeFactory implements ITreeFactory {
 
@@ -61,8 +61,6 @@ public class TreeFactory implements ITreeFactory {
 		return new WorldGenAutumnTree(doBlockNotify, leaf, wood);
 	}
 
-	WorldGenerator	treeAcacia					= null;
-	WorldGenerator	treeAcaciaNotify			= null;
 	WorldGenerator	treeAutumnBrown				= null;
 	WorldGenerator	treeAutumnBrownBig			= null;
 	WorldGenerator	treeAutumnBrownBigNotify	= null;
@@ -219,16 +217,6 @@ public class TreeFactory implements ITreeFactory {
 				if (treeRedwood == null)
 					treeRedwood = new WorldGenRedwood(doBlockNotify);
 				return treeRedwood;
-			case ACACIA:
-				if (doBlockNotify) {
-					if (treeAcaciaNotify == null)
-						treeAcaciaNotify = new WorldGenAcacia(
-								doBlockNotify);
-					return treeAcaciaNotify;
-				}
-				if (treeAcacia == null)
-					treeAcacia = new WorldGenAcacia(doBlockNotify);
-				return treeAcacia;
 		}
 
 		return null;
@@ -304,12 +292,6 @@ public class TreeFactory implements ITreeFactory {
 					treeRedwoodNotify = tree;
 				else
 					treeRedwood = tree;
-				break;
-			case ACACIA:
-				if (doNotify)
-					treeAcaciaNotify = tree;
-				else
-					treeAcacia = tree;
 				break;
 		}
 	}

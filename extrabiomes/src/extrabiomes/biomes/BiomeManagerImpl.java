@@ -6,7 +6,6 @@
 
 package extrabiomes.biomes;
 
-import static extrabiomes.api.ITreeFactory.TreeType.ACACIA;
 import static extrabiomes.api.ITreeFactory.TreeType.BROWN_AUTUMN;
 import static extrabiomes.api.ITreeFactory.TreeType.BROWN_AUTUMN_BIG;
 import static extrabiomes.api.ITreeFactory.TreeType.FIR;
@@ -56,6 +55,7 @@ import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
 import extrabiomes.terrain.TreeFactory;
 import extrabiomes.terrain.WorldGenCustomSwamp;
+import extrabiomes.trees.WorldGenAcacia;
 import extrabiomes.utility.WeightedRandomChooser;
 import extrabiomes.utility.WeightedWorldGenerator;
 
@@ -136,6 +136,7 @@ public class BiomeManagerImpl extends BiomeManager {
 			return toString() + ".allowvillages";
 		}
 	}
+
 
 
 
@@ -297,8 +298,8 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 	private static void addSavannaTrees(BiomeGenBase biome) {
-		addWeightedTreeGenForBiome(biome, TerrainGenManager.treeFactory
-				.get().makeTreeGenerator(false, ACACIA), 100);
+		addWeightedTreeGenForBiome(biome, new WorldGenAcacia(false),
+				100);
 	}
 
 	private static void addShrublandTrees(BiomeGenBase biome) {

@@ -9,15 +9,15 @@ package extrabiomes.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
-import extrabiomes.api.ITreeFactory;
-import extrabiomes.api.TerrainGenManager;
-
 import net.minecraft.src.BlockFlower;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import extrabiomes.api.ITreeFactory;
+import extrabiomes.api.TerrainGenManager;
+import extrabiomes.trees.WorldGenAcacia;
 
 public class BlockCustomSapling extends BlockFlower {
 
@@ -170,9 +170,7 @@ public class BlockCustomSapling extends BlockFlower {
 						.makeTreeGenerator(true,
 								ITreeFactory.TreeType.YELLOW_AUTUMN);
 		} else if (metadata == metaAcacia)
-			tree = TerrainGenManager.treeFactory.get()
-					.makeTreeGenerator(true,
-							ITreeFactory.TreeType.ACACIA);
+			tree = new WorldGenAcacia(true);
 		else {
 			// Check for 2x2 firs and redwoods
 			for (x1 = 0; x1 >= -1; --x1) {
