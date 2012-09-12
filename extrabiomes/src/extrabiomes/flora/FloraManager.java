@@ -7,21 +7,11 @@
 package extrabiomes.flora;
 
 import net.minecraft.src.Block;
-import extrabiomes.api.BiomeManager;
-import extrabiomes.api.ExtrabiomesBiomeDecorations;
 import extrabiomes.api.TerrainGenManager;
-import extrabiomes.terrain.BiomeDecoration;
-import extrabiomes.terrain.WorldGenChunkOasis;
 
 public class FloraManager {
 
 	private static boolean	initialized	= false;
-
-	private static void configureMountainRidgeDecorations() {
-		ExtrabiomesBiomeDecorations.biomeDecorations.get().put(
-				BiomeManager.mountainridge.get(),
-				new BiomeDecoration(999, new WorldGenChunkOasis()));
-	}
 
 	private static void configureTrees() {
 		TerrainGenManager.treesCanGrowOnIDs.add(Integer
@@ -37,8 +27,6 @@ public class FloraManager {
 		initialized = true;
 
 		configureTrees();
-
-		configureMountainRidgeDecorations();
 	}
 
 }
