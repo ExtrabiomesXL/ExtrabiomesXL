@@ -207,16 +207,6 @@ public class TreeFactory implements ITreeFactory {
 				if (treeFirBig == null)
 					treeFirBig = new WorldGenFirTree2(doBlockNotify);
 				return treeFirBig;
-			case REDWOOD:
-				if (doBlockNotify) {
-					if (treeRedwoodNotify == null)
-						treeRedwoodNotify = new WorldGenRedwood(
-								doBlockNotify);
-					return treeRedwoodNotify;
-				}
-				if (treeRedwood == null)
-					treeRedwood = new WorldGenRedwood(doBlockNotify);
-				return treeRedwood;
 		}
 
 		return null;
@@ -286,12 +276,6 @@ public class TreeFactory implements ITreeFactory {
 					treeFirBigNotify = tree;
 				else
 					treeFirBig = tree;
-				break;
-			case REDWOOD:
-				if (doNotify)
-					treeRedwoodNotify = tree;
-				else
-					treeRedwood = tree;
 				break;
 		}
 	}

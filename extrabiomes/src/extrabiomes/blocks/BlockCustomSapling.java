@@ -18,6 +18,7 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
 import extrabiomes.trees.WorldGenAcacia;
+import extrabiomes.trees.WorldGenRedwood;
 
 public class BlockCustomSapling extends BlockFlower {
 
@@ -191,11 +192,7 @@ public class BlockCustomSapling extends BlockFlower {
 											true,
 											ITreeFactory.TreeType.FIR_HUGE);
 						else
-							tree = TerrainGenManager.treeFactory
-									.get()
-									.makeTreeGenerator(
-											true,
-											ITreeFactory.TreeType.REDWOOD);
+							tree = new WorldGenRedwood(true);
 						isHuge = true;
 						break;
 					}

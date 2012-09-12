@@ -14,7 +14,6 @@ import static extrabiomes.api.ITreeFactory.TreeType.ORANGE_AUTUMN;
 import static extrabiomes.api.ITreeFactory.TreeType.ORANGE_AUTUMN_BIG;
 import static extrabiomes.api.ITreeFactory.TreeType.PURPLE_AUTUMN;
 import static extrabiomes.api.ITreeFactory.TreeType.PURPLE_AUTUMN_BIG;
-import static extrabiomes.api.ITreeFactory.TreeType.REDWOOD;
 import static extrabiomes.api.ITreeFactory.TreeType.YELLOW_AUTUMN;
 import static extrabiomes.api.ITreeFactory.TreeType.YELLOW_AUTUMN_BIG;
 
@@ -56,6 +55,7 @@ import extrabiomes.api.TerrainGenManager;
 import extrabiomes.terrain.TreeFactory;
 import extrabiomes.terrain.WorldGenCustomSwamp;
 import extrabiomes.trees.WorldGenAcacia;
+import extrabiomes.trees.WorldGenRedwood;
 import extrabiomes.utility.WeightedRandomChooser;
 import extrabiomes.utility.WeightedWorldGenerator;
 
@@ -138,10 +138,8 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 
-
-
-
 	// @formatter:off
+	private static final WorldGenerator	ACACIA_TREE_GEN		  = new WorldGenAcacia(false);
 	private static final WorldGenerator	ALT_TAIGA_GEN		  = new WorldGenTaiga2(false);
 	private static final WorldGenerator	BIG_OAK_TREE_GEN	  = new WorldGenBigTree(false);
 	private static final WorldGenerator	BIRCH_TREE_GEN		  = new WorldGenForest(false);
@@ -149,6 +147,7 @@ public class BiomeManagerImpl extends BiomeManager {
 	private static final WorldGenerator	FERN_GEN			  = new WorldGenTallGrass(Block.tallGrass.blockID, 2);
 	private static final WorldGenerator	GRASS_GEN			  = new WorldGenTallGrass(Block.tallGrass.blockID, 1);
 	private static final WorldGenerator	OAK_TREE_GEN		  = new WorldGenTrees(false);
+	private static final WorldGenerator	REDWOOD_TREE_GEN	  = new WorldGenRedwood(false);
 	private static final WorldGenerator	SHRUB_GEN			  = new WorldGenShrub(3, 0);
 	private static final WorldGenerator	SWAMP_TREE_GEN		  = new WorldGenSwamp();
 	private static final WorldGenerator	TAIGA_GEN			  = new WorldGenTaiga1();
@@ -286,20 +285,17 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 	private static void addRedwoodForestTrees(BiomeGenBase biome) {
-		addWeightedTreeGenForBiome(biome, TerrainGenManager.treeFactory
-				.get().makeTreeGenerator(false, REDWOOD), 100);
+		addWeightedTreeGenForBiome(biome, REDWOOD_TREE_GEN, 100);
 	}
 
 	private static void addRedwoodLushTrees(BiomeGenBase biome) {
-		addWeightedTreeGenForBiome(biome, TerrainGenManager.treeFactory
-				.get().makeTreeGenerator(false, REDWOOD), 50);
+		addWeightedTreeGenForBiome(biome, REDWOOD_TREE_GEN, 50);
 		addWeightedTreeGenForBiome(biome, TerrainGenManager.treeFactory
 				.get().makeTreeGenerator(false, FIR), 50);
 	}
 
 	private static void addSavannaTrees(BiomeGenBase biome) {
-		addWeightedTreeGenForBiome(biome, new WorldGenAcacia(false),
-				100);
+		addWeightedTreeGenForBiome(biome, ACACIA_TREE_GEN, 100);
 	}
 
 	private static void addShrublandTrees(BiomeGenBase biome) {
