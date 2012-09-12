@@ -47,7 +47,7 @@ import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.biomes.BiomeManagerImpl;
 
-@Mod(modid = "EBXLFlora", name = "ExtrabiomesXL Flora Plugin", version = "3.0 PR1")
+@Mod(modid = "EBXLFlora", name = "ExtrabiomesXL Flora Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Flora {
 

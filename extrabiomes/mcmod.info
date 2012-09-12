@@ -86,5 +86,47 @@
   "mod_MinecraftForge",
   "ExtrabiomesXL"
   ]
+},
+{
+  "modid": "EBXLFlora",
+  "name": "ExtrabiomesXL Flora Plugin",
+  "description": "Adds flora to various biomes.",
+  "version": "3.0",
+  "mcversion": "1.3.2",
+  "url": "http://www.minecraftforum.net/topic/1090288-",
+  "updateUrl": "",
+  "authors": [
+    "ScottKillen"
+  ],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"ExtrabiomesXL",
+  "dependencies": [
+  "mod_MinecraftForge",
+  "ExtrabiomesXL"
+  ]
+},
+{
+  "modid": "EBXLRedRock",
+  "name": "ExtrabiomesXL Red Rock Plugin",
+  "description": "Adds red rock to mountain ridge.",
+  "version": "3.0",
+  "mcversion": "1.3.2",
+  "url": "http://www.minecraftforum.net/topic/1090288-",
+  "updateUrl": "",
+  "authors": [
+    "ScottKillen"
+  ],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"ExtrabiomesXL",
+  "dependencies": [
+  "mod_MinecraftForge",
+  "ExtrabiomesXL"
+  ]
 }
 ]
