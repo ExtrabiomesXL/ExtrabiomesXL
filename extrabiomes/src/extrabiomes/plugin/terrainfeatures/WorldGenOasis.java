@@ -4,7 +4,7 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.terrain;
+package extrabiomes.plugin.terrainfeatures;
 
 import java.util.Random;
 
@@ -15,11 +15,8 @@ import net.minecraft.src.WorldGenerator;
 import extrabiomes.api.BiomeManager;
 
 public class WorldGenOasis extends WorldGenerator {
-	private final int	avgRadius;
 
-	public WorldGenOasis(int radius) {
-		avgRadius = radius;
-	}
+	private static final int	AVERAGE_OASIS	= 7;
 
 	@Override
 	public boolean generate(World world, Random rand, int x, int y,
@@ -29,7 +26,7 @@ public class WorldGenOasis extends WorldGenerator {
 		if (world.getBlockMaterial(x, y, z) != Material.water)
 			return false;
 
-		final int xzRadius = rand.nextInt(avgRadius - 2) + 2;
+		final int xzRadius = rand.nextInt(AVERAGE_OASIS - 2) + 2;
 		final int yRadius = 2;
 
 		for (int x1 = x - xzRadius; x1 <= x + xzRadius; x1++)

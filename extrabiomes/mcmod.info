@@ -128,5 +128,26 @@
   "mod_MinecraftForge",
   "ExtrabiomesXL"
   ]
+},
+{
+  "modid": "EXBLTerrain",
+  "name": "ExtrabiomesXL Terrain Features Plugin",
+  "description": "Adds terrain features to various biomes.",
+  "version": "3.0",
+  "mcversion": "1.3.2",
+  "url": "http://www.minecraftforum.net/topic/1090288-",
+  "updateUrl": "",
+  "authors": [
+    "ScottKillen"
+  ],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"ExtrabiomesXL",
+  "dependencies": [
+  "mod_MinecraftForge",
+  "ExtrabiomesXL"
+  ]
 }
 ]
