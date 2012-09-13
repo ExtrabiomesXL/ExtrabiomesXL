@@ -15,9 +15,12 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
 import extrabiomes.trees.WorldGenAcacia;
+import extrabiomes.trees.WorldGenAutumnTree;
+import extrabiomes.trees.WorldGenBigAutumnTree;
+import extrabiomes.trees.WorldGenFirTree;
+import extrabiomes.trees.WorldGenFirTreeHuge;
 import extrabiomes.trees.WorldGenRedwood;
 
 public class BlockCustomSapling extends BlockFlower {
@@ -127,49 +130,86 @@ public class BlockCustomSapling extends BlockFlower {
 
 		if (metadata == metaBrown) {
 			if (!restrictGrowth && rand.nextInt(20) == 0)
-				tree = TerrainGenManager.treeFactory.get()
-						.makeTreeGenerator(true,
-								ITreeFactory.TreeType.BROWN_AUTUMN_BIG);
+				tree = new WorldGenBigAutumnTree(
+						true,
+						TerrainGenManager.blockBrownAutumnWood.blockID,
+						TerrainGenManager.metaBrownAutumnWood,
+						TerrainGenManager.blockBrownAutumnLeaves.blockID,
+						TerrainGenManager.metaBrownAutumnLeaves);
 			else
-				tree = TerrainGenManager.treeFactory.get()
-						.makeTreeGenerator(true,
-								ITreeFactory.TreeType.BROWN_AUTUMN);
+				tree = new WorldGenAutumnTree(
+						true,
+						new ItemStack(
+								TerrainGenManager.blockBrownAutumnWood,
+								1,
+								TerrainGenManager.metaBrownAutumnWood),
+						new ItemStack(
+								TerrainGenManager.blockBrownAutumnLeaves,
+								1,
+								TerrainGenManager.metaBrownAutumnLeaves));
 		}
 
 		else if (metadata == metaOrange) {
 			if (!restrictGrowth && rand.nextInt(20) == 0)
-				tree = TerrainGenManager.treeFactory
-						.get()
-						.makeTreeGenerator(true,
-								ITreeFactory.TreeType.ORANGE_AUTUMN_BIG);
+				tree = new WorldGenBigAutumnTree(
+						true,
+						TerrainGenManager.blockOrangeAutumnWood.blockID,
+						TerrainGenManager.metaOrangeAutumnWood,
+						TerrainGenManager.blockOrangeAutumnLeaves.blockID,
+						TerrainGenManager.metaOrangeAutumnLeaves);
 			else
-				tree = TerrainGenManager.treeFactory.get()
-						.makeTreeGenerator(true,
-								ITreeFactory.TreeType.ORANGE_AUTUMN);
+				tree = new WorldGenAutumnTree(
+						true,
+						new ItemStack(
+								TerrainGenManager.blockOrangeAutumnWood,
+								1,
+								TerrainGenManager.metaOrangeAutumnWood),
+						new ItemStack(
+								TerrainGenManager.blockOrangeAutumnLeaves,
+								1,
+								TerrainGenManager.metaOrangeAutumnLeaves));
 		}
 
 		else if (metadata == metaPurple) {
 			if (!restrictGrowth && rand.nextInt(20) == 0)
-				tree = TerrainGenManager.treeFactory
-						.get()
-						.makeTreeGenerator(true,
-								ITreeFactory.TreeType.PURPLE_AUTUMN_BIG);
+				tree = new WorldGenBigAutumnTree(
+						true,
+						TerrainGenManager.blockPurpleAutumnWood.blockID,
+						TerrainGenManager.metaPurpleAutumnWood,
+						TerrainGenManager.blockPurpleAutumnLeaves.blockID,
+						TerrainGenManager.metaPurpleAutumnLeaves);
 			else
-				tree = TerrainGenManager.treeFactory.get()
-						.makeTreeGenerator(true,
-								ITreeFactory.TreeType.PURPLE_AUTUMN);
+				tree = new WorldGenAutumnTree(
+						true,
+						new ItemStack(
+								TerrainGenManager.blockPurpleAutumnWood,
+								1,
+								TerrainGenManager.metaPurpleAutumnWood),
+						new ItemStack(
+								TerrainGenManager.blockPurpleAutumnLeaves,
+								1,
+								TerrainGenManager.metaPurpleAutumnLeaves));
 		}
 
 		else if (metadata == metaYellow) {
 			if (!restrictGrowth && rand.nextInt(20) == 0)
-				tree = TerrainGenManager.treeFactory
-						.get()
-						.makeTreeGenerator(true,
-								ITreeFactory.TreeType.YELLOW_AUTUMN_BIG);
+				tree = new WorldGenBigAutumnTree(
+						true,
+						TerrainGenManager.blockYellowAutumnWood.blockID,
+						TerrainGenManager.metaYellowAutumnWood,
+						TerrainGenManager.blockYellowAutumnLeaves.blockID,
+						TerrainGenManager.metaYellowAutumnLeaves);
 			else
-				tree = TerrainGenManager.treeFactory.get()
-						.makeTreeGenerator(true,
-								ITreeFactory.TreeType.YELLOW_AUTUMN);
+				tree = new WorldGenAutumnTree(
+						true,
+						new ItemStack(
+								TerrainGenManager.blockYellowAutumnWood,
+								1,
+								TerrainGenManager.metaYellowAutumnWood),
+						new ItemStack(
+								TerrainGenManager.blockYellowAutumnLeaves,
+								1,
+								TerrainGenManager.metaYellowAutumnLeaves));
 		} else if (metadata == metaAcacia)
 			tree = new WorldGenAcacia(true);
 		else {
@@ -186,11 +226,7 @@ public class BlockCustomSapling extends BlockFlower {
 									+ z1 + 1, metadata))
 					{
 						if (metadata == metaFir)
-							tree = TerrainGenManager.treeFactory
-									.get()
-									.makeTreeGenerator(
-											true,
-											ITreeFactory.TreeType.FIR_HUGE);
+							tree = new WorldGenFirTreeHuge(true);
 						else
 							tree = new WorldGenRedwood(true);
 						isHuge = true;
@@ -202,9 +238,7 @@ public class BlockCustomSapling extends BlockFlower {
 				// Single fir sapling generates 1x1 tree
 				z1 = 0;
 				x1 = 0;
-				tree = TerrainGenManager.treeFactory.get()
-						.makeTreeGenerator(true,
-								ITreeFactory.TreeType.FIR);
+				tree = new WorldGenFirTree(true);
 			}
 		}
 

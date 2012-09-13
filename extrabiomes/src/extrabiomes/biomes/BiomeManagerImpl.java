@@ -6,17 +6,6 @@
 
 package extrabiomes.biomes;
 
-import static extrabiomes.api.ITreeFactory.TreeType.BROWN_AUTUMN;
-import static extrabiomes.api.ITreeFactory.TreeType.BROWN_AUTUMN_BIG;
-import static extrabiomes.api.ITreeFactory.TreeType.FIR;
-import static extrabiomes.api.ITreeFactory.TreeType.FIR_HUGE;
-import static extrabiomes.api.ITreeFactory.TreeType.ORANGE_AUTUMN;
-import static extrabiomes.api.ITreeFactory.TreeType.ORANGE_AUTUMN_BIG;
-import static extrabiomes.api.ITreeFactory.TreeType.PURPLE_AUTUMN;
-import static extrabiomes.api.ITreeFactory.TreeType.PURPLE_AUTUMN_BIG;
-import static extrabiomes.api.ITreeFactory.TreeType.YELLOW_AUTUMN;
-import static extrabiomes.api.ITreeFactory.TreeType.YELLOW_AUTUMN_BIG;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
@@ -29,6 +18,7 @@ import java.util.Set;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
+import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenBigTree;
 import net.minecraft.src.WorldGenForest;
@@ -50,11 +40,13 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesConfig;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
-import extrabiomes.api.ITreeFactory;
 import extrabiomes.api.TerrainGenManager;
-import extrabiomes.terrain.TreeFactory;
 import extrabiomes.terrain.WorldGenCustomSwamp;
 import extrabiomes.trees.WorldGenAcacia;
+import extrabiomes.trees.WorldGenAutumnTree;
+import extrabiomes.trees.WorldGenBigAutumnTree;
+import extrabiomes.trees.WorldGenFirTree;
+import extrabiomes.trees.WorldGenFirTreeHuge;
 import extrabiomes.trees.WorldGenRedwood;
 import extrabiomes.utility.WeightedRandomChooser;
 import extrabiomes.utility.WeightedWorldGenerator;
@@ -139,18 +131,28 @@ public class BiomeManagerImpl extends BiomeManager {
 
 
 	// @formatter:off
-	private static final WorldGenerator	ACACIA_TREE_GEN		  = new WorldGenAcacia(false);
-	private static final WorldGenerator	ALT_TAIGA_GEN		  = new WorldGenTaiga2(false);
-	private static final WorldGenerator	BIG_OAK_TREE_GEN	  = new WorldGenBigTree(false);
-	private static final WorldGenerator	BIRCH_TREE_GEN		  = new WorldGenForest(false);
-	private static final WorldGenerator	CUSTOM_SWAMP_TREE_GEN = new WorldGenCustomSwamp();
-	private static final WorldGenerator	FERN_GEN			  = new WorldGenTallGrass(Block.tallGrass.blockID, 2);
-	private static final WorldGenerator	GRASS_GEN			  = new WorldGenTallGrass(Block.tallGrass.blockID, 1);
-	private static final WorldGenerator	OAK_TREE_GEN		  = new WorldGenTrees(false);
-	private static final WorldGenerator	REDWOOD_TREE_GEN	  = new WorldGenRedwood(false);
-	private static final WorldGenerator	SHRUB_GEN			  = new WorldGenShrub(3, 0);
-	private static final WorldGenerator	SWAMP_TREE_GEN		  = new WorldGenSwamp();
-	private static final WorldGenerator	TAIGA_GEN			  = new WorldGenTaiga1();
+	private static final WorldGenerator	ACACIA_TREE_GEN			  	= new WorldGenAcacia(false);
+	private static final WorldGenerator	ALT_TAIGA_GEN			 	= new WorldGenTaiga2(false);
+	private static final WorldGenerator	BIG_BROWN_AUTUMN_TREE_GEN	= new WorldGenBigAutumnTree(false, TerrainGenManager.blockBrownAutumnWood.blockID, TerrainGenManager.metaBrownAutumnWood, TerrainGenManager.blockBrownAutumnLeaves.blockID, TerrainGenManager.metaBrownAutumnWood);
+	private static final WorldGenerator	BIG_ORANGE_AUTUMN_TREE_GEN	= new WorldGenBigAutumnTree(false, TerrainGenManager.blockOrangeAutumnWood.blockID, TerrainGenManager.metaOrangeAutumnWood, TerrainGenManager.blockOrangeAutumnLeaves.blockID, TerrainGenManager.metaOrangeAutumnWood);
+	private static final WorldGenerator	BIG_PURPLE_AUTUMN_TREE_GEN	= new WorldGenBigAutumnTree(false, TerrainGenManager.blockPurpleAutumnWood.blockID, TerrainGenManager.metaPurpleAutumnWood, TerrainGenManager.blockPurpleAutumnLeaves.blockID, TerrainGenManager.metaPurpleAutumnWood);
+	private static final WorldGenerator	BIG_YELLOW_AUTUMN_TREE_GEN	= new WorldGenBigAutumnTree(false, TerrainGenManager.blockYellowAutumnWood.blockID, TerrainGenManager.metaYellowAutumnWood, TerrainGenManager.blockYellowAutumnLeaves.blockID, TerrainGenManager.metaYellowAutumnWood);
+	private static final WorldGenerator	BIG_FIR_TREE_GEN	  		= new WorldGenFirTreeHuge(false);
+	private static final WorldGenerator	BIG_OAK_TREE_GEN	  		= new WorldGenBigTree(false);
+	private static final WorldGenerator	BIRCH_TREE_GEN		  		= new WorldGenForest(false);
+	private static final WorldGenerator	BROWN_AUTUMN_TREE_GEN		= new WorldGenAutumnTree(false, new ItemStack(TerrainGenManager.blockBrownAutumnWood, 1, TerrainGenManager.metaBrownAutumnWood), new ItemStack(TerrainGenManager.blockBrownAutumnLeaves, 1, TerrainGenManager.metaBrownAutumnLeaves));
+	private static final WorldGenerator	CUSTOM_SWAMP_TREE_GEN 		= new WorldGenCustomSwamp();
+	private static final WorldGenerator	FERN_GEN			 		= new WorldGenTallGrass(Block.tallGrass.blockID, 2);
+	private static final WorldGenerator	FIR_TREE_GEN		  		= new WorldGenFirTree(false);
+	private static final WorldGenerator	GRASS_GEN			  		= new WorldGenTallGrass(Block.tallGrass.blockID, 1);
+	private static final WorldGenerator	OAK_TREE_GEN		  		= new WorldGenTrees(false);
+	private static final WorldGenerator	ORANGE_AUTUMN_TREE_GEN		= new WorldGenAutumnTree(false, new ItemStack(TerrainGenManager.blockOrangeAutumnWood, 1, TerrainGenManager.metaOrangeAutumnWood), new ItemStack(TerrainGenManager.blockOrangeAutumnLeaves, 1, TerrainGenManager.metaOrangeAutumnLeaves));
+	private static final WorldGenerator	PURPLE_AUTUMN_TREE_GEN		= new WorldGenAutumnTree(false, new ItemStack(TerrainGenManager.blockPurpleAutumnWood, 1, TerrainGenManager.metaPurpleAutumnWood), new ItemStack(TerrainGenManager.blockPurpleAutumnLeaves, 1, TerrainGenManager.metaPurpleAutumnLeaves));
+	private static final WorldGenerator	REDWOOD_TREE_GEN	  		= new WorldGenRedwood(false);
+	private static final WorldGenerator	SHRUB_GEN			  		= new WorldGenShrub(3, 0);
+	private static final WorldGenerator	SWAMP_TREE_GEN		  		= new WorldGenSwamp();
+	private static final WorldGenerator	TAIGA_GEN			  		= new WorldGenTaiga1();
+	private static final WorldGenerator	YELLOW_AUTUMN_TREE_GEN		= new WorldGenAutumnTree(false, new ItemStack(TerrainGenManager.blockYellowAutumnWood, 1, TerrainGenManager.metaYellowAutumnWood), new ItemStack(TerrainGenManager.blockYellowAutumnLeaves, 1, TerrainGenManager.metaYellowAutumnLeaves));
 
 	private static List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
 
@@ -169,39 +171,20 @@ public class BiomeManagerImpl extends BiomeManager {
 	private static final Collection<BiomeGenBase>										disableDefaultGrassBiomes	= new ArrayList();
 
 	private static void addAlpineTrees(BiomeGenBase biome) {
-		addWeightedTreeGenForBiome(biome, TerrainGenManager.treeFactory
-				.get().makeTreeGenerator(false, FIR), 100);
+		addWeightedTreeGenForBiome(biome, FIR_TREE_GEN, 100);
 	}
 
 	private static void addAutumnTrees(BiomeGenBase biome) {
-		final ITreeFactory treeFactory = TerrainGenManager.treeFactory
-				.get();
-
-		addWeightedTreeGenForBiome(biome,
-				treeFactory.makeTreeGenerator(false, BROWN_AUTUMN), 243);
-		addWeightedTreeGenForBiome(biome,
-				treeFactory.makeTreeGenerator(false, BROWN_AUTUMN_BIG),
-				27);
-		addWeightedTreeGenForBiome(biome,
-				treeFactory.makeTreeGenerator(false, ORANGE_AUTUMN),
-				162);
-		addWeightedTreeGenForBiome(
-				biome,
-				treeFactory.makeTreeGenerator(false, ORANGE_AUTUMN_BIG),
+		addWeightedTreeGenForBiome(biome, BROWN_AUTUMN_TREE_GEN, 243);
+		addWeightedTreeGenForBiome(biome, BIG_BROWN_AUTUMN_TREE_GEN, 27);
+		addWeightedTreeGenForBiome(biome, ORANGE_AUTUMN_TREE_GEN, 162);
+		addWeightedTreeGenForBiome(biome, BIG_ORANGE_AUTUMN_TREE_GEN,
 				18);
-		addWeightedTreeGenForBiome(biome,
-				treeFactory.makeTreeGenerator(false, PURPLE_AUTUMN),
-				108);
-		addWeightedTreeGenForBiome(
-				biome,
-				treeFactory.makeTreeGenerator(false, PURPLE_AUTUMN_BIG),
+		addWeightedTreeGenForBiome(biome, PURPLE_AUTUMN_TREE_GEN, 108);
+		addWeightedTreeGenForBiome(biome, BIG_PURPLE_AUTUMN_TREE_GEN,
 				12);
-		addWeightedTreeGenForBiome(biome,
-				treeFactory.makeTreeGenerator(false, YELLOW_AUTUMN), 72);
-		addWeightedTreeGenForBiome(
-				biome,
-				treeFactory.makeTreeGenerator(false, YELLOW_AUTUMN_BIG),
-				8);
+		addWeightedTreeGenForBiome(biome, YELLOW_AUTUMN_TREE_GEN, 72);
+		addWeightedTreeGenForBiome(biome, BIG_YELLOW_AUTUMN_TREE_GEN, 8);
 		addWeightedTreeGenForBiome(biome, OAK_TREE_GEN, 144);
 		addWeightedTreeGenForBiome(biome, BIG_OAK_TREE_GEN, 16);
 	}
@@ -290,8 +273,7 @@ public class BiomeManagerImpl extends BiomeManager {
 
 	private static void addRedwoodLushTrees(BiomeGenBase biome) {
 		addWeightedTreeGenForBiome(biome, REDWOOD_TREE_GEN, 50);
-		addWeightedTreeGenForBiome(biome, TerrainGenManager.treeFactory
-				.get().makeTreeGenerator(false, FIR), 50);
+		addWeightedTreeGenForBiome(biome, FIR_TREE_GEN, 50);
 	}
 
 	private static void addSavannaTrees(BiomeGenBase biome) {
@@ -325,10 +307,8 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 	private static void addTemporateRainforest(BiomeGenBase biome) {
-		addWeightedTreeGenForBiome(biome, TerrainGenManager.treeFactory
-				.get().makeTreeGenerator(false, FIR_HUGE), 200);
-		addWeightedTreeGenForBiome(biome, TerrainGenManager.treeFactory
-				.get().makeTreeGenerator(false, FIR), 100);
+		addWeightedTreeGenForBiome(biome, BIG_FIR_TREE_GEN, 200);
+		addWeightedTreeGenForBiome(biome, FIR_TREE_GEN, 100);
 	}
 
 	private static void buildBiomeList() {
@@ -368,7 +348,6 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 	private static void buildWeightedBiomeTreeList() {
-		TerrainGenManager.treeFactory = Optional.of(new TreeFactory());
 		addAlpineTrees(alpine.get());
 		addAutumnTrees(autumnwoods.get());
 		addBirchForestTrees(birchforest.get());

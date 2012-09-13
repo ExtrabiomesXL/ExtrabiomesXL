@@ -6,23 +6,10 @@
 
 package extrabiomes.biomes;
 
-import static extrabiomes.api.ITreeFactory.TreeType.BROWN_AUTUMN;
-import static extrabiomes.api.ITreeFactory.TreeType.BROWN_AUTUMN_BIG;
-import static extrabiomes.api.ITreeFactory.TreeType.ORANGE_AUTUMN;
-import static extrabiomes.api.ITreeFactory.TreeType.ORANGE_AUTUMN_BIG;
-import static extrabiomes.api.ITreeFactory.TreeType.PURPLE_AUTUMN;
-import static extrabiomes.api.ITreeFactory.TreeType.PURPLE_AUTUMN_BIG;
-import static extrabiomes.api.ITreeFactory.TreeType.YELLOW_AUTUMN;
-import static extrabiomes.api.ITreeFactory.TreeType.YELLOW_AUTUMN_BIG;
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.EntityWolf;
 import net.minecraft.src.SpawnListEntry;
-import net.minecraft.src.WorldGenBigTree;
-import net.minecraft.src.WorldGenTrees;
-import extrabiomes.api.BiomeManager;
-import extrabiomes.api.ITreeFactory;
-import extrabiomes.api.TerrainGenManager;
 import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeAutumnWoods extends ExtrabiomeGenBase {

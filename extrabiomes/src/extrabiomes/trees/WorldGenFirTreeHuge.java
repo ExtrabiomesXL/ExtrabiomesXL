@@ -4,18 +4,16 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.terrain;
+package extrabiomes.trees;
 
 import java.util.Random;
-
-import extrabiomes.api.TerrainGenManager;
-
 
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.api.TerrainGenManager;
 
-public class WorldGenFirTree2 extends WorldGenerator {
+public class WorldGenFirTreeHuge extends WorldGenerator {
 
 	private static void setBlockandMetadataIfChunkExists(World world,
 			int x, int y, int z, int blockId, int metadata)
@@ -26,7 +24,7 @@ public class WorldGenFirTree2 extends WorldGenerator {
 
 	final int	blockLeaf, metaLeaf, blockWood, metaWood;
 
-	public WorldGenFirTree2(boolean doNotify) {
+	public WorldGenFirTreeHuge(boolean doNotify) {
 		super(doNotify);
 		blockLeaf = TerrainGenManager.blockFirLeaves.blockID;
 		metaLeaf = TerrainGenManager.metaFirLeaves;

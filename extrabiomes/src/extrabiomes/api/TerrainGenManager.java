@@ -73,11 +73,6 @@ public class TerrainGenManager {
 	public static int								metaAcaciaWood			= 0;
 
 	/**
-	 * The instantiation of {@link ITreeFactory}
-	 */
-	public static Optional<? extends ITreeFactory>	treeFactory;
-
-	/**
 	 * The list of ids of blocks upon which saplings and trees may grow.
 	 */
 	public final static Set<Integer>				treesCanGrowOnIDs		= new TreeSet<Integer>();
