@@ -22,6 +22,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.biomes.VanillaBiomeManager;
 import extrabiomes.blocks.BlockManager;
+import extrabiomes.features.FeatureGenerator;
 import extrabiomes.flora.FloraManager;
 import extrabiomes.utility.ConfigSettingAnnotationParser;
 
@@ -49,6 +50,7 @@ public class Extrabiomes {
 	public static void init(FMLInitializationEvent event) {
 		proxy.registerRenderInformation();
 		proxy.registerFuelHandler(fuelHandler);
+		proxy.registerWorldGenerator(new FeatureGenerator());
 
 		biomeManager.initialize();
 

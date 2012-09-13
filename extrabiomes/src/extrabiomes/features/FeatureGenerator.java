@@ -1,5 +1,5 @@
 
-package extrabiomes.plugin.terrainfeatures;
+package extrabiomes.features;
 
 import java.util.Random;
 

@@ -4,7 +4,7 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.plugin.terrainfeatures;
+package extrabiomes.features;
 
 import java.util.Random;
 
