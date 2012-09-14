@@ -6,9 +6,19 @@
 
 package extrabiomes.trees;
 
+import static extrabiomes.trees.TreeBlocks.Type.ACACIA;
+import static extrabiomes.trees.TreeBlocks.Type.BROWN;
+import static extrabiomes.trees.TreeBlocks.Type.FIR;
+import static extrabiomes.trees.TreeBlocks.Type.ORANGE;
+import static extrabiomes.trees.TreeBlocks.Type.PURPLE;
+import static extrabiomes.trees.TreeBlocks.Type.REDWOOD;
+import static extrabiomes.trees.TreeBlocks.Type.YELLOW;
+
 import java.util.EnumMap;
 import java.util.Set;
 import java.util.TreeSet;
+
+import net.minecraft.src.Block;
 
 public class TreeBlocks {
 
@@ -49,6 +59,26 @@ public class TreeBlocks {
 
 	public static int getWoodMeta(Type type) {
 		return nodeMap.get(type).woodMeta;
+	}
+
+	public static void init() {
+		setBlocks(BROWN, Block.wood.blockID, 0, Block.leaves.blockID, 0);
+		setBlocks(ORANGE, Block.wood.blockID, 0, Block.leaves.blockID,
+				0);
+		setBlocks(PURPLE, Block.wood.blockID, 0, Block.leaves.blockID,
+				0);
+		setBlocks(YELLOW, Block.wood.blockID, 0, Block.leaves.blockID,
+				0);
+		setBlocks(FIR, Block.wood.blockID, 1, Block.leaves.blockID, 1);
+		setBlocks(REDWOOD, Block.wood.blockID, 1, Block.leaves.blockID,
+				0);
+		setBlocks(ACACIA, Block.wood.blockID, 0, Block.leaves.blockID,
+				0);
+
+		treesCanGrowOnIDs.add(Integer.valueOf(Block.grass.blockID));
+		treesCanGrowOnIDs.add(Integer.valueOf(Block.dirt.blockID));
+		treesCanGrowOnIDs.add(Integer
+				.valueOf(Block.tilledField.blockID));
 	}
 
 	public static void setBlocks(Type type, int woodID, int woodMeta,
