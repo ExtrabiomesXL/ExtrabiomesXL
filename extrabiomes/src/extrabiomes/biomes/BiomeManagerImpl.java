@@ -6,6 +6,11 @@
 
 package extrabiomes.biomes;
 
+import static extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType.BROWN;
+import static extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType.ORANGE;
+import static extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType.PURPLE;
+import static extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType.YELLOW;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
@@ -40,7 +45,6 @@ import extrabiomes.ExtrabiomesConfig;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.terrain.WorldGenCustomSwamp;
-import extrabiomes.trees.TreeBlocks;
 import extrabiomes.trees.WorldGenAcacia;
 import extrabiomes.trees.WorldGenAutumnTree;
 import extrabiomes.trees.WorldGenBigAutumnTree;
@@ -215,50 +219,22 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 	private static void addAutumnTrees(BiomeGenBase biome) {
-		addWeightedTreeGenForBiome(
-				biome,
-				new WorldGenAutumnTree(false, TreeBlocks
-						.getWoodID(TreeBlocks.Type.BROWN), TreeBlocks
-						.getWoodMeta(TreeBlocks.Type.BROWN), TreeBlocks
-						.getLeafID(TreeBlocks.Type.BROWN), TreeBlocks
-						.getLeafMeta(TreeBlocks.Type.BROWN)), 90);
-		addWeightedTreeGenForBiome(
-				biome,
-				new WorldGenBigAutumnTree(false, TreeBlocks
-						.getWoodID(TreeBlocks.Type.BROWN), TreeBlocks
-						.getWoodMeta(TreeBlocks.Type.BROWN), TreeBlocks
-						.getLeafID(TreeBlocks.Type.BROWN), TreeBlocks
-						.getLeafMeta(TreeBlocks.Type.BROWN)), 10);
 		addWeightedTreeGenForBiome(biome, new WorldGenAutumnTree(false,
-				TreeBlocks.getWoodID(TreeBlocks.Type.ORANGE),
-				TreeBlocks.getWoodMeta(TreeBlocks.Type.ORANGE),
-				TreeBlocks.getLeafID(TreeBlocks.Type.ORANGE),
-				TreeBlocks.getLeafMeta(TreeBlocks.Type.ORANGE)), 90);
+				BROWN), 90);
 		addWeightedTreeGenForBiome(biome, new WorldGenBigAutumnTree(
-				false, TreeBlocks.getWoodID(TreeBlocks.Type.ORANGE),
-				TreeBlocks.getWoodMeta(TreeBlocks.Type.ORANGE),
-				TreeBlocks.getLeafID(TreeBlocks.Type.ORANGE),
-				TreeBlocks.getLeafMeta(TreeBlocks.Type.ORANGE)), 10);
+				false, BROWN), 10);
 		addWeightedTreeGenForBiome(biome, new WorldGenAutumnTree(false,
-				TreeBlocks.getWoodID(TreeBlocks.Type.PURPLE),
-				TreeBlocks.getWoodMeta(TreeBlocks.Type.PURPLE),
-				TreeBlocks.getLeafID(TreeBlocks.Type.PURPLE),
-				TreeBlocks.getLeafMeta(TreeBlocks.Type.PURPLE)), 90);
+				ORANGE), 90);
 		addWeightedTreeGenForBiome(biome, new WorldGenBigAutumnTree(
-				false, TreeBlocks.getWoodID(TreeBlocks.Type.PURPLE),
-				TreeBlocks.getWoodMeta(TreeBlocks.Type.PURPLE),
-				TreeBlocks.getLeafID(TreeBlocks.Type.PURPLE),
-				TreeBlocks.getLeafMeta(TreeBlocks.Type.PURPLE)), 10);
+				false, ORANGE), 10);
 		addWeightedTreeGenForBiome(biome, new WorldGenAutumnTree(false,
-				TreeBlocks.getWoodID(TreeBlocks.Type.YELLOW),
-				TreeBlocks.getWoodMeta(TreeBlocks.Type.YELLOW),
-				TreeBlocks.getLeafID(TreeBlocks.Type.YELLOW),
-				TreeBlocks.getLeafMeta(TreeBlocks.Type.YELLOW)), 90);
+				PURPLE), 90);
 		addWeightedTreeGenForBiome(biome, new WorldGenBigAutumnTree(
-				false, TreeBlocks.getWoodID(TreeBlocks.Type.YELLOW),
-				TreeBlocks.getWoodMeta(TreeBlocks.Type.YELLOW),
-				TreeBlocks.getLeafID(TreeBlocks.Type.YELLOW),
-				TreeBlocks.getLeafMeta(TreeBlocks.Type.YELLOW)), 10);
+				false, PURPLE), 10);
+		addWeightedTreeGenForBiome(biome, new WorldGenAutumnTree(false,
+				YELLOW), 90);
+		addWeightedTreeGenForBiome(biome, new WorldGenBigAutumnTree(
+				false, YELLOW), 10);
 		addWeightedTreeGenForBiome(biome, OAK_TREE_GEN, 90);
 		addWeightedTreeGenForBiome(biome, BIG_OAK_TREE_GEN, 10);
 	}

@@ -14,38 +14,28 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 
 public class WorldGenBigAutumnTree extends WorldGenerator {
-	private static final byte[]	otherCoordPairs		= new byte[] {
-			(byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };
-	private final Random		rand				= new Random();
-	private World				world;
-	private final int[]			basePos				= new int[] { 0, 0,
-			0										};
-	private int					heightLimit			= 0;
-	private int					height;
-	private final double		heightAttenuation	= 0.618D;
-	private final double		branchSlope			= 0.381D;
-	private double				scaleWidth			= 1.0D;
-	private double				leafDensity			= 1.0D;
-	private int					heightLimitLimit	= 12;
-	private int					leafDistanceLimit	= 4;
-	private int[][]				leafNodes;
-	private int					woodBlockID			= Block.wood.blockID;
-	private byte				woodBlockMeta		= 0;
-	private int					leafBlockID			= Block.leaves.blockID;
-	private int					leafBlockMeta		= 0;
+	private static final byte[]						otherCoordPairs		= new byte[] {
+			(byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1	};
+	private final Random							rand				= new Random();
+	private World									world;
+	private final int[]								basePos				= new int[] {
+			0, 0, 0													};
+	private int										heightLimit			= 0;
+	private int										height;
+	private final double							heightAttenuation	= 0.618D;
+	private final double							branchSlope			= 0.381D;
+	private double									scaleWidth			= 1.0D;
+	private double									leafDensity			= 1.0D;
+	private int										heightLimitLimit	= 12;
+	private int										leafDistanceLimit	= 4;
+	private int[][]									leafNodes;
+	private final WorldGenAutumnTree.AutumnTreeType	type;
 
-	public WorldGenBigAutumnTree(boolean notify) {
-		super(notify);
-	}
-
-	public WorldGenBigAutumnTree(boolean notify, int woodID,
-			int woodMeta, int leafID, int leafMeta)
+	public WorldGenBigAutumnTree(boolean notify,
+			WorldGenAutumnTree.AutumnTreeType type)
 	{
 		super(notify);
-		woodBlockID = woodID;
-		woodBlockMeta = (byte) woodMeta;
-		leafBlockID = leafID;
-		leafBlockMeta = (byte) leafMeta;
+		this.type = type;
 	}
 
 	/**
@@ -85,23 +75,25 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 					/ (double) var3[var5];
 			final double var11 = (double) var3[var7]
 					/ (double) var3[var5];
-			final int[] var13 = new int[] { 0, 0, 0 };
+			final int[] coord = new int[] { 0, 0, 0 };
 			int var14 = 0;
 			int var15;
 
 			for (var15 = var3[var5] + var8; var14 != var15; var14 += var8)
 			{
-				var13[var5] = par1ArrayOfInteger[var5] + var14;
-				var13[var6] = MathHelper
+				coord[var5] = par1ArrayOfInteger[var5] + var14;
+				coord[var6] = MathHelper
 						.floor_double(par1ArrayOfInteger[var6] + var14
 								* var9);
-				var13[var7] = MathHelper
+				coord[var7] = MathHelper
 						.floor_double(par1ArrayOfInteger[var7] + var14
 								* var11);
-				final int var16 = world.getBlockId(var13[0], var13[1],
-						var13[2]);
+				final int id = world.getBlockId(coord[0], coord[1],
+						coord[2]);
 
-				if (var16 != 0 && var16 != leafBlockID) break;
+				if (id != 0
+						&& !Block.blocksList[id].isLeaves(world,
+								coord[0], coord[1], coord[2])) break;
 			}
 
 			return var14 == var15 ? -1 : Math.abs(var14);
@@ -112,6 +104,27 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 	public boolean generate(World par1World, Random par2Random,
 			int par3, int par4, int par5)
 	{
+		TreeBlocks.Type treeType = null;
+
+		switch (type) {
+			case BROWN:
+				treeType = TreeBlocks.Type.BROWN;
+				break;
+			case ORANGE:
+				treeType = TreeBlocks.Type.ORANGE;
+				break;
+			case PURPLE:
+				treeType = TreeBlocks.Type.PURPLE;
+				break;
+			case YELLOW:
+				treeType = TreeBlocks.Type.YELLOW;
+		}
+
+		final int leafID = TreeBlocks.getLeafID(treeType);
+		final int leafMeta = TreeBlocks.getLeafMeta(treeType);
+		final int woodID = TreeBlocks.getWoodID(treeType);
+		final int woodMeta = TreeBlocks.getWoodMeta(treeType);
+
 		world = par1World;
 		final long var6 = par2Random.nextLong();
 		rand.setSeed(var6);
@@ -122,29 +135,27 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 		if (heightLimit == 0)
 			heightLimit = 5 + rand.nextInt(heightLimitLimit);
 
-		if (!validTreeLocation())
-			return false;
-		else {
-			generateLeafNodeList();
-			generateLeaves();
-			generateTrunk();
-			generateLeafNodeBases();
-			return true;
-		}
+		if (!validTreeLocation()) return false;
+
+		generateLeafNodeList();
+		generateLeaves(leafID, leafMeta);
+		generateTrunk(woodID, woodMeta);
+		generateLeafNodeBases(woodID, woodMeta);
+		return true;
 	}
 
 	/**
 	 * Generates the leaves surrounding an individual entry in the
 	 * leafNodes list.
 	 */
-	void generateLeafNode(int x, int y, int z) {
+	void generateLeafNode(int x, int y, int z, int leafID, int leafMeta)
+	{
 		int y1 = y;
 
 		for (final int heightLimit = y + leafDistanceLimit; y1 < heightLimit; ++y1)
 		{
 			final float size = leafSize(y1 - y);
-			genTreeLayer(x, y1, z, size, (byte) 1, leafBlockID,
-					leafBlockMeta);
+			genTreeLayer(x, y1, z, size, (byte) 1, leafID, leafMeta);
 		}
 	}
 
@@ -152,7 +163,7 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 	 * Generates additional wood blocks to fill out the bases of
 	 * different leaf nodes that would otherwise degrade.
 	 */
-	void generateLeafNodeBases() {
+	void generateLeafNodeBases(int woodID, int woodMeta) {
 		int var1 = 0;
 		final int var2 = leafNodes.length;
 
@@ -164,7 +175,8 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 			var3[1] = var4[3];
 			final int var6 = var3[1] - basePos[1];
 
-			if (leafNodeNeedsBase(var6)) placeBlockLine(var3, var5);
+			if (leafNodeNeedsBase(var6))
+				placeBlockLine(var3, var5, woodID, woodMeta);
 		}
 	}
 
@@ -251,12 +263,12 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 	 * Generates the leaf portion of the tree as specified by the
 	 * leafNodes list.
 	 */
-	void generateLeaves() {
+	void generateLeaves(int leafID, int leafMeta) {
 		int node = 0;
 
 		for (final int length = leafNodes.length; node < length; ++node)
 			generateLeafNode(leafNodes[node][0], leafNodes[node][1],
-					leafNodes[node][2]);
+					leafNodes[node][2], leafID, leafMeta);
 	}
 
 	/**
@@ -264,14 +276,14 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 	 * to generate double-sized trunks by changing a field that is
 	 * always 1 to 2.
 	 */
-	void generateTrunk() {
+	void generateTrunk(int woodID, int woodMeta) {
 		final int var1 = basePos[0];
 		final int var2 = basePos[1];
 		final int var3 = basePos[1] + height;
 		final int var4 = basePos[2];
 		final int[] var5 = new int[] { var1, var2, var4 };
 		final int[] var6 = new int[] { var1, var3, var4 };
-		placeBlockLine(var5, var6);
+		placeBlockLine(var5, var6, woodID, woodMeta);
 	}
 
 	void genTreeLayer(int x, int y, int z, float size, byte par5,
@@ -357,7 +369,7 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 	 * first coordinate triplet to the second.
 	 */
 	void placeBlockLine(int[] par1ArrayOfInteger,
-			int[] par2ArrayOfInteger)
+			int[] par2ArrayOfInteger, int woodID, int woodMeta)
 	{
 		final int[] var4 = new int[] { 0, 0, 0 };
 		byte var5 = 0;
@@ -399,7 +411,7 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 				var14[var8] = MathHelper
 						.floor_double(par1ArrayOfInteger[var8] + var15
 								* var12 + 0.5D);
-				byte woodMeta = woodBlockMeta;
+				byte woodMetaWithDirection = (byte) woodMeta;
 				final int var18 = Math.abs(var14[0]
 						- par1ArrayOfInteger[0]);
 				final int var19 = Math.abs(var14[2]
@@ -407,11 +419,11 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 				final int var20 = Math.max(var18, var19);
 
 				if (var20 > 0) if (var18 == var20)
-					woodMeta |= 4;
-				else if (var19 == var20) woodMeta |= 8;
+					woodMetaWithDirection |= 4;
+				else if (var19 == var20) woodMetaWithDirection |= 8;
 
 				setBlockAndMetadata(world, var14[0], var14[1],
-						var14[2], woodBlockID, woodMeta);
+						var14[2], woodID, woodMetaWithDirection);
 			}
 		}
 	}

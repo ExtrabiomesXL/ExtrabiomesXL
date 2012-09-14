@@ -14,6 +14,10 @@ import net.minecraft.src.WorldGenerator;
 
 public class WorldGenAutumnTree extends WorldGenerator {
 
+	public enum AutumnTreeType {
+		BROWN, ORANGE, PURPLE, YELLOW
+	}
+
 	private static final int	BASE_HEIGHT					= 4;
 	private static final int	CANOPY_HEIGHT				= 3;
 	private static final int	CANOPY_RADIUS_EXTRA_RADIUS	= 0;
@@ -55,26 +59,40 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		return true;
 	}
 
-	private final int	leafID;
-	private final int	leafMeta;
-	private final int	woodID;
-	private final int	woodMeta;
+	private final AutumnTreeType	type;
 
-	public WorldGenAutumnTree(boolean doBlockNotify, int woodID,
-			int woodMeta, int leafID, int leafMeta)
+	public WorldGenAutumnTree(boolean doBlockNotify, AutumnTreeType type)
 	{
 		super(doBlockNotify);
 
-		this.woodID = woodID;
-		this.woodMeta = woodMeta;
-		this.leafID = leafID;
-		this.leafMeta = leafMeta;
+		this.type = type;
 	}
 
 	@Override
 	public boolean generate(final World world, final Random rand,
 			final int x, final int y, final int z)
 	{
+		TreeBlocks.Type treeType = null;
+
+		switch (type) {
+			case BROWN:
+				treeType = TreeBlocks.Type.BROWN;
+				break;
+			case ORANGE:
+				treeType = TreeBlocks.Type.ORANGE;
+				break;
+			case PURPLE:
+				treeType = TreeBlocks.Type.PURPLE;
+				break;
+			case YELLOW:
+				treeType = TreeBlocks.Type.YELLOW;
+		}
+
+		final int leafID = TreeBlocks.getLeafID(treeType);
+		final int leafMeta = TreeBlocks.getLeafMeta(treeType);
+		final int woodID = TreeBlocks.getWoodID(treeType);
+		final int woodMeta = TreeBlocks.getWoodMeta(treeType);
+
 		final int height = rand.nextInt(MAX_VARIANCE_HEIGHT + 1)
 				+ BASE_HEIGHT;
 
@@ -86,14 +104,15 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		if (!isRoomToGrow(world, x, y, z, height)) return false;
 
 		world.setBlock(x, y - 1, z, Block.dirt.blockID);
-		growLeaves(world, rand, x, y, z, height);
-		growTrunk(world, x, y, z, height);
+		growLeaves(world, rand, x, y, z, height, leafID, leafMeta);
+		growTrunk(world, x, y, z, height, woodID, woodMeta);
 
 		return true;
 	}
 
 	private void growLeaves(final World world, final Random rand,
-			final int x, final int y, final int z, final int height)
+			final int x, final int y, final int z, final int height,
+			int leafID, int leafMeta)
 	{
 		for (int y1 = y - CANOPY_HEIGHT + height; y1 <= y + height; ++y1)
 		{
@@ -124,7 +143,7 @@ public class WorldGenAutumnTree extends WorldGenerator {
 	}
 
 	private void growTrunk(final World world, final int x, final int y,
-			final int z, final int height)
+			final int z, final int height, int woodID, int woodMeta)
 	{
 		for (int y1 = 0; y1 < height; ++y1) {
 			final int id = world.getBlockId(x, y + y1, z);

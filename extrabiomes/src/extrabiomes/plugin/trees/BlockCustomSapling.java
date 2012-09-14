@@ -26,6 +26,7 @@ import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.trees.TreeBlocks;
 import extrabiomes.trees.WorldGenAcacia;
 import extrabiomes.trees.WorldGenAutumnTree;
+import extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType;
 import extrabiomes.trees.WorldGenBigAutumnTree;
 import extrabiomes.trees.WorldGenFirTree;
 import extrabiomes.trees.WorldGenFirTreeHuge;
@@ -124,61 +125,37 @@ public class BlockCustomSapling extends BlockFlower {
 		if (metadata == BROWN.metadata()) {
 			if (rand.nextInt(20) == 0)
 				tree = new WorldGenBigAutumnTree(true,
-						TreeBlocks.getWoodID(TreeBlocks.Type.BROWN),
-						TreeBlocks.getWoodMeta(TreeBlocks.Type.BROWN),
-						TreeBlocks.getLeafID(TreeBlocks.Type.BROWN),
-						TreeBlocks.getLeafMeta(TreeBlocks.Type.BROWN));
+						AutumnTreeType.BROWN);
 			else
 				tree = new WorldGenAutumnTree(true,
-						TreeBlocks.getWoodID(TreeBlocks.Type.BROWN),
-						TreeBlocks.getWoodMeta(TreeBlocks.Type.BROWN),
-						TreeBlocks.getLeafID(TreeBlocks.Type.BROWN),
-						TreeBlocks.getLeafMeta(TreeBlocks.Type.BROWN));
+						AutumnTreeType.BROWN);
 		}
 
 		else if (metadata == ORANGE.metadata()) {
 			if (rand.nextInt(20) == 0)
 				tree = new WorldGenBigAutumnTree(true,
-						TreeBlocks.getWoodID(TreeBlocks.Type.ORANGE),
-						TreeBlocks.getWoodMeta(TreeBlocks.Type.ORANGE),
-						TreeBlocks.getLeafID(TreeBlocks.Type.ORANGE),
-						TreeBlocks.getLeafMeta(TreeBlocks.Type.ORANGE));
+						AutumnTreeType.ORANGE);
 			else
 				tree = new WorldGenAutumnTree(true,
-						TreeBlocks.getWoodID(TreeBlocks.Type.ORANGE),
-						TreeBlocks.getWoodMeta(TreeBlocks.Type.ORANGE),
-						TreeBlocks.getLeafID(TreeBlocks.Type.ORANGE),
-						TreeBlocks.getLeafMeta(TreeBlocks.Type.ORANGE));
+						AutumnTreeType.ORANGE);
 		}
 
 		else if (metadata == PURPLE.metadata()) {
 			if (rand.nextInt(20) == 0)
 				tree = new WorldGenBigAutumnTree(true,
-						TreeBlocks.getWoodID(TreeBlocks.Type.PURPLE),
-						TreeBlocks.getWoodMeta(TreeBlocks.Type.PURPLE),
-						TreeBlocks.getLeafID(TreeBlocks.Type.PURPLE),
-						TreeBlocks.getLeafMeta(TreeBlocks.Type.PURPLE));
+						AutumnTreeType.PURPLE);
 			else
 				tree = new WorldGenAutumnTree(true,
-						TreeBlocks.getWoodID(TreeBlocks.Type.PURPLE),
-						TreeBlocks.getWoodMeta(TreeBlocks.Type.PURPLE),
-						TreeBlocks.getLeafID(TreeBlocks.Type.PURPLE),
-						TreeBlocks.getLeafMeta(TreeBlocks.Type.PURPLE));
+						AutumnTreeType.PURPLE);
 		}
 
 		else if (metadata == YELLOW.metadata()) {
 			if (rand.nextInt(20) == 0)
 				tree = new WorldGenBigAutumnTree(true,
-						TreeBlocks.getWoodID(TreeBlocks.Type.YELLOW),
-						TreeBlocks.getWoodMeta(TreeBlocks.Type.YELLOW),
-						TreeBlocks.getLeafID(TreeBlocks.Type.YELLOW),
-						TreeBlocks.getLeafMeta(TreeBlocks.Type.YELLOW));
+						AutumnTreeType.YELLOW);
 			else
 				tree = new WorldGenAutumnTree(true,
-						TreeBlocks.getWoodID(TreeBlocks.Type.YELLOW),
-						TreeBlocks.getWoodMeta(TreeBlocks.Type.YELLOW),
-						TreeBlocks.getLeafID(TreeBlocks.Type.YELLOW),
-						TreeBlocks.getLeafMeta(TreeBlocks.Type.YELLOW));
+						AutumnTreeType.YELLOW);
 		} else if (metadata == ACACIA.metadata())
 			tree = new WorldGenAcacia(true);
 		else {
