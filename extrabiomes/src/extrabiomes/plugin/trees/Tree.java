@@ -77,7 +77,7 @@ public class Tree {
 		}
 
 		if (isGreenLeavesEnabled()) {
-			greenLeaves = Optional.of(new BlockAutumnLeaves(
+			greenLeaves = Optional.of(new BlockGreenLeaves(
 					greenLeavesID).setBlockName("greenleaves"));
 
 			proxy.registerBlock(greenLeaves,
@@ -89,15 +89,15 @@ public class Tree {
 								.metadata()), type.itemName());
 
 			TreeBlocks.setBlocks(FIR, Block.wood.blockID, 0,
-					autumnLeavesID, GreenLeafType.FIR.metadata());
+					greenLeavesID, GreenLeafType.FIR.metadata());
 			TreeBlocks.setBlocks(REDWOOD, Block.wood.blockID, 0,
-					autumnLeavesID, GreenLeafType.REDWOOD.metadata());
+					greenLeavesID, GreenLeafType.REDWOOD.metadata());
 			TreeBlocks.setBlocks(ACACIA, Block.wood.blockID, 0,
-					autumnLeavesID, GreenLeafType.ACACIA.metadata());
+					greenLeavesID, GreenLeafType.ACACIA.metadata());
 		}
 
 		if (isSaplingEnabled()) {
-			sapling = Optional.of(new BlockAutumnLeaves(saplingID)
+			sapling = Optional.of(new BlockCustomSapling(saplingID)
 					.setBlockName("sapling"));
 
 			proxy.registerBlock(sapling,
