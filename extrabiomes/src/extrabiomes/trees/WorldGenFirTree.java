@@ -11,28 +11,28 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.api.TerrainGenManager;
 
 public class WorldGenFirTree extends WorldGenerator {
 
-	final int	blockLeaf, metaLeaf, blockWood, metaWood;
-
 	public WorldGenFirTree(boolean par1) {
 		super(par1);
-		blockLeaf = TerrainGenManager.blockFirLeaves.blockID;
-		metaLeaf = TerrainGenManager.metaFirLeaves;
-		blockWood = TerrainGenManager.blockFirWood.blockID;
-		metaWood = TerrainGenManager.metaFirWood;
 	}
 
 	@Override
 	public boolean generate(World world, Random rand, int x, int y,
 			int z)
 	{
+		final int woodID = TreeBlocks.getWoodID(TreeBlocks.Type.FIR);
+		final int woodMeta = TreeBlocks
+				.getWoodMeta(TreeBlocks.Type.FIR);
+		final int leafID = TreeBlocks.getLeafID(TreeBlocks.Type.FIR);
+		final int leafMeta = TreeBlocks
+				.getLeafMeta(TreeBlocks.Type.FIR);
+
 		final int below = world.getBlockId(x, y - 1, z);
 		final int height = rand.nextInt(8) + 24;
 
-		if (!TerrainGenManager.treesCanGrowOnIDs.contains(Integer
+		if (!TreeBlocks.treesCanGrowOnIDs.contains(Integer
 				.valueOf(below)) || y >= 256 - height - 1)
 			return false;
 
@@ -82,8 +82,8 @@ public class WorldGenFirTree extends WorldGenerator {
 							&& (block == null || block
 									.canBeReplacedByLeaves(world, i4,
 											k3, l4)))
-						setBlockAndMetadata(world, i4, k3, l4,
-								blockLeaf, metaLeaf);
+						setBlockAndMetadata(world, i4, k3, l4, leafID,
+								leafMeta);
 				}
 			}
 
@@ -104,8 +104,8 @@ public class WorldGenFirTree extends WorldGenerator {
 			if (Block.blocksList[id] == null
 					|| Block.blocksList[id].isLeaves(world, x, y + l3,
 							z))
-				setBlockAndMetadata(world, x, y + l3, z, blockWood,
-						metaWood);
+				setBlockAndMetadata(world, x, y + l3, z, woodID,
+						woodMeta);
 		}
 
 		return true;

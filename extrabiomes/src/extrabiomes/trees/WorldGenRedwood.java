@@ -8,29 +8,29 @@ package extrabiomes.trees;
 
 import java.util.Random;
 
-import extrabiomes.api.TerrainGenManager;
-
-
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 
 public class WorldGenRedwood extends WorldGenerator {
 
-	final int	blockLeaf, metaLeaf, blockWood, metaWood;
-
 	public WorldGenRedwood(boolean doNotify) {
 		super(doNotify);
-		blockLeaf = TerrainGenManager.blockRedwoodLeaves.blockID;
-		metaLeaf = TerrainGenManager.metaRedwoodLeaves;
-		blockWood = TerrainGenManager.blockRedwoodWood.blockID;
-		metaWood = TerrainGenManager.metaRedwoodWood;
 	}
 
 	@Override
 	public boolean generate(World world, Random rand, int x, int y,
 			int z)
 	{
+		final int woodID = TreeBlocks
+				.getWoodID(TreeBlocks.Type.REDWOOD);
+		final int woodMeta = TreeBlocks
+				.getWoodMeta(TreeBlocks.Type.REDWOOD);
+		final int leafID = TreeBlocks
+				.getLeafID(TreeBlocks.Type.REDWOOD);
+		final int leafMeta = TreeBlocks
+				.getLeafMeta(TreeBlocks.Type.REDWOOD);
+
 		final int height = rand.nextInt(30) + 32;
 		final int j = 1 + rand.nextInt(12);
 		final int k = height - j;
@@ -40,8 +40,8 @@ public class WorldGenRedwood extends WorldGenerator {
 
 		final int id = world.getBlockId(x, y - 1, z);
 
-		if (!TerrainGenManager.treesCanGrowOnIDs.contains(Integer
-				.valueOf(id)) || y >= 256 - height - 1) return false;
+		if (!TreeBlocks.treesCanGrowOnIDs.contains(Integer.valueOf(id))
+				|| y >= 256 - height - 1) return false;
 
 		for (int y1 = y; y1 <= y + 1 + height; y1++) {
 			int k1 = 1;
@@ -89,14 +89,14 @@ public class WorldGenRedwood extends WorldGenerator {
 									.canBeReplacedByLeaves(world, x1,
 											y1, z1)))
 					{
-						setBlockAndMetadata(world, x1, y1, z1,
-								blockLeaf, metaLeaf);
+						setBlockAndMetadata(world, x1, y1, z1, leafID,
+								leafMeta);
 						setBlockAndMetadata(world, x1 - 1, y1, z1,
-								blockLeaf, metaLeaf);
+								leafID, leafMeta);
 						setBlockAndMetadata(world, x1, y1, z1 - 1,
-								blockLeaf, metaLeaf);
+								leafID, leafMeta);
 						setBlockAndMetadata(world, x1 - 1, y1, z1 - 1,
-								blockLeaf, metaLeaf);
+								leafID, leafMeta);
 					}
 				}
 			}
@@ -119,16 +119,16 @@ public class WorldGenRedwood extends WorldGenerator {
 					|| Block.blocksList[j4].isLeaves(world, x, y + y1,
 							z))
 			{
-				setBlockAndMetadata(world, x, y + y1, z, blockWood,
-						metaWood);
-				setBlockAndMetadata(world, x, y + y1, z, blockWood,
-						metaWood);
-				setBlockAndMetadata(world, x - 1, y + y1, z, blockWood,
-						metaWood);
-				setBlockAndMetadata(world, x, y + y1, z - 1, blockWood,
-						metaWood);
+				setBlockAndMetadata(world, x, y + y1, z, woodID,
+						woodMeta);
+				setBlockAndMetadata(world, x, y + y1, z, woodID,
+						woodMeta);
+				setBlockAndMetadata(world, x - 1, y + y1, z, woodID,
+						woodMeta);
+				setBlockAndMetadata(world, x, y + y1, z - 1, woodID,
+						woodMeta);
 				setBlockAndMetadata(world, x - 1, y + y1, z - 1,
-						blockWood, metaWood);
+						woodID, woodMeta);
 			}
 		}
 

@@ -8,9 +8,6 @@ package extrabiomes.trees;
 
 import java.util.Random;
 
-import extrabiomes.api.TerrainGenManager;
-
-
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
@@ -22,92 +19,93 @@ public class WorldGenAcacia extends WorldGenerator {
 	}
 
 	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z) {
-		int height = rand.nextInt(4) + 6;
+	public boolean generate(World world, Random rand, int x, int y,
+			int z)
+	{
+		final int height = rand.nextInt(4) + 6;
 		boolean canGrow = true;
 
-		if (y < 1 || y + height + 1 > 256) {
-			return false;
-		}
+		final int woodID = TreeBlocks.getWoodID(TreeBlocks.Type.ACACIA);
+		final int woodMeta = TreeBlocks
+				.getWoodMeta(TreeBlocks.Type.ACACIA);
+		final int leafID = TreeBlocks.getLeafID(TreeBlocks.Type.ACACIA);
+		final int leafMeta = TreeBlocks
+				.getLeafMeta(TreeBlocks.Type.ACACIA);
+
+		if (y < 1 || y + height + 1 > 256) return false;
 
 		for (int y1 = y; y1 <= y + 1 + height; y1++) {
 			byte clearance = 1;
 
-			if (y1 == y) {
-				clearance = 0;
-			}
+			if (y1 == y) clearance = 0;
 
-			if (y1 >= (y + 1 + height) - 2) {
-				clearance = 2;
-			}
+			if (y1 >= y + 1 + height - 2) clearance = 2;
 
-			for (int x1 = x - clearance; x1 <= x + clearance && canGrow; x1++) {
-				for (int z1 = z - clearance; z1 <= z + clearance && canGrow; z1++) {
+			for (int x1 = x - clearance; x1 <= x + clearance && canGrow; x1++)
+				for (int z1 = z - clearance; z1 <= z + clearance
+						&& canGrow; z1++)
 					if (y1 >= 0 && y1 < 256) {
 						final int id = world.getBlockId(x1, y1, z1);
 
 						if (Block.blocksList[id] != null
-								&& !Block.blocksList[id].isLeaves(world, x1,
-										y1, z1)
+								&& !Block.blocksList[id].isLeaves(
+										world, x1, y1, z1)
 								&& id != Block.grass.blockID
 								&& id != Block.dirt.blockID
-								&& !Block.blocksList[id].isWood(world, x1, y1,
-										z1))
-							canGrow = false;
+								&& !Block.blocksList[id].isWood(world,
+										x1, y1, z1)) canGrow = false;
 
 					} else
 						canGrow = false;
-				}
-			}
 		}
 
-		if (!canGrow) {
-			return false;
-		}
+		if (!canGrow) return false;
 
-		if (!TerrainGenManager.treesCanGrowOnIDs.contains(Integer.valueOf(world
-				.getBlockId(x, y - 1, z))) || y >= 256 - height - 1) {
-			return false;
-		}
+		if (!TreeBlocks.treesCanGrowOnIDs.contains(Integer
+				.valueOf(world.getBlockId(x, y - 1, z)))
+				|| y >= 256 - height - 1) return false;
 
 		world.setBlock(x, y - 1, z, Block.dirt.blockID);
-		byte canopyHeight = 3;
-		int minCanopyRadius = 0;
+		final byte canopyHeight = 3;
+		final int minCanopyRadius = 0;
 
-		for (int y1 = (y - canopyHeight) + height; y1 <= y + height; y1++) {
-			int distanceFromTop = y1 - (y + height);
-			int canopyRadius = (minCanopyRadius + 1) - distanceFromTop;
+		for (int y1 = y - canopyHeight + height; y1 <= y + height; y1++)
+		{
+			final int distanceFromTop = y1 - (y + height);
+			final int canopyRadius = minCanopyRadius + 1
+					- distanceFromTop;
 
-			for (int x1 = x - canopyRadius; x1 <= x + canopyRadius; x1++) {
-				int xOnRadius = x1 - x;
+			for (int x1 = x - canopyRadius; x1 <= x + canopyRadius; x1++)
+			{
+				final int xOnRadius = x1 - x;
 
-				for (int z1 = z - canopyRadius; z1 <= z + canopyRadius; z1++) {
-					int zOnRadius = z1 - z;
+				for (int z1 = z - canopyRadius; z1 <= z + canopyRadius; z1++)
+				{
+					final int zOnRadius = z1 - z;
 
-                    Block block = Block.blocksList[world.getBlockId(x1, y1, z1)];
+					final Block block = Block.blocksList[world
+							.getBlockId(x1, y1, z1)];
 
 					if ((Math.abs(xOnRadius) != canopyRadius
 							|| Math.abs(zOnRadius) != canopyRadius || rand
 							.nextInt(2) != 0 && distanceFromTop != 0)
-							&& (block == null || block.canBeReplacedByLeaves(world, x1, y1, z1))) {
-						setBlockAndMetadata(world, x1, y1, z1,
-								TerrainGenManager.blockAcaciaLeaves.blockID,
-								TerrainGenManager.metaAcaciaLeaves);
-					}
+							&& (block == null || block
+									.canBeReplacedByLeaves(world, x1,
+											y1, z1)))
+						setBlockAndMetadata(world, x1, y1, z1, leafID,
+								leafMeta);
 				}
 			}
 		}
 
 		for (int y1 = 0; y1 < height; y1++) {
-			int id = world.getBlockId(x, y + y1, z);
+			final int id = world.getBlockId(x, y + y1, z);
 
 			if (Block.blocksList[id] != null
-					&& !Block.blocksList[id].isLeaves(world, x, y + y1, z)) 
-				continue;
+					&& !Block.blocksList[id].isLeaves(world, x, y + y1,
+							z)) continue;
 
-			setBlockAndMetadata(world, x, y + y1, z,
-					TerrainGenManager.blockAcaciaWood.blockID,
-					TerrainGenManager.metaAcaciaWood);
+			setBlockAndMetadata(world, x, y + y1, z, woodID, woodMeta);
 
 		}
 		return true;

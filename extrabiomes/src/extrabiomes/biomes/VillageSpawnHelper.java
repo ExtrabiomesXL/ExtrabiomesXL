@@ -9,16 +9,15 @@ package extrabiomes.biomes;
 import java.util.ArrayList;
 import java.util.List;
 
-import extrabiomes.ExtrabiomesLog;
-
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.MapGenVillage;
+import extrabiomes.ExtrabiomesLog;
 
 class VillageSpawnHelper {
 
 	private static boolean	villageSpawnBiomeChangesEnabled	= false;
 
-	static void addVillageSpawnBiome(BiomeGenBase biome) {
+	private static void addVillageSpawnBiome(BiomeGenBase biome) {
 		if (!villageSpawnBiomeChangesEnabled)
 			enableVillageSpawnBiomeChanges();
 		if (MapGenVillage.villageSpawnBiomes.add(biome))
@@ -36,13 +35,21 @@ class VillageSpawnHelper {
 		}
 	}
 
-	static void removeVillageSpawnBiome(BiomeGenBase biome) {
+	private static void removeVillageSpawnBiome(BiomeGenBase biome) {
 		if (!villageSpawnBiomeChangesEnabled)
 			enableVillageSpawnBiomeChanges();
 		if (MapGenVillage.villageSpawnBiomes.remove(biome))
 			ExtrabiomesLog
 					.info("Disabled village spawning for \"%s\" biome per config file settings.",
 							biome.biomeName);
+	}
+
+	static void setVillageSpawn(BiomeGenBase biome, boolean spawnVillage)
+	{
+		if (spawnVillage)
+			addVillageSpawnBiome(biome);
+		else
+			removeVillageSpawnBiome(biome);
 	}
 
 }

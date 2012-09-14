@@ -4,58 +4,34 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.blocks;
+package extrabiomes.plugin.trees;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-
-import extrabiomes.api.ExtrabiomesBlock;
-import extrabiomes.api.TerrainGenManager;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockLeavesBase;
-import net.minecraft.src.ColorizerFoliage;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Entity;
-import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IBlockAccess;
+import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import net.minecraftforge.common.IShearable;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
-public class BlockGreenLeaves extends BlockLeavesBase implements
+public class BlockAutumnLeaves extends BlockLeavesBase implements
 		IShearable
 {
 
 	private static final int	METADATA_BITMASK		= 0x3;
+
 	private static final int	METADATA_USERPLACEDBIT	= 0x4;
 	private static final int	METADATA_DECAYBIT		= 0x8;
 	private static final int	METADATA_CLEARDECAYBIT	= -METADATA_DECAYBIT - 1;
-
-	public static final int		metaFir					= 0;
-	public static final int		metaRedwood				= 1;
-	public static final int		metaAcacia				= 2;
-
-	private static int calcSmoothedBiomeFoliageColor(
-			IBlockAccess iBlockAccess, int x, int z)
-	{
-		int red = 0;
-		int green = 0;
-		int blue = 0;
-
-		for (int z1 = -1; z1 <= 1; ++z1)
-			for (int x1 = -1; x1 <= 1; ++x1) {
-				final int foliageColor = iBlockAccess
-						.getBiomeGenForCoords(x + x1, z + z1)
-						.getBiomeFoliageColor();
-				red += (foliageColor & 16711680) >> 16;
-				green += (foliageColor & 65280) >> 8;
-				blue += foliageColor & 255;
-			}
-
-		return (red / 9 & 255) << 16 | (green / 9 & 255) << 8 | blue
-				/ 9 & 255;
-	}
 
 	static private int clearDecayOnMetadata(int metadata) {
 		return metadata & METADATA_CLEARDECAYBIT;
@@ -79,8 +55,8 @@ public class BlockGreenLeaves extends BlockLeavesBase implements
 
 	int[]	adjacentTreeBlocks;
 
-	public BlockGreenLeaves(int id) {
-		super(id, 80, Material.leaves, false);
+	public BlockAutumnLeaves(int id) {
+		super(id, 3, Material.leaves, false);
 		setTickRandomly(true);
 		setHardness(0.2F);
 		setLightOpacity(1);
@@ -88,18 +64,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements
 		setRequiresSelfNotify();
 		Block.setBurnProperties(id, 30, 60);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-
-		TerrainGenManager.blockFirLeaves = TerrainGenManager.blockRedwoodLeaves = TerrainGenManager.blockAcaciaLeaves = this;
-		TerrainGenManager.metaFirLeaves = metaFir;
-		TerrainGenManager.metaRedwoodLeaves = metaRedwood;
-		TerrainGenManager.metaAcaciaLeaves = metaAcacia;
-	}
-
-	@Override
-	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(this, 1, metaFir));
-		itemList.add(new ItemStack(this, 1, metaRedwood));
-		itemList.add(new ItemStack(this, 1, metaAcacia));
+		setCreativeTab(CreativeTabs.tabDeco);
 	}
 
 	@Override
@@ -110,11 +75,11 @@ public class BlockGreenLeaves extends BlockLeavesBase implements
 
 	@Override
 	public void breakBlock(World world, int x, int y, int z,
-			int BlockID, int metadata)
+			int blockID, int metadata)
 	{
 		final int leafDecayRadius = 1;
-
 		final int chuckCheckRadius = leafDecayRadius + 1;
+
 		if (!world.checkChunksExist(x - chuckCheckRadius, y
 				- chuckCheckRadius, z - chuckCheckRadius, x
 				+ chuckCheckRadius, y + chuckCheckRadius, z
@@ -134,30 +99,17 @@ public class BlockGreenLeaves extends BlockLeavesBase implements
 	}
 
 	@Override
-	public int colorMultiplier(IBlockAccess iBlockAccess, int x, int y,
-			int z)
-	{
-		final int metadata = unmarkedMetadata(iBlockAccess
-				.getBlockMetadata(x, y, z));
-
-		if (metadata != metaRedwood) return getRenderColor(metadata);
-
-		return calcSmoothedBiomeFoliageColor(iBlockAccess, x, z);
-	}
-
-	@Override
 	protected int damageDropped(int metadata) {
-
-		return unmarkedMetadata(metadata) + 4;
+		// Autumn saplings and autumn leaves have corresponding metadata
+		return unmarkedMetadata(metadata);
 	}
 
 	private void doSaplingDrop(World world, int x, int y, int z,
 			int metadata, int par7)
 	{
-		final int idDropped = idDropped(metadata, world.rand, par7);
-		final int damageDropped = damageDropped(metadata);
-		dropBlockAsItem_do(world, x, y, z, new ItemStack(idDropped, 1,
-				damageDropped));
+		dropBlockAsItem_do(world, x, y, z,
+				new ItemStack(idDropped(metadata, world.rand, par7), 1,
+						damageDropped(metadata)));
 	}
 
 	@Override
@@ -168,40 +120,33 @@ public class BlockGreenLeaves extends BlockLeavesBase implements
 
 		if (world.rand.nextInt(20) == 0)
 			doSaplingDrop(world, x, y, z, metadata, par7);
+
+		if (world.rand.nextInt(200) == 0)
+			dropBlockAsItem_do(world, x, y, z, new ItemStack(
+					Item.appleRed, 1, 0));
 	}
 
 	@Override
-	public int getBlockColor() {
-		return ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
-	}
-
-	@Override
-	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
+	public int getBlockTextureFromSideAndMetadata(int side,
+			final int metadata)
 	{
-		return blockIndexInTexture + unmarkedMetadata(metadata) * 2
-				+ (!isOpaqueCube() ? 0 : 1);
+		return blockIndexInTexture + 2 * unmarkedMetadata(metadata)
+				+ (isOpaqueCube() ? 1 : 0);
 	}
 
 	@Override
-	public int getRenderColor(int metadata) {
-		metadata = unmarkedMetadata(metadata);
-
-		return metadata == 0 ? ColorizerFoliage.getFoliageColorPine()
-				: metadata == 1 ? ColorizerFoliage
-						.getFoliageColorBasic() : ColorizerFoliage
-						.getFoliageColor(0.9F, 0.1F);
-	}
-
-	@Override
-	public void harvestBlock(World world, final EntityPlayer player,
-			final int x, final int y, final int z, final int md)
-	{
-		super.harvestBlock(world, player, x, y, z, md);
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
+		if (tab == CreativeTabs.tabDeco)
+			for (final AutumnLeafType blockType : AutumnLeafType
+					.values())
+				itemList.add(new ItemStack(this, 1, blockType
+						.metadata()));
 	}
 
 	@Override
 	public int idDropped(int metadata, Random rand, int par3) {
-		return ExtrabiomesBlock.sapling.get().blockID;
+		return Tree.sapling.get().blockID;
 	}
 
 	@Override
@@ -243,7 +188,9 @@ public class BlockGreenLeaves extends BlockLeavesBase implements
 		return rand.nextInt(20) == 0 ? 1 : 0;
 	}
 
-	private void removeLeaves(World world, int x, int y, int z) {
+	private void removeLeaves(World world, int x, final int y,
+			final int z)
+	{
 		dropBlockAsItem(world, x, y, z,
 				world.getBlockMetadata(x, y, z), 0);
 		world.setBlockWithNotify(x, y, z, 0);
@@ -289,18 +236,16 @@ public class BlockGreenLeaves extends BlockLeavesBase implements
 					{
 						final int id = world.getBlockId(x + var12, y
 								+ var13, z + var14);
-
-						final Block block = Block.blocksList[id];
-
-						if (block != null
-								&& block.canSustainLeaves(world, x
+						if (Block.blocksList[id] != null
+								&& Block.blocksList[id].isWood(world, x
 										+ var12, y + var13, z + var14))
 							adjacentTreeBlocks[(var12 + var11) * var10
 									+ (var13 + var11) * var9 + var14
 									+ var11] = 0;
-						else if (block != null
-								&& block.isLeaves(world, x + var12, y
-										+ var13, z + var14))
+						else if (Block.blocksList[id] != null
+								&& Block.blocksList[id]
+										.isLeaves(world, x + var12, y
+												+ var13, z + var14))
 							adjacentTreeBlocks[(var12 + var11) * var10
 									+ (var13 + var11) * var9 + var14
 									+ var11] = -2;
@@ -374,5 +319,4 @@ public class BlockGreenLeaves extends BlockLeavesBase implements
 		else
 			removeLeaves(world, x, y, z);
 	}
-
 }

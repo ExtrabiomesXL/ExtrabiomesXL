@@ -18,7 +18,6 @@ import java.util.Set;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
-import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenBigTree;
 import net.minecraft.src.WorldGenForest;
@@ -40,8 +39,8 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesConfig;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
-import extrabiomes.api.TerrainGenManager;
 import extrabiomes.terrain.WorldGenCustomSwamp;
+import extrabiomes.trees.TreeBlocks;
 import extrabiomes.trees.WorldGenAcacia;
 import extrabiomes.trees.WorldGenAutumnTree;
 import extrabiomes.trees.WorldGenBigAutumnTree;
@@ -54,39 +53,34 @@ import extrabiomes.utility.WeightedWorldGenerator;
 public class BiomeManagerImpl extends BiomeManager {
 
 	private enum BiomeEnum {
-		// @formatter:off
-		ALPINE(new BiomeAlpine(32)),
-		AUTUMNWOODS(new BiomeAutumnWoods(33)),
-		BIRCHFOREST(new BiomeBirchForest(34)),
-		EXTREMEJUNGLE(new BiomeExtremeJungle(35)),
-		FORESTEDHILLS(new BiomeForestedHills(36)),
-		FORESTEDISLAND(new BiomeForestedIsland(37)),
-		GLACIER(new BiomeGlacier(38)),
-		GREENHILLS(new BiomeGreenHills(39)),
-		GREENSWAMP(new BiomeGreenSwamp(40)),
-		ICEWASTELAND(new BiomeIceWasteland(41)),
-		MARSH(new BiomeMarsh(42)),
-		MEADOW(new BiomeMeadow(43)),
-		MINIJUNGLE(new BiomeMiniJungle(44)),
-		MOUNTAINDESERT(new BiomeMountainDesert(45)),
-		MOUNTAINRIDGE(new BiomeMountainRidge(46)),
-		MOUNTAINTAIGA(new BiomeMountainTaiga(47)),
-		PINEFOREST(new BiomePineForest(48)),
-		RAINFOREST(new BiomeRainforest(49)),
-		REDWOODFOREST(new BiomeRedwoodForest(50)),
-		REDWOODLUSH(new BiomeRedwoodLush(51)),
-		SAVANNA(new BiomeSavanna(52)),
-		SHRUBLAND(new BiomeShrubland(53)),
-		SNOWYFOREST(new BiomeSnowForest(54)),
-		SNOWYRAINFOREST(new BiomeSnowRainforest(55)),
-		TEMPORATERAINFOREST(new BiomeTemporateRainforest(56)),
-		TUNDRA(new BiomeTundra(57)),
-		WASTELAND(new BiomeWasteland(58)),
-		WOODLANDS(new BiomeWoodlands(59));
+		ALPINE(new BiomeAlpine(32)), AUTUMNWOODS(new BiomeAutumnWoods(
+				33)), BIRCHFOREST(new BiomeBirchForest(34)), EXTREMEJUNGLE(
+				new BiomeExtremeJungle(35)), FORESTEDHILLS(
+				new BiomeForestedHills(36)), FORESTEDISLAND(
+				new BiomeForestedIsland(37)), GLACIER(new BiomeGlacier(
+				38)), GREENHILLS(new BiomeGreenHills(39)), GREENSWAMP(
+				new BiomeGreenSwamp(40)), ICEWASTELAND(
+				new BiomeIceWasteland(41)), MARSH(new BiomeMarsh(42)), MEADOW(
+				new BiomeMeadow(43)), MINIJUNGLE(
+				new BiomeMiniJungle(44)), MOUNTAINDESERT(
+				new BiomeMountainDesert(45)), MOUNTAINRIDGE(
+				new BiomeMountainRidge(46)), MOUNTAINTAIGA(
+				new BiomeMountainTaiga(47)), PINEFOREST(
+				new BiomePineForest(48)), RAINFOREST(
+				new BiomeRainforest(49)), REDWOODFOREST(
+				new BiomeRedwoodForest(50)), REDWOODLUSH(
+				new BiomeRedwoodLush(51)), SAVANNA(new BiomeSavanna(52)), SHRUBLAND(
+				new BiomeShrubland(53)), SNOWYFOREST(
+				new BiomeSnowForest(54)), SNOWYRAINFOREST(
+				new BiomeSnowRainforest(55)), TEMPORATERAINFOREST(
+				new BiomeTemporateRainforest(56)), TUNDRA(
+				new BiomeTundra(57)), WASTELAND(new BiomeWasteland(58)), WOODLANDS(
+				new BiomeWoodlands(59));
 
-		private static final Set<BiomeEnum>	enabledBiomes		   = EnumSet.noneOf(BiomeEnum.class);
-		private static final Set<BiomeEnum>	biomesAllowingVillages = EnumSet.noneOf(BiomeEnum.class);
-		// @formatter:on
+		private static final Set<BiomeEnum>	enabledBiomes			= EnumSet
+																			.noneOf(BiomeEnum.class);
+		private static final Set<BiomeEnum>	biomesAllowingVillages	= EnumSet
+																			.noneOf(BiomeEnum.class);
 
 		public static Set<BiomeEnum> getBiomesAllowingVillages() {
 			return ImmutableSet.copyOf(biomesAllowingVillages);
@@ -129,44 +123,90 @@ public class BiomeManagerImpl extends BiomeManager {
 		}
 	}
 
+	private enum VanillaBiomeEnum {
+		DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA;
 
-	// @formatter:off
-	private static final WorldGenerator	ACACIA_TREE_GEN			  	= new WorldGenAcacia(false);
-	private static final WorldGenerator	ALT_TAIGA_GEN			 	= new WorldGenTaiga2(false);
-	private static final WorldGenerator	BIG_BROWN_AUTUMN_TREE_GEN	= new WorldGenBigAutumnTree(false, TerrainGenManager.blockBrownAutumnWood.blockID, TerrainGenManager.metaBrownAutumnWood, TerrainGenManager.blockBrownAutumnLeaves.blockID, TerrainGenManager.metaBrownAutumnWood);
-	private static final WorldGenerator	BIG_ORANGE_AUTUMN_TREE_GEN	= new WorldGenBigAutumnTree(false, TerrainGenManager.blockOrangeAutumnWood.blockID, TerrainGenManager.metaOrangeAutumnWood, TerrainGenManager.blockOrangeAutumnLeaves.blockID, TerrainGenManager.metaOrangeAutumnWood);
-	private static final WorldGenerator	BIG_PURPLE_AUTUMN_TREE_GEN	= new WorldGenBigAutumnTree(false, TerrainGenManager.blockPurpleAutumnWood.blockID, TerrainGenManager.metaPurpleAutumnWood, TerrainGenManager.blockPurpleAutumnLeaves.blockID, TerrainGenManager.metaPurpleAutumnWood);
-	private static final WorldGenerator	BIG_YELLOW_AUTUMN_TREE_GEN	= new WorldGenBigAutumnTree(false, TerrainGenManager.blockYellowAutumnWood.blockID, TerrainGenManager.metaYellowAutumnWood, TerrainGenManager.blockYellowAutumnLeaves.blockID, TerrainGenManager.metaYellowAutumnWood);
-	private static final WorldGenerator	BIG_FIR_TREE_GEN	  		= new WorldGenFirTreeHuge(false);
-	private static final WorldGenerator	BIG_OAK_TREE_GEN	  		= new WorldGenBigTree(false);
-	private static final WorldGenerator	BIRCH_TREE_GEN		  		= new WorldGenForest(false);
-	private static final WorldGenerator	BROWN_AUTUMN_TREE_GEN		= new WorldGenAutumnTree(false, new ItemStack(TerrainGenManager.blockBrownAutumnWood, 1, TerrainGenManager.metaBrownAutumnWood), new ItemStack(TerrainGenManager.blockBrownAutumnLeaves, 1, TerrainGenManager.metaBrownAutumnLeaves));
-	private static final WorldGenerator	CUSTOM_SWAMP_TREE_GEN 		= new WorldGenCustomSwamp();
-	private static final WorldGenerator	FERN_GEN			 		= new WorldGenTallGrass(Block.tallGrass.blockID, 2);
-	private static final WorldGenerator	FIR_TREE_GEN		  		= new WorldGenFirTree(false);
-	private static final WorldGenerator	GRASS_GEN			  		= new WorldGenTallGrass(Block.tallGrass.blockID, 1);
-	private static final WorldGenerator	OAK_TREE_GEN		  		= new WorldGenTrees(false);
-	private static final WorldGenerator	ORANGE_AUTUMN_TREE_GEN		= new WorldGenAutumnTree(false, new ItemStack(TerrainGenManager.blockOrangeAutumnWood, 1, TerrainGenManager.metaOrangeAutumnWood), new ItemStack(TerrainGenManager.blockOrangeAutumnLeaves, 1, TerrainGenManager.metaOrangeAutumnLeaves));
-	private static final WorldGenerator	PURPLE_AUTUMN_TREE_GEN		= new WorldGenAutumnTree(false, new ItemStack(TerrainGenManager.blockPurpleAutumnWood, 1, TerrainGenManager.metaPurpleAutumnWood), new ItemStack(TerrainGenManager.blockPurpleAutumnLeaves, 1, TerrainGenManager.metaPurpleAutumnLeaves));
-	private static final WorldGenerator	REDWOOD_TREE_GEN	  		= new WorldGenRedwood(false);
-	private static final WorldGenerator	SHRUB_GEN			  		= new WorldGenShrub(3, 0);
-	private static final WorldGenerator	SWAMP_TREE_GEN		  		= new WorldGenSwamp();
-	private static final WorldGenerator	TAIGA_GEN			  		= new WorldGenTaiga1();
-	private static final WorldGenerator	YELLOW_AUTUMN_TREE_GEN		= new WorldGenAutumnTree(false, new ItemStack(TerrainGenManager.blockYellowAutumnWood, 1, TerrainGenManager.metaYellowAutumnWood), new ItemStack(TerrainGenManager.blockYellowAutumnLeaves, 1, TerrainGenManager.metaYellowAutumnLeaves));
+		private static final Set<VanillaBiomeEnum>	disabledBiomes			= EnumSet
+																					.noneOf(VanillaBiomeEnum.class);
+		private static final Set<VanillaBiomeEnum>	biomesAllowingVillages	= EnumSet
+																					.noneOf(VanillaBiomeEnum.class);
 
-	private static List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
+		public static Set<VanillaBiomeEnum> getBiomesAllowingVillages()
+		{
+			return ImmutableSet.copyOf(biomesAllowingVillages);
+		}
 
-	private final static Map<GenType, Multimap<BiomeGenBase, WeightedWorldGenerator>> weightedChoices = new EnumMap(GenType.class);
+		public static Set<VanillaBiomeEnum> getDisabledBiomes() {
+			return ImmutableSet.copyOf(disabledBiomes);
+		}
+
+		private String enabledKey() {
+			return toString() + ".enablegeneration";
+		}
+
+		public void loadSettings(ExtrabiomesConfig cfg) {
+			if (!cfg.getOrCreateBooleanProperty(enabledKey(),
+					ExtrabiomesConfig.CATEGORY_BIOME, true).getBoolean(
+					true)) disabledBiomes.add(this);
+			if (cfg.getOrCreateBooleanProperty(villagesKey(),
+					ExtrabiomesConfig.CATEGORY_BIOME, true).getBoolean(
+					true)) biomesAllowingVillages.add(this);
+		}
+
+		@Override
+		public String toString() {
+			return super.toString().toLowerCase(Locale.US);
+		}
+
+		private String villagesKey() {
+			return toString() + ".allowvillages";
+		}
+	}
+
+	private static final WorldGenerator													ACACIA_TREE_GEN				= new WorldGenAcacia(
+																															false);
+	private static final WorldGenerator													ALT_TAIGA_GEN				= new WorldGenTaiga2(
+																															false);
+	private static final WorldGenerator													BIG_FIR_TREE_GEN			= new WorldGenFirTreeHuge(
+																															false);
+	private static final WorldGenerator													BIG_OAK_TREE_GEN			= new WorldGenBigTree(
+																															false);
+	private static final WorldGenerator													BIRCH_TREE_GEN				= new WorldGenForest(
+																															false);
+	private static final WorldGenerator													CUSTOM_SWAMP_TREE_GEN		= new WorldGenCustomSwamp();
+	private static final WorldGenerator													FERN_GEN					= new WorldGenTallGrass(
+																															Block.tallGrass.blockID,
+																															2);
+	private static final WorldGenerator													FIR_TREE_GEN				= new WorldGenFirTree(
+																															false);
+	private static final WorldGenerator													GRASS_GEN					= new WorldGenTallGrass(
+																															Block.tallGrass.blockID,
+																															1);
+	private static final WorldGenerator													OAK_TREE_GEN				= new WorldGenTrees(
+																															false);
+	private static final WorldGenerator													REDWOOD_TREE_GEN			= new WorldGenRedwood(
+																															false);
+	private static final WorldGenerator													SHRUB_GEN					= new WorldGenShrub(
+																															3,
+																															0);
+	private static final WorldGenerator													SWAMP_TREE_GEN				= new WorldGenSwamp();
+	private static final WorldGenerator													TAIGA_GEN					= new WorldGenTaiga1();
+
+	private static List<BiomeGenBase>													biomes						= new ArrayList<BiomeGenBase>();
+
+	private final static Map<GenType, Multimap<BiomeGenBase, WeightedWorldGenerator>>	weightedChoices				= new EnumMap(
+																															GenType.class);
 	static {
-		final Multimap<BiomeGenBase, WeightedWorldGenerator> tree = ArrayListMultimap.create();
+		final Multimap<BiomeGenBase, WeightedWorldGenerator> tree = ArrayListMultimap
+				.create();
 		weightedChoices.put(GenType.TREE, tree);
-		
-		final Multimap<BiomeGenBase, WeightedWorldGenerator> grass = ArrayListMultimap.create();
+
+		final Multimap<BiomeGenBase, WeightedWorldGenerator> grass = ArrayListMultimap
+				.create();
 		weightedChoices.put(GenType.GRASS, grass);
 	}
 
-	private static boolean initialized	= false;
-	// @formatter:on
+	private static boolean																initialized					= false;
 
 	private static final Collection<BiomeGenBase>										disableDefaultGrassBiomes	= new ArrayList();
 
@@ -175,18 +215,52 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 	private static void addAutumnTrees(BiomeGenBase biome) {
-		addWeightedTreeGenForBiome(biome, BROWN_AUTUMN_TREE_GEN, 243);
-		addWeightedTreeGenForBiome(biome, BIG_BROWN_AUTUMN_TREE_GEN, 27);
-		addWeightedTreeGenForBiome(biome, ORANGE_AUTUMN_TREE_GEN, 162);
-		addWeightedTreeGenForBiome(biome, BIG_ORANGE_AUTUMN_TREE_GEN,
-				18);
-		addWeightedTreeGenForBiome(biome, PURPLE_AUTUMN_TREE_GEN, 108);
-		addWeightedTreeGenForBiome(biome, BIG_PURPLE_AUTUMN_TREE_GEN,
-				12);
-		addWeightedTreeGenForBiome(biome, YELLOW_AUTUMN_TREE_GEN, 72);
-		addWeightedTreeGenForBiome(biome, BIG_YELLOW_AUTUMN_TREE_GEN, 8);
-		addWeightedTreeGenForBiome(biome, OAK_TREE_GEN, 144);
-		addWeightedTreeGenForBiome(biome, BIG_OAK_TREE_GEN, 16);
+		addWeightedTreeGenForBiome(
+				biome,
+				new WorldGenAutumnTree(false, TreeBlocks
+						.getWoodID(TreeBlocks.Type.BROWN), TreeBlocks
+						.getWoodMeta(TreeBlocks.Type.BROWN), TreeBlocks
+						.getLeafID(TreeBlocks.Type.BROWN), TreeBlocks
+						.getLeafMeta(TreeBlocks.Type.BROWN)), 90);
+		addWeightedTreeGenForBiome(
+				biome,
+				new WorldGenBigAutumnTree(false, TreeBlocks
+						.getWoodID(TreeBlocks.Type.BROWN), TreeBlocks
+						.getWoodMeta(TreeBlocks.Type.BROWN), TreeBlocks
+						.getLeafID(TreeBlocks.Type.BROWN), TreeBlocks
+						.getLeafMeta(TreeBlocks.Type.BROWN)), 10);
+		addWeightedTreeGenForBiome(biome, new WorldGenAutumnTree(false,
+				TreeBlocks.getWoodID(TreeBlocks.Type.ORANGE),
+				TreeBlocks.getWoodMeta(TreeBlocks.Type.ORANGE),
+				TreeBlocks.getLeafID(TreeBlocks.Type.ORANGE),
+				TreeBlocks.getLeafMeta(TreeBlocks.Type.ORANGE)), 90);
+		addWeightedTreeGenForBiome(biome, new WorldGenBigAutumnTree(
+				false, TreeBlocks.getWoodID(TreeBlocks.Type.ORANGE),
+				TreeBlocks.getWoodMeta(TreeBlocks.Type.ORANGE),
+				TreeBlocks.getLeafID(TreeBlocks.Type.ORANGE),
+				TreeBlocks.getLeafMeta(TreeBlocks.Type.ORANGE)), 10);
+		addWeightedTreeGenForBiome(biome, new WorldGenAutumnTree(false,
+				TreeBlocks.getWoodID(TreeBlocks.Type.PURPLE),
+				TreeBlocks.getWoodMeta(TreeBlocks.Type.PURPLE),
+				TreeBlocks.getLeafID(TreeBlocks.Type.PURPLE),
+				TreeBlocks.getLeafMeta(TreeBlocks.Type.PURPLE)), 90);
+		addWeightedTreeGenForBiome(biome, new WorldGenBigAutumnTree(
+				false, TreeBlocks.getWoodID(TreeBlocks.Type.PURPLE),
+				TreeBlocks.getWoodMeta(TreeBlocks.Type.PURPLE),
+				TreeBlocks.getLeafID(TreeBlocks.Type.PURPLE),
+				TreeBlocks.getLeafMeta(TreeBlocks.Type.PURPLE)), 10);
+		addWeightedTreeGenForBiome(biome, new WorldGenAutumnTree(false,
+				TreeBlocks.getWoodID(TreeBlocks.Type.YELLOW),
+				TreeBlocks.getWoodMeta(TreeBlocks.Type.YELLOW),
+				TreeBlocks.getLeafID(TreeBlocks.Type.YELLOW),
+				TreeBlocks.getLeafMeta(TreeBlocks.Type.YELLOW)), 90);
+		addWeightedTreeGenForBiome(biome, new WorldGenBigAutumnTree(
+				false, TreeBlocks.getWoodID(TreeBlocks.Type.YELLOW),
+				TreeBlocks.getWoodMeta(TreeBlocks.Type.YELLOW),
+				TreeBlocks.getLeafID(TreeBlocks.Type.YELLOW),
+				TreeBlocks.getLeafMeta(TreeBlocks.Type.YELLOW)), 10);
+		addWeightedTreeGenForBiome(biome, OAK_TREE_GEN, 90);
+		addWeightedTreeGenForBiome(biome, BIG_OAK_TREE_GEN, 10);
 	}
 
 	private static void addBiome(BiomeGenBase biome) {
@@ -210,6 +284,24 @@ public class BiomeManagerImpl extends BiomeManager {
 	private static void addEnabledBiomes() {
 		for (final BiomeEnum biome : BiomeEnum.getEnabledBiomes())
 			addBiome(biome.getBiome());
+
+		final Set<VanillaBiomeEnum> disabledBiomes = VanillaBiomeEnum
+				.getDisabledBiomes();
+
+		if (disabledBiomes.contains(VanillaBiomeEnum.DESERT))
+			removeBiome(BiomeGenBase.desert);
+		if (disabledBiomes.contains(VanillaBiomeEnum.EXTREMEHILLS))
+			removeBiome(BiomeGenBase.extremeHills);
+		if (disabledBiomes.contains(VanillaBiomeEnum.FOREST))
+			removeBiome(BiomeGenBase.forest);
+		if (disabledBiomes.contains(VanillaBiomeEnum.JUNGLE))
+			removeBiome(BiomeGenBase.jungle);
+		if (disabledBiomes.contains(VanillaBiomeEnum.PLAINS))
+			removeBiome(BiomeGenBase.plains);
+		if (disabledBiomes.contains(VanillaBiomeEnum.SWAMPLAND))
+			removeBiome(BiomeGenBase.swampland);
+		if (disabledBiomes.contains(VanillaBiomeEnum.TAIGA))
+			removeBiome(BiomeGenBase.taiga);
 	}
 
 	private static void addExtremeJungleTrees(BiomeGenBase biome) {
@@ -385,13 +477,35 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 	private static void enableVillages() {
-		for (final BiomeEnum biome : BiomeEnum
-				.getBiomesAllowingVillages())
-			VillageSpawnHelper.addVillageSpawnBiome(biome.getBiome());
+		final Set<BiomeEnum> biomes = BiomeEnum
+				.getBiomesAllowingVillages();
+		for (final BiomeEnum biome : BiomeEnum.values())
+			VillageSpawnHelper.setVillageSpawn(biome.getBiome(),
+					biomes.contains(biome));
+
+		final Set<VanillaBiomeEnum> villageBiomes = VanillaBiomeEnum
+				.getBiomesAllowingVillages();
+
+		VillageSpawnHelper.setVillageSpawn(BiomeGenBase.desert,
+				villageBiomes.contains(VanillaBiomeEnum.DESERT));
+		VillageSpawnHelper.setVillageSpawn(BiomeGenBase.extremeHills,
+				villageBiomes.contains(VanillaBiomeEnum.EXTREMEHILLS));
+		VillageSpawnHelper.setVillageSpawn(BiomeGenBase.forest,
+				villageBiomes.contains(VanillaBiomeEnum.FOREST));
+		VillageSpawnHelper.setVillageSpawn(BiomeGenBase.jungle,
+				villageBiomes.contains(VanillaBiomeEnum.JUNGLE));
+		VillageSpawnHelper.setVillageSpawn(BiomeGenBase.plains,
+				villageBiomes.contains(VanillaBiomeEnum.PLAINS));
+		VillageSpawnHelper.setVillageSpawn(BiomeGenBase.swampland,
+				villageBiomes.contains(VanillaBiomeEnum.SWAMPLAND));
+		VillageSpawnHelper.setVillageSpawn(BiomeGenBase.taiga,
+				villageBiomes.contains(VanillaBiomeEnum.TAIGA));
 	}
 
 	public static void loadSettings(ExtrabiomesConfig cfg) {
 		for (final BiomeEnum biome : BiomeEnum.values())
+			biome.loadSettings(cfg);
+		for (final VanillaBiomeEnum biome : VanillaBiomeEnum.values())
 			biome.loadSettings(cfg);
 	}
 
@@ -432,6 +546,13 @@ public class BiomeManagerImpl extends BiomeManager {
 
 	public static void preInit() {
 		populateAPIBiomes();
+	}
+
+	private static void removeBiome(BiomeGenBase biome) {
+		Extrabiomes.proxy.removeBiome(biome);
+		ExtrabiomesLog.info(
+				"Disabled biome \"%s\" per config file settings.",
+				biome.biomeName);
 	}
 
 	public BiomeManagerImpl() {

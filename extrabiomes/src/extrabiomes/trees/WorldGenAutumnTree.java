@@ -9,10 +9,8 @@ package extrabiomes.trees;
 import java.util.Random;
 
 import net.minecraft.src.Block;
-import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.api.TerrainGenManager;
 
 public class WorldGenAutumnTree extends WorldGenerator {
 
@@ -25,7 +23,7 @@ public class WorldGenAutumnTree extends WorldGenerator {
 			final int x, final int y, final int z)
 	{
 		final int id = world.getBlockId(x, y, z);
-		return TerrainGenManager.treesCanGrowOnIDs.contains(Integer
+		return TreeBlocks.treesCanGrowOnIDs.contains(Integer
 				.valueOf(id));
 	}
 
@@ -57,16 +55,20 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		return true;
 	}
 
-	private final ItemStack	leaf;
-	private final ItemStack	wood;
+	private final int	leafID;
+	private final int	leafMeta;
+	private final int	woodID;
+	private final int	woodMeta;
 
-	public WorldGenAutumnTree(boolean doBlockNotify, ItemStack leaf,
-			ItemStack wood)
+	public WorldGenAutumnTree(boolean doBlockNotify, int woodID,
+			int woodMeta, int leafID, int leafMeta)
 	{
 		super(doBlockNotify);
 
-		this.leaf = leaf;
-		this.wood = wood;
+		this.woodID = woodID;
+		this.woodMeta = woodMeta;
+		this.leafID = leafID;
+		this.leafMeta = leafMeta;
 	}
 
 	@Override
@@ -114,9 +116,8 @@ public class WorldGenAutumnTree extends WorldGenerator {
 							&& (block == null || block
 									.canBeReplacedByLeaves(world, x1,
 											y1, z1)))
-						setBlockAndMetadata(world, x1, y1, z1,
-								leaf.getItem().shiftedIndex,
-								leaf.getItemDamage());
+						setBlockAndMetadata(world, x1, y1, z1, leafID,
+								leafMeta);
 				}
 			}
 		}
@@ -131,9 +132,8 @@ public class WorldGenAutumnTree extends WorldGenerator {
 			if (Block.blocksList[id] == null
 					|| Block.blocksList[id].isLeaves(world, x, y + y1,
 							z))
-				setBlockAndMetadata(world, x, y + y1, z,
-						wood.getItem().shiftedIndex,
-						wood.getItemDamage());
+				setBlockAndMetadata(world, x, y + y1, z, woodID,
+						woodMeta);
 		}
 	}
 }

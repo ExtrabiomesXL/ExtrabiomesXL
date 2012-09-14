@@ -11,7 +11,6 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.api.TerrainGenManager;
 
 public class WorldGenFirTreeHuge extends WorldGenerator {
 
@@ -22,20 +21,21 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 			world.setBlockAndMetadata(x, y, z, blockId, metadata);
 	}
 
-	final int	blockLeaf, metaLeaf, blockWood, metaWood;
-
 	public WorldGenFirTreeHuge(boolean doNotify) {
 		super(doNotify);
-		blockLeaf = TerrainGenManager.blockFirLeaves.blockID;
-		metaLeaf = TerrainGenManager.metaFirLeaves;
-		blockWood = TerrainGenManager.blockFirWood.blockID;
-		metaWood = TerrainGenManager.metaFirWood;
 	}
 
 	@Override
 	public boolean generate(World world, Random rand, int x, int y,
 			int z)
 	{
+		final int woodID = TreeBlocks.getWoodID(TreeBlocks.Type.FIR);
+		final int woodMeta = TreeBlocks
+				.getWoodMeta(TreeBlocks.Type.FIR);
+		final int leafID = TreeBlocks.getLeafID(TreeBlocks.Type.FIR);
+		final int leafMeta = TreeBlocks
+				.getLeafMeta(TreeBlocks.Type.FIR);
+
 		final int height = rand.nextInt(16) + 32;
 		final int j = 1 + rand.nextInt(12);
 		final int k = height - j;
@@ -70,7 +70,7 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 
 		final int below = world.getBlockId(x, y - 1, z);
 
-		if (!TerrainGenManager.treesCanGrowOnIDs.contains(Integer
+		if (!TreeBlocks.treesCanGrowOnIDs.contains(Integer
 				.valueOf(below)) || y >= 256 - height - 1)
 			return false;
 
@@ -100,13 +100,13 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 											k3, l4)))
 					{
 						setBlockandMetadataIfChunkExists(world, i4, k3,
-								l4, blockLeaf, metaLeaf);
+								l4, leafID, leafMeta);
 						setBlockandMetadataIfChunkExists(world, i4 - 1,
-								k3, l4, blockLeaf, metaLeaf);
+								k3, l4, leafID, leafMeta);
 						setBlockandMetadataIfChunkExists(world, i4, k3,
-								l4 - 1, blockLeaf, metaLeaf);
+								l4 - 1, leafID, leafMeta);
 						setBlockandMetadataIfChunkExists(world, i4 - 1,
-								k3, l4 - 1, blockLeaf, metaLeaf);
+								k3, l4 - 1, leafID, leafMeta);
 					}
 				}
 			}
@@ -129,14 +129,14 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 					|| Block.blocksList[id].isLeaves(world, x, y + l3,
 							z))
 			{
-				setBlockAndMetadata(world, x, y + l3, z, blockWood,
-						metaWood);
-				setBlockAndMetadata(world, x - 1, y + l3, z, blockWood,
-						metaWood);
-				setBlockAndMetadata(world, x, y + l3, z - 1, blockWood,
-						metaWood);
+				setBlockAndMetadata(world, x, y + l3, z, woodID,
+						woodMeta);
+				setBlockAndMetadata(world, x - 1, y + l3, z, woodID,
+						woodMeta);
+				setBlockAndMetadata(world, x, y + l3, z - 1, woodID,
+						woodMeta);
 				setBlockAndMetadata(world, x - 1, y + l3, z - 1,
-						blockWood, metaWood);
+						woodID, woodMeta);
 			}
 		}
 

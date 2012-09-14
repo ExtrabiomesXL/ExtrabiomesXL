@@ -6,9 +6,18 @@
 
 package extrabiomes;
 
+import static extrabiomes.trees.TreeBlocks.Type.ACACIA;
+import static extrabiomes.trees.TreeBlocks.Type.BROWN;
+import static extrabiomes.trees.TreeBlocks.Type.FIR;
+import static extrabiomes.trees.TreeBlocks.Type.ORANGE;
+import static extrabiomes.trees.TreeBlocks.Type.PURPLE;
+import static extrabiomes.trees.TreeBlocks.Type.REDWOOD;
+import static extrabiomes.trees.TreeBlocks.Type.YELLOW;
+
 import java.io.File;
 import java.util.logging.Level;
 
+import net.minecraft.src.Block;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -20,11 +29,9 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.biomes.BiomeManagerImpl;
-import extrabiomes.biomes.VanillaBiomeManager;
-import extrabiomes.blocks.BlockManager;
 import extrabiomes.features.FeatureGenerator;
 import extrabiomes.flora.FloraManager;
-import extrabiomes.utility.ConfigSettingAnnotationParser;
+import extrabiomes.trees.TreeBlocks;
 
 @Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0 PR1")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
@@ -35,35 +42,22 @@ public class Extrabiomes {
 	@Instance("ExtrabiomesXL")
 	public static Extrabiomes			instance;
 
-	private static BiomeManagerImpl		biomeManager		= new BiomeManagerImpl();
-	private static BlockManager			blockManager		= new BlockManager();
-	private static VanillaBiomeManager	vanillaBiomeManager	= new VanillaBiomeManager();
-	private static FloraManager			floraManager		= new FloraManager();
-	private static PluginManagerImpl	pluginManager		= new PluginManagerImpl();
-	private static FuelHandler			fuelHandler			= new FuelHandler();
-
-	public static BlockManager getBlockManager() {
-		return blockManager;
-	}
+	private static BiomeManagerImpl		biomeManager	= new BiomeManagerImpl();
+	private static FloraManager			floraManager	= new FloraManager();
+	private static PluginManagerImpl	pluginManager	= new PluginManagerImpl();
 
 	@Init
 	public static void init(FMLInitializationEvent event) {
 		proxy.registerRenderInformation();
-		proxy.registerFuelHandler(fuelHandler);
 		proxy.registerWorldGenerator(new FeatureGenerator());
 
 		biomeManager.initialize();
 
-		blockManager.registerBlocks();
-		vanillaBiomeManager.applyConfigSettings();
 		floraManager.addCustomFlora();
 	}
 
 	@PostInit
 	public static void postInit(FMLPostInitializationEvent event) {
-
-		BlockManager.addNames();
-
 		pluginManager.activatePlugins();
 	}
 
@@ -79,12 +73,6 @@ public class Extrabiomes {
 			BiomeManagerImpl.loadSettings(cfg);
 			BiomeManagerImpl.preInit();
 
-			final ConfigSettingAnnotationParser parser = new ConfigSettingAnnotationParser(
-					cfg);
-
-			parser.parse(blockManager, "Block Manager");
-			parser.parse(vanillaBiomeManager, "Vanilla Biome Manager");
-
 		} catch (final Exception e) {
 			ExtrabiomesLog
 					.log(Level.SEVERE, e,
@@ -92,5 +80,20 @@ public class Extrabiomes {
 		} finally {
 			cfg.save();
 		}
+
+		TreeBlocks.setBlocks(BROWN, Block.wood.blockID, 0,
+				Block.leaves.blockID, 0);
+		TreeBlocks.setBlocks(ORANGE, Block.wood.blockID, 0,
+				Block.leaves.blockID, 0);
+		TreeBlocks.setBlocks(PURPLE, Block.wood.blockID, 0,
+				Block.leaves.blockID, 0);
+		TreeBlocks.setBlocks(YELLOW, Block.wood.blockID, 0,
+				Block.leaves.blockID, 0);
+		TreeBlocks.setBlocks(FIR, Block.wood.blockID, 1,
+				Block.leaves.blockID, 1);
+		TreeBlocks.setBlocks(REDWOOD, Block.wood.blockID, 1,
+				Block.leaves.blockID, 0);
+		TreeBlocks.setBlocks(ACACIA, Block.wood.blockID, 0,
+				Block.leaves.blockID, 0);
 	}
 }

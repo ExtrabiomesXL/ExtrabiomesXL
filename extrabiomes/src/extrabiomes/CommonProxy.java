@@ -20,6 +20,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -66,7 +67,7 @@ public class CommonProxy {
 					checkNotNull(itemclass));
 	}
 
-	public void registerFuelHandler(FuelHandler fuelHandler) {
+	public void registerFuelHandler(IFuelHandler fuelHandler) {
 		GameRegistry.registerFuelHandler(checkNotNull(fuelHandler));
 	}
 

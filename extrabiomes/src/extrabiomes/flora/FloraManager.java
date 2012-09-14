@@ -7,18 +7,18 @@
 package extrabiomes.flora;
 
 import net.minecraft.src.Block;
-import extrabiomes.api.TerrainGenManager;
+import extrabiomes.trees.TreeBlocks;
 
 public class FloraManager {
 
 	private static boolean	initialized	= false;
 
 	private static void configureTrees() {
-		TerrainGenManager.treesCanGrowOnIDs.add(Integer
+		TreeBlocks.treesCanGrowOnIDs.add(Integer
 				.valueOf(Block.grass.blockID));
-		TerrainGenManager.treesCanGrowOnIDs.add(Integer
+		TreeBlocks.treesCanGrowOnIDs.add(Integer
 				.valueOf(Block.dirt.blockID));
-		TerrainGenManager.treesCanGrowOnIDs.add(Integer
+		TreeBlocks.treesCanGrowOnIDs.add(Integer
 				.valueOf(Block.tilledField.blockID));
 	}
 

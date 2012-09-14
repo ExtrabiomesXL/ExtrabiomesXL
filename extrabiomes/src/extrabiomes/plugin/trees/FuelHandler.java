@@ -4,19 +4,22 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes;
+package extrabiomes.plugin.trees;
 
 import net.minecraft.src.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
-import extrabiomes.api.ExtrabiomesBlock;
 
 public class FuelHandler implements IFuelHandler {
 
+	private final int	saplingID;
+
+	FuelHandler(int saplingID) {
+		this.saplingID = saplingID;
+	}
+
 	@Override
 	public int getBurnTime(ItemStack fuel) {
-		if (ExtrabiomesBlock.sapling.isPresent()
-				&& fuel.itemID == ExtrabiomesBlock.sapling.get().blockID)
-			return 100;
+		if (fuel.itemID == saplingID) return 100;
 		return 0;
 	}
 
