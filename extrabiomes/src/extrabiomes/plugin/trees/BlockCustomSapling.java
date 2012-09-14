@@ -21,8 +21,6 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.player.BonemealEvent;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.trees.TreeBlocks;
@@ -246,15 +244,6 @@ public class BlockCustomSapling extends BlockFlower {
 	{
 		return world.getBlockId(x, y, z) == blockID
 				&& unmarkedMetadata(world.getBlockMetadata(x, y, z)) == metadata;
-	}
-
-	@ForgeSubscribe
-	void reactToBonemeal(BonemealEvent e) {
-		if (!e.isHandeled() && e.ID == blockID) {
-			if (!e.world.isRemote)
-				growTree(e.world, e.X, e.Y, e.Z, e.world.rand);
-			e.setHandeled();
-		}
 	}
 
 	@Override

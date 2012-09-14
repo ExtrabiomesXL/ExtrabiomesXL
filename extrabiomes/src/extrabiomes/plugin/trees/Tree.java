@@ -40,15 +40,15 @@ import extrabiomes.trees.TreeBlocks;
 public class Tree {
 
 	@SidedProxy(clientSide = "extrabiomes.client.ClientProxy", serverSide = "extrabiomes.CommonProxy")
-	public static CommonProxy		proxy;
+	public static CommonProxy			proxy;
 	@Instance("EBXLTree")
-	public static Tree				instance;
-	private static int				autumnLeavesID;
-	private static int				greenLeavesID;
-	private static int				saplingID;
-	private static Optional<Block>	autumnLeaves	= Optional.absent();
-	private static Optional<Block>	greenLeaves		= Optional.absent();
-	static Optional<Block>			sapling			= Optional.absent();
+	public static Tree					instance;
+	private static int					autumnLeavesID;
+	private static int					greenLeavesID;
+	private static int					saplingID;
+	private static Optional<Block>		autumnLeaves	= Optional.absent();
+	private static Optional<Block>		greenLeaves		= Optional.absent();
+	static Optional<BlockCustomSapling>	sapling			= Optional.absent();
 
 	@Init
 	public static void init(FMLInitializationEvent event) {
@@ -97,8 +97,8 @@ public class Tree {
 		}
 
 		if (isSaplingEnabled()) {
-			sapling = Optional.of(new BlockCustomSapling(saplingID)
-					.setBlockName("sapling"));
+			sapling = Optional.of(new BlockCustomSapling(saplingID));
+			sapling.get().setBlockName("sapling");
 
 			proxy.registerBlock(sapling,
 					extrabiomes.utility.MultiItemBlock.class);
@@ -108,6 +108,8 @@ public class Tree {
 						new ItemStack(sapling.get(), 1, type.metadata()),
 						type.itemName());
 
+			proxy.registerEventHandler(new ForgeEventHandler(sapling
+					.get()));
 			proxy.registerFuelHandler(new FuelHandler(saplingID));
 		}
 	}

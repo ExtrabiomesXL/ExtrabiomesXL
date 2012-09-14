@@ -50,21 +50,25 @@ public class CommonProxy {
 	}
 
 	/**
+	 * @see GameRegistry#registerBlock(Block, Class) for details.
+	 */
+	public void registerBlock(Optional<? extends Block> block,
+			Class<? extends ItemBlock> itemclass)
+	{
+		if (block.isPresent())
+			GameRegistry.registerBlock(block.get(),
+					checkNotNull(itemclass));
+	}
+
+	/**
 	 * @see GameRegistry#registerBlock(Block) for details.
 	 */
 	public void registerBlock(Optional<Block> block) {
 		if (block.isPresent()) GameRegistry.registerBlock(block.get());
 	}
 
-	/**
-	 * @see GameRegistry#registerBlock(Block, Class) for details.
-	 */
-	public void registerBlock(Optional<Block> block,
-			Class<? extends ItemBlock> itemclass)
-	{
-		if (block.isPresent())
-			GameRegistry.registerBlock(block.get(),
-					checkNotNull(itemclass));
+	public void registerEventHandler(Object target) {
+		MinecraftForge.EVENT_BUS.register(target);
 	}
 
 	public void registerFuelHandler(IFuelHandler fuelHandler) {
