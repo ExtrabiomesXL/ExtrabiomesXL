@@ -6,7 +6,6 @@
 
 package extrabiomes.biomes;
 
-import extrabiomes.terrain.CustomBiomeDecorator;
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.Block;
 

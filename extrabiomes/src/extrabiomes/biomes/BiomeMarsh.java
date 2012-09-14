@@ -10,7 +10,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Random;
 
-import extrabiomes.terrain.CustomBiomeDecorator;
 import extrabiomes.terrain.WorldGenDirtBed;
 import extrabiomes.terrain.WorldGenMarsh;
 

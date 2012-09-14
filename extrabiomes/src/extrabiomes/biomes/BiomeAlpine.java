@@ -10,7 +10,6 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityWolf;
 import net.minecraft.src.SpawnListEntry;
-import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeAlpine extends ExtrabiomeGenBase {
 

@@ -8,7 +8,6 @@ package extrabiomes.biomes;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
-import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeWasteland extends ExtrabiomeGenBase {
 

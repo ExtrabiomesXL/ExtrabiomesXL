@@ -18,7 +18,6 @@ import net.minecraft.src.WorldGenerator;
 
 import com.google.common.base.Optional;
 
-import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeTemporateRainforest extends ExtrabiomeGenBase {
 	public BiomeTemporateRainforest(int id) {

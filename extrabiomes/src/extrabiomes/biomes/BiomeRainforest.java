@@ -7,7 +7,6 @@
 package extrabiomes.biomes;
 
 import net.minecraft.src.BiomeDecorator;
-import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeRainforest extends ExtrabiomeGenBase {
 

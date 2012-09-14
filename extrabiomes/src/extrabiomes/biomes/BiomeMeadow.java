@@ -6,7 +6,6 @@
 
 package extrabiomes.biomes;
 
-import extrabiomes.terrain.CustomBiomeDecorator;
 import net.minecraft.src.BiomeDecorator;
 
 public class BiomeMeadow extends ExtrabiomeGenBase {

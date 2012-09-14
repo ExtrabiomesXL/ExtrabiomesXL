@@ -10,7 +10,6 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.EntityWolf;
 import net.minecraft.src.SpawnListEntry;
-import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomePineForest extends ExtrabiomeGenBase {
 

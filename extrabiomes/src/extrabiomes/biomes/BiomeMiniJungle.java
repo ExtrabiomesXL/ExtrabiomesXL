@@ -11,7 +11,6 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.EntityChicken;
 import net.minecraft.src.EntityOcelot;
 import net.minecraft.src.SpawnListEntry;
-import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeMiniJungle extends ExtrabiomeGenBase {
 

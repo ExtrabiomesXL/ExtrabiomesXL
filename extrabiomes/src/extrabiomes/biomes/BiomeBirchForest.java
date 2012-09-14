@@ -14,7 +14,6 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.SpawnListEntry;
 import net.minecraft.src.WorldGenerator;
 import extrabiomes.api.BiomeManager;
-import extrabiomes.terrain.CustomBiomeDecorator;
 
 public class BiomeBirchForest extends ExtrabiomeGenBase {
 

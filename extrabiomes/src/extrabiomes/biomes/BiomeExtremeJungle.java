@@ -11,7 +11,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Random;
 
 import extrabiomes.api.BiomeManager;
-import extrabiomes.terrain.CustomBiomeDecorator;
 
 
 import net.minecraft.src.BiomeDecorator;
