@@ -145,7 +145,7 @@ public class BiomeManagerImpl extends BiomeManager {
 		}
 
 		private String enabledKey() {
-			return toString() + ".enablegeneration";
+			return "vanilla." + toString() + ".enablegeneration";
 		}
 
 		public void loadSettings(ExtrabiomesConfig cfg) {
