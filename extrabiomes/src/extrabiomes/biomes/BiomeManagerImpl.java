@@ -163,7 +163,7 @@ public class BiomeManagerImpl extends BiomeManager {
 		}
 
 		private String villagesKey() {
-			return toString() + ".allowvillages";
+			return "vanilla." + toString() + ".allowvillages";
 		}
 	}
 
