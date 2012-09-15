@@ -7,18 +7,8 @@
 package extrabiomes.biomes;
 
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.WorldGenerator;
-
-import com.google.common.base.Optional;
-
 
 public class BiomeRedwoodLush extends ExtrabiomeGenBase {
-
-	private final Optional<WorldGenerator>	worldGenRedwood	= Optional
-																	.absent();
-	private final Optional<WorldGenerator>	worldGenFirTree	= Optional
-																	.absent();
-
 	public BiomeRedwoodLush(int id) {
 		super(id);
 		setColor(0x4AC758);

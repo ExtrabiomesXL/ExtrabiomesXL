@@ -7,14 +7,8 @@
 package extrabiomes.biomes;
 
 import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.WorldGenerator;
-
-import com.google.common.base.Optional;
-
 
 public class BiomeSavanna extends ExtrabiomeGenBase {
-
-	private final Optional<WorldGenerator>	treeGen	= Optional.absent();
 
 	public BiomeSavanna(int id) {
 		super(id);
