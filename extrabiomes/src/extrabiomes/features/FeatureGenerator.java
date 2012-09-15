@@ -7,6 +7,7 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenDesertWells;
+import net.minecraft.src.WorldGenVines;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
@@ -42,6 +43,16 @@ public class FeatureGenerator implements IWorldGenerator {
 				wells.generate(world, random, x,
 						world.getHeightValue(x, z) + 1, z);
 			}
+		
+		if (biome == BiomeManager.extremejungle.get()) {
+			final WorldGenVines vineGen = new WorldGenVines();
+
+			for (int i = 0; i < 50; ++i) {
+				final int x1 = chunkX + random.nextInt(16) + 8;
+				final int z1 = chunkZ + random.nextInt(16) + 8;
+				vineGen.generate(world, random, x1, 64, z1);
+			}
+		}
 
 	}
 }

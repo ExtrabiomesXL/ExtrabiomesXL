@@ -6,26 +6,11 @@
 
 package extrabiomes.biomes;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.Random;
-
-import extrabiomes.api.BiomeManager;
-
-
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.Block;
 import net.minecraft.src.EntityChicken;
 import net.minecraft.src.EntityOcelot;
 import net.minecraft.src.SpawnListEntry;
-import net.minecraft.src.World;
-import net.minecraft.src.WorldGenHugeTrees;
-import net.minecraft.src.WorldGenShrub;
-import net.minecraft.src.WorldGenTallGrass;
-import net.minecraft.src.WorldGenTrees;
-import net.minecraft.src.WorldGenVines;
-import net.minecraft.src.WorldGenerator;
 
 public class BiomeExtremeJungle extends ExtrabiomeGenBase {
 
@@ -49,17 +34,5 @@ public class BiomeExtremeJungle extends ExtrabiomeGenBase {
 	protected BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(50)
 				.grassPerChunk(25).flowersPerChunk(4).build();
-	}
-
-	@Override
-	public void decorate(World world, Random rand, int x, int z) {
-		super.decorate(checkNotNull(world), checkNotNull(rand), x, z);
-		final WorldGenVines vineGen = new WorldGenVines();
-
-		for (int i = 0; i < 50; ++i) {
-			final int x1 = x + rand.nextInt(16) + 8;
-			final int z1 = z + rand.nextInt(16) + 8;
-			vineGen.generate(world, rand, x1, 64, z1);
-		}
 	}
 }
