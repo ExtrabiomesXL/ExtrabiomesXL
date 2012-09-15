@@ -4,7 +4,7 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.terrain;
+package extrabiomes.trees;
 
 import java.util.Random;
 
@@ -102,8 +102,9 @@ public class WorldGenCustomSwamp extends WorldGenerator {
 		for (int y1 = 0; y1 < height; y1++) {
 			final int id2 = world.getBlockId(x, y + y1, z);
 
-			if (id2 == 0 || id2 == Block.leaves.blockID
-					|| id2 == Block.waterMoving.blockID
+			if (id2 == 0
+					|| Block.blocksList[id2].isLeaves(world, x, y + y1,
+							z) || id2 == Block.waterMoving.blockID
 					|| id2 == Block.waterStill.blockID)
 				world.setBlock(x, y + y1, z, Block.wood.blockID);
 		}
@@ -115,8 +116,10 @@ public class WorldGenCustomSwamp extends WorldGenerator {
 			for (int x1 = x - canopyRadius; x1 <= x + canopyRadius; x1++)
 				for (int z1 = z - canopyRadius; z1 <= z + canopyRadius; z1++)
 				{
-					if (world.getBlockId(x1, y1, z1) != Block.leaves.blockID)
-						continue;
+					final int id2 = world.getBlockId(x1, y1, z1);
+					if (id2 == 0
+							|| !Block.blocksList[id2].isLeaves(world,
+									x1, y1, z1)) continue;
 
 					if (rand.nextInt(4) == 0
 							&& world.getBlockId(x1 - 1, y1, z1) == 0)
