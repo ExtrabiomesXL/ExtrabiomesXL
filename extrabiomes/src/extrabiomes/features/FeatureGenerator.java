@@ -15,6 +15,9 @@ import extrabiomes.api.BiomeManager;
 public class FeatureGenerator implements IWorldGenerator {
 
 	private static final WorldGenerator	oasisGen	= new WorldGenOasis();
+	private static final WorldGenerator	genMarsh	= new WorldGenMarshGrass();
+	private static final WorldGenerator	genDirtBed	= new WorldGenMarshDirt();
+	private static final WorldGenerator	vineGen		= new WorldGenVines();
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ,
@@ -25,6 +28,27 @@ public class FeatureGenerator implements IWorldGenerator {
 		chunkZ = chunkZ << 4;
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
 				chunkX);
+
+		if (biome == BiomeManager.extremejungle.get())
+			for (int i = 0; i < 50; ++i) {
+				final int x1 = chunkX + random.nextInt(16) + 8;
+				final int z1 = chunkZ + random.nextInt(16) + 8;
+				vineGen.generate(world, random, x1, 64, z1);
+			}
+
+		if (biome == BiomeManager.marsh.get()) {
+			for (int i = 0; i < 127; i++) {
+				final int x = chunkX + random.nextInt(16) + 8;
+				final int z = chunkZ + random.nextInt(16) + 8;
+				genMarsh.generate(world, random, x, 0, z);
+			}
+
+			for (int i = 0; i < 256; i++) {
+				final int x = chunkX + random.nextInt(1) + 8;
+				final int z = chunkZ + random.nextInt(1) + 8;
+				genDirtBed.generate(world, random, x, 0, z);
+			}
+		}
 
 		if (biome == BiomeManager.mountainridge.get())
 			for (int i = 0; i < 1000; i++) {
@@ -43,16 +67,6 @@ public class FeatureGenerator implements IWorldGenerator {
 				wells.generate(world, random, x,
 						world.getHeightValue(x, z) + 1, z);
 			}
-		
-		if (biome == BiomeManager.extremejungle.get()) {
-			final WorldGenVines vineGen = new WorldGenVines();
-
-			for (int i = 0; i < 50; ++i) {
-				final int x1 = chunkX + random.nextInt(16) + 8;
-				final int z1 = chunkZ + random.nextInt(16) + 8;
-				vineGen.generate(world, random, x1, 64, z1);
-			}
-		}
 
 	}
 }

@@ -4,7 +4,7 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.terrain;
+package extrabiomes.features;
 
 import java.util.Random;
 
@@ -14,7 +14,7 @@ import net.minecraft.src.Facing;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 
-public class WorldGenMarsh extends WorldGenerator {
+public class WorldGenMarshDirt extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random rand, int x, int y, int z) {
@@ -22,7 +22,7 @@ public class WorldGenMarsh extends WorldGenerator {
 		int z1 = z;
 		label0:
 
-		for (int y1 = y; y1 < 63; y1++) {
+		for (int y1 = y; y1 < 62; y1++) {
 			if (!world.isAirBlock(x1, y1, z1)) {
 				int side = 2;
 
@@ -35,7 +35,7 @@ public class WorldGenMarsh extends WorldGenerator {
 								x1,
 								y1,
 								z1,
-								Block.grass.blockID,
+								Block.dirt.blockID,
 								1 << Direction.vineGrowth[Facing.faceToSide[side]]);
 						continue label0;
 					}
@@ -44,10 +44,11 @@ public class WorldGenMarsh extends WorldGenerator {
 				} while (true);
 			}
 
-			x1 = (x + rand.nextInt(4)) - rand.nextInt(4);
-			z1 = (z + rand.nextInt(4)) - rand.nextInt(4);
+			x1 = (x + 16);
+			z1 = (z + 16);
 		}
 
 		return true;
 	}
+
 }
