@@ -4,6 +4,7 @@ package extrabiomes.features;
 import java.util.Random;
 
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.Block;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenDesertWells;
@@ -30,43 +31,81 @@ public class FeatureGenerator implements IWorldGenerator {
 				chunkX);
 
 		if (biome == BiomeManager.extremejungle.get())
-			for (int i = 0; i < 50; ++i) {
-				final int x1 = chunkX + random.nextInt(16) + 8;
-				final int z1 = chunkZ + random.nextInt(16) + 8;
-				vineGen.generate(world, random, x1, 64, z1);
-			}
+			generateVines(random, chunkX, chunkZ, world);
 
-		if (biome == BiomeManager.marsh.get()) {
-			for (int i = 0; i < 127; i++) {
-				final int x = chunkX + random.nextInt(16) + 8;
-				final int z = chunkZ + random.nextInt(16) + 8;
-				genMarsh.generate(world, random, x, 0, z);
-			}
+		if (biome == BiomeManager.marsh.get())
+			generateMarsh(random, chunkX, chunkZ, world);
 
-			for (int i = 0; i < 256; i++) {
-				final int x = chunkX + random.nextInt(1) + 8;
-				final int z = chunkZ + random.nextInt(1) + 8;
-				genDirtBed.generate(world, random, x, 0, z);
-			}
+		if (biome == BiomeManager.mountainridge.get()) {
+			trimPondsInGrass(random, chunkX, chunkZ, world);
+			generateEmeraldOre(random, chunkX, chunkZ, world);
 		}
 
-		if (biome == BiomeManager.mountainridge.get())
-			for (int i = 0; i < 1000; i++) {
-				final int x = chunkX + random.nextInt(16) + 8;
-				final int z = chunkZ + random.nextInt(16) + 8;
-				final int y = world.getTopSolidOrLiquidBlock(x, z);
-
-				oasisGen.generate(world, random, x, y, z);
-			}
-
 		if (biome == BiomeManager.mountaindesert.get())
-			if (random.nextInt(1000) == 0) {
-				final int x = chunkX + random.nextInt(16) + 8;
-				final int z = chunkZ + random.nextInt(16) + 8;
-				final WorldGenDesertWells wells = new WorldGenDesertWells();
-				wells.generate(world, random, x,
-						world.getHeightValue(x, z) + 1, z);
-			}
+			generateRareDesrtWell(random, chunkX, chunkZ, world);
 
+	}
+
+	private void generateEmeraldOre(Random rand, int x, int z,
+			World world)
+	{
+		final int veins = 3 + rand.nextInt(6);
+
+		for (int i = 0; i < veins; ++i) {
+			final int x1 = x + rand.nextInt(16);
+			final int y1 = rand.nextInt(28) + 4;
+			final int z1 = z + rand.nextInt(16);
+			final int id = world.getBlockId(x1, y1, z1);
+
+			if (id != 0
+					&& Block.blocksList[id].isGenMineableReplaceable(
+							world, x1, y1, z1))
+				world.setBlock(x1, y1, z1, Block.oreEmerald.blockID);
+		}
+	}
+
+	private void generateMarsh(Random rand, int x, int z, World world) {
+		for (int i = 0; i < 127; i++) {
+			final int x1 = x + rand.nextInt(16) + 8;
+			final int z1 = z + rand.nextInt(16) + 8;
+			genMarsh.generate(world, rand, x1, 0, z1);
+		}
+
+		for (int i = 0; i < 256; i++) {
+			final int x1 = x + rand.nextInt(1) + 8;
+			final int z1 = z + rand.nextInt(1) + 8;
+			genDirtBed.generate(world, rand, x1, 0, z1);
+		}
+	}
+
+	private void generateRareDesrtWell(Random rand, int x, int z,
+			World world)
+	{
+		if (rand.nextInt(1000) == 0) {
+			final int x1 = x + rand.nextInt(16) + 8;
+			final int z1 = z + rand.nextInt(16) + 8;
+			final WorldGenDesertWells wells = new WorldGenDesertWells();
+			wells.generate(world, rand, x1,
+					world.getHeightValue(x1, z1) + 1, z1);
+		}
+	}
+
+	private void generateVines(Random rand, int x, int z, World world) {
+		for (int i = 0; i < 50; ++i) {
+			final int x1 = x + rand.nextInt(16) + 8;
+			final int z1 = z + rand.nextInt(16) + 8;
+			vineGen.generate(world, rand, x1, 64, z1);
+		}
+	}
+
+	private void trimPondsInGrass(Random rand, int x, int z, World world)
+	{
+		for (int i = 0; i < 1000; i++) {
+			final int x1 = x + rand.nextInt(16) + 8;
+			final int z1 = z + rand.nextInt(16) + 8;
+			final int y1 = world.getTopSolidOrLiquidBlock(x1, z1);
+
+			oasisGen.generate(world, rand, x1, y1, z1);
+		}
 	}
 }
