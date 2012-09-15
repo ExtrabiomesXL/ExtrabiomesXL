@@ -29,18 +29,30 @@ public class PluginManagerImpl extends PluginManager {
 	public void activatePlugins() {
 		removeDeactivatedPlugins();
 
-		for (final IPlugin plugin : plugins.values())
+		final String LOG_FORMAT = "%s plugins...";
+
+		ExtrabiomesLog.info(LOG_FORMAT, "Preinitializing");
+		for (final IPlugin plugin : plugins.values()) {
+			ExtrabiomesLog.info("PreInit: %s", plugin.getName());
 			plugin.preInit();
+		}
 
-		for (final IPlugin plugin : plugins.values())
+		ExtrabiomesLog.info(LOG_FORMAT, "Initializing");
+		for (final IPlugin plugin : plugins.values()) {
+			ExtrabiomesLog.info("Init: %s", plugin.getName());
 			plugin.init();
+		}
 
-		for (final IPlugin plugin : plugins.values())
+		ExtrabiomesLog.info(LOG_FORMAT, "Initializing");
+		for (final IPlugin plugin : plugins.values()) {
+			ExtrabiomesLog.info("PostInit: %s", plugin.getName());
 			plugin.postInit();
+		}
 	}
 
 	@Override
 	protected void doPluginRegistration(IPlugin plugin) {
+		ExtrabiomesLog.info("Registered plugin: %s", plugin.getName());
 		plugins.put(plugin.getUniqueID(), plugin);
 	}
 
@@ -58,8 +70,12 @@ public class PluginManagerImpl extends PluginManager {
 		final List<IPlugin> pluginList = new ArrayList<IPlugin>(
 				plugins.values());
 
+		ExtrabiomesLog.info("Revoming disabled plugins...");
 		for (final IPlugin plugin : pluginList)
-			if (!plugin.isEnabled())
+			if (!plugin.isEnabled()) {
+				ExtrabiomesLog.info("Inactive plugin: %s",
+						plugin.getName());
 				plugins.remove(plugin.getUniqueID());
+			}
 	}
 }
