@@ -32,7 +32,7 @@ import extrabiomes.ExtrabiomesLog;
 public class Scarecrow {
 
 	private static final String				SCARECROW_NAME	= "scarecrow";
-	@SidedProxy(clientSide = "extrabiomes.plugin.scarecrow.ScarecrowProxy", serverSide = "extrabiomes.plugin.scarecrow.ScarecrowProxy")
+	@SidedProxy(clientSide = "extrabiomes.plugin.scarecrow.ScarecrowClientProxy", serverSide = "extrabiomes.plugin.scarecrow.ScarecrowProxy")
 	public static ScarecrowProxy			proxy;
 	@Instance("EBXLScarecrow")
 	public static Scarecrow					instance;
