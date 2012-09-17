@@ -125,15 +125,15 @@ public class Flora {
 
 		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
 				.get(),
-				new WorldGenTallGrass(grassId, DEAD.metadata()), 90);
+				new WorldGenWastelandGrass(grassId, DEAD.metadata()), 90);
 		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
 				.get(),
-				new WorldGenTallGrass(grassId, DEAD_YELLOW.metadata()),
+				new WorldGenWastelandGrass(grassId, DEAD_YELLOW.metadata()),
 				90);
 		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
 				.get(),
-				new WorldGenTallGrass(grassId, DEAD_TALL.metadata()),
-				70);
+				new WorldGenWastelandGrass(grassId, DEAD_TALL.metadata()),
+				35);
 	}
 
 	private static void initLeafPile() {
