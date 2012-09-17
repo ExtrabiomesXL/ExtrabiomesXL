@@ -44,7 +44,10 @@ public class BlockCustomTallGrass extends BlockFlower implements
 	}
 
 	@Override
-	protected boolean canThisPlantGrowOnThisBlockID(int id) {
+	public boolean canBlockStay(World world, int x, int y,
+			int z)
+	{
+		int id = world.getBlockId(x, y - 1, z);
 		return (byte) id == BiomeManager.mountainridge.get().topBlock
 				|| (byte) id == BiomeManager.wasteland.get().topBlock
 				|| super.canThisPlantGrowOnThisBlockID(id);
