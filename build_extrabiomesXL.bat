@@ -17,5 +17,6 @@ XCOPY extrabiomes\src\extrabiomes\*.png reobf\minecraft\extrabiomes /E /Q
 echo.
 echo Restoring src-bak
 RMDIR /S /Q src
+PAUSE
 REN src-bak src
 PAUSE
