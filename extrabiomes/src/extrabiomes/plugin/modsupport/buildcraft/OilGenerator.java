@@ -36,7 +36,7 @@ public class OilGenerator implements IWorldGenerator {
 				final int id = world.getBlockId(i, j, k);
 				if (id != 0) {
 					if (id == Block.sand.blockID
-							|| id == BiomeManager.wasteland.get().topBlock)
+							|| (byte)id == BiomeManager.wasteland.get().topBlock)
 						BuildcraftPlugin.generateSurfaceDeposit(world,
 								i, j, k, 3);
 
