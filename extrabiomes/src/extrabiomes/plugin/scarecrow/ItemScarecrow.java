@@ -42,20 +42,15 @@ public class ItemScarecrow extends Item {
 	public ItemScarecrow(int id) {
 		super(id);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setTabToDisplayOn(CreativeTabs.tabMisc);
+		setCreativeTab(CreativeTabs.tabMisc);
 	}
 
 	@Override
-	public boolean requiresMultipleRenderPasses() {
-		return true;
-	}
-
-	@Override
-	public boolean tryPlaceIntoWorld(ItemStack itemStack,
-			EntityPlayer player, World world, int x, int y, int z,
-			int side, float xOffset, float yOffset, float zOffset)
+	public boolean onItemUse(ItemStack itemStack, EntityPlayer player,
+			World world, int x, int y, int z, int side, float xOffset,
+			float yOffset, float zOffset)
 	{
-		if (checkNotNull(world).isRemote)
+		if (world.isRemote)
 			return true;
 		else {
 			final int targetBlockId = world.getBlockId(x, y, z);
@@ -75,5 +70,10 @@ public class ItemScarecrow extends Item {
 
 			return true;
 		}
+	}
+
+	@Override
+	public boolean requiresMultipleRenderPasses() {
+		return true;
 	}
 }
