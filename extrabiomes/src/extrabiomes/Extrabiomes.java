@@ -22,8 +22,9 @@ import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.features.FeatureGenerator;
 import extrabiomes.trees.TreeBlocks;
+import extrabiomes.utility.EnhancedConfiguration;
 
-@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.1")
+@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.2")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Extrabiomes {
 
@@ -46,12 +47,13 @@ public class Extrabiomes {
 	@PostInit
 	public static void postInit(FMLPostInitializationEvent event) {
 		pluginManager.activatePlugins();
+		EnhancedConfiguration.releaseStaticResources();
 	}
 
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		final ExtrabiomesConfig cfg = new ExtrabiomesConfig(new File(
+		final BiomesConfig cfg = new BiomesConfig(new File(
 				event.getModConfigurationDirectory(),
 				"/extrabiomes/extrabiomes.cfg"));
 		try {
