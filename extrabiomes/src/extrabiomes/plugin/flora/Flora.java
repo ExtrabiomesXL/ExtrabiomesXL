@@ -46,6 +46,7 @@ import extrabiomes.CommonProxy;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.biomes.BiomeManagerImpl;
+import extrabiomes.utility.EnhancedConfiguration;
 
 @Mod(modid = "EBXLFlora", name = "ExtrabiomesXL Flora Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -123,17 +124,18 @@ public class Flora {
 				new WorldGenTallGrass(grassId, SHORT_BROWN.metadata()),
 				100);
 
-		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
-				.get(),
-				new WorldGenWastelandGrass(grassId, DEAD.metadata()), 90);
-		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
-				.get(),
-				new WorldGenWastelandGrass(grassId, DEAD_YELLOW.metadata()),
+		BiomeManager.addWeightedGrassGenForBiome(
+				BiomeManager.wasteland.get(),
+				new WorldGenWastelandGrass(grassId, DEAD.metadata()),
 				90);
-		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
-				.get(),
-				new WorldGenWastelandGrass(grassId, DEAD_TALL.metadata()),
-				35);
+		BiomeManager.addWeightedGrassGenForBiome(
+				BiomeManager.wasteland.get(),
+				new WorldGenWastelandGrass(grassId, DEAD_YELLOW
+						.metadata()), 90);
+		BiomeManager.addWeightedGrassGenForBiome(
+				BiomeManager.wasteland.get(),
+				new WorldGenWastelandGrass(grassId, DEAD_TALL
+						.metadata()), 35);
 	}
 
 	private static void initLeafPile() {
@@ -170,9 +172,9 @@ public class Flora {
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		final Configuration cfg = new Configuration(new File(
-				event.getModConfigurationDirectory(),
-				"/extrabiomes/extrabiomes.cfg"));
+		final EnhancedConfiguration cfg = new EnhancedConfiguration(
+				new File(event.getModConfigurationDirectory(),
+						"/extrabiomes/extrabiomes.cfg"));
 		try {
 			cfg.load();
 

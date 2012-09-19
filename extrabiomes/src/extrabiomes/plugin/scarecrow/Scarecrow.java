@@ -26,6 +26,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.ExtrabiomesLog;
+import extrabiomes.utility.EnhancedConfiguration;
 
 @Mod(modid = "EBXLScarecrow", name = "ExtrabiomesXL Scarecrow Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -74,7 +75,7 @@ public class Scarecrow {
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		final Configuration cfg = new Configuration(new File(
+		final Configuration cfg = new EnhancedConfiguration(new File(
 				event.getModConfigurationDirectory(),
 				"/extrabiomes/extrabiomes.cfg"));
 		try {

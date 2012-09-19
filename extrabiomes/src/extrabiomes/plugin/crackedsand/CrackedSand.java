@@ -32,10 +32,14 @@ import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.CommonProxy;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.PluginManager;
+import extrabiomes.utility.EnhancedConfiguration;
 
 @Mod(modid = "EBXLCrackedSand", name = "ExtrabiomesXL Cracked Sand Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class CrackedSand {
+
+
+
 
 	// @formatter:off
 	@SidedProxy(clientSide = "extrabiomes.client.ClientProxy", serverSide = "extrabiomes.CommonProxy")
@@ -84,15 +88,15 @@ public class CrackedSand {
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		final Configuration cfg = new Configuration(new File(
-				event.getModConfigurationDirectory(),
-				"/extrabiomes/extrabiomes.cfg"));
+		final EnhancedConfiguration cfg = new EnhancedConfiguration(
+				new File(event.getModConfigurationDirectory(),
+						"/extrabiomes/extrabiomes.cfg"));
 		try {
 			cfg.load();
 
 			Property property = cfg
-					.getOrCreateIntProperty("crackedsand.id",
-							Configuration.CATEGORY_BLOCK, 152);
+					.getOrCreateRestrictedBlockIdProperty(
+							"crackedsand.id", 152);
 			crackedSandID = property.getInt(0);
 			property.comment = CRACKEDSAND_COMMENT;
 
