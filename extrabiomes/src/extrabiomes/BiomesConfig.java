@@ -10,15 +10,15 @@ import java.io.File;
 import java.util.TreeMap;
 
 import net.minecraftforge.common.Property;
-import extrabiomes.utility.ConfigFile;
+import extrabiomes.utility.EnhancedConfiguration;
 
-public class ExtrabiomesConfig extends ConfigFile {
+public class BiomesConfig extends EnhancedConfiguration {
 
 	public static final String			CATEGORY_BIOME	= "biome";
 
 	public TreeMap<String, Property>	biomeProperties	= new TreeMap<String, Property>();
 
-	public ExtrabiomesConfig(File file) {
+	public BiomesConfig(File file) {
 		super(file);
 		categories.put(CATEGORY_BIOME, biomeProperties);
 	}

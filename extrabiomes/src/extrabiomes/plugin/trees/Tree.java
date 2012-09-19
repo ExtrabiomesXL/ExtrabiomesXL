@@ -19,7 +19,6 @@ import java.util.logging.Level;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
-import net.minecraftforge.common.Configuration;
 
 import com.google.common.base.Optional;
 
@@ -34,6 +33,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.CommonProxy;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.trees.TreeBlocks;
+import extrabiomes.utility.EnhancedConfiguration;
 
 @Mod(modid = "EBXLTree", name = "ExtrabiomesXL Custom Trees Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -129,9 +129,9 @@ public class Tree {
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		final Configuration cfg = new Configuration(new File(
-				event.getModConfigurationDirectory(),
-				"/extrabiomes/extrabiomes.cfg"));
+		final EnhancedConfiguration cfg = new EnhancedConfiguration(
+				new File(event.getModConfigurationDirectory(),
+						"/extrabiomes/extrabiomes.cfg"));
 		try {
 			cfg.load();
 

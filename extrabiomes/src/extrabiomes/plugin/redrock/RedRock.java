@@ -19,7 +19,6 @@ import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.IRecipe;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
-import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -38,6 +37,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.CommonProxy;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.PluginManager;
+import extrabiomes.utility.EnhancedConfiguration;
 
 @Mod(modid = "EBXLRedRock", name = "ExtrabiomesXL Red Rock Plugin", version = "3.0 PR1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -85,14 +85,15 @@ public class RedRock {
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		final Configuration cfg = new Configuration(new File(
-				event.getModConfigurationDirectory(),
-				"/extrabiomes/extrabiomes.cfg"));
+		final EnhancedConfiguration cfg = new EnhancedConfiguration(
+				new File(event.getModConfigurationDirectory(),
+						"/extrabiomes/extrabiomes.cfg"));
 		try {
 			cfg.load();
 
-			final Property property = cfg.getOrCreateIntProperty(
-					"redrock.id", Configuration.CATEGORY_BLOCK, 158);
+			final Property property = cfg
+					.getOrCreateRestrictedBlockIdProperty("redrock.id",
+							158);
 			redRockId = property.getInt(0);
 			property.comment = REDROCK_COMMENT;
 

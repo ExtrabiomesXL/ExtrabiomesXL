@@ -10,7 +10,6 @@ import java.io.File;
 import java.util.logging.Level;
 
 import net.minecraft.src.Block;
-import net.minecraftforge.common.Configuration;
 
 import com.google.common.base.Optional;
 
@@ -24,6 +23,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.CommonProxy;
 import extrabiomes.ExtrabiomesLog;
+import extrabiomes.utility.EnhancedConfiguration;
 
 @Mod(modid = "EBXLQuicksand", name = "ExtrabiomesXL Quicksand Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -60,9 +60,9 @@ public class Quicksand {
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		final Configuration cfg = new Configuration(new File(
-				event.getModConfigurationDirectory(),
-				"/extrabiomes/extrabiomes.cfg"));
+		final EnhancedConfiguration cfg = new EnhancedConfiguration(
+				new File(event.getModConfigurationDirectory(),
+						"/extrabiomes/extrabiomes.cfg"));
 		try {
 			cfg.load();
 
