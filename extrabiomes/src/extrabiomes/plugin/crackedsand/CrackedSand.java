@@ -41,6 +41,9 @@ public class CrackedSand {
 
 
 
+
+
+
 	// @formatter:off
 	@SidedProxy(clientSide = "extrabiomes.client.ClientProxy", serverSide = "extrabiomes.CommonProxy")
 	public static CommonProxy proxy;
@@ -49,7 +52,7 @@ public class CrackedSand {
 	public static CrackedSand instance;
 
 	private static Optional<Block>	crackedSand = Optional .absent();
-	private static int				crackedSandID;
+	private static int				crackedSandId;
 
 	private static boolean			canGrow;
 	private static boolean			restrictGrowthToBiome;
@@ -58,21 +61,21 @@ public class CrackedSand {
 	// @formatter:on
 
 	public static boolean isEnabled() {
-		return 0 < crackedSandID;
+		return crackedSand.isPresent();
 	}
 
 	@Init
 	public void init(FMLInitializationEvent event) {
-		if (isEnabled()) {
+		if (0 < crackedSandId) {
 			proxy.registerRenderInformation();
 
 			crackedSand = Optional.of(new BlockCrackedSand(
-					crackedSandID, canGrow, restrictGrowthToBiome)
+					crackedSandId, canGrow, restrictGrowthToBiome)
 					.setBlockName("crackedsand"));
 			proxy.setBlockHarvestLevel(crackedSand.get(), "pickaxe", 0);
 
 			PluginManager.registerPlugin(new ExtrabiomesPlugin(
-					crackedSandID));
+					crackedSand.get().blockID));
 			proxy.registerBlock(crackedSand);
 
 			OreDictionary.registerOre("sandCracked", crackedSand.get());
@@ -97,10 +100,10 @@ public class CrackedSand {
 			Property property = cfg
 					.getOrCreateRestrictedBlockIdProperty(
 							"crackedsand.id", 152);
-			crackedSandID = property.getInt(0);
+			crackedSandId = property.getInt(0);
 			property.comment = CRACKEDSAND_COMMENT;
 
-			if (!isEnabled())
+			if (0 == crackedSandId)
 				ExtrabiomesLog
 						.info("crackedsand.id = 0, so cracked sand has been disabled.");
 
@@ -132,6 +135,6 @@ public class CrackedSand {
 		} finally {
 			cfg.save();
 		}
-		checkElementIndex(crackedSandID, 256, CRACKEDSAND_COMMENT);
+		checkElementIndex(crackedSandId, 256, CRACKEDSAND_COMMENT);
 	}
 }
