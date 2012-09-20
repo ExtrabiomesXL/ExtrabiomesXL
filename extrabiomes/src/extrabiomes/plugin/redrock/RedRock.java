@@ -55,7 +55,7 @@ public class RedRock {
 
 	@Init
 	public static void init(FMLInitializationEvent event) {
-		if (isEnabled()) {
+		if (0 < redRockId) {
 			proxy.registerRenderInformation();
 
 			redRock = Optional.of(new BlockRedRock(redRockId)
@@ -64,10 +64,10 @@ public class RedRock {
 			final Block block = redRock.get();
 			proxy.setBlockHarvestLevel(block, "pickaxe", 0);
 
-			PluginManager.registerPlugin(new ExtrabiomesPlugin(
-					redRockId));
 			proxy.registerBlock(redRock,
 					extrabiomes.utility.MultiItemBlock.class);
+			PluginManager.registerPlugin(new ExtrabiomesPlugin(redRock
+					.get().blockID));
 
 			registerRecipes();
 
@@ -79,7 +79,7 @@ public class RedRock {
 	}
 
 	public static boolean isEnabled() {
-		return 0 < redRockId;
+		return redRock.isPresent();
 	}
 
 	@PreInit
@@ -97,7 +97,7 @@ public class RedRock {
 			redRockId = property.getInt(0);
 			property.comment = REDROCK_COMMENT;
 
-			if (!isEnabled())
+			if (0 == redRockId)
 				ExtrabiomesLog
 						.info("redrock.id = 0, so red rock has been disabled.");
 

@@ -39,9 +39,8 @@ public class Quicksand {
 
 	@Init
 	public static void init(FMLInitializationEvent event) {
-		if (isEnabled()) {
+		if (0 < quicksandID) {
 			proxy.registerRenderInformation();
-			proxy.registerWorldGenerator(new WorldGenerator(quicksandID));
 
 			quicksand = Optional.of(new BlockQuicksand(quicksandID)
 					.setBlockName("quicksand"));
@@ -49,12 +48,15 @@ public class Quicksand {
 
 			proxy.registerBlock(quicksand);
 
+			proxy.registerWorldGenerator(new WorldGenerator(quicksand
+					.get().blockID));
+
 			proxy.addName(quicksand.get(), "Quicksand");
 		}
 	}
 
 	public static boolean isEnabled() {
-		return 0 < quicksandID;
+		return quicksand.isPresent();
 	}
 
 	@PreInit
@@ -69,7 +71,7 @@ public class Quicksand {
 			quicksandID = cfg.getOrCreateBlockIdProperty(
 					"quicksand.id", 157).getInt(0);
 
-			if (!isEnabled())
+			if (0 == quicksandID)
 				ExtrabiomesLog
 						.info("quicksand.id = 0, so quicksand has been disabled.");
 

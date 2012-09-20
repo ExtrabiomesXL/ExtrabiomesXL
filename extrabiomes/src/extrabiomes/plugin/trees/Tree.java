@@ -46,15 +46,18 @@ public class Tree {
 	private static int					autumnLeavesID;
 	private static int					greenLeavesID;
 	private static int					saplingID;
-	private static Optional<Block>		autumnLeaves	= Optional.absent();
-	private static Optional<Block>		greenLeaves		= Optional.absent();
-	static Optional<BlockCustomSapling>	sapling			= Optional.absent();
+	private static Optional<Block>		autumnLeaves	= Optional
+																.absent();
+	private static Optional<Block>		greenLeaves		= Optional
+																.absent();
+	static Optional<BlockCustomSapling>	sapling			= Optional
+																.absent();
 
 	@Init
 	public static void init(FMLInitializationEvent event) {
 		proxy.registerRenderInformation();
 
-		if (isAutumnLeavesEnabled()) {
+		if (0 < autumnLeavesID) {
 			autumnLeaves = Optional.of(new BlockAutumnLeaves(
 					autumnLeavesID).setBlockName("autumnleaves"));
 
@@ -67,16 +70,20 @@ public class Tree {
 								.metadata()), type.itemName());
 
 			TreeBlocks.setBlocks(BROWN, Block.wood.blockID, 0,
-					autumnLeavesID, AutumnLeafType.BROWN.metadata());
+					autumnLeaves.get().blockID,
+					AutumnLeafType.BROWN.metadata());
 			TreeBlocks.setBlocks(ORANGE, Block.wood.blockID, 0,
-					autumnLeavesID, AutumnLeafType.ORANGE.metadata());
+					autumnLeaves.get().blockID,
+					AutumnLeafType.ORANGE.metadata());
 			TreeBlocks.setBlocks(PURPLE, Block.wood.blockID, 0,
-					autumnLeavesID, AutumnLeafType.PURPLE.metadata());
+					autumnLeaves.get().blockID,
+					AutumnLeafType.PURPLE.metadata());
 			TreeBlocks.setBlocks(YELLOW, Block.wood.blockID, 0,
-					autumnLeavesID, AutumnLeafType.YELLOW.metadata());
+					autumnLeaves.get().blockID,
+					AutumnLeafType.YELLOW.metadata());
 		}
 
-		if (isGreenLeavesEnabled()) {
+		if (0 < greenLeavesID) {
 			greenLeaves = Optional.of(new BlockGreenLeaves(
 					greenLeavesID).setBlockName("greenleaves"));
 
@@ -89,14 +96,17 @@ public class Tree {
 								.metadata()), type.itemName());
 
 			TreeBlocks.setBlocks(FIR, Block.wood.blockID, 0,
-					greenLeavesID, GreenLeafType.FIR.metadata());
+					greenLeaves.get().blockID,
+					GreenLeafType.FIR.metadata());
 			TreeBlocks.setBlocks(REDWOOD, Block.wood.blockID, 0,
-					greenLeavesID, GreenLeafType.REDWOOD.metadata());
+					greenLeaves.get().blockID,
+					GreenLeafType.REDWOOD.metadata());
 			TreeBlocks.setBlocks(ACACIA, Block.wood.blockID, 0,
-					greenLeavesID, GreenLeafType.ACACIA.metadata());
+					greenLeaves.get().blockID,
+					GreenLeafType.ACACIA.metadata());
 		}
 
-		if (isSaplingEnabled()) {
+		if (0 < saplingID) {
 			sapling = Optional.of(new BlockCustomSapling(saplingID));
 			sapling.get().setBlockName("sapling");
 
@@ -115,15 +125,15 @@ public class Tree {
 	}
 
 	public static boolean isAutumnLeavesEnabled() {
-		return 0 < autumnLeavesID;
+		return autumnLeaves.isPresent();
 	}
 
 	public static boolean isGreenLeavesEnabled() {
-		return 0 < greenLeavesID;
+		return greenLeaves.isPresent();
 	}
 
 	public static boolean isSaplingEnabled() {
-		return 0 < saplingID;
+		return sapling.isPresent();
 	}
 
 	@PreInit
@@ -138,21 +148,21 @@ public class Tree {
 			autumnLeavesID = cfg.getOrCreateBlockIdProperty(
 					"autumnleaves.id", 150).getInt(0);
 
-			if (!isAutumnLeavesEnabled())
+			if (0 == autumnLeavesID)
 				ExtrabiomesLog
 						.info("autumnleaves.id = 0, so autumn leaves have been disabled.");
 
 			greenLeavesID = cfg.getOrCreateBlockIdProperty(
 					"greenleaves.id", 155).getInt(0);
 
-			if (!isGreenLeavesEnabled())
+			if (0 == greenLeavesID)
 				ExtrabiomesLog
 						.info("greenleaves.id = 0, so green leaves have been disabled.");
 
 			saplingID = cfg.getOrCreateBlockIdProperty("sapling.id",
 					159).getInt(0);
 
-			if (!isSaplingEnabled())
+			if (0 == saplingID)
 				ExtrabiomesLog
 						.info("sapling.id = 0, so saplings have been disabled.");
 

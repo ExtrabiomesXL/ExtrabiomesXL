@@ -6,8 +6,6 @@
 
 package extrabiomes.utility;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import java.util.Collection;
 import java.util.Random;
 
@@ -31,13 +29,14 @@ public class WeightedRandomChooser {
 	public static <T extends WeightedRandomItem> T getRandomItem(
 			Random rand, Collection<T> collection, int limit)
 	{
-		checkArgument(limit > 0);
+		if (limit > 0) {
 
-		int choice = rand.nextInt(limit);
+			int choice = rand.nextInt(limit);
 
-		for (final T item : collection) {
-			choice -= item.itemWeight;
-			if (choice < 0) return item;
+			for (final T item : collection) {
+				choice -= item.itemWeight;
+				if (choice < 0) return item;
+			}
 		}
 		return null;
 	}

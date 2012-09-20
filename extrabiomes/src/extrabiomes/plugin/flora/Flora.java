@@ -76,7 +76,7 @@ public class Flora {
 	}
 
 	private static void initCatTail() {
-		if (!isCatTailEnabled()) return;
+		if (0 < catTailId) return;
 		catTail = Optional.of(new BlockCatTail(catTailId)
 				.setBlockName("cattail"));
 		proxy.registerBlock(catTail,
@@ -84,11 +84,12 @@ public class Flora {
 
 		proxy.addName(catTail.get(), "Cat Tail");
 
-		proxy.registerWorldGenerator(new CatTailGenerator(catTailId));
+		proxy.registerWorldGenerator(new CatTailGenerator(
+				catTail.get().blockID));
 	}
 
 	private static void initFlower() {
-		if (!isFlowerEnabled()) return;
+		if (0 < flowerId) return;
 		flower = Optional.of(new BlockCustomFlower(flowerId)
 				.setBlockName("flower"));
 		proxy.registerBlock(flower,
@@ -101,11 +102,12 @@ public class Flora {
 					new ItemStack(flower.get(), 1, blockType.metadata()),
 					blockType.itemName());
 
-		proxy.registerWorldGenerator(new FlowerGenerator(flowerId));
+		proxy.registerWorldGenerator(new FlowerGenerator(
+				flower.get().blockID));
 	}
 
 	private static void initGrass() {
-		if (!isGrassEnabled()) return;
+		if (0 < grassId) return;
 		grass = Optional.of(new BlockCustomTallGrass(grassId)
 				.setBlockName("grass"));
 		proxy.registerBlock(grass,
@@ -118,28 +120,26 @@ public class Flora {
 
 		BiomeManager.addWeightedGrassGenForBiome(
 				BiomeManager.mountainridge.get(),
-				new WorldGenTallGrass(grassId, BROWN.metadata()), 100);
+				new WorldGenTallGrass(grass.get().blockID, BROWN
+						.metadata()), 100);
 		BiomeManager.addWeightedGrassGenForBiome(
 				BiomeManager.mountainridge.get(),
-				new WorldGenTallGrass(grassId, SHORT_BROWN.metadata()),
-				100);
+				new WorldGenTallGrass(grass.get().blockID, SHORT_BROWN
+						.metadata()), 100);
 
-		BiomeManager.addWeightedGrassGenForBiome(
-				BiomeManager.wasteland.get(),
-				new WorldGenWastelandGrass(grassId, DEAD.metadata()),
-				90);
-		BiomeManager.addWeightedGrassGenForBiome(
-				BiomeManager.wasteland.get(),
-				new WorldGenWastelandGrass(grassId, DEAD_YELLOW
-						.metadata()), 90);
-		BiomeManager.addWeightedGrassGenForBiome(
-				BiomeManager.wasteland.get(),
-				new WorldGenWastelandGrass(grassId, DEAD_TALL
-						.metadata()), 35);
+		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
+				.get(), new WorldGenWastelandGrass(grass.get().blockID,
+				DEAD.metadata()), 90);
+		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
+				.get(), new WorldGenWastelandGrass(grass.get().blockID,
+				DEAD_YELLOW.metadata()), 90);
+		BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland
+				.get(), new WorldGenWastelandGrass(grass.get().blockID,
+				DEAD_TALL.metadata()), 35);
 	}
 
 	private static void initLeafPile() {
-		if (!isLeafPileEnabled()) return;
+		if (0 < leafPileId) return;
 		leafPile = Optional.of(new BlockLeafPile(leafPileId)
 				.setBlockName("leafpile"));
 		proxy.registerBlock(leafPile);
@@ -150,23 +150,24 @@ public class Flora {
 		proxy.addRecipe(recipe);
 
 		proxy.addName(leafPile.get(), "Leaf Pile");
-		proxy.registerWorldGenerator(new LeafPileGenerator(leafPileId));
+		proxy.registerWorldGenerator(new LeafPileGenerator(leafPile
+				.get().blockID));
 	}
 
 	public static boolean isCatTailEnabled() {
-		return 0 < catTailId;
+		return catTail.isPresent();
 	}
 
 	public static boolean isFlowerEnabled() {
-		return 0 < flowerId;
+		return flower.isPresent();
 	}
 
 	public static boolean isGrassEnabled() {
-		return 0 < grassId;
+		return grass.isPresent();
 	}
 
 	public static boolean isLeafPileEnabled() {
-		return 0 < leafPileId;
+		return leafPile.isPresent();
 	}
 
 	@PreInit
@@ -196,7 +197,7 @@ public class Flora {
 		catTailId = cfg.getOrCreateBlockIdProperty("cattail.id", 151)
 				.getInt(0);
 
-		if (!isCatTailEnabled())
+		if (0 == catTailId)
 			ExtrabiomesLog
 					.info("cattail.id = 0, so cat tail has been disabled.");
 	}
@@ -205,7 +206,7 @@ public class Flora {
 		flowerId = cfg.getOrCreateBlockIdProperty("flower.id", 153)
 				.getInt(0);
 
-		if (!isFlowerEnabled())
+		if (0 == flowerId)
 			ExtrabiomesLog
 					.info("flower.id = 0, so flower has been disabled.");
 	}
@@ -214,7 +215,7 @@ public class Flora {
 		grassId = cfg.getOrCreateBlockIdProperty("grass.id", 154)
 				.getInt(0);
 
-		if (!isGrassEnabled())
+		if (0 == grassId)
 			ExtrabiomesLog
 					.info("grass.id = 0, so grass has been disabled.");
 
@@ -228,7 +229,7 @@ public class Flora {
 		leafPileId = cfg.getOrCreateBlockIdProperty("leafpile.id", 156)
 				.getInt(0);
 
-		if (!isLeafPileEnabled())
+		if (0 == leafPileId)
 			ExtrabiomesLog
 					.info("leafpile.id = 0, so leaf pile has been disabled.");
 	}
