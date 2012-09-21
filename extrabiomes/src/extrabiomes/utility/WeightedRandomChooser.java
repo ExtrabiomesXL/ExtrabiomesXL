@@ -11,11 +11,13 @@ import java.util.Random;
 
 import net.minecraft.src.WeightedRandomItem;
 
+import com.google.common.base.Optional;
+
 public class WeightedRandomChooser {
 	/**
 	 * Returns a random choice from the input items.
 	 */
-	public static <T extends WeightedRandomItem> T getRandomItem(
+	public static <T extends WeightedRandomItem> Optional<T> getRandomItem(
 			Random rand, Collection<T> collection)
 	{
 		return getRandomItem(rand, collection,
@@ -26,7 +28,7 @@ public class WeightedRandomChooser {
 	 * Returns a random choice from the input items, with a total weight
 	 * value.
 	 */
-	public static <T extends WeightedRandomItem> T getRandomItem(
+	public static <T extends WeightedRandomItem> Optional<T> getRandomItem(
 			Random rand, Collection<T> collection, int limit)
 	{
 		if (limit > 0) {
@@ -35,10 +37,10 @@ public class WeightedRandomChooser {
 
 			for (final T item : collection) {
 				choice -= item.itemWeight;
-				if (choice < 0) return item;
+				if (choice < 0) return Optional.of(item);
 			}
 		}
-		return null;
+		return Optional.absent();
 	}
 
 	/**
