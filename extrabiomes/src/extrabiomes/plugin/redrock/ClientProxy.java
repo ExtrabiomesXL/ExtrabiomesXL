@@ -5,22 +5,21 @@
  * /MMPL-1.0.txt
  */
 
-package extrabiomes.client;
+package extrabiomes.plugin.redrock;
 
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import extrabiomes.CommonProxy;
+import extrabiomes.utility.SlabRenderer;
 
 public class ClientProxy extends CommonProxy {
-
-	@Override
-	public int getNextAvailableRenderId() {
-		return RenderingRegistry.getNextAvailableRenderId();
-	}
 
 	@Override
 	public void registerRenderInformation() {
 		MinecraftForgeClient
 				.preloadTexture("/extrabiomes/extrabiomes.png");
+		final SlabRenderer renderer = new SlabRenderer();
+		RenderingRegistry.registerBlockHandler(renderer);
+		RedRock.setRenderId(renderer.getRenderId());
 	}
 }

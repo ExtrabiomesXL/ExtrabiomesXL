@@ -50,13 +50,14 @@ public class CommonProxy {
 		return Optional.fromNullable(ForgeHooks.getGrassSeed(world));
 	}
 
+	public int getNextAvailableRenderId() {
+		return 0;
+	}
+
 	public boolean isModLoaded(String modID) {
 		return Loader.isModLoaded(modID);
 	}
 
-	/**
-	 * @see GameRegistry#registerBlock(Block, Class) for details.
-	 */
 	public void registerBlock(Optional<? extends Block> block,
 			Class<? extends ItemBlock> itemclass)
 	{
@@ -65,9 +66,6 @@ public class CommonProxy {
 					checkNotNull(itemclass));
 	}
 
-	/**
-	 * @see GameRegistry#registerBlock(Block) for details.
-	 */
 	public void registerBlock(Optional<Block> block) {
 		if (block.isPresent()) GameRegistry.registerBlock(block.get());
 	}
