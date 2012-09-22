@@ -18,8 +18,10 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenderInformation() {
 		MinecraftForgeClient
 				.preloadTexture("/extrabiomes/extrabiomes.png");
-		final SlabRenderer renderer = new SlabRenderer();
-		RenderingRegistry.registerBlockHandler(renderer);
-		RedRock.setRenderId(renderer.getRenderId());
+		if (RedRock.halfSlabsEnabled()) {
+			final SlabRenderer renderer = new SlabRenderer();
+			RenderingRegistry.registerBlockHandler(renderer);
+			RedRock.setSlabRenderId(renderer.getRenderId());
+		}
 	}
 }

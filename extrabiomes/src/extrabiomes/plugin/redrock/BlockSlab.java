@@ -73,7 +73,7 @@ public class BlockSlab extends BlockCustomHalfSlab {
 	@Override
 	public int getRenderType() {
 		if (isDoubleSlab) return 0;
-		return RedRock.getRenderId();
+		return RedRock.getSlabRenderId();
 	}
 
 	@Override

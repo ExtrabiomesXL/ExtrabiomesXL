@@ -28,6 +28,7 @@ public class BlockRedRock extends Block {
 
 		setTextureFile("/extrabiomes/extrabiomes.png");
 		setCreativeTab(CreativeTabs.tabBlock);
+		setLightOpacity(0);
 	}
 
 	@Override

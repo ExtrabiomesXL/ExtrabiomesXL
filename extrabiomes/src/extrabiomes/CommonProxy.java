@@ -63,7 +63,7 @@ public class CommonProxy {
 	{
 		if (block.isPresent())
 			GameRegistry.registerBlock(block.get(),
-					checkNotNull(itemclass));
+					itemclass);
 	}
 
 	public void registerBlock(Optional<Block> block) {
