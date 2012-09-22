@@ -17,4 +17,10 @@ public class BlockRedRockStairs extends BlockStairs {
 		setRequiresSelfNotify();
 		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
+
+	@Override
+	public int getRenderType() {
+		return super.getRenderType();
+		// return Extrabiomes.getStairsRenderId();
+	}
 }

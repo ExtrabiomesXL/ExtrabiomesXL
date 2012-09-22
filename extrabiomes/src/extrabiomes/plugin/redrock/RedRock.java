@@ -44,7 +44,7 @@ import extrabiomes.utility.EnhancedConfiguration;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class RedRock {
 
-	@SidedProxy(clientSide = "extrabiomes.plugin.redrock.ClientProxy", serverSide = "extrabiomes.CommonProxy")
+	@SidedProxy(clientSide = "extrabiomes.client.ClientProxy", serverSide = "extrabiomes.CommonProxy")
 	public static CommonProxy							proxy;
 	@Instance("EBXLRedRock")
 	public static RedRock								instance;
@@ -54,7 +54,6 @@ public class RedRock {
 	private static int									redRockDoubleId;
 	private static int									redCobbleStepsId;
 	private static int									redRockBrickStepsId;
-	private static int									slabRenderId;
 
 	private static Optional<Block>						redRock;
 	private static Optional<Block>						redCobbleSteps;
@@ -75,10 +74,6 @@ public class RedRock {
 
 	public static Optional<Block> getRedRockBlock() {
 		return redRock;
-	}
-
-	public static int getSlabRenderId() {
-		return slabRenderId;
 	}
 
 	public static boolean halfSlabsEnabled() {
@@ -297,9 +292,5 @@ public class RedRock {
 					redRockItem);
 
 		}
-	}
-
-	public static void setSlabRenderId(int renderId) {
-		RedRock.slabRenderId = renderId;
 	}
 }

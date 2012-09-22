@@ -1,3 +1,8 @@
+/**
+ * This mod is distributed under the terms of the Minecraft Mod Public
+ * License 1.0, or MMPL. Please check the contents of the license
+ * located in /MMPL-1.0.txt
+ */
 
 package extrabiomes.utility;
 
@@ -11,24 +16,22 @@ import net.minecraft.src.Tessellator;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.Extrabiomes;
 
-public class SlabRenderer implements ISimpleBlockRenderingHandler {
-
-	private final int	renderID;
-
-	public SlabRenderer() {
-		renderID = Extrabiomes.proxy.getNextAvailableRenderId();
-	}
+@SideOnly(Side.CLIENT)
+public class RenderStairsHalfSlabs implements
+		ISimpleBlockRenderingHandler
+{
 
 	@Override
 	public int getRenderId() {
-		return renderID;
+		return 0;
 	}
 
-	@Override
-	public void renderInventoryBlock(Block block, int metadata,
-			int modelID, RenderBlocks renderer)
+	private void renderHalfSlabAsItem(Block block, int metadata,
+			RenderBlocks renderer)
 	{
 		if (renderer.useInventoryTint) {
 			final int color = block.getRenderColor(metadata);
@@ -36,7 +39,7 @@ public class SlabRenderer implements ISimpleBlockRenderingHandler {
 			final float red = (color >> 16 & 255) / 255.0F;
 			final float green = (color >> 8 & 255) / 255.0F;
 			final float blue = (color & 255) / 255.0F;
-			GL11.glColor4f(red * 1.0F, green * 1.0F, blue * 1.0F, 1.0F);
+			GL11.glColor4f(red, green, blue, 1.0F);
 		}
 
 		block.setBlockBoundsForItemRender();
@@ -79,6 +82,75 @@ public class SlabRenderer implements ISimpleBlockRenderingHandler {
 		Tessellator.instance.draw();
 
 		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+	}
+
+	@Override
+	public void renderInventoryBlock(Block block, int metadata,
+			int modelID, RenderBlocks renderer)
+	{
+		if (modelID == Extrabiomes.getSlabRenderId())
+			renderHalfSlabAsItem(block, metadata, renderer);
+
+		if (modelID == Extrabiomes.getStairsRenderId())
+			renderStairsAsItem(block, metadata, renderer);
+	}
+
+	private void renderStairsAsItem(Block block, int metadata,
+			RenderBlocks renderer)
+	{
+		float red;
+		float blue;
+		float green;
+
+		if (renderer.useInventoryTint) {
+			final int color = block.getRenderColor(metadata);
+
+			red = (color >> 16 & 255) / 255.0F;
+			blue = (color >> 8 & 255) / 255.0F;
+			green = (color & 255) / 255.0F;
+			GL11.glColor4f(red, blue, green, 1.0F);
+		}
+
+		for (int i = 0; i < 2; ++i) {
+			if (i == 0)
+				block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.5F);
+
+			if (i == 1)
+				block.setBlockBounds(0.0F, 0.0F, 0.5F, 1.0F, 0.5F, 1.0F);
+
+			GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+			Tessellator.instance.startDrawingQuads();
+			Tessellator.instance.setNormal(0.0F, -1.0F, 0.0F);
+			renderer.renderBottomFace(block, 0.0D, 0.0D, 0.0D,
+					block.getBlockTextureFromSide(0));
+			Tessellator.instance.draw();
+			Tessellator.instance.startDrawingQuads();
+			Tessellator.instance.setNormal(0.0F, 1.0F, 0.0F);
+			renderer.renderTopFace(block, 0.0D, 0.0D, 0.0D,
+					block.getBlockTextureFromSide(1));
+			Tessellator.instance.draw();
+			Tessellator.instance.startDrawingQuads();
+			Tessellator.instance.setNormal(0.0F, 0.0F, -1.0F);
+			renderer.renderEastFace(block, 0.0D, 0.0D, 0.0D,
+					block.getBlockTextureFromSide(2));
+			Tessellator.instance.draw();
+			Tessellator.instance.startDrawingQuads();
+			Tessellator.instance.setNormal(0.0F, 0.0F, 1.0F);
+			renderer.renderWestFace(block, 0.0D, 0.0D, 0.0D,
+					block.getBlockTextureFromSide(3));
+			Tessellator.instance.draw();
+			Tessellator.instance.startDrawingQuads();
+			Tessellator.instance.setNormal(-1.0F, 0.0F, 0.0F);
+			renderer.renderNorthFace(block, 0.0D, 0.0D, 0.0D,
+					block.getBlockTextureFromSide(4));
+			Tessellator.instance.draw();
+			Tessellator.instance.startDrawingQuads();
+			Tessellator.instance.setNormal(1.0F, 0.0F, 0.0F);
+			renderer.renderSouthFace(block, 0.0D, 0.0D, 0.0D,
+					block.getBlockTextureFromSide(5));
+			Tessellator.instance.draw();
+			GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+		}
 	}
 
 	public boolean renderWithAmbientOcclusion(int x, int y, int z,

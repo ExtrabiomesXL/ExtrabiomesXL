@@ -17,6 +17,7 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.utility.BlockCustomHalfSlab;
 
 public class BlockSlab extends BlockCustomHalfSlab {
@@ -73,7 +74,7 @@ public class BlockSlab extends BlockCustomHalfSlab {
 	@Override
 	public int getRenderType() {
 		if (isDoubleSlab) return 0;
-		return RedRock.getSlabRenderId();
+		return Extrabiomes.getSlabRenderId();
 	}
 
 	@Override
