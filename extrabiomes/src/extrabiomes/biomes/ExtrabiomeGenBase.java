@@ -13,6 +13,9 @@ import java.util.Random;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.WorldGenerator;
+
+import com.google.common.base.Optional;
+
 import extrabiomes.api.BiomeManager;
 
 public class ExtrabiomeGenBase extends BiomeGenBase {
@@ -37,17 +40,17 @@ public class ExtrabiomeGenBase extends BiomeGenBase {
 
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-		final WorldGenerator grassGen = BiomeManager
+		final Optional<? extends WorldGenerator> grassGen = BiomeManager
 				.chooseRandomGrassGenforBiome(rand, this);
-		if (grassGen != null) return grassGen;
+		if (grassGen.isPresent()) return grassGen.get();
 		return super.getRandomWorldGenForGrass(rand);
 	}
 
 	@Override
 	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
-		final WorldGenerator treeGen = BiomeManager
+		final Optional<? extends WorldGenerator> treeGen = BiomeManager
 				.chooseRandomTreeGenforBiome(rand, this);
-		if (treeGen != null) return treeGen;
+		if (treeGen.isPresent()) return treeGen.get();
 		return super.getRandomWorldGenForTrees(rand);
 	}
 }
