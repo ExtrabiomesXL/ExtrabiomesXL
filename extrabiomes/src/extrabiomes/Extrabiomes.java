@@ -24,7 +24,7 @@ import extrabiomes.features.FeatureGenerator;
 import extrabiomes.trees.TreeBlocks;
 import extrabiomes.utility.EnhancedConfiguration;
 
-@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.3")
+@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.4")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Extrabiomes {
 
@@ -33,8 +33,19 @@ public class Extrabiomes {
 	@Instance("ExtrabiomesXL")
 	public static Extrabiomes			instance;
 
+	private static int					slabRenderId;
+	private static int					stairsRenderId;
+
 	private static BiomeManagerImpl		biomeManager	= new BiomeManagerImpl();
 	private static PluginManagerImpl	pluginManager	= new PluginManagerImpl();
+
+	public static int getSlabRenderId() {
+		return slabRenderId;
+	}
+
+	public static int getStairsRenderId() {
+		return stairsRenderId;
+	}
 
 	@Init
 	public static void init(FMLInitializationEvent event) {
@@ -71,5 +82,13 @@ public class Extrabiomes {
 		}
 
 		TreeBlocks.init();
+	}
+
+	public static void setSlabRenderId(int renderId) {
+		Extrabiomes.slabRenderId = renderId;
+	}
+
+	public static void setStairsRenderId(int renderId) {
+		Extrabiomes.stairsRenderId = renderId;
 	}
 }

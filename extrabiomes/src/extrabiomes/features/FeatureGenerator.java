@@ -42,7 +42,15 @@ public class FeatureGenerator implements IWorldGenerator {
 		}
 
 		if (biome == BiomeManager.mountaindesert.get())
-			generateRareDesrtWell(random, chunkX, chunkZ, world);
+			generateRareDesertWell(random, chunkX, chunkZ, world);
+
+		if (biome == BiomeManager.extremejungle.get()
+				|| biome == BiomeManager.minijungle.get()
+				|| biome == BiomeManager.temperaterainforest.get()
+				|| biome == BiomeGenBase.jungle
+				|| biome == BiomeGenBase.jungleHills)
+			if (random.nextInt(48) == 0)
+				generateMelonPatch(world, random, chunkX, chunkZ);
 
 	}
 
@@ -78,7 +86,16 @@ public class FeatureGenerator implements IWorldGenerator {
 		}
 	}
 
-	private void generateRareDesrtWell(Random rand, int x, int z,
+	private void generateMelonPatch(World world, Random rand, int x,
+			int z)
+	{
+		x += rand.nextInt(16) + 8;
+		final int y = rand.nextInt(128);
+		z += rand.nextInt(16) + 8;
+		new WorldGenMelon().generate(world, rand, x, y, z);
+	}
+
+	private void generateRareDesertWell(Random rand, int x, int z,
 			World world)
 	{
 		if (rand.nextInt(1000) == 0) {

@@ -40,8 +40,8 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
-import extrabiomes.Extrabiomes;
 import extrabiomes.BiomesConfig;
+import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.trees.WorldGenAcacia;
@@ -110,11 +110,11 @@ public class BiomeManagerImpl extends BiomeManager {
 
 		public void loadSettings(BiomesConfig cfg) {
 			if (cfg.getOrCreateBooleanProperty(enabledKey(),
-					BiomesConfig.CATEGORY_BIOME, true).getBoolean(
-					true)) enabledBiomes.add(this);
+					BiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
+				enabledBiomes.add(this);
 			if (cfg.getOrCreateBooleanProperty(villagesKey(),
-					BiomesConfig.CATEGORY_BIOME, true).getBoolean(
-					true)) biomesAllowingVillages.add(this);
+					BiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
+				biomesAllowingVillages.add(this);
 		}
 
 		@Override
@@ -150,11 +150,11 @@ public class BiomeManagerImpl extends BiomeManager {
 
 		public void loadSettings(BiomesConfig cfg) {
 			if (!cfg.getOrCreateBooleanProperty(enabledKey(),
-					BiomesConfig.CATEGORY_BIOME, true).getBoolean(
-					true)) disabledBiomes.add(this);
+					BiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
+				disabledBiomes.add(this);
 			if (cfg.getOrCreateBooleanProperty(villagesKey(),
-					BiomesConfig.CATEGORY_BIOME, true).getBoolean(
-					true)) biomesAllowingVillages.add(this);
+					BiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
+				biomesAllowingVillages.add(this);
 		}
 
 		@Override
@@ -545,11 +545,21 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 	@Override
-	protected WorldGenerator chooseBiomeRandomGen(GenType genType,
-			Random rand, BiomeGenBase biome)
+	protected Optional<? extends WorldGenerator> chooseBiomeRandomGen(
+			GenType genType, Random rand, BiomeGenBase biome)
 	{
-		return WeightedRandomChooser.getRandomItem(rand,
-				weightedChoices.get(genType).get(biome)).getWorldGen();
+
+		final Optional<Multimap<BiomeGenBase, WeightedWorldGenerator>> choicesForGenType = Optional
+				.fromNullable(weightedChoices.get(genType));
+		if (choicesForGenType.isPresent()) {
+			final Collection<WeightedWorldGenerator> choicesForBiome = choicesForGenType
+					.get().get(biome);
+			final Optional<WeightedWorldGenerator> randomItem = WeightedRandomChooser
+					.getRandomItem(rand, choicesForBiome);
+			if (randomItem.isPresent())
+				return Optional.of(randomItem.get().getWorldGen());
+		}
+		return Optional.absent();
 	}
 
 	@Override
