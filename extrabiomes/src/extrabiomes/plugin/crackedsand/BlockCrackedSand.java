@@ -15,7 +15,9 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import extrabiomes.api.BiomeManager;
+import extrabiomes.utility.IDRestrictionAnnotation;
 
+@IDRestrictionAnnotation(maxIDRValue = 255)
 public class BlockCrackedSand extends Block {
 
 	private static boolean	canGrow;
