@@ -19,7 +19,9 @@ import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.utility.IDRestrictionAnnotation;
 
+@IDRestrictionAnnotation(maxIDRValue = 255)
 public class BlockRedRock extends Block {
 	public BlockRedRock(int id) {
 		super(id, 2, Material.rock);

@@ -439,7 +439,7 @@ public class BiomeManagerImpl extends BiomeManager {
 		addSavannaTrees(savanna.get());
 		addShrublandTrees(shrubland.get());
 		addDefaultTrees(snowforest.get());
-		addDefaultTrees(snowyrainforest.get());
+		addTemporateRainforest(snowyrainforest.get());
 		addTemporateRainforest(temperaterainforest.get());
 		addDefaultTrees(tundra.get());
 		addDefaultTrees(wasteland.get());

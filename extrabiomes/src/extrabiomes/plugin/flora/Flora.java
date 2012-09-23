@@ -76,7 +76,7 @@ public class Flora {
 	}
 
 	private static void initCatTail() {
-		if (0 < catTailId) return;
+		if (catTailId == 0) return;
 		catTail = Optional.of(new BlockCatTail(catTailId)
 				.setBlockName("cattail"));
 		proxy.registerBlock(catTail,
@@ -89,7 +89,7 @@ public class Flora {
 	}
 
 	private static void initFlower() {
-		if (0 < flowerId) return;
+		if (flowerId == 0) return;
 		flower = Optional.of(new BlockCustomFlower(flowerId)
 				.setBlockName("flower"));
 		proxy.registerBlock(flower,
@@ -107,7 +107,7 @@ public class Flora {
 	}
 
 	private static void initGrass() {
-		if (0 < grassId) return;
+		if (grassId == 0) return;
 		grass = Optional.of(new BlockCustomTallGrass(grassId)
 				.setBlockName("grass"));
 		proxy.registerBlock(grass,
@@ -139,7 +139,7 @@ public class Flora {
 	}
 
 	private static void initLeafPile() {
-		if (0 < leafPileId) return;
+		if (leafPileId == 0) return;
 		leafPile = Optional.of(new BlockLeafPile(leafPileId)
 				.setBlockName("leafpile"));
 		proxy.registerBlock(leafPile);
