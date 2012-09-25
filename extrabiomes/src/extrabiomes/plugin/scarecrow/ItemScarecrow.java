@@ -42,7 +42,7 @@ public class ItemScarecrow extends Item {
 	public ItemScarecrow(int id) {
 		super(id);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setTabToDisplayOn(CreativeTabs.tabMisc);
+		setCreativeTab(CreativeTabs.tabMisc);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class ItemScarecrow extends Item {
 	}
 
 	@Override
-	public boolean tryPlaceIntoWorld(ItemStack itemStack,
+	public boolean onItemUse(ItemStack itemStack,
 			EntityPlayer player, World world, int x, int y, int z,
 			int side, float xOffset, float yOffset, float zOffset)
 	{

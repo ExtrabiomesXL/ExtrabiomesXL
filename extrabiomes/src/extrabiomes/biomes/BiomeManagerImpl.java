@@ -545,11 +545,20 @@ public class BiomeManagerImpl extends BiomeManager {
 	}
 
 	@Override
-	protected WorldGenerator chooseBiomeRandomGen(GenType genType,
-			Random rand, BiomeGenBase biome)
+	protected Optional<? extends WorldGenerator> chooseBiomeRandomGen(
+			GenType genType, Random rand, BiomeGenBase biome)
 	{
-		return WeightedRandomChooser.getRandomItem(rand,
-				weightedChoices.get(genType).get(biome)).getWorldGen();
+		final Optional<Multimap<BiomeGenBase, WeightedWorldGenerator>> choicesForGenType = Optional
+				.fromNullable(weightedChoices.get(genType));
+		if (choicesForGenType.isPresent()) {
+			final Collection<WeightedWorldGenerator> choicesForBiome = choicesForGenType
+					.get().get(biome);
+			final Optional<WeightedWorldGenerator> randomItem = WeightedRandomChooser
+					.getRandomItem(rand, choicesForBiome);
+			if (randomItem.isPresent())
+				return Optional.of(randomItem.get().getWorldGen());
+		}
+		return Optional.absent();
 	}
 
 	@Override

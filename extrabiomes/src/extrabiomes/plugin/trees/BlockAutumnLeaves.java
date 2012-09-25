@@ -64,7 +64,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 		setRequiresSelfNotify();
 		Block.setBurnProperties(id, 30, 60);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDeco);
+		setCreativeTab(CreativeTabs.tabDecorations);
 	}
 
 	@Override
@@ -137,7 +137,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDeco)
+		if (tab == CreativeTabs.tabDecorations)
 			for (final AutumnLeafType blockType : AutumnLeafType
 					.values())
 				itemList.add(new ItemStack(this, 1, blockType

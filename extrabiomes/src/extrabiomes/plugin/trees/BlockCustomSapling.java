@@ -64,7 +64,7 @@ public class BlockCustomSapling extends BlockFlower {
 		setStepSound(soundGrassFootstep);
 		setRequiresSelfNotify();
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDeco);
+		setCreativeTab(CreativeTabs.tabDecorations);
 	}
 
 	private void attemptGrowTree(World world, int x, int y, int z,
@@ -104,7 +104,7 @@ public class BlockCustomSapling extends BlockFlower {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDeco)
+		if (tab == CreativeTabs.tabDecorations)
 			for (final SaplingType blockType : SaplingType.values())
 				itemList.add(new ItemStack(this, 1, blockType
 						.metadata()));

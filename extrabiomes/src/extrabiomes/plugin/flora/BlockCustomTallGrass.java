@@ -40,7 +40,7 @@ public class BlockCustomTallGrass extends BlockFlower implements
 		setHardness(0F);
 		setStepSound(soundGrassFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDeco);
+		setCreativeTab(CreativeTabs.tabDecorations);
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class BlockCustomTallGrass extends BlockFlower implements
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDeco)
+		if (tab == CreativeTabs.tabDecorations)
 			for (final GrassType type : GrassType.values())
 				itemList.add(new ItemStack(this, 1, type.metadata()));
 	}

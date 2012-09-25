@@ -25,7 +25,7 @@ public class BlockCatTail extends BlockFlower {
 		final float f = 0.375F;
 		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F,
 				0.5F + f);
-		setCreativeTab(CreativeTabs.tabDeco);
+		setCreativeTab(CreativeTabs.tabDecorations);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
