@@ -23,7 +23,7 @@ import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.features.FeatureGenerator;
 import extrabiomes.trees.TreeBlocks;
 
-@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.0")
+@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.0a")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Extrabiomes {
 
