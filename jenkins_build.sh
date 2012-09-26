@@ -29,7 +29,6 @@ cp -rf ../../extrabiomes/*.txt .
 cp -rf ../../extrabiomes/src/extrabiomes/*.png extrabiomes/
 zip -r9 "../${JOB_NAME}-universal-${VERSION}.jar" *
 cd ..
-cp "${JOB_NAME}-universal-${VERSION}.jar" copy.jar
 
 echo "Uploading universal package..."
 sh $JENKINS_HOME/Scripts/jenkins-upload.sh
