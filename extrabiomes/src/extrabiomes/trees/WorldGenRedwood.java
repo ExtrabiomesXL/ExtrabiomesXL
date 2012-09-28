@@ -11,8 +11,32 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.plugin.trees.BlockCustomSapling;
 
 public class WorldGenRedwood extends WorldGenerator {
+
+	private static Block	trunkBlockNE	= Block.wood;
+	private static Block	trunkBlockNW	= Block.wood;
+	private static Block	trunkBlockSE	= Block.wood;
+	private static Block	trunkBlockSW	= Block.wood;
+	private static int		trunkMetadata	= 1;
+	private static Block	leavesBlock		= Block.leaves;
+	private static int		leavesMetadata	= 0;
+
+	public static void setLeavesBlock(Block block, int metadata) {
+		WorldGenRedwood.leavesBlock = block;
+		WorldGenRedwood.leavesMetadata = metadata;
+	}
+
+	public static void setTrunkBlock(Block blockNW, Block blockNE,
+			Block blockSW, Block blockSE, int metadata)
+	{
+		WorldGenRedwood.trunkBlockNW = blockNW;
+		WorldGenRedwood.trunkBlockNE = blockNE;
+		WorldGenRedwood.trunkBlockSW = blockSW;
+		WorldGenRedwood.trunkBlockSE = blockSE;
+		WorldGenRedwood.trunkMetadata = metadata;
+	}
 
 	public WorldGenRedwood(boolean doNotify) {
 		super(doNotify);
@@ -22,15 +46,6 @@ public class WorldGenRedwood extends WorldGenerator {
 	public boolean generate(World world, Random rand, int x, int y,
 			int z)
 	{
-		final int woodID = TreeBlocks
-				.getWoodID(TreeBlocks.Type.REDWOOD);
-		final int woodMeta = TreeBlocks
-				.getWoodMeta(TreeBlocks.Type.REDWOOD);
-		final int leafID = TreeBlocks
-				.getLeafID(TreeBlocks.Type.REDWOOD);
-		final int leafMeta = TreeBlocks
-				.getLeafMeta(TreeBlocks.Type.REDWOOD);
-
 		final int height = rand.nextInt(30) + 32;
 		final int j = 1 + rand.nextInt(12);
 		final int k = height - j;
@@ -38,10 +53,8 @@ public class WorldGenRedwood extends WorldGenerator {
 
 		if (y < 1 || y + height + 1 > 256) return false;
 
-		final int id = world.getBlockId(x, y - 1, z);
-
-		if (!TreeBlocks.treesCanGrowOnIDs.contains(Integer.valueOf(id))
-				|| y >= 256 - height - 1) return false;
+		if (!BlockCustomSapling.isValidSoilID(world.getBlockId(x,
+				y - 1, z)) || y >= 256 - height - 1) return false;
 
 		for (int y1 = y; y1 <= y + 1 + height; y1++) {
 			int k1 = 1;
@@ -54,12 +67,11 @@ public class WorldGenRedwood extends WorldGenerator {
 			for (int x1 = x - k1; x1 <= x + k1; x1++)
 				for (int z1 = z - k1; z1 <= z + k1; z1++)
 					if (y1 >= 0 && y1 < 256) {
-						final int id1 = world.getBlockId(x1, y1, z1);
+						final int id = world.getBlockId(x1, y1, z1);
 
-						if (Block.blocksList[id1] != null
-								&& Block.blocksList[id1].isLeaves(
-										world, x1, y1, z1))
-							return false;
+						if (Block.blocksList[id] != null
+								&& Block.blocksList[id].isLeaves(world,
+										x1, y1, z1)) return false;
 					} else
 						return false;
 		}
@@ -89,14 +101,14 @@ public class WorldGenRedwood extends WorldGenerator {
 									.canBeReplacedByLeaves(world, x1,
 											y1, z1)))
 					{
-						setBlockAndMetadata(world, x1, y1, z1, leafID,
-								leafMeta);
+						setBlockAndMetadata(world, x1, y1, z1,
+								leavesBlock.blockID, leavesMetadata);
 						setBlockAndMetadata(world, x1 - 1, y1, z1,
-								leafID, leafMeta);
+								leavesBlock.blockID, leavesMetadata);
 						setBlockAndMetadata(world, x1, y1, z1 - 1,
-								leafID, leafMeta);
+								leavesBlock.blockID, leavesMetadata);
 						setBlockAndMetadata(world, x1 - 1, y1, z1 - 1,
-								leafID, leafMeta);
+								leavesBlock.blockID, leavesMetadata);
 					}
 				}
 			}
@@ -119,16 +131,14 @@ public class WorldGenRedwood extends WorldGenerator {
 					|| Block.blocksList[j4].isLeaves(world, x, y + y1,
 							z))
 			{
-				setBlockAndMetadata(world, x, y + y1, z, woodID,
-						woodMeta);
-				setBlockAndMetadata(world, x, y + y1, z, woodID,
-						woodMeta);
-				setBlockAndMetadata(world, x - 1, y + y1, z, woodID,
-						woodMeta);
-				setBlockAndMetadata(world, x, y + y1, z - 1, woodID,
-						woodMeta);
+				setBlockAndMetadata(world, x, y + y1, z,
+						trunkBlockSE.blockID, trunkMetadata);
+				setBlockAndMetadata(world, x - 1, y + y1, z,
+						trunkBlockSW.blockID, trunkMetadata);
+				setBlockAndMetadata(world, x, y + y1, z - 1,
+						trunkBlockNE.blockID, trunkMetadata);
 				setBlockAndMetadata(world, x - 1, y + y1, z - 1,
-						woodID, woodMeta);
+						trunkBlockNW.blockID, trunkMetadata);
 			}
 		}
 

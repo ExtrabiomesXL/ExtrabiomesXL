@@ -11,8 +11,24 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.plugin.trees.BlockCustomSapling;
 
 public class WorldGenAcacia extends WorldGenerator {
+
+	private static Block	trunkBlock		= Block.wood;
+	private static int		trunkMetadata	= 0;
+	private static Block	leavesBlock		= Block.leaves;
+	private static int		leavesMetadata	= 0;
+
+	public static void setLeavesBlock(Block block, int metadata) {
+		WorldGenAcacia.leavesBlock = block;
+		WorldGenAcacia.leavesMetadata = metadata;
+	}
+
+	public static void setTrunkBlock(Block block, int metadata) {
+		WorldGenAcacia.trunkBlock = block;
+		WorldGenAcacia.trunkMetadata = metadata;
+	}
 
 	public WorldGenAcacia(final boolean doNotify) {
 		super(doNotify);
@@ -24,13 +40,6 @@ public class WorldGenAcacia extends WorldGenerator {
 	{
 		final int height = rand.nextInt(4) + 6;
 		boolean canGrow = true;
-
-		final int woodID = TreeBlocks.getWoodID(TreeBlocks.Type.ACACIA);
-		final int woodMeta = TreeBlocks
-				.getWoodMeta(TreeBlocks.Type.ACACIA);
-		final int leafID = TreeBlocks.getLeafID(TreeBlocks.Type.ACACIA);
-		final int leafMeta = TreeBlocks
-				.getLeafMeta(TreeBlocks.Type.ACACIA);
 
 		if (y < 1 || y + height + 1 > 256) return false;
 
@@ -61,9 +70,9 @@ public class WorldGenAcacia extends WorldGenerator {
 
 		if (!canGrow) return false;
 
-		if (!TreeBlocks.treesCanGrowOnIDs.contains(Integer
-				.valueOf(world.getBlockId(x, y - 1, z)))
-				|| y >= 256 - height - 1) return false;
+		if (!BlockCustomSapling.isValidSoilID(Integer.valueOf(world
+				.getBlockId(x, y - 1, z))) || y >= 256 - height - 1)
+			return false;
 
 		world.setBlock(x, y - 1, z, Block.dirt.blockID);
 		final byte canopyHeight = 3;
@@ -92,8 +101,8 @@ public class WorldGenAcacia extends WorldGenerator {
 							&& (block == null || block
 									.canBeReplacedByLeaves(world, x1,
 											y1, z1)))
-						setBlockAndMetadata(world, x1, y1, z1, leafID,
-								leafMeta);
+						setBlockAndMetadata(world, x1, y1, z1,
+								leavesBlock.blockID, leavesMetadata);
 				}
 			}
 		}
@@ -105,7 +114,8 @@ public class WorldGenAcacia extends WorldGenerator {
 					&& !Block.blocksList[id].isLeaves(world, x, y + y1,
 							z)) continue;
 
-			setBlockAndMetadata(world, x, y + y1, z, woodID, woodMeta);
+			setBlockAndMetadata(world, x, y + y1, z,
+					trunkBlock.blockID, trunkMetadata);
 
 		}
 		return true;

@@ -13,9 +13,11 @@ import static extrabiomes.plugin.trees.SaplingType.ORANGE;
 import static extrabiomes.plugin.trees.SaplingType.PURPLE;
 import static extrabiomes.plugin.trees.SaplingType.YELLOW;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.src.Block;
 import net.minecraft.src.BlockFlower;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
@@ -23,7 +25,6 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
-import extrabiomes.trees.TreeBlocks;
 import extrabiomes.trees.WorldGenAcacia;
 import extrabiomes.trees.WorldGenAutumnTree;
 import extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType;
@@ -37,21 +38,33 @@ public class BlockCustomSapling extends BlockFlower {
 	private static final int	METADATA_BITMASK	= 0x7;
 	private static final int	METADATA_MARKBIT	= 0x8;
 
-	static private boolean isEnoughLightToGrow(World world, int x,
+	private static List<Block>	validSoil			= new ArrayList<Block>();
+
+	public static void addValidSoil(Block soilBlock) {
+		validSoil.add(soilBlock);
+	}
+
+	private static boolean isEnoughLightToGrow(World world, int x,
 			int y, int z)
 	{
 		return world.getBlockLightValue(x, y, z) >= 9;
 	}
 
-	static private boolean isMarkedMetadata(int metadata) {
+	private static boolean isMarkedMetadata(int metadata) {
 		return (metadata & METADATA_MARKBIT) != 0;
 	}
 
-	static private int markedMetadata(int metadata) {
+	public static boolean isValidSoilID(int blockID) {
+		for (final Block block : validSoil)
+			if (block.blockID == blockID) return true;
+		return false;
+	}
+
+	private static int markedMetadata(int metadata) {
 		return metadata | METADATA_MARKBIT;
 	}
 
-	static private int unmarkedMetadata(int metadata) {
+	private static int unmarkedMetadata(int metadata) {
 		return metadata & METADATA_BITMASK;
 	}
 
@@ -85,8 +98,7 @@ public class BlockCustomSapling extends BlockFlower {
 
 	@Override
 	protected boolean canThisPlantGrowOnThisBlockID(int id) {
-		return TreeBlocks.treesCanGrowOnIDs.contains(Integer
-				.valueOf(id));
+		return isValidSoilID(id);
 	}
 
 	@Override

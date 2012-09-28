@@ -21,7 +21,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.features.FeatureGenerator;
-import extrabiomes.trees.TreeBlocks;
 import extrabiomes.utility.EnhancedConfiguration;
 
 @Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.5")
@@ -80,8 +79,6 @@ public class Extrabiomes {
 		} finally {
 			cfg.save();
 		}
-
-		TreeBlocks.init();
 	}
 
 	public static void setSlabRenderId(int renderId) {

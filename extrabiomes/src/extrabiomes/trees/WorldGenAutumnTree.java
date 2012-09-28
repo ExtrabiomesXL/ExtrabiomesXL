@@ -11,6 +11,7 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.plugin.trees.BlockCustomSapling;
 
 public class WorldGenAutumnTree extends WorldGenerator {
 
@@ -18,17 +19,28 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		BROWN, ORANGE, PURPLE, YELLOW
 	}
 
+	private static Block		trunkBlock					= Block.wood;
+	private static int			trunkMetadata				= 1;
+	private static Block		leavesBlock					= Block.leaves;
+	private static int			brownLeavesMetadata			= 1;
+	private static int			orangeLeavesMetadata		= 1;
+	private static int			purpleLeavesMetadata		= 1;
+
+	private static int			yellowLeavesMetadata		= 1;
+
 	private static final int	BASE_HEIGHT					= 4;
+
 	private static final int	CANOPY_HEIGHT				= 3;
+
 	private static final int	CANOPY_RADIUS_EXTRA_RADIUS	= 0;
+
 	private static final int	MAX_VARIANCE_HEIGHT			= 2;
 
 	private static boolean isBlockSuitableForGrowing(final World world,
 			final int x, final int y, final int z)
 	{
 		final int id = world.getBlockId(x, y, z);
-		return TreeBlocks.treesCanGrowOnIDs.contains(Integer
-				.valueOf(id));
+		return BlockCustomSapling.isValidSoilID(id);
 	}
 
 	private static boolean isRoomToGrow(final World world, final int x,
@@ -59,6 +71,21 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		return true;
 	}
 
+	public static void setLeavesBlock(Block block, int brownMetadata,
+			int orangeMetadata, int purpleMetadata, int yellowMetadata)
+	{
+		WorldGenAutumnTree.leavesBlock = block;
+		WorldGenAutumnTree.brownLeavesMetadata = brownMetadata;
+		WorldGenAutumnTree.orangeLeavesMetadata = orangeMetadata;
+		WorldGenAutumnTree.purpleLeavesMetadata = purpleMetadata;
+		WorldGenAutumnTree.yellowLeavesMetadata = yellowMetadata;
+	}
+
+	public static void setTrunkBlock(Block block, int metadata) {
+		WorldGenAutumnTree.trunkBlock = block;
+		WorldGenAutumnTree.trunkMetadata = metadata;
+	}
+
 	private final AutumnTreeType	type;
 
 	public WorldGenAutumnTree(boolean doBlockNotify, AutumnTreeType type)
@@ -72,27 +99,6 @@ public class WorldGenAutumnTree extends WorldGenerator {
 	public boolean generate(final World world, final Random rand,
 			final int x, final int y, final int z)
 	{
-		TreeBlocks.Type treeType = null;
-
-		switch (type) {
-			case BROWN:
-				treeType = TreeBlocks.Type.BROWN;
-				break;
-			case ORANGE:
-				treeType = TreeBlocks.Type.ORANGE;
-				break;
-			case PURPLE:
-				treeType = TreeBlocks.Type.PURPLE;
-				break;
-			case YELLOW:
-				treeType = TreeBlocks.Type.YELLOW;
-		}
-
-		final int leafID = TreeBlocks.getLeafID(treeType);
-		final int leafMeta = TreeBlocks.getLeafMeta(treeType);
-		final int woodID = TreeBlocks.getWoodID(treeType);
-		final int woodMeta = TreeBlocks.getWoodMeta(treeType);
-
 		final int height = rand.nextInt(MAX_VARIANCE_HEIGHT + 1)
 				+ BASE_HEIGHT;
 
@@ -104,10 +110,25 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		if (!isRoomToGrow(world, x, y, z, height)) return false;
 
 		world.setBlock(x, y - 1, z, Block.dirt.blockID);
-		growLeaves(world, rand, x, y, z, height, leafID, leafMeta);
-		growTrunk(world, x, y, z, height, woodID, woodMeta);
+		growLeaves(world, rand, x, y, z, height, leavesBlock.blockID,
+				getLeavesMetadata());
+		growTrunk(world, x, y, z, height, trunkBlock.blockID,
+				trunkMetadata);
 
 		return true;
+	}
+
+	private int getLeavesMetadata() {
+		switch (type) {
+			case BROWN:
+				return brownLeavesMetadata;
+			case ORANGE:
+				return orangeLeavesMetadata;
+			case PURPLE:
+				return purpleLeavesMetadata;
+			default:
+				return yellowLeavesMetadata;
+		}
 	}
 
 	private void growLeaves(final World world, final Random rand,

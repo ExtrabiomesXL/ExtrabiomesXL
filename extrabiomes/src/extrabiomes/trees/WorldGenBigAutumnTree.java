@@ -14,8 +14,33 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 
 public class WorldGenBigAutumnTree extends WorldGenerator {
-	private static final byte[]						otherCoordPairs		= new byte[] {
-			(byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1	};
+
+	private static Block		trunkBlock				= Block.wood;
+	private static int			trunkMetadata			= 1;
+	private static Block		leavesBlock				= Block.leaves;
+	private static int			brownLeavesMetadata		= 1;
+	private static int			orangeLeavesMetadata	= 1;
+	private static int			purpleLeavesMetadata	= 1;
+	private static int			yellowLeavesMetadata	= 1;
+
+	private static final byte[]	otherCoordPairs			= new byte[] {
+			(byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };
+
+	public static void setLeavesBlock(Block block, int brownMetadata,
+			int orangeMetadata, int purpleMetadata, int yellowMetadata)
+	{
+		WorldGenBigAutumnTree.leavesBlock = block;
+		WorldGenBigAutumnTree.brownLeavesMetadata = brownMetadata;
+		WorldGenBigAutumnTree.orangeLeavesMetadata = orangeMetadata;
+		WorldGenBigAutumnTree.purpleLeavesMetadata = purpleMetadata;
+		WorldGenBigAutumnTree.yellowLeavesMetadata = yellowMetadata;
+	}
+
+	public static void setTrunkBlock(Block block, int metadata) {
+		WorldGenBigAutumnTree.trunkBlock = block;
+		WorldGenBigAutumnTree.trunkMetadata = metadata;
+	}
+
 	private final Random							rand				= new Random();
 	private World									world;
 	private final int[]								basePos				= new int[] {
@@ -104,27 +129,6 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 	public boolean generate(World par1World, Random par2Random,
 			int par3, int par4, int par5)
 	{
-		TreeBlocks.Type treeType = null;
-
-		switch (type) {
-			case BROWN:
-				treeType = TreeBlocks.Type.BROWN;
-				break;
-			case ORANGE:
-				treeType = TreeBlocks.Type.ORANGE;
-				break;
-			case PURPLE:
-				treeType = TreeBlocks.Type.PURPLE;
-				break;
-			case YELLOW:
-				treeType = TreeBlocks.Type.YELLOW;
-		}
-
-		final int leafID = TreeBlocks.getLeafID(treeType);
-		final int leafMeta = TreeBlocks.getLeafMeta(treeType);
-		final int woodID = TreeBlocks.getWoodID(treeType);
-		final int woodMeta = TreeBlocks.getWoodMeta(treeType);
-
 		world = par1World;
 		final long var6 = par2Random.nextLong();
 		rand.setSeed(var6);
@@ -138,9 +142,9 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 		if (!validTreeLocation()) return false;
 
 		generateLeafNodeList();
-		generateLeaves(leafID, leafMeta);
-		generateTrunk(woodID, woodMeta);
-		generateLeafNodeBases(woodID, woodMeta);
+		generateLeaves(leavesBlock.blockID, getLeavesMetadata());
+		generateTrunk(trunkBlock.blockID, trunkMetadata);
+		generateLeafNodeBases(trunkBlock.blockID, trunkMetadata);
 		return true;
 	}
 
@@ -324,6 +328,19 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
 					}
 				}
 			}
+		}
+	}
+
+	private int getLeavesMetadata() {
+		switch (type) {
+			case BROWN:
+				return brownLeavesMetadata;
+			case ORANGE:
+				return orangeLeavesMetadata;
+			case PURPLE:
+				return purpleLeavesMetadata;
+			default:
+				return yellowLeavesMetadata;
 		}
 	}
 

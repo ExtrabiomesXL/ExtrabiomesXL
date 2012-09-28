@@ -11,14 +11,38 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.plugin.trees.BlockCustomSapling;
 
 public class WorldGenFirTreeHuge extends WorldGenerator {
+
+	private static Block	trunkBlockNE	= Block.wood;
+	private static Block	trunkBlockNW	= Block.wood;
+	private static Block	trunkBlockSE	= Block.wood;
+	private static Block	trunkBlockSW	= Block.wood;
+	private static int		trunkMetadata	= 1;
+	private static Block	leavesBlock		= Block.leaves;
+	private static int		leavesMetadata	= 1;
 
 	private static void setBlockandMetadataIfChunkExists(World world,
 			int x, int y, int z, int blockId, int metadata)
 	{
 		if (world.getChunkProvider().chunkExists(x >> 4, z >> 4))
 			world.setBlockAndMetadata(x, y, z, blockId, metadata);
+	}
+
+	public static void setLeavesBlock(Block block, int metadata) {
+		WorldGenFirTreeHuge.leavesBlock = block;
+		WorldGenFirTreeHuge.leavesMetadata = metadata;
+	}
+
+	public static void setTrunkBlock(Block blockNW, Block blockNE,
+			Block blockSW, Block blockSE, int metadata)
+	{
+		WorldGenFirTreeHuge.trunkBlockNW = blockNW;
+		WorldGenFirTreeHuge.trunkBlockNE = blockNE;
+		WorldGenFirTreeHuge.trunkBlockSW = blockSW;
+		WorldGenFirTreeHuge.trunkBlockSE = blockSE;
+		WorldGenFirTreeHuge.trunkMetadata = metadata;
 	}
 
 	public WorldGenFirTreeHuge(boolean doNotify) {
@@ -29,13 +53,6 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 	public boolean generate(World world, Random rand, int x, int y,
 			int z)
 	{
-		final int woodID = TreeBlocks.getWoodID(TreeBlocks.Type.FIR);
-		final int woodMeta = TreeBlocks
-				.getWoodMeta(TreeBlocks.Type.FIR);
-		final int leafID = TreeBlocks.getLeafID(TreeBlocks.Type.FIR);
-		final int leafMeta = TreeBlocks
-				.getLeafMeta(TreeBlocks.Type.FIR);
-
 		final int height = rand.nextInt(16) + 32;
 		final int j = 1 + rand.nextInt(12);
 		final int k = height - j;
@@ -68,11 +85,8 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 				}
 		}
 
-		final int below = world.getBlockId(x, y - 1, z);
-
-		if (!TreeBlocks.treesCanGrowOnIDs.contains(Integer
-				.valueOf(below)) || y >= 256 - height - 1)
-			return false;
+		if (!BlockCustomSapling.isValidSoilID(world.getBlockId(x,
+				y - 1, z)) || y >= 256 - height - 1) return false;
 
 		world.setBlock(x, y - 1, z, Block.dirt.blockID);
 		world.setBlock(x - 1, y - 1, z, Block.dirt.blockID);
@@ -100,13 +114,16 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 											k3, l4)))
 					{
 						setBlockandMetadataIfChunkExists(world, i4, k3,
-								l4, leafID, leafMeta);
+								l4, leavesBlock.blockID, leavesMetadata);
 						setBlockandMetadataIfChunkExists(world, i4 - 1,
-								k3, l4, leafID, leafMeta);
+								k3, l4, leavesBlock.blockID,
+								leavesMetadata);
 						setBlockandMetadataIfChunkExists(world, i4, k3,
-								l4 - 1, leafID, leafMeta);
+								l4 - 1, leavesBlock.blockID,
+								leavesMetadata);
 						setBlockandMetadataIfChunkExists(world, i4 - 1,
-								k3, l4 - 1, leafID, leafMeta);
+								k3, l4 - 1, leavesBlock.blockID,
+								leavesMetadata);
 					}
 				}
 			}
@@ -129,14 +146,14 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 					|| Block.blocksList[id].isLeaves(world, x, y + l3,
 							z))
 			{
-				setBlockAndMetadata(world, x, y + l3, z, woodID,
-						woodMeta);
-				setBlockAndMetadata(world, x - 1, y + l3, z, woodID,
-						woodMeta);
-				setBlockAndMetadata(world, x, y + l3, z - 1, woodID,
-						woodMeta);
+				setBlockAndMetadata(world, x, y + l3, z,
+						trunkBlockSE.blockID, trunkMetadata);
+				setBlockAndMetadata(world, x - 1, y + l3, z,
+						trunkBlockSW.blockID, trunkMetadata);
+				setBlockAndMetadata(world, x, y + l3, z - 1,
+						trunkBlockNE.blockID, trunkMetadata);
 				setBlockAndMetadata(world, x - 1, y + l3, z - 1,
-						woodID, woodMeta);
+						trunkBlockNW.blockID, trunkMetadata);
 			}
 		}
 

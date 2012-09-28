@@ -20,6 +20,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Loader;
@@ -50,10 +51,6 @@ public class CommonProxy {
 		return Optional.fromNullable(ForgeHooks.getGrassSeed(world));
 	}
 
-	public int getNextAvailableRenderId() {
-		return 0;
-	}
-
 	public boolean isModLoaded(String modID) {
 		return Loader.isModLoaded(modID);
 	}
@@ -62,12 +59,16 @@ public class CommonProxy {
 			Class<? extends ItemBlock> itemclass)
 	{
 		if (block.isPresent())
-			GameRegistry.registerBlock(block.get(),
-					itemclass);
+			GameRegistry.registerBlock(block.get(), itemclass);
 	}
 
 	public void registerBlock(Optional<Block> block) {
 		if (block.isPresent()) GameRegistry.registerBlock(block.get());
+	}
+
+	public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
+	{
+		return 0;
 	}
 
 	public void registerEventHandler(Object target) {

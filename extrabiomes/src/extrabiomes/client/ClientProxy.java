@@ -8,14 +8,19 @@
 package extrabiomes.client;
 
 import net.minecraftforge.client.MinecraftForgeClient;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import extrabiomes.CommonProxy;
 
 public class ClientProxy extends CommonProxy {
 
 	@Override
-	public int getNextAvailableRenderId() {
-		return RenderingRegistry.getNextAvailableRenderId();
+	public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
+	{
+		final int renderId = RenderingRegistry
+				.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(renderId, handler);
+		return renderId;
 	}
 
 	@Override

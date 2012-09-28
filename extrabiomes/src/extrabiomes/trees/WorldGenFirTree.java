@@ -11,8 +11,24 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
+import extrabiomes.plugin.trees.BlockCustomSapling;
 
 public class WorldGenFirTree extends WorldGenerator {
+
+	private static Block	trunkBlock		= Block.wood;
+	private static int		trunkMetadata	= 1;
+	private static Block	leavesBlock		= Block.leaves;
+	private static int		leavesMetadata	= 1;
+
+	public static void setLeavesBlock(Block block, int metadata) {
+		WorldGenFirTree.leavesBlock = block;
+		WorldGenFirTree.leavesMetadata = metadata;
+	}
+
+	public static void setTrunkBlock(Block block, int metadata) {
+		WorldGenFirTree.trunkBlock = block;
+		WorldGenFirTree.trunkMetadata = metadata;
+	}
 
 	public WorldGenFirTree(boolean par1) {
 		super(par1);
@@ -22,19 +38,11 @@ public class WorldGenFirTree extends WorldGenerator {
 	public boolean generate(World world, Random rand, int x, int y,
 			int z)
 	{
-		final int woodID = TreeBlocks.getWoodID(TreeBlocks.Type.FIR);
-		final int woodMeta = TreeBlocks
-				.getWoodMeta(TreeBlocks.Type.FIR);
-		final int leafID = TreeBlocks.getLeafID(TreeBlocks.Type.FIR);
-		final int leafMeta = TreeBlocks
-				.getLeafMeta(TreeBlocks.Type.FIR);
-
 		final int below = world.getBlockId(x, y - 1, z);
 		final int height = rand.nextInt(8) + 24;
 
-		if (!TreeBlocks.treesCanGrowOnIDs.contains(Integer
-				.valueOf(below)) || y >= 256 - height - 1)
-			return false;
+		if (!BlockCustomSapling.isValidSoilID(Integer.valueOf(below))
+				|| y >= 256 - height - 1) return false;
 
 		if (y < 1 || y + height + 1 > 256) return false;
 
@@ -82,8 +90,8 @@ public class WorldGenFirTree extends WorldGenerator {
 							&& (block == null || block
 									.canBeReplacedByLeaves(world, i4,
 											k3, l4)))
-						setBlockAndMetadata(world, i4, k3, l4, leafID,
-								leafMeta);
+						setBlockAndMetadata(world, i4, k3, l4,
+								leavesBlock.blockID, leavesMetadata);
 				}
 			}
 
@@ -104,8 +112,8 @@ public class WorldGenFirTree extends WorldGenerator {
 			if (Block.blocksList[id] == null
 					|| Block.blocksList[id].isLeaves(world, x, y + l3,
 							z))
-				setBlockAndMetadata(world, x, y + l3, z, woodID,
-						woodMeta);
+				setBlockAndMetadata(world, x, y + l3, z,
+						trunkBlock.blockID, trunkMetadata);
 		}
 
 		return true;
