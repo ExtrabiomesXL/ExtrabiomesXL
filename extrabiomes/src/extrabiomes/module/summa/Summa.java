@@ -7,14 +7,23 @@
 package extrabiomes.module.summa;
 
 import extrabiomes.IModule;
-import extrabiomes.ModulePreInitEvent;
+import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.module.summa.biome.BiomeManagerImpl;
 
 public class Summa implements IModule {
 
-	@Override
-	public void preInit(ModulePreInitEvent event) {
-		// TODO Auto-generated method stub
+	private static BiomeManagerImpl	biomeManager	= new BiomeManagerImpl();
 
+	@Override
+	public void init() {
+		biomeManager.initialize();
+	}
+
+	@Override
+	public void preInit(ExtrabiomesConfig config)
+			throws InstantiationException, IllegalAccessException
+	{
+		biomeManager.preInit(config);
 	}
 
 }

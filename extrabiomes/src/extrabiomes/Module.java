@@ -1,10 +1,11 @@
+
 package extrabiomes;
+
 /**
  * This work is licensed under the Creative Commons
  * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
-
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -27,29 +28,30 @@ enum Module {
 	// AMICA("amica", "Set amica to true to enable mod support.");
 
 	private static boolean	controlSettingsLoaded	= false;
+	private static boolean	initialized				= false;
 
-	static void do_PreInit(ExtrabiomesConfig cfg)
-			throws Exception
-	{
+	static void init() {
+		// Only do this once
+		if (initialized) return;
+
+		initialized = true;
+
 		for (final Module module : Module.values()) {
 			// skip disabled modules
 			if (!module.enabled) continue;
 
-			module.preInit(cfg);
+			module.do_init();
 		}
 	}
 
-	static void loadControlSettings(ExtrabiomesConfig cfg) {
-		// Only do this once
-		if (controlSettingsLoaded) return;
-
+	private static void loadControlSettings(ExtrabiomesConfig cfg) {
 		final Map<Module, Property> properties = new EnumMap(
 				Module.class);
 
 		// Load config settings
 		for (final Module module : Module.values()) {
 			final Property property = cfg.getOrCreateBooleanProperty(
-					module.key,
+					module.key + ".enabled",
 					ExtrabiomesConfig.CATEGORY_MODULE_CONTROL, true);
 			module.enabled = property.getBoolean(false);
 
@@ -68,13 +70,33 @@ enum Module {
 		}
 	}
 
+	static void preInit(ExtrabiomesConfig config)
+			throws InstantiationException, IllegalAccessException
+	{
+		// Only do this once
+		if (controlSettingsLoaded) return;
+
+		loadControlSettings(config);
+
+		for (final Module module : Module.values()) {
+			ExtrabiomesLog.info("Module %s is %s.", module.toString(),
+					module.enabled ? "enabled" : "disabled, skipping");
+
+			// skip disabled modules
+			if (!module.enabled) continue;
+
+			module.do_preInit(config);
+		}
+	}
+
 	private boolean							enabled	= false;
-	private final String					key;
 	private final String					configComment;
 
-	private final Class<? extends IModule>	pluginClass;
+	private final String					key;
 
 	private Optional<? extends IModule>		plugin	= Optional.absent();
+
+	private final Class<? extends IModule>	pluginClass;
 
 	private Module(String key, String configComment,
 			Class<? extends IModule> pluginClass)
@@ -84,16 +106,19 @@ enum Module {
 		this.pluginClass = pluginClass;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	private void do_init() {
+		plugin.get().init();
 	}
 
-	private void preInit(ExtrabiomesConfig cfg) throws Exception {
-		// Only do this once per module
-		if (plugin.isPresent()) return;
-
+	private void do_preInit(ExtrabiomesConfig config)
+			throws InstantiationException, IllegalAccessException
+	{
 		plugin = Optional.of(pluginClass.newInstance());
-		plugin.get().preInit(new ModulePreInitEvent(cfg));
+		plugin.get().preInit(config);
+	}
+
+	public boolean isEnabled() {
+		return enabled;
 	}
 
 }

@@ -7,12 +7,18 @@
 package extrabiomes.module.cautia;
 
 import extrabiomes.IModule;
-import extrabiomes.ModulePreInitEvent;
+import extrabiomes.configuration.ExtrabiomesConfig;
 
 public class Cautia implements IModule {
 
 	@Override
-	public void preInit(ModulePreInitEvent event) {
+	public void init() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void preInit(ExtrabiomesConfig config) {
 		// TODO Auto-generated method stub
 
 	}

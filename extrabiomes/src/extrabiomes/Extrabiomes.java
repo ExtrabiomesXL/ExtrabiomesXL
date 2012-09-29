@@ -9,8 +9,6 @@ package extrabiomes;
 import java.io.File;
 import java.util.logging.Level;
 
-import net.minecraftforge.common.Property;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -21,7 +19,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.features.FeatureGenerator;
@@ -36,7 +33,6 @@ public class Extrabiomes {
 	@Instance("ExtrabiomesXL")
 	public static Extrabiomes			instance;
 
-	private static BiomeManagerImpl		biomeManager	= new BiomeManagerImpl();
 	private static PluginManagerImpl	pluginManager	= new PluginManagerImpl();
 
 	@Init
@@ -44,7 +40,7 @@ public class Extrabiomes {
 		proxy.registerRenderInformation();
 		proxy.registerWorldGenerator(new FeatureGenerator());
 
-		biomeManager.initialize();
+		Module.init();
 	}
 
 	@PostInit
@@ -62,11 +58,7 @@ public class Extrabiomes {
 		try {
 			cfg.load();
 
-			Module.loadControlSettings(cfg);
-			Module.do_PreInit(cfg);
-			
-			BiomeManagerImpl.loadSettings(cfg);
-			BiomeManagerImpl.preInit();
+			Module.preInit(cfg);
 
 		} catch (final Exception e) {
 			ExtrabiomesLog

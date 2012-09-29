@@ -44,9 +44,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
-import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.proxy.CommonProxy;
 
 @Mod(modid = "EBXLFlora", name = "ExtrabiomesXL Flora Plugin", version = "3.0")

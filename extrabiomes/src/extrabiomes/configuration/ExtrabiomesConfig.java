@@ -7,8 +7,11 @@
 package extrabiomes.configuration;
 
 import java.io.File;
+import java.util.Map;
 import java.util.TreeMap;
 
+import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.Block;
 import net.minecraftforge.common.Property;
 
 public class ExtrabiomesConfig extends EnhancedConfiguration {
@@ -19,10 +22,54 @@ public class ExtrabiomesConfig extends EnhancedConfiguration {
 	public TreeMap<String, Property>	biomeProperties			= new TreeMap<String, Property>();
 	public TreeMap<String, Property>	moduleControlProperties	= new TreeMap<String, Property>();
 
+	private boolean						configBiomes[]			= null;
+
 	public ExtrabiomesConfig(File file) {
 		super(file);
 		categories.put(CATEGORY_BIOME, biomeProperties);
 		categories
 				.put(CATEGORY_MODULE_CONTROL, moduleControlProperties);
+	}
+
+	public Property getOrCreateBiomeIdProperty(String key, int defaultId)
+	{
+		if (configBiomes == null) {
+			configBiomes = new boolean[BiomeGenBase.biomeList.length];
+
+			for (int i = 0; i < configBiomes.length; ++i)
+				configBiomes[i] = false;
+		}
+
+		final Map<String, Property> properties = categories
+				.get(CATEGORY_BIOME);
+		if (properties.containsKey(key)) {
+			final Property property = getOrCreateIntProperty(key,
+					CATEGORY_BIOME, defaultId);
+			configBiomes[Integer.parseInt(property.value)] = true;
+			return property;
+		} else {
+			final Property property = new Property();
+			properties.put(key, property);
+			property.setName(key);
+
+			if (BiomeGenBase.biomeList[defaultId] == null
+					&& !configBiomes[defaultId])
+			{
+				property.value = Integer.toString(defaultId);
+				configBiomes[defaultId] = true;
+				return property;
+			} else {
+				for (int j = configBiomes.length - 1; j >= 0; --j)
+					if (Block.blocksList[j] == null && !configBiomes[j])
+					{
+						property.value = Integer.toString(j);
+						configBiomes[j] = true;
+						return property;
+					}
+
+				throw new RuntimeException(
+						"No more biome ids available for " + key);
+			}
+		}
 	}
 }

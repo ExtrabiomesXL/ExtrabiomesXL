@@ -1,0 +1,51 @@
+/**
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
+ */
+
+package extrabiomes.module.summa.biome;
+
+import java.lang.reflect.Field;
+import java.util.Random;
+
+import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.WorldGenerator;
+
+import com.google.common.base.Optional;
+
+import extrabiomes.api.BiomeManager;
+
+abstract class ExtrabiomeGenBase extends BiomeGenBase {
+
+	protected ExtrabiomeGenBase(int id) {
+		super(id);
+	}
+
+	protected void disableRain() {
+		try {
+			final Field enabledRainField = BiomeGenBase.class
+					.getDeclaredField("S"); // enableRain
+			enabledRainField.setAccessible(true);
+			enabledRainField.setBoolean(this, false);
+		} catch (final Throwable e) {
+			// Do nothing... (This is NOT critical)
+		}
+	}
+
+	@Override
+	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
+		final Optional<? extends WorldGenerator> grassGen = BiomeManager
+				.chooseRandomGrassGenforBiome(rand, this);
+		if (grassGen.isPresent()) return grassGen.get();
+		return super.getRandomWorldGenForGrass(rand);
+	}
+
+	@Override
+	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
+		final Optional<? extends WorldGenerator> treeGen = BiomeManager
+				.chooseRandomTreeGenforBiome(rand, this);
+		if (treeGen.isPresent()) return treeGen.get();
+		return super.getRandomWorldGenForTrees(rand);
+	}
+}
