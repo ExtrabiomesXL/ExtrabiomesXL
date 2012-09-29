@@ -8,7 +8,7 @@ package extrabiomes.plugin.scarecrow;
 
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import extrabiomes.CommonProxy;
+import extrabiomes.proxy.CommonProxy;
 
 public class ScarecrowClientProxy extends ScarecrowProxy {
 

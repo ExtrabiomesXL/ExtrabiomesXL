@@ -5,12 +5,11 @@
  * /MMPL-1.0.txt
  */
 
-package extrabiomes.client;
+package extrabiomes.proxy;
 
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import extrabiomes.CommonProxy;
 
 public class ClientProxy extends CommonProxy {
 

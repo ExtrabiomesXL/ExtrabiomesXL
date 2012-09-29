@@ -23,8 +23,8 @@ import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
-import extrabiomes.CommonProxy;
 import extrabiomes.api.BiomeManager;
+import extrabiomes.proxy.CommonProxy;
 
 public class BlockCustomFlower extends Block {
 

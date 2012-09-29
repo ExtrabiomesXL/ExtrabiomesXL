@@ -1,7 +1,7 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
 package extrabiomes.plugin.trees;
@@ -29,9 +29,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import extrabiomes.CommonProxy;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.plugin.trees.BlockQuarterLog.BarkOn;
+import extrabiomes.proxy.CommonProxy;
 import extrabiomes.trees.WorldGenAcacia;
 import extrabiomes.trees.WorldGenAutumnTree;
 import extrabiomes.trees.WorldGenFirTree;
@@ -43,7 +43,7 @@ import extrabiomes.utility.EnhancedConfiguration;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Tree {
 
-	@SidedProxy(clientSide = "extrabiomes.client.ClientProxy", serverSide = "extrabiomes.CommonProxy")
+	@SidedProxy(clientSide = "extrabiomes.proxy.ClientProxy", serverSide = "extrabiomes.proxy.CommonProxy")
 	public static CommonProxy									proxy;
 	@Instance("EBXLTree")
 	public static Tree											instance;

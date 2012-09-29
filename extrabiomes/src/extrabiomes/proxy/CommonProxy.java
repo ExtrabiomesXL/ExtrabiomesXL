@@ -4,7 +4,7 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes;
+package extrabiomes.proxy;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import net.minecraft.src.BiomeGenBase;

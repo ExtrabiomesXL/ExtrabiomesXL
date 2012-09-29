@@ -7,7 +7,7 @@
 package extrabiomes.plugin.scarecrow;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
-import extrabiomes.CommonProxy;
+import extrabiomes.proxy.CommonProxy;
 
 public class ScarecrowProxy extends CommonProxy {
 
