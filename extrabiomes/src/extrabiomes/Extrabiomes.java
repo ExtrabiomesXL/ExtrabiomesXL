@@ -9,6 +9,8 @@ package extrabiomes;
 import java.io.File;
 import java.util.logging.Level;
 
+import net.minecraftforge.common.Property;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -20,10 +22,10 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.biomes.BiomeManagerImpl;
+import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.features.FeatureGenerator;
 import extrabiomes.proxy.CommonProxy;
-import extrabiomes.utility.EnhancedConfiguration;
 
 @Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.5")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
@@ -34,19 +36,8 @@ public class Extrabiomes {
 	@Instance("ExtrabiomesXL")
 	public static Extrabiomes			instance;
 
-	private static int					slabRenderId;
-	private static int					stairsRenderId;
-
 	private static BiomeManagerImpl		biomeManager	= new BiomeManagerImpl();
 	private static PluginManagerImpl	pluginManager	= new PluginManagerImpl();
-
-	public static int getSlabRenderId() {
-		return slabRenderId;
-	}
-
-	public static int getStairsRenderId() {
-		return stairsRenderId;
-	}
 
 	@Init
 	public static void init(FMLInitializationEvent event) {
@@ -71,6 +62,9 @@ public class Extrabiomes {
 		try {
 			cfg.load();
 
+			Module.loadControlSettings(cfg);
+			Module.do_PreInit(cfg);
+			
 			BiomeManagerImpl.loadSettings(cfg);
 			BiomeManagerImpl.preInit();
 
@@ -81,13 +75,5 @@ public class Extrabiomes {
 		} finally {
 			cfg.save();
 		}
-	}
-
-	public static void setSlabRenderId(int renderId) {
-		Extrabiomes.slabRenderId = renderId;
-	}
-
-	public static void setStairsRenderId(int renderId) {
-		Extrabiomes.stairsRenderId = renderId;
 	}
 }

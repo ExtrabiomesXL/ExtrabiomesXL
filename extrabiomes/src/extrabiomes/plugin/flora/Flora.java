@@ -45,8 +45,9 @@ import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.biomes.BiomeManagerImpl;
+import extrabiomes.configuration.EnhancedConfiguration;
+import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.proxy.CommonProxy;
-import extrabiomes.utility.EnhancedConfiguration;
 
 @Mod(modid = "EBXLFlora", name = "ExtrabiomesXL Flora Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -173,7 +174,7 @@ public class Flora {
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		final EnhancedConfiguration cfg = new EnhancedConfiguration(
+		final ExtrabiomesConfig cfg = new ExtrabiomesConfig(
 				new File(event.getModConfigurationDirectory(),
 						"/extrabiomes/extrabiomes.cfg"));
 		try {

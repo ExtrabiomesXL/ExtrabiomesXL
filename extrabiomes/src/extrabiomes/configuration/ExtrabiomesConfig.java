@@ -10,7 +10,6 @@ import java.io.File;
 import java.util.TreeMap;
 
 import net.minecraftforge.common.Property;
-import extrabiomes.utility.EnhancedConfiguration;
 
 public class ExtrabiomesConfig extends EnhancedConfiguration {
 

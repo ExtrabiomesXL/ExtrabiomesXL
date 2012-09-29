@@ -23,8 +23,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.ExtrabiomesLog;
+import extrabiomes.configuration.EnhancedConfiguration;
+import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.proxy.CommonProxy;
-import extrabiomes.utility.EnhancedConfiguration;
 
 @Mod(modid = "EBXLQuicksand", name = "ExtrabiomesXL Quicksand Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -63,7 +64,7 @@ public class Quicksand {
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		final EnhancedConfiguration cfg = new EnhancedConfiguration(
+		final ExtrabiomesConfig cfg = new ExtrabiomesConfig(
 				new File(event.getModConfigurationDirectory(),
 						"/extrabiomes/extrabiomes.cfg"));
 		try {
