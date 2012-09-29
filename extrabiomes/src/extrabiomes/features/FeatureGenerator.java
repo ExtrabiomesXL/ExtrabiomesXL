@@ -15,7 +15,6 @@ import extrabiomes.api.BiomeManager;
 
 public class FeatureGenerator implements IWorldGenerator {
 
-	private static final WorldGenerator	oasisGen	= new WorldGenOasis();
 	private static final WorldGenerator	vineGen		= new WorldGenVines();
 
 	@Override
@@ -31,11 +30,6 @@ public class FeatureGenerator implements IWorldGenerator {
 		if (biome == BiomeManager.extremejungle.get())
 			generateVines(random, chunkX, chunkZ, world);
 
-		if (biome == BiomeManager.mountainridge.get()) {
-			trimPondsInGrass(random, chunkX, chunkZ, world);
-			generateEmeraldOre(random, chunkX, chunkZ, world);
-		}
-
 		if (biome == BiomeManager.mountaindesert.get())
 			generateRareDesertWell(random, chunkX, chunkZ, world);
 
@@ -47,24 +41,6 @@ public class FeatureGenerator implements IWorldGenerator {
 			if (random.nextInt(48) == 0)
 				generateMelonPatch(world, random, chunkX, chunkZ);
 
-	}
-
-	private void generateEmeraldOre(Random rand, int x, int z,
-			World world)
-	{
-		final int veins = 3 + rand.nextInt(6);
-
-		for (int i = 0; i < veins; ++i) {
-			final int x1 = x + rand.nextInt(16);
-			final int y1 = rand.nextInt(28) + 4;
-			final int z1 = z + rand.nextInt(16);
-			final int id = world.getBlockId(x1, y1, z1);
-
-			if (id != 0
-					&& Block.blocksList[id].isGenMineableReplaceable(
-							world, x1, y1, z1))
-				world.setBlock(x1, y1, z1, Block.oreEmerald.blockID);
-		}
 	}
 
 	private void generateMelonPatch(World world, Random rand, int x,
@@ -93,17 +69,6 @@ public class FeatureGenerator implements IWorldGenerator {
 			final int x1 = x + rand.nextInt(16) + 8;
 			final int z1 = z + rand.nextInt(16) + 8;
 			vineGen.generate(world, rand, x1, 64, z1);
-		}
-	}
-
-	private void trimPondsInGrass(Random rand, int x, int z, World world)
-	{
-		for (int i = 0; i < 1000; i++) {
-			final int x1 = x + rand.nextInt(16) + 8;
-			final int z1 = z + rand.nextInt(16) + 8;
-			final int y1 = world.getTopSolidOrLiquidBlock(x1, z1);
-
-			oasisGen.generate(world, rand, x1, y1, z1);
 		}
 	}
 }
