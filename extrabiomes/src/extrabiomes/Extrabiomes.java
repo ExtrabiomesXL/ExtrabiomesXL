@@ -21,7 +21,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
-import extrabiomes.features.FeatureGenerator;
 import extrabiomes.proxy.CommonProxy;
 
 @Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.5")
@@ -38,9 +37,6 @@ public class Extrabiomes {
 	@Init
 	public static void init(FMLInitializationEvent event) {
 		proxy.registerRenderInformation();
-		
-		
-		proxy.registerWorldGenerator(new FeatureGenerator());
 
 		Module.init();
 	}

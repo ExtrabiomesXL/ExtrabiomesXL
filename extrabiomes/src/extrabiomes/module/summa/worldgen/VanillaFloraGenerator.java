@@ -1,21 +1,24 @@
+/**
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
+ */
 
-package extrabiomes.features;
+package extrabiomes.module.summa.worldgen;
 
 import java.util.Random;
 
 import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.Block;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.World;
-import net.minecraft.src.WorldGenDesertWells;
 import net.minecraft.src.WorldGenVines;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 
-public class FeatureGenerator implements IWorldGenerator {
+public class VanillaFloraGenerator implements IWorldGenerator {
 
-	private static final WorldGenerator	vineGen		= new WorldGenVines();
+	private static final WorldGenerator	vineGen	= new WorldGenVines();
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ,
@@ -27,12 +30,21 @@ public class FeatureGenerator implements IWorldGenerator {
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
 				chunkX);
 
-		if (biome == BiomeManager.extremejungle.get())
+		final boolean biomeIsExtremeJungle = BiomeManager.extremejungle
+				.isPresent()
+				&& biome == BiomeManager.extremejungle.get();
+
+		if (biomeIsExtremeJungle)
 			generateVines(random, chunkX, chunkZ, world);
 
-		if (biome == BiomeManager.extremejungle.get()
-				|| biome == BiomeManager.minijungle.get()
-				|| biome == BiomeManager.temperaterainforest.get()
+		final boolean biomeIsMiniJungle = BiomeManager.minijungle
+				.isPresent() && biome == BiomeManager.minijungle.get();
+		final boolean biomeIsTemperateRainforest = BiomeManager.temperaterainforest
+				.isPresent()
+				&& biome == BiomeManager.temperaterainforest.get();
+
+		if (biomeIsExtremeJungle || biomeIsMiniJungle
+				|| biomeIsTemperateRainforest
 				|| biome == BiomeGenBase.jungle
 				|| biome == BiomeGenBase.jungleHills)
 			if (random.nextInt(48) == 0)

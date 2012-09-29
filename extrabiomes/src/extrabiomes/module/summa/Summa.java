@@ -14,6 +14,7 @@ import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.worldgen.MarshGenerator;
 import extrabiomes.module.summa.worldgen.MountainDesertGenerator;
 import extrabiomes.module.summa.worldgen.MountainRidgeGenerator;
+import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
 
 public class Summa implements IModule {
 
@@ -33,6 +34,9 @@ public class Summa implements IModule {
 		if (BiomeManager.mountainridge.isPresent())
 			Extrabiomes.proxy
 					.registerWorldGenerator(new MountainRidgeGenerator());
+
+		Extrabiomes.proxy
+				.registerWorldGenerator(new VanillaFloraGenerator());
 
 		biomeManager.initialize();
 	}
