@@ -40,7 +40,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
-import extrabiomes.BiomesConfig;
+import extrabiomes.ExtrabiomesConfig;
 import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
@@ -108,12 +108,12 @@ public class BiomeManagerImpl extends BiomeManager {
 			return biome;
 		}
 
-		public void loadSettings(BiomesConfig cfg) {
+		public void loadSettings(ExtrabiomesConfig cfg) {
 			if (cfg.getOrCreateBooleanProperty(enabledKey(),
-					BiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
+					ExtrabiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
 				enabledBiomes.add(this);
 			if (cfg.getOrCreateBooleanProperty(villagesKey(),
-					BiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
+					ExtrabiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
 				biomesAllowingVillages.add(this);
 		}
 
@@ -148,12 +148,12 @@ public class BiomeManagerImpl extends BiomeManager {
 			return "vanilla." + toString() + ".enablegeneration";
 		}
 
-		public void loadSettings(BiomesConfig cfg) {
+		public void loadSettings(ExtrabiomesConfig cfg) {
 			if (!cfg.getOrCreateBooleanProperty(enabledKey(),
-					BiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
+					ExtrabiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
 				disabledBiomes.add(this);
 			if (cfg.getOrCreateBooleanProperty(villagesKey(),
-					BiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
+					ExtrabiomesConfig.CATEGORY_BIOME, true).getBoolean(true))
 				biomesAllowingVillages.add(this);
 		}
 
@@ -478,7 +478,7 @@ public class BiomeManagerImpl extends BiomeManager {
 				villageBiomes.contains(VanillaBiomeEnum.TAIGA));
 	}
 
-	public static void loadSettings(BiomesConfig cfg) {
+	public static void loadSettings(ExtrabiomesConfig cfg) {
 		for (final BiomeEnum biome : BiomeEnum.values())
 			biome.loadSettings(cfg);
 		for (final VanillaBiomeEnum biome : VanillaBiomeEnum.values())

@@ -63,7 +63,7 @@ public class Extrabiomes {
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		final BiomesConfig cfg = new BiomesConfig(new File(
+		final ExtrabiomesConfig cfg = new ExtrabiomesConfig(new File(
 				event.getModConfigurationDirectory(),
 				"/extrabiomes/extrabiomes.cfg"));
 		try {

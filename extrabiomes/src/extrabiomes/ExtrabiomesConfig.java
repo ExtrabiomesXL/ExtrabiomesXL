@@ -12,13 +12,13 @@ import java.util.TreeMap;
 import net.minecraftforge.common.Property;
 import extrabiomes.utility.EnhancedConfiguration;
 
-public class BiomesConfig extends EnhancedConfiguration {
+public class ExtrabiomesConfig extends EnhancedConfiguration {
 
 	public static final String			CATEGORY_BIOME	= "biome";
 
 	public TreeMap<String, Property>	biomeProperties	= new TreeMap<String, Property>();
 
-	public BiomesConfig(File file) {
+	public ExtrabiomesConfig(File file) {
 		super(file);
 		categories.put(CATEGORY_BIOME, biomeProperties);
 	}
