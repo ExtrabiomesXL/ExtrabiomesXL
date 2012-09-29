@@ -16,8 +16,6 @@ import extrabiomes.api.BiomeManager;
 public class FeatureGenerator implements IWorldGenerator {
 
 	private static final WorldGenerator	oasisGen	= new WorldGenOasis();
-	private static final WorldGenerator	genMarsh	= new WorldGenMarshGrass();
-	private static final WorldGenerator	genDirtBed	= new WorldGenMarshDirt();
 	private static final WorldGenerator	vineGen		= new WorldGenVines();
 
 	@Override
@@ -32,9 +30,6 @@ public class FeatureGenerator implements IWorldGenerator {
 
 		if (biome == BiomeManager.extremejungle.get())
 			generateVines(random, chunkX, chunkZ, world);
-
-		if (biome == BiomeManager.marsh.get())
-			generateMarsh(random, chunkX, chunkZ, world);
 
 		if (biome == BiomeManager.mountainridge.get()) {
 			trimPondsInGrass(random, chunkX, chunkZ, world);
@@ -69,20 +64,6 @@ public class FeatureGenerator implements IWorldGenerator {
 					&& Block.blocksList[id].isGenMineableReplaceable(
 							world, x1, y1, z1))
 				world.setBlock(x1, y1, z1, Block.oreEmerald.blockID);
-		}
-	}
-
-	private void generateMarsh(Random rand, int x, int z, World world) {
-		for (int i = 0; i < 127; i++) {
-			final int x1 = x + rand.nextInt(16) + 8;
-			final int z1 = z + rand.nextInt(16) + 8;
-			genMarsh.generate(world, rand, x1, 0, z1);
-		}
-
-		for (int i = 0; i < 256; i++) {
-			final int x1 = x + rand.nextInt(1) + 8;
-			final int z1 = z + rand.nextInt(1) + 8;
-			genDirtBed.generate(world, rand, x1, 0, z1);
 		}
 	}
 

@@ -38,6 +38,8 @@ public class Extrabiomes {
 	@Init
 	public static void init(FMLInitializationEvent event) {
 		proxy.registerRenderInformation();
+		
+		
 		proxy.registerWorldGenerator(new FeatureGenerator());
 
 		Module.init();

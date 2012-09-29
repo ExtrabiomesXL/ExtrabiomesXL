@@ -8,14 +8,12 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
-import extrabiomes.features.WorldGenMarshDirt;
-import extrabiomes.features.WorldGenMarshGrass;
 
 class BiomeMarsh extends ExtrabiomeGenBase {
 
 	public BiomeMarsh() {
 		super(Biome.MARSH.getBiomeID());
-		
+
 		setColor(255);
 		setBiomeName("Marsh");
 		temperature = BiomeGenBase.swampland.temperature;

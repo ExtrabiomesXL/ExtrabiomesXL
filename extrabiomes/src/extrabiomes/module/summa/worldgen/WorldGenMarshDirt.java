@@ -1,10 +1,10 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.features;
+package extrabiomes.module.summa.worldgen;
 
 import java.util.Random;
 
@@ -14,10 +14,12 @@ import net.minecraft.src.Facing;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 
-public class WorldGenMarshDirt extends WorldGenerator {
+class WorldGenMarshDirt extends WorldGenerator {
 
 	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z) {
+	public boolean generate(World world, Random rand, int x, int y,
+			int z)
+	{
 		int x1 = x;
 		int z1 = z;
 		label0:
@@ -27,10 +29,11 @@ public class WorldGenMarshDirt extends WorldGenerator {
 				int side = 2;
 
 				do {
-					if (side > 5)
-						continue label0;
+					if (side > 5) continue label0;
 
-					if (Block.dirt.canPlaceBlockOnSide(world, x1, y1, z1, side)) {
+					if (Block.dirt.canPlaceBlockOnSide(world, x1, y1,
+							z1, side))
+					{
 						world.setBlockAndMetadata(
 								x1,
 								y1,
@@ -44,8 +47,8 @@ public class WorldGenMarshDirt extends WorldGenerator {
 				} while (true);
 			}
 
-			x1 = (x + 16);
-			z1 = (z + 16);
+			x1 = x + 16;
+			z1 = z + 16;
 		}
 
 		return true;

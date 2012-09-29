@@ -6,9 +6,12 @@
 
 package extrabiomes.module.summa;
 
+import extrabiomes.Extrabiomes;
 import extrabiomes.IModule;
+import extrabiomes.api.BiomeManager;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
+import extrabiomes.module.summa.worldgen.MarshGenerator;
 
 public class Summa implements IModule {
 
@@ -16,6 +19,11 @@ public class Summa implements IModule {
 
 	@Override
 	public void init() {
+
+		if (BiomeManager.marsh.isPresent())
+			Extrabiomes.proxy
+					.registerWorldGenerator(new MarshGenerator());
+
 		biomeManager.initialize();
 	}
 
