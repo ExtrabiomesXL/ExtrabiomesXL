@@ -20,6 +20,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.biomes.BiomeManagerImpl;
+import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.features.FeatureGenerator;
 import extrabiomes.utility.EnhancedConfiguration;
 

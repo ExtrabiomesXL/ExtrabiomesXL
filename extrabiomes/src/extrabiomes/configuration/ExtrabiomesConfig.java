@@ -4,7 +4,7 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes;
+package extrabiomes.configuration;
 
 import java.io.File;
 import java.util.TreeMap;

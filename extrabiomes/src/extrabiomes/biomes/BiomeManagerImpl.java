@@ -40,10 +40,10 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
-import extrabiomes.ExtrabiomesConfig;
 import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
+import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.trees.WorldGenAcacia;
 import extrabiomes.trees.WorldGenAutumnTree;
 import extrabiomes.trees.WorldGenBigAutumnTree;
