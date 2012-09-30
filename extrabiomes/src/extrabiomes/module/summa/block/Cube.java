@@ -7,12 +7,17 @@
 package extrabiomes.module.summa.block;
 
 import static com.google.common.base.Preconditions.checkElementIndex;
+import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_COBBLE;
+import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_ROCK;
+import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_ROCK_BRICK;
 
 import java.util.Locale;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
+import net.minecraft.src.ItemStack;
 import net.minecraftforge.common.Property;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.base.Optional;
 
@@ -23,19 +28,30 @@ import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.proxy.CommonProxy;
 
 public enum Cube {
-	CRACKEDSAND(BlockCrackedSand.class, true);
+	CRACKEDSAND(BlockCrackedSand.class, true),
+	REDROCK(BlockRedRock.class, true);
 
-	private static boolean	settingsLoaded	= false;
+	private static boolean		settingsLoaded	= false;
+
+	private static final String	TERRAIN_COMMENT	= "%s is used in terrain generation. Its id must be less than 256.";
 
 	private static void addCrackedSandToWasteland() {
 		if (!BiomeManager.wasteland.isPresent()) return;
-		if (BiomeManager.wasteland.isPresent()) {
-			final BiomeGenBase wasteland = BiomeManager.wasteland.get();
-			wasteland.topBlock = (byte) CRACKEDSAND.block.get().blockID;
-			wasteland.fillerBlock = (byte) CRACKEDSAND.block.get().blockID;
-			ExtrabiomesLog
-					.info("Added cracked sand to wasteland biome.");
-		}
+
+		final BiomeGenBase wasteland = BiomeManager.wasteland.get();
+		wasteland.topBlock = (byte) CRACKEDSAND.block.get().blockID;
+		wasteland.fillerBlock = (byte) CRACKEDSAND.block.get().blockID;
+		ExtrabiomesLog.info("Added cracked sand to wasteland biome.");
+	}
+
+	private static void addRedRockToMountainRidge() {
+		if (!BiomeManager.mountainridge.isPresent()) return;
+
+		final BiomeGenBase mountainridge = BiomeManager.mountainridge
+				.get();
+		mountainridge.topBlock = (byte) REDROCK.block.get().blockID;
+		mountainridge.fillerBlock = (byte) REDROCK.block.get().blockID;
+		ExtrabiomesLog.info("Added red rock to mountain ridge biome.");
 	}
 
 	private static void createBlocks() throws InstantiationException,
@@ -50,12 +66,15 @@ public enum Cube {
 	public static void init() throws InstantiationException,
 			IllegalAccessException
 	{
-
 		if (CRACKEDSAND.block.isPresent()) {
 			CRACKEDSAND.prepare();
 			addCrackedSandToWasteland();
 		}
 
+		if (REDROCK.block.isPresent()) {
+			REDROCK.prepare();
+			addRedRockToMountainRidge();
+		}
 	}
 
 	private static void loadSettings(ExtrabiomesConfig config) {
@@ -98,14 +117,20 @@ public enum Cube {
 
 	private final Class<? extends Block>	blockClass;
 	private final boolean					restrictTo256;
-	private int								blockID			= 0;
-	private Optional<? extends Block>		block			= Optional
-																	.absent();
-	private static final String				TERRAIN_COMMENT	= "%s is used in terrain generation. Its id must be less than 256.";
+	private int								blockID	= 0;
+	private Optional<? extends Block>		block	= Optional.absent();
+
+	Cube(Class<? extends Block> blockClass) {
+		this(blockClass, false);
+	}
 
 	Cube(Class<? extends Block> blockClass, boolean restrictTo256) {
 		this.blockClass = blockClass;
 		this.restrictTo256 = restrictTo256;
+	}
+
+	public Optional<? extends Block> getBlock() {
+		return block;
 	}
 
 	public int getBlockID() {
@@ -117,15 +142,41 @@ public enum Cube {
 	}
 
 	private void prepare() {
+		final CommonProxy proxy = Extrabiomes.proxy;
+		final Block thisBlock = block.get();
+
 		switch (this) {
 			case CRACKEDSAND:
-				block.get().setBlockName("crackedsand");
-				final CommonProxy proxy = Extrabiomes.proxy;
+				thisBlock.setBlockName("crackedsand");
+				proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+				proxy.registerBlock(thisBlock);
+				proxy.addName(thisBlock, "Cracked Sand");
 
-				proxy.setBlockHarvestLevel(block.get(), "pickaxe", 0);
-				proxy.registerBlock(block.get());
-				CommonProxy.registerOre("sandCracked", block.get());
-				proxy.addName(block.get(), "Cracked Sand");
+				proxy.registerOre("sandCracked", thisBlock);
+				break;
+			case REDROCK:
+				thisBlock.setBlockName("redrock");
+				proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+				proxy.registerBlock(thisBlock,
+						extrabiomes.utility.MultiItemBlock.class);
+				for (final BlockRedRock.BlockType blockType : BlockRedRock.BlockType
+						.values())
+					proxy.addName(
+							new ItemStack(thisBlock, 1, blockType
+									.metadata()), blockType.itemName());
+
+				final ItemStack redRockItem = new ItemStack(thisBlock,
+						1, RED_ROCK.metadata());
+				final ItemStack redCobbleItem = new ItemStack(
+						thisBlock, 1, RED_COBBLE.metadata());
+				final ItemStack redRockBrickItem = new ItemStack(
+						thisBlock, 1, RED_ROCK_BRICK.metadata());
+
+				OreDictionary.registerOre("rockRed", redRockItem);
+				OreDictionary.registerOre("cobbleRed", redCobbleItem);
+				OreDictionary.registerOre("brickRedRock",
+						redRockBrickItem);
+				break;
 		}
 	}
 

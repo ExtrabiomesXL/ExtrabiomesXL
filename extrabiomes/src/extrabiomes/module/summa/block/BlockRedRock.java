@@ -4,10 +4,10 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes.plugin.redrock;
+package extrabiomes.module.summa.block;
 
-import static extrabiomes.plugin.redrock.BlockType.RED_COBBLE;
-import static extrabiomes.plugin.redrock.BlockType.RED_ROCK_BRICK;
+import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_COBBLE;
+import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_ROCK_BRICK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,29 @@ import extrabiomes.utility.IDRestrictionAnnotation;
 
 @IDRestrictionAnnotation(maxIDRValue = 255)
 public class BlockRedRock extends Block {
+
+	public enum BlockType {
+		RED_ROCK(0, "Red Rock"),
+		RED_COBBLE(1, "Red Cobblestone"),
+		RED_ROCK_BRICK(2, "Red Rock Brick");
+
+		private final int		value;
+		private final String	itemName;
+
+		BlockType(int value, String itemName) {
+			this.value = value;
+			this.itemName = itemName;
+		}
+
+		public String itemName() {
+			return itemName;
+		}
+
+		public int metadata() {
+			return value;
+		}
+	}
+
 	public BlockRedRock(int id) {
 		super(id, 2, Material.rock);
 		setHardness(1.5F);

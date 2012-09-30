@@ -10,6 +10,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.CraftingManager;
+import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.IRecipe;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemBlock;
@@ -31,30 +32,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class CommonProxy {
 
-	public static void registerOre(int id, Block ore) {
-		OreDictionary.registerOre(id, new ItemStack(ore));
-	}
-
-	public static void registerOre(int id, Item ore) {
-		OreDictionary.registerOre(id, new ItemStack(ore));
-	}
-
-	public static void registerOre(int id, ItemStack ore) {
-		OreDictionary.registerOre(id, ore);
-	}
-
-	public static void registerOre(String name, Block ore) {
-		OreDictionary.registerOre(name, new ItemStack(ore));
-	}
-
-	public static void registerOre(String name, Item ore) {
-		OreDictionary.registerOre(name, new ItemStack(ore));
-	}
-
-	public static void registerOre(String name, ItemStack ore) {
-		OreDictionary.registerOre(name, ore);
-	}
-
 	public void addBiome(BiomeGenBase biome) {
 		WorldType.DEFAULT.addNewBiome(checkNotNull(biome));
 		WorldType.LARGE_BIOMES.addNewBiome(biome);
@@ -73,6 +50,13 @@ public class CommonProxy {
 		CraftingManager.getInstance().getRecipeList().add(recipe);
 	}
 
+	public void addSmelting(int itemID, int metadata,
+			ItemStack itemstack)
+	{
+		FurnaceRecipes.smelting().addSmelting(itemID, metadata,
+				itemstack);
+	}
+
 	public Optional<ItemStack> getGrassSeed(World world) {
 		return Optional.fromNullable(ForgeHooks.getGrassSeed(world));
 	}
@@ -85,11 +69,10 @@ public class CommonProxy {
 		GameRegistry.registerBlock(block);
 	}
 
-	public void registerBlock(Optional<? extends Block> block,
+	public void registerBlock(Block block,
 			Class<? extends ItemBlock> itemclass)
 	{
-		if (block.isPresent())
-			GameRegistry.registerBlock(block.get(), itemclass);
+		GameRegistry.registerBlock(block, itemclass);
 	}
 
 	public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
@@ -103,6 +86,30 @@ public class CommonProxy {
 
 	public void registerFuelHandler(IFuelHandler fuelHandler) {
 		GameRegistry.registerFuelHandler(checkNotNull(fuelHandler));
+	}
+
+	public void registerOre(int id, Block ore) {
+		OreDictionary.registerOre(id, new ItemStack(ore));
+	}
+
+	public void registerOre(int id, Item ore) {
+		OreDictionary.registerOre(id, new ItemStack(ore));
+	}
+
+	public void registerOre(int id, ItemStack ore) {
+		OreDictionary.registerOre(id, ore);
+	}
+
+	public void registerOre(String name, Block ore) {
+		OreDictionary.registerOre(name, new ItemStack(ore));
+	}
+
+	public void registerOre(String name, Item ore) {
+		OreDictionary.registerOre(name, new ItemStack(ore));
+	}
+
+	public void registerOre(String name, ItemStack ore) {
+		OreDictionary.registerOre(name, ore);
 	}
 
 	public void registerRenderInformation() {}

@@ -80,7 +80,7 @@ public class Flora {
 		if (catTailId == 0) return;
 		catTail = Optional.of(new BlockCatTail(catTailId)
 				.setBlockName("cattail"));
-		proxy.registerBlock(catTail,
+		proxy.registerBlock(catTail.get(),
 				extrabiomes.plugin.flora.ItemCatTail.class);
 
 		proxy.addName(catTail.get(), "Cat Tail");
@@ -93,7 +93,7 @@ public class Flora {
 		if (flowerId == 0) return;
 		flower = Optional.of(new BlockCustomFlower(flowerId)
 				.setBlockName("flower"));
-		proxy.registerBlock(flower,
+		proxy.registerBlock(flower.get(),
 				extrabiomes.utility.MultiItemBlock.class);
 
 		setFlowerRecipes();
@@ -111,7 +111,7 @@ public class Flora {
 		if (grassId == 0) return;
 		grass = Optional.of(new BlockCustomTallGrass(grassId)
 				.setBlockName("grass"));
-		proxy.registerBlock(grass,
+		proxy.registerBlock(grass.get(),
 				extrabiomes.utility.MultiItemBlock.class);
 
 		for (final GrassType blockType : GrassType.values())
