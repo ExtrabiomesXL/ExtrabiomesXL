@@ -32,13 +32,13 @@ import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.module.summa.worldgen.WorldGenAcacia;
+import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
+import extrabiomes.module.summa.worldgen.WorldGenFirTree;
+import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
+import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 import extrabiomes.plugin.trees.BlockQuarterLog.BarkOn;
 import extrabiomes.proxy.CommonProxy;
-import extrabiomes.trees.WorldGenAcacia;
-import extrabiomes.trees.WorldGenAutumnTree;
-import extrabiomes.trees.WorldGenFirTree;
-import extrabiomes.trees.WorldGenFirTreeHuge;
-import extrabiomes.trees.WorldGenRedwood;
 
 @Mod(modid = "EBXLTree", name = "ExtrabiomesXL Custom Trees Plugin", version = "3.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)

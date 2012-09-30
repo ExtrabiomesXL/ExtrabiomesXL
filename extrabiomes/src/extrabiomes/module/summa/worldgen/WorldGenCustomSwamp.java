@@ -4,7 +4,7 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.trees;
+package extrabiomes.module.summa.worldgen;
 
 import java.util.Random;
 

@@ -6,10 +6,10 @@
 
 package extrabiomes.module.summa.biome;
 
-import static extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType.BROWN;
-import static extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType.ORANGE;
-import static extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType.PURPLE;
-import static extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType.YELLOW;
+import static extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType.BROWN;
+import static extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType.ORANGE;
+import static extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType.PURPLE;
+import static extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType.YELLOW;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,13 +39,13 @@ import com.google.common.collect.Multimap;
 
 import extrabiomes.api.BiomeManager;
 import extrabiomes.configuration.ExtrabiomesConfig;
-import extrabiomes.trees.WorldGenAcacia;
-import extrabiomes.trees.WorldGenAutumnTree;
-import extrabiomes.trees.WorldGenBigAutumnTree;
-import extrabiomes.trees.WorldGenCustomSwamp;
-import extrabiomes.trees.WorldGenFirTree;
-import extrabiomes.trees.WorldGenFirTreeHuge;
-import extrabiomes.trees.WorldGenRedwood;
+import extrabiomes.module.summa.worldgen.WorldGenAcacia;
+import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
+import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
+import extrabiomes.module.summa.worldgen.WorldGenCustomSwamp;
+import extrabiomes.module.summa.worldgen.WorldGenFirTree;
+import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
+import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 import extrabiomes.utility.WeightedRandomChooser;
 import extrabiomes.utility.WeightedWorldGenerator;
 

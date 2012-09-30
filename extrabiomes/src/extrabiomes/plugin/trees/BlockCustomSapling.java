@@ -25,13 +25,13 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
-import extrabiomes.trees.WorldGenAcacia;
-import extrabiomes.trees.WorldGenAutumnTree;
-import extrabiomes.trees.WorldGenAutumnTree.AutumnTreeType;
-import extrabiomes.trees.WorldGenBigAutumnTree;
-import extrabiomes.trees.WorldGenFirTree;
-import extrabiomes.trees.WorldGenFirTreeHuge;
-import extrabiomes.trees.WorldGenRedwood;
+import extrabiomes.module.summa.worldgen.WorldGenAcacia;
+import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
+import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
+import extrabiomes.module.summa.worldgen.WorldGenFirTree;
+import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
+import extrabiomes.module.summa.worldgen.WorldGenRedwood;
+import extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType;
 
 public class BlockCustomSapling extends BlockFlower {
 
