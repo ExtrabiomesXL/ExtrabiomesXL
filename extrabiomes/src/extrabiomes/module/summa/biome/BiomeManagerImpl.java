@@ -46,8 +46,6 @@ import extrabiomes.module.summa.worldgen.WorldGenCustomSwamp;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
-import extrabiomes.utility.WeightedRandomChooser;
-import extrabiomes.utility.WeightedWorldGenerator;
 
 public class BiomeManagerImpl extends BiomeManager {
 

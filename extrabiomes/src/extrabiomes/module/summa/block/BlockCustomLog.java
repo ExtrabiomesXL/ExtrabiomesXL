@@ -1,10 +1,10 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.plugin.trees;
+package extrabiomes.module.summa.block;
 
 import java.util.List;
 import java.util.Random;
@@ -16,10 +16,31 @@ import net.minecraft.src.ItemStack;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 
-public class BlockCustomLog extends BlockLog {
+class BlockCustomLog extends BlockLog {
+	enum BlockType {
+		FIR(0, "Fir"),
+		ACACIA(1, "Acacia");
 
-	protected BlockCustomLog(int blockID) {
-		super(blockID);
+		private final int		value;
+		private final String	itemName;
+
+		BlockType(int value, String itemName) {
+			this.value = value;
+			this.itemName = itemName;
+		}
+
+		public String itemName() {
+			return itemName;
+		}
+
+		public int metadata() {
+			return value;
+		}
+
+	}
+
+	public BlockCustomLog(int id) {
+		super(id);
 		blockIndexInTexture = 97;
 		setTextureFile("/extrabiomes/extrabiomes.png");
 		setStepSound(soundWoodFootstep);
@@ -46,7 +67,7 @@ public class BlockCustomLog extends BlockLog {
 	public void getSubBlocks(int blockID,
 			CreativeTabs par2CreativeTabs, List list)
 	{
-		for (final WoodType type : WoodType.values())
+		for (final BlockType type : BlockType.values())
 			list.add(new ItemStack(blockID, 1, type.metadata()));
 	}
 

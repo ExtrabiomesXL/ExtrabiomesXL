@@ -11,7 +11,7 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.plugin.trees.BlockCustomSapling;
+import extrabiomes.module.summa.TreeSoilRegistry;
 
 public class WorldGenFirTree extends WorldGenerator {
 
@@ -41,7 +41,7 @@ public class WorldGenFirTree extends WorldGenerator {
 		final int below = world.getBlockId(x, y - 1, z);
 		final int height = rand.nextInt(8) + 24;
 
-		if (!BlockCustomSapling.isValidSoilID(Integer.valueOf(below))
+		if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(below))
 				|| y >= 256 - height - 1) return false;
 
 		if (y < 1 || y + height + 1 > 256) return false;

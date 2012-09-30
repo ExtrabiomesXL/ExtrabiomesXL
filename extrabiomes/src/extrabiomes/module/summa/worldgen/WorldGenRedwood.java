@@ -11,7 +11,7 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.plugin.trees.BlockCustomSapling;
+import extrabiomes.module.summa.TreeSoilRegistry;
 
 public class WorldGenRedwood extends WorldGenerator {
 
@@ -53,7 +53,7 @@ public class WorldGenRedwood extends WorldGenerator {
 
 		if (y < 1 || y + height + 1 > 256) return false;
 
-		if (!BlockCustomSapling.isValidSoilID(world.getBlockId(x,
+		if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x,
 				y - 1, z)) || y >= 256 - height - 1) return false;
 
 		for (int y1 = y; y1 <= y + 1 + height; y1++) {

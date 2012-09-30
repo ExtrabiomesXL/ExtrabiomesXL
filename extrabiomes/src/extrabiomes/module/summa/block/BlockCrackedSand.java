@@ -14,9 +14,9 @@ import extrabiomes.utility.IDRestrictionAnnotation;
 @IDRestrictionAnnotation(maxIDRValue = 255)
 class BlockCrackedSand extends Block {
 
-	BlockCrackedSand()
+	BlockCrackedSand(int id)
 	{
-		super(Cube.CRACKEDSAND.getBlockID(), 0, Material.rock);
+		super(id, 0, Material.rock);
 		setHardness(1.2F);
 		setStepSound(Block.soundStoneFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");

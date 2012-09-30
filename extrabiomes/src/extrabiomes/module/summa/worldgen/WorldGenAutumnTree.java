@@ -11,7 +11,7 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.plugin.trees.BlockCustomSapling;
+import extrabiomes.module.summa.TreeSoilRegistry;
 
 public class WorldGenAutumnTree extends WorldGenerator {
 
@@ -40,7 +40,7 @@ public class WorldGenAutumnTree extends WorldGenerator {
 			final int x, final int y, final int z)
 	{
 		final int id = world.getBlockId(x, y, z);
-		return BlockCustomSapling.isValidSoilID(id);
+		return TreeSoilRegistry.isValidSoil(id);
 	}
 
 	private static boolean isRoomToGrow(final World world, final int x,

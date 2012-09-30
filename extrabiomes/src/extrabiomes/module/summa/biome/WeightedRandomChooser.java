@@ -1,10 +1,10 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.utility;
+package extrabiomes.module.summa.biome;
 
 import java.util.Collection;
 import java.util.Random;
@@ -13,22 +13,17 @@ import net.minecraft.src.WeightedRandomItem;
 
 import com.google.common.base.Optional;
 
-public class WeightedRandomChooser {
-	/**
-	 * Returns a random choice from the input items.
-	 */
-	public static <T extends WeightedRandomItem> Optional<T> getRandomItem(
+enum WeightedRandomChooser {
+	INSTANCE;
+
+	static <T extends WeightedRandomItem> Optional<T> getRandomItem(
 			Random rand, Collection<T> collection)
 	{
 		return getRandomItem(rand, collection,
 				getTotalWeight(collection));
 	}
 
-	/**
-	 * Returns a random choice from the input items, with a total weight
-	 * value.
-	 */
-	public static <T extends WeightedRandomItem> Optional<T> getRandomItem(
+	static <T extends WeightedRandomItem> Optional<T> getRandomItem(
 			Random rand, Collection<T> collection, int limit)
 	{
 		if (limit > 0) {
@@ -43,10 +38,7 @@ public class WeightedRandomChooser {
 		return Optional.absent();
 	}
 
-	/**
-	 * Returns the total weight of all items in a collection.
-	 */
-	public static int getTotalWeight(
+	static int getTotalWeight(
 			Collection<? extends WeightedRandomItem> collection)
 	{
 		int totalWeight = 0;

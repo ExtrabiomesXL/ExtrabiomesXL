@@ -1,23 +1,14 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.plugin.trees;
+package extrabiomes.module.summa.block;
 
-import static extrabiomes.plugin.trees.SaplingType.ACACIA;
-import static extrabiomes.plugin.trees.SaplingType.BROWN;
-import static extrabiomes.plugin.trees.SaplingType.FIR;
-import static extrabiomes.plugin.trees.SaplingType.ORANGE;
-import static extrabiomes.plugin.trees.SaplingType.PURPLE;
-import static extrabiomes.plugin.trees.SaplingType.YELLOW;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.src.Block;
 import net.minecraft.src.BlockFlower;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
@@ -25,24 +16,43 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
+import extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType;
 import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
-import extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType;
 
-public class BlockCustomSapling extends BlockFlower {
+class BlockCustomSapling extends BlockFlower {
+
+	enum BlockType {
+		BROWN(0, "Brown Autumn Sapling"), ORANGE(1,
+				"Orange Autumn Sapling"), PURPLE(2,
+				"Purple Autumn Sapling"), YELLOW(3,
+				"Yellow Autumn Sapling"), FIR(4, "Fir Sapling"), REDWOOD(
+				5, "Redwood Sapling"), ACACIA(6, "Acacia Sapling");
+
+		private final int		value;
+		private final String	itemName;
+
+		BlockType(int value, String itemName) {
+			this.value = value;
+			this.itemName = itemName;
+		}
+
+		public String itemName() {
+			return itemName;
+		}
+
+		public int metadata() {
+			return value;
+		}
+	}
 
 	private static final int	METADATA_BITMASK	= 0x7;
 	private static final int	METADATA_MARKBIT	= 0x8;
-
-	private static List<Block>	validSoil			= new ArrayList<Block>();
-
-	public static void addValidSoil(Block soilBlock) {
-		validSoil.add(soilBlock);
-	}
 
 	private static boolean isEnoughLightToGrow(World world, int x,
 			int y, int z)
@@ -52,12 +62,6 @@ public class BlockCustomSapling extends BlockFlower {
 
 	private static boolean isMarkedMetadata(int metadata) {
 		return (metadata & METADATA_MARKBIT) != 0;
-	}
-
-	public static boolean isValidSoilID(int blockID) {
-		for (final Block block : validSoil)
-			if (block.blockID == blockID) return true;
-		return false;
 	}
 
 	private static int markedMetadata(int metadata) {
@@ -98,7 +102,7 @@ public class BlockCustomSapling extends BlockFlower {
 
 	@Override
 	protected boolean canThisPlantGrowOnThisBlockID(int id) {
-		return isValidSoilID(id);
+		return TreeSoilRegistry.isValidSoil(id);
 	}
 
 	@Override
@@ -117,7 +121,7 @@ public class BlockCustomSapling extends BlockFlower {
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
 		if (tab == CreativeTabs.tabDecorations)
-			for (final SaplingType blockType : SaplingType.values())
+			for (final BlockType blockType : BlockType.values())
 				itemList.add(new ItemStack(this, 1, blockType
 						.metadata()));
 	}
@@ -134,7 +138,7 @@ public class BlockCustomSapling extends BlockFlower {
 		world.getBlockId(x, y - 1, z);
 		world.getBlockMetadata(x, y - 1, z);
 
-		if (metadata == BROWN.metadata()) {
+		if (metadata == BlockType.BROWN.metadata()) {
 			if (rand.nextInt(20) == 0)
 				tree = new WorldGenBigAutumnTree(true,
 						AutumnTreeType.BROWN);
@@ -143,7 +147,7 @@ public class BlockCustomSapling extends BlockFlower {
 						AutumnTreeType.BROWN);
 		}
 
-		else if (metadata == ORANGE.metadata()) {
+		else if (metadata == BlockType.ORANGE.metadata()) {
 			if (rand.nextInt(20) == 0)
 				tree = new WorldGenBigAutumnTree(true,
 						AutumnTreeType.ORANGE);
@@ -152,7 +156,7 @@ public class BlockCustomSapling extends BlockFlower {
 						AutumnTreeType.ORANGE);
 		}
 
-		else if (metadata == PURPLE.metadata()) {
+		else if (metadata == BlockType.PURPLE.metadata()) {
 			if (rand.nextInt(20) == 0)
 				tree = new WorldGenBigAutumnTree(true,
 						AutumnTreeType.PURPLE);
@@ -161,14 +165,14 @@ public class BlockCustomSapling extends BlockFlower {
 						AutumnTreeType.PURPLE);
 		}
 
-		else if (metadata == YELLOW.metadata()) {
+		else if (metadata == BlockType.YELLOW.metadata()) {
 			if (rand.nextInt(20) == 0)
 				tree = new WorldGenBigAutumnTree(true,
 						AutumnTreeType.YELLOW);
 			else
 				tree = new WorldGenAutumnTree(true,
 						AutumnTreeType.YELLOW);
-		} else if (metadata == ACACIA.metadata())
+		} else if (metadata == BlockType.ACACIA.metadata())
 			tree = new WorldGenAcacia(true);
 		else {
 			// Check for 2x2 firs and redwoods
@@ -183,7 +187,7 @@ public class BlockCustomSapling extends BlockFlower {
 							&& isSameSapling(world, x + x1 + 1, y, z
 									+ z1 + 1, metadata))
 					{
-						if (metadata == FIR.metadata())
+						if (metadata == BlockType.FIR.metadata())
 							tree = new WorldGenFirTreeHuge(true);
 						else
 							tree = new WorldGenRedwood(true);
@@ -192,7 +196,7 @@ public class BlockCustomSapling extends BlockFlower {
 					}
 				if (tree != null) break;
 			}
-			if (tree == null && metadata == FIR.metadata()) {
+			if (tree == null && metadata == BlockType.FIR.metadata()) {
 				// Single fir sapling generates 1x1 tree
 				z1 = 0;
 				x1 = 0;

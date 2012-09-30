@@ -7,6 +7,9 @@
 package extrabiomes.proxy;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.ArrayList;
+
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.CraftingManager;
@@ -59,6 +62,10 @@ public class CommonProxy {
 
 	public Optional<ItemStack> getGrassSeed(World world) {
 		return Optional.fromNullable(ForgeHooks.getGrassSeed(world));
+	}
+
+	public ArrayList<ItemStack> getOres(String name) {
+		return OreDictionary.getOres(name);
 	}
 
 	public boolean isModLoaded(String modID) {

@@ -11,7 +11,7 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import extrabiomes.plugin.trees.BlockCustomSapling;
+import extrabiomes.module.summa.TreeSoilRegistry;
 
 public class WorldGenAcacia extends WorldGenerator {
 
@@ -70,8 +70,8 @@ public class WorldGenAcacia extends WorldGenerator {
 
 		if (!canGrow) return false;
 
-		if (!BlockCustomSapling.isValidSoilID(Integer.valueOf(world
-				.getBlockId(x, y - 1, z))) || y >= 256 - height - 1)
+		if (!TreeSoilRegistry.isValidSoil(world
+				.getBlockId(x, y - 1, z)) || y >= 256 - height - 1)
 			return false;
 
 		world.setBlock(x, y - 1, z, Block.dirt.blockID);
