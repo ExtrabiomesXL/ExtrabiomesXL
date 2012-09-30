@@ -48,7 +48,7 @@ public class Quicksand {
 					.setBlockName("quicksand"));
 			proxy.setBlockHarvestLevel(quicksand.get(), "shovel", 0);
 
-			proxy.registerBlock(quicksand);
+			proxy.registerBlock(quicksand.get());
 
 			proxy.registerWorldGenerator(new WorldGenerator(quicksand
 					.get().blockID));

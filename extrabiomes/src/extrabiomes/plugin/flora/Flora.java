@@ -143,7 +143,7 @@ public class Flora {
 		if (leafPileId == 0) return;
 		leafPile = Optional.of(new BlockLeafPile(leafPileId)
 				.setBlockName("leafpile"));
-		proxy.registerBlock(leafPile);
+		proxy.registerBlock(leafPile.get());
 
 		final IRecipe recipe = new ShapedOreRecipe(Block.leaves,
 				new String[] { "lll", "lll", "lll" }, 'l',

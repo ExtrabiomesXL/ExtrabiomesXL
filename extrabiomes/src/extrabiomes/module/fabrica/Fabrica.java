@@ -6,6 +6,11 @@
 
 package extrabiomes.module.fabrica;
 
+import net.minecraft.src.Block;
+import net.minecraft.src.IRecipe;
+import net.minecraft.src.Item;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+import extrabiomes.Extrabiomes;
 import extrabiomes.IModule;
 import extrabiomes.configuration.ExtrabiomesConfig;
 
@@ -13,16 +18,14 @@ public class Fabrica implements IModule {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-
+		final IRecipe recipe = new ShapelessOreRecipe(Block.sand,
+				"sandCracked", Item.bucketWater);
+		Extrabiomes.proxy.addRecipe(recipe);
 	}
 
 	@Override
 	public void preInit(ExtrabiomesConfig config)
 			throws InstantiationException, IllegalAccessException
-	{
-		// TODO Auto-generated method stub
-
-	}
+	{}
 
 }

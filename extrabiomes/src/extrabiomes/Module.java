@@ -30,7 +30,9 @@ enum Module {
 	private static boolean	controlSettingsLoaded	= false;
 	private static boolean	initialized				= false;
 
-	static void init() {
+	static void init() throws InstantiationException,
+			IllegalAccessException
+	{
 		// Only do this once
 		if (initialized) return;
 
@@ -106,7 +108,9 @@ enum Module {
 		this.pluginClass = pluginClass;
 	}
 
-	private void do_init() {
+	private void do_init() throws InstantiationException,
+			IllegalAccessException
+	{
 		plugin.get().init();
 	}
 

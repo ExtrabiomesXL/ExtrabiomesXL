@@ -35,7 +35,9 @@ public class Extrabiomes {
 	private static PluginManagerImpl	pluginManager	= new PluginManagerImpl();
 
 	@Init
-	public static void init(FMLInitializationEvent event) {
+	public static void init(FMLInitializationEvent event)
+			throws InstantiationException, IllegalAccessException
+	{
 		proxy.registerRenderInformation();
 
 		Module.init();
