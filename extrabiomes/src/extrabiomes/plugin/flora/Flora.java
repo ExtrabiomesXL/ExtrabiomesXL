@@ -57,7 +57,6 @@ public class Flora {
 	public static CommonProxy		proxy;
 	@Instance("EBXLFlora")
 	public static Flora				instance;
-	private static int				catTailId;
 	private static int				flowerId;
 	private static int				grassId;
 	private static int				leafPileId;
@@ -72,21 +71,7 @@ public class Flora {
 
 		initFlower();
 		initGrass();
-		initCatTail();
 		initLeafPile();
-	}
-
-	private static void initCatTail() {
-		if (catTailId == 0) return;
-		catTail = Optional.of(new BlockCatTail(catTailId)
-				.setBlockName("cattail"));
-		proxy.registerBlock(catTail.get(),
-				extrabiomes.plugin.flora.ItemCatTail.class);
-
-		proxy.addName(catTail.get(), "Cat Tail");
-
-		proxy.registerWorldGenerator(new CatTailGenerator(
-				catTail.get().blockID));
 	}
 
 	private static void initFlower() {
@@ -180,7 +165,6 @@ public class Flora {
 		try {
 			cfg.load();
 
-			preInitCatTail(cfg);
 			preInitFlower(cfg);
 			preInitGrass(cfg);
 			preInitLeafPile(cfg);
@@ -192,15 +176,6 @@ public class Flora {
 		} finally {
 			cfg.save();
 		}
-	}
-
-	private static void preInitCatTail(Configuration cfg) {
-		catTailId = cfg.getOrCreateBlockIdProperty("cattail.id", 151)
-				.getInt(0);
-
-		if (0 == catTailId)
-			ExtrabiomesLog
-					.info("cattail.id = 0, so cat tail has been disabled.");
 	}
 
 	private static void preInitFlower(Configuration cfg) {

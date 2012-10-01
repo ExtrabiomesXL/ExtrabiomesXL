@@ -25,6 +25,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.module.summa.worldgen.CatTailGenerator;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
@@ -61,6 +62,27 @@ public enum Cube {
 					BlockAutumnLeaves.BlockType.PURPLE.metadata(),
 					BlockAutumnLeaves.BlockType.YELLOW.metadata());
 
+		}
+	},
+	CATTAIL {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockCatTail(blockID));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("cattail");
+			proxy.registerBlock(thisBlock,
+					extrabiomes.module.summa.block.ItemCatTail.class);
+
+			proxy.addName(thisBlock, "Cat Tail");
+
+			proxy.registerWorldGenerator(new CatTailGenerator(
+					thisBlock.blockID));
 		}
 	},
 	CRACKEDSAND(true) {
@@ -385,14 +407,14 @@ public enum Cube {
 		ExtrabiomesLog.info("=== End Block ID List ===");
 
 		if (QUARTERLOG0.blockID == 0 || QUARTERLOG1.blockID == 0
-				|| QUARTERLOG2.blockID == 0
-				|| QUARTERLOG3.blockID == 0)
+				|| QUARTERLOG2.blockID == 0 || QUARTERLOG3.blockID == 0)
 		{
 			QUARTERLOG0.blockID = 0;
 			QUARTERLOG1.blockID = 0;
 			QUARTERLOG2.blockID = 0;
 			QUARTERLOG3.blockID = 0;
-			ExtrabiomesLog.info("At least one quarterlog was disabled, so all have been.");
+			ExtrabiomesLog
+					.info("At least one quarterlog was disabled, so all have been.");
 		}
 	}
 
