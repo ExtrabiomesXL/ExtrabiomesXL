@@ -10,7 +10,6 @@ call recompile.bat
 call reobfuscate.bat
 echo.
 echo Adding release assets
-XCOPY MMPL-1.0.txt reobf\minecraft /Q
 XCOPY extrabiomes\*.txt reobf\minecraft /Q
 XCOPY extrabiomes\mcmod.info reobf\minecraft /Q
 XCOPY extrabiomes\src\extrabiomes\*.png reobf\minecraft\extrabiomes /E /Q

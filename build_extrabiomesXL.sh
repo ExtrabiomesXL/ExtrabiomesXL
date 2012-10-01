@@ -11,7 +11,6 @@ echo
 ./reobfuscate.sh
 echo
 echo Adding release assets
-cp MMPL-1.0.txt reobf/minecraft 
 cp extrabiomes/*.txt reobf/minecraft
 cp extrabiomes/mcmod.info reobf/minecraft 
 cp extrabiomes/src/extrabiomes/*.png reobf/minecraft/extrabiomes
