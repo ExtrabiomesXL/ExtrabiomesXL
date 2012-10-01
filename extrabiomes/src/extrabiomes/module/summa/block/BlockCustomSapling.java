@@ -28,11 +28,13 @@ import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 class BlockCustomSapling extends BlockFlower {
 
 	enum BlockType {
-		BROWN(0, "Brown Autumn Sapling"), ORANGE(1,
-				"Orange Autumn Sapling"), PURPLE(2,
-				"Purple Autumn Sapling"), YELLOW(3,
-				"Yellow Autumn Sapling"), FIR(4, "Fir Sapling"), REDWOOD(
-				5, "Redwood Sapling"), ACACIA(6, "Acacia Sapling");
+		BROWN(0, "Brown Autumn Sapling"),
+		ORANGE(1, "Orange Autumn Sapling"),
+		PURPLE(2, "Purple Autumn Sapling"),
+		YELLOW(3, "Yellow Autumn Sapling"),
+		FIR(4, "Fir Sapling"),
+		REDWOOD(5, "Redwood Sapling"),
+		ACACIA(6, "Acacia Sapling");
 
 		private final int		value;
 		private final String	itemName;
@@ -48,6 +50,14 @@ class BlockCustomSapling extends BlockFlower {
 
 		public int metadata() {
 			return value;
+		}
+
+		@Override
+		public String toString() {
+			final StringBuilder sb = new StringBuilder(name()
+					.toLowerCase());
+			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
+			return sb.toString();
 		}
 	}
 

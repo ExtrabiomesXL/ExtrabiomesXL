@@ -10,10 +10,16 @@ import net.minecraft.src.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
 class FuelHandlerSapling implements IFuelHandler {
+
+	private final int	saplingID;
+
+	FuelHandlerSapling(int saplingID) {
+		this.saplingID = saplingID;
+	}
+
 	@Override
 	public int getBurnTime(ItemStack fuel) {
-		if (fuel.itemID == Cube.SAPLING.getBlock().get().blockID)
-			return 100;
+		if (fuel.itemID == saplingID) return 100;
 		return 0;
 	}
 

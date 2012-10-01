@@ -47,6 +47,13 @@ class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 			return value;
 		}
 
+		@Override
+		public String toString() {
+			final StringBuilder sb = new StringBuilder(name()
+					.toLowerCase());
+			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
+			return sb.toString();
+		}
 	}
 
 	private static final int	METADATA_BITMASK		= 0x3;
@@ -218,7 +225,7 @@ class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
 	@Override
 	public int idDropped(int metadata, Random rand, int par3) {
-		return Cube.SAPLING.getBlock().isPresent() ? Cube.SAPLING
+		return BlockManager.SAPLING.getBlock().isPresent() ? BlockManager.SAPLING
 				.getBlock().get().blockID : Block.sapling.blockID;
 	}
 

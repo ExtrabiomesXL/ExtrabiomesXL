@@ -13,8 +13,8 @@ class SaplingBonemealEventhandler {
 
 	private final BlockCustomSapling sapling;
 
-	SaplingBonemealEventhandler() {
-		sapling = (BlockCustomSapling) Cube.SAPLING.getBlock().get();
+	SaplingBonemealEventhandler(BlockCustomSapling sapling) {
+		this.sapling = sapling;
 	}
 
 	@ForgeSubscribe

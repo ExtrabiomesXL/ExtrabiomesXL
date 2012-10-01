@@ -1,14 +1,10 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.plugin.flora;
-
-import static extrabiomes.plugin.flora.GrassType.DEAD;
-import static extrabiomes.plugin.flora.GrassType.DEAD_TALL;
-import static extrabiomes.plugin.flora.GrassType.DEAD_YELLOW;
+package extrabiomes.module.summa.block;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +22,41 @@ import com.google.common.base.Optional;
 
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 
-public class BlockCustomTallGrass extends BlockFlower implements
-		IShearable
-{
+class BlockCustomTallGrass extends BlockFlower implements IShearable {
+	enum BlockType {
+		BROWN(0, "Brown Grass"),
+		SHORT_BROWN(1, "Short Brown Grass"),
+		DEAD(2, "Dead Grass"),
+		DEAD_TALL(3, "Tall Dead Grass"),
+		DEAD_YELLOW(4, "Yellow Dead Grass");
+
+		private final int		value;
+		private final String	itemName;
+
+		BlockType(int value, String itemName) {
+			this.value = value;
+			this.itemName = itemName;
+		}
+
+		public String itemName() {
+			return itemName;
+		}
+
+		public int metadata() {
+			return value;
+		}
+
+		@Override
+		public String toString() {
+			final StringBuilder sb = new StringBuilder(name()
+					.toLowerCase());
+			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
+			return sb.toString();
+		}
+	}
 
 	public BlockCustomTallGrass(int id) {
 		super(id, 48, Material.vine);
@@ -64,12 +90,13 @@ public class BlockCustomTallGrass extends BlockFlower implements
 	{
 		final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 		int rarity = 8;
-		if (metadata == DEAD.metadata()
-				|| metadata == DEAD_TALL.metadata()
-				|| metadata == DEAD_YELLOW.metadata()) rarity *= 2;
+		if (metadata == BlockType.DEAD.metadata()
+				|| metadata == BlockType.DEAD_TALL.metadata()
+				|| metadata == BlockType.DEAD_YELLOW.metadata())
+			rarity *= 2;
 		if (world.rand.nextInt(rarity) != 0) return ret;
 
-		final Optional<ItemStack> item = Flora.proxy
+		final Optional<ItemStack> item = Extrabiomes.proxy
 				.getGrassSeed(world);
 
 		if (item.isPresent()) ret.add(item.get());
@@ -87,7 +114,7 @@ public class BlockCustomTallGrass extends BlockFlower implements
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
 		if (tab == CreativeTabs.tabDecorations)
-			for (final GrassType type : GrassType.values())
+			for (final BlockType type : BlockType.values())
 				itemList.add(new ItemStack(this, 1, type.metadata()));
 	}
 

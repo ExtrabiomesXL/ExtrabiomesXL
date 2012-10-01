@@ -1,10 +1,10 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.plugin.flora;
+package extrabiomes.module.summa.worldgen;
 
 import java.util.Random;
 
@@ -19,7 +19,7 @@ public class LeafPileGenerator implements IWorldGenerator {
 
 	private final WorldGenerator	leafPileGen;
 
-	LeafPileGenerator(int blockID) {
+	public LeafPileGenerator(int blockID) {
 		leafPileGen = new WorldGenLeafPile(blockID);
 	}
 
@@ -33,10 +33,14 @@ public class LeafPileGenerator implements IWorldGenerator {
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
 				chunkX);
 
-		if (biome == BiomeManager.greenswamp.get()
-				|| biome == BiomeManager.mountainridge.get()
-				|| biome == BiomeManager.redwoodlush.get()
-				|| biome == BiomeManager.woodlands.get())
+		if (BiomeManager.greenswamp.isPresent()
+				&& biome == BiomeManager.greenswamp.get()
+				|| BiomeManager.mountainridge.isPresent()
+				&& biome == BiomeManager.mountainridge.get()
+				|| BiomeManager.redwoodlush.isPresent()
+				&& biome == BiomeManager.redwoodlush.get()
+				|| BiomeManager.woodlands.isPresent()
+				&& biome == BiomeManager.woodlands.get())
 			for (int i = 0; i < 2; i++) {
 				final int x = chunkX + rand.nextInt(16) + 8;
 				final int y = rand.nextInt(128);

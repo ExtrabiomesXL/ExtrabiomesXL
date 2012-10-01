@@ -11,7 +11,7 @@ import extrabiomes.IModule;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
-import extrabiomes.module.summa.block.Cube;
+import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.worldgen.MarshGenerator;
 import extrabiomes.module.summa.worldgen.MountainDesertGenerator;
 import extrabiomes.module.summa.worldgen.MountainRidgeGenerator;
@@ -44,7 +44,7 @@ public class Summa implements IModule {
 		registerWorldGenerators();
 
 		biomeManager.init();
-		Cube.init();
+		BlockManager.init();
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class Summa implements IModule {
 			throws InstantiationException, IllegalAccessException
 	{
 		biomeManager.preInit(config);
-		Cube.preInit(config);
+		BlockManager.preInit(config);
 	}
 
 }

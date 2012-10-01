@@ -37,6 +37,13 @@ class BlockCustomLog extends BlockLog {
 			return value;
 		}
 
+		@Override
+		public String toString() {
+			final StringBuilder sb = new StringBuilder(name()
+					.toLowerCase());
+			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
+			return sb.toString();
+		}
 	}
 
 	public BlockCustomLog(int id) {
@@ -75,5 +82,4 @@ class BlockCustomLog extends BlockLog {
 	public int idDropped(int metadata, Random rand, int unused) {
 		return blockID;
 	}
-
 }

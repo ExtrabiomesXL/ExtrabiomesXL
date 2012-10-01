@@ -11,11 +11,14 @@ import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_COBBLE;
 import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_ROCK;
 import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_ROCK_BRICK;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Locale;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.WorldGenTallGrass;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -25,15 +28,19 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
+import extrabiomes.module.summa.worldgen.FlowerGenerator;
+import extrabiomes.module.summa.worldgen.LeafPileGenerator;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
+import extrabiomes.module.summa.worldgen.WorldGenWastelandGrass;
 import extrabiomes.proxy.CommonProxy;
 
-public enum Cube {
+public enum BlockManager {
 	AUTUMNLEAVES {
 		@Override
 		protected void create() {
@@ -52,9 +59,14 @@ public enum Cube {
 
 			for (final BlockAutumnLeaves.BlockType type : BlockAutumnLeaves.BlockType
 					.values())
-				proxy.addName(
-						new ItemStack(thisBlock, 1, type.metadata()),
-						type.itemName());
+			{
+				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+						type.metadata());
+				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("leaves", itemstack);
+				proxy.registerOre("leavesAutumn", itemstack);
+				proxy.registerOre("leaves" + type.toString(), itemstack);
+			}
 
 			WorldGenAutumnTree.setLeavesBlock(thisBlock,
 					BlockAutumnLeaves.BlockType.BROWN.metadata(),
@@ -81,6 +93,8 @@ public enum Cube {
 
 			proxy.addName(thisBlock, "Cat Tail");
 
+			proxy.registerOre("reedCatTail", thisBlock);
+
 			proxy.registerWorldGenerator(new CatTailGenerator(
 					thisBlock.blockID));
 		}
@@ -102,7 +116,99 @@ public enum Cube {
 			proxy.addName(thisBlock, "Cracked Sand");
 
 			proxy.registerOre("sandCracked", thisBlock);
-			addCrackedSandToWasteland();
+			addCrackedSandToWasteland(thisBlock.blockID);
+		}
+	},
+	FLOWER {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockCustomFlower(blockID));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("flower");
+			proxy.registerBlock(thisBlock,
+					extrabiomes.utility.MultiItemBlock.class);
+
+			for (final BlockCustomFlower.BlockType type : BlockCustomFlower.BlockType
+					.values())
+			{
+				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+						type.metadata());
+				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("flower", itemstack);
+				proxy.registerOre("flower" + type.toString(), itemstack);
+			}
+
+			proxy.registerWorldGenerator(new FlowerGenerator(
+					thisBlock.blockID));
+		}
+	},
+	GRASS {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockCustomFlower(blockID));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("grass");
+			proxy.registerBlock(thisBlock,
+					extrabiomes.utility.MultiItemBlock.class);
+
+			for (final BlockCustomTallGrass.BlockType type : BlockCustomTallGrass.BlockType
+					.values())
+			{
+				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+						type.metadata());
+				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("grass", itemstack);
+				proxy.registerOre("grass" + type.toString(), itemstack);
+			}
+
+			if (BiomeManager.mountainridge.isPresent()) {
+				BiomeManager.addWeightedGrassGenForBiome(
+						BiomeManager.mountainridge.get(),
+						new WorldGenTallGrass(thisBlock.blockID,
+								BlockCustomTallGrass.BlockType.BROWN
+										.metadata()), 100);
+				BiomeManager
+						.addWeightedGrassGenForBiome(
+								BiomeManager.mountainridge.get(),
+								new WorldGenTallGrass(
+										thisBlock.blockID,
+										BlockCustomTallGrass.BlockType.SHORT_BROWN
+												.metadata()), 100);
+			}
+
+			if (BiomeManager.wasteland.isPresent()) {
+				BiomeManager.addWeightedGrassGenForBiome(
+						BiomeManager.wasteland.get(),
+						new WorldGenWastelandGrass(thisBlock.blockID,
+								BlockCustomTallGrass.BlockType.DEAD
+										.metadata()), 90);
+				BiomeManager
+						.addWeightedGrassGenForBiome(
+								BiomeManager.wasteland.get(),
+								new WorldGenWastelandGrass(
+										thisBlock.blockID,
+										BlockCustomTallGrass.BlockType.DEAD_YELLOW
+												.metadata()), 90);
+				BiomeManager
+						.addWeightedGrassGenForBiome(
+								BiomeManager.wasteland.get(),
+								new WorldGenWastelandGrass(
+										thisBlock.blockID,
+										BlockCustomTallGrass.BlockType.DEAD_TALL
+												.metadata()), 35);
+			}
 		}
 	},
 	GREENLEAVES {
@@ -123,9 +229,14 @@ public enum Cube {
 
 			for (final BlockGreenLeaves.BlockType type : BlockGreenLeaves.BlockType
 					.values())
-				proxy.addName(
-						new ItemStack(thisBlock, 1, type.metadata()),
-						type.itemName());
+			{
+				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+						type.metadata());
+				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("leaves", itemstack);
+				proxy.registerOre("leavesGreen", itemstack);
+				proxy.registerOre("leaves" + type.toString(), itemstack);
+			}
 
 			WorldGenAcacia.setLeavesBlock(thisBlock,
 					BlockGreenLeaves.BlockType.ACACIA.metadata());
@@ -136,6 +247,27 @@ public enum Cube {
 			WorldGenRedwood.setLeavesBlock(thisBlock,
 					BlockGreenLeaves.BlockType.REDWOOD.metadata());
 
+		}
+	},
+	LEAFPILE {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockLeafPile(blockID));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("leafpile");
+			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+			proxy.registerBlock(thisBlock);
+			proxy.addName(thisBlock, "Leaf Pile");
+
+			proxy.registerOre("pileLeaf", thisBlock);
+			proxy.registerWorldGenerator(new LeafPileGenerator(
+					thisBlock.blockID));
 		}
 	},
 	REDROCK(true) {
@@ -169,7 +301,7 @@ public enum Cube {
 			OreDictionary.registerOre("rockRed", redRockItem);
 			OreDictionary.registerOre("cobbleRed", redCobbleItem);
 			OreDictionary.registerOre("brickRedRock", redRockBrickItem);
-			addRedRockToMountainRidge();
+			addRedRockToMountainRidge(thisBlock.blockID);
 		}
 	},
 	SAPLING {
@@ -189,12 +321,19 @@ public enum Cube {
 
 			for (final BlockCustomSapling.BlockType type : BlockCustomSapling.BlockType
 					.values())
-				proxy.addName(
-						new ItemStack(thisBlock, 1, type.metadata()),
-						type.itemName());
+			{
+				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+						type.metadata());
+				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("sapling", itemstack);
+				proxy.registerOre("sapling" + type.toString(),
+						itemstack);
+			}
 
-			proxy.registerEventHandler(new SaplingBonemealEventhandler());
-			proxy.registerFuelHandler(new FuelHandlerSapling());
+			proxy.registerEventHandler(new SaplingBonemealEventhandler(
+					(BlockCustomSapling) thisBlock));
+			proxy.registerFuelHandler(new FuelHandlerSapling(
+					thisBlock.blockID));
 		}
 	},
 	CUSTOMLOG {
@@ -214,9 +353,13 @@ public enum Cube {
 
 			for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType
 					.values())
-				proxy.addName(
-						new ItemStack(thisBlock, 1, type.metadata()),
-						type.itemName());
+			{
+				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+						type.metadata());
+				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("log", itemstack);
+				proxy.registerOre("log" + type.toString(), itemstack);
+			}
 
 			WorldGenAcacia.setTrunkBlock(thisBlock,
 					BlockCustomLog.BlockType.ACACIA.metadata());
@@ -242,9 +385,13 @@ public enum Cube {
 
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
-				proxy.addName(
-						new ItemStack(thisBlock, 1, type.metadata()),
-						type.itemName());
+			{
+				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+						type.metadata());
+				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("log", itemstack);
+				proxy.registerOre("log" + type.toString(), itemstack);
+			}
 		}
 	},
 	QUARTERLOG1 {
@@ -265,9 +412,13 @@ public enum Cube {
 
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
-				proxy.addName(
-						new ItemStack(thisBlock, 1, type.metadata()),
-						type.itemName());
+			{
+				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+						type.metadata());
+				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("log", itemstack);
+				proxy.registerOre("log" + type.toString(), itemstack);
+			}
 		}
 	},
 	QUARTERLOG2 {
@@ -288,9 +439,13 @@ public enum Cube {
 
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
-				proxy.addName(
-						new ItemStack(thisBlock, 1, type.metadata()),
-						type.itemName());
+			{
+				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+						type.metadata());
+				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("log", itemstack);
+				proxy.registerOre("log" + type.toString(), itemstack);
+			}
 		}
 	},
 	QUARTERLOG3 {
@@ -311,9 +466,13 @@ public enum Cube {
 
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
-				proxy.addName(
-						new ItemStack(thisBlock, 1, type.metadata()),
-						type.itemName());
+			{
+				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+						type.metadata());
+				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("log", itemstack);
+				proxy.registerOre("log" + type.toString(), itemstack);
+			}
 		}
 	};
 
@@ -321,36 +480,36 @@ public enum Cube {
 
 	private static final String	TERRAIN_COMMENT	= "%s is used in terrain generation. Its id must be less than 256.";
 
-	private static void addCrackedSandToWasteland() {
+	private static void addCrackedSandToWasteland(int crackedsandID) {
 		if (!BiomeManager.wasteland.isPresent()) return;
 
 		final BiomeGenBase wasteland = BiomeManager.wasteland.get();
-		wasteland.topBlock = (byte) CRACKEDSAND.block.get().blockID;
-		wasteland.fillerBlock = (byte) CRACKEDSAND.block.get().blockID;
+		wasteland.topBlock = (byte) crackedsandID;
+		wasteland.fillerBlock = (byte) crackedsandID;
 		ExtrabiomesLog.info("Added cracked sand to wasteland biome.");
 	}
 
-	private static void addRedRockToMountainRidge() {
+	private static void addRedRockToMountainRidge(int redrockID) {
 		if (!BiomeManager.mountainridge.isPresent()) return;
 
 		final BiomeGenBase mountainridge = BiomeManager.mountainridge
 				.get();
-		mountainridge.topBlock = (byte) REDROCK.block.get().blockID;
-		mountainridge.fillerBlock = (byte) REDROCK.block.get().blockID;
+		mountainridge.topBlock = (byte) redrockID;
+		mountainridge.fillerBlock = (byte) redrockID;
 		ExtrabiomesLog.info("Added red rock to mountain ridge biome.");
 	}
 
 	private static void createBlocks() throws InstantiationException,
 			IllegalAccessException
 	{
-		for (final Cube block : Cube.values())
+		for (final BlockManager block : BlockManager.values())
 			if (block.blockID > 0) block.create();
 	}
 
 	public static void init() throws InstantiationException,
 			IllegalAccessException
 	{
-		for (final Cube block : values())
+		for (final BlockManager block : values())
 			if (block.block.isPresent()) block.prepare();
 
 		if (QUARTERLOG0.block.isPresent()
@@ -385,7 +544,7 @@ public enum Cube {
 
 		// Load config settings
 		int defaultID = 150;
-		for (final Cube cube : Cube.values()) {
+		for (final BlockManager cube : BlockManager.values()) {
 			final Property property = cube.restrictTo256 ? config
 					.getOrCreateRestrictedBlockIdProperty(cube.idKey(),
 							defaultID)
@@ -425,17 +584,24 @@ public enum Cube {
 
 		loadSettings(config);
 		createBlocks();
+
+		final Collection<BiomeGenBase> biomes = new ArrayList();
+		if (BiomeManager.mountainridge.isPresent())
+			biomes.add(BiomeManager.mountainridge.get());
+		if (BiomeManager.wasteland.isPresent())
+			biomes.add(BiomeManager.wasteland.get());
+		BiomeManagerImpl.disableDefaultGrassforBiomes(biomes);
 	}
 
 	private final boolean				restrictTo256;
 	protected int						blockID	= 0;
 	protected Optional<? extends Block>	block	= Optional.absent();
 
-	Cube() {
+	BlockManager() {
 		this(false);
 	}
 
-	Cube(boolean restrictTo256) {
+	BlockManager(boolean restrictTo256) {
 		this.restrictTo256 = restrictTo256;
 	}
 

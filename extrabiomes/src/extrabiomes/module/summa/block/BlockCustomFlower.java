@@ -1,16 +1,10 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.plugin.flora;
-
-import static extrabiomes.plugin.flora.FlowerType.AUTUMN_SHRUB;
-import static extrabiomes.plugin.flora.FlowerType.HYDRANGEA;
-import static extrabiomes.plugin.flora.FlowerType.ORANGE;
-import static extrabiomes.plugin.flora.FlowerType.PURPLE;
-import static extrabiomes.plugin.flora.FlowerType.WHITE;
+package extrabiomes.module.summa.block;
 
 import java.util.List;
 import java.util.Random;
@@ -23,10 +17,46 @@ import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.proxy.CommonProxy;
 
 public class BlockCustomFlower extends Block {
+
+	public enum BlockType {
+		AUTUMN_SHRUB(0, "Autumn Shrub"),
+		HYDRANGEA(1, "Hydrangea"),
+		ORANGE(2, "Orange Flower"),
+		PURPLE(3, "Purple Flower"),
+		TINY_CACTUS(4, "Tiny Cactus"),
+		ROOT(5, "Root"),
+		TOADSTOOL(6, "Toad Stool"),
+		WHITE(7, "White Flower");
+
+		private final int		value;
+		private final String	itemName;
+
+		BlockType(int value, String itemName) {
+			this.value = value;
+			this.itemName = itemName;
+		}
+
+		public String itemName() {
+			return itemName;
+		}
+
+		public int metadata() {
+			return value;
+		}
+
+		@Override
+		public String toString() {
+			final StringBuilder sb = new StringBuilder(name()
+					.toLowerCase());
+			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
+			return sb.toString();
+		}
+	}
 
 	public BlockCustomFlower(int id) {
 		super(id, Material.plants);
@@ -38,12 +68,12 @@ public class BlockCustomFlower extends Block {
 		setHardness(0.0F);
 		setStepSound(Block.soundGrassFootstep);
 
-		final CommonProxy proxy = Flora.proxy;
-		proxy.addGrassPlant(this, AUTUMN_SHRUB.metadata(), 2);
-		proxy.addGrassPlant(this, HYDRANGEA.metadata(), 2);
-		proxy.addGrassPlant(this, ORANGE.metadata(), 5);
-		proxy.addGrassPlant(this, PURPLE.metadata(), 5);
-		proxy.addGrassPlant(this, WHITE.metadata(), 5);
+		final CommonProxy proxy = Extrabiomes.proxy;
+		proxy.addGrassPlant(this, BlockType.AUTUMN_SHRUB.metadata(), 2);
+		proxy.addGrassPlant(this, BlockType.HYDRANGEA.metadata(), 2);
+		proxy.addGrassPlant(this, BlockType.ORANGE.metadata(), 5);
+		proxy.addGrassPlant(this, BlockType.PURPLE.metadata(), 5);
+		proxy.addGrassPlant(this, BlockType.WHITE.metadata(), 5);
 
 		setCreativeTab(CreativeTabs.tabDecorations);
 		setTextureFile("/extrabiomes/extrabiomes.png");
@@ -111,7 +141,7 @@ public class BlockCustomFlower extends Block {
 	{
 		final int metadata = world.getBlockMetadata(x, y, z);
 
-		if (metadata == FlowerType.TINY_CACTUS.metadata())
+		if (metadata == BlockType.TINY_CACTUS.metadata())
 			return super.getSelectedBoundingBoxFromPool(world, x, y, z);
 
 		return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool(x, y,
@@ -123,7 +153,7 @@ public class BlockCustomFlower extends Block {
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
 		if (tab == CreativeTabs.tabDecorations)
-			for (final FlowerType type : FlowerType.values())
+			for (final BlockType type : BlockType.values())
 				itemList.add(new ItemStack(this, 1, type.metadata()));
 	}
 

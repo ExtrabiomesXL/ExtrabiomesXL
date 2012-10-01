@@ -1,19 +1,10 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.plugin.flora;
-
-import static extrabiomes.plugin.flora.FlowerType.AUTUMN_SHRUB;
-import static extrabiomes.plugin.flora.FlowerType.HYDRANGEA;
-import static extrabiomes.plugin.flora.FlowerType.ORANGE;
-import static extrabiomes.plugin.flora.FlowerType.PURPLE;
-import static extrabiomes.plugin.flora.FlowerType.ROOT;
-import static extrabiomes.plugin.flora.FlowerType.TINY_CACTUS;
-import static extrabiomes.plugin.flora.FlowerType.TOADSTOOL;
-import static extrabiomes.plugin.flora.FlowerType.WHITE;
+package extrabiomes.module.summa.worldgen;
 
 import java.util.Random;
 
@@ -23,6 +14,7 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
+import extrabiomes.module.summa.block.BlockCustomFlower;
 
 public class FlowerGenerator implements IWorldGenerator {
 
@@ -35,22 +27,23 @@ public class FlowerGenerator implements IWorldGenerator {
 	private final WorldGenerator	toadStoolGen;
 	private final WorldGenerator	whiteGen;
 
-	FlowerGenerator(int flowerID) {
+	public FlowerGenerator(int flowerID) {
 		autumnShrubGen = new WorldGenMetadataFlowers(flowerID,
-				AUTUMN_SHRUB.metadata());
+				BlockCustomFlower.BlockType.AUTUMN_SHRUB.metadata());
 		hydrangeaGen = new WorldGenMetadataFlowers(flowerID,
-				HYDRANGEA.metadata());
+				BlockCustomFlower.BlockType.HYDRANGEA.metadata());
 		orangeGen = new WorldGenMetadataFlowers(flowerID,
-				ORANGE.metadata());
+				BlockCustomFlower.BlockType.ORANGE.metadata());
 		purpleGen = new WorldGenMetadataFlowers(flowerID,
-				PURPLE.metadata());
-		rootGen = new WorldGenRoot(flowerID, ROOT.metadata());
+				BlockCustomFlower.BlockType.PURPLE.metadata());
+		rootGen = new WorldGenRoot(flowerID,
+				BlockCustomFlower.BlockType.ROOT.metadata());
 		tinyCactusGen = new WorldGenTinyCactus(flowerID,
-				TINY_CACTUS.metadata());
+				BlockCustomFlower.BlockType.TINY_CACTUS.metadata());
 		toadStoolGen = new WorldGenMetadataFlowers(flowerID,
-				TOADSTOOL.metadata());
+				BlockCustomFlower.BlockType.TOADSTOOL.metadata());
 		whiteGen = new WorldGenMetadataFlowers(flowerID,
-				WHITE.metadata());
+				BlockCustomFlower.BlockType.WHITE.metadata());
 	}
 
 	@Override
