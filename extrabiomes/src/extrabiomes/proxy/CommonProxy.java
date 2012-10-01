@@ -30,8 +30,11 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
+import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
 
 public class CommonProxy {
 
@@ -60,6 +63,10 @@ public class CommonProxy {
 				itemstack);
 	}
 
+	public int findGlobalUniqueEntityId() {
+		return EntityRegistry.findGlobalUniqueEntityId();
+	}
+
 	public Optional<ItemStack> getGrassSeed(World world) {
 		return Optional.fromNullable(ForgeHooks.getGrassSeed(world));
 	}
@@ -86,6 +93,26 @@ public class CommonProxy {
 	{
 		return 0;
 	}
+
+	public void registerEntity(Class entityClass, String entityName,
+			Object mod, int entityID, int trackingRange,
+			int updateFrequency, boolean sendsVelocityUpdates)
+	{
+		EntityRegistry.registerModEntity(entityClass, entityName,
+				entityID, mod, trackingRange, updateFrequency,
+				sendsVelocityUpdates);
+	}
+
+	public void registerEntityID(Class entityClass, String entityName,
+			int entityID)
+	{
+		EntityRegistry.registerGlobalEntityID(entityClass, entityName,
+				entityID);
+	}
+
+	public void registerEntityRenderingHandler(
+			Class<EntityScarecrow> entityClass, RenderScarecrow renderer)
+	{}
 
 	public void registerEventHandler(Object target) {
 		MinecraftForge.EVENT_BUS.register(target);

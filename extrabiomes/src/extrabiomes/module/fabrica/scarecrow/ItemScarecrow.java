@@ -1,12 +1,11 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.plugin.scarecrow;
+package extrabiomes.module.fabrica.scarecrow;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Entity;
@@ -27,7 +26,7 @@ public class ItemScarecrow extends Item {
 		{
 			final Optional<Entity> entity = Optional
 					.fromNullable(EntityList.createEntityByName(
-							"scarecrow", checkNotNull(world)));
+							"scarecrow", world));
 
 			if (entity.isPresent()) {
 				entity.get().setLocationAndAngles(x, y, z,
@@ -64,8 +63,7 @@ public class ItemScarecrow extends Item {
 				yOffsetForFence = 0.5D;
 
 			if (spawnCreature(world, x + 0.5D, y + yOffsetForFence,
-					z + 0.5D)
-					&& !checkNotNull(player).capabilities.isCreativeMode)
+					z + 0.5D) && !player.capabilities.isCreativeMode)
 				--itemStack.stackSize;
 
 			return true;

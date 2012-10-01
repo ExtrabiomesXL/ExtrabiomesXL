@@ -1,11 +1,10 @@
-
-package extrabiomes;
-
 /**
  * This work is licensed under the Creative Commons
  * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
+
+package extrabiomes;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -15,6 +14,7 @@ import net.minecraftforge.common.Property;
 import com.google.common.base.Optional;
 
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.module.amica.Amica;
 import extrabiomes.module.cautia.Cautia;
 import extrabiomes.module.fabrica.Fabrica;
 import extrabiomes.module.summa.Summa;
@@ -22,10 +22,9 @@ import extrabiomes.module.summa.Summa;
 enum Module {
 	SUMMA("summa", "Set summa to false to disable the mod.", Summa.class),
 	CAUTIA("cautia", "Set cautia to true to add danger.", Cautia.class),
-	FABRICA("fabrica", "Set fabrica to true to enable craftable items.", Fabrica.class);
-	// MACHINA("machina",
-	// "Set machina to true to in enable higher level tech."),
-	// AMICA("amica", "Set amica to true to enable mod support.");
+	FABRICA("fabrica", "Set fabrica to true to enable craftable items.", Fabrica.class),
+	AMICA("amica", "Set amica to true to enable support for other mods.", Amica.class);
+	// MACHINA("machina", "Set machina to true to in enable higher level tech."),
 
 	private static boolean	controlSettingsLoaded	= false;
 	private static boolean	initialized				= false;

@@ -1,5 +1,5 @@
 
-package extrabiomes.plugin.modsupport.buildcraft;
+package extrabiomes.module.amica.buildcraft;
 
 import java.util.Random;
 

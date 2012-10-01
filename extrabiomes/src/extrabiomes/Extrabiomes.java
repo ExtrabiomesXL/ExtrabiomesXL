@@ -23,7 +23,7 @@ import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.proxy.CommonProxy;
 
-@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.5")
+@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.6")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Extrabiomes {
 
@@ -35,9 +35,14 @@ public class Extrabiomes {
 	private static PluginManagerImpl	pluginManager		= new PluginManagerImpl();
 
 	private static int					nextDefaultBlockID	= 150;
+	private static int					nextDefaultItemID	= 12870;
 
 	public static int getNextDefaultBlockID() {
 		return nextDefaultBlockID++;
+	}
+
+	public static int getNextDefaultItemID() {
+		return nextDefaultItemID++;
 	}
 
 	@Init

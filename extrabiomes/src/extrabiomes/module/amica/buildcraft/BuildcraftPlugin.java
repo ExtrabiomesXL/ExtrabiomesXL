@@ -1,5 +1,10 @@
+/**
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
+ */
 
-package extrabiomes.plugin.modsupport.buildcraft;
+package extrabiomes.module.amica.buildcraft;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -9,9 +14,9 @@ import net.minecraft.src.World;
 
 import com.google.common.base.Optional;
 
+import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.IPlugin;
-import extrabiomes.plugin.modsupport.ModSupport;
 
 public class BuildcraftPlugin implements IPlugin {
 
@@ -51,13 +56,13 @@ public class BuildcraftPlugin implements IPlugin {
 	@Override
 	public void init() {
 		if (modifyWorld && oilStill.isPresent())
-			ModSupport.proxy.registerWorldGenerator(new OilGenerator(
+			Extrabiomes.proxy.registerWorldGenerator(new OilGenerator(
 					oilStill.get().blockID));
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return ModSupport.proxy.isModLoaded("BuildCraft|Energy");
+		return Extrabiomes.proxy.isModLoaded("BuildCraft|Energy");
 	}
 
 	@Override
