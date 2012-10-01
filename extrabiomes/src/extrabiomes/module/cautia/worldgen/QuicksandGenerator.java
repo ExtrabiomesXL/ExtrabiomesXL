@@ -1,10 +1,10 @@
 /**
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.plugin.quicksand;
+package extrabiomes.module.cautia.worldgen;
 
 import java.util.Random;
 
@@ -14,12 +14,12 @@ import net.minecraft.src.World;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 
-public class WorldGenerator implements IWorldGenerator {
+public class QuicksandGenerator implements IWorldGenerator {
 
-	private final WorldGenPit	genPit;
+	private final WorldGenQuicksand	genPit;
 
-	WorldGenerator(int quickSandID) {
-		genPit = new WorldGenPit(quickSandID);
+	public QuicksandGenerator(int quicksandID) {
+		genPit = new WorldGenQuicksand(quicksandID);
 	}
 
 	@Override
@@ -31,7 +31,8 @@ public class WorldGenerator implements IWorldGenerator {
 		chunkZ = chunkZ << 4;
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
 				chunkZ);
-		if (biome != BiomeManager.minijungle.get()) return;
+		if (!BiomeManager.minijungle.isPresent()
+				|| biome != BiomeManager.minijungle.get()) return;
 
 		// 1 to 3 attempts with with a bias toward 2
 		final int attempts = random.nextInt(1) + random.nextInt(1) + 1;

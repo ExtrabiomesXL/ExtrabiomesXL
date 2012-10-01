@@ -32,7 +32,13 @@ public class Extrabiomes {
 	@Instance("ExtrabiomesXL")
 	public static Extrabiomes			instance;
 
-	private static PluginManagerImpl	pluginManager	= new PluginManagerImpl();
+	private static PluginManagerImpl	pluginManager		= new PluginManagerImpl();
+
+	private static int					nextDefaultBlockID	= 150;
+
+	public static int getNextDefaultBlockID() {
+		return nextDefaultBlockID++;
+	}
 
 	@Init
 	public static void init(FMLInitializationEvent event)

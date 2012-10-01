@@ -1,12 +1,10 @@
 /**
- * Copyright (c) Scott Killen and MisterFiber, 2012
- * 
- * This mod is distributed under the terms of the Minecraft Mod Public
- * License 1.0, or MMPL. Please check the contents of the license
- * located in /MMPL-1.0.txt
+ * This work is licensed under the Creative Commons
+ * Attribution-ShareAlike 3.0 Unported License. To view a copy of this
+ * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.plugin.quicksand;
+package extrabiomes.module.cautia.blocks;
 
 import java.util.ArrayList;
 
@@ -18,7 +16,7 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 
-public class BlockQuicksand extends Block {
+class BlockQuicksand extends Block {
 
 	BlockQuicksand(int id) {
 		super(id, 1, Material.sand);
@@ -46,5 +44,4 @@ public class BlockQuicksand extends Block {
 	{
 		entity.setInWeb();
 	}
-
 }

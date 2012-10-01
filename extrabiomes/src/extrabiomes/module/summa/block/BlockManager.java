@@ -7,9 +7,6 @@
 package extrabiomes.module.summa.block;
 
 import static com.google.common.base.Preconditions.checkElementIndex;
-import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_COBBLE;
-import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_ROCK;
-import static extrabiomes.module.summa.block.BlockRedRock.BlockType.RED_ROCK_BRICK;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -292,11 +289,11 @@ public enum BlockManager {
 								.metadata()), blockType.itemName());
 
 			final ItemStack redRockItem = new ItemStack(thisBlock, 1,
-					RED_ROCK.metadata());
+					BlockRedRock.BlockType.RED_ROCK.metadata());
 			final ItemStack redCobbleItem = new ItemStack(thisBlock, 1,
-					RED_COBBLE.metadata());
+					BlockRedRock.BlockType.RED_COBBLE.metadata());
 			final ItemStack redRockBrickItem = new ItemStack(thisBlock,
-					1, RED_ROCK_BRICK.metadata());
+					1, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata());
 
 			OreDictionary.registerOre("rockRed", redRockItem);
 			OreDictionary.registerOre("cobbleRed", redCobbleItem);
@@ -539,18 +536,15 @@ public enum BlockManager {
 		settingsLoaded = true;
 
 		ExtrabiomesLog.info("== Summa Block ID List ==");
-		ExtrabiomesLog.info("  (may be changed by ID");
-		ExtrabiomesLog.info("   Resolver)");
+		ExtrabiomesLog.info("  (may be changed by ID Resolver, if installed.)");
 
 		// Load config settings
-		int defaultID = 150;
 		for (final BlockManager cube : BlockManager.values()) {
 			final Property property = cube.restrictTo256 ? config
 					.getOrCreateRestrictedBlockIdProperty(cube.idKey(),
-							defaultID)
+							Extrabiomes.getNextDefaultBlockID())
 					: config.getOrCreateBlockIdProperty(cube.idKey(),
-							defaultID);
-			++defaultID;
+							Extrabiomes.getNextDefaultBlockID());
 			cube.blockID = property.getInt(0);
 			if (cube.restrictTo256) {
 				final String comment = String.format(TERRAIN_COMMENT,

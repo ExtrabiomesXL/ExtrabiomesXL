@@ -8,19 +8,22 @@ package extrabiomes.module.cautia;
 
 import extrabiomes.IModule;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.module.cautia.blocks.BlockManager;
 
 public class Cautia implements IModule {
 
 	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-
+	public void init() throws InstantiationException,
+			IllegalAccessException
+	{
+		BlockManager.init();
 	}
 
 	@Override
-	public void preInit(ExtrabiomesConfig config) {
-		// TODO Auto-generated method stub
-
+	public void preInit(ExtrabiomesConfig config)
+			throws InstantiationException, IllegalAccessException
+	{
+		BlockManager.preInit(config);
 	}
 
 }
