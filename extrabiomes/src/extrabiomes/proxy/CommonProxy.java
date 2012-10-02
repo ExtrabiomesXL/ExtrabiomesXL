@@ -33,8 +33,6 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
-import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
 
 public class CommonProxy {
 
@@ -110,10 +108,6 @@ public class CommonProxy {
 				entityID);
 	}
 
-	public void registerEntityRenderingHandler(
-			Class<EntityScarecrow> entityClass, RenderScarecrow renderer)
-	{}
-
 	public void registerEventHandler(Object target) {
 		MinecraftForge.EVENT_BUS.register(target);
 	}
@@ -147,6 +141,8 @@ public class CommonProxy {
 	}
 
 	public void registerRenderInformation() {}
+
+	public void registerScarecrowRendering() {}
 
 	public void registerWorldGenerator(IWorldGenerator worldGenerator) {
 		GameRegistry.registerWorldGenerator(worldGenerator);

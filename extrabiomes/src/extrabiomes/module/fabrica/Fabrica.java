@@ -21,8 +21,6 @@ import extrabiomes.IModule;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ItemScarecrow;
-import extrabiomes.module.fabrica.scarecrow.ModelScarecrow;
-import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
 import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
@@ -123,7 +121,8 @@ public class Fabrica implements IModule {
 			Extrabiomes.proxy.registerEntityID(EntityScarecrow.class,
 					NAME, scarecrowEntityID);
 			Extrabiomes.proxy.registerEntity(EntityScarecrow.class,
-					NAME, Extrabiomes.instance, scarecrowEntityID, 300, 2, true);
+					NAME, Extrabiomes.instance, scarecrowEntityID, 300,
+					2, true);
 
 			final IRecipe recipe = new ShapedOreRecipe(scarecrow.get(),
 					new String[] { " p ", "sms", " s " }, 'p',
@@ -141,9 +140,7 @@ public class Fabrica implements IModule {
 				Extrabiomes.getNextDefaultItemID()).getInt(0);
 
 		if (scarecrowID > 0)
-			Extrabiomes.proxy.registerEntityRenderingHandler(
-					EntityScarecrow.class, new RenderScarecrow(
-							new ModelScarecrow(), 0.4F));
+			Extrabiomes.proxy.registerScarecrowRendering();
 	}
 
 }

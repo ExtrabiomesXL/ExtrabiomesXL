@@ -11,6 +11,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
+import extrabiomes.module.fabrica.scarecrow.ModelScarecrow;
 import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
 
 public class ClientProxy extends CommonProxy {
@@ -25,17 +26,16 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
-	public void registerEntityRenderingHandler(
-			Class<EntityScarecrow> entityClass, RenderScarecrow renderer)
-	{
-		RenderingRegistry.registerEntityRenderingHandler(entityClass,
-				renderer);
-	}
-
-	@Override
 	public void registerRenderInformation() {
 		MinecraftForgeClient
 				.preloadTexture("/extrabiomes/extrabiomes.png");
+	}
+
+	@Override
+	public void registerScarecrowRendering() {
+		RenderingRegistry.registerEntityRenderingHandler(
+				EntityScarecrow.class, new RenderScarecrow(
+						new ModelScarecrow(), 0.4F));
 	}
 
 }
