@@ -9,7 +9,7 @@ package extrabiomes.module.summa.block;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 
-class SaplingBonemealEventhandler {
+public class SaplingBonemealEventhandler {
 
 	private final BlockCustomSapling sapling;
 
