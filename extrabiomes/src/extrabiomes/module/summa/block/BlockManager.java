@@ -529,6 +529,9 @@ public enum BlockManager {
 					QUARTERLOG1.block.get(), QUARTERLOG2.block.get(),
 					QUARTERLOG3.block.get(),
 					BlockQuarterLog.BlockType.REDWOOD.metadata());
+			BlockQuarterLog.setQuarterLogs(QUARTERLOG0.block.get(),
+					QUARTERLOG1.block.get(), QUARTERLOG2.block.get(),
+					QUARTERLOG3.block.get());
 		}
 	}
 
@@ -536,7 +539,8 @@ public enum BlockManager {
 		settingsLoaded = true;
 
 		ExtrabiomesLog.info("== Summa Block ID List ==");
-		ExtrabiomesLog.info("  (may be changed by ID Resolver, if installed.)");
+		ExtrabiomesLog
+				.info("  (may be changed by ID Resolver, if installed.)");
 
 		// Load config settings
 		for (final BlockManager cube : BlockManager.values()) {

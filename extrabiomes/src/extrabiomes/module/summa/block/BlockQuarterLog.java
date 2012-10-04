@@ -11,8 +11,12 @@ import java.util.Random;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockLog;
+import net.minecraft.src.BlockPistonBase;
 import net.minecraft.src.CreativeTabs;
+import net.minecraft.src.EntityLiving;
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 
@@ -22,9 +26,7 @@ public class BlockQuarterLog extends BlockLog {
 	}
 
 	enum BlockType {
-		REDWOOD(0, "Redwood"),
-		FIR(1, "Fir"),
-		OAK(2, "Oak");
+		REDWOOD(0, "Redwood Log"), FIR(1, "Fir Log"), OAK(2, "Oak Log");
 
 		private final int		value;
 		private final String	itemName;
@@ -51,7 +53,50 @@ public class BlockQuarterLog extends BlockLog {
 		}
 	}
 
-	private static int	renderId	= 31;
+	private enum Orientation {
+		UD, NS, EW
+	}
+
+	private static int		renderId	= 31;
+
+	private static int		dropID		= 0;
+
+	private static Block	logNW;
+
+	private static Block	logNE;
+	private static Block	logSW;
+	private static Block	logSE;
+
+	private static Orientation determineOrientation(World world, int x,
+			int y, int z, EntityLiving entity)
+	{
+		final int direction = BlockPistonBase.determineOrientation(
+				world, x, y, z, (EntityPlayer) entity);
+
+		switch (direction) {
+			case 0:
+			case 1:
+				return Orientation.UD;
+			case 2:
+			case 3:
+				return Orientation.NS;
+			default:
+				return Orientation.EW;
+		}
+	}
+
+	public static void setDropID(int dropID) {
+		BlockQuarterLog.dropID = dropID;
+	}
+
+	static void setQuarterLogs(Block logNW, Block logNE, Block logSW,
+			Block logSE)
+	{
+		BlockQuarterLog.logNE = logNE;
+		BlockQuarterLog.logNW = logNW;
+		BlockQuarterLog.logSE = logSE;
+		BlockQuarterLog.logSW = logSW;
+	}
 
 	public static void setRenderId(int renderId) {
 		BlockQuarterLog.renderId = renderId;
@@ -316,22 +361,22 @@ public class BlockQuarterLog extends BlockLog {
 		else if (orientation == 4)
 			switch (side) {
 				case 0:
-					offset = 0;
-					break;
-				case 1:
-					offset = 49;
-					break;
-				case 2:
-					offset = 48;
-					break;
-				case 3:
 					offset = 1;
 					break;
+				case 1:
+					offset = 48;
+					break;
+				case 2:
+					offset = 0;
+					break;
+				case 3:
+					offset = 49;
+					break;
 				case 4:
-					offset = 33;
+					offset = 32;
 					break;
 				default:
-					offset = 32;
+					offset = 33;
 			}
 		else if (orientation == 8) switch (side) {
 			case 0:
@@ -357,6 +402,202 @@ public class BlockQuarterLog extends BlockLog {
 
 	@Override
 	public int idDropped(int metadata, Random rand, int unused) {
-		return blockID;
+		return dropID == 0 ? blockID : dropID;
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z,
+			EntityLiving entity)
+	{
+		super.onBlockPlacedBy(world, x, y, z, entity);
+
+		final Orientation orientation = determineOrientation(world, x,
+				y, z, entity);
+
+		if (orientation == Orientation.UD) {
+			final int northID = world.getBlockId(x, y, z - 1);
+			final int northMeta = world.getBlockMetadata(x, y, z - 1);
+			final int southID = world.getBlockId(x, y, z + 1);
+			final int southMeta = world.getBlockMetadata(x, y, z + 1);
+			final int westID = world.getBlockId(x - 1, y, z);
+			final int westMeta = world.getBlockMetadata(x - 1, y, z);
+			final int eastID = world.getBlockId(x + 1, y, z);
+			final int eastMeta = world.getBlockMetadata(x + 1, y, z);
+
+			final int thisMeta = world.getBlockMetadata(x, y, z);
+
+			if (thisMeta == northMeta) {
+				if (northID == logNW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSW.blockID, thisMeta);
+					return;
+				}
+				if (northID == logNE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSE.blockID, thisMeta);
+					return;
+				}
+			}
+			if (thisMeta == eastMeta) {
+				if (eastID == logNE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNW.blockID, thisMeta);
+					return;
+				}
+				if (eastID == logSE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSW.blockID, thisMeta);
+					return;
+				}
+			}
+			if (thisMeta == southMeta) {
+				if (southID == logSW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNW.blockID, thisMeta);
+					return;
+				}
+				if (southID == logSE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNE.blockID, thisMeta);
+					return;
+				}
+			}
+			if (thisMeta == westMeta) {
+				if (westID == logNW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNE.blockID, thisMeta);
+					return;
+				}
+				if (westID == logSW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSE.blockID, thisMeta);
+					return;
+				}
+			}
+		}
+
+		if (orientation == Orientation.NS) {
+			final int upID = world.getBlockId(x, y + 1, z);
+			final int upMeta = world.getBlockMetadata(x, y + 1, z);
+			final int downID = world.getBlockId(x, y - 1, z);
+			final int downMeta = world.getBlockMetadata(x, y - 1, z);
+			final int westID = world.getBlockId(x - 1, y, z);
+			final int westMeta = world.getBlockMetadata(x - 1, y, z);
+			final int eastID = world.getBlockId(x + 1, y, z);
+			final int eastMeta = world.getBlockMetadata(x + 1, y, z);
+
+			final int thisMeta = world.getBlockMetadata(x, y, z);
+
+			if (thisMeta == upMeta) {
+				if (upID == logNW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSW.blockID, thisMeta);
+					return;
+				}
+				if (upID == logNE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSE.blockID, thisMeta);
+					return;
+				}
+			}
+			if (thisMeta == eastMeta) {
+				if (eastID == logNE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNW.blockID, thisMeta);
+					return;
+				}
+				if (eastID == logSE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSW.blockID, thisMeta);
+					return;
+				}
+			}
+			if (thisMeta == downMeta) {
+				if (downID == logSW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNW.blockID, thisMeta);
+					return;
+				}
+				if (downID == logSE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNE.blockID, thisMeta);
+					return;
+				}
+			}
+			if (thisMeta == westMeta) {
+				if (westID == logNW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNE.blockID, thisMeta);
+					return;
+				}
+				if (westID == logSW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSE.blockID, thisMeta);
+					return;
+				}
+			}
+		}
+
+		if (orientation == Orientation.EW) {
+			final int northID = world.getBlockId(x, y, z - 1);
+			final int northMeta = world.getBlockMetadata(x, y, z - 1);
+			final int southID = world.getBlockId(x, y, z + 1);
+			final int southMeta = world.getBlockMetadata(x, y, z + 1);
+			final int upID = world.getBlockId(x, y + 1, z);
+			final int upMeta = world.getBlockMetadata(x, y + 1, z);
+			final int downID = world.getBlockId(x, y - 1, z);
+			final int downMeta = world.getBlockMetadata(x, y - 1, z);
+
+			final int thisMeta = world.getBlockMetadata(x, y, z);
+
+			if (thisMeta == northMeta) {
+				if (northID == logSW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSE.blockID, thisMeta);
+					return;
+				}
+				if (northID == logNE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNW.blockID, thisMeta);
+					return;
+				}
+			}
+			if (thisMeta == upMeta) {
+				if (upID == logNW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSE.blockID, thisMeta);
+					return;
+				}
+				if (upID == logNE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSW.blockID, thisMeta);
+					return;
+				}
+			}
+			if (thisMeta == southMeta) {
+				if (southID == logSE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logSW.blockID, thisMeta);
+					return;
+				}// SE NE
+				if (southID == logNW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNE.blockID, thisMeta);
+					return;
+				}
+			}
+			if (thisMeta == downMeta) {
+				if (downID == logSW.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNE.blockID, thisMeta);
+					return;
+				}
+				if (downID == logSE.blockID) {
+					world.setBlockAndMetadataWithNotify(x, y, z,
+							logNW.blockID, thisMeta);
+					return;
+				}
+			}
+		}
 	}
 }
