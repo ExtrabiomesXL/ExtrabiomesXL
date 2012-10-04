@@ -6,12 +6,18 @@
 
 package extrabiomes.module.summa;
 
+import net.minecraft.src.Item;
+import net.minecraftforge.common.Configuration;
+
+import com.google.common.base.Optional;
+
 import extrabiomes.Extrabiomes;
 import extrabiomes.IModule;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.block.BlockManager;
+import extrabiomes.module.summa.tool.LogTurner;
 import extrabiomes.module.summa.worldgen.MarshGenerator;
 import extrabiomes.module.summa.worldgen.MountainDesertGenerator;
 import extrabiomes.module.summa.worldgen.MountainRidgeGenerator;
@@ -20,6 +26,10 @@ import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
 public class Summa implements IModule {
 
 	private static BiomeManagerImpl	biomeManager	= new BiomeManagerImpl();
+
+	static Optional<Item>			logTurner		= Optional.absent();
+
+	private static int				logTurnerID		= 0;
 
 	private static void registerWorldGenerators() {
 		if (BiomeManager.marsh.isPresent())
@@ -39,12 +49,22 @@ public class Summa implements IModule {
 	}
 
 	@Override
-	public void init() throws InstantiationException, IllegalAccessException {
+	public void init() throws InstantiationException,
+			IllegalAccessException
+	{
 
 		registerWorldGenerators();
 
 		biomeManager.init();
 		BlockManager.init();
+
+		if (logTurnerID > 0) {
+			logTurner = Optional.of(new LogTurner(logTurnerID)
+					.setItemName("logturner"));
+
+			Extrabiomes.proxy.addName(logTurner.get(), "Log Turner");
+		}
+
 	}
 
 	@Override
@@ -53,6 +73,11 @@ public class Summa implements IModule {
 	{
 		biomeManager.preInit(config);
 		BlockManager.preInit(config);
+
+		logTurnerID = config.getOrCreateIntProperty("logturner.id",
+				Configuration.CATEGORY_ITEM,
+				Extrabiomes.getNextDefaultItemID()).getInt(0);
+
 	}
 
 }
