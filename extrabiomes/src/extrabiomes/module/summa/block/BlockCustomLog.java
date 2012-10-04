@@ -13,13 +13,14 @@ import net.minecraft.src.Block;
 import net.minecraft.src.BlockLog;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.api.ITurnableLog;
 
-class BlockCustomLog extends BlockLog {
+class BlockCustomLog extends BlockLog implements ITurnableLog {
 	enum BlockType {
-		FIR(0, "Fir Log"),
-		ACACIA(1, "Acacia Log");
+		FIR(0, "Fir Log"), ACACIA(1, "Acacia Log");
 
 		private final int		value;
 		private final String	itemName;
@@ -81,5 +82,15 @@ class BlockCustomLog extends BlockLog {
 	@Override
 	public int idDropped(int metadata, Random rand, int unused) {
 		return blockID;
+	}
+
+	@Override
+	public void onLogTurner(World world, int x, int y, int z) {
+		final int metadata = world.getBlockMetadata(x, y, z);
+		int orientation = metadata & 12;
+		final int type = metadata & 3;
+
+		orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
+		world.setBlockAndMetadata(x, y, z, blockID, type | orientation);
 	}
 }

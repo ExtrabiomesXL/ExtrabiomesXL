@@ -19,8 +19,9 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.api.ITurnableLog;
 
-public class BlockQuarterLog extends BlockLog {
+public class BlockQuarterLog extends BlockLog implements ITurnableLog {
 	enum BarkOn {
 		SW, SE, NW, NE
 	}
@@ -198,6 +199,13 @@ public class BlockQuarterLog extends BlockLog {
 				offset = 1;
 		}
 		return offset;
+	}
+
+	private int getNextBlockID() {
+		if (blockID == logSW.blockID) return logNE.blockID;
+		if (blockID == logNE.blockID) return logNW.blockID;
+		if (blockID == logNW.blockID) return logSE.blockID;
+		return logSW.blockID;
 	}
 
 	private int getNWTextureOffset(int side, final int orientation) {
@@ -579,7 +587,7 @@ public class BlockQuarterLog extends BlockLog {
 					world.setBlockAndMetadataWithNotify(x, y, z,
 							logSW.blockID, thisMeta);
 					return;
-				}// SE NE
+				}
 				if (southID == logNW.blockID) {
 					world.setBlockAndMetadataWithNotify(x, y, z,
 							logNE.blockID, thisMeta);
@@ -600,4 +608,20 @@ public class BlockQuarterLog extends BlockLog {
 			}
 		}
 	}
+
+	@Override
+	public void onLogTurner(World world, int x, int y, int z) {
+		final int metadata = world.getBlockMetadata(x, y, z);
+		int orientation = metadata & 12;
+		final int type = metadata & 3;
+
+		orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
+
+		int blockToSet = blockID;
+		if (orientation == 0) blockToSet = getNextBlockID();
+
+		world.setBlockAndMetadata(x, y, z, blockToSet, type
+				| orientation);
+	}
+
 }
