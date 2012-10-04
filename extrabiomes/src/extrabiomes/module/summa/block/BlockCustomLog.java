@@ -18,8 +18,8 @@ import cpw.mods.fml.common.asm.SideOnly;
 
 class BlockCustomLog extends BlockLog {
 	enum BlockType {
-		FIR(0, "Fir"),
-		ACACIA(1, "Acacia");
+		FIR(0, "Fir Log"),
+		ACACIA(1, "Acacia Log");
 
 		private final int		value;
 		private final String	itemName;
