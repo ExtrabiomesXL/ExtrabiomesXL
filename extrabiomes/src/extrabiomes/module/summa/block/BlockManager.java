@@ -49,7 +49,7 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("autumnleaves");
+			thisBlock.setBlockName("extrabiomes.autumnleaves");
 			proxy.registerBlock(
 					thisBlock,
 					extrabiomes.module.summa.block.ItemCustomLeaves.class);
@@ -84,7 +84,7 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("cattail");
+			thisBlock.setBlockName("extrabiomes.cattail");
 			proxy.registerBlock(thisBlock,
 					extrabiomes.module.summa.block.ItemCatTail.class);
 
@@ -107,7 +107,7 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("crackedsand");
+			thisBlock.setBlockName("extrabiomes.crackedsand");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
 			proxy.registerBlock(thisBlock);
 			proxy.addName(thisBlock, "Cracked Sand");
@@ -127,7 +127,7 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("flower");
+			thisBlock.setBlockName("extrabiomes.flower");
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
 
@@ -156,7 +156,7 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("grass");
+			thisBlock.setBlockName("extrabiomes.grass");
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
 
@@ -219,7 +219,7 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("greenleaves");
+			thisBlock.setBlockName("extrabiomes.greenleaves");
 			proxy.registerBlock(
 					thisBlock,
 					extrabiomes.module.summa.block.ItemCustomLeaves.class);
@@ -257,7 +257,7 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("leafpile");
+			thisBlock.setBlockName("extrabiomes.leafpile");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
 			proxy.registerBlock(thisBlock);
 			proxy.addName(thisBlock, "Leaf Pile");
@@ -278,7 +278,7 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("redrock");
+			thisBlock.setBlockName("extrabiomes.redrock");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
@@ -312,7 +312,7 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("sapling");
+			thisBlock.setBlockName("extrabiomes.sapling");
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
 
@@ -344,9 +344,10 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("customlog");
+			thisBlock.setBlockName("extrabiomes.customlog");
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
+			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 
 			for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType
 					.values())
@@ -376,9 +377,10 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("quarterlog.NW");
+			thisBlock.setBlockName("extrabiomes.quarterlog.NW");
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
+			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
@@ -403,9 +405,10 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("quarterlog.NE");
+			thisBlock.setBlockName("extrabiomes.quarterlog.NE");
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
+			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
@@ -430,9 +433,10 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("quarterlog.SW");
+			thisBlock.setBlockName("extrabiomes.quarterlog.SW");
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
+			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
@@ -457,9 +461,10 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("quarterlog.SE");
+			thisBlock.setBlockName("extrabiomes.quarterlog.SE");
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
+			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
