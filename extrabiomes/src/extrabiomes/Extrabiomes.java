@@ -23,7 +23,7 @@ import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.proxy.CommonProxy;
 
-@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.6")
+@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.0.7")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Extrabiomes {
 
