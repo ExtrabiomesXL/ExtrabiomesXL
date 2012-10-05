@@ -22,7 +22,7 @@ import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.proxy.CommonProxy;
 
 public enum BlockManager {
-	PLANK {
+	PLANKS {
 		@Override
 		protected void create() {
 			block = Optional.of(new BlockCustomWood(blockID));
@@ -61,7 +61,8 @@ public enum BlockManager {
 	WOODSLAB {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCustomWoodSlab(blockID, false));
+			block = Optional
+					.of(new BlockCustomWoodSlab(blockID, false));
 		}
 
 		@Override
@@ -86,27 +87,31 @@ public enum BlockManager {
 
 			thisBlock.setBlockName("extrabiomes.woodslab");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-			ItemWoodSlab.setSlabs((BlockHalfSlab) WOODSLAB.block.get(), (BlockHalfSlab) block.get());
+			ItemWoodSlab.setSlabs((BlockHalfSlab) WOODSLAB.block.get(),
+					(BlockHalfSlab) block.get());
 			proxy.registerBlock(WOODSLAB.block.get(),
 					extrabiomes.module.fabrica.block.ItemWoodSlab.class);
 			proxy.registerBlock(thisBlock,
 					extrabiomes.module.fabrica.block.ItemWoodSlab.class);
 			for (final BlockCustomWoodSlab.BlockType blockType : BlockCustomWoodSlab.BlockType
-					.values()) {
+					.values())
+			{
 				proxy.addName(
 						new ItemStack(thisBlock, 1, blockType
 								.metadata()), blockType.itemName());
-				proxy.addName(
-						new ItemStack(WOODSLAB.block.get(), 1, blockType
-								.metadata()), blockType.itemName());
+				proxy.addName(new ItemStack(WOODSLAB.block.get(), 1,
+						blockType.metadata()), blockType.itemName());
 			}
 
-			final ItemStack firSlabItem = new ItemStack(WOODSLAB.block.get(), 1,
+			final ItemStack firSlabItem = new ItemStack(
+					WOODSLAB.block.get(), 1,
 					BlockCustomWoodSlab.BlockType.FIR.metadata());
-			final ItemStack redwoodSlabItem = new ItemStack(WOODSLAB.block.get(),
-					1, BlockCustomWoodSlab.BlockType.REDWOOD.metadata());
-			final ItemStack acaciaSlabItem = new ItemStack(WOODSLAB.block.get(),
-					1, BlockCustomWoodSlab.BlockType.ACACIA.metadata());
+			final ItemStack redwoodSlabItem = new ItemStack(
+					WOODSLAB.block.get(), 1,
+					BlockCustomWoodSlab.BlockType.REDWOOD.metadata());
+			final ItemStack acaciaSlabItem = new ItemStack(
+					WOODSLAB.block.get(), 1,
+					BlockCustomWoodSlab.BlockType.ACACIA.metadata());
 
 			OreDictionary.registerOre("slabWood", firSlabItem);
 			OreDictionary.registerOre("slabWood", acaciaSlabItem);
@@ -114,6 +119,75 @@ public enum BlockManager {
 			OreDictionary.registerOre("slabFir", firSlabItem);
 			OreDictionary.registerOre("slabAcacia", acaciaSlabItem);
 			OreDictionary.registerOre("slabRedwood", redwoodSlabItem);
+		}
+	},
+	REDWOODSTAIRS {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockWoodStairs(blockID,
+					PLANKS.block.get(),
+					BlockCustomWood.BlockType.REDWOOD.metadata()));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("extrabiomes.stairsRedwood");
+			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+			proxy.registerBlock(thisBlock);
+
+			proxy.addName(thisBlock, "Redwood Stairs");
+
+			proxy.registerOre("stairsWood", thisBlock);
+			proxy.registerOre("stairsRedwood", thisBlock);
+		}
+	},
+	FIRSTAIRS {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockWoodStairs(blockID,
+					PLANKS.block.get(), BlockCustomWood.BlockType.FIR
+							.metadata()));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("extrabiomes.stairsFir");
+			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+			proxy.registerBlock(thisBlock);
+
+			proxy.addName(thisBlock, "Fir Wood Stairs");
+
+			proxy.registerOre("stairsWood", thisBlock);
+			proxy.registerOre("stairsFir", thisBlock);
+		}
+	},
+	ACACIASTAIRS {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockWoodStairs(blockID,
+					PLANKS.block.get(),
+					BlockCustomWood.BlockType.ACACIA.metadata()));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("extrabiomes.stairAcacia");
+			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+			proxy.registerBlock(thisBlock);
+
+			proxy.addName(thisBlock, "Acacia Wood Stairs");
+
+			proxy.registerOre("stairsWood", thisBlock);
+			proxy.registerOre("stairsAcacia", thisBlock);
 		}
 	};
 
@@ -152,7 +226,14 @@ public enum BlockManager {
 		}
 
 		ExtrabiomesLog.info("=== End Block ID List ===");
-		
+
+		if (PLANKS.blockID == 0) {
+			WOODSLAB.blockID = 0;
+			FIRSTAIRS.blockID = 0;
+			REDWOODSTAIRS.blockID = 0;
+			ACACIASTAIRS.blockID = 0;
+		}
+
 		if (WOODSLAB.blockID == 0 || DOUBLEWOODSLAB.blockID == 0) {
 			WOODSLAB.blockID = 0;
 			DOUBLEWOODSLAB.blockID = 0;
