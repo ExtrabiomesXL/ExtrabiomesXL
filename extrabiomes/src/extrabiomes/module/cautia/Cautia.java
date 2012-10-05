@@ -8,7 +8,7 @@ package extrabiomes.module.cautia;
 
 import extrabiomes.IModule;
 import extrabiomes.configuration.ExtrabiomesConfig;
-import extrabiomes.module.cautia.blocks.BlockManager;
+import extrabiomes.module.cautia.block.BlockManager;
 
 public class Cautia implements IModule {
 

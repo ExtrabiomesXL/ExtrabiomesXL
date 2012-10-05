@@ -4,7 +4,7 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.module.cautia.blocks;
+package extrabiomes.module.cautia.block;
 
 import static com.google.common.base.Preconditions.checkElementIndex;
 
@@ -40,7 +40,7 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = block.get();
 
-			thisBlock.setBlockName("quicksand");
+			thisBlock.setBlockName("extrabiomes.quicksand");
 			proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
 			proxy.registerBlock(thisBlock);
 

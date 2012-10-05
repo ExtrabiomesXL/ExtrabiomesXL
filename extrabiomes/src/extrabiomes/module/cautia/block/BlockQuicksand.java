@@ -4,7 +4,7 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.module.cautia.blocks;
+package extrabiomes.module.cautia.block;
 
 import java.util.ArrayList;
 
