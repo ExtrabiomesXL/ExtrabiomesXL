@@ -20,8 +20,8 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.api.ITurnableLog;
 
-class BlockCustomWood extends BlockWood {
-	enum BlockType {
+public class BlockCustomWood extends BlockWood {
+	public enum BlockType {
 		REDWOOD(0, "Redwood Planks"),
 		FIR(1, "Fir Wood Plank"),
 		ACACIA(2, "Acacia Wood Plank");

@@ -11,7 +11,7 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 
 public class BlockCustomWoodSlab extends BlockWoodSlab {
-	enum BlockType {
+	public enum BlockType {
 		REDWOOD(0, "Redwood Slab"),
 		FIR(1, "Fir Wood Slab"),
 		ACACIA(2, "Acacia Wood Slab");
