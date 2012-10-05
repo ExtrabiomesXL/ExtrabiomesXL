@@ -27,11 +27,9 @@ import extrabiomes.api.BiomeManager;
 
 class BlockCustomTallGrass extends BlockFlower implements IShearable {
 	enum BlockType {
-		BROWN(0, "Brown Grass"),
-		SHORT_BROWN(1, "Short Brown Grass"),
-		DEAD(2, "Dead Grass"),
-		DEAD_TALL(3, "Tall Dead Grass"),
-		DEAD_YELLOW(4, "Yellow Dead Grass");
+		BROWN(0, "Brown Grass"), SHORT_BROWN(1, "Short Brown Grass"), DEAD(
+				2, "Dead Grass"), DEAD_TALL(3, "Tall Dead Grass"), DEAD_YELLOW(
+				4, "Yellow Dead Grass");
 
 		private final int		value;
 		private final String	itemName;
@@ -67,6 +65,7 @@ class BlockCustomTallGrass extends BlockFlower implements IShearable {
 		setStepSound(soundGrassFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 		setCreativeTab(CreativeTabs.tabDecorations);
+		setBurnProperties(blockID, 60, 100);
 	}
 
 	@Override
