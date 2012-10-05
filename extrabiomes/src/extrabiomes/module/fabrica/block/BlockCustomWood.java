@@ -22,7 +22,9 @@ import extrabiomes.api.ITurnableLog;
 
 class BlockCustomWood extends BlockWood {
 	enum BlockType {
-		REDWOOD(0, "Redwood Plank"), FIR(1, "Fir  Plank"), ACACIA(2, "Acacia  Plank");
+		REDWOOD(0, "Redwood Planks"),
+		FIR(1, "Fir Wood Plank"),
+		ACACIA(2, "Acacia Wood Plank");
 
 		private final int		value;
 		private final String	itemName;
