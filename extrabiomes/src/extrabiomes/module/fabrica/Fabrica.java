@@ -19,6 +19,7 @@ import extrabiomes.IModule;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.module.fabrica.block.BlockManager;
 import extrabiomes.module.fabrica.recipe.CookBook;
+import extrabiomes.module.fabrica.recipe.WoodCookBook;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ItemScarecrow;
 
@@ -34,6 +35,7 @@ public class Fabrica implements IModule {
 	{
 		BlockManager.init();
 		CookBook.init();
+		WoodCookBook.init();
 
 		if (scarecrowID > 0) {
 			final String NAME = "scarecrow";
