@@ -9,6 +9,7 @@ package extrabiomes.module.fabrica.block;
 import java.util.Locale;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.BlockHalfSlab;
 import net.minecraft.src.ItemStack;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.oredict.OreDictionary;
@@ -56,6 +57,64 @@ public enum BlockManager {
 			OreDictionary.registerOre("plankAcacia", acaciaPlankItem);
 			OreDictionary.registerOre("plankRedwood", redwoodPlankItem);
 		}
+	},
+	WOODSLAB {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockCustomWoodSlab(blockID, false));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("extrabiomes.woodslab");
+			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+		}
+	},
+	DOUBLEWOODSLAB {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockCustomWoodSlab(blockID, true));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("extrabiomes.woodslab");
+			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+			ItemWoodSlab.setSlabs((BlockHalfSlab) WOODSLAB.block.get(), (BlockHalfSlab) block.get());
+			proxy.registerBlock(WOODSLAB.block.get(),
+					extrabiomes.module.fabrica.block.ItemWoodSlab.class);
+			proxy.registerBlock(thisBlock,
+					extrabiomes.module.fabrica.block.ItemWoodSlab.class);
+			for (final BlockCustomWoodSlab.BlockType blockType : BlockCustomWoodSlab.BlockType
+					.values()) {
+				proxy.addName(
+						new ItemStack(thisBlock, 1, blockType
+								.metadata()), blockType.itemName());
+				proxy.addName(
+						new ItemStack(WOODSLAB.block.get(), 1, blockType
+								.metadata()), blockType.itemName());
+			}
+
+			final ItemStack firSlabItem = new ItemStack(WOODSLAB.block.get(), 1,
+					BlockCustomWoodSlab.BlockType.FIR.metadata());
+			final ItemStack redwoodSlabItem = new ItemStack(WOODSLAB.block.get(),
+					1, BlockCustomWoodSlab.BlockType.REDWOOD.metadata());
+			final ItemStack acaciaSlabItem = new ItemStack(WOODSLAB.block.get(),
+					1, BlockCustomWoodSlab.BlockType.ACACIA.metadata());
+
+			OreDictionary.registerOre("slabWood", firSlabItem);
+			OreDictionary.registerOre("slabWood", acaciaSlabItem);
+			OreDictionary.registerOre("slabWood", redwoodSlabItem);
+			OreDictionary.registerOre("slabFir", firSlabItem);
+			OreDictionary.registerOre("slabAcacia", acaciaSlabItem);
+			OreDictionary.registerOre("slabRedwood", redwoodSlabItem);
+		}
 	};
 
 	private static boolean	settingsLoaded	= false;
@@ -93,6 +152,11 @@ public enum BlockManager {
 		}
 
 		ExtrabiomesLog.info("=== End Block ID List ===");
+		
+		if (WOODSLAB.blockID == 0 || DOUBLEWOODSLAB.blockID == 0) {
+			WOODSLAB.blockID = 0;
+			DOUBLEWOODSLAB.blockID = 0;
+		}
 	}
 
 	public static void preInit(ExtrabiomesConfig config)
