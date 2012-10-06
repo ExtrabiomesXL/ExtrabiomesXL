@@ -67,6 +67,12 @@ public class BlockRedRock extends Block {
 		return metadata == RED_ROCK_BRICK.metadata() ? RED_ROCK_BRICK
 				.metadata() : RED_COBBLE.metadata();
 	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public int getDamageValue(World world, int x, int y, int z) {
+		return world.getBlockMetadata(x, y, z);
+	}
 
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
