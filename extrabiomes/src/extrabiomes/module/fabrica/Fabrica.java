@@ -38,7 +38,7 @@ public class Fabrica implements IModule {
 		WoodCookBook.init();
 
 		if (scarecrowID > 0) {
-			final String NAME = "scarecrow";
+			final String NAME = "Scarecrow";
 			scarecrow = Optional.of(new ItemScarecrow(scarecrowID)
 					.setItemName(NAME).setIconIndex(96));
 
