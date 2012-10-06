@@ -9,19 +9,20 @@ package extrabiomes.module.summa.tool;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.ItemTool;
+import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import extrabiomes.api.ITurnableLog;
 
-public class LogTurner extends Item {
+public class LogTurner extends ItemTool {
 
 	public LogTurner(int id) {
-		super(id);
+		super(id, 1, EnumToolMaterial.WOOD, new Block[] {});
 		setIconIndex(112);
-		setMaxStackSize(1);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabTools);
 	}
 
 	@Override
