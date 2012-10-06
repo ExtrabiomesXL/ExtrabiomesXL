@@ -72,6 +72,9 @@ public enum BlockManager {
 
 			thisBlock.setBlockName("extrabiomes.woodslab");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+
+			proxy.registerFuelHandler(new FuelHandlerWoodSlabs(
+					thisBlock.blockID));
 		}
 	},
 	DOUBLEWOODSLAB {
@@ -259,7 +262,8 @@ public enum BlockManager {
 		@Override
 		protected void create() {
 			block = Optional.of(new BlockCustomStairs(blockID,
-					extrabiomes.module.summa.block.BlockManager.REDROCK.getBlock().get(),
+					extrabiomes.module.summa.block.BlockManager.REDROCK
+							.getBlock().get(),
 					BlockRedRockSlab.BlockType.RED_COBBLE.metadata()));
 		}
 
@@ -281,8 +285,10 @@ public enum BlockManager {
 		@Override
 		protected void create() {
 			block = Optional.of(new BlockCustomStairs(blockID,
-					extrabiomes.module.summa.block.BlockManager.REDROCK.getBlock().get(),
-					BlockRedRockSlab.BlockType.RED_ROCK_BRICK.metadata()));
+					extrabiomes.module.summa.block.BlockManager.REDROCK
+							.getBlock().get(),
+					BlockRedRockSlab.BlockType.RED_ROCK_BRICK
+							.metadata()));
 		}
 
 		@Override
