@@ -16,6 +16,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
+import extrabiomes.module.fabrica.block.BlockRedRockSlab;
 import extrabiomes.module.summa.Summa;
 import extrabiomes.module.summa.block.BlockCustomLog;
 import extrabiomes.module.summa.block.BlockManager;
@@ -144,6 +145,48 @@ public class CookBook {
 					BlockRedRock.BlockType.RED_COBBLE.metadata(),
 					redRockItem);
 		}
+
+		final Optional<? extends Block> slab = extrabiomes.module.fabrica.block.BlockManager.REDROCKSLAB
+				.getBlock();
+
+		if (slab.isPresent()) {
+			recipe = new ShapedOreRecipe(new ItemStack(slab.get(), 6,
+					BlockRedRockSlab.BlockType.RED_ROCK.metadata()),
+					new String[] { "rrr" }, 'r', "rockRed");
+			Extrabiomes.proxy.addRecipe(recipe);
+
+			recipe = new ShapedOreRecipe(new ItemStack(slab.get(), 6,
+					BlockRedRockSlab.BlockType.RED_COBBLE.metadata()),
+					new String[] { "rrr" }, 'r', "cobbleRed");
+			Extrabiomes.proxy.addRecipe(recipe);
+
+			recipe = new ShapedOreRecipe(new ItemStack(slab.get(), 6,
+					BlockRedRockSlab.BlockType.RED_ROCK_BRICK
+							.metadata()), new String[] { "rrr" }, 'r',
+					"brickRedRock");
+			Extrabiomes.proxy.addRecipe(recipe);
+		}
+
+		Optional<? extends Block> stairs = extrabiomes.module.fabrica.block.BlockManager.REDCOBBLESTAIRS
+				.getBlock();
+
+		if (stairs.isPresent()) {
+			recipe = new ShapedOreRecipe(
+					new ItemStack(stairs.get(), 4), new String[] {
+							"r  ", "rr ", "rrr" }, 'r', "cobbleRed");
+			Extrabiomes.proxy.addRecipe(recipe);
+		}
+
+		stairs = extrabiomes.module.fabrica.block.BlockManager.REDROCKBRICKSTAIRS
+				.getBlock();
+
+		if (stairs.isPresent()) {
+			recipe = new ShapedOreRecipe(
+					new ItemStack(stairs.get(), 4), new String[] {
+							"r  ", "rr ", "rrr" }, 'r', "brickRedRock");
+			Extrabiomes.proxy.addRecipe(recipe);
+		}
+
 	}
 
 	public static void init() {
