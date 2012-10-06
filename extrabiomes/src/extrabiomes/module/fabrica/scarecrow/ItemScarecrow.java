@@ -26,7 +26,7 @@ public class ItemScarecrow extends Item {
 		{
 			final Optional<Entity> entity = Optional
 					.fromNullable(EntityList.createEntityByName(
-							"scarecrow", world));
+							"Scarecrow", world));
 
 			if (entity.isPresent()) {
 				entity.get().setLocationAndAngles(x, y, z,

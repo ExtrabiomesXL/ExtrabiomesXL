@@ -197,6 +197,12 @@ class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 				+ (!isOpaqueCube() ? 0 : 1);
 	}
 
+	@SideOnly(Side.CLIENT)
+	@Override
+	public int getDamageValue(World world, int x, int y, int z) {
+		return unmarkedMetadata(world.getBlockMetadata(x, y, z));
+	}
+
 	@Override
 	public int getRenderColor(int metadata) {
 		metadata = unmarkedMetadata(metadata);

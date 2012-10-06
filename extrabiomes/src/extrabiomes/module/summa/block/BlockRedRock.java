@@ -83,6 +83,12 @@ public class BlockRedRock extends Block {
 								metadata);
 	}
 
+	@SideOnly(Side.CLIENT)
+	@Override
+	public int getDamageValue(World world, int x, int y, int z) {
+		return world.getBlockMetadata(x, y, z);
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
