@@ -17,7 +17,9 @@ import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.module.summa.Summa;
+import extrabiomes.module.summa.block.BlockCustomLog;
 import extrabiomes.module.summa.block.BlockManager;
+import extrabiomes.module.summa.block.BlockQuarterLog;
 import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
 
@@ -70,6 +72,46 @@ public class CookBook {
 		proxy.addRecipe(recipe);
 	}
 
+	private static void addLogSmelting() {
+
+		final ItemStack charcoal = new ItemStack(Item.coal, 1, 1);
+
+		if (BlockManager.CUSTOMLOG.getBlock().isPresent())
+			for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType
+					.values())
+				Extrabiomes.proxy.addSmelting(BlockManager.CUSTOMLOG
+						.getBlock().get().blockID, type.metadata(),
+						charcoal);
+
+		if (BlockManager.QUARTERLOG0.getBlock().isPresent())
+			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
+					.values())
+				Extrabiomes.proxy.addSmelting(BlockManager.QUARTERLOG0
+						.getBlock().get().blockID, type.metadata(),
+						charcoal);
+
+		if (BlockManager.QUARTERLOG1.getBlock().isPresent())
+			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
+					.values())
+				Extrabiomes.proxy.addSmelting(BlockManager.QUARTERLOG1
+						.getBlock().get().blockID, type.metadata(),
+						charcoal);
+
+		if (BlockManager.QUARTERLOG2.getBlock().isPresent())
+			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
+					.values())
+				Extrabiomes.proxy.addSmelting(BlockManager.QUARTERLOG2
+						.getBlock().get().blockID, type.metadata(),
+						charcoal);
+
+		if (BlockManager.QUARTERLOG3.getBlock().isPresent())
+			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
+					.values())
+				Extrabiomes.proxy.addSmelting(BlockManager.QUARTERLOG3
+						.getBlock().get().blockID, type.metadata(),
+						charcoal);
+	}
+
 	private static void addLogTurnerRecipe() {
 		final Optional<Item> logTurner = Summa.getLogTurner();
 
@@ -110,5 +152,6 @@ public class CookBook {
 		addFlowerRecipes();
 		addLeafPileRecipes();
 		addLogTurnerRecipe();
+		addLogSmelting();
 	}
 }

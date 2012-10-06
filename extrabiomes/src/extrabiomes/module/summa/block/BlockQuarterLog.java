@@ -26,8 +26,10 @@ public class BlockQuarterLog extends BlockLog implements ITurnableLog {
 		SW, SE, NW, NE
 	}
 
-	enum BlockType {
-		REDWOOD(0, "Redwood Log"), FIR(1, "Fir Log"), OAK(2, "Oak Log");
+	public enum BlockType {
+		REDWOOD(0, "Redwood Log"),
+		FIR(1, "Fir Log"),
+		OAK(2, "Oak Log");
 
 		private final int		value;
 		private final String	itemName;

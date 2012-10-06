@@ -18,9 +18,10 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.api.ITurnableLog;
 
-class BlockCustomLog extends BlockLog implements ITurnableLog {
-	enum BlockType {
-		FIR(0, "Fir Log"), ACACIA(1, "Acacia Log");
+public class BlockCustomLog extends BlockLog implements ITurnableLog {
+	public enum BlockType {
+		FIR(0, "Fir Log"),
+		ACACIA(1, "Acacia Log");
 
 		private final int		value;
 		private final String	itemName;
