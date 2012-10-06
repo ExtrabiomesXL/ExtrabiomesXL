@@ -189,6 +189,69 @@ public enum BlockManager {
 			proxy.registerOre("stairsWood", thisBlock);
 			proxy.registerOre("stairsAcacia", thisBlock);
 		}
+	},
+	REDROCKSLAB {
+		@Override
+		protected void create() {
+			block = Optional
+					.of(new BlockRedRockSlab(blockID, false));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("extrabiomes.redrockslab");
+			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+		}
+	},
+	DOUBLEREDROCKSLAB {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockRedRockSlab(blockID, true));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("extrabiomes.redrockslab");
+			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+			ItemRedRockSlab.setSlabs((BlockHalfSlab) REDROCKSLAB.block.get(),
+					(BlockHalfSlab) block.get());
+			proxy.registerBlock(REDROCKSLAB.block.get(),
+					extrabiomes.module.fabrica.block.ItemRedRockSlab.class);
+			proxy.registerBlock(thisBlock,
+					extrabiomes.module.fabrica.block.ItemRedRockSlab.class);
+			for (final BlockRedRockSlab.BlockType blockType : BlockRedRockSlab.BlockType
+					.values())
+			{
+				proxy.addName(
+						new ItemStack(thisBlock, 1, blockType
+								.metadata()), blockType.itemName());
+				proxy.addName(new ItemStack(REDROCKSLAB.block.get(), 1,
+						blockType.metadata()), blockType.itemName());
+			}
+
+			final ItemStack firSlabItem = new ItemStack(
+					WOODSLAB.block.get(), 1,
+					BlockCustomWoodSlab.BlockType.FIR.metadata());
+			final ItemStack redwoodSlabItem = new ItemStack(
+					WOODSLAB.block.get(), 1,
+					BlockCustomWoodSlab.BlockType.REDWOOD.metadata());
+			final ItemStack acaciaSlabItem = new ItemStack(
+					WOODSLAB.block.get(), 1,
+					BlockCustomWoodSlab.BlockType.ACACIA.metadata());
+
+			OreDictionary.registerOre("slabWood", firSlabItem);
+			OreDictionary.registerOre("slabWood", acaciaSlabItem);
+			OreDictionary.registerOre("slabWood", redwoodSlabItem);
+			OreDictionary.registerOre("slabFir", firSlabItem);
+			OreDictionary.registerOre("slabAcacia", acaciaSlabItem);
+			OreDictionary.registerOre("slabRedwood", redwoodSlabItem);
+		}
 	};
 
 	private static boolean	settingsLoaded	= false;
@@ -237,6 +300,15 @@ public enum BlockManager {
 		if (WOODSLAB.blockID == 0 || DOUBLEWOODSLAB.blockID == 0) {
 			WOODSLAB.blockID = 0;
 			DOUBLEWOODSLAB.blockID = 0;
+		}
+
+		if (!extrabiomes.module.summa.block.BlockManager.REDROCK.getBlock().isPresent()) {
+			REDROCKSLAB.blockID = 0;
+		}
+
+		if (REDROCKSLAB.blockID == 0 || DOUBLEREDROCKSLAB.blockID == 0) {
+			REDROCKSLAB.blockID = 0;
+			DOUBLEREDROCKSLAB.blockID = 0;
 		}
 	}
 
