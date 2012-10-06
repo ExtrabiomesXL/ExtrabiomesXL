@@ -162,8 +162,13 @@ class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
 	@Override
 	protected int damageDropped(int metadata) {
-
 		return unmarkedMetadata(metadata) + 4;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public int getDamageValue(World world, int x, int y, int z) {
+		return unmarkedMetadata(world.getBlockMetadata(x, y, z));
 	}
 
 	private void doSaplingDrop(World world, int x, int y, int z,

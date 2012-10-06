@@ -70,7 +70,7 @@ public class PluginManagerImpl extends PluginManager {
 		final List<IPlugin> pluginList = new ArrayList<IPlugin>(
 				plugins.values());
 
-		ExtrabiomesLog.info("Revoming disabled plugins...");
+		ExtrabiomesLog.info("Removing disabled plugins...");
 		for (final IPlugin plugin : pluginList)
 			if (!plugin.isEnabled()) {
 				ExtrabiomesLog.info("Inactive plugin: %s",
