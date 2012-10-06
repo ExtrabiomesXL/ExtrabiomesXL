@@ -12,7 +12,11 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import com.google.common.base.Optional;
+
 import extrabiomes.Extrabiomes;
+import extrabiomes.module.summa.Summa;
 import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
@@ -66,6 +70,16 @@ public class CookBook {
 		proxy.addRecipe(recipe);
 	}
 
+	private static void addLogTurnerRecipe() {
+		final Optional<Item> logTurner = Summa.getLogTurner();
+
+		if (logTurner.isPresent()) {
+			final IRecipe recipe = new ShapedOreRecipe(logTurner.get(),
+					new String[] { "ss", " s", "ss" }, 's', Item.stick);
+			Extrabiomes.proxy.addRecipe(recipe);
+		}
+	}
+
 	private static void addRedRockRecipes() {
 		final CommonProxy proxy = Extrabiomes.proxy;
 		IRecipe recipe = new ShapelessOreRecipe(new ItemStack(
@@ -95,6 +109,6 @@ public class CookBook {
 		addRedRockRecipes();
 		addFlowerRecipes();
 		addLeafPileRecipes();
+		addLogTurnerRecipe();
 	}
-
 }

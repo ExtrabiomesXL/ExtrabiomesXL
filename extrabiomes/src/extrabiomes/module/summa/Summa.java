@@ -27,9 +27,13 @@ public class Summa implements IModule {
 
 	private static BiomeManagerImpl	biomeManager	= new BiomeManagerImpl();
 
-	static Optional<Item>			logTurner		= Optional.absent();
+	private static Optional<Item>	logTurner		= Optional.absent();
 
 	private static int				logTurnerID		= 0;
+
+	public static Optional<Item> getLogTurner() {
+		return logTurner;
+	}
 
 	private static void registerWorldGenerators() {
 		if (BiomeManager.marsh.isPresent())
