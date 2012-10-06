@@ -254,6 +254,50 @@ public enum BlockManager {
 			OreDictionary.registerOre("slabRedRockBrick",
 					redRockBrickSlabItem);
 		}
+	},
+	REDCOBBLESTAIRS {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockCustomStairs(blockID,
+					extrabiomes.module.summa.block.BlockManager.REDROCK.getBlock().get(),
+					BlockRedRockSlab.BlockType.RED_COBBLE.metadata()));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("extrabiomes.stairsRedCobble");
+			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+			proxy.registerBlock(thisBlock);
+
+			proxy.addName(thisBlock, "Red Cobble Stairs");
+
+			proxy.registerOre("stairsRedCobble", thisBlock);
+		}
+	},
+	REDROCKBRICKSTAIRS {
+		@Override
+		protected void create() {
+			block = Optional.of(new BlockCustomStairs(blockID,
+					extrabiomes.module.summa.block.BlockManager.REDROCK.getBlock().get(),
+					BlockRedRockSlab.BlockType.RED_ROCK_BRICK.metadata()));
+		}
+
+		@Override
+		protected void prepare() {
+			final CommonProxy proxy = Extrabiomes.proxy;
+			final Block thisBlock = block.get();
+
+			thisBlock.setBlockName("extrabiomes.stairsRedRockBrick");
+			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+			proxy.registerBlock(thisBlock);
+
+			proxy.addName(thisBlock, "Red Rock Brick Stairs");
+
+			proxy.registerOre("stairsRedRockBrick", thisBlock);
+		}
 	};
 
 	private static boolean	settingsLoaded	= false;
