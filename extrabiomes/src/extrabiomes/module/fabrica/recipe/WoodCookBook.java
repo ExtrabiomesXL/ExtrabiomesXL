@@ -183,8 +183,10 @@ public class WoodCookBook {
 				"ccc", "ppp" }, 'p', "plankWood", 'c', Block.cloth);
 		Extrabiomes.proxy.addRecipe(recipe);
 
-		recipe = new ShapedOreRecipe(Block.tripWireSource, new String[] { "i",
-				"s", "p" }, 'p', "plankWood", 'i', Item.ingotIron, 's', Item.stick);
+		recipe = new ShapedOreRecipe(new ItemStack(
+				Block.tripWireSource, 2),
+				new String[] { "i", "s", "p" }, 'p', "plankWood", 'i',
+				Item.ingotIron, 's', Item.stick);
 		Extrabiomes.proxy.addRecipe(recipe);
 
 	}
