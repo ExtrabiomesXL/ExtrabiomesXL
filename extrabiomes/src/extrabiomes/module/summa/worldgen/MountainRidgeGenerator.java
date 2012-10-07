@@ -12,8 +12,6 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.World;
-import net.minecraft.src.WorldGenDesertWells;
-import net.minecraft.src.WorldGenVines;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
@@ -32,7 +30,9 @@ public class MountainRidgeGenerator implements IWorldGenerator {
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
 				chunkX);
 
-		if (biome == BiomeManager.mountainridge.get()) {
+		if (BiomeManager.mountainridge.isPresent()
+				&& biome == BiomeManager.mountainridge.get())
+		{
 			trimPondsInGrass(random, chunkX, chunkZ, world);
 			generateEmeraldOre(random, chunkX, chunkZ, world);
 		}

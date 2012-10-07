@@ -33,7 +33,8 @@ public class CatTailGenerator implements IWorldGenerator {
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
 				chunkX);
 
-		if (biome == BiomeManager.greenswamp.get())
+		if (BiomeManager.greenswamp.isPresent()
+				&& biome == BiomeManager.greenswamp.get())
 			for (int i = 0; i < 20; i++) {
 				final int x = chunkX + rand.nextInt(16) + 8;
 				final int z = chunkZ + rand.nextInt(16) + 8;

@@ -30,7 +30,8 @@ public class MarshGenerator implements IWorldGenerator {
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
 				chunkX);
 
-		if (biome == BiomeManager.marsh.get())
+		if (BiomeManager.marsh.isPresent()
+				&& biome == BiomeManager.marsh.get())
 			generateMarsh(random, chunkX, chunkZ, world);
 
 	}
