@@ -4,7 +4,6 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-
 package extrabiomes.module.fabrica.block;
 
 import java.util.List;
@@ -68,13 +67,20 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
 	@Override
 	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
-		return 128 + (metadata & 7);
+		switch (metadata & 7) {
+			case 1:
+				return 129;
+			case 2:
+				return 130;
+			default:
+				return 128;
+		}
 	}
 
 	@Override
 	public String getFullSlabName(int metadata) {
 		String woodType;
-		switch (metadata) {
+		switch (metadata & 7) {
 			case 1:
 				woodType = BlockType.FIR.toString();
 				break;

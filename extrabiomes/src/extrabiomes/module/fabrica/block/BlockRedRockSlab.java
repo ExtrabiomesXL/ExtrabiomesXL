@@ -76,7 +76,7 @@ public class BlockRedRockSlab extends BlockStep {
 	@Override
 	public String getFullSlabName(int metadata) {
 		String blockStepType;
-		switch (metadata) {
+		switch (metadata & 7) {
 			case 1:
 				blockStepType = BlockType.RED_ROCK.toString();
 				break;

@@ -8,6 +8,7 @@ package extrabiomes.module.fabrica.block;
 
 import net.minecraft.src.BlockHalfSlab;
 import net.minecraft.src.ItemSlab;
+import net.minecraft.src.ItemStack;
 
 import com.google.common.base.Optional;
 
@@ -28,6 +29,12 @@ public class ItemWoodSlab extends ItemSlab {
 	public ItemWoodSlab(int id) {
 		super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab
 				.get().blockID);
+	}
+
+	@Override
+	public String getItemNameIS(ItemStack itemStack) {
+		return singleSlab.get().getFullSlabName(
+				itemStack.getItemDamage());
 	}
 
 }
