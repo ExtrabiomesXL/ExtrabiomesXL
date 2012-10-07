@@ -18,11 +18,10 @@ public class OilGenerator implements IWorldGenerator {
 		final BiomeGenBase biome = world.getWorldChunkManager()
 				.getBiomeGenAt(x, z);
 
-		if (biome.biomeID == BiomeGenBase.sky.biomeID
-				|| biome.biomeID == BiomeGenBase.hell.biomeID) return;
-
-		if ((biome == BiomeManager.mountaindesert.get() || biome == BiomeManager.wasteland
-				.get()) && rand.nextFloat() > 0.97)
+		if ((BiomeManager.mountaindesert.isPresent()
+				&& biome == BiomeManager.mountaindesert.get() || BiomeManager.wasteland
+				.isPresent() && biome == BiomeManager.wasteland.get())
+				&& rand.nextFloat() > 0.97)
 		{
 			// Generate a small deposit
 
@@ -36,7 +35,9 @@ public class OilGenerator implements IWorldGenerator {
 				final int id = world.getBlockId(i, j, k);
 				if (id != 0) {
 					if (id == Block.sand.blockID
-							|| (byte)id == BiomeManager.wasteland.get().topBlock)
+							|| BiomeManager.wasteland.isPresent()
+							&& (byte) id == BiomeManager.wasteland
+									.get().topBlock)
 						BuildcraftPlugin.generateSurfaceDeposit(world,
 								i, j, k, 3);
 
