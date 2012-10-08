@@ -148,7 +148,7 @@ public enum BlockManager {
 	GRASS {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCustomFlower(blockID));
+			block = Optional.of(new BlockCustomTallGrass(blockID));
 		}
 
 		@Override
