@@ -17,8 +17,8 @@ class BiomeAutumnWoods extends ExtrabiomeGenBase {
 		super(Biome.AUTUMNWOODS.getBiomeID());
 		setColor(0xF29C11);
 		setBiomeName("Autumn Woods");
-		temperature = BiomeGenBase.forest.temperature;
-		rainfall = BiomeGenBase.forest.rainfall;
+		temperature = 2.0F;
+		rainfall = 0.1F;
 		minHeight = 0.2F;
 		maxHeight = 0.8F;
 

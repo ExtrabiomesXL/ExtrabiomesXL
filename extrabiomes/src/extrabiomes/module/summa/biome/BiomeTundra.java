@@ -24,7 +24,7 @@ class BiomeTundra extends ExtrabiomeGenBase {
 	@Override
 	protected BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this)
-				.flowersPerChunk(0).grassPerChunk(0).sandPerChunk(0, 0)
+				.flowersPerChunk(-999).grassPerChunk(-999).sandPerChunk(0, 0)
 				.build();
 	}
 

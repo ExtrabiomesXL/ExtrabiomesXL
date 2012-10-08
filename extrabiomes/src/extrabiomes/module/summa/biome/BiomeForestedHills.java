@@ -18,8 +18,10 @@ class BiomeForestedHills extends ExtrabiomeGenBase {
 
 		setBiomeName("Forested Hills");
 
-		temperature = BiomeGenBase.forest.temperature - 0.1F;
-		rainfall = BiomeGenBase.forest.rainfall;
+		temperature = 0.8F;
+		rainfall = 1.2F;
+		minHeight = 0.2F;
+		maxHeight = 1.8F;
 
 		spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class,
 				5, 4, 4));

@@ -16,8 +16,8 @@ class BiomeGreenHills extends ExtrabiomeGenBase {
 
 		setColor(0x68C474);
 		setBiomeName("Green Hills");
-		temperature = BiomeGenBase.forest.temperature - 0.1F;
-		rainfall = BiomeGenBase.forest.rainfall + 0.1F;
+		temperature = 0.7F;
+		rainfall = 0.8F;
 		minHeight = 0.6F;
 		maxHeight = 1.2F;
 	}

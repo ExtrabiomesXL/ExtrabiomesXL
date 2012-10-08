@@ -16,8 +16,10 @@ class BiomeSnowRainforest extends BiomeTemporateRainforest {
 
 		setColor(0x338277);
 		setBiomeName("Snowy Rainforest");
-		temperature = BiomeGenBase.taigaHills.temperature;
-		rainfall = 1.3F;
+		temperature = 0.0F;
+		rainfall = 0.1F;
+		minHeight = 0.4F;
+		maxHeight = 1.5F;
 		setEnableSnow();
 	}
 

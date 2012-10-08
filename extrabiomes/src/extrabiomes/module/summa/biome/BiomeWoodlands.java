@@ -17,8 +17,8 @@ class BiomeWoodlands extends ExtrabiomeGenBase {
 
 		setColor(0x85B53E);
 		setBiomeName("Woodlands");
-		temperature = BiomeGenBase.forest.temperature;
-		rainfall = BiomeGenBase.forest.rainfall;
+		temperature = 2.0F;
+		rainfall = 0.2F;
 		minHeight = 0.2F;
 		maxHeight = 0.4F;
 

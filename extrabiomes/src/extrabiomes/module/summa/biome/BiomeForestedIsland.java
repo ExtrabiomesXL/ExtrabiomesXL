@@ -18,8 +18,8 @@ class BiomeForestedIsland extends ExtrabiomeGenBase {
 
 		setColor(0x62BF6C);
 		setBiomeName("Forested Island");
-		temperature = BiomeGenBase.forest.temperature + 0.1F;
-		rainfall = BiomeGenBase.forest.rainfall;
+		temperature = 0.4F;
+		rainfall = 0.7F;
 		minHeight = -0.8F;
 		maxHeight = 0.8F;
 

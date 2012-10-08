@@ -12,7 +12,10 @@ class BiomeMeadow extends ExtrabiomeGenBase {
 
 	public BiomeMeadow() {
 		super(Biome.MEADOW.getBiomeID());
-
+		temperature = 2.3F;
+		rainfall = 3.0F;
+		minHeight = 0.0F;
+		maxHeight = 0.0F;
 		setBiomeName("Meadow");
 	}
 

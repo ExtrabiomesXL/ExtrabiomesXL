@@ -7,6 +7,7 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
+import net.minecraft.src.BiomeGenBase;
 
 class BiomeSavanna extends ExtrabiomeGenBase {
 	public BiomeSavanna() {
@@ -14,8 +15,8 @@ class BiomeSavanna extends ExtrabiomeGenBase {
 
 		setColor(0xBFA243);
 		setBiomeName("Savanna");
-		temperature = 2.0F;
-		rainfall = 0.0F;
+		temperature = BiomeGenBase.desert.temperature;
+		rainfall = BiomeGenBase.desert.rainfall;
 		minHeight = 0.0F;
 		maxHeight = 0.1F;
 	}

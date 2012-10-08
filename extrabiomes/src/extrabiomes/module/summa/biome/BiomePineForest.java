@@ -18,8 +18,8 @@ class BiomePineForest extends ExtrabiomeGenBase {
 
 		setColor(0x469C7E);
 		setBiomeName("Pine Forest");
-		temperature = BiomeGenBase.forest.temperature;
-		rainfall = BiomeGenBase.forest.rainfall;
+		temperature = 0.4F;
+		rainfall = 0.6F;
 		minHeight = 0.1F;
 		maxHeight = 0.3F;
 

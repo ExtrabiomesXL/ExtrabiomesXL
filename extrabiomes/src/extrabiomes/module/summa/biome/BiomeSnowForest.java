@@ -17,8 +17,8 @@ class BiomeSnowForest extends ExtrabiomeGenBase {
 
 		setColor(0x5BA68D);
 		setBiomeName("Snow Forest");
-		temperature = BiomeGenBase.taigaHills.temperature;
-		rainfall = BiomeGenBase.taigaHills.rainfall;
+		temperature = 0.0F;
+		rainfall = 0.2F;
 		minHeight = 0.1F;
 		maxHeight = 0.5F;
 		setEnableSnow();
