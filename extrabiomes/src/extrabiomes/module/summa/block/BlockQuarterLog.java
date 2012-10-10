@@ -16,6 +16,7 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
@@ -61,11 +62,9 @@ public class BlockQuarterLog extends BlockLog implements ITurnableLog {
 	}
 
 	private static int		renderId	= 31;
-
 	private static int		dropID		= 0;
 
 	private static Block	logNW;
-
 	private static Block	logNE;
 	private static Block	logSW;
 	private static Block	logSE;
@@ -99,6 +98,15 @@ public class BlockQuarterLog extends BlockLog implements ITurnableLog {
 		BlockQuarterLog.logNW = logNW;
 		BlockQuarterLog.logSE = logSE;
 		BlockQuarterLog.logSW = logSW;
+	}
+
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target,
+			World world, int x, int y, int z)
+	{
+		ItemStack itemstack = super.getPickBlock(target, world, x, y, z);
+		itemstack.itemID = dropID;
+		return itemstack;
 	}
 
 	public static void setRenderId(int renderId) {

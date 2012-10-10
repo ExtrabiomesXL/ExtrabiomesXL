@@ -465,6 +465,7 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+			BlockQuarterLog.setDropID(thisBlock.blockID);
 
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
