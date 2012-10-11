@@ -7,18 +7,12 @@
 package extrabiomes.module.fabrica.block;
 
 import java.util.List;
-import java.util.Random;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockLog;
 import net.minecraft.src.BlockWood;
 import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Entity;
 import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
-import extrabiomes.api.ITurnableLog;
 
 public class BlockCustomWood extends BlockWood {
 	public enum BlockType {
