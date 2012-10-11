@@ -18,11 +18,12 @@ import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.World;
+import net.minecraftforge.event.ForgeSubscribe;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
-import extrabiomes.api.ITurnableLog;
+import extrabiomes.api.UseLogTurnerEvent;
 
-public class BlockQuarterLog extends BlockLog implements ITurnableLog {
+public class BlockQuarterLog extends BlockLog {
 	enum BarkOn {
 		SW, SE, NW, NE
 	}
@@ -98,15 +99,6 @@ public class BlockQuarterLog extends BlockLog implements ITurnableLog {
 		BlockQuarterLog.logNW = logNW;
 		BlockQuarterLog.logSE = logSE;
 		BlockQuarterLog.logSW = logSW;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target,
-			World world, int x, int y, int z)
-	{
-		ItemStack itemstack = super.getPickBlock(target, world, x, y, z);
-		itemstack.itemID = dropID;
-		return itemstack;
 	}
 
 	public static void setRenderId(int renderId) {
@@ -278,6 +270,16 @@ public class BlockQuarterLog extends BlockLog implements ITurnableLog {
 				offset = 49;
 		}
 		return offset;
+	}
+
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target,
+			World world, int x, int y, int z)
+	{
+		final ItemStack itemstack = super.getPickBlock(target, world,
+				x, y, z);
+		itemstack.itemID = dropID;
+		return itemstack;
 	}
 
 	@Override
@@ -619,19 +621,32 @@ public class BlockQuarterLog extends BlockLog implements ITurnableLog {
 		}
 	}
 
-	@Override
-	public void onLogTurner(World world, int x, int y, int z) {
-		final int metadata = world.getBlockMetadata(x, y, z);
-		int orientation = metadata & 12;
-		final int type = metadata & 3;
+	@ForgeSubscribe
+	public void onUseLogTurnerEvent(UseLogTurnerEvent event) {
+		int id = event.world.getBlockId(event.x, event.y, event.z);
 
-		orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
+		if (id == blockID) {
+			final Block wood = Block.wood;
+			event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F,
+					event.z + 0.5F, wood.stepSound.getStepSound(),
+					(wood.stepSound.getVolume() + 1.0F) / 2.0F,
+					wood.stepSound.getPitch() * 1.55F);
 
-		int blockToSet = blockID;
-		if (orientation == 0) blockToSet = getNextBlockID();
+			if (!event.world.isRemote) {
+				final int metadata = event.world.getBlockMetadata(
+						event.x, event.y, event.z);
+				int orientation = metadata & 12;
+				final int type = metadata & 3;
 
-		world.setBlockAndMetadata(x, y, z, blockToSet, type
-				| orientation);
+				orientation = orientation == 0 ? 4
+						: orientation == 4 ? 8 : 0;
+
+				if (orientation == 0) id = getNextBlockID();
+				event.world.setBlockAndMetadata(event.x, event.y,
+						event.z, id, type | orientation);
+			}
+			event.setHandled();
+		}
 	}
 
 }

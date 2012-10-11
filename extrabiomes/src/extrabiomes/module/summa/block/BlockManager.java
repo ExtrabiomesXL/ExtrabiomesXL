@@ -363,6 +363,8 @@ public enum BlockManager {
 					BlockCustomLog.BlockType.ACACIA.metadata());
 			WorldGenFirTree.setTrunkBlock(thisBlock,
 					BlockCustomLog.BlockType.FIR.metadata());
+			
+			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
 	},
 	QUARTERLOG0 {
@@ -391,6 +393,8 @@ public enum BlockManager {
 				proxy.registerOre("log", itemstack);
 				proxy.registerOre("log" + type.toString(), itemstack);
 			}
+			
+			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
 	},
 	QUARTERLOG1 {
@@ -419,6 +423,8 @@ public enum BlockManager {
 				proxy.registerOre("log", itemstack);
 				proxy.registerOre("log" + type.toString(), itemstack);
 			}
+			
+			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
 	},
 	QUARTERLOG2 {
@@ -447,6 +453,8 @@ public enum BlockManager {
 				proxy.registerOre("log", itemstack);
 				proxy.registerOre("log" + type.toString(), itemstack);
 			}
+			
+			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
 	},
 	QUARTERLOG3 {
@@ -476,6 +484,8 @@ public enum BlockManager {
 				proxy.registerOre("log", itemstack);
 				proxy.registerOre("log" + type.toString(), itemstack);
 			}
+			
+			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
 	};
 

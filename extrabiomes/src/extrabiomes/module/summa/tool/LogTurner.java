@@ -7,15 +7,13 @@
 package extrabiomes.module.summa.tool;
 
 import net.minecraft.src.Block;
-import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.EnumToolMaterial;
-import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ItemTool;
-import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import extrabiomes.api.ITurnableLog;
+import extrabiomes.Extrabiomes;
+import extrabiomes.api.UseLogTurnerEvent;
 
 public class LogTurner extends ItemTool {
 
@@ -36,18 +34,27 @@ public class LogTurner extends ItemTool {
 	}
 
 	@Override
-	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player,
-			World world, int x, int y, int z, int side, float hitX,
-			float hitY, float hitZ)
+	public boolean onItemUse(ItemStack itemUsed, EntityPlayer player,
+			World world, int x, int y, int z, int side, float xOffset,
+			float yOffset, float zOffset)
 	{
-		final int blockID = world.getBlockId(x, y, z);
-		if (blockID == 0 || Block.blocksList[blockID] == null
-				|| blockID != Block.wood.blockID
-				&& !(Block.blocksList[blockID] instanceof ITurnableLog))
-			return super.onItemUseFirst(stack, player, world, x, y, z,
-					side, hitX, hitY, hitZ);
+		if (!player.canPlayerEdit(x, y, z)) return false;
 
-		if (blockID == Block.wood.blockID) {
+		final UseLogTurnerEvent event = new UseLogTurnerEvent(player,
+				itemUsed, world, x, y, z);
+		if (Extrabiomes.proxy.postEventtoBus(event)) return false;
+		if (event.isHandled()) return true;
+
+		final int blockID = world.getBlockId(x, y, z);
+
+		if (blockID != Block.wood.blockID) return false;
+		final Block wood = Block.wood;
+		world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F,
+				wood.stepSound.getStepSound(),
+				(wood.stepSound.getVolume() + 1.0F) / 2.0F,
+				wood.stepSound.getPitch() * 1.55F);
+
+		if (!world.isRemote) {
 			final int metadata = world.getBlockMetadata(x, y, z);
 			int orientation = metadata & 12;
 			final int type = metadata & 3;
@@ -56,10 +63,7 @@ public class LogTurner extends ItemTool {
 					: 0;
 			world.setBlockAndMetadata(x, y, z, blockID, type
 					| orientation);
-		} else
-			((ITurnableLog) Block.blocksList[blockID]).onLogTurner(
-					world, x, y, z);
-
+		}
 		return true;
 	}
 }

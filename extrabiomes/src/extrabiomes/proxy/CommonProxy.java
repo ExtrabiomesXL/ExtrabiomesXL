@@ -22,6 +22,7 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldType;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.Event;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.base.Optional;
@@ -75,6 +76,10 @@ public class CommonProxy {
 
 	public boolean isModLoaded(String modID) {
 		return Loader.isModLoaded(modID);
+	}
+
+	public boolean postEventtoBus(Event event) {
+		return MinecraftForge.EVENT_BUS.post(event);
 	}
 
 	public void registerBlock(Block block) {
