@@ -157,8 +157,8 @@ public class WoodCookBook {
 				"ppp", " s " }, 'p', "plankWood", 's', Item.stick);
 		Extrabiomes.proxy.addRecipe(recipe);
 
-		recipe = new ShapedOreRecipe(new ItemStack(Item.stick, 4), new String[] { "p",
-				"p" }, 'p', "plankWood");
+		recipe = new ShapedOreRecipe(new ItemStack(Item.stick, 4),
+				new String[] { "p", "p" }, 'p', "plankWood");
 		Extrabiomes.proxy.addRecipe(recipe);
 
 		recipe = new ShapedOreRecipe(new ItemStack(Item.bowlEmpty, 4),
@@ -179,8 +179,8 @@ public class WoodCookBook {
 				Item.redstone);
 		Extrabiomes.proxy.addRecipe(recipe);
 
-		recipe = new ShapedOreRecipe(Item.bed, new String[] { "ppp",
-				"ccc", "ppp" }, 'p', "plankWood", 'c', Block.cloth);
+		recipe = new ShapedOreRecipe(Item.bed, new String[] { "ccc",
+				"ppp" }, 'p', "plankWood", 'c', Block.cloth);
 		Extrabiomes.proxy.addRecipe(recipe);
 
 		recipe = new ShapedOreRecipe(new ItemStack(
