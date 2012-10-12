@@ -19,6 +19,7 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
 
 public enum BlockManager {
@@ -264,7 +265,7 @@ public enum BlockManager {
 			block = Optional.of(new BlockCustomStairs(blockID,
 					extrabiomes.module.summa.block.BlockManager.REDROCK
 							.getBlock().get(),
-					BlockRedRockSlab.BlockType.RED_COBBLE.metadata()));
+					BlockRedRock.BlockType.RED_COBBLE.metadata()));
 		}
 
 		@Override
@@ -287,8 +288,7 @@ public enum BlockManager {
 			block = Optional.of(new BlockCustomStairs(blockID,
 					extrabiomes.module.summa.block.BlockManager.REDROCK
 							.getBlock().get(),
-					BlockRedRockSlab.BlockType.RED_ROCK_BRICK
-							.metadata()));
+					BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()));
 		}
 
 		@Override
