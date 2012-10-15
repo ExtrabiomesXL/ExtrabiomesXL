@@ -24,7 +24,7 @@ import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.api.UseLogTurnerEvent;
 
 public class BlockQuarterLog extends BlockLog {
-	enum BarkOn {
+	public enum BarkOn {
 		SW, SE, NW, NE
 	}
 
