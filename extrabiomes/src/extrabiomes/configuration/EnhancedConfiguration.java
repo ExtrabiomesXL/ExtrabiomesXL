@@ -10,10 +10,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import net.minecraft.src.Block;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
+
+import com.google.common.base.Optional;
 
 public abstract class EnhancedConfiguration extends Configuration {
 
@@ -27,19 +30,30 @@ public abstract class EnhancedConfiguration extends Configuration {
 		super(file);
 	}
 
-	private Property do_getOrCreateBlockIdProperty(String key,
-			int defaultId, int exclusiveUpperBound)
+	@Override
+	public Property getBlock(String key, int defaultId) {
+		return getBlock(key, defaultId, Block.blocksList.length);
+	}
+
+	private Property getBlock(String key, int defaultId,
+			int exclusiveUpperBound)
 	{
-		final Map<String, Property> properties = categories
-				.get(CATEGORY_BLOCK);
-		if (properties.containsKey(key)) {
-			final Property property = getOrCreateIntProperty(key,
-					Configuration.CATEGORY_BLOCK, defaultId);
+		Optional<? extends Map<String, Property>> properties = Optional
+				.fromNullable(categories.get(CATEGORY_BLOCK));
+		if (properties.isPresent() && properties.get().containsKey(key))
+		{
+			final Property property = get(CATEGORY_BLOCK, key,
+					defaultId);
 			assignedIdsList.add(Integer.parseInt(property.value));
 			return property;
 		} else {
+			if (!properties.isPresent()) {
+				properties = Optional
+						.of(new TreeMap<String, Property>());
+				categories.put(CATEGORY_BLOCK, properties.get());
+			}
 			final Property property = new Property();
-			properties.put(key, property);
+			properties.get().put(key, property);
 			property.setName(key);
 
 			if (Block.blocksList[defaultId] == null
@@ -67,17 +81,8 @@ public abstract class EnhancedConfiguration extends Configuration {
 		}
 	}
 
-	@Override
-	public Property getOrCreateBlockIdProperty(String key, int defaultId)
-	{
-		return do_getOrCreateBlockIdProperty(key, defaultId,
-				Block.blocksList.length);
-	}
-
-	public Property getOrCreateRestrictedBlockIdProperty(String key,
-			int defaultId)
-	{
-		return do_getOrCreateBlockIdProperty(key, defaultId, 256);
+	public Property getRestrictedBlock(String key, int defaultId) {
+		return getBlock(key, defaultId, 256);
 	}
 
 }

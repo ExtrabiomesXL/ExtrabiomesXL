@@ -8,7 +8,6 @@ package extrabiomes.configuration;
 
 import java.io.File;
 import java.util.Map;
-import java.util.TreeMap;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
@@ -16,23 +15,16 @@ import net.minecraftforge.common.Property;
 
 public class ExtrabiomesConfig extends EnhancedConfiguration {
 
-	public static final String			CATEGORY_BIOME			= "biome";
-	public static final String			CATEGORY_MODULE_CONTROL	= "module_control";
+	public static final String	CATEGORY_BIOME			= "biome";
+	public static final String	CATEGORY_MODULE_CONTROL	= "module_control";
 
-	public TreeMap<String, Property>	biomeProperties			= new TreeMap<String, Property>();
-	public TreeMap<String, Property>	moduleControlProperties	= new TreeMap<String, Property>();
-
-	private boolean						configBiomes[]			= null;
+	private boolean				configBiomes[]			= null;
 
 	public ExtrabiomesConfig(File file) {
 		super(file);
-		categories.put(CATEGORY_BIOME, biomeProperties);
-		categories
-				.put(CATEGORY_MODULE_CONTROL, moduleControlProperties);
 	}
 
-	public Property getOrCreateBiomeIdProperty(String key, int defaultId)
-	{
+	public Property getBiome(String key, int defaultId) {
 		if (configBiomes == null) {
 			configBiomes = new boolean[BiomeGenBase.biomeList.length];
 
@@ -43,8 +35,8 @@ public class ExtrabiomesConfig extends EnhancedConfiguration {
 		final Map<String, Property> properties = categories
 				.get(CATEGORY_BIOME);
 		if (properties.containsKey(key)) {
-			final Property property = getOrCreateIntProperty(key,
-					CATEGORY_BIOME, defaultId);
+			final Property property = get(CATEGORY_BIOME, key,
+					defaultId);
 			configBiomes[Integer.parseInt(property.value)] = true;
 			return property;
 		} else {

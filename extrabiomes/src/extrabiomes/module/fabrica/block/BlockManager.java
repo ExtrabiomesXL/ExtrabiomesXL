@@ -331,9 +331,8 @@ public enum BlockManager {
 
 		// Load config settings
 		for (final BlockManager cube : BlockManager.values()) {
-			final Property property = config
-					.getOrCreateBlockIdProperty(cube.idKey(),
-							Extrabiomes.getNextDefaultBlockID());
+			final Property property = config.getBlock(cube.idKey(),
+					Extrabiomes.getNextDefaultBlockID());
 			cube.blockID = property.getInt(0);
 
 			ExtrabiomesLog.info("  %s: %d", cube.toString(),

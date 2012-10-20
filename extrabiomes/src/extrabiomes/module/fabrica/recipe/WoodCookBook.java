@@ -10,6 +10,7 @@ import net.minecraft.src.Block;
 import net.minecraft.src.IRecipe;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -99,6 +100,8 @@ public class WoodCookBook {
 	}
 
 	private static void addPlankVanillaRecipes() {
+		OreDictionary.registerOre("plankWood", Block.planks);
+
 		IRecipe recipe = new ShapedOreRecipe(Block.chest, new String[] {
 				"ppp", "p p", "ppp" }, 'p', "plankWood");
 		Extrabiomes.proxy.addRecipe(recipe);

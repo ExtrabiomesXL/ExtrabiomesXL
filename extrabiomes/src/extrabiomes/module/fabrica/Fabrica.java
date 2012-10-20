@@ -9,7 +9,6 @@ package extrabiomes.module.fabrica;
 import net.minecraft.src.Block;
 import net.minecraft.src.IRecipe;
 import net.minecraft.src.Item;
-import net.minecraftforge.common.Configuration;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import com.google.common.base.Optional;
@@ -64,8 +63,7 @@ public class Fabrica implements IModule {
 			throws InstantiationException, IllegalAccessException
 	{
 		BlockManager.preInit(config);
-		scarecrowID = config.getOrCreateIntProperty("scarecrow.id",
-				Configuration.CATEGORY_ITEM,
+		scarecrowID = config.getItem("scarecrow.id",
 				Extrabiomes.getNextDefaultItemID()).getInt(0);
 
 		if (scarecrowID > 0)

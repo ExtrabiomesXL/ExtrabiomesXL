@@ -51,9 +51,9 @@ enum Module {
 
 		// Load config settings
 		for (final Module module : Module.values()) {
-			final Property property = cfg.getOrCreateBooleanProperty(
-					module.key + ".enabled",
-					ExtrabiomesConfig.CATEGORY_MODULE_CONTROL, true);
+			final Property property = cfg.get(
+					ExtrabiomesConfig.CATEGORY_MODULE_CONTROL,
+					module.key + ".enabled", true);
 			module.enabled = property.getBoolean(false);
 
 			// Save for later rewriting

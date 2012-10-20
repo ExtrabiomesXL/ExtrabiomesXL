@@ -44,15 +44,14 @@ enum VanillaBiome {
 
 		for (final VanillaBiome biome : VanillaBiome.values()) {
 
-			Property property = config.getOrCreateBooleanProperty(
-					biome.enabledKey(),
-					ExtrabiomesConfig.CATEGORY_BIOME, true);
+			Property property = config.get(
+					ExtrabiomesConfig.CATEGORY_BIOME,
+					biome.enabledKey(), true);
 			if (property.getBoolean(false))
 				biome.enableGeneration = true;
 
-			property = config.getOrCreateBooleanProperty(
-					biome.villagesKey(),
-					ExtrabiomesConfig.CATEGORY_BIOME, true);
+			property = config.get(ExtrabiomesConfig.CATEGORY_BIOME,
+					biome.villagesKey(), true);
 			if (property.getBoolean(false))
 				biome.enableVillages = true;
 		}

@@ -7,7 +7,6 @@
 package extrabiomes.module.summa;
 
 import net.minecraft.src.Item;
-import net.minecraftforge.common.Configuration;
 
 import com.google.common.base.Optional;
 
@@ -78,8 +77,7 @@ public class Summa implements IModule {
 		biomeManager.preInit(config);
 		BlockManager.preInit(config);
 
-		logTurnerID = config.getOrCreateIntProperty("logturner.id",
-				Configuration.CATEGORY_ITEM,
+		logTurnerID = config.getItem("logturner.id",
 				Extrabiomes.getNextDefaultItemID()).getInt(0);
 
 	}

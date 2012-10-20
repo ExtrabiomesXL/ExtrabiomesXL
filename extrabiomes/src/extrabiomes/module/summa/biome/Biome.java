@@ -104,24 +104,22 @@ enum Biome {
 		int defaultID = 32;
 		for (final Biome biome : Biome.values()) {
 
-			Property property = config.getOrCreateBiomeIdProperty(
-					biome.idKey(), defaultID++);
+			Property property = config.getBiome(biome.idKey(),
+					defaultID++);
 			biome.biomeID = property.getInt(0);
 
 			ExtrabiomesLog.info("  %s: %d", biome.toString(),
 					biome.biomeID);
 
-			property = config.getOrCreateBooleanProperty(
-					biome.enabledKey(),
-					ExtrabiomesConfig.CATEGORY_BIOME, true);
+			property = config.get(ExtrabiomesConfig.CATEGORY_BIOME,
+					biome.enabledKey(), true);
 			if (biome.biomeID == 0)
 				property.value = Boolean.toString(false);
 			if (property.getBoolean(false))
 				biome.enableGeneration = true;
 
-			property = config.getOrCreateBooleanProperty(
-					biome.villagesKey(),
-					ExtrabiomesConfig.CATEGORY_BIOME, true);
+			property = config.get(ExtrabiomesConfig.CATEGORY_BIOME,
+					biome.villagesKey(), true);
 			if (biome.biomeID == 0)
 				property.value = Boolean.toString(false);
 			if (property.getBoolean(false))

@@ -363,7 +363,7 @@ public enum BlockManager {
 					BlockCustomLog.BlockType.ACACIA.metadata());
 			WorldGenFirTree.setTrunkBlock(thisBlock,
 					BlockCustomLog.BlockType.FIR.metadata());
-			
+
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
 	},
@@ -393,7 +393,7 @@ public enum BlockManager {
 				proxy.registerOre("log", itemstack);
 				proxy.registerOre("log" + type.toString(), itemstack);
 			}
-			
+
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
 	},
@@ -423,7 +423,7 @@ public enum BlockManager {
 				proxy.registerOre("log", itemstack);
 				proxy.registerOre("log" + type.toString(), itemstack);
 			}
-			
+
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
 	},
@@ -453,7 +453,7 @@ public enum BlockManager {
 				proxy.registerOre("log", itemstack);
 				proxy.registerOre("log" + type.toString(), itemstack);
 			}
-			
+
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
 	},
@@ -484,7 +484,7 @@ public enum BlockManager {
 				proxy.registerOre("log", itemstack);
 				proxy.registerOre("log" + type.toString(), itemstack);
 			}
-			
+
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
 	};
@@ -561,9 +561,9 @@ public enum BlockManager {
 		// Load config settings
 		for (final BlockManager cube : BlockManager.values()) {
 			final Property property = cube.restrictTo256 ? config
-					.getOrCreateRestrictedBlockIdProperty(cube.idKey(),
+					.getRestrictedBlock(cube.idKey(),
 							Extrabiomes.getNextDefaultBlockID())
-					: config.getOrCreateBlockIdProperty(cube.idKey(),
+					: config.getBlock(cube.idKey(),
 							Extrabiomes.getNextDefaultBlockID());
 			cube.blockID = property.getInt(0);
 			if (cube.restrictTo256) {
