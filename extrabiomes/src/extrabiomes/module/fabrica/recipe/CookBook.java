@@ -139,21 +139,21 @@ public class CookBook {
 					redRockItem);
 		}
 
-		if (Stuff.redRockSlab.isPresent()) {
+		if (Stuff.slabRedRock.isPresent()) {
 			recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.redRockSlab.get(), 6,
+					Stuff.slabRedRock.get(), 6,
 					BlockRedRockSlab.BlockType.RED_ROCK.metadata()),
 					new String[] { "rrr" }, 'r', "rockRed");
 			Extrabiomes.proxy.addRecipe(recipe);
 
 			recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.redRockSlab.get(), 6,
+					Stuff.slabRedRock.get(), 6,
 					BlockRedRockSlab.BlockType.RED_COBBLE.metadata()),
 					new String[] { "rrr" }, 'r', "cobbleRed");
 			Extrabiomes.proxy.addRecipe(recipe);
 
 			recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.redRockSlab.get(), 6,
+					Stuff.slabRedRock.get(), 6,
 					BlockRedRockSlab.BlockType.RED_ROCK_BRICK
 							.metadata()), new String[] { "rrr" }, 'r',
 					"brickRedRock");

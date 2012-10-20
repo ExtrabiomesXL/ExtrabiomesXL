@@ -68,21 +68,21 @@ public class WoodCookBook {
 			Extrabiomes.proxy.addRecipe(recipe);
 		}
 
-		if (Stuff.woodSlab.isPresent()) {
+		if (Stuff.slabWood.isPresent()) {
 			IRecipe recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.woodSlab.get(), 6,
+					Stuff.slabWood.get(), 6,
 					BlockCustomWoodSlab.BlockType.ACACIA.metadata()),
 					new String[] { "ppp" }, 'p', "plankAcacia");
 			Extrabiomes.proxy.addRecipe(recipe);
 
 			recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.woodSlab.get(), 6,
+					Stuff.slabWood.get(), 6,
 					BlockCustomWoodSlab.BlockType.FIR.metadata()),
 					new String[] { "ppp" }, 'p', "plankFir");
 			Extrabiomes.proxy.addRecipe(recipe);
 
 			recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.woodSlab.get(), 6,
+					Stuff.slabWood.get(), 6,
 					BlockCustomWoodSlab.BlockType.REDWOOD.metadata()),
 					new String[] { "ppp" }, 'p', "plankRedwood");
 			Extrabiomes.proxy.addRecipe(recipe);

@@ -42,14 +42,14 @@ public enum BlockManager {
 	AUTUMNLEAVES {
 		@Override
 		protected void create() {
-			Stuff.autumnLeaves = Optional.of(new BlockAutumnLeaves(
+			Stuff.leavesAutumn = Optional.of(new BlockAutumnLeaves(
 					blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.autumnLeaves.get();
+			final Block thisBlock = Stuff.leavesAutumn.get();
 
 			thisBlock.setBlockName("extrabiomes.autumnleaves");
 			proxy.registerBlock(
@@ -78,13 +78,13 @@ public enum BlockManager {
 	CATTAIL {
 		@Override
 		protected void create() {
-			Stuff.catTail = Optional.of(new BlockCatTail(blockID));
+			Stuff.cattail = Optional.of(new BlockCatTail(blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.catTail.get();
+			final Block thisBlock = Stuff.cattail.get();
 
 			thisBlock.setBlockName("extrabiomes.cattail");
 			proxy.registerBlock(thisBlock,
@@ -215,14 +215,14 @@ public enum BlockManager {
 	GREENLEAVES {
 		@Override
 		protected void create() {
-			Stuff.greenLeaves = Optional.of(new BlockGreenLeaves(
+			Stuff.leavesGreen = Optional.of(new BlockGreenLeaves(
 					blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.greenLeaves.get();
+			final Block thisBlock = Stuff.leavesGreen.get();
 
 			thisBlock.setBlockName("extrabiomes.greenleaves");
 			proxy.registerBlock(
