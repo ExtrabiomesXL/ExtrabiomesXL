@@ -23,6 +23,7 @@ import net.minecraft.src.World;
 import net.minecraftforge.common.IShearable;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.api.Stuff;
 
 class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
@@ -231,8 +232,8 @@ class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
 	@Override
 	public int idDropped(int metadata, Random rand, int par3) {
-		return BlockManager.SAPLING.getBlock().isPresent() ? BlockManager.SAPLING
-				.getBlock().get().blockID : Block.sapling.blockID;
+		return Stuff.sapling.isPresent() ? Stuff.sapling.get().blockID
+				: Block.sapling.blockID;
 	}
 
 	@Override

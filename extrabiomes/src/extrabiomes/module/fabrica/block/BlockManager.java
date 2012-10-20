@@ -18,6 +18,7 @@ import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
+import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
@@ -26,13 +27,13 @@ public enum BlockManager {
 	PLANKS {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCustomWood(blockID));
+			Stuff.planks = Optional.of(new BlockCustomWood(blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.planks.get();
 
 			thisBlock.setBlockName("extrabiomes.planks");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
@@ -62,14 +63,14 @@ public enum BlockManager {
 	WOODSLAB {
 		@Override
 		protected void create() {
-			block = Optional
-					.of(new BlockCustomWoodSlab(blockID, false));
+			Stuff.woodSlab = Optional.of(new BlockCustomWoodSlab(
+					blockID, false));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.woodSlab.get();
 
 			thisBlock.setBlockName("extrabiomes.woodslab");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
@@ -81,19 +82,20 @@ public enum BlockManager {
 	DOUBLEWOODSLAB {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCustomWoodSlab(blockID, true));
+			Stuff.woodSlabDouble = Optional.of(new BlockCustomWoodSlab(
+					blockID, true));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.woodSlabDouble.get();
 
 			thisBlock.setBlockName("extrabiomes.woodslab");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-			ItemWoodSlab.setSlabs((BlockHalfSlab) WOODSLAB.block.get(),
-					(BlockHalfSlab) block.get());
-			proxy.registerBlock(WOODSLAB.block.get(),
+			ItemWoodSlab.setSlabs((BlockHalfSlab) Stuff.woodSlab.get(),
+					(BlockHalfSlab) Stuff.woodSlabDouble.get());
+			proxy.registerBlock(Stuff.woodSlab.get(),
 					extrabiomes.module.fabrica.block.ItemWoodSlab.class);
 			proxy.registerBlock(thisBlock,
 					extrabiomes.module.fabrica.block.ItemWoodSlab.class);
@@ -103,18 +105,18 @@ public enum BlockManager {
 				proxy.addName(
 						new ItemStack(thisBlock, 1, blockType
 								.metadata()), blockType.itemName());
-				proxy.addName(new ItemStack(WOODSLAB.block.get(), 1,
+				proxy.addName(new ItemStack(Stuff.woodSlab.get(), 1,
 						blockType.metadata()), blockType.itemName());
 			}
 
 			final ItemStack firSlabItem = new ItemStack(
-					WOODSLAB.block.get(), 1,
+					Stuff.woodSlab.get(), 1,
 					BlockCustomWoodSlab.BlockType.FIR.metadata());
 			final ItemStack redwoodSlabItem = new ItemStack(
-					WOODSLAB.block.get(), 1,
+					Stuff.woodSlab.get(), 1,
 					BlockCustomWoodSlab.BlockType.REDWOOD.metadata());
 			final ItemStack acaciaSlabItem = new ItemStack(
-					WOODSLAB.block.get(), 1,
+					Stuff.woodSlab.get(), 1,
 					BlockCustomWoodSlab.BlockType.ACACIA.metadata());
 
 			OreDictionary.registerOre("slabWood", firSlabItem);
@@ -128,15 +130,15 @@ public enum BlockManager {
 	REDWOODSTAIRS {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockWoodStairs(blockID,
-					PLANKS.block.get(),
+			Stuff.stairsRedwood = Optional.of(new BlockWoodStairs(
+					blockID, Stuff.planks.get(),
 					BlockCustomWood.BlockType.REDWOOD.metadata()));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.stairsRedwood.get();
 
 			thisBlock.setBlockName("extrabiomes.stairsRedwood");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
@@ -151,15 +153,15 @@ public enum BlockManager {
 	FIRSTAIRS {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockWoodStairs(blockID,
-					PLANKS.block.get(), BlockCustomWood.BlockType.FIR
+			Stuff.stairsFir = Optional.of(new BlockWoodStairs(blockID,
+					Stuff.planks.get(), BlockCustomWood.BlockType.FIR
 							.metadata()));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.stairsFir.get();
 
 			thisBlock.setBlockName("extrabiomes.stairsFir");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
@@ -174,15 +176,15 @@ public enum BlockManager {
 	ACACIASTAIRS {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockWoodStairs(blockID,
-					PLANKS.block.get(),
+			Stuff.stairsAcacia = Optional.of(new BlockWoodStairs(
+					blockID, Stuff.planks.get(),
 					BlockCustomWood.BlockType.ACACIA.metadata()));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.stairsAcacia.get();
 
 			thisBlock.setBlockName("extrabiomes.stairAcacia");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
@@ -197,13 +199,14 @@ public enum BlockManager {
 	REDROCKSLAB {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockRedRockSlab(blockID, false));
+			Stuff.redRockSlab = Optional.of(new BlockRedRockSlab(
+					blockID, false));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.redRockSlab.get();
 
 			thisBlock.setBlockName("extrabiomes.redrockslab");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
@@ -212,21 +215,22 @@ public enum BlockManager {
 	DOUBLEREDROCKSLAB {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockRedRockSlab(blockID, true));
+			Stuff.redRockSlabDouble = Optional.of(new BlockRedRockSlab(
+					blockID, true));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.redRockSlabDouble.get();
 
 			thisBlock.setBlockName("extrabiomes.redrockslab");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
 			ItemRedRockSlab.setSlabs(
-					(BlockHalfSlab) REDROCKSLAB.block.get(),
-					(BlockHalfSlab) block.get());
+					(BlockHalfSlab) Stuff.redRockSlab.get(),
+					(BlockHalfSlab) Stuff.redRockSlabDouble.get());
 			proxy.registerBlock(
-					REDROCKSLAB.block.get(),
+					Stuff.redRockSlab.get(),
 					extrabiomes.module.fabrica.block.ItemRedRockSlab.class);
 			proxy.registerBlock(
 					thisBlock,
@@ -237,18 +241,18 @@ public enum BlockManager {
 				proxy.addName(
 						new ItemStack(thisBlock, 1, blockType
 								.metadata()), blockType.itemName());
-				proxy.addName(new ItemStack(REDROCKSLAB.block.get(), 1,
+				proxy.addName(new ItemStack(Stuff.redRockSlab.get(), 1,
 						blockType.metadata()), blockType.itemName());
 			}
 
 			final ItemStack redCobbleSlabItem = new ItemStack(
-					REDROCKSLAB.block.get(), 1,
+					Stuff.redRockSlab.get(), 1,
 					BlockRedRockSlab.BlockType.RED_COBBLE.metadata());
 			final ItemStack redRockSlabItem = new ItemStack(
-					REDROCKSLAB.block.get(), 1,
+					Stuff.redRockSlab.get(), 1,
 					BlockRedRockSlab.BlockType.RED_ROCK.metadata());
 			final ItemStack redRockBrickSlabItem = new ItemStack(
-					REDROCKSLAB.block.get(), 1,
+					Stuff.redRockSlab.get(), 1,
 					BlockRedRockSlab.BlockType.RED_ROCK_BRICK
 							.metadata());
 
@@ -262,16 +266,15 @@ public enum BlockManager {
 	REDCOBBLESTAIRS {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCustomStairs(blockID,
-					extrabiomes.module.summa.block.BlockManager.REDROCK
-							.getBlock().get(),
+			Stuff.stairsRedCobble = Optional.of(new BlockCustomStairs(
+					blockID, Stuff.redRock.get(),
 					BlockRedRock.BlockType.RED_COBBLE.metadata()));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.stairsRedCobble.get();
 
 			thisBlock.setBlockName("extrabiomes.stairsRedCobble");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
@@ -285,16 +288,17 @@ public enum BlockManager {
 	REDROCKBRICKSTAIRS {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCustomStairs(blockID,
-					extrabiomes.module.summa.block.BlockManager.REDROCK
-							.getBlock().get(),
-					BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()));
+			Stuff.stairsRedRockBrick = Optional
+					.of(new BlockCustomStairs(blockID, Stuff.redRock
+							.get(),
+							BlockRedRock.BlockType.RED_ROCK_BRICK
+									.metadata()));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.stairsRedRockBrick.get();
 
 			thisBlock.setBlockName("extrabiomes.stairsRedRockBrick");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
@@ -312,14 +316,17 @@ public enum BlockManager {
 			IllegalAccessException
 	{
 		for (final BlockManager block : BlockManager.values())
-			if (block.blockID > 0) block.create();
+			if (block.blockID > 0) {
+				block.create();
+				block.blockCreated = true;
+			}
 	}
 
 	public static void init() throws InstantiationException,
 			IllegalAccessException
 	{
 		for (final BlockManager block : values())
-			if (block.block.isPresent()) block.prepare();
+			if (block.blockCreated) block.prepare();
 	}
 
 	private static void loadSettings(ExtrabiomesConfig config) {
@@ -353,8 +360,7 @@ public enum BlockManager {
 			DOUBLEWOODSLAB.blockID = 0;
 		}
 
-		if (!extrabiomes.module.summa.block.BlockManager.REDROCK
-				.getBlock().isPresent()) REDROCKSLAB.blockID = 0;
+		if (!Stuff.redRock.isPresent()) REDROCKSLAB.blockID = 0;
 
 		if (REDROCKSLAB.blockID == 0 || DOUBLEREDROCKSLAB.blockID == 0)
 		{
@@ -372,14 +378,10 @@ public enum BlockManager {
 		createBlocks();
 	}
 
-	protected int						blockID	= 0;
-	protected Optional<? extends Block>	block	= Optional.absent();
+	protected int	blockID			= 0;
+	private boolean	blockCreated	= false;
 
 	protected abstract void create();
-
-	public Optional<? extends Block> getBlock() {
-		return block;
-	}
 
 	private String idKey() {
 		return toString() + ".id";

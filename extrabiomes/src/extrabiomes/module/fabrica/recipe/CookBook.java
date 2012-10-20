@@ -12,14 +12,10 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-
-import com.google.common.base.Optional;
-
 import extrabiomes.Extrabiomes;
+import extrabiomes.api.Stuff;
 import extrabiomes.module.fabrica.block.BlockRedRockSlab;
-import extrabiomes.module.summa.Summa;
 import extrabiomes.module.summa.block.BlockCustomLog;
-import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.block.BlockQuarterLog;
 import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
@@ -77,48 +73,46 @@ public class CookBook {
 
 		final ItemStack charcoal = new ItemStack(Item.coal, 1, 1);
 
-		if (BlockManager.CUSTOMLOG.getBlock().isPresent())
+		if (Stuff.log.isPresent())
 			for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType
 					.values())
-				Extrabiomes.proxy.addSmelting(BlockManager.CUSTOMLOG
-						.getBlock().get().blockID, type.metadata(),
-						charcoal);
+				Extrabiomes.proxy.addSmelting(Stuff.log.get().blockID,
+						type.metadata(), charcoal);
 
-		if (BlockManager.QUARTERLOG0.getBlock().isPresent())
+		if (Stuff.quarterLogNE.isPresent())
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
-				Extrabiomes.proxy.addSmelting(BlockManager.QUARTERLOG0
-						.getBlock().get().blockID, type.metadata(),
-						charcoal);
+				Extrabiomes.proxy.addSmelting(
+						Stuff.quarterLogNE.get().blockID,
+						type.metadata(), charcoal);
 
-		if (BlockManager.QUARTERLOG1.getBlock().isPresent())
+		if (Stuff.quarterLogNW.isPresent())
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
-				Extrabiomes.proxy.addSmelting(BlockManager.QUARTERLOG1
-						.getBlock().get().blockID, type.metadata(),
-						charcoal);
+				Extrabiomes.proxy.addSmelting(
+						Stuff.quarterLogNW.get().blockID,
+						type.metadata(), charcoal);
 
-		if (BlockManager.QUARTERLOG2.getBlock().isPresent())
+		if (Stuff.quarterLogSE.isPresent())
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
-				Extrabiomes.proxy.addSmelting(BlockManager.QUARTERLOG2
-						.getBlock().get().blockID, type.metadata(),
-						charcoal);
+				Extrabiomes.proxy.addSmelting(
+						Stuff.quarterLogSE.get().blockID,
+						type.metadata(), charcoal);
 
-		if (BlockManager.QUARTERLOG3.getBlock().isPresent())
+		if (Stuff.quarterLogSW.isPresent())
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
-				Extrabiomes.proxy.addSmelting(BlockManager.QUARTERLOG3
-						.getBlock().get().blockID, type.metadata(),
-						charcoal);
+				Extrabiomes.proxy.addSmelting(
+						Stuff.quarterLogSW.get().blockID,
+						type.metadata(), charcoal);
 	}
 
 	private static void addLogTurnerRecipe() {
-		final Optional<Item> logTurner = Summa.getLogTurner();
-
-		if (logTurner.isPresent()) {
-			final IRecipe recipe = new ShapedOreRecipe(logTurner.get(),
-					new String[] { "ss", " s", "ss" }, 's', Item.stick);
+		if (Stuff.logTurner.isPresent()) {
+			final IRecipe recipe = new ShapedOreRecipe(
+					Stuff.logTurner.get(), new String[] { "ss", " s",
+							"ss" }, 's', Item.stick);
 			Extrabiomes.proxy.addRecipe(recipe);
 		}
 	}
@@ -130,60 +124,53 @@ public class CookBook {
 				Item.bucketWater, Item.bucketWater);
 		proxy.addRecipe(recipe);
 
-		if (BlockManager.REDROCK.getBlock().isPresent()) {
+		if (Stuff.redRock.isPresent()) {
 			recipe = new ShapedOreRecipe(new ItemStack(
-					BlockManager.REDROCK.getBlock().get(), 4,
+					Stuff.redRock.get(), 4,
 					BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()),
 					new String[] { "rr", "rr" }, 'r', "rockRed");
 			proxy.addRecipe(recipe);
 
 			final ItemStack redRockItem = new ItemStack(
-					BlockManager.REDROCK.getBlock().get(), 1,
+					Stuff.redRock.get(), 1,
 					BlockRedRock.BlockType.RED_ROCK.metadata());
-			proxy.addSmelting(
-					BlockManager.REDROCK.getBlock().get().blockID,
+			proxy.addSmelting(Stuff.redRock.get().blockID,
 					BlockRedRock.BlockType.RED_COBBLE.metadata(),
 					redRockItem);
 		}
 
-		final Optional<? extends Block> slab = extrabiomes.module.fabrica.block.BlockManager.REDROCKSLAB
-				.getBlock();
-
-		if (slab.isPresent()) {
-			recipe = new ShapedOreRecipe(new ItemStack(slab.get(), 6,
+		if (Stuff.redRockSlab.isPresent()) {
+			recipe = new ShapedOreRecipe(new ItemStack(
+					Stuff.redRockSlab.get(), 6,
 					BlockRedRockSlab.BlockType.RED_ROCK.metadata()),
 					new String[] { "rrr" }, 'r', "rockRed");
 			Extrabiomes.proxy.addRecipe(recipe);
 
-			recipe = new ShapedOreRecipe(new ItemStack(slab.get(), 6,
+			recipe = new ShapedOreRecipe(new ItemStack(
+					Stuff.redRockSlab.get(), 6,
 					BlockRedRockSlab.BlockType.RED_COBBLE.metadata()),
 					new String[] { "rrr" }, 'r', "cobbleRed");
 			Extrabiomes.proxy.addRecipe(recipe);
 
-			recipe = new ShapedOreRecipe(new ItemStack(slab.get(), 6,
+			recipe = new ShapedOreRecipe(new ItemStack(
+					Stuff.redRockSlab.get(), 6,
 					BlockRedRockSlab.BlockType.RED_ROCK_BRICK
 							.metadata()), new String[] { "rrr" }, 'r',
 					"brickRedRock");
 			Extrabiomes.proxy.addRecipe(recipe);
 		}
 
-		Optional<? extends Block> stairs = extrabiomes.module.fabrica.block.BlockManager.REDCOBBLESTAIRS
-				.getBlock();
-
-		if (stairs.isPresent()) {
-			recipe = new ShapedOreRecipe(
-					new ItemStack(stairs.get(), 4), new String[] {
-							"r  ", "rr ", "rrr" }, 'r', "cobbleRed");
+		if (Stuff.stairsRedCobble.isPresent()) {
+			recipe = new ShapedOreRecipe(new ItemStack(
+					Stuff.stairsRedCobble.get(), 4), new String[] {
+					"r  ", "rr ", "rrr" }, 'r', "cobbleRed");
 			Extrabiomes.proxy.addRecipe(recipe);
 		}
 
-		stairs = extrabiomes.module.fabrica.block.BlockManager.REDROCKBRICKSTAIRS
-				.getBlock();
-
-		if (stairs.isPresent()) {
-			recipe = new ShapedOreRecipe(
-					new ItemStack(stairs.get(), 4), new String[] {
-							"r  ", "rr ", "rrr" }, 'r', "brickRedRock");
+		if (Stuff.stairsRedRockBrick.isPresent()) {
+			recipe = new ShapedOreRecipe(new ItemStack(
+					Stuff.stairsRedRockBrick.get(), 4), new String[] {
+					"r  ", "rr ", "rrr" }, 'r', "brickRedRock");
 			Extrabiomes.proxy.addRecipe(recipe);
 		}
 

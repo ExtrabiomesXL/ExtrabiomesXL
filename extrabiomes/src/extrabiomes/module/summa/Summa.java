@@ -6,13 +6,12 @@
 
 package extrabiomes.module.summa;
 
-import net.minecraft.src.Item;
-
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.IModule;
 import extrabiomes.api.BiomeManager;
+import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.block.BlockManager;
@@ -26,13 +25,7 @@ public class Summa implements IModule {
 
 	private static BiomeManagerImpl	biomeManager	= new BiomeManagerImpl();
 
-	private static Optional<Item>	logTurner		= Optional.absent();
-
 	private static int				logTurnerID		= 0;
-
-	public static Optional<Item> getLogTurner() {
-		return logTurner;
-	}
 
 	private static void registerWorldGenerators() {
 		if (BiomeManager.marsh.isPresent())
@@ -62,10 +55,11 @@ public class Summa implements IModule {
 		BlockManager.init();
 
 		if (logTurnerID > 0) {
-			logTurner = Optional.of(new LogTurner(logTurnerID)
+			Stuff.logTurner = Optional.of(new LogTurner(logTurnerID)
 					.setItemName("logturner"));
 
-			Extrabiomes.proxy.addName(logTurner.get(), "Log Turner");
+			Extrabiomes.proxy.addName(Stuff.logTurner.get(),
+					"Log Turner");
 		}
 
 	}

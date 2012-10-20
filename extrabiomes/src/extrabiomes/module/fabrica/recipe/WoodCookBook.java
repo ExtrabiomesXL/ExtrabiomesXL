@@ -17,16 +17,15 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
+import extrabiomes.api.Stuff;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.module.fabrica.block.BlockCustomWoodSlab;
-import extrabiomes.module.fabrica.block.BlockManager;
 
 public class WoodCookBook {
 
 	private static void addLogRecipes() {
 
-		final Optional<? extends Block> planks = BlockManager.PLANKS
-				.getBlock();
+		final Optional<? extends Block> planks = Stuff.planks;
 
 		if (planks.isPresent()) {
 			IRecipe recipe = new ShapelessOreRecipe(new ItemStack(
@@ -48,50 +47,42 @@ public class WoodCookBook {
 
 	private static void addPlankCustomRecipes() {
 
-		Optional<? extends Block> stairs = BlockManager.ACACIASTAIRS
-				.getBlock();
-
-		if (stairs.isPresent()) {
+		if (Stuff.stairsAcacia.isPresent()) {
 			final IRecipe recipe = new ShapedOreRecipe(new ItemStack(
-					stairs.get(), 4), new String[] { "p  ", "pp ",
-					"ppp" }, 'p', "plankAcacia");
+					Stuff.stairsAcacia.get(), 4), new String[] { "p  ",
+					"pp ", "ppp" }, 'p', "plankAcacia");
 			Extrabiomes.proxy.addRecipe(recipe);
 		}
 
-		stairs = BlockManager.FIRSTAIRS.getBlock();
-
-		if (stairs.isPresent()) {
+		if (Stuff.stairsFir.isPresent()) {
 			final IRecipe recipe = new ShapedOreRecipe(new ItemStack(
-					stairs.get(), 4), new String[] { "p  ", "pp ",
-					"ppp" }, 'p', "plankFir");
+					Stuff.stairsFir.get(), 4), new String[] { "p  ",
+					"pp ", "ppp" }, 'p', "plankFir");
 			Extrabiomes.proxy.addRecipe(recipe);
 		}
 
-		stairs = BlockManager.REDWOODSTAIRS.getBlock();
-
-		if (stairs.isPresent()) {
+		if (Stuff.stairsRedwood.isPresent()) {
 			final IRecipe recipe = new ShapedOreRecipe(new ItemStack(
-					stairs.get(), 4), new String[] { "p  ", "pp ",
-					"ppp" }, 'p', "plankRedwood");
+					Stuff.stairsRedwood.get(), 4), new String[] {
+					"p  ", "pp ", "ppp" }, 'p', "plankRedwood");
 			Extrabiomes.proxy.addRecipe(recipe);
 		}
 
-		final Optional<? extends Block> slab = BlockManager.WOODSLAB
-				.getBlock();
-
-		if (slab.isPresent()) {
+		if (Stuff.woodSlab.isPresent()) {
 			IRecipe recipe = new ShapedOreRecipe(new ItemStack(
-					slab.get(), 6,
+					Stuff.woodSlab.get(), 6,
 					BlockCustomWoodSlab.BlockType.ACACIA.metadata()),
 					new String[] { "ppp" }, 'p', "plankAcacia");
 			Extrabiomes.proxy.addRecipe(recipe);
 
-			recipe = new ShapedOreRecipe(new ItemStack(slab.get(), 6,
+			recipe = new ShapedOreRecipe(new ItemStack(
+					Stuff.woodSlab.get(), 6,
 					BlockCustomWoodSlab.BlockType.FIR.metadata()),
 					new String[] { "ppp" }, 'p', "plankFir");
 			Extrabiomes.proxy.addRecipe(recipe);
 
-			recipe = new ShapedOreRecipe(new ItemStack(slab.get(), 6,
+			recipe = new ShapedOreRecipe(new ItemStack(
+					Stuff.woodSlab.get(), 6,
 					BlockCustomWoodSlab.BlockType.REDWOOD.metadata()),
 					new String[] { "ppp" }, 'p', "plankRedwood");
 			Extrabiomes.proxy.addRecipe(recipe);

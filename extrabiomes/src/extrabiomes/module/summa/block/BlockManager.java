@@ -24,6 +24,7 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
+import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
@@ -41,13 +42,14 @@ public enum BlockManager {
 	AUTUMNLEAVES {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockAutumnLeaves(blockID));
+			Stuff.autumnLeaves = Optional.of(new BlockAutumnLeaves(
+					blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.autumnLeaves.get();
 
 			thisBlock.setBlockName("extrabiomes.autumnleaves");
 			proxy.registerBlock(
@@ -76,13 +78,13 @@ public enum BlockManager {
 	CATTAIL {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCatTail(blockID));
+			Stuff.catTail = Optional.of(new BlockCatTail(blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.catTail.get();
 
 			thisBlock.setBlockName("extrabiomes.cattail");
 			proxy.registerBlock(thisBlock,
@@ -99,13 +101,14 @@ public enum BlockManager {
 	CRACKEDSAND(true) {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCrackedSand(blockID));
+			Stuff.crackedSand = Optional.of(new BlockCrackedSand(
+					blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.crackedSand.get();
 
 			thisBlock.setBlockName("extrabiomes.crackedsand");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
@@ -119,13 +122,13 @@ public enum BlockManager {
 	FLOWER {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCustomFlower(blockID));
+			Stuff.flower = Optional.of(new BlockCustomFlower(blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.flower.get();
 
 			thisBlock.setBlockName("extrabiomes.flower");
 			proxy.registerBlock(thisBlock,
@@ -148,13 +151,14 @@ public enum BlockManager {
 	GRASS {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCustomTallGrass(blockID));
+			Stuff.grass = Optional
+					.of(new BlockCustomTallGrass(blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.grass.get();
 
 			thisBlock.setBlockName("extrabiomes.grass");
 			proxy.registerBlock(thisBlock,
@@ -211,13 +215,14 @@ public enum BlockManager {
 	GREENLEAVES {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockGreenLeaves(blockID));
+			Stuff.greenLeaves = Optional.of(new BlockGreenLeaves(
+					blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.greenLeaves.get();
 
 			thisBlock.setBlockName("extrabiomes.greenleaves");
 			proxy.registerBlock(
@@ -249,13 +254,13 @@ public enum BlockManager {
 	LEAFPILE {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockLeafPile(blockID));
+			Stuff.leafPile = Optional.of(new BlockLeafPile(blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.leafPile.get();
 
 			thisBlock.setBlockName("extrabiomes.leafpile");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
@@ -270,13 +275,13 @@ public enum BlockManager {
 	REDROCK(true) {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockRedRock(blockID));
+			Stuff.redRock = Optional.of(new BlockRedRock(blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.redRock.get();
 
 			thisBlock.setBlockName("extrabiomes.redrock");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
@@ -304,13 +309,14 @@ public enum BlockManager {
 	SAPLING {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCustomSapling(blockID));
+			Stuff.sapling = Optional
+					.of(new BlockCustomSapling(blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.sapling.get();
 
 			thisBlock.setBlockName("extrabiomes.sapling");
 			proxy.registerBlock(thisBlock,
@@ -336,13 +342,13 @@ public enum BlockManager {
 	CUSTOMLOG {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockCustomLog(blockID));
+			Stuff.log = Optional.of(new BlockCustomLog(blockID));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.log.get();
 
 			thisBlock.setBlockName("extrabiomes.customlog");
 			proxy.registerBlock(thisBlock,
@@ -370,14 +376,14 @@ public enum BlockManager {
 	QUARTERLOG0 {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockQuarterLog(blockID,
-					BlockQuarterLog.BarkOn.NW));
+			Stuff.quarterLogNW = Optional.of(new BlockQuarterLog(
+					blockID, BlockQuarterLog.BarkOn.NW));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.quarterLogNW.get();
 
 			thisBlock.setBlockName("extrabiomes.quarterlog.NW");
 			proxy.registerBlock(thisBlock,
@@ -400,14 +406,14 @@ public enum BlockManager {
 	QUARTERLOG1 {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockQuarterLog(blockID,
-					BlockQuarterLog.BarkOn.NE));
+			Stuff.quarterLogNE = Optional.of(new BlockQuarterLog(
+					blockID, BlockQuarterLog.BarkOn.NE));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.quarterLogNE.get();
 
 			thisBlock.setBlockName("extrabiomes.quarterlog.NE");
 			proxy.registerBlock(thisBlock,
@@ -430,14 +436,14 @@ public enum BlockManager {
 	QUARTERLOG2 {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockQuarterLog(blockID,
-					BlockQuarterLog.BarkOn.SW));
+			Stuff.quarterLogSW = Optional.of(new BlockQuarterLog(
+					blockID, BlockQuarterLog.BarkOn.SW));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.quarterLogSW.get();
 
 			thisBlock.setBlockName("extrabiomes.quarterlog.SW");
 			proxy.registerBlock(thisBlock,
@@ -460,14 +466,14 @@ public enum BlockManager {
 	QUARTERLOG3 {
 		@Override
 		protected void create() {
-			block = Optional.of(new BlockQuarterLog(blockID,
-					BlockQuarterLog.BarkOn.SE));
+			Stuff.quarterLogSE = Optional.of(new BlockQuarterLog(
+					blockID, BlockQuarterLog.BarkOn.SE));
 		}
 
 		@Override
 		protected void prepare() {
 			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = block.get();
+			final Block thisBlock = Stuff.quarterLogSE.get();
 
 			thisBlock.setBlockName("extrabiomes.quarterlog.SE");
 			proxy.registerBlock(thisBlock,
@@ -516,38 +522,41 @@ public enum BlockManager {
 			IllegalAccessException
 	{
 		for (final BlockManager block : BlockManager.values())
-			if (block.blockID > 0) block.create();
+			if (block.blockID > 0) {
+				block.create();
+				block.blockCreated = true;
+			}
 	}
 
 	public static void init() throws InstantiationException,
 			IllegalAccessException
 	{
 		for (final BlockManager block : values())
-			if (block.block.isPresent()) block.prepare();
+			if (block.blockCreated) block.prepare();
 
-		if (QUARTERLOG0.block.isPresent()
-				|| QUARTERLOG1.block.isPresent()
-				|| QUARTERLOG2.block.isPresent()
-				|| QUARTERLOG3.block.isPresent())
+		if (Stuff.quarterLogNE.isPresent()
+				|| Stuff.quarterLogNW.isPresent()
+				|| Stuff.quarterLogSE.isPresent()
+				|| Stuff.quarterLogSW.isPresent())
 			BlockQuarterLog.setRenderId(Extrabiomes.proxy
 					.registerBlockHandler(new RenderQuarterLog()));
 
-		if (QUARTERLOG0.block.isPresent()
-				&& QUARTERLOG1.block.isPresent()
-				&& QUARTERLOG2.block.isPresent()
-				&& QUARTERLOG3.block.isPresent())
+		if (Stuff.quarterLogNE.isPresent()
+				&& Stuff.quarterLogNW.isPresent()
+				&& Stuff.quarterLogSE.isPresent()
+				&& Stuff.quarterLogSW.isPresent())
 		{
-			WorldGenFirTreeHuge.setTrunkBlock(QUARTERLOG0.block.get(),
-					QUARTERLOG1.block.get(), QUARTERLOG2.block.get(),
-					QUARTERLOG3.block.get(),
+			WorldGenFirTreeHuge.setTrunkBlock(Stuff.quarterLogNW.get(),
+					Stuff.quarterLogNE.get(), Stuff.quarterLogSW.get(),
+					Stuff.quarterLogSE.get(),
 					BlockQuarterLog.BlockType.FIR.metadata());
-			WorldGenRedwood.setTrunkBlock(QUARTERLOG0.block.get(),
-					QUARTERLOG1.block.get(), QUARTERLOG2.block.get(),
-					QUARTERLOG3.block.get(),
+			WorldGenRedwood.setTrunkBlock(Stuff.quarterLogNW.get(),
+					Stuff.quarterLogNE.get(), Stuff.quarterLogSW.get(),
+					Stuff.quarterLogSE.get(),
 					BlockQuarterLog.BlockType.REDWOOD.metadata());
-			BlockQuarterLog.setQuarterLogs(QUARTERLOG0.block.get(),
-					QUARTERLOG1.block.get(), QUARTERLOG2.block.get(),
-					QUARTERLOG3.block.get());
+			BlockQuarterLog.setQuarterLogs(Stuff.quarterLogNW.get(),
+					Stuff.quarterLogNE.get(), Stuff.quarterLogSW.get(),
+					Stuff.quarterLogSE.get());
 		}
 	}
 
@@ -607,9 +616,9 @@ public enum BlockManager {
 		BiomeManagerImpl.disableDefaultGrassforBiomes(biomes);
 	}
 
-	private final boolean				restrictTo256;
-	protected int						blockID	= 0;
-	protected Optional<? extends Block>	block	= Optional.absent();
+	private final boolean	restrictTo256;
+	protected int			blockID			= 0;
+	private boolean			blockCreated	= false;
 
 	BlockManager() {
 		this(false);
@@ -620,10 +629,6 @@ public enum BlockManager {
 	}
 
 	protected abstract void create();
-
-	public Optional<? extends Block> getBlock() {
-		return block;
-	}
 
 	private String idKey() {
 		return toString() + ".id";
