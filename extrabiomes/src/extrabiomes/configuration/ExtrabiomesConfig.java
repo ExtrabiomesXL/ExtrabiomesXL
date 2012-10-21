@@ -16,7 +16,7 @@ public class ExtrabiomesConfig extends EnhancedConfiguration {
 	public static final String	CATEGORY_BIOME			= "biome";
 	public static final String	CATEGORY_MODULE_CONTROL	= "module_control";
 
-	private final boolean		configBiomes[]			= null;
+	private static boolean[]	configBiomes			= new boolean[BiomeGenBase.biomeList.length];
 
 	public ExtrabiomesConfig(File file) {
 		super(file);
