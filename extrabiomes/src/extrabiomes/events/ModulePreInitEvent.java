@@ -4,16 +4,16 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes;
+package extrabiomes.events;
 
 import extrabiomes.configuration.ExtrabiomesConfig;
 
-public interface IModule {
+public class ModulePreInitEvent extends ModuleEvent {
 
-	public void init() throws InstantiationException,
-			IllegalAccessException;
+	public final ExtrabiomesConfig	config;
 
-	public void preInit(ExtrabiomesConfig config)
-			throws InstantiationException, IllegalAccessException;
+	public ModulePreInitEvent(ExtrabiomesConfig config) {
+		this.config = config;
+	}
 
 }

@@ -6,23 +6,19 @@
 
 package extrabiomes.module.amica;
 
-import extrabiomes.IModule;
+import net.minecraftforge.event.EventPriority;
+import net.minecraftforge.event.ForgeSubscribe;
 import extrabiomes.api.PluginManager;
-import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.module.amica.buildcraft.BuildcraftPlugin;
 
-public class Amica implements IModule {
+public class Amica {
 
-	@Override
-	public void init() throws InstantiationException,
-			IllegalAccessException
+	@ForgeSubscribe(priority = EventPriority.LOWEST)
+	public void init(ModuleInitEvent event)
+			throws InstantiationException, IllegalAccessException
 	{
 		PluginManager.registerPlugin(new BuildcraftPlugin());
 	}
-
-	@Override
-	public void preInit(ExtrabiomesConfig config)
-			throws InstantiationException, IllegalAccessException
-	{}
 
 }

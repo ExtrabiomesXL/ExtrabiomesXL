@@ -6,13 +6,16 @@
 
 package extrabiomes.module.summa;
 
+import net.minecraftforge.event.EventPriority;
+import net.minecraftforge.event.ForgeSubscribe;
+
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
-import extrabiomes.IModule;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
-import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.events.ModuleEvent.ModuleInitEvent;
+import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.tool.LogTurner;
@@ -21,7 +24,7 @@ import extrabiomes.module.summa.worldgen.MountainDesertGenerator;
 import extrabiomes.module.summa.worldgen.MountainRidgeGenerator;
 import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
 
-public class Summa implements IModule {
+public class Summa {
 
 	private static BiomeManagerImpl	biomeManager	= new BiomeManagerImpl();
 
@@ -44,9 +47,9 @@ public class Summa implements IModule {
 				.registerWorldGenerator(new VanillaFloraGenerator());
 	}
 
-	@Override
-	public void init() throws InstantiationException,
-			IllegalAccessException
+	@ForgeSubscribe(priority = EventPriority.HIGHEST)
+	public void init(ModuleInitEvent event)
+			throws InstantiationException, IllegalAccessException
 	{
 
 		registerWorldGenerators();
@@ -64,14 +67,14 @@ public class Summa implements IModule {
 
 	}
 
-	@Override
-	public void preInit(ExtrabiomesConfig config)
+	@ForgeSubscribe(priority = EventPriority.HIGHEST)
+	public void preInit(ModulePreInitEvent event)
 			throws InstantiationException, IllegalAccessException
 	{
-		biomeManager.preInit(config);
-		BlockManager.preInit(config);
+		biomeManager.preInit(event.config);
+		BlockManager.preInit(event.config);
 
-		logTurnerID = config.getItem("logturner.id",
+		logTurnerID = event.config.getItem("logturner.id",
 				Extrabiomes.getNextDefaultItemID()).getInt(0);
 
 	}

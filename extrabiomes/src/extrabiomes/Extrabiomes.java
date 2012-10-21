@@ -21,6 +21,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.events.ModuleEvent.ModuleInitEvent;
+import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.proxy.CommonProxy;
 
 @Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.1.0.e")
@@ -51,7 +53,7 @@ public class Extrabiomes {
 	{
 		proxy.registerRenderInformation();
 
-		Module.init();
+		proxy.postEventtoBus(new ModuleInitEvent());
 	}
 
 	@PostInit
@@ -69,7 +71,8 @@ public class Extrabiomes {
 		try {
 			cfg.load();
 
-			Module.preInit(cfg);
+			Module.registerModules(cfg);
+			proxy.postEventtoBus(new ModulePreInitEvent(cfg));
 
 		} catch (final Exception e) {
 			ExtrabiomesLog

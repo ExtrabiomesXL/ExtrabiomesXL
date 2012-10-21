@@ -27,23 +27,6 @@ enum Module {
 	// MACHINA("machina", "Set machina to true to in enable higher level tech."),
 
 	private static boolean	controlSettingsLoaded	= false;
-	private static boolean	initialized				= false;
-
-	static void init() throws InstantiationException,
-			IllegalAccessException
-	{
-		// Only do this once
-		if (initialized) return;
-
-		initialized = true;
-
-		for (final Module module : Module.values()) {
-			// skip disabled modules
-			if (!module.enabled) continue;
-
-			module.do_init();
-		}
-	}
 
 	private static void loadControlSettings(ExtrabiomesConfig cfg) {
 		final Map<Module, Property> properties = new EnumMap(
@@ -71,13 +54,14 @@ enum Module {
 		}
 	}
 
-	static void preInit(ExtrabiomesConfig config)
+	static void registerModules(ExtrabiomesConfig config)
 			throws InstantiationException, IllegalAccessException
 	{
 		// Only do this once
 		if (controlSettingsLoaded) return;
 
 		loadControlSettings(config);
+		controlSettingsLoaded = true;
 
 		for (final Module module : Module.values()) {
 			ExtrabiomesLog.info("Module %s is %s.", module.toString(),
@@ -86,7 +70,7 @@ enum Module {
 			// skip disabled modules
 			if (!module.enabled) continue;
 
-			module.do_preInit(config);
+			Extrabiomes.proxy.registerEventHandler(module.pluginClass.newInstance());
 		}
 	}
 
@@ -95,29 +79,14 @@ enum Module {
 
 	private final String					key;
 
-	private Optional<? extends IModule>		plugin	= Optional.absent();
-
-	private final Class<? extends IModule>	pluginClass;
+	private final Class	pluginClass;
 
 	private Module(String key, String configComment,
-			Class<? extends IModule> pluginClass)
+			Class pluginClass)
 	{
 		this.key = key;
 		this.configComment = configComment;
 		this.pluginClass = pluginClass;
-	}
-
-	private void do_init() throws InstantiationException,
-			IllegalAccessException
-	{
-		plugin.get().init();
-	}
-
-	private void do_preInit(ExtrabiomesConfig config)
-			throws InstantiationException, IllegalAccessException
-	{
-		plugin = Optional.of(pluginClass.newInstance());
-		plugin.get().preInit(config);
 	}
 
 	public boolean isEnabled() {

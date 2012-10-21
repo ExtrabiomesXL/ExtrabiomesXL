@@ -6,24 +6,25 @@
 
 package extrabiomes.module.cautia;
 
-import extrabiomes.IModule;
-import extrabiomes.configuration.ExtrabiomesConfig;
+import net.minecraftforge.event.ForgeSubscribe;
+import extrabiomes.events.ModuleEvent.ModuleInitEvent;
+import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.module.cautia.block.BlockManager;
 
-public class Cautia implements IModule {
+public class Cautia {
 
-	@Override
-	public void init() throws InstantiationException,
-			IllegalAccessException
+	@ForgeSubscribe
+	public void init(ModuleInitEvent event)
+			throws InstantiationException, IllegalAccessException
 	{
 		BlockManager.init();
 	}
 
-	@Override
-	public void preInit(ExtrabiomesConfig config)
+	@ForgeSubscribe
+	public void preInit(ModulePreInitEvent event)
 			throws InstantiationException, IllegalAccessException
 	{
-		BlockManager.preInit(config);
+		BlockManager.preInit(event.config);
 	}
 
 }
