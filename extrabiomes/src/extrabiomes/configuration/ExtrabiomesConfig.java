@@ -7,10 +7,8 @@
 package extrabiomes.configuration;
 
 import java.io.File;
-import java.util.Map;
 
 import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.Block;
 import net.minecraftforge.common.Property;
 
 public class ExtrabiomesConfig extends EnhancedConfiguration {
@@ -18,50 +16,41 @@ public class ExtrabiomesConfig extends EnhancedConfiguration {
 	public static final String	CATEGORY_BIOME			= "biome";
 	public static final String	CATEGORY_MODULE_CONTROL	= "module_control";
 
-	private boolean				configBiomes[]			= null;
+	private final boolean		configBiomes[]			= null;
 
 	public ExtrabiomesConfig(File file) {
 		super(file);
 	}
 
-	public Property getBiome(String key, int defaultId) {
-		if (configBiomes == null) {
-			configBiomes = new boolean[BiomeGenBase.biomeList.length];
+	public Property getBiome(String key, int defaultID) {
+		return getBiome(CATEGORY_BIOME, key, defaultID);
+	}
 
-			for (int i = 0; i < configBiomes.length; ++i)
-				configBiomes[i] = false;
+	public Property getBiome(String category, String key, int defaultID)
+	{
+		final Property prop = get(category, key, -1);
+
+		if (prop.getInt() != -1) {
+			configBiomes[prop.getInt()] = true;
+			return prop;
 		}
 
-		final Map<String, Property> properties = categories
-				.get(CATEGORY_BIOME);
-		if (properties.containsKey(key)) {
-			final Property property = get(CATEGORY_BIOME, key,
-					defaultId);
-			configBiomes[Integer.parseInt(property.value)] = true;
-			return property;
-		} else {
-			final Property property = new Property();
-			properties.put(key, property);
-			property.setName(key);
+		if (BiomeGenBase.biomeList[defaultID] == null
+				&& !configBiomes[defaultID])
+		{
+			prop.value = Integer.toString(defaultID);
+			configBiomes[defaultID] = true;
+			return prop;
+		}
 
-			if (BiomeGenBase.biomeList[defaultId] == null
-					&& !configBiomes[defaultId])
-			{
-				property.value = Integer.toString(defaultId);
-				configBiomes[defaultId] = true;
-				return property;
-			} else {
-				for (int j = configBiomes.length - 1; j >= 0; --j)
-					if (Block.blocksList[j] == null && !configBiomes[j])
-					{
-						property.value = Integer.toString(j);
-						configBiomes[j] = true;
-						return property;
-					}
-
-				throw new RuntimeException(
-						"No more biome ids available for " + key);
+		for (int j = configBiomes.length - 1; j > 0; j--)
+			if (BiomeGenBase.biomeList[j] == null && !configBiomes[j]) {
+				prop.value = Integer.toString(j);
+				configBiomes[j] = true;
+				return prop;
 			}
-		}
+
+		throw new RuntimeException("No more biome ids available for "
+				+ key);
 	}
 }
