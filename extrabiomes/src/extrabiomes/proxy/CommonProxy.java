@@ -78,7 +78,7 @@ public class CommonProxy {
 		return Loader.isModLoaded(modID);
 	}
 
-	public boolean postEventtoBus(Event event) {
+	public boolean postEventToBus(Event event) {
 		return MinecraftForge.EVENT_BUS.post(event);
 	}
 
@@ -163,6 +163,10 @@ public class CommonProxy {
 	{
 		MinecraftForge.setBlockHarvestLevel(block, toolClass,
 				harvestLevel);
+	}
+
+	public void unregisterEventHandler(Object target) {
+		MinecraftForge.EVENT_BUS.unregister(target);
 	}
 
 }

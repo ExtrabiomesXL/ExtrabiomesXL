@@ -6,8 +6,11 @@
 
 package extrabiomes.module.summa;
 
+import net.minecraft.src.IRecipe;
+import net.minecraft.src.Item;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import com.google.common.base.Optional;
 
@@ -63,6 +66,11 @@ public class Summa {
 
 			Extrabiomes.proxy.addName(Stuff.logTurner.get(),
 					"Log Turner");
+
+			final IRecipe recipe = new ShapedOreRecipe(
+					Stuff.logTurner.get(), new String[] { "ss", " s",
+							"ss" }, 's', Item.stick);
+			Extrabiomes.proxy.addRecipe(recipe);
 		}
 
 	}

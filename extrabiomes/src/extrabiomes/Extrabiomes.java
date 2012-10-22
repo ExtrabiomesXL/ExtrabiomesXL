@@ -53,7 +53,7 @@ public class Extrabiomes {
 	{
 		proxy.registerRenderInformation();
 
-		proxy.postEventtoBus(new ModuleInitEvent());
+		proxy.postEventToBus(new ModuleInitEvent());
 	}
 
 	@PostInit
@@ -72,7 +72,7 @@ public class Extrabiomes {
 			cfg.load();
 
 			Module.registerModules(cfg);
-			proxy.postEventtoBus(new ModulePreInitEvent(cfg));
+			proxy.postEventToBus(new ModulePreInitEvent(cfg));
 
 		} catch (final Exception e) {
 			ExtrabiomesLog

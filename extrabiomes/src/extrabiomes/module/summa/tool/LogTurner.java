@@ -42,7 +42,7 @@ public class LogTurner extends ItemTool {
 
 		final UseLogTurnerEvent event = new UseLogTurnerEvent(player,
 				itemUsed, world, x, y, z);
-		if (Extrabiomes.proxy.postEventtoBus(event)) return false;
+		if (Extrabiomes.proxy.postEventToBus(event)) return false;
 		if (event.isHandled()) return true;
 
 		final int blockID = world.getBlockId(x, y, z);

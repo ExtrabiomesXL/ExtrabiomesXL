@@ -12,84 +12,10 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
-
-import com.google.common.base.Optional;
-
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
-import extrabiomes.module.fabrica.block.BlockCustomWood;
-import extrabiomes.module.fabrica.block.BlockCustomWoodSlab;
 
-public class WoodCookBook {
-
-	private static void addLogRecipes() {
-
-		final Optional<? extends Block> planks = Stuff.planks;
-
-		if (planks.isPresent()) {
-			IRecipe recipe = new ShapelessOreRecipe(new ItemStack(
-					planks.get(), 4,
-					BlockCustomWood.BlockType.FIR.metadata()), "logFir");
-			Extrabiomes.proxy.addRecipe(recipe);
-
-			recipe = new ShapelessOreRecipe(new ItemStack(planks.get(),
-					4, BlockCustomWood.BlockType.ACACIA.metadata()),
-					"logAcacia");
-			Extrabiomes.proxy.addRecipe(recipe);
-
-			recipe = new ShapelessOreRecipe(new ItemStack(planks.get(),
-					4, BlockCustomWood.BlockType.REDWOOD.metadata()),
-					"logRedwood");
-			Extrabiomes.proxy.addRecipe(recipe);
-		}
-	}
-
-	private static void addPlankCustomRecipes() {
-
-		if (Stuff.stairsAcacia.isPresent()) {
-			final IRecipe recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.stairsAcacia.get(), 4), new String[] { "p  ",
-					"pp ", "ppp" }, 'p', "plankAcacia");
-			Extrabiomes.proxy.addRecipe(recipe);
-		}
-
-		if (Stuff.stairsFir.isPresent()) {
-			final IRecipe recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.stairsFir.get(), 4), new String[] { "p  ",
-					"pp ", "ppp" }, 'p', "plankFir");
-			Extrabiomes.proxy.addRecipe(recipe);
-		}
-
-		if (Stuff.stairsRedwood.isPresent()) {
-			final IRecipe recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.stairsRedwood.get(), 4), new String[] {
-					"p  ", "pp ", "ppp" }, 'p', "plankRedwood");
-			Extrabiomes.proxy.addRecipe(recipe);
-		}
-
-		if (Stuff.slabWood.isPresent()) {
-			IRecipe recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.slabWood.get(), 6,
-					BlockCustomWoodSlab.BlockType.ACACIA.metadata()),
-					new String[] { "ppp" }, 'p', "plankAcacia");
-			Extrabiomes.proxy.addRecipe(recipe);
-
-			recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.slabWood.get(), 6,
-					BlockCustomWoodSlab.BlockType.FIR.metadata()),
-					new String[] { "ppp" }, 'p', "plankFir");
-			Extrabiomes.proxy.addRecipe(recipe);
-
-			recipe = new ShapedOreRecipe(new ItemStack(
-					Stuff.slabWood.get(), 6,
-					BlockCustomWoodSlab.BlockType.REDWOOD.metadata()),
-					new String[] { "ppp" }, 'p', "plankRedwood");
-			Extrabiomes.proxy.addRecipe(recipe);
-		}
-
-	}
-
+public class PlankOreDictionaryRecipes {
 	private static void addPlankVanillaRecipes() {
 		OreDictionary.registerOre("plankWood", Block.planks);
 
@@ -187,8 +113,6 @@ public class WoodCookBook {
 
 	public static void init() {
 		addPlankVanillaRecipes();
-		addPlankCustomRecipes();
-		addLogRecipes();
 	}
 
 }

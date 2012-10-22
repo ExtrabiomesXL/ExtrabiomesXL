@@ -20,6 +20,14 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.events.BlockActiveEvent.AcaciaStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.FirStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.PlankActiveEvent;
+import extrabiomes.events.BlockActiveEvent.RedCobbleStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.RedRockBrickStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.RedRockSlabActiveEvent;
+import extrabiomes.events.BlockActiveEvent.RedwoodStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.WoodSlabActiveEvent;
 import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
 
@@ -45,19 +53,15 @@ public enum BlockManager {
 						new ItemStack(thisBlock, 1, blockType
 								.metadata()), blockType.itemName());
 
-			final ItemStack firPlankItem = new ItemStack(thisBlock, 1,
+			new ItemStack(thisBlock, 1,
 					BlockCustomWood.BlockType.FIR.metadata());
-			final ItemStack redwoodPlankItem = new ItemStack(thisBlock,
-					1, BlockCustomWood.BlockType.REDWOOD.metadata());
-			final ItemStack acaciaPlankItem = new ItemStack(thisBlock,
-					1, BlockCustomWood.BlockType.ACACIA.metadata());
+			new ItemStack(thisBlock, 1,
+					BlockCustomWood.BlockType.REDWOOD.metadata());
+			new ItemStack(thisBlock, 1,
+					BlockCustomWood.BlockType.ACACIA.metadata());
 
-			OreDictionary.registerOre("plankWood", firPlankItem);
-			OreDictionary.registerOre("plankWood", acaciaPlankItem);
-			OreDictionary.registerOre("plankWood", redwoodPlankItem);
-			OreDictionary.registerOre("plankFir", firPlankItem);
-			OreDictionary.registerOre("plankAcacia", acaciaPlankItem);
-			OreDictionary.registerOre("plankRedwood", redwoodPlankItem);
+			OreDictionary.registerOre("plankWood", thisBlock);
+			proxy.postEventToBus(new PlankActiveEvent(thisBlock));
 		}
 	},
 	WOODSLAB {
@@ -77,6 +81,7 @@ public enum BlockManager {
 
 			proxy.registerFuelHandler(new FuelHandlerWoodSlabs(
 					thisBlock.blockID));
+			proxy.postEventToBus(new WoodSlabActiveEvent(thisBlock));
 		}
 	},
 	DOUBLEWOODSLAB {
@@ -109,22 +114,12 @@ public enum BlockManager {
 						blockType.metadata()), blockType.itemName());
 			}
 
-			final ItemStack firSlabItem = new ItemStack(
-					Stuff.slabWood.get(), 1,
+			new ItemStack(Stuff.slabWood.get(), 1,
 					BlockCustomWoodSlab.BlockType.FIR.metadata());
-			final ItemStack redwoodSlabItem = new ItemStack(
-					Stuff.slabWood.get(), 1,
+			new ItemStack(Stuff.slabWood.get(), 1,
 					BlockCustomWoodSlab.BlockType.REDWOOD.metadata());
-			final ItemStack acaciaSlabItem = new ItemStack(
-					Stuff.slabWood.get(), 1,
+			new ItemStack(Stuff.slabWood.get(), 1,
 					BlockCustomWoodSlab.BlockType.ACACIA.metadata());
-
-			OreDictionary.registerOre("slabWood", firSlabItem);
-			OreDictionary.registerOre("slabWood", acaciaSlabItem);
-			OreDictionary.registerOre("slabWood", redwoodSlabItem);
-			OreDictionary.registerOre("slabFir", firSlabItem);
-			OreDictionary.registerOre("slabAcacia", acaciaSlabItem);
-			OreDictionary.registerOre("slabRedwood", redwoodSlabItem);
 		}
 	},
 	REDWOODSTAIRS {
@@ -145,9 +140,7 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock);
 
 			proxy.addName(thisBlock, "Redwood Stairs");
-
-			proxy.registerOre("stairsWood", thisBlock);
-			proxy.registerOre("stairsRedwood", thisBlock);
+			proxy.postEventToBus(new RedwoodStairsActiveEvent(thisBlock));
 		}
 	},
 	FIRSTAIRS {
@@ -168,9 +161,7 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock);
 
 			proxy.addName(thisBlock, "Fir Wood Stairs");
-
-			proxy.registerOre("stairsWood", thisBlock);
-			proxy.registerOre("stairsFir", thisBlock);
+			proxy.postEventToBus(new FirStairsActiveEvent(thisBlock));
 		}
 	},
 	ACACIASTAIRS {
@@ -191,9 +182,7 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock);
 
 			proxy.addName(thisBlock, "Acacia Wood Stairs");
-
-			proxy.registerOre("stairsWood", thisBlock);
-			proxy.registerOre("stairsAcacia", thisBlock);
+			proxy.postEventToBus(new AcaciaStairsActiveEvent(thisBlock));
 		}
 	},
 	REDROCKSLAB {
@@ -210,6 +199,8 @@ public enum BlockManager {
 
 			thisBlock.setBlockName("extrabiomes.redrockslab");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+
+			proxy.postEventToBus(new RedRockSlabActiveEvent(thisBlock));
 		}
 	},
 	DOUBLEREDROCKSLAB {
@@ -244,23 +235,6 @@ public enum BlockManager {
 				proxy.addName(new ItemStack(Stuff.slabRedRock.get(), 1,
 						blockType.metadata()), blockType.itemName());
 			}
-
-			final ItemStack redCobbleSlabItem = new ItemStack(
-					Stuff.slabRedRock.get(), 1,
-					BlockRedRockSlab.BlockType.RED_COBBLE.metadata());
-			final ItemStack redRockSlabItem = new ItemStack(
-					Stuff.slabRedRock.get(), 1,
-					BlockRedRockSlab.BlockType.RED_ROCK.metadata());
-			final ItemStack redRockBrickSlabItem = new ItemStack(
-					Stuff.slabRedRock.get(), 1,
-					BlockRedRockSlab.BlockType.RED_ROCK_BRICK
-							.metadata());
-
-			OreDictionary.registerOre("slabRedCobble",
-					redCobbleSlabItem);
-			OreDictionary.registerOre("slabRedRock", redRockSlabItem);
-			OreDictionary.registerOre("slabRedRockBrick",
-					redRockBrickSlabItem);
 		}
 	},
 	REDCOBBLESTAIRS {
@@ -282,7 +256,8 @@ public enum BlockManager {
 
 			proxy.addName(thisBlock, "Red Cobble Stairs");
 
-			proxy.registerOre("stairsRedCobble", thisBlock);
+			proxy.postEventToBus(new RedCobbleStairsActiveEvent(
+					thisBlock));
 		}
 	},
 	REDROCKBRICKSTAIRS {
@@ -306,7 +281,8 @@ public enum BlockManager {
 
 			proxy.addName(thisBlock, "Red Rock Brick Stairs");
 
-			proxy.registerOre("stairsRedRockBrick", thisBlock);
+			proxy.postEventToBus(new RedRockBrickStairsActiveEvent(
+					thisBlock));
 		}
 	};
 

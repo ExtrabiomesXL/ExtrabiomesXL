@@ -17,7 +17,6 @@ import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.WorldGenTallGrass;
 import net.minecraftforge.common.Property;
-import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.base.Optional;
 
@@ -26,6 +25,11 @@ import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
+import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
+import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
+import extrabiomes.events.BlockActiveEvent.LogActiveEvent;
+import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
@@ -62,9 +66,6 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
-				proxy.registerOre("leaves", itemstack);
-				proxy.registerOre("leavesAutumn", itemstack);
-				proxy.registerOre("leaves" + type.toString(), itemstack);
 			}
 
 			WorldGenAutumnTree.setLeavesBlock(thisBlock,
@@ -92,8 +93,6 @@ public enum BlockManager {
 
 			proxy.addName(thisBlock, "Cat Tail");
 
-			proxy.registerOre("reedCatTail", thisBlock);
-
 			proxy.registerWorldGenerator(new CatTailGenerator(
 					thisBlock.blockID));
 		}
@@ -115,7 +114,7 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock);
 			proxy.addName(thisBlock, "Cracked Sand");
 
-			proxy.registerOre("sandCracked", thisBlock);
+			proxy.postEventToBus(new CrackedSandActiveEvent(thisBlock));
 			addCrackedSandToWasteland(thisBlock.blockID);
 		}
 	},
@@ -136,13 +135,11 @@ public enum BlockManager {
 
 			for (final BlockCustomFlower.BlockType type : BlockCustomFlower.BlockType
 					.values())
-			{
-				final ItemStack itemstack = new ItemStack(thisBlock, 1,
-						type.metadata());
-				proxy.addName(itemstack, type.itemName());
-				proxy.registerOre("flower", itemstack);
-				proxy.registerOre("flower" + type.toString(), itemstack);
-			}
+				proxy.addName(
+						new ItemStack(thisBlock, 1, type.metadata()),
+						type.itemName());
+
+			proxy.postEventToBus(new FlowerActiveEvent(thisBlock));
 
 			proxy.registerWorldGenerator(new FlowerGenerator(
 					thisBlock.blockID));
@@ -170,8 +167,6 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
-				proxy.registerOre("grass", itemstack);
-				proxy.registerOre("grass" + type.toString(), itemstack);
 			}
 
 			if (BiomeManager.mountainridge.isPresent()) {
@@ -235,9 +230,6 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
-				proxy.registerOre("leaves", itemstack);
-				proxy.registerOre("leavesGreen", itemstack);
-				proxy.registerOre("leaves" + type.toString(), itemstack);
 			}
 
 			WorldGenAcacia.setLeavesBlock(thisBlock,
@@ -267,7 +259,8 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock);
 			proxy.addName(thisBlock, "Leaf Pile");
 
-			proxy.registerOre("pileLeaf", thisBlock);
+			proxy.postEventToBus(new LeafPileActiveEvent(thisBlock));
+
 			proxy.registerWorldGenerator(new LeafPileGenerator(
 					thisBlock.blockID));
 		}
@@ -293,16 +286,8 @@ public enum BlockManager {
 						new ItemStack(thisBlock, 1, blockType
 								.metadata()), blockType.itemName());
 
-			final ItemStack redRockItem = new ItemStack(thisBlock, 1,
-					BlockRedRock.BlockType.RED_ROCK.metadata());
-			final ItemStack redCobbleItem = new ItemStack(thisBlock, 1,
-					BlockRedRock.BlockType.RED_COBBLE.metadata());
-			final ItemStack redRockBrickItem = new ItemStack(thisBlock,
-					1, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata());
+			proxy.postEventToBus(new RedRockActiveEvent(thisBlock));
 
-			OreDictionary.registerOre("rockRed", redRockItem);
-			OreDictionary.registerOre("cobbleRed", redCobbleItem);
-			OreDictionary.registerOre("brickRedRock", redRockBrickItem);
 			addRedRockToMountainRidge(thisBlock.blockID);
 		}
 	},
@@ -328,9 +313,6 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
-				proxy.registerOre("sapling", itemstack);
-				proxy.registerOre("sapling" + type.toString(),
-						itemstack);
 			}
 
 			proxy.registerEventHandler(new SaplingBonemealEventhandler(
@@ -361,14 +343,15 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
-				proxy.registerOre("log", itemstack);
-				proxy.registerOre("log" + type.toString(), itemstack);
 			}
 
 			WorldGenAcacia.setTrunkBlock(thisBlock,
 					BlockCustomLog.BlockType.ACACIA.metadata());
 			WorldGenFirTree.setTrunkBlock(thisBlock,
 					BlockCustomLog.BlockType.FIR.metadata());
+
+			proxy.registerOre("logWood", thisBlock);
+			proxy.postEventToBus(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
@@ -396,9 +379,10 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
-				proxy.registerOre("log", itemstack);
-				proxy.registerOre("log" + type.toString(), itemstack);
 			}
+
+			proxy.registerOre("logWood", thisBlock);
+			proxy.postEventToBus(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
@@ -426,9 +410,10 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
-				proxy.registerOre("log", itemstack);
-				proxy.registerOre("log" + type.toString(), itemstack);
 			}
+
+			proxy.registerOre("logWood", thisBlock);
+			proxy.postEventToBus(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
@@ -456,9 +441,10 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
-				proxy.registerOre("log", itemstack);
-				proxy.registerOre("log" + type.toString(), itemstack);
 			}
+
+			proxy.registerOre("logWood", thisBlock);
+			proxy.postEventToBus(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
@@ -487,9 +473,10 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
-				proxy.registerOre("log", itemstack);
-				proxy.registerOre("log" + type.toString(), itemstack);
 			}
+
+			proxy.registerOre("logWood", thisBlock);
+			proxy.postEventToBus(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
