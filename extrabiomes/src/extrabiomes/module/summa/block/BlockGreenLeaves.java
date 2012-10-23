@@ -162,7 +162,7 @@ class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 	}
 
 	@Override
-	protected int damageDropped(int metadata) {
+	public int damageDropped(int metadata) {
 
 		return unmarkedMetadata(metadata) + 4;
 	}

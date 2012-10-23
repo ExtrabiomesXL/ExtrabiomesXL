@@ -12,6 +12,10 @@
 		<list key="ENABLED_TRANSFERS">
 		</list>
 	</section>
+	<section name="ResourceNavigator">
+		<item value="" key="ResourceWorkingSetFilter.STORE_WORKING_SET"/>
+		<item value="1" key="ResourceViewer.STORE_SORT_TYPE"/>
+	</section>
 	<section name="CleanDialogSettings">
 		<item value="500" key="DIALOG_WIDTH"/>
 		<item value="241" key="DIALOG_Y_ORIGIN"/>

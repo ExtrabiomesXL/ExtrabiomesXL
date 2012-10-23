@@ -6,8 +6,12 @@
 
 package extrabiomes.module.summa.biome;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
+
+import extrabiomes.ExtrabiomesLog;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.MapGenVillage;
@@ -27,8 +31,24 @@ enum VillageSpawnHelper {
 		if (!villageSpawnBiomeChangesEnabled) {
 			final List<BiomeGenBase> villageSpawnBiomes = new ArrayList();
 			villageSpawnBiomes.addAll(MapGenVillage.villageSpawnBiomes);
-			MapGenVillage.villageSpawnBiomes = villageSpawnBiomes;
-			villageSpawnBiomeChangesEnabled = true;
+
+			// get MapGenVillageSpawnBiomes.villageSpawnBiomes field
+			Field field = MapGenVillage.class.getDeclaredFields()[0];
+			field.setAccessible(true);
+			
+			// Make the field non final and set it
+			try {
+				Field modifiersField = Field.class.getDeclaredField("modifiers");
+				modifiersField.setAccessible(true);
+				modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+		    
+				field.set(null, villageSpawnBiomes);
+			} catch (Exception e) {
+				ExtrabiomesLog.info("Could not access village spawn biomes.");
+			}
+			finally {
+				villageSpawnBiomeChangesEnabled = true;
+			}
 		}
 	}
 

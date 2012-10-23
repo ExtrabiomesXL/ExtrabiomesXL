@@ -127,7 +127,7 @@ class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 	}
 
 	@Override
-	protected int damageDropped(int metadata) {
+	public int damageDropped(int metadata) {
 		// Autumn saplings and autumn leaves have corresponding metadata
 		return unmarkedMetadata(metadata);
 	}

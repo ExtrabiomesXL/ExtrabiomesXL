@@ -6,6 +6,7 @@
 
 package extrabiomes.module.summa.block;
 
+import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 
@@ -19,10 +20,10 @@ public class SaplingBonemealEventhandler {
 
 	@ForgeSubscribe
 	public void onBonemealEvent(BonemealEvent e) {
-		if (!e.isHandeled() && e.ID == sapling.blockID) {
+		if (e.getResult() == Result.DEFAULT && e.ID == sapling.blockID) {
 			if (!e.world.isRemote)
 				sapling.growTree(e.world, e.X, e.Y, e.Z, e.world.rand);
-			e.setHandeled();
+			e.setResult(Result.ALLOW);
 		}
 	}
 

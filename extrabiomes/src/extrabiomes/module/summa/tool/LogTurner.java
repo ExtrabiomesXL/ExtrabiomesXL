@@ -38,7 +38,7 @@ public class LogTurner extends ItemTool {
 			World world, int x, int y, int z, int side, float xOffset,
 			float yOffset, float zOffset)
 	{
-		if (!player.canPlayerEdit(x, y, z)) return false;
+		if (!player.func_82247_a(x, y, z, side, itemUsed)) return false;
 
 		final UseLogTurnerEvent event = new UseLogTurnerEvent(player,
 				itemUsed, world, x, y, z);
