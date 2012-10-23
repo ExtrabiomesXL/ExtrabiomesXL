@@ -234,7 +234,7 @@ public class RecipeManager {
 				BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()));
 
 		IRecipe recipe = new ShapelessOreRecipe(new ItemStack(
-				Item.clay, 4), redRockItem.get(), Item.bucketWater,
+				Item.clay, 4), redCobbleItem.get(), Item.bucketWater,
 				Item.bucketWater, Item.bucketWater);
 		proxy.addRecipe(recipe);
 

@@ -343,6 +343,7 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("logWood", itemstack);
 			}
 
 			WorldGenAcacia.setTrunkBlock(thisBlock,
@@ -350,7 +351,6 @@ public enum BlockManager {
 			WorldGenFirTree.setTrunkBlock(thisBlock,
 					BlockCustomLog.BlockType.FIR.metadata());
 
-			proxy.registerOre("logWood", thisBlock);
 			proxy.postEventToBus(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
@@ -379,6 +379,7 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("logWood", itemstack);
 			}
 
 			proxy.registerOre("logWood", thisBlock);
@@ -410,6 +411,7 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("logWood", itemstack);
 			}
 
 			proxy.registerOre("logWood", thisBlock);
@@ -441,6 +443,7 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("logWood", itemstack);
 			}
 
 			proxy.registerOre("logWood", thisBlock);
@@ -473,6 +476,7 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("logWood", itemstack);
 			}
 
 			proxy.registerOre("logWood", thisBlock);

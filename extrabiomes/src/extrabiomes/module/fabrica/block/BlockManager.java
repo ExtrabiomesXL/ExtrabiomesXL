@@ -48,19 +48,14 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
 			for (final BlockCustomWood.BlockType blockType : BlockCustomWood.BlockType
-					.values())
+					.values()) {
+				ItemStack itemstack = new ItemStack(thisBlock, 1, blockType
+								.metadata());
 				proxy.addName(
-						new ItemStack(thisBlock, 1, blockType
-								.metadata()), blockType.itemName());
+						itemstack, blockType.itemName());
+				proxy.registerOre("plankWood", itemstack);
+			}
 
-			new ItemStack(thisBlock, 1,
-					BlockCustomWood.BlockType.FIR.metadata());
-			new ItemStack(thisBlock, 1,
-					BlockCustomWood.BlockType.REDWOOD.metadata());
-			new ItemStack(thisBlock, 1,
-					BlockCustomWood.BlockType.ACACIA.metadata());
-
-			OreDictionary.registerOre("plankWood", thisBlock);
 			proxy.postEventToBus(new PlankActiveEvent(thisBlock));
 		}
 	},
