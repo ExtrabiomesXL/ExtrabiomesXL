@@ -73,7 +73,7 @@ public class PlankOreDictionaryRecipes {
 				new String[] { "ppp", "ppp" }, 'p', "plankWood");
 		Extrabiomes.proxy.addRecipe(recipe);
 
-		recipe = new ShapedOreRecipe(Item.sign, new String[] { "ppp",
+		recipe = new ShapedOreRecipe(new ItemStack(Item.sign, 3), new String[] { "ppp",
 				"ppp", " s " }, 'p', "plankWood", 's', Item.stick);
 		Extrabiomes.proxy.addRecipe(recipe);
 
