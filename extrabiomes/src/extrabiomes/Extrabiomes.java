@@ -25,7 +25,7 @@ import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.proxy.CommonProxy;
 
-@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.1.2")
+@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.2.0")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Extrabiomes {
 
