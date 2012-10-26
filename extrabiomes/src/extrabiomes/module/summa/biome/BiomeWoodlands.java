@@ -8,7 +8,11 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.ColorizerFoliage;
+import net.minecraft.src.ColorizerGrass;
 import net.minecraft.src.SpawnListEntry;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 class BiomeWoodlands extends ExtrabiomeGenBase {
 
@@ -17,8 +21,8 @@ class BiomeWoodlands extends ExtrabiomeGenBase {
 
 		setColor(0x85B53E);
 		setBiomeName("Woodlands");
-		temperature = 2.0F;
-		rainfall = 0.2F;
+		temperature = BiomeGenBase.forest.temperature;
+		rainfall = BiomeGenBase.forest.rainfall;
 		minHeight = 0.2F;
 		maxHeight = 0.4F;
 
@@ -30,6 +34,18 @@ class BiomeWoodlands extends ExtrabiomeGenBase {
 	protected BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(8)
 				.grassPerChunk(3).build();
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBiomeFoliageColor() {
+		return ColorizerFoliage.getFoliageColor(1.0F, 0.2F);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBiomeGrassColor() {
+		return ColorizerGrass.getGrassColor(1.0F, 0.2F);
 	}
 
 }

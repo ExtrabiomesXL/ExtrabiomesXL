@@ -8,8 +8,12 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.ColorizerFoliage;
+import net.minecraft.src.ColorizerGrass;
 import net.minecraft.src.EntityWolf;
 import net.minecraft.src.SpawnListEntry;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 class BiomePineForest extends ExtrabiomeGenBase {
 
@@ -18,8 +22,8 @@ class BiomePineForest extends ExtrabiomeGenBase {
 
 		setColor(0x469C7E);
 		setBiomeName("Pine Forest");
-		temperature = 0.4F;
-		rainfall = 0.6F;
+		temperature = BiomeGenBase.forest.temperature;
+		rainfall = BiomeGenBase.forest.rainfall;
 		minHeight = 0.1F;
 		maxHeight = 0.3F;
 
@@ -32,4 +36,17 @@ class BiomePineForest extends ExtrabiomeGenBase {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(10)
 				.grassPerChunk(1).build();
 	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBiomeFoliageColor() {
+		return ColorizerFoliage.getFoliageColor(0.4F, 0.6F);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBiomeGrassColor() {
+		return ColorizerGrass.getGrassColor(0.4F, 0.6F);
+	}
+
 }

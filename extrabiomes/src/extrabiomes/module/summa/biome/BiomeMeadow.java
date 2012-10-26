@@ -7,13 +7,15 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
+import net.minecraft.src.ColorizerFoliage;
+import net.minecraft.src.ColorizerGrass;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 class BiomeMeadow extends ExtrabiomeGenBase {
 
 	public BiomeMeadow() {
 		super(Biome.MEADOW.getBiomeID());
-		temperature = 2.3F;
-		rainfall = 3.0F;
 		minHeight = 0.0F;
 		maxHeight = 0.0F;
 		setBiomeName("Meadow");
@@ -23,6 +25,18 @@ class BiomeMeadow extends ExtrabiomeGenBase {
 	protected BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
 				.grassPerChunk(12).flowersPerChunk(9).build();
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBiomeFoliageColor() {
+		return ColorizerFoliage.getFoliageColor(1.0F, 1.0F);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBiomeGrassColor() {
+		return ColorizerGrass.getGrassColor(1.0F, 1.0F);
 	}
 
 }

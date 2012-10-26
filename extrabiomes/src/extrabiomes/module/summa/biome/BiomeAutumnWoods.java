@@ -8,8 +8,12 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.ColorizerFoliage;
+import net.minecraft.src.ColorizerGrass;
 import net.minecraft.src.EntityWolf;
 import net.minecraft.src.SpawnListEntry;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 class BiomeAutumnWoods extends ExtrabiomeGenBase {
 
@@ -17,8 +21,8 @@ class BiomeAutumnWoods extends ExtrabiomeGenBase {
 		super(Biome.AUTUMNWOODS.getBiomeID());
 		setColor(0xF29C11);
 		setBiomeName("Autumn Woods");
-		temperature = 2.0F;
-		rainfall = 0.1F;
+		temperature = BiomeGenBase.forest.temperature;
+		rainfall = BiomeGenBase.forest.rainfall;
 		minHeight = 0.2F;
 		maxHeight = 0.8F;
 
@@ -30,6 +34,18 @@ class BiomeAutumnWoods extends ExtrabiomeGenBase {
 	protected BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(9)
 				.grassPerChunk(6).mushroomsPerChunk(3).build();
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBiomeFoliageColor() {
+		return ColorizerFoliage.getFoliageColor(1.0F, 0.1F);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBiomeGrassColor() {
+		return ColorizerGrass.getGrassColor(1.0F, 0.1F);
 	}
 
 }
