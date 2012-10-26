@@ -12,6 +12,7 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 
@@ -65,6 +66,9 @@ public class PlankOreDictionaryRecipes {
 				"ppp", "bbb", "ppp" }, 'p', "plankWood", 'b', Item.book);
 		Extrabiomes.proxy.addRecipe(recipe);
 
+		recipe = new ShapelessOreRecipe(Block.field_82511_ci, "plankWood");
+		Extrabiomes.proxy.addRecipe(recipe);
+		
 		recipe = new ShapedOreRecipe(Item.doorWood, new String[] {
 				"pp", "pp", "pp" }, 'p', "plankWood");
 		Extrabiomes.proxy.addRecipe(recipe);
