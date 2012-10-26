@@ -102,11 +102,10 @@ public enum BlockManager {
 			for (final BlockCustomWoodSlab.BlockType blockType : BlockCustomWoodSlab.BlockType
 					.values())
 			{
-				proxy.addName(
-						new ItemStack(thisBlock, 1, blockType
-								.metadata()), blockType.itemName());
-				proxy.addName(new ItemStack(Stuff.slabWood.get(), 1,
-						blockType.metadata()), blockType.itemName());
+				ItemStack itemstack = new ItemStack(Stuff.slabWood.get(), 1,
+						blockType.metadata());
+				proxy.addName(itemstack, blockType.itemName());
+				proxy.registerOre("slabWood", itemstack);
 			}
 
 			new ItemStack(Stuff.slabWood.get(), 1,
