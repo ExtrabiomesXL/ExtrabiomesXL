@@ -32,7 +32,7 @@ class BiomeSnowForest extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(8)
 				.flowersPerChunk(1).grassPerChunk(4).build();
 	}

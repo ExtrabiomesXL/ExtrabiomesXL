@@ -144,7 +144,7 @@ public class RecipeManager {
 			for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType
 					.values())
 				Extrabiomes.proxy.addSmelting(event.block.blockID,
-						type.metadata(), charcoal);
+						type.metadata(), charcoal, 0.15F);
 			acaciaLogs.add(new ItemStack(event.block, 1,
 					BlockCustomLog.BlockType.ACACIA.metadata()));
 			firLogs.add(new ItemStack(event.block, 1,
@@ -153,7 +153,7 @@ public class RecipeManager {
 			for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType
 					.values())
 				Extrabiomes.proxy.addSmelting(event.block.blockID,
-						type.metadata(), charcoal);
+						type.metadata(), charcoal, 0.15F);
 			firLogs.add(new ItemStack(event.block, 1,
 					BlockQuarterLog.BlockType.FIR.metadata()));
 			oakLogs.add(new ItemStack(event.block, 1,
@@ -245,7 +245,7 @@ public class RecipeManager {
 
 		proxy.addSmelting(event.block.blockID,
 				BlockRedRock.BlockType.RED_COBBLE.metadata(),
-				redRockItem.get());
+				redRockItem.get(), 0.1F);
 	}
 
 	@ForgeSubscribe

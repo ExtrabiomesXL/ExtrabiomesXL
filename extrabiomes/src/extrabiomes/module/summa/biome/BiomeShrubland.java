@@ -22,7 +22,7 @@ class BiomeShrubland extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
 				.flowersPerChunk(3).grassPerChunk(1).build();
 	}

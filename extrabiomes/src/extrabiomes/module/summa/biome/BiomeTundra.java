@@ -22,7 +22,7 @@ class BiomeTundra extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this)
 				.flowersPerChunk(-999).grassPerChunk(-999).sandPerChunk(0, 0)
 				.build();

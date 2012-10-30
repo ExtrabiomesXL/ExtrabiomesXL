@@ -32,7 +32,7 @@ class BiomeForestedHills extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(7)
 				.flowersPerChunk(1).grassPerChunk(5).build();
 	}

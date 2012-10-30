@@ -28,7 +28,7 @@ class BiomeWasteland extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this)
 				.deadBushPerChunk(3).grassPerChunk(1).build();
 	}

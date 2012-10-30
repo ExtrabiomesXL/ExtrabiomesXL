@@ -31,7 +31,7 @@ class BiomeAutumnWoods extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(9)
 				.grassPerChunk(6).mushroomsPerChunk(3).build();
 	}

@@ -32,7 +32,7 @@ class BiomePineForest extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(10)
 				.grassPerChunk(1).build();
 	}

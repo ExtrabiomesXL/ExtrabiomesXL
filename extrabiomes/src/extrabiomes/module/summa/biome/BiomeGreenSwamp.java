@@ -23,7 +23,7 @@ class BiomeGreenSwamp extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(4)
 				.flowersPerChunk(0).deadBushPerChunk(0)
 				.mushroomsPerChunk(8).reedsPerChunk(10).clayPerChunk(1)
