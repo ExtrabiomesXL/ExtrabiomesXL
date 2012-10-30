@@ -9,7 +9,6 @@ package extrabiomes.module.fabrica;
 import net.minecraft.src.Block;
 import net.minecraft.src.IRecipe;
 import net.minecraft.src.Item;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -21,26 +20,21 @@ import extrabiomes.api.Stuff;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.module.fabrica.block.BlockManager;
-import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.module.fabrica.recipe.PlankOreDictionaryRecipes;
+import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ItemScarecrow;
 
 public class Fabrica {
 
 	private int	scarecrowID	= 0;
-	private RecipeManager recipeManager = new RecipeManager(); 
-	
+
 	@ForgeSubscribe(priority = EventPriority.LOW)
 	public void init(ModuleInitEvent event)
 			throws InstantiationException, IllegalAccessException
 	{
 		BlockManager.init();
 		PlankOreDictionaryRecipes.init();
-
-		// Free Up resources
-		Extrabiomes.proxy.unregisterEventHandler(recipeManager);
-		recipeManager = null;
 
 		if (scarecrowID > 0) {
 			final String NAME = "Scarecrow";
@@ -78,8 +72,7 @@ public class Fabrica {
 		if (scarecrowID > 0)
 			Extrabiomes.proxy.registerScarecrowRendering();
 
-		Extrabiomes.proxy.registerEventHandler(recipeManager);
-
+		Extrabiomes.registerInitEventHandler(new RecipeManager());
 	}
 
 }
