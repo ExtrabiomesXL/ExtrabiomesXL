@@ -134,6 +134,7 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock);
 
 			proxy.addName(thisBlock, "Redwood Stairs");
+			proxy.registerOre("stairWood", thisBlock);
 			Extrabiomes.postInitEvent(new RedwoodStairsActiveEvent(
 					thisBlock));
 		}
@@ -156,6 +157,7 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock);
 
 			proxy.addName(thisBlock, "Fir Wood Stairs");
+			proxy.registerOre("stairWood", thisBlock);
 			Extrabiomes.postInitEvent(new FirStairsActiveEvent(
 					thisBlock));
 		}
@@ -178,6 +180,7 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock);
 
 			proxy.addName(thisBlock, "Acacia Wood Stairs");
+			proxy.registerOre("stairWood", thisBlock);
 			Extrabiomes.postInitEvent(new AcaciaStairsActiveEvent(
 					thisBlock));
 		}
