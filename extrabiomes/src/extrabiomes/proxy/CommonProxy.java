@@ -165,8 +165,4 @@ public class CommonProxy {
 				harvestLevel);
 	}
 
-	public void unregisterEventHandler(Object target) {
-		MinecraftForge.EVENT_BUS.unregister(target);
-	}
-
 }

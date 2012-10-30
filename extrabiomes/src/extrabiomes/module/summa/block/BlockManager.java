@@ -114,7 +114,8 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock);
 			proxy.addName(thisBlock, "Cracked Sand");
 
-			proxy.postEventToBus(new CrackedSandActiveEvent(thisBlock));
+			Extrabiomes.postInitEvent(new CrackedSandActiveEvent(
+					thisBlock));
 			addCrackedSandToWasteland(thisBlock.blockID);
 		}
 	},
@@ -139,7 +140,7 @@ public enum BlockManager {
 						new ItemStack(thisBlock, 1, type.metadata()),
 						type.itemName());
 
-			proxy.postEventToBus(new FlowerActiveEvent(thisBlock));
+			Extrabiomes.postInitEvent(new FlowerActiveEvent(thisBlock));
 
 			proxy.registerWorldGenerator(new FlowerGenerator(
 					thisBlock.blockID));
@@ -259,7 +260,8 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock);
 			proxy.addName(thisBlock, "Leaf Pile");
 
-			proxy.postEventToBus(new LeafPileActiveEvent(thisBlock));
+			Extrabiomes
+					.postInitEvent(new LeafPileActiveEvent(thisBlock));
 
 			proxy.registerWorldGenerator(new LeafPileGenerator(
 					thisBlock.blockID));
@@ -286,7 +288,8 @@ public enum BlockManager {
 						new ItemStack(thisBlock, 1, blockType
 								.metadata()), blockType.itemName());
 
-			proxy.postEventToBus(new RedRockActiveEvent(thisBlock));
+			Extrabiomes
+					.postInitEvent(new RedRockActiveEvent(thisBlock));
 
 			addRedRockToMountainRidge(thisBlock.blockID);
 		}
@@ -351,7 +354,7 @@ public enum BlockManager {
 			WorldGenFirTree.setTrunkBlock(thisBlock,
 					BlockCustomLog.BlockType.FIR.metadata());
 
-			proxy.postEventToBus(new LogActiveEvent(thisBlock));
+			Extrabiomes.postInitEvent(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
@@ -383,7 +386,7 @@ public enum BlockManager {
 			}
 
 			proxy.registerOre("logWood", thisBlock);
-			proxy.postEventToBus(new LogActiveEvent(thisBlock));
+			Extrabiomes.postInitEvent(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
@@ -415,7 +418,7 @@ public enum BlockManager {
 			}
 
 			proxy.registerOre("logWood", thisBlock);
-			proxy.postEventToBus(new LogActiveEvent(thisBlock));
+			Extrabiomes.postInitEvent(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
@@ -447,7 +450,7 @@ public enum BlockManager {
 			}
 
 			proxy.registerOre("logWood", thisBlock);
-			proxy.postEventToBus(new LogActiveEvent(thisBlock));
+			Extrabiomes.postInitEvent(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}
@@ -480,7 +483,7 @@ public enum BlockManager {
 			}
 
 			proxy.registerOre("logWood", thisBlock);
-			proxy.postEventToBus(new LogActiveEvent(thisBlock));
+			Extrabiomes.postInitEvent(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
 		}

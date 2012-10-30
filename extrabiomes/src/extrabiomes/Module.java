@@ -10,6 +10,8 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import net.minecraftforge.common.Property;
+import net.minecraftforge.event.Event;
+import net.minecraftforge.event.EventBus;
 
 import com.google.common.base.Optional;
 
@@ -26,7 +28,9 @@ enum Module {
 	AMICA("amica", "Set amica to true to enable support for other mods.", Amica.class);
 	// MACHINA("machina", "Set machina to true to in enable higher level tech."),
 
-	private static boolean	controlSettingsLoaded	= false;
+	private static boolean				controlSettingsLoaded	= false;
+	private static Optional<EventBus>	eventBus				= Optional
+																		.of(new EventBus());
 
 	private static void loadControlSettings(ExtrabiomesConfig cfg) {
 		final Map<Module, Property> properties = new EnumMap(
@@ -54,6 +58,11 @@ enum Module {
 		}
 	}
 
+	public static boolean postEvent(Event event) {
+		return eventBus.isPresent() ? eventBus.get().post(event)
+				: false;
+	}
+
 	static void registerModules(ExtrabiomesConfig config)
 			throws InstantiationException, IllegalAccessException
 	{
@@ -70,19 +79,25 @@ enum Module {
 			// skip disabled modules
 			if (!module.enabled) continue;
 
-			Extrabiomes.proxy.registerEventHandler(module.pluginClass.newInstance());
+			if (eventBus.isPresent())
+				eventBus.get().register(
+						module.pluginClass.newInstance());
 		}
 	}
 
-	private boolean							enabled	= false;
-	private final String					configComment;
+	public static void releaseStaticResources() {
+		eventBus = Optional.absent();
+	}
 
-	private final String					key;
+	private boolean			enabled	= false;
 
-	private final Class	pluginClass;
+	private final String	configComment;
 
-	private Module(String key, String configComment,
-			Class pluginClass)
+	private final String	key;
+
+	private final Class		pluginClass;
+
+	private Module(String key, String configComment, Class pluginClass)
 	{
 		this.key = key;
 		this.configComment = configComment;
