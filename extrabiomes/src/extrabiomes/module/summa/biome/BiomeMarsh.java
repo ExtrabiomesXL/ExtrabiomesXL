@@ -23,7 +23,7 @@ class BiomeMarsh extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
 				.grassPerChunk(999).reedsPerChunk(10).build();
 	}

@@ -25,7 +25,7 @@ class BiomeMountainRidge extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
 				.grassPerChunk(12).build();
 	}

@@ -22,7 +22,7 @@ class BiomeRainforest extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(7)
 				.grassPerChunk(4).flowersPerChunk(2).build();
 	}

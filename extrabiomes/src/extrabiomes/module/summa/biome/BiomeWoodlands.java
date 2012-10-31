@@ -31,7 +31,7 @@ class BiomeWoodlands extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(8)
 				.grassPerChunk(3).build();
 	}

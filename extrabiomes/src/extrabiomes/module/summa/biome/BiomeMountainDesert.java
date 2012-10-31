@@ -28,7 +28,7 @@ class BiomeMountainDesert extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
 				.deadBushPerChunk(2).reedsPerChunk(50)
 				.cactiPerChunk(10).build();

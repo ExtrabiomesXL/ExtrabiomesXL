@@ -30,7 +30,7 @@ class BiomeTemporateRainforest extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(17)
 				.mushroomsPerChunk(2).grassPerChunk(16).build();
 	}

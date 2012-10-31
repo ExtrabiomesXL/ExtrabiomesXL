@@ -30,7 +30,7 @@ class BiomeExtremeJungle extends ExtrabiomeGenBase {
 	}
 
 	@Override
-	protected BiomeDecorator createBiomeDecorator() {
+	public BiomeDecorator createBiomeDecorator() {
 		return new CustomBiomeDecorator.Builder(this).treesPerChunk(50)
 				.grassPerChunk(25).flowersPerChunk(4).build();
 	}
