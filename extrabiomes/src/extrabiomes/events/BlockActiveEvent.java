@@ -125,6 +125,14 @@ public abstract class BlockActiveEvent extends Event {
 
 	}
 
+	public static class WallActiveEvent extends BlockActiveEvent {
+
+		public WallActiveEvent(Block block) {
+			super(block);
+		}
+
+	}
+
 	public final Block	block;
 
 	protected BlockActiveEvent(Block block) {
