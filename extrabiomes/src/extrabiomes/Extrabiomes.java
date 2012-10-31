@@ -41,7 +41,7 @@ public class Extrabiomes {
 
 	private static PluginManagerImpl	pluginManager = new PluginManagerImpl();
 
-	private static int					nextDefaultBlockID = 150;
+	private static int					nextDefaultBlockID = 200;
 	private static int					nextDefaultItemID  = 12870;
 
 	private static Optional<EventBus>	initBus = Optional.of(new EventBus());
