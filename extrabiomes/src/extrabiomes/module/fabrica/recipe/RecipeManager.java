@@ -32,7 +32,9 @@ import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockBrickStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockSlabActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedwoodStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.WallActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WoodSlabActiveEvent;
+import extrabiomes.module.fabrica.block.BlockCustomWall;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.module.fabrica.block.BlockCustomWoodSlab;
 import extrabiomes.module.fabrica.block.BlockRedRockSlab;
@@ -284,6 +286,19 @@ public class RecipeManager {
 	{
 		if (plankRedwoodItem.isPresent())
 			addStairsRecipe(plankRedwoodItem.get(), event.block);
+	}
+
+	@ForgeSubscribe
+	public void wallRecipeHandler(WallActiveEvent event) {
+
+		if (redCobbleItem.isPresent()) {
+			final IRecipe recipe = new ShapedOreRecipe(new ItemStack(
+					event.block, 6,
+					BlockCustomWall.BlockType.RED_COBBLE.metadata()),
+					new String[] { "ppp", "ppp" }, 'p',
+					redCobbleItem.get());
+			Extrabiomes.proxy.addRecipe(recipe);
+		}
 	}
 
 	@ForgeSubscribe
