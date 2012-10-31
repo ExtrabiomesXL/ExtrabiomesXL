@@ -56,10 +56,10 @@ public class CommonProxy {
 	}
 
 	public void addSmelting(int itemID, int metadata,
-			ItemStack itemstack)
+			ItemStack itemstack, float experience)
 	{
 		FurnaceRecipes.smelting().addSmelting(itemID, metadata,
-				itemstack);
+				itemstack, experience);
 	}
 
 	public int findGlobalUniqueEntityId() {
@@ -163,10 +163,6 @@ public class CommonProxy {
 	{
 		MinecraftForge.setBlockHarvestLevel(block, toolClass,
 				harvestLevel);
-	}
-
-	public void unregisterEventHandler(Object target) {
-		MinecraftForge.EVENT_BUS.unregister(target);
 	}
 
 }
