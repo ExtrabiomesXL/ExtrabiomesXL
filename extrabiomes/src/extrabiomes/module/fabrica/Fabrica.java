@@ -63,7 +63,7 @@ public class Fabrica {
 
 	@ForgeSubscribe(priority = EventPriority.LOW)
 	public void preInit(ModulePreInitEvent event)
-			throws InstantiationException, IllegalAccessException
+			throws Exception
 	{
 		BlockManager.preInit(event.config);
 		scarecrowID = event.config.getItem("scarecrow.id",

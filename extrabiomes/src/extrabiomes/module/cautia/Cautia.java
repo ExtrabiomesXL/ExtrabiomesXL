@@ -22,7 +22,7 @@ public class Cautia {
 
 	@ForgeSubscribe
 	public void preInit(ModulePreInitEvent event)
-			throws InstantiationException, IllegalAccessException
+			throws Exception
 	{
 		BlockManager.preInit(event.config);
 	}
