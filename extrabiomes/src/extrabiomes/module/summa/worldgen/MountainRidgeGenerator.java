@@ -12,6 +12,7 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.World;
+import net.minecraft.src.WorldGenMinable;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
@@ -19,6 +20,7 @@ import extrabiomes.api.BiomeManager;
 public class MountainRidgeGenerator implements IWorldGenerator {
 
 	private static final WorldGenerator	oasisGen	= new WorldGenOasis();
+	private static final WorldGenerator silverfishGen = new WorldGenMinable(Block.silverfish.blockID, 8); 
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ,
@@ -53,6 +55,13 @@ public class MountainRidgeGenerator implements IWorldGenerator {
 					&& Block.blocksList[id].isGenMineableReplaceable(
 							world, x1, y1, z1))
 				world.setBlock(x1, y1, z1, Block.oreEmerald.blockID);
+		}
+		
+		for (int i = 0; i< 7; i++) {
+			final int x1 = x + rand.nextInt(16);
+			final int y1 = rand.nextInt(64);
+			final int z1 = z + rand.nextInt(16);
+			silverfishGen.generate(world, rand, x1, y1, z1);
 		}
 	}
 

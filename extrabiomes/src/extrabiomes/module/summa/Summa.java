@@ -77,7 +77,7 @@ public class Summa {
 
 	@ForgeSubscribe(priority = EventPriority.HIGHEST)
 	public void preInit(ModulePreInitEvent event)
-			throws InstantiationException, IllegalAccessException
+			throws Exception
 	{
 		biomeManager.preInit(event.config);
 		BlockManager.preInit(event.config);

@@ -8,6 +8,8 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.EntitySlime;
+import net.minecraft.src.SpawnListEntry;
 
 class BiomeGreenSwamp extends ExtrabiomeGenBase {
 
@@ -20,6 +22,8 @@ class BiomeGreenSwamp extends ExtrabiomeGenBase {
 		rainfall = BiomeGenBase.swampland.rainfall;
 		minHeight = -0.2F;
 		maxHeight = 0.1F;
+		spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class,
+				1, 1, 1));
 	}
 
 	@Override

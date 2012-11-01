@@ -23,9 +23,10 @@ abstract class ExtrabiomeGenBase extends BiomeGenBase {
 	}
 
 	protected void disableRain() {
+		
 		try {
 			final Field enabledRainField = BiomeGenBase.class
-					.getDeclaredField("S"); // enableRain
+					.getDeclaredField("T"); // enableRain
 			enabledRainField.setAccessible(true);
 			enabledRainField.setBoolean(this, false);
 		} catch (final Throwable e) {

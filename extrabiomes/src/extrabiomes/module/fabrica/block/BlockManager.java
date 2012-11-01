@@ -317,12 +317,15 @@ public enum BlockManager {
 
 	private static boolean	settingsLoaded	= false;
 
-	private static void createBlocks() throws InstantiationException,
-			IllegalAccessException
+	private static void createBlocks() throws Exception
 	{
 		for (final BlockManager block : BlockManager.values())
 			if (block.blockID > 0) {
-				block.create();
+				try {
+					block.create();
+				} catch (final Exception e) {
+					throw e;
+				}
 				block.blockCreated = true;
 			}
 	}
@@ -378,7 +381,7 @@ public enum BlockManager {
 	}
 
 	public static void preInit(ExtrabiomesConfig config)
-			throws InstantiationException, IllegalAccessException
+			throws Exception
 	{
 		if (settingsLoaded) return;
 
