@@ -6,15 +6,32 @@
 
 package extrabiomes.api;
 
+import net.minecraftforge.event.EventBus;
+
 /*
  * @author ScottKillen
  */
 public class Api {
 
+	private static final EventBus	eventBus	= new EventBus();
+
+	public static EventBus getExtrabiomesXLEventBus() {
+		return eventBus;
+	}
+
+	/**
+	 * @return true if ExtrtabiomesXL is installed and active
+	 * @deprecated Use {@link #isExtrabiomesXLActive()} instead
+	 */
+	@Deprecated
+	public static boolean isActive() {
+		return isExtrabiomesXLActive();
+	}
+
 	/**
 	 * @return true if ExtrtabiomesXL is installed and active
 	 */
-	public static boolean isActive() {
+	public static boolean isExtrabiomesXLActive() {
 		return BiomeManager.isActive();
 	}
 
