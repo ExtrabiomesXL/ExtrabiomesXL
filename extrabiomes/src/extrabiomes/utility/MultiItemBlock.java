@@ -27,7 +27,7 @@ public class MultiItemBlock extends ItemBlock {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public int func_82790_a(ItemStack itemstack, int par2) {
+	public int getColorFromItemStack(ItemStack itemstack, int par2) {
 		return getBlock().getRenderColor(itemstack.getItemDamage());
 	}
 

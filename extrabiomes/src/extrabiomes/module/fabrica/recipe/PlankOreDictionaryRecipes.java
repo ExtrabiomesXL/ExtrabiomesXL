@@ -66,7 +66,7 @@ public class PlankOreDictionaryRecipes {
 				"ppp", "bbb", "ppp" }, 'p', "plankWood", 'b', Item.book);
 		Extrabiomes.proxy.addRecipe(recipe);
 
-		recipe = new ShapelessOreRecipe(Block.field_82511_ci, "plankWood");
+		recipe = new ShapelessOreRecipe(Block.woodenButton, "plankWood");
 		Extrabiomes.proxy.addRecipe(recipe);
 		
 		recipe = new ShapedOreRecipe(Item.doorWood, new String[] {
