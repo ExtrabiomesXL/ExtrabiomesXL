@@ -9,6 +9,7 @@ package extrabiomes.proxy;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
@@ -37,9 +38,11 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class CommonProxy {
 
-	public void addBiome(BiomeGenBase biome) {
-		WorldType.DEFAULT.addNewBiome(checkNotNull(biome));
-		WorldType.LARGE_BIOMES.addNewBiome(biome);
+	public void addBiome(Collection<WorldType> worldTypes,
+			BiomeGenBase biome)
+	{
+		for (final WorldType worldType : worldTypes)
+			worldType.addNewBiome(biome);
 	}
 
 	public void addGrassPlant(Block block, int metadata, int weight) {
