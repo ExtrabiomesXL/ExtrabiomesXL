@@ -8,7 +8,7 @@ package extrabiomes.module.amica;
 
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
-import extrabiomes.api.PluginManager;
+import extrabiomes.api.Api;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.module.amica.buildcraft.BuildcraftPlugin;
 
@@ -18,7 +18,7 @@ public class Amica {
 	public void init(ModuleInitEvent event)
 			throws InstantiationException, IllegalAccessException
 	{
-		PluginManager.registerPlugin(new BuildcraftPlugin());
+		Api.registerPlugin(new BuildcraftPlugin());
 	}
 
 }

@@ -16,16 +16,16 @@ public class PluginEvent extends Event {
 	/**
 	 * Fired before any ExtrabiomesXL plugin is initialized
 	 */
-	public static class Pre {}
+	public static class Pre extends PluginEvent {}
 
 	/**
 	 * Fired to initialize ExtrabiomesXL plugins
 	 */
-	public static class Init {}
+	public static class Init extends PluginEvent {}
 
 	/**
 	 * Fired after every ExtrabiomesXL plugin is initialized
 	 */
-	public static class Post {}
+	public static class Post extends PluginEvent {}
 
 }
