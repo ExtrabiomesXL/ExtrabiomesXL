@@ -8,12 +8,15 @@ package extrabiomes.api;
 
 import net.minecraftforge.event.EventBus;
 
+import com.google.common.base.Optional;
+
 /*
  * @author ScottKillen
  */
 public class Api {
 
-	private static final EventBus	eventBus	= new EventBus();
+	private static final EventBus		eventBus	= new EventBus();
+	protected static Optional<EventBus>	pluginBus	= Optional.of(new EventBus());
 
 	public static EventBus getExtrabiomesXLEventBus() {
 		return eventBus;
@@ -33,6 +36,10 @@ public class Api {
 	 */
 	public static boolean isExtrabiomesXLActive() {
 		return BiomeManager.isActive();
+	}
+
+	public static void registerPlugin(Object plugin) {
+		if (pluginBus.isPresent()) pluginBus.get().register(plugin);
 	}
 
 }
