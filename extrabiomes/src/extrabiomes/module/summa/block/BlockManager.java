@@ -38,6 +38,7 @@ import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
+import extrabiomes.module.summa.worldgen.WorldGenLegendOak;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 import extrabiomes.module.summa.worldgen.WorldGenWastelandGrass;
 import extrabiomes.proxy.CommonProxy;
@@ -550,6 +551,10 @@ public enum BlockManager {
 					Stuff.quarterLogNE.get(), Stuff.quarterLogSW.get(),
 					Stuff.quarterLogSE.get(),
 					BlockQuarterLog.BlockType.REDWOOD.metadata());
+			WorldGenLegendOak.setTrunkBlock(Stuff.quarterLogNW.get(),
+					Stuff.quarterLogNE.get(), Stuff.quarterLogSW.get(),
+					Stuff.quarterLogSE.get(),
+					BlockQuarterLog.BlockType.OAK.metadata());
 			BlockQuarterLog.setQuarterLogs(Stuff.quarterLogNW.get(),
 					Stuff.quarterLogNE.get(), Stuff.quarterLogSW.get(),
 					Stuff.quarterLogSE.get());
