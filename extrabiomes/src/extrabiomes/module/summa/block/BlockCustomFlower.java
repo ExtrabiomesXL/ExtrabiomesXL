@@ -15,13 +15,15 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.proxy.CommonProxy;
 
-public class BlockCustomFlower extends Block {
+public class BlockCustomFlower extends Block implements IPlantable {
 
 	public enum BlockType {
 		AUTUMN_SHRUB(0, "Autumn Shrub"),
@@ -127,6 +129,25 @@ public class BlockCustomFlower extends Block {
 			int x, int y, int z)
 	{
 		return null;
+	}
+
+	@Override
+	public int getPlantID(World world, int x, int y, int z) {
+		return blockID;
+	}
+
+	@Override
+	public int getPlantMetadata(World world, int x, int y, int z) {
+		return world.getBlockMetadata(x, y, z);
+	}
+
+	@Override
+	public EnumPlantType getPlantType(World world, int x, int y, int z)
+	{
+		final int metadata = world.getBlockMetadata(x, y, z);
+		if (metadata == BlockType.TINY_CACTUS.metadata())
+			return EnumPlantType.Desert;
+		return EnumPlantType.Plains;
 	}
 
 	@Override
