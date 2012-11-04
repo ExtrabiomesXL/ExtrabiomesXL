@@ -11,6 +11,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import extrabiomes.api.Api;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.module.amica.buildcraft.BuildcraftPlugin;
+import extrabiomes.module.amica.forestry.ForestryPlugin;
 
 public class Amica {
 
@@ -19,6 +20,7 @@ public class Amica {
 			throws InstantiationException, IllegalAccessException
 	{
 		Api.registerPlugin(new BuildcraftPlugin());
+		Api.registerPlugin(new ForestryPlugin());
 	}
 
 }
