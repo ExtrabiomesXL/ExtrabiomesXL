@@ -11,20 +11,19 @@ import java.lang.reflect.Method;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
+import net.minecraftforge.event.ForgeSubscribe;
 
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
-import extrabiomes.api.IPlugin;
+import extrabiomes.api.PluginEvent;
 
-public class BuildcraftPlugin implements IPlugin {
+public class BuildcraftPlugin {
 
-	private boolean					modifyWorld							= false;
-	private Optional<Block>			oilStill							= Optional
-																				.absent();
-	private static Optional<Method>	buildcraftGenerateSurfaceDeposit	= Optional
-																				.absent();
+	private boolean					modifyWorld	= false;
+	private Optional<Block>			oilStill = Optional.absent();
+	private static Optional<Method>	buildcraftGenerateSurfaceDeposit = Optional.absent();
 
 	static void generateSurfaceDeposit(World world, int x, int y,
 			int z, int radius)
@@ -43,33 +42,22 @@ public class BuildcraftPlugin implements IPlugin {
 			}
 	}
 
-	@Override
-	public String getName() {
-		return "Buildcraft";
-	}
-
-	@Override
-	public String getUniqueID() {
-		return "EXBLbuildcraft";
-	}
-
-	@Override
-	public void init() {
+	@ForgeSubscribe
+	public void init(PluginEvent.Init event) {
+		if (!isEnabled()) return;
+		ExtrabiomesLog.info("Initializing Buildcraft plugin.");
 		if (modifyWorld && oilStill.isPresent())
 			Extrabiomes.proxy.registerWorldGenerator(new OilGenerator(
 					oilStill.get().blockID));
 	}
 
-	@Override
-	public boolean isEnabled() {
+	private boolean isEnabled() {
 		return Extrabiomes.proxy.isModLoaded("BuildCraft|Energy");
 	}
 
-	@Override
-	public void postInit() {}
-
-	@Override
-	public void preInit() {
+	@ForgeSubscribe
+	public void preInit(PluginEvent.Pre event) {
+		if (!isEnabled()) return;
 		try {
 			Class cls = Class.forName("buildcraft.BuildCraftCore");
 			Field fld = cls.getField("modifyWorld");

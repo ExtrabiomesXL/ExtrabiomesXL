@@ -30,7 +30,7 @@ import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.proxy.CommonProxy;
 
-@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.2.3")
+@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.3.0")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Extrabiomes {
 
@@ -39,12 +39,10 @@ public class Extrabiomes {
 	@Instance("ExtrabiomesXL")
 	public static Extrabiomes			instance;
 
-	private static PluginManagerImpl	pluginManager = new PluginManagerImpl();
+	private static int					nextDefaultBlockID	= 200;
+	private static int					nextDefaultItemID	= 12870;
 
-	private static int					nextDefaultBlockID = 200;
-	private static int					nextDefaultItemID  = 12870;
-
-	private static Optional<EventBus>	initBus = Optional.of(new EventBus());
+	private static Optional<EventBus>	initBus				= Optional.of(new EventBus());
 
 	public static int getNextDefaultBlockID() {
 		return nextDefaultBlockID++;
@@ -64,7 +62,7 @@ public class Extrabiomes {
 
 	@PostInit
 	public static void postInit(FMLPostInitializationEvent event) {
-		pluginManager.activatePlugins();
+		PluginManager.activatePlugins();
 		EnhancedConfiguration.releaseStaticResources();
 		initBus = Optional.absent();
 		Module.releaseStaticResources();

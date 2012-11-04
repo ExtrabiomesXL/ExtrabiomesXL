@@ -8,10 +8,13 @@ package extrabiomes.module.summa.biome;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.WorldType;
 import net.minecraftforge.common.Property;
 
 import com.google.common.base.Optional;
@@ -19,6 +22,8 @@ import com.google.common.collect.ImmutableSet;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
+import extrabiomes.api.Api;
+import extrabiomes.api.DiscoverWorldTypesEvent;
 import extrabiomes.configuration.ExtrabiomesConfig;
 
 enum Biome {
@@ -56,6 +61,12 @@ enum Biome {
 	private static void createBiomes() throws InstantiationException,
 			IllegalAccessException
 	{
+		final Set<WorldType> worldTypes = new HashSet<WorldType>();
+		worldTypes.add(WorldType.DEFAULT);
+		worldTypes.add(WorldType.LARGE_BIOMES);
+		final DiscoverWorldTypesEvent event = new DiscoverWorldTypesEvent(
+				worldTypes);
+		Api.getExtrabiomesXLEventBus().post(event);
 		for (final Biome biome : Biome.values()) {
 			if (biome.biomeID > 0) {
 				if (BiomeGenBase.biomeList[biome.biomeID] != null)
@@ -70,7 +81,8 @@ enum Biome {
 						.newInstance());
 			}
 			if (biome.enableGeneration && biome.biome.isPresent())
-				Extrabiomes.proxy.addBiome(biome.biome.get());
+				Extrabiomes.proxy.addBiome(worldTypes,
+						biome.biome.get());
 			else
 				ExtrabiomesLog.info("Custom biome %s disabled.",
 						biome.toString());

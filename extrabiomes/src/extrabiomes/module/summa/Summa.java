@@ -22,6 +22,7 @@ import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.tool.LogTurner;
+import extrabiomes.module.summa.worldgen.LegendOakGenerator;
 import extrabiomes.module.summa.worldgen.MarshGenerator;
 import extrabiomes.module.summa.worldgen.MountainDesertGenerator;
 import extrabiomes.module.summa.worldgen.MountainRidgeGenerator;
@@ -48,6 +49,8 @@ public class Summa {
 
 		Extrabiomes.proxy
 				.registerWorldGenerator(new VanillaFloraGenerator());
+		Extrabiomes.proxy
+				.registerWorldGenerator(new LegendOakGenerator());
 	}
 
 	@ForgeSubscribe(priority = EventPriority.HIGHEST)
@@ -76,9 +79,7 @@ public class Summa {
 	}
 
 	@ForgeSubscribe(priority = EventPriority.HIGHEST)
-	public void preInit(ModulePreInitEvent event)
-			throws Exception
-	{
+	public void preInit(ModulePreInitEvent event) throws Exception {
 		biomeManager.preInit(event.config);
 		BlockManager.preInit(event.config);
 
