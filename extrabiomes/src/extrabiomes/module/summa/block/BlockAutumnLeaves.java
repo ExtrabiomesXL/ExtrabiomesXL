@@ -24,8 +24,8 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.api.Stuff;
 
-class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
-	enum BlockType {
+public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
+	public enum BlockType {
 		BROWN(0, "Brown Autumn Leaves"),
 		ORANGE(1, "Orange Autumn Leaves"),
 		PURPLE(2, "Purple Autumn Leaves"),

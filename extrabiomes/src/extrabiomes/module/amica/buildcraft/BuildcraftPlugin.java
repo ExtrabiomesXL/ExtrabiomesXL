@@ -24,6 +24,7 @@ public class BuildcraftPlugin {
 	private boolean					modifyWorld	= false;
 	private Optional<Block>			oilStill = Optional.absent();
 	private static Optional<Method>	buildcraftGenerateSurfaceDeposit = Optional.absent();
+	private static boolean enabled = true;
 
 	static void generateSurfaceDeposit(World world, int x, int y,
 			int z, int radius)
@@ -45,19 +46,19 @@ public class BuildcraftPlugin {
 	@ForgeSubscribe
 	public void init(PluginEvent.Init event) {
 		if (!isEnabled()) return;
-		ExtrabiomesLog.info("Initializing Buildcraft plugin.");
 		if (modifyWorld && oilStill.isPresent())
 			Extrabiomes.proxy.registerWorldGenerator(new OilGenerator(
 					oilStill.get().blockID));
 	}
 
 	private boolean isEnabled() {
-		return Extrabiomes.proxy.isModLoaded("BuildCraft|Energy");
+		return enabled && Extrabiomes.proxy.isModLoaded("BuildCraft|Energy");
 	}
 
 	@ForgeSubscribe
 	public void preInit(PluginEvent.Pre event) {
 		if (!isEnabled()) return;
+		ExtrabiomesLog.info("Initializing Buildcraft plugin.");
 		try {
 			Class cls = Class.forName("buildcraft.BuildCraftCore");
 			Field fld = cls.getField("modifyWorld");
@@ -76,6 +77,7 @@ public class BuildcraftPlugin {
 		} catch (final Exception e) {
 			ExtrabiomesLog
 					.fine("Could not find Buildcraft fields. Disabling plugin.");
+			enabled = false;
 		}
 	}
 

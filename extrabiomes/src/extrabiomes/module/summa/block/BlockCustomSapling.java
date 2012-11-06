@@ -25,9 +25,9 @@ import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 
-class BlockCustomSapling extends BlockFlower {
+public class BlockCustomSapling extends BlockFlower {
 
-	enum BlockType {
+	public enum BlockType {
 		BROWN(0, "Brown Autumn Sapling"),
 		ORANGE(1, "Orange Autumn Sapling"),
 		PURPLE(2, "Purple Autumn Sapling"),
