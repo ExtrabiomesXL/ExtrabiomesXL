@@ -221,11 +221,11 @@ public class ForestryPlugin {
 			fermenterManager = fld.get(null);
 
 			cls = Class
-					.forName("forestry.api.cultivation.CropProviders");
+					.forName("forestry.api.core.ForestryAPI");
 			fld = cls.getField("loggerWindfall");
 			loggerWindfall = (ArrayList) fld.get(null);
 
-			cls = Class.forName("forestry.api.core.ForestryAPI");
+			cls = Class.forName("forestry.api.cultivation.CropProviders");
 			fld = cls.getField("arborealCrops");
 			arborealCrops = (ArrayList) fld.get(null);
 
