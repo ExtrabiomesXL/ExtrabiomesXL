@@ -503,7 +503,7 @@ public enum BlockManager {
 		final BiomeGenBase wasteland = BiomeManager.wasteland.get();
 		wasteland.topBlock = (byte) crackedsandID;
 		wasteland.fillerBlock = (byte) crackedsandID;
-		ExtrabiomesLog.info("Added cracked sand to wasteland biome.");
+		ExtrabiomesLog.fine("Added cracked sand to wasteland biome.");
 	}
 
 	private static void addRedRockToMountainRidge(int redrockID) {
@@ -513,7 +513,7 @@ public enum BlockManager {
 				.get();
 		mountainridge.topBlock = (byte) redrockID;
 		mountainridge.fillerBlock = (byte) redrockID;
-		ExtrabiomesLog.info("Added red rock to mountain ridge biome.");
+		ExtrabiomesLog.fine("Added red rock to mountain ridge biome.");
 	}
 
 	private static void createBlocks() throws Exception {
@@ -567,9 +567,9 @@ public enum BlockManager {
 	private static void loadSettings(ExtrabiomesConfig config) {
 		settingsLoaded = true;
 
-		ExtrabiomesLog.info("== Summa Block ID List ==");
+		ExtrabiomesLog.fine("== Summa Block ID List ==");
 		ExtrabiomesLog
-				.info("  (may be changed by ID Resolver, if installed.)");
+				.fine("  (may be changed by ID Resolver, if installed.)");
 
 		// Load config settings
 		for (final BlockManager cube : BlockManager.values()) {
@@ -586,11 +586,11 @@ public enum BlockManager {
 				checkElementIndex(cube.blockID, 256, comment);
 			}
 
-			ExtrabiomesLog.info("  %s: %d", cube.toString(),
+			ExtrabiomesLog.fine("  %s: %d", cube.toString(),
 					cube.blockID);
 		}
 
-		ExtrabiomesLog.info("=== End Block ID List ===");
+		ExtrabiomesLog.fine("=== End Block ID List ===");
 
 		if (QUARTERLOG0.blockID == 0 || QUARTERLOG1.blockID == 0
 				|| QUARTERLOG2.blockID == 0 || QUARTERLOG3.blockID == 0)
@@ -600,7 +600,7 @@ public enum BlockManager {
 			QUARTERLOG2.blockID = 0;
 			QUARTERLOG3.blockID = 0;
 			ExtrabiomesLog
-					.info("At least one quarterlog was disabled, so all have been.");
+					.fine("At least one quarterlog was disabled, so all have been.");
 		}
 	}
 

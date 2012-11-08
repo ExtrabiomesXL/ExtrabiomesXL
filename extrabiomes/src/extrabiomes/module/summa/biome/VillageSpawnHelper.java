@@ -44,7 +44,7 @@ enum VillageSpawnHelper {
 		    
 				field.set(null, villageSpawnBiomes);
 			} catch (Exception e) {
-				ExtrabiomesLog.info("Could not access village spawn biomes.");
+				ExtrabiomesLog.fine("Could not access village spawn biomes.");
 			}
 			finally {
 				villageSpawnBiomeChangesEnabled = true;

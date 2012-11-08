@@ -26,13 +26,13 @@ enum VanillaBiome {
 			final BiomeGenBase biomeGen = biome.toBiomeGen();
 			if (!biome.enableGeneration) {
 				Extrabiomes.proxy.removeBiome(biomeGen);
-				ExtrabiomesLog.info("Vanilla biome %s disabled.",
+				ExtrabiomesLog.fine("Vanilla biome %s disabled.",
 						biome.toString());
 			}
 
 			VillageSpawnHelper.setVillageSpawn(biomeGen,
 					biome.enableVillages);
-			ExtrabiomesLog.info(
+			ExtrabiomesLog.fine(
 					"Village spawning %s for vanilla biome %s.",
 					biome.enableVillages ? "enabled" : "disabled",
 					biome.toString());

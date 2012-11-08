@@ -9,6 +9,7 @@ package extrabiomes;
 import java.util.EnumMap;
 import java.util.Map;
 
+import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.EventBus;

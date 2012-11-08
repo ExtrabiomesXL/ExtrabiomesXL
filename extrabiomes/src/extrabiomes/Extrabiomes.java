@@ -66,6 +66,7 @@ public class Extrabiomes {
 		EnhancedConfiguration.releaseStaticResources();
 		initBus = Optional.absent();
 		Module.releaseStaticResources();
+		ExtrabiomesLog.info("== ExtrabiomesXL Successfully Loaded ==");
 	}
 
 	public static boolean postInitEvent(Event event) {
@@ -75,6 +76,7 @@ public class Extrabiomes {
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
+		ExtrabiomesLog.info("== ExtrabiomesXL Loading ==");
 		final ExtrabiomesConfig cfg = new ExtrabiomesConfig(new File(
 				event.getModConfigurationDirectory(),
 				"/extrabiomes/extrabiomes.cfg"));

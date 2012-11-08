@@ -340,9 +340,9 @@ public enum BlockManager {
 	private static void loadSettings(ExtrabiomesConfig config) {
 		settingsLoaded = true;
 
-		ExtrabiomesLog.info("== Fabrica Block ID List ==");
+		ExtrabiomesLog.fine("== Fabrica Block ID List ==");
 		ExtrabiomesLog
-				.info("  (may be changed by ID Resolver, if installed.)");
+				.fine("  (may be changed by ID Resolver, if installed.)");
 
 		// Load config settings
 		for (final BlockManager cube : BlockManager.values()) {
@@ -350,11 +350,11 @@ public enum BlockManager {
 					Extrabiomes.getNextDefaultBlockID());
 			cube.blockID = property.getInt(0);
 
-			ExtrabiomesLog.info("  %s: %d", cube.toString(),
+			ExtrabiomesLog.fine("  %s: %d", cube.toString(),
 					cube.blockID);
 		}
 
-		ExtrabiomesLog.info("=== End Block ID List ===");
+		ExtrabiomesLog.fine("=== End Block ID List ===");
 
 		if (PLANKS.blockID == 0) {
 			WOODSLAB.blockID = 0;
