@@ -28,6 +28,7 @@ import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
+import extrabiomes.localization.LocalizationHandler;
 import extrabiomes.proxy.CommonProxy;
 
 @Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.3.2")
@@ -39,10 +40,14 @@ public class Extrabiomes {
 	@Instance("ExtrabiomesXL")
 	public static Extrabiomes			instance;
 
-	private static int					nextDefaultBlockID	= 200;
-	private static int					nextDefaultItemID	= 12870;
+	private static int					nextDefaultBlockID				= 200;
+	private static int					nextDefaultItemID				= 12870;
 
-	private static Optional<EventBus>	initBus				= Optional.of(new EventBus());
+	private static final String			LOG_MESSAGE_CONFIG_EXCEPTION	= "log.message.config.exception";
+	private static final String			LOG_MESSAGE_INITIALIZING		= "log.message.initializing";
+	private static final String			LOG_MESSAGE_LOAD_SUCCESS		= "log.message.load.success";
+
+	private static Optional<EventBus>	initBus							= Optional.of(new EventBus());
 
 	public static int getNextDefaultBlockID() {
 		return nextDefaultBlockID++;
@@ -66,7 +71,8 @@ public class Extrabiomes {
 		EnhancedConfiguration.releaseStaticResources();
 		initBus = Optional.absent();
 		Module.releaseStaticResources();
-		ExtrabiomesLog.info("== ExtrabiomesXL Successfully Loaded ==");
+		ExtrabiomesLog.info(proxy
+				.getStringLocalization(LOG_MESSAGE_LOAD_SUCCESS));
 	}
 
 	public static boolean postInitEvent(Event event) {
@@ -76,7 +82,12 @@ public class Extrabiomes {
 	@PreInit
 	public static void preInit(FMLPreInitializationEvent event) {
 		ExtrabiomesLog.configureLogging();
-		ExtrabiomesLog.info("== ExtrabiomesXL Loading ==");
+
+		// Load the localization files into the LanguageRegistry
+		LocalizationHandler.loadLanguages();
+
+		ExtrabiomesLog.info(proxy
+				.getStringLocalization(LOG_MESSAGE_INITIALIZING));
 		final ExtrabiomesConfig cfg = new ExtrabiomesConfig(new File(
 				event.getModConfigurationDirectory(),
 				"/extrabiomes/extrabiomes.cfg"));
@@ -88,8 +99,9 @@ public class Extrabiomes {
 
 		} catch (final Exception e) {
 			ExtrabiomesLog
-					.log(Level.SEVERE, e,
-							"ExtrabiomesXL had a problem loading it's configuration.");
+					.log(Level.SEVERE,
+							e,
+							proxy.getStringLocalization(LOG_MESSAGE_CONFIG_EXCEPTION));
 		} finally {
 			cfg.save();
 		}
