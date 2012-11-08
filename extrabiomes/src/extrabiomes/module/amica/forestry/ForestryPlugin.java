@@ -15,6 +15,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
 
@@ -34,6 +35,7 @@ import extrabiomes.module.summa.block.BlockRedRock;
 public class ForestryPlugin {
 	private Class					liquidStack;
 	private Object					fermenterManager;
+	private Object					carpenterManager;
 	private static boolean			enabled					= true;
 
 	private ArrayList				arborealCrops;
@@ -47,6 +49,13 @@ public class ForestryPlugin {
 	 * public LiquidStack(int itemID, int amount, int itemDamage);
 	 */
 	private Optional<Constructor>	liquidStackConstructor	= Optional.absent();
+
+	/**
+	 * public void addRecipe(int packagingTime, LiquidStack liquid,
+	 * ItemStack box, ItemStack product, Object materials[]);
+	 */
+	private Optional<Method>		carpenterAddRecipe		= Optional
+																	.absent();
 
 	/**
 	 * public void addRecipe(ItemStack resource, int fermentationValue,
@@ -162,6 +171,15 @@ public class ForestryPlugin {
 					.values())
 				addFermenterRecipeSapling(new ItemStack(
 						Stuff.sapling.get().blockID, 1, type.metadata()));
+		if (carpenterAddRecipe.isPresent()
+				&& Stuff.redRock.isPresent()
+				&& liquidStackConstructor.isPresent())
+			carpenterAddRecipe.get().invoke(carpenterManager, 10,
+				liquidStackConstructor.get().newInstance(
+						Block.waterStill.blockID, 3000, 0),
+				null, new ItemStack(Item.clay, 4),
+				new Object[] { "#", Character.valueOf('#'), new ItemStack(Stuff.redRock.get(), 1, 1)}
+				);
 	}
 
 	private void addSaplings() {
@@ -220,6 +238,8 @@ public class ForestryPlugin {
 			cls = Class.forName("forestry.api.recipes.RecipeManagers");
 			Field fld = cls.getField("fermenterManager");
 			fermenterManager = fld.get(null);
+			fld = cls.getField("carpenterManager");
+			carpenterManager = fld.get(null);
 
 			cls = Class
 					.forName("forestry.api.core.ForestryAPI");
@@ -248,6 +268,11 @@ public class ForestryPlugin {
 			fermenterAddRecipe = Optional.fromNullable(cls.getMethod(
 					"addRecipe", ItemStack.class, int.class,
 					float.class, liquidStack, liquidStack));
+			cls = Class
+					.forName("forestry.api.recipes.ICarpenterManager");
+			carpenterAddRecipe = Optional.fromNullable(cls.getMethod(
+					"addRecipe", int.class, liquidStack, ItemStack.class,
+					ItemStack.class, Object[].class));
 		} catch (final Exception ex) {
 			ex.printStackTrace();
 			ExtrabiomesLog.fine(Extrabiomes.proxy
