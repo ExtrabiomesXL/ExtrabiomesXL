@@ -84,13 +84,13 @@ enum Biome {
 				Extrabiomes.proxy.addBiome(worldTypes,
 						biome.biome.get());
 			else
-				ExtrabiomesLog.info("Custom biome %s disabled.",
+				ExtrabiomesLog.fine("Custom biome %s disabled.",
 						biome.toString());
 			if (biome.enableVillages && biome.biome.isPresent()) {
 				VillageSpawnHelper.setVillageSpawn(biome.biome.get(),
 						true);
 				ExtrabiomesLog
-						.info("Village spawning enabled for custom biome %s.",
+						.fine("Village spawning enabled for custom biome %s.",
 								biome.toString());
 			}
 		}
@@ -110,7 +110,7 @@ enum Biome {
 	private static void loadSettings(ExtrabiomesConfig config) {
 		settingsLoaded = true;
 
-		ExtrabiomesLog.info("===== Biome ID List =====");
+		ExtrabiomesLog.fine("===== Biome ID List =====");
 
 		// Load config settings
 		int defaultID = 32;
@@ -120,7 +120,7 @@ enum Biome {
 					defaultID++);
 			biome.biomeID = property.getInt(0);
 
-			ExtrabiomesLog.info("  %s: %d", biome.toString(),
+			ExtrabiomesLog.fine("  %s: %d", biome.toString(),
 					biome.biomeID);
 
 			property = config.get(ExtrabiomesConfig.CATEGORY_BIOME,
@@ -138,7 +138,7 @@ enum Biome {
 				biome.enableVillages = true;
 		}
 
-		ExtrabiomesLog.info("=== End Biome ID List ===");
+		ExtrabiomesLog.fine("=== End Biome ID List ===");
 	}
 
 	static void preInit(ExtrabiomesConfig config)

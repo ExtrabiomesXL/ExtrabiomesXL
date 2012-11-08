@@ -58,7 +58,7 @@ public class BuildcraftPlugin {
 	@ForgeSubscribe
 	public void preInit(PluginEvent.Pre event) {
 		if (!isEnabled()) return;
-		ExtrabiomesLog.info("Initializing Buildcraft plugin.");
+		ExtrabiomesLog.fine("Initializing Buildcraft plugin.");
 		try {
 			Class cls = Class.forName("buildcraft.BuildCraftCore");
 			Field fld = cls.getField("modifyWorld");

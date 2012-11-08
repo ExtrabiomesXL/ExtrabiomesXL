@@ -200,7 +200,7 @@ public class ForestryPlugin {
 	@ForgeSubscribe
 	public void preInit(PluginEvent.Pre event) {
 		if (!isEnabled()) return;
-		ExtrabiomesLog.info("Initializing Forestry plugin.");
+		ExtrabiomesLog.fine("Initializing Forestry plugin.");
 		try {
 			liquidStack = Class
 					.forName("buildcraft.api.liquids.LiquidStack");
