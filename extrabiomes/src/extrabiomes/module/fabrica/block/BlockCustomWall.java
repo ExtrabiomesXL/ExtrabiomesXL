@@ -12,6 +12,7 @@ import java.util.List;
 import net.minecraft.src.BlockWall;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.api.Stuff;
@@ -47,6 +48,12 @@ public class BlockCustomWall extends BlockWall {
 	public void addCreativeItems(ArrayList itemList) {
 		for (final BlockType blockType : BlockType.values())
 			itemList.add(new ItemStack(this, 1, blockType.metadata()));
+	}
+
+	@Override
+	public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
+	{
+		return true;
 	}
 
 	@Override
