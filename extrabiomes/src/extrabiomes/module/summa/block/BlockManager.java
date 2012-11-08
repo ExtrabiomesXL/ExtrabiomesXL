@@ -67,6 +67,7 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("treeLeaves", itemstack);
 			}
 
 			WorldGenAutumnTree.setLeavesBlock(thisBlock,
@@ -232,6 +233,7 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("treeLeaves", itemstack);
 			}
 
 			WorldGenAcacia.setLeavesBlock(thisBlock,
@@ -317,6 +319,7 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.addName(itemstack, type.itemName());
+				proxy.registerOre("treeSapling", itemstack);
 			}
 
 			proxy.registerEventHandler(new SaplingBonemealEventhandler(
