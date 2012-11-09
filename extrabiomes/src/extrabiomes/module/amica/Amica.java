@@ -15,6 +15,9 @@ import extrabiomes.module.amica.forestry.ForestryPlugin;
 
 public class Amica {
 
+	public static final String	LOG_MESSAGE_PLUGIN_ERROR	= "log.message.plugin.error";
+	public static final String	LOG_MESSAGE_PLUGIN_INIT	= "log.message.plugin.init";
+
 	@ForgeSubscribe(priority = EventPriority.LOWEST)
 	public void init(ModuleInitEvent event)
 			throws InstantiationException, IllegalAccessException

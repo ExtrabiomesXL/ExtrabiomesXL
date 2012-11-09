@@ -20,31 +20,16 @@ import extrabiomes.api.UseLogTurnerEvent;
 
 public class BlockCustomLog extends BlockLog {
 	public enum BlockType {
-		FIR(0, "Fir Log"),
-		ACACIA(1, "Acacia Log");
+		FIR(0), ACACIA(1);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
-		}
-
-		@Override
-		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return metadata;
 		}
 	}
 

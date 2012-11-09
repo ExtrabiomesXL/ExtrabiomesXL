@@ -257,7 +257,7 @@ public class RecipeManager {
 		if (redRockItem.isPresent()) {
 			final IRecipe recipe = new ShapedOreRecipe(new ItemStack(
 					event.block, 6,
-					BlockRedRockSlab.BlockType.RED_ROCK.metadata()),
+					BlockRedRockSlab.BlockType.REDROCK.metadata()),
 					new String[] { "rrr" }, 'r', redRockItem.get());
 			proxy.addRecipe(recipe);
 		}
@@ -265,7 +265,7 @@ public class RecipeManager {
 		if (redCobbleItem.isPresent()) {
 			final IRecipe recipe = new ShapedOreRecipe(new ItemStack(
 					event.block, 6,
-					BlockRedRockSlab.BlockType.RED_COBBLE.metadata()),
+					BlockRedRockSlab.BlockType.REDCOBBLE.metadata()),
 					new String[] { "rrr" }, 'r', redCobbleItem.get());
 			proxy.addRecipe(recipe);
 		}
@@ -273,7 +273,7 @@ public class RecipeManager {
 		if (redRockBrickItem.isPresent()) {
 			final IRecipe recipe = new ShapedOreRecipe(new ItemStack(
 					event.block, 6,
-					BlockRedRockSlab.BlockType.RED_ROCK_BRICK
+					BlockRedRockSlab.BlockType.REDROCKBRICK
 							.metadata()), new String[] { "rrr" }, 'r',
 					redRockBrickItem.get());
 			proxy.addRecipe(recipe);

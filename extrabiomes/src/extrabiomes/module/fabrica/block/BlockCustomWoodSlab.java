@@ -17,32 +17,21 @@ import cpw.mods.fml.common.asm.SideOnly;
 
 public class BlockCustomWoodSlab extends BlockWoodSlab {
 	public enum BlockType {
-		REDWOOD(0, "Redwood Slab"),
-		FIR(1, "Fir Wood Slab"),
-		ACACIA(2, "Acacia Wood Slab");
+		REDWOOD(0), FIR(1), ACACIA(2);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
+			return metadata;
 		}
 
 		@Override
 		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return name().toLowerCase();
 		}
 	}
 

@@ -50,7 +50,6 @@ public class CommonProxy {
 	}
 
 	public void addName(Object object, String name) {
-		LanguageRegistry.instance();
 		LanguageRegistry.addName(object, name);
 	}
 

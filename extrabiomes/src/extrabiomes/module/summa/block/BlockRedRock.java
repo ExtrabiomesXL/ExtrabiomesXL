@@ -25,24 +25,16 @@ import extrabiomes.utility.IDRestrictionAnnotation;
 public class BlockRedRock extends Block {
 
 	public enum BlockType {
-		RED_ROCK(0, "Red Rock"),
-		RED_COBBLE(1, "Red Cobblestone"),
-		RED_ROCK_BRICK(2, "Red Rock Brick");
+		RED_ROCK(0), RED_COBBLE(1), RED_ROCK_BRICK(2);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
+			return metadata;
 		}
 	}
 

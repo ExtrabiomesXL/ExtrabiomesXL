@@ -9,7 +9,6 @@ package extrabiomes;
 import java.util.EnumMap;
 import java.util.Map;
 
-import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.EventBus;
@@ -23,12 +22,14 @@ import extrabiomes.module.fabrica.Fabrica;
 import extrabiomes.module.summa.Summa;
 
 enum Module {
-	SUMMA("summa", "Set summa to false to disable the mod.", Summa.class),
-	CAUTIA("cautia", "Set cautia to true to add danger.", Cautia.class),
-	FABRICA("fabrica", "Set fabrica to true to enable craftable items.", Fabrica.class),
-	AMICA("amica", "Set amica to true to enable support for other mods.", Amica.class);
+	SUMMA("summa", "config.summa.comment", Summa.class),
+	CAUTIA("cautia", "config.cautia.comment", Cautia.class),
+	FABRICA("fabrica", "config.fabrica.comment", Fabrica.class),
+	AMICA("amica", "config.amica.comment", Amica.class);
 	// MACHINA("machina", "Set machina to true to in enable higher level tech."),
 
+	private static final String			MODULE_STATUS_DISABLED	= "module.status.disabled";
+	private static final String			MODULE_STATUS_ENABLED	= "module.status.enabled";
 	private static boolean				controlSettingsLoaded	= false;
 	private static Optional<EventBus>	eventBus				= Optional
 																		.of(new EventBus());
@@ -55,7 +56,8 @@ enum Module {
 			// Rewrite config file
 			final Property property = properties.get(module);
 			property.value = Boolean.toString(module.enabled);
-			property.comment = module.configComment;
+			property.comment = Extrabiomes.proxy
+					.getStringLocalization(module.configComment);
 		}
 	}
 
@@ -74,8 +76,11 @@ enum Module {
 		controlSettingsLoaded = true;
 
 		for (final Module module : Module.values()) {
-			ExtrabiomesLog.info("Module %s is %s.", module.toString(),
-					module.enabled ? "enabled" : "disabled, skipping");
+			ExtrabiomesLog
+					.info(Extrabiomes.proxy
+							.getStringLocalization(module.enabled ? MODULE_STATUS_ENABLED
+									: MODULE_STATUS_DISABLED), module
+							.toString());
 
 			// skip disabled modules
 			if (!module.enabled) continue;

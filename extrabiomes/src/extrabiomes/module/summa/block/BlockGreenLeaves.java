@@ -25,35 +25,21 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.api.Stuff;
 
-public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
+public class BlockGreenLeaves extends BlockLeavesBase implements
+		IShearable
+{
 
 	public enum BlockType {
-		FIR(0, "Fir Leaves"),
-		REDWOOD(1, "Redwood Leaves"),
-		ACACIA(2, "Acacia Leaves");
+		FIR(0), REDWOOD(1), ACACIA(2);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
-		}
-
-		@Override
-		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return metadata;
 		}
 	}
 

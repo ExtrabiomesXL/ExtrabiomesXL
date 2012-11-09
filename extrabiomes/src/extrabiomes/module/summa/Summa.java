@@ -65,10 +65,7 @@ public class Summa {
 
 		if (logTurnerID > 0) {
 			Stuff.logTurner = Optional.of(new LogTurner(logTurnerID)
-					.setItemName("logturner"));
-
-			Extrabiomes.proxy.addName(Stuff.logTurner.get(),
-					"Log Turner");
+					.setItemName("extrabiomes.logturner"));
 
 			final IRecipe recipe = new ShapedOreRecipe(
 					Stuff.logTurner.get(), new String[] { "ss", " s",

@@ -20,22 +20,16 @@ import extrabiomes.api.Stuff;
 public class BlockCustomWall extends BlockWall {
 
 	public enum BlockType {
-		RED_COBBLE(0, "Red Cobblestone");
+		RED_COBBLE(0);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
+			return metadata;
 		}
 	}
 

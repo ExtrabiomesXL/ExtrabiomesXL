@@ -17,32 +17,21 @@ import cpw.mods.fml.common.asm.SideOnly;
 
 public class BlockRedRockSlab extends BlockStep {
 	public enum BlockType {
-		RED_COBBLE(0, "Red Cobblestone Slab"),
-		RED_ROCK(1, "Red Rock Slab"),
-		RED_ROCK_BRICK(2, "Red Rock Brick Slab");
+		REDCOBBLE(0), REDROCK(1), REDROCKBRICK(2);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
+			return metadata;
 		}
 
 		@Override
 		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return name().toLowerCase();
 		}
 	}
 
@@ -67,9 +56,9 @@ public class BlockRedRockSlab extends BlockStep {
 	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
 		metadata &= 7;
-		return metadata == BlockType.RED_ROCK.metadata() ? side < 2 ? 14
+		return metadata == BlockType.REDROCK.metadata() ? side < 2 ? 14
 				: 13
-				: metadata == BlockType.RED_ROCK_BRICK.metadata() ? 11
+				: metadata == BlockType.REDROCKBRICK.metadata() ? 11
 						: 12;
 	}
 
@@ -78,13 +67,13 @@ public class BlockRedRockSlab extends BlockStep {
 		String blockStepType;
 		switch (metadata & 7) {
 			case 1:
-				blockStepType = BlockType.RED_ROCK.toString();
+				blockStepType = BlockType.REDROCK.toString();
 				break;
 			case 2:
-				blockStepType = BlockType.RED_ROCK_BRICK.toString();
+				blockStepType = BlockType.REDROCKBRICK.toString();
 				break;
 			default:
-				blockStepType = BlockType.RED_COBBLE.toString();
+				blockStepType = BlockType.REDCOBBLE.toString();
 		}
 
 		return super.getBlockName() + "." + blockStepType;
