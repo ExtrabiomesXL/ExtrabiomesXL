@@ -286,7 +286,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements
 
 		if (isUserPlaced(metadata) || !isDecaying(metadata)) return;
 
-		final int rangeWood = 4;
+		final int rangeWood = 6;
 		final int rangeCheckChunk = rangeWood + 1;
 		final byte var9 = 32;
 		final int var10 = var9 * var9;
