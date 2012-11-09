@@ -37,20 +37,16 @@ public class Fabrica {
 		PlankOreDictionaryRecipes.init();
 
 		if (scarecrowID > 0) {
-			final String NAME = "Scarecrow";
 			Stuff.scarecrow = Optional
 					.of(new ItemScarecrow(scarecrowID)
-							.setItemName(NAME).setIconIndex(96));
-
-			Extrabiomes.proxy.addName(Stuff.scarecrow.get(),
-					"Scarecrow");
+							.setItemName(ItemScarecrow.NAME).setIconIndex(96));
 
 			final int scarecrowEntityID = Extrabiomes.proxy
 					.findGlobalUniqueEntityId();
 			Extrabiomes.proxy.registerEntityID(EntityScarecrow.class,
-					NAME, scarecrowEntityID);
+					ItemScarecrow.NAME, scarecrowEntityID);
 			Extrabiomes.proxy.registerEntity(EntityScarecrow.class,
-					NAME, Extrabiomes.instance, scarecrowEntityID, 300,
+					ItemScarecrow.NAME, Extrabiomes.instance, scarecrowEntityID, 300,
 					2, true);
 
 			final IRecipe recipe = new ShapedOreRecipe(

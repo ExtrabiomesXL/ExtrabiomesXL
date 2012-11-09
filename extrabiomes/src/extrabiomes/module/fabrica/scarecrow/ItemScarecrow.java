@@ -20,13 +20,15 @@ import com.google.common.base.Optional;
 
 public class ItemScarecrow extends Item {
 
+	public static String NAME = "extrabiomes.scarecrow";
+	
 	private static boolean spawnCreature(World world, double x,
 			double y, double z)
 	{
 		{
 			final Optional<Entity> entity = Optional
 					.fromNullable(EntityList.createEntityByName(
-							"Scarecrow", world));
+							NAME, world));
 
 			if (entity.isPresent()) {
 				entity.get().setLocationAndAngles(x, y, z,

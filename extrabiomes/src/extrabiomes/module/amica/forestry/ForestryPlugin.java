@@ -6,6 +6,9 @@
 
 package extrabiomes.module.amica.forestry;
 
+import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_ERROR;
+import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_INIT;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -43,27 +46,23 @@ public class ForestryPlugin {
 	/**
 	 * public LiquidStack(int itemID, int amount, int itemDamage);
 	 */
-	private Optional<Constructor>	liquidStackConstructor	= Optional
-																	.absent();
+	private Optional<Constructor>	liquidStackConstructor	= Optional.absent();
 
 	/**
 	 * public void addRecipe(ItemStack resource, int fermentationValue,
 	 * float modifier, LiquidStack output, LiquisStack liquid);
 	 */
-	private Optional<Method>		fermenterAddRecipe		= Optional
-																	.absent();
+	private Optional<Method>		fermenterAddRecipe		= Optional.absent();
 
 	/**
 	 * public static ItemStack getItem(String ident);
 	 */
-	private Optional<Method>		getForestryItem			= Optional
-																	.absent();
+	private Optional<Method>		getForestryItem			= Optional.absent();
 
 	/**
 	 * public static ItemStack getItem(String ident);
 	 */
-	private static Optional<Method>	getForestryBlock		= Optional
-																	.absent();
+	private static Optional<Method>	getForestryBlock		= Optional.absent();
 
 	private static final int		DIGGER					= 1;
 
@@ -200,7 +199,9 @@ public class ForestryPlugin {
 	@ForgeSubscribe
 	public void preInit(PluginEvent.Pre event) {
 		if (!isEnabled()) return;
-		ExtrabiomesLog.fine("Initializing Forestry plugin.");
+		ExtrabiomesLog.fine(Extrabiomes.proxy
+				.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
+				"Forestry");
 		try {
 			liquidStack = Class
 					.forName("buildcraft.api.liquids.LiquidStack");
@@ -249,8 +250,9 @@ public class ForestryPlugin {
 					float.class, liquidStack, liquidStack));
 		} catch (final Exception ex) {
 			ex.printStackTrace();
-			ExtrabiomesLog
-					.fine("Could not find Forestry fields. Disabling plugin.");
+			ExtrabiomesLog.fine(Extrabiomes.proxy
+					.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
+					"Forestry");
 			enabled = false;
 		}
 	}

@@ -36,10 +36,6 @@ public enum BlockManager {
 			proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
 			proxy.registerBlock(thisBlock);
 
-			proxy.addName(thisBlock, "Quicksand");
-
-			proxy.registerOre("sandQuick", thisBlock);
-
 			proxy.registerWorldGenerator(new QuicksandGenerator(
 					thisBlock.blockID));
 		}
@@ -70,21 +66,12 @@ public enum BlockManager {
 	private static void loadSettings(ExtrabiomesConfig config) {
 		settingsLoaded = true;
 
-		ExtrabiomesLog.fine("== Cautia Block ID List ==");
-		ExtrabiomesLog
-				.fine("  (may be changed by ID Resolver, if installed.)");
-
 		// Load config settings
 		for (final BlockManager cube : BlockManager.values()) {
 			final Property property = config.getBlock(cube.idKey(),
 					Extrabiomes.getNextDefaultBlockID());
 			cube.blockID = property.getInt(0);
-
-			ExtrabiomesLog.fine("  %s: %d", cube.toString(),
-					cube.blockID);
 		}
-
-		ExtrabiomesLog.fine("=== End Block ID List ===");
 	}
 
 	public static void preInit(ExtrabiomesConfig config)

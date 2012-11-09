@@ -6,6 +6,9 @@
 
 package extrabiomes.module.amica.buildcraft;
 
+import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_ERROR;
+import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_INIT;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -21,10 +24,12 @@ import extrabiomes.api.PluginEvent;
 
 public class BuildcraftPlugin {
 
-	private boolean					modifyWorld	= false;
-	private Optional<Block>			oilStill = Optional.absent();
-	private static Optional<Method>	buildcraftGenerateSurfaceDeposit = Optional.absent();
-	private static boolean enabled = true;
+	private static final String		LOG_MESSAGE_PLUGIN_ERROR_BUILDCRAFT	= "log.message.plugin.error.buildcraft";
+	private static boolean			enabled								= true;
+
+	private boolean					modifyWorld							= false;
+	private Optional<Block>			oilStill							= Optional.absent();
+	private static Optional<Method>	buildcraftGenerateSurfaceDeposit	= Optional.absent();
 
 	static void generateSurfaceDeposit(World world, int x, int y,
 			int z, int radius)
@@ -39,7 +44,8 @@ public class BuildcraftPlugin {
 						arglist);
 			} catch (final Exception e) {
 				ExtrabiomesLog
-						.fine("Could not invoke buildcraft.energy.OilPopulate.generateSurfaceDeposit");
+						.fine(Extrabiomes.proxy
+								.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR_BUILDCRAFT));
 			}
 	}
 
@@ -52,13 +58,16 @@ public class BuildcraftPlugin {
 	}
 
 	private boolean isEnabled() {
-		return enabled && Extrabiomes.proxy.isModLoaded("BuildCraft|Energy");
+		return enabled
+				&& Extrabiomes.proxy.isModLoaded("BuildCraft|Energy");
 	}
 
 	@ForgeSubscribe
 	public void preInit(PluginEvent.Pre event) {
 		if (!isEnabled()) return;
-		ExtrabiomesLog.fine("Initializing Buildcraft plugin.");
+		ExtrabiomesLog.fine(Extrabiomes.proxy
+				.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
+				"Buildcraft");
 		try {
 			Class cls = Class.forName("buildcraft.BuildCraftCore");
 			Field fld = cls.getField("modifyWorld");
@@ -74,9 +83,11 @@ public class BuildcraftPlugin {
 			buildcraftGenerateSurfaceDeposit = Optional
 					.fromNullable(cls.getMethod(
 							"generateSurfaceDeposit", parTypes));
-		} catch (final Exception e) {
-			ExtrabiomesLog
-					.fine("Could not find Buildcraft fields. Disabling plugin.");
+		} catch (final Exception ex) {
+			ex.printStackTrace();
+			ExtrabiomesLog.fine(Extrabiomes.proxy
+					.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
+					"Buildcraft");
 			enabled = false;
 		}
 	}
