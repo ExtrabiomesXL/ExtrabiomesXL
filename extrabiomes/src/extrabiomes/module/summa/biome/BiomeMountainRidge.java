@@ -20,7 +20,7 @@ class BiomeMountainRidge extends ExtrabiomeGenBase {
 		rainfall = BiomeGenBase.desert.rainfall;
 		minHeight = 1.7F;
 		maxHeight = 1.7F;
-		disableRain();
+		setDisableRain();
 		spawnableCreatureList.clear();
 	}
 
