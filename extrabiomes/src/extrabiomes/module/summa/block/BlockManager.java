@@ -30,6 +30,7 @@ import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LogActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
+import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
@@ -114,6 +115,8 @@ public enum BlockManager {
 			Extrabiomes.postInitEvent(new CrackedSandActiveEvent(
 					thisBlock));
 			addCrackedSandToWasteland(thisBlock.blockID);
+			
+			FacadeHelper.addBuildcraftFacade(thisBlock.blockID);
 		}
 	},
 	FLOWER {
@@ -265,9 +268,13 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
 
+			for (final BlockRedRock.BlockType type : BlockRedRock.BlockType
+					.values())
+				FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
+
 			Extrabiomes
 					.postInitEvent(new RedRockActiveEvent(thisBlock));
-
+			
 			addRedRockToMountainRidge(thisBlock.blockID);
 		}
 	},
@@ -323,6 +330,8 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.registerOre("logWood", itemstack);
+				
+				FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
 			}
 
 			WorldGenAcacia.setTrunkBlock(thisBlock,
@@ -452,6 +461,8 @@ public enum BlockManager {
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
 						type.metadata());
 				proxy.registerOre("logWood", itemstack);
+
+				FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
 			}
 
 			proxy.registerOre("logWood", thisBlock);

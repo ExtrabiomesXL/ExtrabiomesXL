@@ -27,6 +27,7 @@ import extrabiomes.events.BlockActiveEvent.RedRockSlabActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedwoodStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WallActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WoodSlabActiveEvent;
+import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
 
@@ -46,12 +47,14 @@ public enum BlockManager {
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
-			for (final BlockCustomWood.BlockType blockType : BlockCustomWood.BlockType
+			for (final BlockCustomWood.BlockType type : BlockCustomWood.BlockType
 					.values())
 			{
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
-						blockType.metadata());
+						type.metadata());
 				proxy.registerOre("plankWood", itemstack);
+
+				FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
 			}
 
 			Extrabiomes.postInitEvent(new PlankActiveEvent(thisBlock));

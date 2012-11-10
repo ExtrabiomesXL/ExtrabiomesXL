@@ -17,6 +17,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.cautia.worldgen.QuicksandGenerator;
 import extrabiomes.proxy.CommonProxy;
 
@@ -35,6 +36,8 @@ public enum BlockManager {
 			thisBlock.setBlockName("extrabiomes.quicksand");
 			proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
 			proxy.registerBlock(thisBlock);
+
+			FacadeHelper.addBuildcraftFacade(thisBlock.blockID);
 
 			proxy.registerWorldGenerator(new QuicksandGenerator(
 					thisBlock.blockID));
