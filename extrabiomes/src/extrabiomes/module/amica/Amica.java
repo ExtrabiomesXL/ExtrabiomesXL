@@ -12,6 +12,7 @@ import extrabiomes.api.Api;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.module.amica.buildcraft.BuildcraftPlugin;
 import extrabiomes.module.amica.forestry.ForestryPlugin;
+import extrabiomes.module.amica.ic2.IC2Plugin;
 
 public class Amica {
 
@@ -24,6 +25,7 @@ public class Amica {
 	{
 		Api.registerPlugin(new BuildcraftPlugin());
 		Api.registerPlugin(new ForestryPlugin());
+		Api.registerPlugin(new IC2Plugin());
 	}
 
 }
