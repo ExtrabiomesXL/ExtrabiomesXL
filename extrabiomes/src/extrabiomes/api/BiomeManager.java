@@ -34,65 +34,36 @@ public abstract class BiomeManager {
 		TREE, GRASS;
 	}
 
-	public static Optional<? extends BiomeGenBase>		alpine				= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		autumnwoods			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		birchforest			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		extremejungle		= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		forestedisland		= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		forestedhills		= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		glacier				= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		greenhills			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		icewasteland		= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		greenswamp			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		marsh				= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		meadow				= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		minijungle			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		mountaindesert		= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		mountainridge		= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		mountaintaiga		= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		pineforest			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		rainforest			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		redwoodforest		= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		redwoodlush			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		savanna				= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		shrubland			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		snowforest			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		snowyrainforest		= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		temperaterainforest	= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		tundra				= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		wasteland			= Optional
-																					.absent();
-	public static Optional<? extends BiomeGenBase>		woodlands			= Optional
-																					.absent();
+	public static Optional<? extends BiomeGenBase> alpine				= Optional.absent();
+	public static Optional<? extends BiomeGenBase> autumnwoods			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> birchforest			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> extremejungle		= Optional.absent();
+	public static Optional<? extends BiomeGenBase> forestedisland		= Optional.absent();
+	public static Optional<? extends BiomeGenBase> forestedhills		= Optional.absent();
+	public static Optional<? extends BiomeGenBase> glacier				= Optional.absent();
+	public static Optional<? extends BiomeGenBase> greenhills			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> icewasteland			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> greenswamp			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> marsh				= Optional.absent();
+	public static Optional<? extends BiomeGenBase> meadow				= Optional.absent();
+	public static Optional<? extends BiomeGenBase> minijungle			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> mountaindesert		= Optional.absent();
+	public static Optional<? extends BiomeGenBase> mountainridge		= Optional.absent();
+	public static Optional<? extends BiomeGenBase> mountaintaiga		= Optional.absent();
+	public static Optional<? extends BiomeGenBase> pineforest			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> rainforest			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> redwoodforest		= Optional.absent();
+	public static Optional<? extends BiomeGenBase> redwoodlush			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> savanna				= Optional.absent();
+	public static Optional<? extends BiomeGenBase> shrubland			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> snowforest			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> snowyrainforest		= Optional.absent();
+	public static Optional<? extends BiomeGenBase> temperaterainforest	= Optional.absent();
+	public static Optional<? extends BiomeGenBase> tundra				= Optional.absent();
+	public static Optional<? extends BiomeGenBase> wasteland			= Optional.absent();
+	public static Optional<? extends BiomeGenBase> woodlands			= Optional.absent();
 
-	protected static Optional<? extends BiomeManager>	instance			= Optional
-																					.absent();
+	protected static Optional<? extends BiomeManager>	instance		= Optional.absent();
 
 	/**
 	 * This method allows the addition of grasses to custom biomes by
