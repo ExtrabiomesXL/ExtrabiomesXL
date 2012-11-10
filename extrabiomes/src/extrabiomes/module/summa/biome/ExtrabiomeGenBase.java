@@ -22,18 +22,6 @@ abstract class ExtrabiomeGenBase extends BiomeGenBase {
 		super(id);
 	}
 
-	protected void disableRain() {
-		
-		try {
-			final Field enabledRainField = BiomeGenBase.class
-					.getDeclaredField("T"); // enableRain
-			enabledRainField.setAccessible(true);
-			enabledRainField.setBoolean(this, false);
-		} catch (final Throwable e) {
-			// Do nothing... (This is NOT critical)
-		}
-	}
-
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 		final Optional<? extends WorldGenerator> grassGen = BiomeManager
