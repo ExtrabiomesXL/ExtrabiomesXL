@@ -12,7 +12,11 @@ import extrabiomes.api.BiomeManager;
 
 public class OilGenerator implements IWorldGenerator {
 
-	public OilGenerator(int oilStillID) {}
+	private final BuildcraftAPI	api;
+
+	OilGenerator(BuildcraftAPI api) {
+		this.api = api;
+	}
 
 	private void doPopulate(Random rand, World world, int x, int z) {
 		final BiomeGenBase biome = world.getWorldChunkManager()
@@ -38,8 +42,7 @@ public class OilGenerator implements IWorldGenerator {
 							|| BiomeManager.wasteland.isPresent()
 							&& (byte) id == BiomeManager.wasteland
 									.get().topBlock)
-						BuildcraftPlugin.generateSurfaceDeposit(world,
-								i, j, k, 3);
+						api.generateSurfaceDeposit(world, i, j, k, 3);
 
 					break;
 				}

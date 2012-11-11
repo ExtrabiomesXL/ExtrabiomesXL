@@ -100,6 +100,7 @@ public class IC2Plugin {
 		addBiomeBonuses();
 	}
 
+	@ForgeSubscribe
 	public void postInit(PluginEvent.Post event) {
 		api = Optional.absent();
 	}

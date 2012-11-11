@@ -19,7 +19,6 @@
   <entry key="log.message.load.success">Carregado com successo.</entry>
   <entry key="log.message.plugin.init">A inicializar o plugin %s.</entry>
   <entry key="log.message.plugin.error">Falha de communicação com %s. Destativando o plugin.</entry>
-  <entry key="log.message.plugin.error.buildcraft">Oleo do Buildcraft não conseguiu gerar.</entry>
   <entry key="module.status.enabled">O modulo %s está ligado.</entry>
   <entry key="module.status.disabled">O modulo %s está desligado, continuando...</entry>
   <entry key="tile.extrabiomes.autumnleaves.0.name">Folhas de Autono Castanhas</entry>

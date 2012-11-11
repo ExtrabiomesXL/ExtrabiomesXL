@@ -8,12 +8,6 @@ package extrabiomes.module.amica.buildcraft;
 
 import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_ERROR;
 import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_INIT;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
-import net.minecraft.src.Block;
-import net.minecraft.src.World;
 import net.minecraftforge.event.ForgeSubscribe;
 
 import com.google.common.base.Optional;
@@ -24,71 +18,43 @@ import extrabiomes.api.PluginEvent;
 
 public class BuildcraftPlugin {
 
-	private static final String		LOG_MESSAGE_PLUGIN_ERROR_BUILDCRAFT	= "log.message.plugin.error.buildcraft";
-	private static boolean			enabled								= true;
+	private static final String		MOD_NAME	= "Buildcraft";
+	private Optional<BuildcraftAPI>	api			= Optional.absent();
 
-	private boolean					modifyWorld							= false;
-	private Optional<Block>			oilStill							= Optional.absent();
-	private static Optional<Method>	buildcraftGenerateSurfaceDeposit	= Optional.absent();
+	private void addOilSpawns() {
+		if (!api.get().modifyWorld() || !api.isPresent()) return;
 
-	static void generateSurfaceDeposit(World world, int x, int y,
-			int z, int radius)
-	{
-		final Object arglist[] = { world, Integer.valueOf(x),
-				Integer.valueOf(y), Integer.valueOf(z),
-				Integer.valueOf(radius) };
-
-		if (buildcraftGenerateSurfaceDeposit.isPresent())
-			try {
-				buildcraftGenerateSurfaceDeposit.get().invoke(null,
-						arglist);
-			} catch (final Exception e) {
-				ExtrabiomesLog
-						.fine(Extrabiomes.proxy
-								.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR_BUILDCRAFT));
-			}
+		Extrabiomes.proxy.registerWorldGenerator(new OilGenerator(api
+				.get()));
 	}
 
 	@ForgeSubscribe
 	public void init(PluginEvent.Init event) {
-		if (!isEnabled()) return;
-		if (modifyWorld && oilStill.isPresent())
-			Extrabiomes.proxy.registerWorldGenerator(new OilGenerator(
-					oilStill.get().blockID));
+		if (!api.isPresent()) return;
+
+		addOilSpawns();
 	}
 
-	private boolean isEnabled() {
-		return enabled
-				&& Extrabiomes.proxy.isModLoaded("BuildCraft|Energy");
+	@ForgeSubscribe
+	public void postInit(PluginEvent.Post event) {
+		api = Optional.absent();
 	}
 
 	@ForgeSubscribe
 	public void preInit(PluginEvent.Pre event) {
-		if (!isEnabled()) return;
+		if (!Extrabiomes.proxy.isModLoaded("BuildCraft|Energy"))
+			return;
 		ExtrabiomesLog.fine(Extrabiomes.proxy
 				.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
-				"Buildcraft");
+				MOD_NAME);
 		try {
-			Class cls = Class.forName("buildcraft.BuildCraftCore");
-			Field fld = cls.getField("modifyWorld");
-			modifyWorld = fld.getBoolean(null);
-
-			cls = Class.forName("buildcraft.BuildCraftEnergy");
-			fld = cls.getField("oilStill");
-			oilStill = Optional.fromNullable((Block) fld.get(null));
-
-			final Class parTypes[] = { World.class, Integer.class,
-					Integer.class, Integer.class, Integer.class };
-			cls = Class.forName("buildcraft.energy.OilPopulate");
-			buildcraftGenerateSurfaceDeposit = Optional
-					.fromNullable(cls.getMethod(
-							"generateSurfaceDeposit", parTypes));
+			api = Optional.of(new BuildcraftAPI());
 		} catch (final Exception ex) {
 			ex.printStackTrace();
 			ExtrabiomesLog.fine(Extrabiomes.proxy
 					.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
-					"Buildcraft");
-			enabled = false;
+					MOD_NAME);
+			api = Optional.absent();
 		}
 	}
 

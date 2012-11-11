@@ -19,7 +19,6 @@
   <entry key="log.message.load.success">Chargement réussi.</entry>
   <entry key="log.message.plugin.init">Initialisation du plugin %s.</entry>
   <entry key="log.message.plugin.error">Communication impossible avec le plugin %s. Désactivation du plugin.</entry>
-  <entry key="log.message.plugin.error.buildcraft">Impossible de générer l'huile de Buildcraft.</entry>
   <entry key="module.status.enabled">Le module %s est activé.</entry>
   <entry key="module.status.disabled">Le module %s est désactivé, passage à l'étape suivante.</entry>
   <entry key="tile.extrabiomes.autumnleaves.0.name">Feuilles d'automne marrons</entry>
