@@ -19,7 +19,6 @@
   <entry key="log.message.load.success">Erfolgreich geladen.</entry>
   <entry key="log.message.plugin.init">Initialisiere %s Plug-In.</entry>
   <entry key="log.message.plugin.error">Konnte mit %s nicht interagieren. Plug-In wird deaktiviert.</entry>
-  <entry key="log.message.plugin.error.buildcraft">BuildCraft-Öl konnte nicht generiert werden.</entry>
   <entry key="module.status.enabled">Modul %s ist aktiviert.</entry>
   <entry key="module.status.disabled">Modul %s is dekativiert, wird übersprungen.</entry>
   <entry key="tile.extrabiomes.autumnleaves.0.name">Braune Herbstblätter</entry>

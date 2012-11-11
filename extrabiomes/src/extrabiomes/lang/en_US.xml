@@ -19,7 +19,6 @@
   <entry key="log.message.load.success">Successfully Loaded.</entry>
   <entry key="log.message.plugin.init">Initializing %s plugin.</entry>
   <entry key="log.message.plugin.error">Could not communicate with %s. Disabling plugin.</entry>
-  <entry key="log.message.plugin.error.buildcraft">Could not generate Buildcraft oil.</entry>
   <entry key="module.status.enabled">Module %s is enabled.</entry>
   <entry key="module.status.disabled">Module %s is disabled, skipping.</entry>
   <entry key="tile.extrabiomes.autumnleaves.0.name">Brown Autumn Leaves</entry>
