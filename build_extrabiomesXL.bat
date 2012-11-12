@@ -13,6 +13,7 @@ echo Adding release assets
 XCOPY extrabiomes\*.txt reobf\minecraft /Q
 XCOPY extrabiomes\mcmod.info reobf\minecraft /Q
 XCOPY extrabiomes\src\extrabiomes\*.png reobf\minecraft\extrabiomes /E /Q
+XCOPY extrabiomes\src\extrabiomes\lang\*.xml reobf\minecraft\extrabiomes\lang /E /Q
 echo.
 echo Restoring src-bak
 RMDIR /S /Q src

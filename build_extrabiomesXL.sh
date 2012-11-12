@@ -11,9 +11,10 @@ echo
 ./reobfuscate.sh
 echo
 echo Adding release assets
-cp extrabiomes/*.txt reobf/minecraft
-cp extrabiomes/mcmod.info reobf/minecraft 
-cp extrabiomes/src/extrabiomes/*.png reobf/minecraft/extrabiomes
+cp extrabiomes/*.txt reobf/minecraft/
+cp extrabiomes/mcmod.info reobf/minecraft/
+cp extrabiomes/src/extrabiomes/*.png reobf/minecraft/extrabiomes/
+cp extrabiomes/src/extrabiomes/lang/*.xml reobf/minecraft/extrabiomes/lang/
 echo
 echo Restoring src-bak
 rm -rf src

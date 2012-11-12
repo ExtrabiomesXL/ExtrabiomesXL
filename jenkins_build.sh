@@ -27,6 +27,7 @@ cd minecraft
 cp -rf ../../extrabiomes/mcmod.info .
 cp -rf ../../extrabiomes/*.txt .
 cp -rf ../../extrabiomes/src/extrabiomes/*.png extrabiomes/
+cp -rf ../../extrabiomes/src/extrabiomes/lang/*.xml extrabiomes/lang/
 zip -r9 "../${JOB_NAME}-universal-${VERSION}.jar" *
 cd ..
 
