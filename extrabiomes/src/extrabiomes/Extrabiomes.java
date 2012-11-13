@@ -9,6 +9,7 @@ package extrabiomes;
 import java.io.File;
 import java.util.logging.Level;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.EventBus;
 
@@ -24,12 +25,14 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.localization.LocalizationHandler;
 import extrabiomes.proxy.CommonProxy;
+import extrabiomes.utility.CreativeTab;
 
 @Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.3.2")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
@@ -46,6 +49,8 @@ public class Extrabiomes {
 	private static final String			LOG_MESSAGE_CONFIG_EXCEPTION	= "log.message.config.exception";
 	private static final String			LOG_MESSAGE_INITIALIZING		= "log.message.initializing";
 	private static final String			LOG_MESSAGE_LOAD_SUCCESS		= "log.message.load.success";
+	
+	public static final CreativeTabs 	extrabiomesTab 					= new CreativeTab(12, "extrabiomesTab");
 
 	private static Optional<EventBus>	initBus							= Optional.of(new EventBus());
 
@@ -73,6 +78,8 @@ public class Extrabiomes {
 		Module.releaseStaticResources();
 		ExtrabiomesLog.info(proxy
 				.getStringLocalization(LOG_MESSAGE_LOAD_SUCCESS));
+		LanguageRegistry.instance().addStringLocalization(
+				"itemGroup.extrabiomesTab", "en_US", "ExtrabiomesXL");
 	}
 
 	public static boolean postInitEvent(Event event) {

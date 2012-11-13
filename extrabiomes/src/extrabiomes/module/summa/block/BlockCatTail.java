@@ -6,6 +6,7 @@
 
 package extrabiomes.module.summa.block;
 
+import extrabiomes.Extrabiomes;
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockFlower;
 import net.minecraft.src.CreativeTabs;
@@ -22,7 +23,7 @@ class BlockCatTail extends BlockFlower {
 		final float f = 0.375F;
 		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F,
 				0.5F + f);
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 

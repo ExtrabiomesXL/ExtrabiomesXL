@@ -16,6 +16,7 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
@@ -71,7 +72,7 @@ public class BlockCustomSapling extends BlockFlower {
 		setStepSound(soundGrassFootstep);
 		setRequiresSelfNotify();
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	private void attemptGrowTree(World world, int x, int y, int z,
@@ -110,7 +111,7 @@ public class BlockCustomSapling extends BlockFlower {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDecorations)
+		if (tab == Extrabiomes.extrabiomesTab)
 			for (final BlockType blockType : BlockType.values())
 				itemList.add(new ItemStack(this, 1, blockType
 						.metadata()));

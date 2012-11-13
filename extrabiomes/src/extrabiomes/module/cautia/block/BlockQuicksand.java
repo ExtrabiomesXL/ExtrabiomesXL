@@ -8,6 +8,8 @@ package extrabiomes.module.cautia.block;
 
 import java.util.ArrayList;
 
+import extrabiomes.Extrabiomes;
+
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
@@ -23,7 +25,7 @@ class BlockQuicksand extends Block {
 		setHardness(4.0F);
 		setStepSound(Block.soundSandFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabBlock);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override
