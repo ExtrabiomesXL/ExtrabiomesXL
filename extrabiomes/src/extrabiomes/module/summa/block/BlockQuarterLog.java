@@ -21,6 +21,7 @@ import net.minecraft.src.World;
 import net.minecraftforge.event.ForgeSubscribe;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
 
 public class BlockQuarterLog extends BlockLog {
@@ -101,6 +102,7 @@ public class BlockQuarterLog extends BlockLog {
 		setHardness(2.0F);
 		setBurnProperties(blockID, 5, 5);
 		setResistance(Block.wood.getExplosionResistance(null) * 5.0F);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

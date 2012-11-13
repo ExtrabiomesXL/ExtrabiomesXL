@@ -22,6 +22,7 @@ import net.minecraft.src.World;
 import net.minecraftforge.common.IShearable;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 
 public class BlockAutumnLeaves extends BlockLeavesBase implements
@@ -77,7 +78,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 		setRequiresSelfNotify();
 		Block.setBurnProperties(blockID, 30, 60);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override
@@ -153,7 +154,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDecorations)
+		if (tab == Extrabiomes.extrabiomesTab)
 			for (final BlockType blockType : BlockType.values())
 				itemList.add(new ItemStack(this, 1, blockType
 						.metadata()));

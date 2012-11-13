@@ -18,6 +18,8 @@ import net.minecraft.src.World;
 
 import com.google.common.base.Optional;
 
+import extrabiomes.Extrabiomes;
+
 public class ItemScarecrow extends Item {
 
 	public static String NAME = "extrabiomes.scarecrow";
@@ -43,7 +45,7 @@ public class ItemScarecrow extends Item {
 	public ItemScarecrow(int id) {
 		super(id);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabMisc);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

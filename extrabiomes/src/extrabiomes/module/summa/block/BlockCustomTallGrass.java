@@ -48,7 +48,7 @@ class BlockCustomTallGrass extends BlockFlower implements IShearable {
 		setHardness(0F);
 		setStepSound(soundGrassFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 		setBurnProperties(blockID, 60, 100);
 	}
 
@@ -96,7 +96,7 @@ class BlockCustomTallGrass extends BlockFlower implements IShearable {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDecorations)
+		if (tab == Extrabiomes.extrabiomesTab)
 			for (final BlockType type : BlockType.values())
 				itemList.add(new ItemStack(this, 1, type.metadata()));
 	}
