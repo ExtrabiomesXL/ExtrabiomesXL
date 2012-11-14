@@ -14,6 +14,7 @@ echo Adding release assets
 cp extrabiomes/*.txt reobf/minecraft/
 cp extrabiomes/mcmod.info reobf/minecraft/
 cp extrabiomes/src/extrabiomes/*.png reobf/minecraft/extrabiomes/
+mkdir -p reobf/minecraft/extrabiomes/lang/
 cp extrabiomes/src/extrabiomes/lang/*.xml reobf/minecraft/extrabiomes/lang/
 echo
 echo Restoring src-bak
