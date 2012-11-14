@@ -15,6 +15,7 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 
 public class BlockCustomWall extends BlockWall {
@@ -36,6 +37,7 @@ public class BlockCustomWall extends BlockWall {
 	public BlockCustomWall(int id) {
 		super(id, Stuff.redRock.get());
 		setTextureFile("/extrabiomes/extrabiomes.png");
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

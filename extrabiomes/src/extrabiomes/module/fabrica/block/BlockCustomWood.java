@@ -13,6 +13,7 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 
 public class BlockCustomWood extends BlockWood {
 	public enum BlockType {
@@ -38,6 +39,7 @@ public class BlockCustomWood extends BlockWood {
 		setHardness(2.0F);
 		setResistance(5.0F);
 		setBurnProperties(blockID, 5, 20);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 
 public class BlockCustomWoodSlab extends BlockWoodSlab {
 	public enum BlockType {
@@ -46,6 +47,7 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
 		setBurnProperties(blockID, 5, 20);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 		setLightOpacity(0);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

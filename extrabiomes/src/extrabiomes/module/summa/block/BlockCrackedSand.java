@@ -9,6 +9,7 @@ package extrabiomes.module.summa.block;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Material;
+import extrabiomes.Extrabiomes;
 import extrabiomes.utility.IDRestrictionAnnotation;
 
 @IDRestrictionAnnotation(maxIDRValue = 255)
@@ -20,6 +21,6 @@ class BlockCrackedSand extends Block {
 		setHardness(1.2F);
 		setStepSound(Block.soundStoneFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabBlock);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 }

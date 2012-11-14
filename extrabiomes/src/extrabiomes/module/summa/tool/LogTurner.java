@@ -21,6 +21,7 @@ public class LogTurner extends ItemTool {
 		super(id, 1, EnumToolMaterial.WOOD, new Block[] {});
 		setIconIndex(112);
 		setTextureFile("/extrabiomes/extrabiomes.png");
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 
 public class BlockRedRockSlab extends BlockStep {
 	public enum BlockType {
@@ -45,6 +46,7 @@ public class BlockRedRockSlab extends BlockStep {
 		setStepSound(soundStoneFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 		setLightOpacity(0);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

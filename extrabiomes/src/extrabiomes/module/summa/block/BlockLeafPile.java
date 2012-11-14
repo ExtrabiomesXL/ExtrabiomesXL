@@ -17,6 +17,7 @@ import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 
 class BlockLeafPile extends Block {
 
@@ -34,7 +35,7 @@ class BlockLeafPile extends Block {
 		setStepSound(soundGrassFootstep);
 		Block.setBurnProperties(blockID, 30, 60);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

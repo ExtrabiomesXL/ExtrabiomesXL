@@ -19,6 +19,7 @@ import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.utility.IDRestrictionAnnotation;
 
 @IDRestrictionAnnotation(maxIDRValue = 255)
@@ -44,7 +45,7 @@ public class BlockRedRock extends Block {
 		setResistance(2.0F);
 
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabBlock);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override
@@ -83,7 +84,7 @@ public class BlockRedRock extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabBlock)
+		if (tab == Extrabiomes.extrabiomesTab)
 			for (final BlockType blockType : BlockType.values())
 				itemList.add(new ItemStack(this, 1, blockType
 						.metadata()));
