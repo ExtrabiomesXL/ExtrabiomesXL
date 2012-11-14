@@ -27,32 +27,16 @@ import extrabiomes.api.BiomeManager;
 
 class BlockCustomTallGrass extends BlockFlower implements IShearable {
 	enum BlockType {
-		BROWN(0, "Brown Grass"), SHORT_BROWN(1, "Short Brown Grass"), DEAD(
-				2, "Dead Grass"), DEAD_TALL(3, "Tall Dead Grass"), DEAD_YELLOW(
-				4, "Yellow Dead Grass");
+		BROWN(0), SHORT_BROWN(1), DEAD(2), DEAD_TALL(3), DEAD_YELLOW(4);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
-		}
-
-		@Override
-		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return metadata;
 		}
 	}
 
@@ -64,7 +48,7 @@ class BlockCustomTallGrass extends BlockFlower implements IShearable {
 		setHardness(0F);
 		setStepSound(soundGrassFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 		setBurnProperties(blockID, 60, 100);
 	}
 
@@ -112,7 +96,7 @@ class BlockCustomTallGrass extends BlockFlower implements IShearable {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDecorations)
+		if (tab == Extrabiomes.extrabiomesTab)
 			for (final BlockType type : BlockType.values())
 				itemList.add(new ItemStack(this, 1, type.metadata()));
 	}

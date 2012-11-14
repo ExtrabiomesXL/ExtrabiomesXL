@@ -24,7 +24,7 @@ class BiomeMountainDesert extends ExtrabiomeGenBase {
 		topBlock = (byte) Block.sand.blockID;
 		fillerBlock = (byte) Block.sand.blockID;
 		spawnableCreatureList.clear();
-		disableRain();
+		setDisableRain();
 	}
 
 	@Override

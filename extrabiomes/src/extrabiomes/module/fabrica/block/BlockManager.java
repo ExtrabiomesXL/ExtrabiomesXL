@@ -16,7 +16,6 @@ import net.minecraftforge.common.Property;
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
-import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.events.BlockActiveEvent.AcaciaStairsActiveEvent;
@@ -28,6 +27,7 @@ import extrabiomes.events.BlockActiveEvent.RedRockSlabActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedwoodStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WallActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WoodSlabActiveEvent;
+import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
 
@@ -47,13 +47,14 @@ public enum BlockManager {
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
-			for (final BlockCustomWood.BlockType blockType : BlockCustomWood.BlockType
+			for (final BlockCustomWood.BlockType type : BlockCustomWood.BlockType
 					.values())
 			{
 				final ItemStack itemstack = new ItemStack(thisBlock, 1,
-						blockType.metadata());
-				proxy.addName(itemstack, blockType.itemName());
+						type.metadata());
 				proxy.registerOre("plankWood", itemstack);
+
+				FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
 			}
 
 			Extrabiomes.postInitEvent(new PlankActiveEvent(thisBlock));
@@ -105,7 +106,6 @@ public enum BlockManager {
 			{
 				final ItemStack itemstack = new ItemStack(
 						Stuff.slabWood.get(), 1, blockType.metadata());
-				proxy.addName(itemstack, blockType.itemName());
 				proxy.registerOre("slabWood", itemstack);
 			}
 
@@ -130,11 +130,10 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = Stuff.stairsRedwood.get();
 
-			thisBlock.setBlockName("extrabiomes.stairsRedwood");
+			thisBlock.setBlockName("extrabiomes.stairs.redwood");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 			proxy.registerBlock(thisBlock);
 
-			proxy.addName(thisBlock, "Redwood Stairs");
 			proxy.registerOre("stairWood", thisBlock);
 			Extrabiomes.postInitEvent(new RedwoodStairsActiveEvent(
 					thisBlock));
@@ -153,11 +152,10 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = Stuff.stairsFir.get();
 
-			thisBlock.setBlockName("extrabiomes.stairsFir");
+			thisBlock.setBlockName("extrabiomes.stairs.fir");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 			proxy.registerBlock(thisBlock);
 
-			proxy.addName(thisBlock, "Fir Wood Stairs");
 			proxy.registerOre("stairWood", thisBlock);
 			Extrabiomes.postInitEvent(new FirStairsActiveEvent(
 					thisBlock));
@@ -176,11 +174,10 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = Stuff.stairsAcacia.get();
 
-			thisBlock.setBlockName("extrabiomes.stairAcacia");
+			thisBlock.setBlockName("extrabiomes.stairs.acacia");
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 			proxy.registerBlock(thisBlock);
 
-			proxy.addName(thisBlock, "Acacia Wood Stairs");
 			proxy.registerOre("stairWood", thisBlock);
 			Extrabiomes.postInitEvent(new AcaciaStairsActiveEvent(
 					thisBlock));
@@ -228,15 +225,6 @@ public enum BlockManager {
 			proxy.registerBlock(
 					thisBlock,
 					extrabiomes.module.fabrica.block.ItemRedRockSlab.class);
-			for (final BlockRedRockSlab.BlockType blockType : BlockRedRockSlab.BlockType
-					.values())
-			{
-				proxy.addName(
-						new ItemStack(thisBlock, 1, blockType
-								.metadata()), blockType.itemName());
-				proxy.addName(new ItemStack(Stuff.slabRedRock.get(), 1,
-						blockType.metadata()), blockType.itemName());
-			}
 		}
 	},
 	REDCOBBLESTAIRS {
@@ -252,11 +240,9 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = Stuff.stairsRedCobble.get();
 
-			thisBlock.setBlockName("extrabiomes.stairsRedCobble");
+			thisBlock.setBlockName("extrabiomes.stairs.redcobble");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
 			proxy.registerBlock(thisBlock);
-
-			proxy.addName(thisBlock, "Red Cobble Stairs");
 
 			Extrabiomes.postInitEvent(new RedCobbleStairsActiveEvent(
 					thisBlock));
@@ -277,11 +263,9 @@ public enum BlockManager {
 			final CommonProxy proxy = Extrabiomes.proxy;
 			final Block thisBlock = Stuff.stairsRedRockBrick.get();
 
-			thisBlock.setBlockName("extrabiomes.stairsRedRockBrick");
+			thisBlock.setBlockName("extrabiomes.stairs.redrockbrick");
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
 			proxy.registerBlock(thisBlock);
-
-			proxy.addName(thisBlock, "Red Rock Brick Stairs");
 
 			Extrabiomes
 					.postInitEvent(new RedRockBrickStairsActiveEvent(
@@ -303,13 +287,6 @@ public enum BlockManager {
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
-			for (final BlockCustomWall.BlockType blockType : BlockCustomWall.BlockType
-					.values())
-			{
-				final ItemStack itemstack = new ItemStack(thisBlock, 1,
-						blockType.metadata());
-				proxy.addName(itemstack, blockType.itemName() + " Wall");
-			}
 
 			Extrabiomes.postInitEvent(new WallActiveEvent(thisBlock));
 		}
@@ -317,8 +294,7 @@ public enum BlockManager {
 
 	private static boolean	settingsLoaded	= false;
 
-	private static void createBlocks() throws Exception
-	{
+	private static void createBlocks() throws Exception {
 		for (final BlockManager block : BlockManager.values())
 			if (block.blockID > 0) {
 				try {
@@ -340,21 +316,12 @@ public enum BlockManager {
 	private static void loadSettings(ExtrabiomesConfig config) {
 		settingsLoaded = true;
 
-		ExtrabiomesLog.info("== Fabrica Block ID List ==");
-		ExtrabiomesLog
-				.info("  (may be changed by ID Resolver, if installed.)");
-
 		// Load config settings
 		for (final BlockManager cube : BlockManager.values()) {
 			final Property property = config.getBlock(cube.idKey(),
 					Extrabiomes.getNextDefaultBlockID());
 			cube.blockID = property.getInt(0);
-
-			ExtrabiomesLog.info("  %s: %d", cube.toString(),
-					cube.blockID);
 		}
-
-		ExtrabiomesLog.info("=== End Block ID List ===");
 
 		if (PLANKS.blockID == 0) {
 			WOODSLAB.blockID = 0;

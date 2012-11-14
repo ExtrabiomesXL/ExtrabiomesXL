@@ -13,35 +13,20 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 
 public class BlockCustomWood extends BlockWood {
 	public enum BlockType {
-		REDWOOD(0, "Redwood Planks"),
-		FIR(1, "Fir Wood Plank"),
-		ACACIA(2, "Acacia Wood Plank");
+		REDWOOD(0), FIR(1), ACACIA(2);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
-		}
-
-		@Override
-		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return metadata;
 		}
 	}
 
@@ -54,6 +39,7 @@ public class BlockCustomWood extends BlockWood {
 		setHardness(2.0F);
 		setResistance(5.0F);
 		setBurnProperties(blockID, 5, 20);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

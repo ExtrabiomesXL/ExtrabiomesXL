@@ -18,15 +18,19 @@ import net.minecraft.src.World;
 
 import com.google.common.base.Optional;
 
+import extrabiomes.Extrabiomes;
+
 public class ItemScarecrow extends Item {
 
+	public static String NAME = "extrabiomes.scarecrow";
+	
 	private static boolean spawnCreature(World world, double x,
 			double y, double z)
 	{
 		{
 			final Optional<Entity> entity = Optional
 					.fromNullable(EntityList.createEntityByName(
-							"Scarecrow", world));
+							NAME, world));
 
 			if (entity.isPresent()) {
 				entity.get().setLocationAndAngles(x, y, z,
@@ -41,7 +45,7 @@ public class ItemScarecrow extends Item {
 	public ItemScarecrow(int id) {
 		super(id);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabMisc);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

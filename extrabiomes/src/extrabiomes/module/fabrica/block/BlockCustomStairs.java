@@ -6,6 +6,7 @@
 
 package extrabiomes.module.fabrica.block;
 
+import extrabiomes.Extrabiomes;
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockStairs;
 
@@ -18,6 +19,7 @@ public class BlockCustomStairs extends BlockStairs {
 		setRequiresSelfNotify();
 		setTextureFile("/extrabiomes/extrabiomes.png");
 		setLightOpacity(0);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 }

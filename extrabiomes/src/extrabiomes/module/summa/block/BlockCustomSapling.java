@@ -16,6 +16,7 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
@@ -25,39 +26,19 @@ import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 
-class BlockCustomSapling extends BlockFlower {
+public class BlockCustomSapling extends BlockFlower {
 
-	enum BlockType {
-		BROWN(0, "Brown Autumn Sapling"),
-		ORANGE(1, "Orange Autumn Sapling"),
-		PURPLE(2, "Purple Autumn Sapling"),
-		YELLOW(3, "Yellow Autumn Sapling"),
-		FIR(4, "Fir Sapling"),
-		REDWOOD(5, "Redwood Sapling"),
-		ACACIA(6, "Acacia Sapling");
+	public enum BlockType {
+		BROWN(0), ORANGE(1), PURPLE(2), YELLOW(3), FIR(4), REDWOOD(5), ACACIA(6);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
-		}
-
-		@Override
-		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return metadata;
 		}
 	}
 
@@ -91,7 +72,7 @@ class BlockCustomSapling extends BlockFlower {
 		setStepSound(soundGrassFootstep);
 		setRequiresSelfNotify();
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	private void attemptGrowTree(World world, int x, int y, int z,
@@ -130,7 +111,7 @@ class BlockCustomSapling extends BlockFlower {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDecorations)
+		if (tab == Extrabiomes.extrabiomesTab)
 			for (final BlockType blockType : BlockType.values())
 				itemList.add(new ItemStack(this, 1, blockType
 						.metadata()));

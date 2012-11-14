@@ -50,7 +50,6 @@ public class CommonProxy {
 	}
 
 	public void addName(Object object, String name) {
-		LanguageRegistry.instance();
 		LanguageRegistry.addName(object, name);
 	}
 
@@ -77,8 +76,17 @@ public class CommonProxy {
 		return OreDictionary.getOres(name);
 	}
 
+	public String getStringLocalization(String key) {
+		return LanguageRegistry.instance().getStringLocalization(key);
+	}
+
 	public boolean isModLoaded(String modID) {
 		return Loader.isModLoaded(modID);
+	}
+
+	public void loadLocalization(String filename, String locale) {
+		LanguageRegistry.instance().loadLocalization(filename, locale,
+				true);
 	}
 
 	public boolean postEventToBus(Event event) {

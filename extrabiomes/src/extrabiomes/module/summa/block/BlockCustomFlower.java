@@ -26,37 +26,17 @@ import extrabiomes.proxy.CommonProxy;
 public class BlockCustomFlower extends Block implements IPlantable {
 
 	public enum BlockType {
-		AUTUMN_SHRUB(0, "Autumn Shrub"),
-		HYDRANGEA(1, "Hydrangea"),
-		ORANGE(2, "Orange Flower"),
-		PURPLE(3, "Purple Flower"),
-		TINY_CACTUS(4, "Tiny Cactus"),
-		ROOT(5, "Root"),
-		TOADSTOOL(6, "Toad Stool"),
-		WHITE(7, "White Flower");
+		AUTUMN_SHRUB(0), HYDRANGEA(1), ORANGE(2), PURPLE(3), TINY_CACTUS(4),
+		ROOT(5), TOADSTOOL(6), WHITE(7);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
-		}
-
-		@Override
-		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return metadata;
 		}
 	}
 
@@ -77,7 +57,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
 		proxy.addGrassPlant(this, BlockType.PURPLE.metadata(), 5);
 		proxy.addGrassPlant(this, BlockType.WHITE.metadata(), 5);
 
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
@@ -173,7 +153,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDecorations)
+		if (tab == Extrabiomes.extrabiomesTab)
 			for (final BlockType type : BlockType.values())
 				itemList.add(new ItemStack(this, 1, type.metadata()));
 	}

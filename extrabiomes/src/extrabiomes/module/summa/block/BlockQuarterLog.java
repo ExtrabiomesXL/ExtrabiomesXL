@@ -21,6 +21,7 @@ import net.minecraft.src.World;
 import net.minecraftforge.event.ForgeSubscribe;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
 
 public class BlockQuarterLog extends BlockLog {
@@ -29,32 +30,16 @@ public class BlockQuarterLog extends BlockLog {
 	}
 
 	public enum BlockType {
-		REDWOOD(0, "Redwood Log"),
-		FIR(1, "Fir Log"),
-		OAK(2, "Oak Log");
+		REDWOOD(0), FIR(1), OAK(2);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
-		}
-
-		@Override
-		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return metadata;
 		}
 	}
 
@@ -117,6 +102,7 @@ public class BlockQuarterLog extends BlockLog {
 		setHardness(2.0F);
 		setBurnProperties(blockID, 5, 5);
 		setResistance(Block.wood.getExplosionResistance(null) * 5.0F);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override

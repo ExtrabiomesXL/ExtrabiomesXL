@@ -22,37 +22,23 @@ import net.minecraft.src.World;
 import net.minecraftforge.common.IShearable;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 
-class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
-	enum BlockType {
-		BROWN(0, "Brown Autumn Leaves"),
-		ORANGE(1, "Orange Autumn Leaves"),
-		PURPLE(2, "Purple Autumn Leaves"),
-		YELLOW(3, "Yellow Autumn Leaves");
+public class BlockAutumnLeaves extends BlockLeavesBase implements
+		IShearable
+{
+	public enum BlockType {
+		BROWN(0), ORANGE(1), PURPLE(2), YELLOW(3);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
-		}
-
-		@Override
-		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return metadata;
 		}
 	}
 
@@ -92,7 +78,7 @@ class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 		setRequiresSelfNotify();
 		Block.setBurnProperties(blockID, 30, 60);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override
@@ -168,7 +154,7 @@ class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDecorations)
+		if (tab == Extrabiomes.extrabiomesTab)
 			for (final BlockType blockType : BlockType.values())
 				itemList.add(new ItemStack(this, 1, blockType
 						.metadata()));

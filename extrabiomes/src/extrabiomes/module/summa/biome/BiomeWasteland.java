@@ -24,7 +24,7 @@ class BiomeWasteland extends ExtrabiomeGenBase {
 
 		spawnableCreatureList.clear();
 
-		disableRain();
+		setDisableRain();
 	}
 
 	@Override

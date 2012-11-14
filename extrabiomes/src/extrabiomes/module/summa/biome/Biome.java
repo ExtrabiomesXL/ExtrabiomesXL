@@ -56,7 +56,12 @@ enum Biome {
 	WASTELAND(BiomeWasteland.class),
 	WOODLANDS(BiomeWoodlands.class);
 
-	private static boolean	settingsLoaded	= false;
+
+	private static final String	LOG_MESSAGE_BIOME_DISABLED				= "log.message.biome.disabled";
+	private static final String	LOG_MESSAGE_BIOME_VILLAGE_ENABLED		= "log.message.biome.village.enabled";
+	private static final String	LOG_MESSAGE_CONFIG_EXCEPTION_BIOMEID	= "log.message.config.exception.biomeid";
+
+	private static boolean		settingsLoaded							= false;
 
 	private static void createBiomes() throws InstantiationException,
 			IllegalAccessException
@@ -72,7 +77,8 @@ enum Biome {
 				if (BiomeGenBase.biomeList[biome.biomeID] != null)
 					throw new IllegalArgumentException(
 							String.format(
-									"Biome id %d is already in use by %s when adding %s. Please review the configuration file.",
+									Extrabiomes.proxy
+											.getStringLocalization(LOG_MESSAGE_CONFIG_EXCEPTION_BIOMEID),
 									biome.biomeID,
 									BiomeGenBase.biomeList[biome.biomeID].biomeName,
 									biome.toString()));
@@ -84,13 +90,16 @@ enum Biome {
 				Extrabiomes.proxy.addBiome(worldTypes,
 						biome.biome.get());
 			else
-				ExtrabiomesLog.info("Custom biome %s disabled.",
-						biome.toString());
+				ExtrabiomesLog
+						.fine(Extrabiomes.proxy
+								.getStringLocalization(LOG_MESSAGE_BIOME_DISABLED),
+								biome.toString());
 			if (biome.enableVillages && biome.biome.isPresent()) {
 				VillageSpawnHelper.setVillageSpawn(biome.biome.get(),
 						true);
 				ExtrabiomesLog
-						.info("Village spawning enabled for custom biome %s.",
+						.fine(Extrabiomes.proxy
+								.getStringLocalization(LOG_MESSAGE_BIOME_VILLAGE_ENABLED),
 								biome.toString());
 			}
 		}
@@ -110,7 +119,7 @@ enum Biome {
 	private static void loadSettings(ExtrabiomesConfig config) {
 		settingsLoaded = true;
 
-		ExtrabiomesLog.info("===== Biome ID List =====");
+		ExtrabiomesLog.fine("===== Biome ID List =====");
 
 		// Load config settings
 		int defaultID = 32;
@@ -120,7 +129,7 @@ enum Biome {
 					defaultID++);
 			biome.biomeID = property.getInt(0);
 
-			ExtrabiomesLog.info("  %s: %d", biome.toString(),
+			ExtrabiomesLog.fine("  %s: %d", biome.toString(),
 					biome.biomeID);
 
 			property = config.get(ExtrabiomesConfig.CATEGORY_BIOME,
@@ -138,7 +147,7 @@ enum Biome {
 				biome.enableVillages = true;
 		}
 
-		ExtrabiomesLog.info("=== End Biome ID List ===");
+		ExtrabiomesLog.fine("=== End Biome ID List ===");
 	}
 
 	static void preInit(ExtrabiomesConfig config)
@@ -150,18 +159,12 @@ enum Biome {
 		createBiomes();
 	}
 
-	private Optional<? extends BiomeGenBase>				biome				= Optional
-																						.absent();
-
+	private Optional<? extends BiomeGenBase>				biome				= Optional.absent();
 	private int												biomeID				= 0;
 	private boolean											enableGeneration	= false;
-
 	private boolean											enableVillages		= false;
-
 	private final Class<? extends BiomeGenBase>				biomeClass;
-
-	private static Optional<? extends List<BiomeGenBase>>	activeBiomes		= Optional
-																						.absent();
+	private static Optional<? extends List<BiomeGenBase>>	activeBiomes		= Optional.absent();
 
 	Biome(Class<? extends BiomeGenBase> biomeClass) {
 		this.biomeClass = biomeClass;

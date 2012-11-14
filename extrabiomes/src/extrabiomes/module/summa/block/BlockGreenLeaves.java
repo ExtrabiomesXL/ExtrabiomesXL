@@ -23,37 +23,24 @@ import net.minecraft.src.World;
 import net.minecraftforge.common.IShearable;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 
-class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
+public class BlockGreenLeaves extends BlockLeavesBase implements
+		IShearable
+{
 
-	enum BlockType {
-		FIR(0, "Fir Leaves"),
-		REDWOOD(1, "Redwood Leaves"),
-		ACACIA(2, "Acacia Leaves");
+	public enum BlockType {
+		FIR(0), REDWOOD(1), ACACIA(2);
 
-		private final int		value;
-		private final String	itemName;
+		private final int	metadata;
 
-		BlockType(int value, String itemName) {
-			this.value = value;
-			this.itemName = itemName;
-		}
-
-		public String itemName() {
-			return itemName;
+		BlockType(int metadata) {
+			this.metadata = metadata;
 		}
 
 		public int metadata() {
-			return value;
-		}
-
-		@Override
-		public String toString() {
-			final StringBuilder sb = new StringBuilder(name()
-					.toLowerCase());
-			sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-			return sb.toString();
+			return metadata;
 		}
 	}
 
@@ -114,7 +101,7 @@ class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 		setRequiresSelfNotify();
 		Block.setBurnProperties(blockID, 30, 60);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(Extrabiomes.extrabiomesTab);
 	}
 
 	@Override
@@ -217,7 +204,7 @@ class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == CreativeTabs.tabDecorations)
+		if (tab == Extrabiomes.extrabiomesTab)
 			for (final BlockType blockType : BlockType.values())
 				itemList.add(new ItemStack(this, 1, blockType
 						.metadata()));
@@ -300,7 +287,7 @@ class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
 		if (isUserPlaced(metadata) || !isDecaying(metadata)) return;
 
-		final int rangeWood = 4;
+		final int rangeWood = 6;
 		final int rangeCheckChunk = rangeWood + 1;
 		final byte var9 = 32;
 		final int var10 = var9 * var9;
