@@ -7,7 +7,7 @@
 package extrabiomes.localization;
 
 public enum Localization {
-	US("en_US"), GERMAN("de_DE"), FRENCH("fr_FR"), PORTUGESE("pt_PT")/* CZECH("cs_CZ"), WELSH("cy_GB"), SPANISH("es_ES"), FRENCH("fr_FR"), ITALIAN("it_IT"),
+	US("en_US"), GERMAN("de_DE"), FRENCH("fr_FR"), PORTUGAL("pt_PT"), BRAZIL("pt_BR")/* CZECH("cs_CZ"), WELSH("cy_GB"), SPANISH("es_ES"), FRENCH("fr_FR"), ITALIAN("it_IT"),
 	JAPANESE("ja_JP"), DUTCH("nl_NL"), POLISH("pl_PL"), RUSSIAN("ru_RU"), SERBIAN("sr_RS"), SWEDISH("sv_SE"),
 	CHINESE("zh_CN")*/;
 
