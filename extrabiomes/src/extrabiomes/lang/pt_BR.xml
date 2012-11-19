@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties version="1.0">
-  <comment>Portuguese (PT) Localization Fole</comment>
+  <comment>Portuguese (BR) Localization Fole</comment>
   <entry key="config.amica.comment">Ativa amica para ligar compatibilidade com outros mods.</entry>
   <entry key="config.block.terraingen.comment">%s é usado para gerar o mundo, o ID não pode ser maior que 256.</entry>
   <entry key="config.cautia.comment">Ativa cautia para adicionar perigo.</entry>
