@@ -18,6 +18,7 @@ import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.liquids.LiquidStack;
 
 import com.google.common.base.Optional;
 
@@ -33,7 +34,6 @@ import extrabiomes.module.summa.block.BlockGreenLeaves;
 import extrabiomes.module.summa.block.BlockRedRock;
 
 public class ForestryPlugin {
-	private Class					liquidStack;
 	private Object					fermenterManager;
 	private Object					carpenterManager;
 	private static boolean			enabled					= true;
@@ -45,10 +45,6 @@ public class ForestryPlugin {
 
 	public static ArrayList			loggerWindfall;
 
-	/**
-	 * public LiquidStack(int itemID, int amount, int itemDamage);
-	 */
-	private Optional<Constructor>	liquidStackConstructor	= Optional.absent();
 
 	/**
 	 * public void addRecipe(int packagingTime, LiquidStack liquid,
@@ -145,8 +141,7 @@ public class ForestryPlugin {
 				800,
 				1.0f,
 				getLiquidStack("liquidBiomass"),
-				liquidStackConstructor.get().newInstance(
-						Block.waterStill.blockID, 1, 0));
+				new LiquidStack(Block.waterStill.blockID, 1, 0));
 		fermenterAddRecipe.get().invoke(fermenterManager, resource,
 				800, 1.5f, getLiquidStack("liquidBiomass"),
 				getLiquidStack("liquidJuice"));
@@ -165,18 +160,15 @@ public class ForestryPlugin {
 	private void addRecipes() throws Exception {
 		if (fermenterAddRecipe.isPresent()
 				&& getForestryItem.isPresent()
-				&& Stuff.sapling.isPresent()
-				&& liquidStackConstructor.isPresent())
+				&& Stuff.sapling.isPresent())
 			for (final BlockCustomSapling.BlockType type : BlockCustomSapling.BlockType
 					.values())
 				addFermenterRecipeSapling(new ItemStack(
 						Stuff.sapling.get().blockID, 1, type.metadata()));
 		if (carpenterAddRecipe.isPresent()
-				&& Stuff.redRock.isPresent()
-				&& liquidStackConstructor.isPresent())
+				&& Stuff.redRock.isPresent())
 			carpenterAddRecipe.get().invoke(carpenterManager, 10,
-				liquidStackConstructor.get().newInstance(
-						Block.waterStill.blockID, 3000, 0),
+				new LiquidStack(Block.waterStill.blockID, 3000, 0),
 				null, new ItemStack(Item.clay, 4),
 				new Object[] { "#", Character.valueOf('#'), new ItemStack(Stuff.redRock.get(), 1, 1)}
 				);
@@ -193,11 +185,10 @@ public class ForestryPlugin {
 		arborealCrops.add(new CropProviderSapling());
 	}
 
-	private Object getLiquidStack(String name) throws Exception {
+	private LiquidStack getLiquidStack(String name) throws Exception {
 		final ItemStack itemStack = (ItemStack) getForestryItem.get()
 				.invoke(null, name);
-		return liquidStackConstructor.get().newInstance(
-				itemStack.itemID, 1, itemStack.getItemDamage());
+		return new LiquidStack(itemStack.itemID, 1, itemStack.getItemDamage());
 	}
 
 	@ForgeSubscribe
@@ -221,11 +212,6 @@ public class ForestryPlugin {
 				.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
 				"Forestry");
 		try {
-			liquidStack = Class
-					.forName("buildcraft.api.liquids.LiquidStack");
-			liquidStackConstructor = Optional.fromNullable(liquidStack
-					.getConstructor(int.class, int.class, int.class));
-
 			Class cls = Class
 					.forName("forestry.api.core.ItemInterface");
 			getForestryItem = Optional.fromNullable(cls.getMethod(
@@ -267,11 +253,11 @@ public class ForestryPlugin {
 					.forName("forestry.api.recipes.IFermenterManager");
 			fermenterAddRecipe = Optional.fromNullable(cls.getMethod(
 					"addRecipe", ItemStack.class, int.class,
-					float.class, liquidStack, liquidStack));
+					float.class, LiquidStack.class, LiquidStack.class));
 			cls = Class
 					.forName("forestry.api.recipes.ICarpenterManager");
 			carpenterAddRecipe = Optional.fromNullable(cls.getMethod(
-					"addRecipe", int.class, liquidStack, ItemStack.class,
+					"addRecipe", int.class, LiquidStack.class, ItemStack.class,
 					ItemStack.class, Object[].class));
 		} catch (final Exception ex) {
 			ex.printStackTrace();
