@@ -62,13 +62,8 @@ public enum BlockManager {
 					thisBlock,
 					extrabiomes.module.summa.block.ItemCustomLeaves.class);
 
-			for (final BlockAutumnLeaves.BlockType type : BlockAutumnLeaves.BlockType
-					.values())
-			{
-				final ItemStack itemstack = new ItemStack(thisBlock, 1,
-						type.metadata());
-				proxy.registerOre("treeLeaves", itemstack);
-			}
+			proxy.registerOre("treeLeaves", new ItemStack(thisBlock, 1,
+					-1));
 
 			WorldGenAutumnTree.setLeavesBlock(thisBlock,
 					BlockAutumnLeaves.BlockType.BROWN.metadata(),
@@ -92,6 +87,8 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock,
 					extrabiomes.module.summa.block.ItemCatTail.class);
 
+			proxy.registerOre("reedTypha", thisBlock);
+
 			proxy.registerWorldGenerator(new CatTailGenerator(
 					thisBlock.blockID));
 		}
@@ -112,10 +109,12 @@ public enum BlockManager {
 			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
 			proxy.registerBlock(thisBlock);
 
+			proxy.registerOre("sandCracked", thisBlock);
+
 			Extrabiomes.postInitEvent(new CrackedSandActiveEvent(
 					thisBlock));
 			addCrackedSandToWasteland(thisBlock.blockID);
-			
+
 			FacadeHelper.addBuildcraftFacade(thisBlock.blockID);
 		}
 	},
@@ -211,13 +210,8 @@ public enum BlockManager {
 					thisBlock,
 					extrabiomes.module.summa.block.ItemCustomLeaves.class);
 
-			for (final BlockGreenLeaves.BlockType type : BlockGreenLeaves.BlockType
-					.values())
-			{
-				final ItemStack itemstack = new ItemStack(thisBlock, 1,
-						type.metadata());
-				proxy.registerOre("treeLeaves", itemstack);
-			}
+			proxy.registerOre("treeLeaves", new ItemStack(thisBlock, 1,
+					-1));
 
 			WorldGenAcacia.setLeavesBlock(thisBlock,
 					BlockGreenLeaves.BlockType.ACACIA.metadata());
@@ -270,11 +264,12 @@ public enum BlockManager {
 
 			for (final BlockRedRock.BlockType type : BlockRedRock.BlockType
 					.values())
-				FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
+				FacadeHelper.addBuildcraftFacade(thisBlock.blockID,
+						type.metadata());
 
 			Extrabiomes
 					.postInitEvent(new RedRockActiveEvent(thisBlock));
-			
+
 			addRedRockToMountainRidge(thisBlock.blockID);
 		}
 	},
@@ -294,13 +289,8 @@ public enum BlockManager {
 			proxy.registerBlock(thisBlock,
 					extrabiomes.utility.MultiItemBlock.class);
 
-			for (final BlockCustomSapling.BlockType type : BlockCustomSapling.BlockType
-					.values())
-			{
-				final ItemStack itemstack = new ItemStack(thisBlock, 1,
-						type.metadata());
-				proxy.registerOre("treeSapling", itemstack);
-			}
+			proxy.registerOre("treeSapling", new ItemStack(thisBlock,
+					1, -1));
 
 			proxy.registerEventHandler(new SaplingBonemealEventhandler(
 					(BlockCustomSapling) thisBlock));
@@ -324,15 +314,13 @@ public enum BlockManager {
 					extrabiomes.utility.MultiItemBlock.class);
 			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 
+			proxy.registerOre("logWood",
+					new ItemStack(thisBlock, 1, -1));
+
 			for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType
 					.values())
-			{
-				final ItemStack itemstack = new ItemStack(thisBlock, 1,
+				FacadeHelper.addBuildcraftFacade(thisBlock.blockID,
 						type.metadata());
-				proxy.registerOre("logWood", itemstack);
-				
-				FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
-			}
 
 			WorldGenAcacia.setTrunkBlock(thisBlock,
 					BlockCustomLog.BlockType.ACACIA.metadata());
@@ -368,8 +356,6 @@ public enum BlockManager {
 						type.metadata());
 				proxy.registerOre("logWood", itemstack);
 			}
-
-			proxy.registerOre("logWood", thisBlock);
 			Extrabiomes.postInitEvent(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
@@ -400,7 +386,6 @@ public enum BlockManager {
 				proxy.registerOre("logWood", itemstack);
 			}
 
-			proxy.registerOre("logWood", thisBlock);
 			Extrabiomes.postInitEvent(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
@@ -431,7 +416,6 @@ public enum BlockManager {
 				proxy.registerOre("logWood", itemstack);
 			}
 
-			proxy.registerOre("logWood", thisBlock);
 			Extrabiomes.postInitEvent(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
@@ -462,10 +446,10 @@ public enum BlockManager {
 						type.metadata());
 				proxy.registerOre("logWood", itemstack);
 
-				FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
+				FacadeHelper.addBuildcraftFacade(thisBlock.blockID,
+						type.metadata());
 			}
 
-			proxy.registerOre("logWood", thisBlock);
 			Extrabiomes.postInitEvent(new LogActiveEvent(thisBlock));
 
 			Extrabiomes.proxy.registerEventHandler(thisBlock);
