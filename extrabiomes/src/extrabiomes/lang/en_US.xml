@@ -7,8 +7,9 @@
   <entry key="config.cautia.comment">Set cautia to true to add danger.</entry>
   <entry key="config.fabrica.comment">Set fabrica to true to enable craftable items.</entry>
   <entry key="config.summa.comment">Set summa to false to disable the mod.</entry>
-  <entry key="item.extrabiomes.scarecrow.name">Scarecrow</entry>
   <entry key="item.extrabiomes.logturner.name">Log Turner</entry>
+  <entry key="item.extrabiomes.paste.name">Cactus Paste</entry>
+  <entry key="item.extrabiomes.scarecrow.name">Scarecrow</entry>
   <entry key="log.message.add.crackedsand">Added cracked sand to wasteland biome.</entry>
   <entry key="log.message.add.redrock">Added red rock to mountain ridge biome.</entry>
   <entry key="log.message.biome.disabled">Custom biome %s disabled.</entry>
