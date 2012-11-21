@@ -9,9 +9,11 @@ package extrabiomes.module.fabrica;
 import net.minecraft.src.Block;
 import net.minecraft.src.IRecipe;
 import net.minecraft.src.Item;
+import net.minecraft.src.ItemStack;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import com.google.common.base.Optional;
 
@@ -23,10 +25,12 @@ import extrabiomes.module.fabrica.block.BlockManager;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ItemScarecrow;
+import extrabiomes.module.summa.block.BlockCustomFlower;
 
 public class Fabrica {
 
 	private int	scarecrowID	= 0;
+	private int	pasteID		= 0;
 
 	@ForgeSubscribe(priority = EventPriority.LOW)
 	public void init(ModuleInitEvent event)
@@ -53,12 +57,39 @@ public class Fabrica {
 					Block.melon, 's', Item.stick);
 			Extrabiomes.proxy.addRecipe(recipe);
 		}
+
+		if (pasteID > 0) {
+			Stuff.paste = Optional.of(new Item(pasteID)
+					.setItemName("extrabiomes.paste").setIconIndex(111)
+					.setCreativeTab(Extrabiomes.extrabiomesTab)
+					.setTextureFile("/extrabiomes/extrabiomes.png"));
+
+			if (Stuff.flower.isPresent()) {
+				IRecipe recipe = new ShapelessOreRecipe(
+						Stuff.paste.get(), Block.cactus);
+				Extrabiomes.proxy.addRecipe(recipe);
+
+				final ItemStack tinyCactus = new ItemStack(
+						Stuff.flower.get(), 1,
+						BlockCustomFlower.BlockType.TINY_CACTUS
+								.metadata());
+				recipe = new ShapelessOreRecipe(Stuff.paste.get(),
+						tinyCactus, tinyCactus, tinyCactus, tinyCactus);
+				Extrabiomes.proxy.addRecipe(recipe);
+
+				Extrabiomes.proxy.addSmelting(
+						Stuff.paste.get().shiftedIndex, 0,
+						new ItemStack(Item.dyePowder, 1, 2), 0.2F);
+			}
+		}
 	}
 
 	@ForgeSubscribe(priority = EventPriority.LOW)
 	public void preInit(ModulePreInitEvent event) throws Exception {
 		BlockManager.preInit(event.config);
 		scarecrowID = event.config.getItem("scarecrow.id",
+				Extrabiomes.getNextDefaultItemID()).getInt(0);
+		pasteID = event.config.getItem("paste.id",
 				Extrabiomes.getNextDefaultItemID()).getInt(0);
 
 		if (scarecrowID > 0)
