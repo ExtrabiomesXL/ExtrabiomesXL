@@ -55,7 +55,7 @@ public class BlockCustomWall extends BlockWall {
 	@Override
 	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
-		return 2;
+		return 12;
 	}
 
 	@Override
