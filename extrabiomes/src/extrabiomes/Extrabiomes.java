@@ -34,7 +34,7 @@ import extrabiomes.localization.LocalizationHandler;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
 
-@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.5.0", dependencies="required-after:Forge@[6.0,)")
+@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.5.0a", dependencies="required-after:Forge@[6.0,)")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Extrabiomes {
 
