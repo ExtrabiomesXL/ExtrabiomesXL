@@ -67,7 +67,7 @@ class IC2API {
 			int nutrientsBonus)
 	{
 		try {
-			addCraftingRecipe.get().invoke(null, biome, humidityBonus,
+			addBiomeBonus.get().invoke(null, biome, humidityBonus,
 					nutrientsBonus);
 		} catch (final IllegalStateException e) {} catch (final Exception e)
 		{

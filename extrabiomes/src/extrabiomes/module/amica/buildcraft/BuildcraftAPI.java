@@ -10,14 +10,13 @@ import com.google.common.base.Optional;
 
 public class BuildcraftAPI {
 
-	private boolean					modifyWorld				= false;
+	private boolean modifyWorld = false;
 
 	/**
 	 * public static void generateSurfaceDeposit(World world, int x, int
 	 * y, int z, int radius);
 	 */
-	private static Optional<Method>	generateSurfaceDeposit	= Optional
-																	.absent();
+	private static Optional<Method>	generateSurfaceDeposit	= Optional.absent();
 
 	BuildcraftAPI() {
 		Class cls;
@@ -33,8 +32,8 @@ public class BuildcraftAPI {
 			cls = Class.forName("buildcraft.energy.OilPopulate");
 			generateSurfaceDeposit = Optional.fromNullable(cls
 					.getMethod("generateSurfaceDeposit", World.class,
-							Integer.class, Integer.class,
-							Integer.class, Integer.class));
+							Integer.TYPE, Integer.TYPE,
+							Integer.TYPE, Integer.TYPE));
 		} catch (final Exception e) {
 			e.printStackTrace();
 			generateSurfaceDeposit = Optional.absent();
