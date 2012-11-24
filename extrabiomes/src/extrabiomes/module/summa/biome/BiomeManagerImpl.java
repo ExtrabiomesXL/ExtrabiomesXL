@@ -38,7 +38,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
 import extrabiomes.api.BiomeManager;
-import extrabiomes.configuration.EnhancedConfiguration;
+import extrabiomes.core.utility.EnhancedConfiguration;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;

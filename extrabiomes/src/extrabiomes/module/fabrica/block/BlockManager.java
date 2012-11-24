@@ -17,7 +17,7 @@ import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
-import extrabiomes.configuration.EnhancedConfiguration;
+import extrabiomes.core.utility.EnhancedConfiguration;
 import extrabiomes.events.BlockActiveEvent.AcaciaStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FirStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.PlankActiveEvent;

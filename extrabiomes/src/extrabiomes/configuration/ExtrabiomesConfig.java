@@ -8,6 +8,8 @@ package extrabiomes.configuration;
 
 import java.io.File;
 
+import extrabiomes.core.utility.EnhancedConfiguration;
+
 
 public class ExtrabiomesConfig extends EnhancedConfiguration {
 

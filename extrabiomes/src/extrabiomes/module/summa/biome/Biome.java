@@ -23,8 +23,8 @@ import com.google.common.collect.ImmutableSet;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Api;
 import extrabiomes.api.DiscoverWorldTypesEvent;
-import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.core.helper.LogHelper;
+import extrabiomes.core.utility.EnhancedConfiguration;
 
 enum Biome {
 	ALPINE(BiomeAlpine.class),

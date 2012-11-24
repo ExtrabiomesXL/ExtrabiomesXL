@@ -6,7 +6,7 @@
 
 package extrabiomes.events;
 
-import extrabiomes.configuration.EnhancedConfiguration;
+import extrabiomes.core.utility.EnhancedConfiguration;
 
 public class ModulePreInitEvent extends ModuleEvent {
 

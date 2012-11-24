@@ -4,7 +4,7 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.configuration;
+package extrabiomes.core.utility;
 
 import java.io.File;
 import java.util.ArrayList;
