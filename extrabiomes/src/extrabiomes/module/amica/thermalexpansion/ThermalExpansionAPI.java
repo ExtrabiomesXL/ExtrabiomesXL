@@ -6,30 +6,41 @@
 
 package extrabiomes.module.amica.thermalexpansion;
 
-import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import net.minecraft.src.ItemStack;
 
 import com.google.common.base.Optional;
 
 class ThermalExpansionAPI {
 
-    private Optional<SawmillManager> sawmill = Optional.absent();
+    private Optional<Object> craftingHelpers            = Optional.absent();
+
+    /**
+     * public boolean addSawmillLogToPlankRecipe(ItemStack inputLog,
+     * ItemStack outputPlanks);
+     */
+    private Optional<Method> addSawmillLogToPlankRecipe = Optional.absent();
 
     ThermalExpansionAPI() {
-
-        Optional<Object> sawmillManager = Optional.absent();
-
         try {
-            final Class cls = Class.forName("thermalexpansion.api.crafting.CraftingManagers");
-            final Field fld = cls.getField("sawmillManager");
-            sawmillManager = Optional.of(fld.get(null));
-            sawmill = Optional.of(new SawmillManager(sawmillManager));
+            final Class cls = Class.forName("thermalexpansion.api.crafting.CraftingHelpers");
+            addSawmillLogToPlankRecipe = Optional.fromNullable(cls.getMethod(
+                    "addSawmillLogToPlankRecipe", ItemStack.class, ItemStack.class));
+            craftingHelpers = Optional.of(cls.newInstance());
         } catch (final Exception e) {
             e.printStackTrace();
-            sawmill = Optional.absent();
+            craftingHelpers = Optional.absent();
+            addSawmillLogToPlankRecipe = Optional.absent();
         }
     }
 
-    public Optional<SawmillManager> getSawmill() {
-        return sawmill;
+    public void addSawmillLogToPlankRecipe(ItemStack inputLog, ItemStack outputPlanks) {
+        if (!craftingHelpers.isPresent() || !addSawmillLogToPlankRecipe.isPresent()) return;
+        try {
+            addSawmillLogToPlankRecipe.get().invoke(craftingHelpers.get(), inputLog, outputPlanks);
+        } catch (final IllegalStateException e) {} catch (final Exception e) {
+            e.printStackTrace();
+        }
     }
 }
