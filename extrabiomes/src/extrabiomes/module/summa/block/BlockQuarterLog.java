@@ -102,7 +102,7 @@ public class BlockQuarterLog extends BlockLog {
 		setHardness(2.0F);
 		setBurnProperties(blockID, 5, 5);
 		setResistance(Block.wood.getExplosionResistance(null) * 5.0F);
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 
 	@Override

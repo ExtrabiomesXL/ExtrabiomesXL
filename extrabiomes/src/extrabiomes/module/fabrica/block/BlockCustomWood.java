@@ -39,7 +39,7 @@ public class BlockCustomWood extends BlockWood {
 		setHardness(2.0F);
 		setResistance(5.0F);
 		setBurnProperties(blockID, 5, 20);
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 
 	@Override

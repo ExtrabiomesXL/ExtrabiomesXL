@@ -35,7 +35,7 @@ class BlockLeafPile extends Block {
 		setStepSound(soundGrassFootstep);
 		Block.setBurnProperties(blockID, 30, 60);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 
 	@Override

@@ -37,7 +37,7 @@ public class BlockCustomWall extends BlockWall {
 	public BlockCustomWall(int id) {
 		super(id, Stuff.redRock.get());
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 
 	@Override

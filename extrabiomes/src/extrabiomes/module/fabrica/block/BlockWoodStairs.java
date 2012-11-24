@@ -15,7 +15,7 @@ public class BlockWoodStairs extends BlockCustomStairs {
 	public BlockWoodStairs(int id, Block modelBlock, int modelMetadata) {
 		super(id, modelBlock, modelMetadata);
 		this.setBurnProperties(blockID, 5, 20);
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 
 }

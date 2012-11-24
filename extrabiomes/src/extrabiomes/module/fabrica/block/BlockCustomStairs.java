@@ -19,7 +19,7 @@ public class BlockCustomStairs extends BlockStairs {
 		setRequiresSelfNotify();
 		setTextureFile("/extrabiomes/extrabiomes.png");
 		setLightOpacity(0);
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 
 }

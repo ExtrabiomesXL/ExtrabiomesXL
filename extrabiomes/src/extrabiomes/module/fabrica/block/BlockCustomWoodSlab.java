@@ -47,7 +47,7 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
 		setBurnProperties(blockID, 5, 20);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 		setLightOpacity(0);
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 
 	@Override

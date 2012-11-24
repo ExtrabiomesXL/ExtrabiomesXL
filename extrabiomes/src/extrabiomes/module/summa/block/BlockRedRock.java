@@ -45,7 +45,7 @@ public class BlockRedRock extends Block {
 		setResistance(2.0F);
 
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class BlockRedRock extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == Extrabiomes.extrabiomesTab)
+		if (tab == Extrabiomes.tabsEBXL)
 			for (final BlockType blockType : BlockType.values())
 				itemList.add(new ItemStack(this, 1, blockType
 						.metadata()));

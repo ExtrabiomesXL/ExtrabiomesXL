@@ -57,7 +57,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
 		proxy.addGrassPlant(this, BlockType.PURPLE.metadata(), 5);
 		proxy.addGrassPlant(this, BlockType.WHITE.metadata(), 5);
 
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 	}
 
@@ -153,7 +153,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == Extrabiomes.extrabiomesTab)
+		if (tab == Extrabiomes.tabsEBXL)
 			for (final BlockType type : BlockType.values())
 				itemList.add(new ItemStack(this, 1, type.metadata()));
 	}

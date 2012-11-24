@@ -21,6 +21,6 @@ class BlockCrackedSand extends Block {
 		setHardness(1.2F);
 		setStepSound(Block.soundStoneFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 }

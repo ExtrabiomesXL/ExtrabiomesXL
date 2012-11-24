@@ -61,7 +61,7 @@ public class Fabrica {
 		if (pasteID > 0) {
 			Stuff.paste = Optional.of(new Item(pasteID)
 					.setItemName("extrabiomes.paste").setIconIndex(111)
-					.setCreativeTab(Extrabiomes.extrabiomesTab)
+					.setCreativeTab(Extrabiomes.tabsEBXL)
 					.setTextureFile("/extrabiomes/extrabiomes.png"));
 
 			if (Stuff.flower.isPresent()) {

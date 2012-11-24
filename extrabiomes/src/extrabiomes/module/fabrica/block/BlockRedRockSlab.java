@@ -46,7 +46,7 @@ public class BlockRedRockSlab extends BlockStep {
 		setStepSound(soundStoneFootstep);
 		setTextureFile("/extrabiomes/extrabiomes.png");
 		setLightOpacity(0);
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 
 	@Override

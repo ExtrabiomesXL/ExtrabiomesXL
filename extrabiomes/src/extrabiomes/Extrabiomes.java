@@ -31,18 +31,22 @@ import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
+import extrabiomes.lib.Reference;
 import extrabiomes.localization.LocalizationHandler;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
 
-@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.5.1", dependencies = "required-after:Forge@[6.0,)")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Extrabiomes {
 
-    @SidedProxy(clientSide = "extrabiomes.proxy.ClientProxy", serverSide = "extrabiomes.proxy.CommonProxy")
-    public static CommonProxy         proxy;
-    @Instance("ExtrabiomesXL")
+    @Instance(Reference.MOD_ID)
     public static Extrabiomes         instance;
+
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
+    public static CommonProxy         proxy;
+
+    public static final CreativeTabs  tabsEBXL = new CreativeTab(CreativeTabs.creativeTabArray.length,Reference.MOD_ID);
 
     private static int                nextDefaultBlockID           = 200;
     private static int                nextDefaultItemID            = 12870;
@@ -50,10 +54,6 @@ public class Extrabiomes {
     private static final String       LOG_MESSAGE_CONFIG_EXCEPTION = "log.message.config.exception";
     private static final String       LOG_MESSAGE_INITIALIZING     = "log.message.initializing";
     private static final String       LOG_MESSAGE_LOAD_SUCCESS     = "log.message.load.success";
-
-    public static final CreativeTabs  extrabiomesTab               = new CreativeTab(
-                                                                           CreativeTabs.creativeTabArray.length,
-                                                                           "extrabiomesTab");
 
     private static Optional<EventBus> initBus                      = Optional.of(new EventBus());
 
@@ -80,8 +80,6 @@ public class Extrabiomes {
         initBus = Optional.absent();
         Module.releaseStaticResources();
         LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_LOAD_SUCCESS));
-        LanguageRegistry.instance().addStringLocalization("itemGroup.extrabiomesTab", "en_US",
-                "ExtrabiomesXL");
     }
 
     public static boolean postInitEvent(Event event) {

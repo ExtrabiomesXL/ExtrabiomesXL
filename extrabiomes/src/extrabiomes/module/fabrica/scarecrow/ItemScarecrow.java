@@ -45,7 +45,7 @@ public class ItemScarecrow extends Item {
 	public ItemScarecrow(int id) {
 		super(id);
 		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(Extrabiomes.extrabiomesTab);
+		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 
 	@Override
