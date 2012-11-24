@@ -26,7 +26,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.core.handler.ExtrabiomesConfig;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.core.utility.EnhancedConfiguration;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;

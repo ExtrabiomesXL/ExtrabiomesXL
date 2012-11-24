@@ -15,7 +15,7 @@ import net.minecraftforge.event.EventBus;
 
 import com.google.common.base.Optional;
 
-import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.core.handler.ExtrabiomesConfig;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.core.utility.EnhancedConfiguration;
 import extrabiomes.module.amica.Amica;
