@@ -9,6 +9,7 @@ package extrabiomes.module.summa.block;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.src.Block;
 import net.minecraft.src.BlockFlower;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemStack;
@@ -45,6 +46,8 @@ public class BlockCustomSapling extends BlockFlower {
     private static final int METADATA_BITMASK = 0x7;
     private static final int METADATA_MARKBIT = 0x8;
 
+    private static int       forestrySoilID   = 0;
+
     private static boolean isEnoughLightToGrow(World world, int x, int y, int z) {
         return world.getBlockLightValue(x, y, z) >= 9;
     }
@@ -55,6 +58,10 @@ public class BlockCustomSapling extends BlockFlower {
 
     private static int markedMetadata(int metadata) {
         return metadata | METADATA_MARKBIT;
+    }
+
+    public static void setForestrySoilID(int soilID) {
+        forestrySoilID = soilID;
     }
 
     private static int unmarkedMetadata(int metadata) {
@@ -112,8 +119,7 @@ public class BlockCustomSapling extends BlockFlower {
         int z1 = 0;
         boolean isHuge = false;
 
-        world.getBlockId(x, y - 1, z);
-        world.getBlockMetadata(x, y - 1, z);
+        final boolean isForestryFarmed = world.getBlockId(x, y - 1, z) == forestrySoilID;
 
         if (metadata == BlockType.BROWN.metadata()) {
             if (rand.nextInt(20) == 0)
@@ -180,13 +186,21 @@ public class BlockCustomSapling extends BlockFlower {
 
             final int offset = isHuge ? 1 : 0;
 
-            if (!tree.generate(world, rand, x + x1 + offset, y, z + z1 + offset)) if (isHuge) {
-                world.setBlockAndMetadata(x + x1, y, z + z1, blockID, metadata);
-                world.setBlockAndMetadata(x + x1 + 1, y, z + z1, blockID, metadata);
-                world.setBlockAndMetadata(x + x1, y, z + z1 + 1, blockID, metadata);
-                world.setBlockAndMetadata(x + x1 + 1, y, z + z1 + 1, blockID, metadata);
+            if (!tree.generate(world, rand, x + x1 + offset, y, z + z1 + offset)) {
+                if (isHuge) {
+                    world.setBlockAndMetadata(x + x1, y, z + z1, blockID, metadata);
+                    world.setBlockAndMetadata(x + x1 + 1, y, z + z1, blockID, metadata);
+                    world.setBlockAndMetadata(x + x1, y, z + z1 + 1, blockID, metadata);
+                    world.setBlockAndMetadata(x + x1 + 1, y, z + z1 + 1, blockID, metadata);
+                } else
+                    world.setBlockAndMetadata(x, y, z, blockID, metadata);
+            } else if (isForestryFarmed) if (isHuge) {
+                world.setBlock(x + x1, y - 1, z + z1, Block.sand.blockID);
+                world.setBlock(x + x1 + 1, y - 1, z + z1, Block.sand.blockID);
+                world.setBlock(x + x1, y - 1, z + z1 + 1, Block.sand.blockID);
+                world.setBlock(x + x1 + 1, y - 1, z + z1 + 1, Block.sand.blockID);
             } else
-                world.setBlockAndMetadata(x, y, z, blockID, metadata);
+                world.setBlock(x, y - 1, z, Block.sand.blockID);
         }
     }
 

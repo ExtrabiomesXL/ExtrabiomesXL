@@ -154,7 +154,10 @@ public class ForestryPlugin {
         if (!Stuff.sapling.isPresent()) return;
 
         final Optional<ItemStack> soil = Optional.fromNullable(getBlock("soil"));
-        if (soil.isPresent()) TreeSoilRegistry.addValidSoil(Block.blocksList[soil.get().itemID]);
+        if (soil.isPresent()) {
+            TreeSoilRegistry.addValidSoil(Block.blocksList[soil.get().itemID]);
+            BlockCustomSapling.setForestrySoilID(soil.get().itemID);
+        }
         arborealCrops.add(new CropProviderSapling());
     }
 
