@@ -26,110 +26,103 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 
 class BlockCustomTallGrass extends BlockFlower implements IShearable {
-	enum BlockType {
-		BROWN(0), SHORT_BROWN(1), DEAD(2), DEAD_TALL(3), DEAD_YELLOW(4);
+    enum BlockType {
+        BROWN(0), SHORT_BROWN(1), DEAD(2), DEAD_TALL(3), DEAD_YELLOW(4);
 
-		private final int	metadata;
+        private final int metadata;
 
-		BlockType(int metadata) {
-			this.metadata = metadata;
-		}
+        BlockType(int metadata) {
+            this.metadata = metadata;
+        }
 
-		public int metadata() {
-			return metadata;
-		}
-	}
+        public int metadata() {
+            return metadata;
+        }
+    }
 
-	public BlockCustomTallGrass(int id) {
-		super(id, 48, Material.vine);
-		final float var3 = 0.4F;
-		setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3,
-				0.8F, 0.5F + var3);
-		setHardness(0F);
-		setStepSound(soundGrassFootstep);
-		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(Extrabiomes.extrabiomesTab);
-		setBurnProperties(blockID, 60, 100);
-	}
+    public BlockCustomTallGrass(int id) {
+        super(id, 48, Material.vine);
+        final float var3 = 0.4F;
+        setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.8F, 0.5F + var3);
+        setHardness(0F);
+        setStepSound(soundGrassFootstep);
+        setTextureFile("/extrabiomes/extrabiomes.png");
+        setCreativeTab(Extrabiomes.extrabiomesTab);
+        setBurnProperties(blockID, 60, 100);
+    }
 
-	@Override
-	protected boolean canThisPlantGrowOnThisBlockID(int id) {
-		return (byte) id == BiomeManager.mountainridge.get().topBlock
-				|| (byte) id == BiomeManager.wasteland.get().topBlock
-				|| super.canThisPlantGrowOnThisBlockID(id);
-	}
+    @Override
+    protected boolean canThisPlantGrowOnThisBlockID(int id) {
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getBlockColor() {
-		final double temperature = 0.5D;
-		final double hunmidity = 1.0D;
-		return ColorizerGrass.getGrassColor(temperature, hunmidity);
-	}
+        return BiomeManager.mountainridge.isPresent()
+                && (byte) id == BiomeManager.mountainridge.get().topBlock
+                || BiomeManager.wasteland.isPresent()
+                && (byte) id == BiomeManager.wasteland.get().topBlock
+                || super.canThisPlantGrowOnThisBlockID(id);
+    }
 
-	@Override
-	public ArrayList<ItemStack> getBlockDropped(World world, int x,
-			int y, int z, int metadata, int fortune)
-	{
-		final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-		int rarity = 8;
-		if (metadata == BlockType.DEAD.metadata()
-				|| metadata == BlockType.DEAD_TALL.metadata()
-				|| metadata == BlockType.DEAD_YELLOW.metadata())
-			rarity *= 2;
-		if (world.rand.nextInt(rarity) != 0) return ret;
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getBlockColor() {
+        final double temperature = 0.5D;
+        final double hunmidity = 1.0D;
+        return ColorizerGrass.getGrassColor(temperature, hunmidity);
+    }
 
-		final Optional<ItemStack> item = Extrabiomes.proxy
-				.getGrassSeed(world);
+    @Override
+    public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata,
+            int fortune)
+    {
+        final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+        int rarity = 8;
+        if (metadata == BlockType.DEAD.metadata() || metadata == BlockType.DEAD_TALL.metadata()
+                || metadata == BlockType.DEAD_YELLOW.metadata()) rarity *= 2;
+        if (world.rand.nextInt(rarity) != 0) return ret;
 
-		if (item.isPresent()) ret.add(item.get());
-		return ret;
-	}
+        final Optional<ItemStack> item = Extrabiomes.proxy.getGrassSeed(world);
 
-	@Override
-	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
-	{
-		return super.getBlockTextureFromSideAndMetadata(side, metadata)
-				+ metadata;
-	}
+        if (item.isPresent()) ret.add(item.get());
+        return ret;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-		if (tab == Extrabiomes.extrabiomesTab)
-			for (final BlockType type : BlockType.values())
-				itemList.add(new ItemStack(this, 1, type.metadata()));
-	}
+    @Override
+    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+        return super.getBlockTextureFromSideAndMetadata(side, metadata) + metadata;
+    }
 
-	@Override
-	public int idDropped(int par1, Random par2Random, int par3) {
-		return 0;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
+        if (tab == Extrabiomes.extrabiomesTab) for (final BlockType type : BlockType.values())
+            itemList.add(new ItemStack(this, 1, type.metadata()));
+    }
 
-	@Override
-	public boolean isBlockReplaceable(World world, int x, int y, int z)
-	{
-		return true;
-	}
+    @Override
+    public int idDropped(int par1, Random par2Random, int par3) {
+        return 0;
+    }
 
-	@Override
-	public boolean isShearable(ItemStack item, World world, int x,
-			int y, int z)
-	{
-		return true;
-	}
+    @Override
+    public boolean isBlockReplaceable(World world, int x, int y, int z) {
+        return true;
+    }
 
-	@Override
-	public ArrayList<ItemStack> onSheared(ItemStack item, World world,
-			int x, int y, int z, int fortune)
-	{
-		final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-		ret.add(new ItemStack(this, 1, world.getBlockMetadata(x, y, z)));
-		return ret;
-	}
+    @Override
+    public boolean isShearable(ItemStack item, World world, int x, int y, int z) {
+        return true;
+    }
 
-	@Override
-	public int quantityDroppedWithBonus(int i, Random rand) {
-		return 1 + rand.nextInt(i * 2 + 1);
-	}
+    @Override
+    public ArrayList<ItemStack> onSheared(ItemStack item, World world, int x, int y, int z,
+            int fortune)
+    {
+        final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+        ret.add(new ItemStack(this, 1, world.getBlockMetadata(x, y, z)));
+        return ret;
+    }
+
+    @Override
+    public int quantityDroppedWithBonus(int i, Random rand) {
+        return 1 + rand.nextInt(i * 2 + 1);
+    }
 }

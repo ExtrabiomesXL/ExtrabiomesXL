@@ -34,87 +34,84 @@ import extrabiomes.localization.LocalizationHandler;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
 
-@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.5.0a", dependencies="required-after:Forge@[6.0,)")
+@Mod(modid = "ExtrabiomesXL", name = "ExtrabiomesXL", version = "3.5.0b", dependencies = "required-after:Forge@[6.0,)")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Extrabiomes {
 
-	@SidedProxy(clientSide = "extrabiomes.proxy.ClientProxy", serverSide = "extrabiomes.proxy.CommonProxy")
-	public static CommonProxy			proxy;
-	@Instance("ExtrabiomesXL")
-	public static Extrabiomes			instance;
+    @SidedProxy(clientSide = "extrabiomes.proxy.ClientProxy", serverSide = "extrabiomes.proxy.CommonProxy")
+    public static CommonProxy         proxy;
+    @Instance("ExtrabiomesXL")
+    public static Extrabiomes         instance;
 
-	private static int					nextDefaultBlockID				= 200;
-	private static int					nextDefaultItemID				= 12870;
+    private static int                nextDefaultBlockID           = 200;
+    private static int                nextDefaultItemID            = 12870;
 
-	private static final String			LOG_MESSAGE_CONFIG_EXCEPTION	= "log.message.config.exception";
-	private static final String			LOG_MESSAGE_INITIALIZING		= "log.message.initializing";
-	private static final String			LOG_MESSAGE_LOAD_SUCCESS		= "log.message.load.success";
-	
-	public static final CreativeTabs 	extrabiomesTab 					= new CreativeTab(CreativeTabs.creativeTabArray.length, "extrabiomesTab");
+    private static final String       LOG_MESSAGE_CONFIG_EXCEPTION = "log.message.config.exception";
+    private static final String       LOG_MESSAGE_INITIALIZING     = "log.message.initializing";
+    private static final String       LOG_MESSAGE_LOAD_SUCCESS     = "log.message.load.success";
 
-	private static Optional<EventBus>	initBus							= Optional.of(new EventBus());
+    public static final CreativeTabs  extrabiomesTab               = new CreativeTab(
+                                                                           CreativeTabs.creativeTabArray.length,
+                                                                           "extrabiomesTab");
 
-	public static int getNextDefaultBlockID() {
-		return nextDefaultBlockID++;
-	}
+    private static Optional<EventBus> initBus                      = Optional.of(new EventBus());
 
-	public static int getNextDefaultItemID() {
-		return nextDefaultItemID++;
-	}
+    public static int getNextDefaultBlockID() {
+        return nextDefaultBlockID++;
+    }
 
-	@Init
-	public static void init(FMLInitializationEvent event)
-			throws InstantiationException, IllegalAccessException
-	{
-		proxy.registerRenderInformation();
-		Module.postEvent(new ModuleInitEvent());
-	}
+    public static int getNextDefaultItemID() {
+        return nextDefaultItemID++;
+    }
 
-	@PostInit
-	public static void postInit(FMLPostInitializationEvent event) {
-		PluginManager.activatePlugins();
-		EnhancedConfiguration.releaseStaticResources();
-		initBus = Optional.absent();
-		Module.releaseStaticResources();
-		ExtrabiomesLog.info(proxy
-				.getStringLocalization(LOG_MESSAGE_LOAD_SUCCESS));
-		LanguageRegistry.instance().addStringLocalization(
-				"itemGroup.extrabiomesTab", "en_US", "ExtrabiomesXL");
-	}
+    @Init
+    public static void init(FMLInitializationEvent event) throws InstantiationException,
+            IllegalAccessException
+    {
+        proxy.registerRenderInformation();
+        Module.postEvent(new ModuleInitEvent());
+    }
 
-	public static boolean postInitEvent(Event event) {
-		return initBus.isPresent() ? initBus.get().post(event) : false;
-	}
+    @PostInit
+    public static void postInit(FMLPostInitializationEvent event) {
+        PluginManager.activatePlugins();
+        EnhancedConfiguration.releaseStaticResources();
+        initBus = Optional.absent();
+        Module.releaseStaticResources();
+        ExtrabiomesLog.info(proxy.getStringLocalization(LOG_MESSAGE_LOAD_SUCCESS));
+        LanguageRegistry.instance().addStringLocalization("itemGroup.extrabiomesTab", "en_US",
+                "ExtrabiomesXL");
+    }
 
-	@PreInit
-	public static void preInit(FMLPreInitializationEvent event) {
-		ExtrabiomesLog.configureLogging();
+    public static boolean postInitEvent(Event event) {
+        return initBus.isPresent() ? initBus.get().post(event) : false;
+    }
 
-		// Load the localization files into the LanguageRegistry
-		LocalizationHandler.loadLanguages();
+    @PreInit
+    public static void preInit(FMLPreInitializationEvent event) {
+        ExtrabiomesLog.configureLogging();
 
-		ExtrabiomesLog.info(proxy
-				.getStringLocalization(LOG_MESSAGE_INITIALIZING));
-		final ExtrabiomesConfig cfg = new ExtrabiomesConfig(new File(
-				event.getModConfigurationDirectory(),
-				"/extrabiomes/extrabiomes.cfg"));
-		try {
-			cfg.load();
+        // Load the localization files into the LanguageRegistry
+        LocalizationHandler.loadLanguages();
 
-			Module.registerModules(cfg);
-			Module.postEvent(new ModulePreInitEvent(cfg));
+        ExtrabiomesLog.info(proxy.getStringLocalization(LOG_MESSAGE_INITIALIZING));
+        final ExtrabiomesConfig cfg = new ExtrabiomesConfig(new File(
+                event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg"));
+        try {
+            cfg.load();
 
-		} catch (final Exception e) {
-			ExtrabiomesLog
-					.log(Level.SEVERE,
-							e,
-							proxy.getStringLocalization(LOG_MESSAGE_CONFIG_EXCEPTION));
-		} finally {
-			cfg.save();
-		}
-	}
+            Module.registerModules(cfg);
+            Module.postEvent(new ModulePreInitEvent(cfg));
 
-	public static void registerInitEventHandler(Object target) {
-		if (initBus.isPresent()) initBus.get().register(target);
-	}
+        } catch (final Exception e) {
+            ExtrabiomesLog.log(Level.SEVERE, e,
+                    proxy.getStringLocalization(LOG_MESSAGE_CONFIG_EXCEPTION));
+        } finally {
+            cfg.save();
+        }
+    }
+
+    public static void registerInitEventHandler(Object target) {
+        if (initBus.isPresent()) initBus.get().register(target);
+    }
 }
