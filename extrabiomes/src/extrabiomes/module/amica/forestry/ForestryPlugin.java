@@ -22,9 +22,9 @@ import net.minecraftforge.liquids.LiquidStack;
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
-import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
+import extrabiomes.core.helper.ExtrabiomesLog;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.block.BlockAutumnLeaves;
 import extrabiomes.module.summa.block.BlockCustomFlower;

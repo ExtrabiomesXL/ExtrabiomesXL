@@ -14,9 +14,9 @@ import net.minecraftforge.common.Property;
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
-import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.core.helper.ExtrabiomesLog;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.cautia.worldgen.QuicksandGenerator;
 import extrabiomes.proxy.CommonProxy;

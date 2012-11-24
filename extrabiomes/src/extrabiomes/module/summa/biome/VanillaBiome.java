@@ -11,8 +11,8 @@ import java.util.Locale;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraftforge.common.Property;
 import extrabiomes.Extrabiomes;
-import extrabiomes.ExtrabiomesLog;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.core.helper.ExtrabiomesLog;
 
 enum VanillaBiome {
 	DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA;

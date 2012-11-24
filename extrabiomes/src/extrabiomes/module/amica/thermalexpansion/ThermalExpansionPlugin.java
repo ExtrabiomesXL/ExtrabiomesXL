@@ -15,9 +15,9 @@ import net.minecraftforge.event.ForgeSubscribe;
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
-import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
+import extrabiomes.core.helper.ExtrabiomesLog;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.module.summa.block.BlockCustomLog;
 import extrabiomes.module.summa.block.BlockQuarterLog;

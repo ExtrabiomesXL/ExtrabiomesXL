@@ -21,10 +21,10 @@ import net.minecraftforge.common.Property;
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
-import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.core.helper.ExtrabiomesLog;
 import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;

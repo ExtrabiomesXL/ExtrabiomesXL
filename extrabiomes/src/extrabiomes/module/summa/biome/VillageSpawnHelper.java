@@ -11,7 +11,7 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import extrabiomes.ExtrabiomesLog;
+import extrabiomes.core.helper.ExtrabiomesLog;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.MapGenVillage;

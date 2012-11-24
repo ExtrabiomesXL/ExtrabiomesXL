@@ -6,7 +6,7 @@
  * located in /MMPL-1.0.txt
  */
 
-package extrabiomes;
+package extrabiomes.core.helper;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

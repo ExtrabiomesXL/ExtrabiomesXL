@@ -13,8 +13,8 @@ import net.minecraftforge.event.ForgeSubscribe;
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
-import extrabiomes.ExtrabiomesLog;
 import extrabiomes.api.PluginEvent;
+import extrabiomes.core.helper.ExtrabiomesLog;
 
 public class BuildcraftPlugin {
 
