@@ -90,7 +90,6 @@ public class Extrabiomes {
 
     @PreInit
     public static void preInit(FMLPreInitializationEvent event) {
-        LogHelper.configureLogging();
 
         // Load the localization files into the LanguageRegistry
         LocalizationHandler.loadLanguages();

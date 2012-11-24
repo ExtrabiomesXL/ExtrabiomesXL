@@ -11,19 +11,14 @@ package extrabiomes.core.helper;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public enum LogHelper {
-    INSTANCE;
+import com.google.common.base.Optional;
 
-    private static boolean configured;
-    private static Logger  myLog;
+import cpw.mods.fml.common.FMLLog;
+import extrabiomes.lib.Reference;
 
-    public static void configureLogging() {
-        if (configured) return;
-        configured = true;
+public abstract class LogHelper {
 
-        myLog = Logger.getLogger("ExtrabiomesXL");
-        myLog.setParent(Logger.getLogger("ForgeModLoader"));
-    }
+    private static Optional<Logger> logger = Optional.absent();
 
     public static void fine(String format, Object... data) {
         log(Level.FINE, format, data);
@@ -38,19 +33,28 @@ public enum LogHelper {
     }
 
     public static Logger getLogger() {
-        return myLog;
+        if (!logger.isPresent()) init();
+
+        return logger.get();
     }
 
     public static void info(String format, Object... data) {
         log(Level.INFO, format, data);
     }
 
+    public static void init() {
+        if (logger.isPresent()) return;
+
+        logger = Optional.of(Logger.getLogger(Reference.MOD_ID));
+        logger.get().setParent(FMLLog.getLogger());
+    }
+
     public static void log(Level level, String format, Object... data) {
-        myLog.log(level, String.format(format, data));
+        getLogger().log(level, String.format(format, data));
     }
 
     public static void log(Level level, Throwable ex, String format, Object... data) {
-        myLog.log(level, String.format(format, data), ex);
+        getLogger().log(level, String.format(format, data), ex);
     }
 
     public static void severe(String format, Object... data) {
