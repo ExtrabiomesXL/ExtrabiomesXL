@@ -16,7 +16,7 @@ import net.minecraftforge.event.EventBus;
 import com.google.common.base.Optional;
 
 import extrabiomes.configuration.ExtrabiomesConfig;
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 import extrabiomes.module.amica.Amica;
 import extrabiomes.module.cautia.Cautia;
 import extrabiomes.module.fabrica.Fabrica;
@@ -77,7 +77,7 @@ enum Module {
 		controlSettingsLoaded = true;
 
 		for (final Module module : Module.values()) {
-			ExtrabiomesLog
+			LogHelper
 					.info(Extrabiomes.proxy
 							.getStringLocalization(module.enabled ? MODULE_STATUS_ENABLED
 									: MODULE_STATUS_DISABLED), module

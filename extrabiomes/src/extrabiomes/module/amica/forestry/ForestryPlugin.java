@@ -24,7 +24,7 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.block.BlockAutumnLeaves;
 import extrabiomes.module.summa.block.BlockCustomFlower;
@@ -183,7 +183,7 @@ public class ForestryPlugin {
     @ForgeSubscribe
     public void preInit(PluginEvent.Pre event) {
         if (!isEnabled()) return;
-        ExtrabiomesLog.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
+        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
                 "Forestry");
         try {
             Class cls = Class.forName("forestry.api.core.ItemInterface");
@@ -226,7 +226,7 @@ public class ForestryPlugin {
                     LiquidStack.class, ItemStack.class, ItemStack.class, Object[].class));
         } catch (final Exception ex) {
             ex.printStackTrace();
-            ExtrabiomesLog.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
+            LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
                     "Forestry");
             enabled = false;
         }

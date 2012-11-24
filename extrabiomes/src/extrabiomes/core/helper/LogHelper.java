@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 import cpw.mods.fml.common.FMLLog;
 
-public enum ExtrabiomesLog {
+public enum LogHelper {
 	INSTANCE;
  
 	private static boolean configured;

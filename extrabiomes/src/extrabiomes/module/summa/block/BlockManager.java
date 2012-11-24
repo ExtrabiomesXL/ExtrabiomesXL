@@ -24,7 +24,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
@@ -406,7 +406,7 @@ public enum BlockManager {
         final BiomeGenBase wasteland = BiomeManager.wasteland.get();
         wasteland.topBlock = (byte) crackedsandID;
         wasteland.fillerBlock = (byte) crackedsandID;
-        ExtrabiomesLog.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_ADD_CRACKEDSAND));
+        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_ADD_CRACKEDSAND));
     }
 
     private static void addRedRockToMountainRidge(int redrockID) {
@@ -415,7 +415,7 @@ public enum BlockManager {
         final BiomeGenBase mountainridge = BiomeManager.mountainridge.get();
         mountainridge.topBlock = (byte) redrockID;
         mountainridge.fillerBlock = (byte) redrockID;
-        ExtrabiomesLog.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_ADD_REDROCK));
+        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_ADD_REDROCK));
     }
 
     private static void createBlocks() throws Exception {
@@ -481,7 +481,7 @@ public enum BlockManager {
             QUARTERLOG1.blockID = 0;
             QUARTERLOG2.blockID = 0;
             QUARTERLOG3.blockID = 0;
-            ExtrabiomesLog.fine("At least one quarterlog was disabled, so all have been.");
+            LogHelper.fine("At least one quarterlog was disabled, so all have been.");
         }
     }
 

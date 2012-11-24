@@ -11,7 +11,7 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.MapGenVillage;
@@ -44,7 +44,7 @@ enum VillageSpawnHelper {
 		    
 				field.set(null, villageSpawnBiomes);
 			} catch (Exception e) {
-				ExtrabiomesLog.fine("Could not access village spawn biomes.");
+				LogHelper.fine("Could not access village spawn biomes.");
 			}
 			finally {
 				villageSpawnBiomeChangesEnabled = true;

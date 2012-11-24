@@ -17,7 +17,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 import extrabiomes.module.summa.block.BlockAutumnLeaves;
 import extrabiomes.module.summa.block.BlockCustomSapling;
 
@@ -108,14 +108,14 @@ public class IC2Plugin {
 	@ForgeSubscribe
 	public void preInit(PluginEvent.Pre event) {
 		if (!Extrabiomes.proxy.isModLoaded("IC2")) return;
-		ExtrabiomesLog.fine(Extrabiomes.proxy
+		LogHelper.fine(Extrabiomes.proxy
 				.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
 				MOD_NAME);
 		try {
 			api = Optional.of(new IC2API());
 		} catch (final Exception ex) {
 			ex.printStackTrace();
-			ExtrabiomesLog.fine(Extrabiomes.proxy
+			LogHelper.fine(Extrabiomes.proxy
 					.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
 					MOD_NAME);
 			api = Optional.absent();

@@ -14,7 +14,7 @@ import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 
 public class BuildcraftPlugin {
 
@@ -44,14 +44,14 @@ public class BuildcraftPlugin {
 	public void preInit(PluginEvent.Pre event) {
 		if (!Extrabiomes.proxy.isModLoaded("BuildCraft|Energy"))
 			return;
-		ExtrabiomesLog.fine(Extrabiomes.proxy
+		LogHelper.fine(Extrabiomes.proxy
 				.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
 				MOD_NAME);
 		try {
 			api = Optional.of(new BuildcraftAPI());
 		} catch (final Exception ex) {
 			ex.printStackTrace();
-			ExtrabiomesLog.fine(Extrabiomes.proxy
+			LogHelper.fine(Extrabiomes.proxy
 					.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
 					MOD_NAME);
 			api = Optional.absent();

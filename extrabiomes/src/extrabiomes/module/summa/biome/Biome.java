@@ -24,7 +24,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.Api;
 import extrabiomes.api.DiscoverWorldTypesEvent;
 import extrabiomes.configuration.ExtrabiomesConfig;
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 
 enum Biome {
 	ALPINE(BiomeAlpine.class),
@@ -90,14 +90,14 @@ enum Biome {
 				Extrabiomes.proxy.addBiome(worldTypes,
 						biome.biome.get());
 			else
-				ExtrabiomesLog
+				LogHelper
 						.fine(Extrabiomes.proxy
 								.getStringLocalization(LOG_MESSAGE_BIOME_DISABLED),
 								biome.toString());
 			if (biome.enableVillages && biome.biome.isPresent()) {
 				VillageSpawnHelper.setVillageSpawn(biome.biome.get(),
 						true);
-				ExtrabiomesLog
+				LogHelper
 						.fine(Extrabiomes.proxy
 								.getStringLocalization(LOG_MESSAGE_BIOME_VILLAGE_ENABLED),
 								biome.toString());
@@ -119,7 +119,7 @@ enum Biome {
 	private static void loadSettings(ExtrabiomesConfig config) {
 		settingsLoaded = true;
 
-		ExtrabiomesLog.fine("===== Biome ID List =====");
+		LogHelper.fine("===== Biome ID List =====");
 
 		// Load config settings
 		int defaultID = 32;
@@ -129,7 +129,7 @@ enum Biome {
 					defaultID++);
 			biome.biomeID = property.getInt(0);
 
-			ExtrabiomesLog.fine("  %s: %d", biome.toString(),
+			LogHelper.fine("  %s: %d", biome.toString(),
 					biome.biomeID);
 
 			property = config.get(ExtrabiomesConfig.CATEGORY_BIOME,
@@ -147,7 +147,7 @@ enum Biome {
 				biome.enableVillages = true;
 		}
 
-		ExtrabiomesLog.fine("=== End Biome ID List ===");
+		LogHelper.fine("=== End Biome ID List ===");
 	}
 
 	static void preInit(ExtrabiomesConfig config)

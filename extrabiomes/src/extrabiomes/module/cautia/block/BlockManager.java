@@ -16,7 +16,7 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.configuration.ExtrabiomesConfig;
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.cautia.worldgen.QuicksandGenerator;
 import extrabiomes.proxy.CommonProxy;

@@ -28,7 +28,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.localization.LocalizationHandler;
@@ -79,7 +79,7 @@ public class Extrabiomes {
         EnhancedConfiguration.releaseStaticResources();
         initBus = Optional.absent();
         Module.releaseStaticResources();
-        ExtrabiomesLog.info(proxy.getStringLocalization(LOG_MESSAGE_LOAD_SUCCESS));
+        LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_LOAD_SUCCESS));
         LanguageRegistry.instance().addStringLocalization("itemGroup.extrabiomesTab", "en_US",
                 "ExtrabiomesXL");
     }
@@ -90,12 +90,12 @@ public class Extrabiomes {
 
     @PreInit
     public static void preInit(FMLPreInitializationEvent event) {
-        ExtrabiomesLog.configureLogging();
+        LogHelper.configureLogging();
 
         // Load the localization files into the LanguageRegistry
         LocalizationHandler.loadLanguages();
 
-        ExtrabiomesLog.info(proxy.getStringLocalization(LOG_MESSAGE_INITIALIZING));
+        LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_INITIALIZING));
         final ExtrabiomesConfig cfg = new ExtrabiomesConfig(new File(
                 event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg"));
         try {
@@ -105,7 +105,7 @@ public class Extrabiomes {
             Module.postEvent(new ModulePreInitEvent(cfg));
 
         } catch (final Exception e) {
-            ExtrabiomesLog.log(Level.SEVERE, e,
+            LogHelper.log(Level.SEVERE, e,
                     proxy.getStringLocalization(LOG_MESSAGE_CONFIG_EXCEPTION));
         } finally {
             cfg.save();

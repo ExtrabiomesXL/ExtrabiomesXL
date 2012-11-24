@@ -17,7 +17,7 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.module.summa.block.BlockCustomLog;
 import extrabiomes.module.summa.block.BlockQuarterLog;
@@ -111,13 +111,13 @@ public class ThermalExpansionPlugin {
     @ForgeSubscribe
     public void preInit(PluginEvent.Pre event) {
         if (!Extrabiomes.proxy.isModLoaded(MODID)) return;
-        ExtrabiomesLog.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
+        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
                 MOD_NAME);
         try {
             api = Optional.of(new ThermalExpansionAPI());
         } catch (final Exception ex) {
             ex.printStackTrace();
-            ExtrabiomesLog.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
+            LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
                     MOD_NAME);
             api = Optional.absent();
         }

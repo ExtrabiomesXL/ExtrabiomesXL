@@ -12,7 +12,7 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraftforge.common.Property;
 import extrabiomes.Extrabiomes;
 import extrabiomes.configuration.ExtrabiomesConfig;
-import extrabiomes.core.helper.ExtrabiomesLog;
+import extrabiomes.core.helper.LogHelper;
 
 enum VanillaBiome {
 	DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA;
@@ -26,13 +26,13 @@ enum VanillaBiome {
 			final BiomeGenBase biomeGen = biome.toBiomeGen();
 			if (!biome.enableGeneration) {
 				Extrabiomes.proxy.removeBiome(biomeGen);
-				ExtrabiomesLog.fine("Vanilla biome %s disabled.",
+				LogHelper.fine("Vanilla biome %s disabled.",
 						biome.toString());
 			}
 
 			VillageSpawnHelper.setVillageSpawn(biomeGen,
 					biome.enableVillages);
-			ExtrabiomesLog.fine(
+			LogHelper.fine(
 					"Village spawning %s for vanilla biome %s.",
 					biome.enableVillages ? "enabled" : "disabled",
 					biome.toString());
