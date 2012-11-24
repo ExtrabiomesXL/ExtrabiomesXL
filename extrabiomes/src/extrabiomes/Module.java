@@ -15,7 +15,7 @@ import net.minecraftforge.event.EventBus;
 
 import com.google.common.base.Optional;
 
-import extrabiomes.core.handler.ExtrabiomesConfig;
+import extrabiomes.core.handler.ConfigurationHandler;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.core.utility.EnhancedConfiguration;
 import extrabiomes.module.amica.Amica;
@@ -43,7 +43,7 @@ enum Module {
 		// Load config settings
 		for (final Module module : Module.values()) {
 			final Property property = cfg.get(
-					ExtrabiomesConfig.CATEGORY_MODULE_CONTROL,
+					ConfigurationHandler.CATEGORY_MODULE_CONTROL,
 					module.key + ".enabled", true);
 			module.enabled = property.getBoolean(false);
 

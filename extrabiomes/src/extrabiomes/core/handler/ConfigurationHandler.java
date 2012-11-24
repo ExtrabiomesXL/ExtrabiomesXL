@@ -11,11 +11,11 @@ import java.io.File;
 import extrabiomes.core.utility.EnhancedConfiguration;
 
 
-public class ExtrabiomesConfig extends EnhancedConfiguration {
+public class ConfigurationHandler extends EnhancedConfiguration {
 
     public static final String CATEGORY_MODULE_CONTROL = "module_control";
 
-    public ExtrabiomesConfig(File file) {
+    public ConfigurationHandler(File file) {
         super(file);
     }
 }
