@@ -16,52 +16,182 @@ import com.google.common.base.Optional;
 import cpw.mods.fml.common.FMLLog;
 import extrabiomes.lib.Reference;
 
-public abstract class LogHelper {
+/**
+ * Helper methods for logging to the ExtrabiomesXL logger
+ */
+public enum LogHelper {
+    INSTANCE;
 
-    private static Optional<Logger> logger = Optional.absent();
-
-    public static void fine(String format, Object... data) {
-        log(Level.FINE, format, data);
+    /**
+     * <pre>
+     * static void fine({@link String} format,
+     *                  {@link Object}... args);
+     * </pre>
+     * 
+     * Write tracing information to the log at level <code>FINE</code>.
+     * <p>
+     * 
+     * @param format
+     *            - A format string
+     * @param args
+     *            - Arguments referenced by the format specifiers in the
+     *            format string
+     * @see java.util.logging.Level#FINE Level.FINE
+     * @see java.util.Formatter Formatter
+     */
+    public static void fine(String format, Object... args) {
+        INSTANCE.log(Level.FINE, format, args);
     }
 
-    public static void finer(String format, Object... data) {
-        log(Level.FINER, format, data);
+    /**
+     * <pre>
+     * static void finer({@link String} format,
+     *                   {@link Object}... args);
+     * </pre>
+     * 
+     * Write tracing information to the log at level <code>FINER</code>.
+     * <p>
+     * 
+     * @param format
+     *            - A format string
+     * @param args
+     *            - Arguments referenced by the format specifiers in the
+     *            format string
+     * @see java.util.logging.Level#FINER Level.FINER
+     * @see java.util.Formatter Formatter
+     */
+    public static void finer(String format, Object... args) {
+        INSTANCE.log(Level.FINER, format, args);
     }
 
+    /**
+     * <pre>
+     * static void finest({@link String} format,
+     *                    {@link Object}... args);
+     * </pre>
+     * 
+     * Write tracing information to the log at level <code>FINEST</code>
+     * .
+     * <p>
+     * 
+     * @param format
+     *            - A format string
+     * @param args
+     *            - Arguments referenced by the format specifiers in the
+     *            format string
+     * @see java.util.logging.Level#FINEST Level.FINEST
+     * @see java.util.Formatter Formatter
+     */
     public static void finest(String format, Object... data) {
-        log(Level.FINEST, format, data);
+        INSTANCE.log(Level.FINEST, format, data);
     }
 
-    public static Logger getLogger() {
+    /**
+     * <pre>
+     * static void info({@link String} format,
+     *                  {@link Object}... args);
+     * </pre>
+     * 
+     * Write an informational message to the console and log.
+     * <p>
+     * 
+     * @param format
+     *            - A format string
+     * @param args
+     *            - Arguments referenced by the format specifiers in the
+     *            format string
+     * @see java.util.logging.Level#INFO Level.INFO
+     * @see java.util.Formatter Formatter
+     */
+    public static void info(String format, Object... args) {
+        INSTANCE.log(Level.INFO, format, args);
+    }
+
+    /**
+     * <pre>
+     * static void log({@link Level} level,
+     *                 {@link Throwable} exception,
+     *                 {@link String} format,
+     *                 {@link Object}... args);
+     * </pre>
+     * 
+     * Write a message to the log, with associated
+     * <code>Throwable</code> information.
+     * <p>
+     * 
+     * @param level
+     *            - a {@link java.util.logging.Level log level}
+     * @param exception
+     *            - a {@link Throwable} error or exception
+     * @param format
+     *            - A format string
+     * @param args
+     *            - Arguments referenced by the format specifiers in the
+     *            format string
+     * @see java.util.Formatter Formatter
+     */
+    public static void log(Level level, Throwable exception, String format, Object... args) {
+        INSTANCE.getLogger().log(level, String.format(format, args), exception);
+    }
+
+    /**
+     * <pre>
+     * static void severe({@link String} format,
+     *                    {@link Object}... args);
+     * </pre>
+     * 
+     * Write message indicating a severe failure to the log.
+     * <p>
+     * 
+     * @param format
+     *            - A format string
+     * @param args
+     *            - Arguments referenced by the format specifiers in the
+     *            format string
+     * @see java.util.logging.Level#SEVERE Level.SEVERE
+     * @see java.util.Formatter Formatter
+     */
+    public static void severe(String format, Object... args) {
+        INSTANCE.log(Level.SEVERE, format, args);
+    }
+
+    /**
+     * <pre>
+     * static void warning({@link String} format,
+     *                     {@link Object}... args);
+     * </pre>
+     * 
+     * Write message indicating a potential problem to the log.
+     * <p>
+     * 
+     * @param format
+     *            - A format string
+     * @param args
+     *            - Arguments referenced by the format specifiers in the
+     *            format string
+     * @see java.util.logging.Level#WARNING Level.WARNING
+     * @see java.util.Formatter Formatter
+     */
+    public static void warning(String format, Object... args) {
+        INSTANCE.log(Level.WARNING, format, args);
+    }
+
+    private Optional<Logger> logger = Optional.absent();
+
+    private Logger getLogger() {
         if (!logger.isPresent()) init();
 
         return logger.get();
     }
 
-    public static void info(String format, Object... data) {
-        log(Level.INFO, format, data);
-    }
-
-    public static void init() {
+    private void init() {
         if (logger.isPresent()) return;
 
         logger = Optional.of(Logger.getLogger(Reference.MOD_ID));
         logger.get().setParent(FMLLog.getLogger());
     }
 
-    public static void log(Level level, String format, Object... data) {
+    private void log(Level level, String format, Object... data) {
         getLogger().log(level, String.format(format, data));
-    }
-
-    public static void log(Level level, Throwable ex, String format, Object... data) {
-        getLogger().log(level, String.format(format, data), ex);
-    }
-
-    public static void severe(String format, Object... data) {
-        log(Level.SEVERE, format, data);
-    }
-
-    public static void warning(String format, Object... data) {
-        log(Level.WARNING, format, data);
     }
 }
