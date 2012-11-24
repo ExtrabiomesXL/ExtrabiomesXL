@@ -23,7 +23,7 @@ import com.google.common.collect.ImmutableSet;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Api;
 import extrabiomes.api.DiscoverWorldTypesEvent;
-import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.core.helper.LogHelper;
 
 enum Biome {
@@ -116,7 +116,7 @@ enum Biome {
 		return ImmutableSet.copyOf(activeBiomes.get());
 	}
 
-	private static void loadSettings(ExtrabiomesConfig config) {
+	private static void loadSettings(EnhancedConfiguration config) {
 		settingsLoaded = true;
 
 		LogHelper.fine("===== Biome ID List =====");
@@ -132,14 +132,14 @@ enum Biome {
 			LogHelper.fine("  %s: %d", biome.toString(),
 					biome.biomeID);
 
-			property = config.get(ExtrabiomesConfig.CATEGORY_BIOME,
+			property = config.get(EnhancedConfiguration.CATEGORY_BIOME,
 					biome.enabledKey(), true);
 			if (biome.biomeID == 0)
 				property.value = Boolean.toString(false);
 			if (property.getBoolean(false))
 				biome.enableGeneration = true;
 
-			property = config.get(ExtrabiomesConfig.CATEGORY_BIOME,
+			property = config.get(EnhancedConfiguration.CATEGORY_BIOME,
 					biome.villagesKey(), true);
 			if (biome.biomeID == 0)
 				property.value = Boolean.toString(false);
@@ -150,7 +150,7 @@ enum Biome {
 		LogHelper.fine("=== End Biome ID List ===");
 	}
 
-	static void preInit(ExtrabiomesConfig config)
+	static void preInit(EnhancedConfiguration config)
 			throws InstantiationException, IllegalAccessException
 	{
 		if (settingsLoaded) return;

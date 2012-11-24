@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
@@ -20,7 +21,9 @@ import com.google.common.base.Optional;
 
 public abstract class EnhancedConfiguration extends Configuration {
 
+    public static final String   CATEGORY_BIOME  = "biome";
     private static List<Integer> assignedIdsList = new ArrayList<Integer>();
+    private static boolean[]     configBiomes    = new boolean[BiomeGenBase.biomeList.length];
 
     public static void releaseStaticResources() {
         assignedIdsList = null;
@@ -28,6 +31,34 @@ public abstract class EnhancedConfiguration extends Configuration {
 
     public EnhancedConfiguration(File file) {
         super(file);
+    }
+
+    public Property getBiome(String key, int defaultID) {
+        return getBiome(CATEGORY_BIOME, key, defaultID);
+    }
+
+    public Property getBiome(String category, String key, int defaultID) {
+        final Property prop = get(category, key, -1);
+
+        if (prop.getInt() != -1) {
+            configBiomes[prop.getInt()] = true;
+            return prop;
+        }
+
+        if (BiomeGenBase.biomeList[defaultID] == null && !configBiomes[defaultID]) {
+            prop.value = Integer.toString(defaultID);
+            configBiomes[defaultID] = true;
+            return prop;
+        }
+
+        for (int j = configBiomes.length - 1; j > 0; j--)
+            if (BiomeGenBase.biomeList[j] == null && !configBiomes[j]) {
+                prop.value = Integer.toString(j);
+                configBiomes[j] = true;
+                return prop;
+            }
+
+        throw new RuntimeException("No more biome ids available for " + key);
     }
 
     @Override

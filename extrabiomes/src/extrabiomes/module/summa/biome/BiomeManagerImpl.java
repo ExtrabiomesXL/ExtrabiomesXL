@@ -38,7 +38,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
 import extrabiomes.api.BiomeManager;
-import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
@@ -418,7 +418,7 @@ public class BiomeManagerImpl extends BiomeManager {
 		buildWeightedBiomeGrassList();
 	}
 
-	public void preInit(ExtrabiomesConfig config)
+	public void preInit(EnhancedConfiguration config)
 			throws InstantiationException, IllegalAccessException
 	{
 		if (preInitDone) return;

@@ -93,7 +93,7 @@ public class Extrabiomes {
         LocalizationHandler.loadLanguages();
 
         LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_INITIALIZING));
-        final ExtrabiomesConfig cfg = new ExtrabiomesConfig(new File(
+        final EnhancedConfiguration cfg = new ExtrabiomesConfig(new File(
                 event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg"));
         try {
             cfg.load();

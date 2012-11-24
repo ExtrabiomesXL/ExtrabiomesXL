@@ -15,6 +15,7 @@ import net.minecraftforge.event.EventBus;
 
 import com.google.common.base.Optional;
 
+import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.configuration.ExtrabiomesConfig;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.module.amica.Amica;
@@ -35,7 +36,7 @@ enum Module {
 	private static Optional<EventBus>	eventBus				= Optional
 																		.of(new EventBus());
 
-	private static void loadControlSettings(ExtrabiomesConfig cfg) {
+	private static void loadControlSettings(EnhancedConfiguration cfg) {
 		final Map<Module, Property> properties = new EnumMap(
 				Module.class);
 
@@ -67,7 +68,7 @@ enum Module {
 				: false;
 	}
 
-	static void registerModules(ExtrabiomesConfig config)
+	static void registerModules(EnhancedConfiguration config)
 			throws InstantiationException, IllegalAccessException
 	{
 		// Only do this once

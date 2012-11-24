@@ -23,7 +23,7 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
-import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.configuration.EnhancedConfiguration;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
@@ -456,7 +456,7 @@ public enum BlockManager {
         }
     }
 
-    private static void loadSettings(ExtrabiomesConfig config) {
+    private static void loadSettings(EnhancedConfiguration config) {
         settingsLoaded = true;
 
         // Load config settings
@@ -485,7 +485,7 @@ public enum BlockManager {
         }
     }
 
-    public static void preInit(ExtrabiomesConfig config) throws Exception {
+    public static void preInit(EnhancedConfiguration config) throws Exception {
         if (settingsLoaded) return;
 
         loadSettings(config);

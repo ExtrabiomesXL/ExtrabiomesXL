@@ -6,13 +6,13 @@
 
 package extrabiomes.events;
 
-import extrabiomes.configuration.ExtrabiomesConfig;
+import extrabiomes.configuration.EnhancedConfiguration;
 
 public class ModulePreInitEvent extends ModuleEvent {
 
-	public final ExtrabiomesConfig	config;
+	public final EnhancedConfiguration	config;
 
-	public ModulePreInitEvent(ExtrabiomesConfig config) {
+	public ModulePreInitEvent(EnhancedConfiguration config) {
 		this.config = config;
 	}
 
