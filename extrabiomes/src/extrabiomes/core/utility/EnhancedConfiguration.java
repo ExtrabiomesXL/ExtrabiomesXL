@@ -19,6 +19,11 @@ import net.minecraftforge.common.Property;
 
 import com.google.common.base.Optional;
 
+/**
+ * Addes functionality to the Forge
+ * {@link net.minecraftforge.common.Configuration Configuration} class
+ * 
+ */
 public abstract class EnhancedConfiguration extends Configuration {
 
     public static final String   CATEGORY_BIOME  = "biome";
@@ -37,6 +42,12 @@ public abstract class EnhancedConfiguration extends Configuration {
         return getBiome(CATEGORY_BIOME, key, defaultID);
     }
 
+    /**
+     * Gets or create a biome id property. If the biome id property key
+     * is already in the configuration, then it will be used. Otherwise,
+     * defaultId will be used, except if already taken, in which case
+     * this will try to determine a free default id.
+     */
     public Property getBiome(String category, String key, int defaultID) {
         final Property prop = get(category, key, -1);
 
@@ -103,6 +114,13 @@ public abstract class EnhancedConfiguration extends Configuration {
         }
     }
 
+    /**
+     * Gets or create a block id property with a value of 255 or less.
+     * If the block id property key is already in the configuration,
+     * then it will be used. Otherwise, defaultId will be used, except
+     * if already taken, in which case this will try to determine a free
+     * default id.
+     */
     public Property getRestrictedBlock(String key, int defaultId) {
         return getBlock(key, defaultId, 256);
     }
