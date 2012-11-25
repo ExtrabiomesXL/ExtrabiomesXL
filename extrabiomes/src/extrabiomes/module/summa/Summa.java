@@ -19,6 +19,7 @@ import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
+import extrabiomes.lib.ItemSettings;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.tool.LogTurner;
@@ -30,59 +31,50 @@ import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
 
 public class Summa {
 
-	private static BiomeManagerImpl	biomeManager	= new BiomeManagerImpl();
+    private static BiomeManagerImpl biomeManager = new BiomeManagerImpl();
 
-	private static int				logTurnerID		= 0;
+    private static int              logTurnerID  = 0;
 
-	private static void registerWorldGenerators() {
-		if (BiomeManager.marsh.isPresent())
-			Extrabiomes.proxy
-					.registerWorldGenerator(new MarshGenerator());
+    private static void registerWorldGenerators() {
+        if (BiomeManager.marsh.isPresent())
+            Extrabiomes.proxy.registerWorldGenerator(new MarshGenerator());
 
-		if (BiomeManager.mountaindesert.isPresent())
-			Extrabiomes.proxy
-					.registerWorldGenerator(new MountainDesertGenerator());
+        if (BiomeManager.mountaindesert.isPresent())
+            Extrabiomes.proxy.registerWorldGenerator(new MountainDesertGenerator());
 
-		if (BiomeManager.mountainridge.isPresent())
-			Extrabiomes.proxy
-					.registerWorldGenerator(new MountainRidgeGenerator());
+        if (BiomeManager.mountainridge.isPresent())
+            Extrabiomes.proxy.registerWorldGenerator(new MountainRidgeGenerator());
 
-		Extrabiomes.proxy
-				.registerWorldGenerator(new VanillaFloraGenerator());
-		Extrabiomes.proxy
-				.registerWorldGenerator(new LegendOakGenerator());
-	}
+        Extrabiomes.proxy.registerWorldGenerator(new VanillaFloraGenerator());
+        Extrabiomes.proxy.registerWorldGenerator(new LegendOakGenerator());
+    }
 
-	@ForgeSubscribe(priority = EventPriority.HIGHEST)
-	public void init(ModuleInitEvent event)
-			throws InstantiationException, IllegalAccessException
-	{
+    @ForgeSubscribe(priority = EventPriority.HIGHEST)
+    public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException {
 
-		registerWorldGenerators();
+        registerWorldGenerators();
 
-		biomeManager.init();
-		BlockManager.init();
+        biomeManager.init();
+        BlockManager.init();
 
-		if (logTurnerID > 0) {
-			Stuff.logTurner = Optional.of(new LogTurner(logTurnerID)
-					.setItemName("extrabiomes.logturner"));
+        if (logTurnerID > 0) {
+            Stuff.logTurner = Optional.of(new LogTurner(logTurnerID)
+                    .setItemName("extrabiomes.logturner"));
 
-			final IRecipe recipe = new ShapedOreRecipe(
-					Stuff.logTurner.get(), new String[] { "ss", " s",
-							"ss" }, 's', Item.stick);
-			Extrabiomes.proxy.addRecipe(recipe);
-		}
+            final IRecipe recipe = new ShapedOreRecipe(Stuff.logTurner.get(), new String[] { "ss",
+                    " s", "ss" }, 's', Item.stick);
+            Extrabiomes.proxy.addRecipe(recipe);
+        }
 
-	}
+    }
 
-	@ForgeSubscribe(priority = EventPriority.HIGHEST)
-	public void preInit(ModulePreInitEvent event) throws Exception {
-		biomeManager.preInit(event.config);
-		BlockManager.preInit(event.config);
+    @ForgeSubscribe(priority = EventPriority.HIGHEST)
+    public void preInit(ModulePreInitEvent event) throws Exception {
+        biomeManager.preInit();
+        BlockManager.preInit();
 
-		logTurnerID = event.config.getItem("logturner.id",
-				Extrabiomes.getNextDefaultItemID()).getInt(0);
+        logTurnerID = ItemSettings.LOGTURNER.getID();
 
-	}
+    }
 
 }

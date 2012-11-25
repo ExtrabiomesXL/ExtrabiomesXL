@@ -7,15 +7,47 @@
 package extrabiomes.core.handler;
 
 import java.io.File;
+import java.util.logging.Level;
 
+import com.google.common.base.Optional;
+
+import extrabiomes.core.helper.LogHelper;
 import extrabiomes.core.utility.EnhancedConfiguration;
+import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.BlockSettings;
+import extrabiomes.lib.ItemSettings;
+import extrabiomes.lib.ModuleControlSettings;
+import extrabiomes.lib.Reference;
 
+/**
+ * Loads configuration data
+ * 
+ */
+public abstract class ConfigurationHandler {
 
-public class ConfigurationHandler extends EnhancedConfiguration {
+    public static void init(File configFile) {
+        Optional<EnhancedConfiguration> optionalConfig = Optional.absent();
 
-    public static final String CATEGORY_MODULE_CONTROL = "module_control";
+        try {
+            optionalConfig = Optional.of(new EnhancedConfiguration(configFile));
+            final EnhancedConfiguration configuration = optionalConfig.get();
 
-    public ConfigurationHandler(File file) {
-        super(file);
+            for (final BiomeSettings setting : BiomeSettings.values())
+                setting.load(configuration);
+
+            for (final BlockSettings setting : BlockSettings.values())
+                setting.load(configuration);
+
+            for (final ItemSettings setting : ItemSettings.values())
+                setting.load(configuration);
+
+            for (final ModuleControlSettings setting : ModuleControlSettings.values())
+                setting.load(configuration);
+        } catch (final Exception e) {
+            LogHelper.log(Level.SEVERE, e, "%s had had a problem loading its configuration",
+                    Reference.MOD_NAME);
+        } finally {
+            if (optionalConfig.isPresent()) optionalConfig.get().save();
+        }
     }
 }

@@ -9,96 +9,69 @@ package extrabiomes.module.cautia.block;
 import java.util.Locale;
 
 import net.minecraft.src.Block;
-import net.minecraftforge.common.Property;
 
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
-import extrabiomes.core.helper.LogHelper;
-import extrabiomes.core.utility.EnhancedConfiguration;
+import extrabiomes.lib.BlockSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.cautia.worldgen.QuicksandGenerator;
 import extrabiomes.proxy.CommonProxy;
 
 public enum BlockManager {
-	QUICKSAND {
-		@Override
-		protected void create() {
-			Stuff.quickSand = Optional.of(new BlockQuicksand(blockID));
-		}
+    QUICKSAND {
+        @Override
+        protected void create() {
+            Stuff.quickSand = Optional.of(new BlockQuicksand(getSettings().getID()));
+        }
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.quickSand.get();
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.QUICKSAND;
+        }
 
-			thisBlock.setBlockName("extrabiomes.quicksand");
-			proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
-			proxy.registerBlock(thisBlock);
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.quickSand.get();
 
-			FacadeHelper.addBuildcraftFacade(thisBlock.blockID);
+            thisBlock.setBlockName("extrabiomes.quicksand");
+            proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
+            proxy.registerBlock(thisBlock);
 
-			proxy.registerWorldGenerator(new QuicksandGenerator(
-					thisBlock.blockID));
-		}
-	};
+            FacadeHelper.addBuildcraftFacade(thisBlock.blockID);
 
-	private static boolean	settingsLoaded	= false;
+            proxy.registerWorldGenerator(new QuicksandGenerator(thisBlock.blockID));
+        }
+    };
 
-	private static void createBlocks() throws Exception
-	{
-		for (final BlockManager block : BlockManager.values())
-			if (block.blockID > 0) {
-				try {
-					block.create();
-				} catch (final Exception e) {
-					throw e;
-				}
-				block.blockCreated = true;
-			}
-	}
+    private static void createBlocks() throws Exception {
+        for (final BlockManager block : BlockManager.values())
+            if (block.getSettings().getID() > 0) {
+                try {
+                    block.create();
+                } catch (final Exception e) {
+                    throw e;
+                }
+                block.blockCreated = true;
+            }
+    }
 
-	public static void init() throws InstantiationException,
-			IllegalAccessException
-	{
-		for (final BlockManager block : values())
-			if (block.blockCreated) block.prepare();
-	}
+    public static void init() throws InstantiationException, IllegalAccessException {
+        for (final BlockManager block : values())
+            if (block.blockCreated) block.prepare();
+    }
 
-	private static void loadSettings(EnhancedConfiguration config) {
-		settingsLoaded = true;
+    public static void preInit() throws Exception {
+        createBlocks();
+    }
 
-		// Load config settings
-		for (final BlockManager cube : BlockManager.values()) {
-			final Property property = config.getBlock(cube.idKey(),
-					Extrabiomes.getNextDefaultBlockID());
-			cube.blockID = property.getInt(0);
-		}
-	}
+    private boolean blockCreated = false;
 
-	public static void preInit(EnhancedConfiguration config)
-			throws Exception
-	{
-		if (settingsLoaded) return;
+    protected abstract void create();
 
-		loadSettings(config);
-		createBlocks();
-	}
+    protected abstract BlockSettings getSettings();
 
-	protected int	blockID			= 0;
-	private boolean	blockCreated	= false;
-
-	protected abstract void create();
-
-	private String idKey() {
-		return toString() + ".id";
-	}
-
-	protected abstract void prepare();
-
-	@Override
-	public String toString() {
-		return super.toString().toLowerCase(Locale.US);
-	}
+    protected abstract void prepare();
 }

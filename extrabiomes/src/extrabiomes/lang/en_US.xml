@@ -14,7 +14,6 @@
   <entry key="log.message.add.redrock">Added red rock to mountain ridge biome.</entry>
   <entry key="log.message.biome.disabled">Custom biome %s disabled.</entry>
   <entry key="log.message.biome.village.enabled">Village spawning enabled for custom biome %s.</entry>
-  <entry key="log.message.config.exception">ExtrabiomesXL had a problem loading it's configuration.</entry>
   <entry key="log.message.config.exception.biomeid">Biome id %d is already in use by %s when adding %s. Please review the configuration file.</entry>
   <entry key="log.message.initializing">Intializing.</entry>
   <entry key="log.message.load.success">Successfully Loaded.</entry>

@@ -13,18 +13,14 @@ import extrabiomes.module.cautia.block.BlockManager;
 
 public class Cautia {
 
-	@ForgeSubscribe
-	public void init(ModuleInitEvent event)
-			throws InstantiationException, IllegalAccessException
-	{
-		BlockManager.init();
-	}
+    @ForgeSubscribe
+    public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException {
+        BlockManager.init();
+    }
 
-	@ForgeSubscribe
-	public void preInit(ModulePreInitEvent event)
-			throws Exception
-	{
-		BlockManager.preInit(event.config);
-	}
+    @ForgeSubscribe
+    public void preInit(ModulePreInitEvent event) throws Exception {
+        BlockManager.preInit();
+    }
 
 }

@@ -24,15 +24,11 @@ import com.google.common.base.Optional;
  * {@link net.minecraftforge.common.Configuration Configuration} class
  * 
  */
-public abstract class EnhancedConfiguration extends Configuration {
+public class EnhancedConfiguration extends Configuration {
 
-    public static final String   CATEGORY_BIOME  = "biome";
-    private static List<Integer> assignedIdsList = new ArrayList<Integer>();
-    private static boolean[]     configBiomes    = new boolean[BiomeGenBase.biomeList.length];
-
-    public static void releaseStaticResources() {
-        assignedIdsList = null;
-    }
+    public static final String  CATEGORY_BIOME  = "biome";
+    private final List<Integer> assignedIdsList = new ArrayList<Integer>();
+    private final boolean[]     configBiomes    = new boolean[BiomeGenBase.biomeList.length];
 
     public EnhancedConfiguration(File file) {
         super(file);

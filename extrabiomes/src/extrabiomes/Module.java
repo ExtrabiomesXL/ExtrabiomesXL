@@ -6,114 +6,72 @@
 
 package extrabiomes;
 
-import java.util.EnumMap;
-import java.util.Map;
-
-import net.minecraftforge.common.Property;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.EventBus;
 
 import com.google.common.base.Optional;
 
-import extrabiomes.core.handler.ConfigurationHandler;
 import extrabiomes.core.helper.LogHelper;
-import extrabiomes.core.utility.EnhancedConfiguration;
+import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.module.amica.Amica;
 import extrabiomes.module.cautia.Cautia;
 import extrabiomes.module.fabrica.Fabrica;
 import extrabiomes.module.summa.Summa;
 
 enum Module {
-	SUMMA("summa", "config.summa.comment", Summa.class),
-	CAUTIA("cautia", "config.cautia.comment", Cautia.class),
-	FABRICA("fabrica", "config.fabrica.comment", Fabrica.class),
-	AMICA("amica", "config.amica.comment", Amica.class);
-	// MACHINA("machina", "Set machina to true to in enable higher level tech."),
+    SUMMA(Summa.class), CAUTIA(Cautia.class), FABRICA(Fabrica.class), AMICA(Amica.class);
 
-	private static final String			MODULE_STATUS_DISABLED	= "module.status.disabled";
-	private static final String			MODULE_STATUS_ENABLED	= "module.status.enabled";
-	private static boolean				controlSettingsLoaded	= false;
-	private static Optional<EventBus>	eventBus				= Optional
-																		.of(new EventBus());
+    private static final String       MODULE_STATUS_DISABLED = "module.status.disabled";
+    private static final String       MODULE_STATUS_ENABLED  = "module.status.enabled";
+    private static Optional<EventBus> eventBus               = Optional.of(new EventBus());
 
-	private static void loadControlSettings(EnhancedConfiguration cfg) {
-		final Map<Module, Property> properties = new EnumMap(
-				Module.class);
+    public static boolean postEvent(Event event) {
+        return eventBus.isPresent() ? eventBus.get().post(event) : false;
+    }
 
-		// Load config settings
-		for (final Module module : Module.values()) {
-			final Property property = cfg.get(
-					ConfigurationHandler.CATEGORY_MODULE_CONTROL,
-					module.key + ".enabled", true);
-			module.enabled = property.getBoolean(false);
+    static void registerModules() throws InstantiationException, IllegalAccessException {
+        for (final Module module : Module.values()) {
 
-			// Save for later rewriting
-			properties.put(module, property);
-		}
+            switch (module) {
+                case SUMMA:
+                    module.enabled = ModuleControlSettings.SUMMA.isEnabled();
+                    break;
+                case CAUTIA:
+                    module.enabled = ModuleControlSettings.CAUTIA.isEnabled();
+                    break;
+                case FABRICA:
+                    module.enabled = ModuleControlSettings.FABRICA.isEnabled();
+                    break;
+                case AMICA:
+                    module.enabled = ModuleControlSettings.AMICA.isEnabled();
+                    break;
+            }
 
-		// Everything depends on Summa
-		for (final Module module : Module.values()) {
-			if (!SUMMA.isEnabled()) module.enabled = false;
+            LogHelper.info(Extrabiomes.proxy
+                    .getStringLocalization(module.enabled ? MODULE_STATUS_ENABLED
+                            : MODULE_STATUS_DISABLED), module.toString());
 
-			// Rewrite config file
-			final Property property = properties.get(module);
-			property.value = Boolean.toString(module.enabled);
-			property.comment = Extrabiomes.proxy
-					.getStringLocalization(module.configComment);
-		}
-	}
+            // skip disabled modules
+            if (!module.enabled) continue;
 
-	public static boolean postEvent(Event event) {
-		return eventBus.isPresent() ? eventBus.get().post(event)
-				: false;
-	}
+            if (eventBus.isPresent()) eventBus.get().register(module.pluginClass.newInstance());
+        }
+    }
 
-	static void registerModules(EnhancedConfiguration config)
-			throws InstantiationException, IllegalAccessException
-	{
-		// Only do this once
-		if (controlSettingsLoaded) return;
+    public static void releaseStaticResources() {
+        eventBus = Optional.absent();
+    }
 
-		loadControlSettings(config);
-		controlSettingsLoaded = true;
+    private boolean     enabled = false;
 
-		for (final Module module : Module.values()) {
-			LogHelper
-					.info(Extrabiomes.proxy
-							.getStringLocalization(module.enabled ? MODULE_STATUS_ENABLED
-									: MODULE_STATUS_DISABLED), module
-							.toString());
+    private final Class pluginClass;
 
-			// skip disabled modules
-			if (!module.enabled) continue;
+    private Module(Class pluginClass) {
+        this.pluginClass = pluginClass;
+    }
 
-			if (eventBus.isPresent())
-				eventBus.get().register(
-						module.pluginClass.newInstance());
-		}
-	}
-
-	public static void releaseStaticResources() {
-		eventBus = Optional.absent();
-	}
-
-	private boolean			enabled	= false;
-
-	private final String	configComment;
-
-	private final String	key;
-
-	private final Class		pluginClass;
-
-	private Module(String key, String configComment, Class pluginClass)
-	{
-		this.key = key;
-		this.configComment = configComment;
-		this.pluginClass = pluginClass;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public boolean isEnabled() {
+        return enabled;
+    }
 
 }

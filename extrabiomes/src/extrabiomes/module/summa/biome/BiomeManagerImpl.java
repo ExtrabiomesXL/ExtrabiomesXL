@@ -418,13 +418,13 @@ public class BiomeManagerImpl extends BiomeManager {
 		buildWeightedBiomeGrassList();
 	}
 
-	public void preInit(EnhancedConfiguration config)
+	public void preInit()
 			throws InstantiationException, IllegalAccessException
 	{
 		if (preInitDone) return;
 		preInitDone = true;
-		Biome.preInit(config);
-		VanillaBiome.preInit(config);
+		Biome.preInit();
+		VanillaBiome.preInit();
 
 		populateAPIBiomes();
 	}

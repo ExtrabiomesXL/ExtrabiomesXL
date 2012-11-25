@@ -13,7 +13,6 @@
   <entry key="log.message.add.redrock">Latérite ajoutée au biôme montagnes rouges.</entry>
   <entry key="log.message.biome.disabled">Biôme personnalisé %s désactivé.</entry>
   <entry key="log.message.biome.village.enabled">Spawn de villages activé pour le biôme personnalisé %s.</entry>
-  <entry key="log.message.config.exception">ExtrabiomesXL a eu un problème en chargeant sa configuration.</entry>
   <entry key="log.message.config.exception.biomeid">L'id du biôme %s est déjà utilisée par %s en rajoutant %s. Modifiez votre fichier de configuration.</entry>
   <entry key="log.message.initializing">Initialisation.</entry>
   <entry key="log.message.load.success">Chargement réussi.</entry>

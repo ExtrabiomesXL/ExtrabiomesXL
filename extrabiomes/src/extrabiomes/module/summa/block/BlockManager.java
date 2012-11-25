@@ -6,8 +6,6 @@
 
 package extrabiomes.module.summa.block;
 
-import static com.google.common.base.Preconditions.checkElementIndex;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
@@ -16,7 +14,6 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.WorldGenTallGrass;
-import net.minecraftforge.common.Property;
 
 import com.google.common.base.Optional;
 
@@ -30,6 +27,7 @@ import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LogActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
+import extrabiomes.lib.BlockSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.summa.biome.BiomeManagerImpl;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
@@ -49,7 +47,12 @@ public enum BlockManager {
     AUTUMNLEAVES {
         @Override
         protected void create() {
-            Stuff.leavesAutumn = Optional.of(new BlockAutumnLeaves(blockID));
+            Stuff.leavesAutumn = Optional.of(new BlockAutumnLeaves(getSettings().getID()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.AUTUMNLEAVES;
         }
 
         @Override
@@ -77,7 +80,12 @@ public enum BlockManager {
     CATTAIL {
         @Override
         protected void create() {
-            Stuff.cattail = Optional.of(new BlockCatTail(blockID));
+            Stuff.cattail = Optional.of(new BlockCatTail(getSettings().getID()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.CATTAIL;
         }
 
         @Override
@@ -96,7 +104,12 @@ public enum BlockManager {
     CRACKEDSAND(true) {
         @Override
         protected void create() {
-            Stuff.crackedSand = Optional.of(new BlockCrackedSand(blockID));
+            Stuff.crackedSand = Optional.of(new BlockCrackedSand(getSettings().getID()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.CRACKEDSAND;
         }
 
         @Override
@@ -119,7 +132,12 @@ public enum BlockManager {
     FLOWER {
         @Override
         protected void create() {
-            Stuff.flower = Optional.of(new BlockCustomFlower(blockID));
+            Stuff.flower = Optional.of(new BlockCustomFlower(getSettings().getID()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.FLOWER;
         }
 
         @Override
@@ -138,7 +156,12 @@ public enum BlockManager {
     GRASS {
         @Override
         protected void create() {
-            Stuff.grass = Optional.of(new BlockCustomTallGrass(blockID));
+            Stuff.grass = Optional.of(new BlockCustomTallGrass(getSettings().getID()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.GRASS;
         }
 
         @Override
@@ -174,7 +197,12 @@ public enum BlockManager {
     GREENLEAVES {
         @Override
         protected void create() {
-            Stuff.leavesGreen = Optional.of(new BlockGreenLeaves(blockID));
+            Stuff.leavesGreen = Optional.of(new BlockGreenLeaves(getSettings().getID()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.GREENLEAVES;
         }
 
         @Override
@@ -199,7 +227,12 @@ public enum BlockManager {
     LEAFPILE {
         @Override
         protected void create() {
-            Stuff.leafPile = Optional.of(new BlockLeafPile(blockID));
+            Stuff.leafPile = Optional.of(new BlockLeafPile(getSettings().getID()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.LEAFPILE;
         }
 
         @Override
@@ -219,7 +252,12 @@ public enum BlockManager {
     REDROCK(true) {
         @Override
         protected void create() {
-            Stuff.redRock = Optional.of(new BlockRedRock(blockID));
+            Stuff.redRock = Optional.of(new BlockRedRock(getSettings().getID()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.REDROCK;
         }
 
         @Override
@@ -242,7 +280,12 @@ public enum BlockManager {
     SAPLING {
         @Override
         protected void create() {
-            Stuff.sapling = Optional.of(new BlockCustomSapling(blockID));
+            Stuff.sapling = Optional.of(new BlockCustomSapling(getSettings().getID()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.SAPLING;
         }
 
         @Override
@@ -263,7 +306,12 @@ public enum BlockManager {
     CUSTOMLOG {
         @Override
         protected void create() {
-            Stuff.log = Optional.of(new BlockCustomLog(blockID));
+            Stuff.log = Optional.of(new BlockCustomLog(getSettings().getID()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.CUSTOMLOG;
         }
 
         @Override
@@ -291,8 +339,13 @@ public enum BlockManager {
     QUARTERLOG0 {
         @Override
         protected void create() {
-            Stuff.quarterLogNW = Optional
-                    .of(new BlockQuarterLog(blockID, BlockQuarterLog.BarkOn.NW));
+            Stuff.quarterLogNW = Optional.of(new BlockQuarterLog(getSettings().getID(),
+                    BlockQuarterLog.BarkOn.NW));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.QUARTERLOG0;
         }
 
         @Override
@@ -316,8 +369,13 @@ public enum BlockManager {
     QUARTERLOG1 {
         @Override
         protected void create() {
-            Stuff.quarterLogNE = Optional
-                    .of(new BlockQuarterLog(blockID, BlockQuarterLog.BarkOn.NE));
+            Stuff.quarterLogNE = Optional.of(new BlockQuarterLog(getSettings().getID(),
+                    BlockQuarterLog.BarkOn.NE));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.QUARTERLOG1;
         }
 
         @Override
@@ -342,8 +400,13 @@ public enum BlockManager {
     QUARTERLOG2 {
         @Override
         protected void create() {
-            Stuff.quarterLogSW = Optional
-                    .of(new BlockQuarterLog(blockID, BlockQuarterLog.BarkOn.SW));
+            Stuff.quarterLogSW = Optional.of(new BlockQuarterLog(getSettings().getID(),
+                    BlockQuarterLog.BarkOn.SW));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.QUARTERLOG2;
         }
 
         @Override
@@ -368,8 +431,13 @@ public enum BlockManager {
     QUARTERLOG3 {
         @Override
         protected void create() {
-            Stuff.quarterLogSE = Optional
-                    .of(new BlockQuarterLog(blockID, BlockQuarterLog.BarkOn.SE));
+            Stuff.quarterLogSE = Optional.of(new BlockQuarterLog(getSettings().getID(),
+                    BlockQuarterLog.BarkOn.SE));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.QUARTERLOG3;
         }
 
         @Override
@@ -395,10 +463,8 @@ public enum BlockManager {
         }
     };
 
-    private static final String LOG_MESSAGE_ADD_REDROCK         = "log.message.add.redrock";
-    private static final String LOG_MESSAGE_ADD_CRACKEDSAND     = "log.message.add.crackedsand";
-    private static final String CONFIG_BLOCK_TERRAINGEN_COMMENT = "config.block.terraingen.comment";
-    private static boolean      settingsLoaded                  = false;
+    private static final String LOG_MESSAGE_ADD_REDROCK     = "log.message.add.redrock";
+    private static final String LOG_MESSAGE_ADD_CRACKEDSAND = "log.message.add.crackedsand";
 
     private static void addCrackedSandToWasteland(int crackedsandID) {
         if (!BiomeManager.wasteland.isPresent()) return;
@@ -420,7 +486,7 @@ public enum BlockManager {
 
     private static void createBlocks() throws Exception {
         for (final BlockManager block : BlockManager.values())
-            if (block.blockID > 0) {
+            if (block.getSettings().getID() > 0) {
                 try {
                     block.create();
                 } catch (final Exception e) {
@@ -456,39 +522,7 @@ public enum BlockManager {
         }
     }
 
-    private static void loadSettings(EnhancedConfiguration config) {
-        settingsLoaded = true;
-
-        // Load config settings
-        for (final BlockManager cube : BlockManager.values()) {
-            final Property property = cube.restrictTo256 ? config.getRestrictedBlock(cube.idKey(),
-                    Extrabiomes.getNextDefaultBlockID()) : config.getBlock(cube.idKey(),
-                    Extrabiomes.getNextDefaultBlockID());
-            cube.blockID = property.getInt(0);
-            if (cube.restrictTo256) {
-                final String comment = String.format(
-                        Extrabiomes.proxy.getStringLocalization(CONFIG_BLOCK_TERRAINGEN_COMMENT),
-                        cube.toString());
-                property.comment = comment;
-                checkElementIndex(cube.blockID, 256, comment);
-            }
-        }
-
-        if (QUARTERLOG0.blockID == 0 || QUARTERLOG1.blockID == 0 || QUARTERLOG2.blockID == 0
-                || QUARTERLOG3.blockID == 0)
-        {
-            QUARTERLOG0.blockID = 0;
-            QUARTERLOG1.blockID = 0;
-            QUARTERLOG2.blockID = 0;
-            QUARTERLOG3.blockID = 0;
-            LogHelper.fine("At least one quarterlog was disabled, so all have been.");
-        }
-    }
-
-    public static void preInit(EnhancedConfiguration config) throws Exception {
-        if (settingsLoaded) return;
-
-        loadSettings(config);
+    public static void preInit() throws Exception {
         createBlocks();
 
         final Collection<BiomeGenBase> biomes = new ArrayList();
@@ -497,28 +531,17 @@ public enum BlockManager {
         BiomeManagerImpl.disableDefaultGrassforBiomes(biomes);
     }
 
-    private final boolean restrictTo256;
-    protected int         blockID      = 0;
-    private boolean       blockCreated = false;
+    private boolean blockCreated = false;
 
     BlockManager() {
         this(false);
     }
 
-    BlockManager(boolean restrictTo256) {
-        this.restrictTo256 = restrictTo256;
-    }
+    BlockManager(boolean restrictTo256) {}
 
     protected abstract void create();
 
-    private String idKey() {
-        return toString() + ".id";
-    }
+    protected abstract BlockSettings getSettings();
 
     protected abstract void prepare();
-
-    @Override
-    public String toString() {
-        return super.toString().toLowerCase(Locale.US);
-    }
 }

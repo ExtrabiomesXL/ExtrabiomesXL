@@ -9,96 +9,88 @@ package extrabiomes.module.summa.biome;
 import java.util.Locale;
 
 import net.minecraft.src.BiomeGenBase;
-import net.minecraftforge.common.Property;
 import extrabiomes.Extrabiomes;
 import extrabiomes.core.helper.LogHelper;
-import extrabiomes.core.utility.EnhancedConfiguration;
+import extrabiomes.lib.BiomeSettings;
 
 enum VanillaBiome {
-	DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA;
+    DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA;
 
-	private static boolean	settingsLoaded	= false;
+    private static void createBiomes() throws InstantiationException, IllegalAccessException {
+        for (final VanillaBiome biome : VanillaBiome.values()) {
+            final BiomeGenBase biomeGen = biome.toBiomeGen();
+            if (!biome.enableGeneration) {
+                Extrabiomes.proxy.removeBiome(biomeGen);
+                LogHelper.fine("Vanilla biome %s disabled.", biome.toString());
+            }
 
-	private static void createBiomes() throws InstantiationException,
-			IllegalAccessException
-	{
-		for (final VanillaBiome biome : VanillaBiome.values()) {
-			final BiomeGenBase biomeGen = biome.toBiomeGen();
-			if (!biome.enableGeneration) {
-				Extrabiomes.proxy.removeBiome(biomeGen);
-				LogHelper.fine("Vanilla biome %s disabled.",
-						biome.toString());
-			}
+            VillageSpawnHelper.setVillageSpawn(biomeGen, biome.enableVillages);
+            LogHelper.fine("Village spawning %s for vanilla biome %s.",
+                    biome.enableVillages ? "enabled" : "disabled", biome.toString());
+        }
+    }
 
-			VillageSpawnHelper.setVillageSpawn(biomeGen,
-					biome.enableVillages);
-			LogHelper.fine(
-					"Village spawning %s for vanilla biome %s.",
-					biome.enableVillages ? "enabled" : "disabled",
-					biome.toString());
-		}
-	}
+    private static BiomeSettings getBiomeSettings(final VanillaBiome biome) {
+        switch (biome) {
+            case DESERT:
+                return BiomeSettings.DESERT;
+            case EXTREMEHILLS:
+                return BiomeSettings.EXTREMEHILLS;
+            case FOREST:
+                return BiomeSettings.FOREST;
+            case JUNGLE:
+                return BiomeSettings.JUNGLE;
+            case PLAINS:
+                return BiomeSettings.PLAINS;
+            case SWAMPLAND:
+                return BiomeSettings.SWAMPLAND;
+            case TAIGA:
+                return BiomeSettings.TAIGA;
+        }
+        return null;
+    }
 
-	private static void loadSettings(EnhancedConfiguration config) {
-		settingsLoaded = true;
+    private static void loadSettings() {
 
-		for (final VanillaBiome biome : VanillaBiome.values()) {
+        for (final VanillaBiome biome : VanillaBiome.values()) {
 
-			Property property = config.get(
-					EnhancedConfiguration.CATEGORY_BIOME,
-					biome.enabledKey(), true);
-			if (property.getBoolean(false))
-				biome.enableGeneration = true;
+            final BiomeSettings settings = getBiomeSettings(biome);
 
-			property = config.get(EnhancedConfiguration.CATEGORY_BIOME,
-					biome.villagesKey(), true);
-			if (property.getBoolean(false))
-				biome.enableVillages = true;
-		}
-	}
+            biome.enableGeneration = settings.isEnabled();
+            biome.enableVillages = settings.allowVillages();
+        }
+    }
 
-	static void preInit(EnhancedConfiguration config)
-			throws InstantiationException, IllegalAccessException
-	{
-		if (settingsLoaded) return;
+    static void preInit() throws InstantiationException, IllegalAccessException {
+        loadSettings();
+        createBiomes();
+    }
 
-		loadSettings(config);
-		createBiomes();
-	}
+    private boolean enableGeneration = false;
 
-	private boolean	enableGeneration	= false;
+    private boolean enableVillages   = false;
 
-	private boolean	enableVillages		= false;
+    private BiomeGenBase toBiomeGen() {
+        switch (this) {
+            case DESERT:
+                return BiomeGenBase.desert;
+            case EXTREMEHILLS:
+                return BiomeGenBase.extremeHills;
+            case FOREST:
+                return BiomeGenBase.forest;
+            case JUNGLE:
+                return BiomeGenBase.jungle;
+            case SWAMPLAND:
+                return BiomeGenBase.swampland;
+            case TAIGA:
+                return BiomeGenBase.taiga;
+            default:
+                return BiomeGenBase.plains;
+        }
+    }
 
-	private String enabledKey() {
-		return "vanilla." + toString() + ".enablegeneration";
-	}
-
-	private BiomeGenBase toBiomeGen() {
-		switch (this) {
-			case DESERT:
-				return BiomeGenBase.desert;
-			case EXTREMEHILLS:
-				return BiomeGenBase.extremeHills;
-			case FOREST:
-				return BiomeGenBase.forest;
-			case JUNGLE:
-				return BiomeGenBase.jungle;
-			case SWAMPLAND:
-				return BiomeGenBase.swampland;
-			case TAIGA:
-				return BiomeGenBase.taiga;
-			default:
-				return BiomeGenBase.plains;
-		}
-	}
-
-	@Override
-	public String toString() {
-		return super.toString().toLowerCase(Locale.US);
-	}
-
-	private String villagesKey() {
-		return "vanilla." + toString() + ".allowvillages";
-	}
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

@@ -6,18 +6,14 @@
 
 package extrabiomes.module.fabrica.block;
 
-import java.util.Locale;
-
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockHalfSlab;
 import net.minecraft.src.ItemStack;
-import net.minecraftforge.common.Property;
 
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
-import extrabiomes.core.utility.EnhancedConfiguration;
 import extrabiomes.events.BlockActiveEvent.AcaciaStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FirStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.PlankActiveEvent;
@@ -27,342 +23,315 @@ import extrabiomes.events.BlockActiveEvent.RedRockSlabActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedwoodStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WallActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WoodSlabActiveEvent;
+import extrabiomes.lib.BlockSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
 
 public enum BlockManager {
-	PLANKS {
-		@Override
-		protected void create() {
-			Stuff.planks = Optional.of(new BlockCustomWood(blockID));
-		}
+    PLANKS {
+        @Override
+        protected void create() {
+            Stuff.planks = Optional.of(new BlockCustomWood(getSettings().getID()));
+        }
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.planks.get();
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.PLANKS;
+        }
 
-			thisBlock.setBlockName("extrabiomes.planks");
-			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-			proxy.registerBlock(thisBlock,
-					extrabiomes.utility.MultiItemBlock.class);
-			for (final BlockCustomWood.BlockType type : BlockCustomWood.BlockType
-					.values())
-				FacadeHelper.addBuildcraftFacade(thisBlock.blockID,
-						type.metadata());
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.planks.get();
 
-			proxy.registerOre("plankWood", new ItemStack(thisBlock, 1,
-					-1));
+            thisBlock.setBlockName("extrabiomes.planks");
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class);
+            for (final BlockCustomWood.BlockType type : BlockCustomWood.BlockType.values())
+                FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
 
-			Extrabiomes.postInitEvent(new PlankActiveEvent(thisBlock));
-		}
-	},
-	WOODSLAB {
-		@Override
-		protected void create() {
-			Stuff.slabWood = Optional.of(new BlockCustomWoodSlab(
-					blockID, false));
-		}
+            proxy.registerOre("plankWood", new ItemStack(thisBlock, 1, -1));
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.slabWood.get();
+            Extrabiomes.postInitEvent(new PlankActiveEvent(thisBlock));
+        }
+    },
+    WOODSLAB {
+        @Override
+        protected void create() {
+            Stuff.slabWood = Optional.of(new BlockCustomWoodSlab(getSettings().getID(), false));
+        }
 
-			thisBlock.setBlockName("extrabiomes.woodslab");
-			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.WOODSLAB;
+        }
 
-			proxy.registerFuelHandler(new FuelHandlerWoodSlabs(
-					thisBlock.blockID));
-			Extrabiomes
-					.postInitEvent(new WoodSlabActiveEvent(thisBlock));
-		}
-	},
-	DOUBLEWOODSLAB {
-		@Override
-		protected void create() {
-			Stuff.slabWoodDouble = Optional.of(new BlockCustomWoodSlab(
-					blockID, true));
-		}
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.slabWood.get();
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.slabWoodDouble.get();
+            thisBlock.setBlockName("extrabiomes.woodslab");
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 
-			thisBlock.setBlockName("extrabiomes.woodslab");
-			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-			ItemWoodSlab.setSlabs((BlockHalfSlab) Stuff.slabWood.get(),
-					(BlockHalfSlab) Stuff.slabWoodDouble.get());
-			proxy.registerBlock(Stuff.slabWood.get(),
-					extrabiomes.module.fabrica.block.ItemWoodSlab.class);
-			proxy.registerBlock(thisBlock,
-					extrabiomes.module.fabrica.block.ItemWoodSlab.class);
+            proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisBlock.blockID));
+            Extrabiomes.postInitEvent(new WoodSlabActiveEvent(thisBlock));
+        }
+    },
+    DOUBLEWOODSLAB {
+        @Override
+        protected void create() {
+            Stuff.slabWoodDouble = Optional
+                    .of(new BlockCustomWoodSlab(getSettings().getID(), true));
+        }
 
-			proxy.registerOre("slabWood",
-					new ItemStack(Stuff.slabWood.get(), 1, -1));
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.DOUBLEWOODSLAB;
+        }
 
-			new ItemStack(Stuff.slabWood.get(), 1,
-					BlockCustomWoodSlab.BlockType.FIR.metadata());
-			new ItemStack(Stuff.slabWood.get(), 1,
-					BlockCustomWoodSlab.BlockType.REDWOOD.metadata());
-			new ItemStack(Stuff.slabWood.get(), 1,
-					BlockCustomWoodSlab.BlockType.ACACIA.metadata());
-		}
-	},
-	REDWOODSTAIRS {
-		@Override
-		protected void create() {
-			Stuff.stairsRedwood = Optional.of(new BlockWoodStairs(
-					blockID, Stuff.planks.get(),
-					BlockCustomWood.BlockType.REDWOOD.metadata()));
-		}
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.slabWoodDouble.get();
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.stairsRedwood.get();
+            thisBlock.setBlockName("extrabiomes.woodslab");
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            ItemWoodSlab.setSlabs((BlockHalfSlab) Stuff.slabWood.get(),
+                    (BlockHalfSlab) Stuff.slabWoodDouble.get());
+            proxy.registerBlock(Stuff.slabWood.get(),
+                    extrabiomes.module.fabrica.block.ItemWoodSlab.class);
+            proxy.registerBlock(thisBlock, extrabiomes.module.fabrica.block.ItemWoodSlab.class);
 
-			thisBlock.setBlockName("extrabiomes.stairs.redwood");
-			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-			proxy.registerBlock(thisBlock);
+            proxy.registerOre("slabWood", new ItemStack(Stuff.slabWood.get(), 1, -1));
 
-			proxy.registerOre("stairWood", thisBlock);
-			Extrabiomes.postInitEvent(new RedwoodStairsActiveEvent(
-					thisBlock));
-		}
-	},
-	FIRSTAIRS {
-		@Override
-		protected void create() {
-			Stuff.stairsFir = Optional.of(new BlockWoodStairs(blockID,
-					Stuff.planks.get(), BlockCustomWood.BlockType.FIR
-							.metadata()));
-		}
+            new ItemStack(Stuff.slabWood.get(), 1, BlockCustomWoodSlab.BlockType.FIR.metadata());
+            new ItemStack(Stuff.slabWood.get(), 1, BlockCustomWoodSlab.BlockType.REDWOOD.metadata());
+            new ItemStack(Stuff.slabWood.get(), 1, BlockCustomWoodSlab.BlockType.ACACIA.metadata());
+        }
+    },
+    REDWOODSTAIRS {
+        @Override
+        protected void create() {
+            Stuff.stairsRedwood = Optional.of(new BlockWoodStairs(getSettings().getID(),
+                    Stuff.planks.get(), BlockCustomWood.BlockType.REDWOOD.metadata()));
+        }
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.stairsFir.get();
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.REDWOODSTAIRS;
+        }
 
-			thisBlock.setBlockName("extrabiomes.stairs.fir");
-			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-			proxy.registerBlock(thisBlock);
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.stairsRedwood.get();
 
-			proxy.registerOre("stairWood", thisBlock);
-			Extrabiomes.postInitEvent(new FirStairsActiveEvent(
-					thisBlock));
-		}
-	},
-	ACACIASTAIRS {
-		@Override
-		protected void create() {
-			Stuff.stairsAcacia = Optional.of(new BlockWoodStairs(
-					blockID, Stuff.planks.get(),
-					BlockCustomWood.BlockType.ACACIA.metadata()));
-		}
+            thisBlock.setBlockName("extrabiomes.stairs.redwood");
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock);
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.stairsAcacia.get();
+            proxy.registerOre("stairWood", thisBlock);
+            Extrabiomes.postInitEvent(new RedwoodStairsActiveEvent(thisBlock));
+        }
+    },
+    FIRSTAIRS {
+        @Override
+        protected void create() {
+            Stuff.stairsFir = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks
+                    .get(), BlockCustomWood.BlockType.FIR.metadata()));
+        }
 
-			thisBlock.setBlockName("extrabiomes.stairs.acacia");
-			proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-			proxy.registerBlock(thisBlock);
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.FIRSTAIRS;
+        }
 
-			proxy.registerOre("stairWood", thisBlock);
-			Extrabiomes.postInitEvent(new AcaciaStairsActiveEvent(
-					thisBlock));
-		}
-	},
-	REDROCKSLAB {
-		@Override
-		protected void create() {
-			Stuff.slabRedRock = Optional.of(new BlockRedRockSlab(
-					blockID, false));
-		}
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.stairsFir.get();
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.slabRedRock.get();
+            thisBlock.setBlockName("extrabiomes.stairs.fir");
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock);
 
-			thisBlock.setBlockName("extrabiomes.redrockslab");
-			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+            proxy.registerOre("stairWood", thisBlock);
+            Extrabiomes.postInitEvent(new FirStairsActiveEvent(thisBlock));
+        }
+    },
+    ACACIASTAIRS {
+        @Override
+        protected void create() {
+            Stuff.stairsAcacia = Optional.of(new BlockWoodStairs(getSettings().getID(),
+                    Stuff.planks.get(), BlockCustomWood.BlockType.ACACIA.metadata()));
+        }
 
-			Extrabiomes.postInitEvent(new RedRockSlabActiveEvent(
-					thisBlock));
-		}
-	},
-	DOUBLEREDROCKSLAB {
-		@Override
-		protected void create() {
-			Stuff.slabRedRockDouble = Optional.of(new BlockRedRockSlab(
-					blockID, true));
-		}
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.ACACIASTAIRS;
+        }
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.slabRedRockDouble.get();
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.stairsAcacia.get();
 
-			thisBlock.setBlockName("extrabiomes.redrockslab");
-			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
-			ItemRedRockSlab.setSlabs(
-					(BlockHalfSlab) Stuff.slabRedRock.get(),
-					(BlockHalfSlab) Stuff.slabRedRockDouble.get());
-			proxy.registerBlock(
-					Stuff.slabRedRock.get(),
-					extrabiomes.module.fabrica.block.ItemRedRockSlab.class);
-			proxy.registerBlock(
-					thisBlock,
-					extrabiomes.module.fabrica.block.ItemRedRockSlab.class);
-		}
-	},
-	REDCOBBLESTAIRS {
-		@Override
-		protected void create() {
-			Stuff.stairsRedCobble = Optional.of(new BlockCustomStairs(
-					blockID, Stuff.redRock.get(),
-					BlockRedRock.BlockType.RED_COBBLE.metadata()));
-		}
+            thisBlock.setBlockName("extrabiomes.stairs.acacia");
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock);
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.stairsRedCobble.get();
+            proxy.registerOre("stairWood", thisBlock);
+            Extrabiomes.postInitEvent(new AcaciaStairsActiveEvent(thisBlock));
+        }
+    },
+    REDROCKSLAB {
+        @Override
+        protected void create() {
+            Stuff.slabRedRock = Optional.of(new BlockRedRockSlab(getSettings().getID(), false));
+        }
 
-			thisBlock.setBlockName("extrabiomes.stairs.redcobble");
-			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
-			proxy.registerBlock(thisBlock);
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.REDROCKSLAB;
+        }
 
-			Extrabiomes.postInitEvent(new RedCobbleStairsActiveEvent(
-					thisBlock));
-		}
-	},
-	REDROCKBRICKSTAIRS {
-		@Override
-		protected void create() {
-			Stuff.stairsRedRockBrick = Optional
-					.of(new BlockCustomStairs(blockID, Stuff.redRock
-							.get(),
-							BlockRedRock.BlockType.RED_ROCK_BRICK
-									.metadata()));
-		}
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.slabRedRock.get();
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.stairsRedRockBrick.get();
+            thisBlock.setBlockName("extrabiomes.redrockslab");
+            proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
 
-			thisBlock.setBlockName("extrabiomes.stairs.redrockbrick");
-			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
-			proxy.registerBlock(thisBlock);
+            Extrabiomes.postInitEvent(new RedRockSlabActiveEvent(thisBlock));
+        }
+    },
+    DOUBLEREDROCKSLAB {
+        @Override
+        protected void create() {
+            Stuff.slabRedRockDouble = Optional
+                    .of(new BlockRedRockSlab(getSettings().getID(), true));
+        }
 
-			Extrabiomes
-					.postInitEvent(new RedRockBrickStairsActiveEvent(
-							thisBlock));
-		}
-	},
-	WALL {
-		@Override
-		protected void create() {
-			Stuff.wall = Optional.of(new BlockCustomWall(blockID));
-		}
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.DOUBLEREDROCKSLAB;
+        }
 
-		@Override
-		protected void prepare() {
-			final CommonProxy proxy = Extrabiomes.proxy;
-			final Block thisBlock = Stuff.wall.get();
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.slabRedRockDouble.get();
 
-			thisBlock.setBlockName("extrabiomes.wall");
-			proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
-			proxy.registerBlock(thisBlock,
-					extrabiomes.utility.MultiItemBlock.class);
+            thisBlock.setBlockName("extrabiomes.redrockslab");
+            proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+            ItemRedRockSlab.setSlabs((BlockHalfSlab) Stuff.slabRedRock.get(),
+                    (BlockHalfSlab) Stuff.slabRedRockDouble.get());
+            proxy.registerBlock(Stuff.slabRedRock.get(),
+                    extrabiomes.module.fabrica.block.ItemRedRockSlab.class);
+            proxy.registerBlock(thisBlock, extrabiomes.module.fabrica.block.ItemRedRockSlab.class);
+        }
+    },
+    REDCOBBLESTAIRS {
+        @Override
+        protected void create() {
+            Stuff.stairsRedCobble = Optional.of(new BlockCustomStairs(getSettings().getID(),
+                    Stuff.redRock.get(), BlockRedRock.BlockType.RED_COBBLE.metadata()));
+        }
 
-			Extrabiomes.postInitEvent(new WallActiveEvent(thisBlock));
-		}
-	};
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.REDCOBBLESTAIRS;
+        }
 
-	private static boolean	settingsLoaded	= false;
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.stairsRedCobble.get();
 
-	private static void createBlocks() throws Exception {
-		for (final BlockManager block : BlockManager.values())
-			if (block.blockID > 0) {
-				try {
-					block.create();
-				} catch (final Exception e) {
-					throw e;
-				}
-				block.blockCreated = true;
-			}
-	}
+            thisBlock.setBlockName("extrabiomes.stairs.redcobble");
+            proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+            proxy.registerBlock(thisBlock);
 
-	public static void init() throws InstantiationException,
-			IllegalAccessException
-	{
-		for (final BlockManager block : values())
-			if (block.blockCreated) block.prepare();
-	}
+            Extrabiomes.postInitEvent(new RedCobbleStairsActiveEvent(thisBlock));
+        }
+    },
+    REDROCKBRICKSTAIRS {
+        @Override
+        protected void create() {
+            Stuff.stairsRedRockBrick = Optional.of(new BlockCustomStairs(getSettings().getID(),
+                    Stuff.redRock.get(), BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()));
+        }
 
-	private static void loadSettings(EnhancedConfiguration config) {
-		settingsLoaded = true;
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.REDROCKBRICKSTAIRS;
+        }
 
-		// Load config settings
-		for (final BlockManager cube : BlockManager.values()) {
-			final Property property = config.getBlock(cube.idKey(),
-					Extrabiomes.getNextDefaultBlockID());
-			cube.blockID = property.getInt(0);
-		}
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.stairsRedRockBrick.get();
 
-		if (PLANKS.blockID == 0) {
-			WOODSLAB.blockID = 0;
-			FIRSTAIRS.blockID = 0;
-			REDWOODSTAIRS.blockID = 0;
-			ACACIASTAIRS.blockID = 0;
-		}
+            thisBlock.setBlockName("extrabiomes.stairs.redrockbrick");
+            proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+            proxy.registerBlock(thisBlock);
 
-		if (WOODSLAB.blockID == 0 || DOUBLEWOODSLAB.blockID == 0) {
-			WOODSLAB.blockID = 0;
-			DOUBLEWOODSLAB.blockID = 0;
-		}
+            Extrabiomes.postInitEvent(new RedRockBrickStairsActiveEvent(thisBlock));
+        }
+    },
+    WALL {
+        @Override
+        protected void create() {
+            Stuff.wall = Optional.of(new BlockCustomWall(getSettings().getID()));
+        }
 
-		if (!Stuff.redRock.isPresent()) {
-			REDROCKSLAB.blockID = 0;
-			WALL.blockID = 0;
-		}
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.WALL;
+        }
 
-		if (REDROCKSLAB.blockID == 0 || DOUBLEREDROCKSLAB.blockID == 0)
-		{
-			REDROCKSLAB.blockID = 0;
-			DOUBLEREDROCKSLAB.blockID = 0;
-		}
-	}
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.wall.get();
 
-	public static void preInit(EnhancedConfiguration config)
-			throws Exception
-	{
-		if (settingsLoaded) return;
+            thisBlock.setBlockName("extrabiomes.wall");
+            proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
+            proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class);
 
-		loadSettings(config);
-		createBlocks();
-	}
+            Extrabiomes.postInitEvent(new WallActiveEvent(thisBlock));
+        }
+    };
 
-	protected int	blockID			= 0;
-	private boolean	blockCreated	= false;
+    private static void createBlocks() throws Exception {
+        for (final BlockManager block : BlockManager.values())
+            if (block.getSettings().getID() > 0) {
+                try {
+                    block.create();
+                } catch (final Exception e) {
+                    throw e;
+                }
+                block.blockCreated = true;
+            }
+    }
 
-	protected abstract void create();
+    public static void init() throws InstantiationException, IllegalAccessException {
+        for (final BlockManager block : values())
+            if (block.blockCreated) block.prepare();
+    }
 
-	private String idKey() {
-		return toString() + ".id";
-	}
+    public static void preInit() throws Exception {
+        createBlocks();
+    }
 
-	protected abstract void prepare();
+    private boolean blockCreated = false;
 
-	@Override
-	public String toString() {
-		return super.toString().toLowerCase(Locale.US);
-	}
+    protected abstract void create();
+
+    protected abstract BlockSettings getSettings();
+
+    protected abstract void prepare();
 }
