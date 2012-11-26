@@ -47,7 +47,7 @@ import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 
-public class BiomeManagerImpl extends BiomeManager {
+public class BiomeHandler extends BiomeManager {
 
 	private static final WorldGenerator	ACACIA_TREE_GEN		  = new WorldGenAcacia(false);
 	private static final WorldGenerator	ALT_TAIGA_GEN		  = new WorldGenTaiga2(false);
@@ -366,7 +366,7 @@ public class BiomeManagerImpl extends BiomeManager {
 
 	boolean	preInitDone	= false;
 
-	public BiomeManagerImpl() {
+	public BiomeHandler() {
 		instance = Optional.of(this);
 	}
 

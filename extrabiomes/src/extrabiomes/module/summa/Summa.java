@@ -20,7 +20,7 @@ import extrabiomes.api.Stuff;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.lib.ItemSettings;
-import extrabiomes.module.summa.biome.BiomeManagerImpl;
+import extrabiomes.module.summa.biome.BiomeHandler;
 import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.tool.LogTurner;
 import extrabiomes.module.summa.worldgen.LegendOakGenerator;
@@ -31,7 +31,7 @@ import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
 
 public class Summa {
 
-    private static BiomeManagerImpl biomeManager = new BiomeManagerImpl();
+    private static BiomeHandler biomeManager = new BiomeHandler();
 
     private static int              logTurnerID  = 0;
 

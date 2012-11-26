@@ -29,7 +29,7 @@ import extrabiomes.events.BlockActiveEvent.LogActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
-import extrabiomes.module.summa.biome.BiomeManagerImpl;
+import extrabiomes.module.summa.biome.BiomeHandler;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.module.summa.worldgen.LeafPileGenerator;
@@ -528,7 +528,7 @@ public enum BlockManager {
         final Collection<BiomeGenBase> biomes = new ArrayList();
         if (BiomeManager.mountainridge.isPresent()) biomes.add(BiomeManager.mountainridge.get());
         if (BiomeManager.wasteland.isPresent()) biomes.add(BiomeManager.wasteland.get());
-        BiomeManagerImpl.disableDefaultGrassforBiomes(biomes);
+        BiomeHandler.disableDefaultGrassforBiomes(biomes);
     }
 
     private boolean blockCreated = false;
