@@ -24,7 +24,7 @@ import extrabiomes.api.DiscoverWorldTypesEvent;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 
-enum Biome {
+public enum Biome {
     ALPINE(BiomeAlpine.class, BiomeSettings.ALPINE),
     AUTUMNWOODS(BiomeAutumnWoods.class, BiomeSettings.AUTUMNWOODS),
     BIRCHFOREST(BiomeBirchForest.class, BiomeSettings.BIRCHFOREST),
@@ -91,7 +91,7 @@ enum Biome {
         }
     }
 
-    static Collection<BiomeGenBase> getActive() {
+    public static Collection<BiomeGenBase> getActive() {
         if (!activeBiomes.isPresent()) {
             activeBiomes = Optional.of(new ArrayList<BiomeGenBase>(Biome.values().length));
             for (final Biome biome : Biome.values())
@@ -100,7 +100,7 @@ enum Biome {
         return ImmutableSet.copyOf(activeBiomes.get());
     }
 
-    static void preInit() throws InstantiationException, IllegalAccessException {
+    public static void preInit() throws InstantiationException, IllegalAccessException {
         createBiomes();
     }
 
@@ -113,7 +113,7 @@ enum Biome {
         this.settings = settings;
     }
 
-    Optional<? extends BiomeGenBase> getBiome() {
+    public Optional<? extends BiomeGenBase> getBiome() {
         return biome;
     }
 

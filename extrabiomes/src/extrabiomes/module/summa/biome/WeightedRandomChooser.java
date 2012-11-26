@@ -13,10 +13,10 @@ import net.minecraft.src.WeightedRandomItem;
 
 import com.google.common.base.Optional;
 
-enum WeightedRandomChooser {
+public enum WeightedRandomChooser {
 	INSTANCE;
 
-	static <T extends WeightedRandomItem> Optional<T> getRandomItem(
+	public static <T extends WeightedRandomItem> Optional<T> getRandomItem(
 			Random rand, Collection<T> collection)
 	{
 		return getRandomItem(rand, collection,
@@ -38,7 +38,7 @@ enum WeightedRandomChooser {
 		return Optional.absent();
 	}
 
-	static int getTotalWeight(
+	public static int getTotalWeight(
 			Collection<? extends WeightedRandomItem> collection)
 	{
 		int totalWeight = 0;

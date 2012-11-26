@@ -9,16 +9,16 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.src.WeightedRandomItem;
 import net.minecraft.src.WorldGenerator;
 
-class WeightedWorldGenerator extends WeightedRandomItem {
+public class WeightedWorldGenerator extends WeightedRandomItem {
 
 	private final WorldGenerator	worldGen;
 
-	WeightedWorldGenerator(WorldGenerator worldGen, int weight) {
+	public WeightedWorldGenerator(WorldGenerator worldGen, int weight) {
 		super(weight);
 		this.worldGen = worldGen;
 	}
 
-	WorldGenerator getWorldGen() {
+	public WorldGenerator getWorldGen() {
 		return worldGen;
 	}
 

@@ -13,7 +13,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 
-enum VanillaBiome {
+public enum VanillaBiome {
     DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA;
 
     private static void createBiomes() throws InstantiationException, IllegalAccessException {
@@ -61,7 +61,7 @@ enum VanillaBiome {
         }
     }
 
-    static void preInit() throws InstantiationException, IllegalAccessException {
+    public static void preInit() throws InstantiationException, IllegalAccessException {
         loadSettings();
         createBiomes();
     }
