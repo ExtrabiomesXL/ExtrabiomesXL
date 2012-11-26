@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 import com.google.common.base.Optional;
 
-import cpw.mods.fml.common.FMLLog;
+import extrabiomes.Extrabiomes;
 import extrabiomes.lib.Reference;
 
 /**
@@ -188,7 +188,7 @@ public enum LogHelper {
         if (logger.isPresent()) return;
 
         logger = Optional.of(Logger.getLogger(Reference.MOD_ID));
-        logger.get().setParent(FMLLog.getLogger());
+        logger.get().setParent(Extrabiomes.proxy.getFMLLogger());
     }
 
     private void log(Level level, String format, Object... data) {

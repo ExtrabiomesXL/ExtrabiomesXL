@@ -10,6 +10,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
@@ -29,6 +30,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import com.google.common.base.Optional;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Loader;
@@ -61,6 +63,10 @@ public class CommonProxy {
 
     public int findGlobalUniqueEntityId() {
         return EntityRegistry.findGlobalUniqueEntityId();
+    }
+
+    public Logger getFMLLogger() {
+        return FMLLog.getLogger();
     }
 
     public Optional<ItemStack> getGrassSeed(World world) {
