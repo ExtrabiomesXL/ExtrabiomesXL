@@ -8,25 +8,25 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeMountainRidge extends ExtrabiomeGenBase {
 
-	public BiomeMountainRidge() {
-		super(Biome.MOUNTAINRIDGE.getBiomeID());
+    public BiomeMountainRidge() {
+        super(BiomeSettings.MOUNTAINRIDGE.getID());
 
-		setColor(0xC4722F);
-		setBiomeName("Mountain Ridge");
-		temperature = BiomeGenBase.desert.temperature;
-		rainfall = BiomeGenBase.desert.rainfall;
-		minHeight = 1.7F;
-		maxHeight = 1.7F;
-		setDisableRain();
-		spawnableCreatureList.clear();
-	}
+        setColor(0xC4722F);
+        setBiomeName("Mountain Ridge");
+        temperature = BiomeGenBase.desert.temperature;
+        rainfall = BiomeGenBase.desert.rainfall;
+        minHeight = 1.7F;
+        maxHeight = 1.7F;
+        setDisableRain();
+        spawnableCreatureList.clear();
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
-				.grassPerChunk(12).build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(0).grassPerChunk(12).build();
+    }
 }

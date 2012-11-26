@@ -11,27 +11,26 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.EntityChicken;
 import net.minecraft.src.EntityOcelot;
 import net.minecraft.src.SpawnListEntry;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeExtremeJungle extends ExtrabiomeGenBase {
 
-	public BiomeExtremeJungle() {
-		super(Biome.EXTREMEJUNGLE.getBiomeID());
-		setColor(0x2c4205);
-		setBiomeName("Extreme Jungle");
-		temperature = BiomeGenBase.jungle.temperature;
-		rainfall = BiomeGenBase.jungle.rainfall;
-		minHeight = 2.1F;
-		maxHeight = 2.3F;
+    public BiomeExtremeJungle() {
+        super(BiomeSettings.EXTREMEJUNGLE.getID());
+        setColor(0x2c4205);
+        setBiomeName("Extreme Jungle");
+        temperature = BiomeGenBase.jungle.temperature;
+        rainfall = BiomeGenBase.jungle.rainfall;
+        minHeight = 2.1F;
+        maxHeight = 2.3F;
 
-		spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class,
-				2, 1, 1));
-		spawnableCreatureList.add(new SpawnListEntry(
-				EntityChicken.class, 10, 4, 4));
-	}
+        spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));
+        spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(50)
-				.grassPerChunk(25).flowersPerChunk(4).build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(50).grassPerChunk(25)
+                .flowersPerChunk(4).build();
+    }
 }

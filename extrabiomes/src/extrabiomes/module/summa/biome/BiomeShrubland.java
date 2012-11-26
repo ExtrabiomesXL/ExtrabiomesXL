@@ -7,23 +7,24 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeShrubland extends ExtrabiomeGenBase {
 
-	public BiomeShrubland() {
-		super(Biome.SHRUBLAND.getBiomeID());
+    public BiomeShrubland() {
+        super(BiomeSettings.SHRUBLAND.getID());
 
-		setColor(0x51B57D);
-		setBiomeName("Shrubland");
-		temperature = 0.4F;
-		rainfall = 0.6F;
-		minHeight = 0.1F;
-		maxHeight = 0.3F;
-	}
+        setColor(0x51B57D);
+        setBiomeName("Shrubland");
+        temperature = 0.4F;
+        rainfall = 0.6F;
+        minHeight = 0.1F;
+        maxHeight = 0.3F;
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
-				.flowersPerChunk(3).grassPerChunk(1).build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(0).flowersPerChunk(3)
+                .grassPerChunk(1).build();
+    }
 }

@@ -8,22 +8,23 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeSavanna extends ExtrabiomeGenBase {
-	public BiomeSavanna() {
-		super(Biome.SAVANNA.getBiomeID());
+    public BiomeSavanna() {
+        super(BiomeSettings.SAVANNA.getID());
 
-		setColor(0xBFA243);
-		setBiomeName("Savanna");
-		temperature = BiomeGenBase.desert.temperature;
-		rainfall = BiomeGenBase.desert.rainfall;
-		minHeight = 0.0F;
-		maxHeight = 0.1F;
-	}
+        setColor(0xBFA243);
+        setBiomeName("Savanna");
+        temperature = BiomeGenBase.desert.temperature;
+        rainfall = BiomeGenBase.desert.rainfall;
+        minHeight = 0.0F;
+        maxHeight = 0.1F;
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
-				.flowersPerChunk(1).grassPerChunk(17).build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(0).flowersPerChunk(1)
+                .grassPerChunk(17).build();
+    }
 }

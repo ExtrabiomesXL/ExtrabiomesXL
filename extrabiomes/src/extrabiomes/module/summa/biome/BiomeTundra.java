@@ -7,25 +7,25 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeTundra extends ExtrabiomeGenBase {
 
-	public BiomeTundra() {
-		super(Biome.TUNDRA.getBiomeID());
+    public BiomeTundra() {
+        super(BiomeSettings.TUNDRA.getID());
 
-		setColor(0x305A85);
-		setBiomeName("Tundra");
-		temperature = 0.0F;
-		rainfall = 0.0F;
-		minHeight = 0.0F;
-		maxHeight = 0.2F;
-	}
+        setColor(0x305A85);
+        setBiomeName("Tundra");
+        temperature = 0.0F;
+        rainfall = 0.0F;
+        minHeight = 0.0F;
+        maxHeight = 0.2F;
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this)
-				.flowersPerChunk(-999).grassPerChunk(-999).sandPerChunk(0, 0)
-				.build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).flowersPerChunk(-999).grassPerChunk(-999)
+                .sandPerChunk(0, 0).build();
+    }
 
 }

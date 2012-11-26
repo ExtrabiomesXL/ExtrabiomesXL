@@ -8,26 +8,25 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.SpawnListEntry;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeBirchForest extends ExtrabiomeGenBase {
 
-	public BiomeBirchForest() {
-		super(Biome.BIRCHFOREST.getBiomeID());
+    public BiomeBirchForest() {
+        super(BiomeSettings.BIRCHFOREST.getID());
 
-		setColor(0x62BF6C);
-		setBiomeName("Birch Forest");
-		temperature = 0.4F;
-		rainfall = 0.7F;
-		minHeight = 0.0F;
-		maxHeight = 0.4F;
+        setColor(0x62BF6C);
+        setBiomeName("Birch Forest");
+        temperature = 0.4F;
+        rainfall = 0.7F;
+        minHeight = 0.0F;
+        maxHeight = 0.4F;
 
-		spawnableCreatureList.add(new SpawnListEntry(
-				net.minecraft.src.EntityWolf.class, 5, 4, 4));
-	}
+        spawnableCreatureList.add(new SpawnListEntry(net.minecraft.src.EntityWolf.class, 5, 4, 4));
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(7)
-				.grassPerChunk(1).build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(7).grassPerChunk(1).build();
+    }
 }

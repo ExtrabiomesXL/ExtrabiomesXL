@@ -8,24 +8,25 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeMarsh extends ExtrabiomeGenBase {
 
-	public BiomeMarsh() {
-		super(Biome.MARSH.getBiomeID());
+    public BiomeMarsh() {
+        super(BiomeSettings.MARSH.getID());
 
-		setColor(255);
-		setBiomeName("Marsh");
-		temperature = BiomeGenBase.swampland.temperature;
-		rainfall = BiomeGenBase.swampland.rainfall;
-		minHeight = -0.4F;
-		maxHeight = 0.0F;
-	}
+        setColor(255);
+        setBiomeName("Marsh");
+        temperature = BiomeGenBase.swampland.temperature;
+        rainfall = BiomeGenBase.swampland.rainfall;
+        minHeight = -0.4F;
+        maxHeight = 0.0F;
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
-				.grassPerChunk(999).reedsPerChunk(10).build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(0).grassPerChunk(999)
+                .reedsPerChunk(10).build();
+    }
 
 }

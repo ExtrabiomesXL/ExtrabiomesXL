@@ -14,39 +14,39 @@ import net.minecraft.src.EntityWolf;
 import net.minecraft.src.SpawnListEntry;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeForestedHills extends ExtrabiomeGenBase {
 
-	public BiomeForestedHills() {
-		super(Biome.FORESTEDHILLS.getBiomeID());
+    public BiomeForestedHills() {
+        super(BiomeSettings.FORESTEDHILLS.getID());
 
-		setBiomeName("Forested Hills");
+        setBiomeName("Forested Hills");
 
-		temperature = BiomeGenBase.forest.temperature - 0.1F;
-		rainfall = BiomeGenBase.forest.rainfall;
-		minHeight = 0.2F;
-		maxHeight = 1.8F;
+        temperature = BiomeGenBase.forest.temperature - 0.1F;
+        rainfall = BiomeGenBase.forest.rainfall;
+        minHeight = 0.2F;
+        maxHeight = 1.8F;
 
-		spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class,
-				5, 4, 4));
-	}
+        spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(7)
-				.flowersPerChunk(1).grassPerChunk(5).build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(7).flowersPerChunk(1)
+                .grassPerChunk(5).build();
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getBiomeFoliageColor() {
-		return ColorizerFoliage.getFoliageColor(0.8F, 1.0F);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getBiomeFoliageColor() {
+        return ColorizerFoliage.getFoliageColor(0.8F, 1.0F);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getBiomeGrassColor() {
-		return ColorizerGrass.getGrassColor(0.8F, 1.0F);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getBiomeGrassColor() {
+        return ColorizerGrass.getGrassColor(0.8F, 1.0F);
+    }
 
 }

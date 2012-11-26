@@ -8,29 +8,29 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeWasteland extends ExtrabiomeGenBase {
 
-	public BiomeWasteland() {
-		super(Biome.WASTELAND.getBiomeID());
+    public BiomeWasteland() {
+        super(BiomeSettings.WASTELAND.getID());
 
-		setColor(0x9E7C41);
-		setBiomeName("Wasteland");
-		temperature = BiomeGenBase.desert.temperature;
-		rainfall = BiomeGenBase.desert.rainfall;
-		minHeight = 0.0F;
-		maxHeight = 0.0F;
-		waterColorMultiplier = 0xF08000;
+        setColor(0x9E7C41);
+        setBiomeName("Wasteland");
+        temperature = BiomeGenBase.desert.temperature;
+        rainfall = BiomeGenBase.desert.rainfall;
+        minHeight = 0.0F;
+        maxHeight = 0.0F;
+        waterColorMultiplier = 0xF08000;
 
-		spawnableCreatureList.clear();
+        spawnableCreatureList.clear();
 
-		setDisableRain();
-	}
+        setDisableRain();
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this)
-				.deadBushPerChunk(3).grassPerChunk(1).build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).deadBushPerChunk(3).grassPerChunk(1).build();
+    }
 
 }

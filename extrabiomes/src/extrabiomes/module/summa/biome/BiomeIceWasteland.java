@@ -8,28 +8,28 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.Block;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeIceWasteland extends ExtrabiomeGenBase {
 
-	public BiomeIceWasteland() {
-		super(Biome.ICEWASTELAND.getBiomeID());
+    public BiomeIceWasteland() {
+        super(BiomeSettings.ICEWASTELAND.getID());
 
-		spawnableCreatureList.clear();
-		topBlock = (byte) Block.blockSnow.blockID;
-		fillerBlock = (byte) Block.blockSnow.blockID;
-		setEnableSnow();
-		setColor(0x7DA0B5);
-		setBiomeName("Ice Wasteland");
-		temperature = 0.0F;
-		rainfall = 0.1F;
-		minHeight = 0.3F;
-		maxHeight = 0.4F;
-	}
+        spawnableCreatureList.clear();
+        topBlock = (byte) Block.blockSnow.blockID;
+        fillerBlock = (byte) Block.blockSnow.blockID;
+        setEnableSnow();
+        setColor(0x7DA0B5);
+        setBiomeName("Ice Wasteland");
+        temperature = 0.0F;
+        rainfall = 0.1F;
+        minHeight = 0.3F;
+        maxHeight = 0.4F;
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(0)
-				.build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(0).build();
+    }
 
 }

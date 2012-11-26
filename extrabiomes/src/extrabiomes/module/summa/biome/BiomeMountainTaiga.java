@@ -10,26 +10,25 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.EntityWolf;
 import net.minecraft.src.SpawnListEntry;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeMountainTaiga extends ExtrabiomeGenBase {
 
-	public BiomeMountainTaiga() {
-		super(Biome.MOUNTAINTAIGA.getBiomeID());
+    public BiomeMountainTaiga() {
+        super(BiomeSettings.MOUNTAINTAIGA.getID());
 
-		setColor(0xB6659);
-		setBiomeName("Mountain Taiga");
-		temperature = 0.0F;
-		rainfall = BiomeGenBase.taigaHills.rainfall;
-		minHeight = 0.3F;
-		maxHeight = 1.2F;
+        setColor(0xB6659);
+        setBiomeName("Mountain Taiga");
+        temperature = 0.0F;
+        rainfall = BiomeGenBase.taigaHills.rainfall;
+        minHeight = 0.3F;
+        maxHeight = 1.2F;
 
-		spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class,
-				8, 4, 4));
-	}
+        spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 8, 4, 4));
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(10)
-				.grassPerChunk(1).build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(10).grassPerChunk(1).build();
+    }
 }

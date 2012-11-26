@@ -7,23 +7,23 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeRedwoodForest extends ExtrabiomeGenBase {
 
-	public BiomeRedwoodForest() {
-		super(Biome.REDWOODFOREST.getBiomeID());
+    public BiomeRedwoodForest() {
+        super(BiomeSettings.REDWOODFOREST.getID());
 
-		setColor(0x0BD626);
-		setBiomeName("Redwood Forest");
-		temperature = 1.1F;
-		rainfall = 1.4F;
-		minHeight = 0.9F;
-		maxHeight = 1.5F;
-	}
+        setColor(0x0BD626);
+        setBiomeName("Redwood Forest");
+        temperature = 1.1F;
+        rainfall = 1.4F;
+        minHeight = 0.9F;
+        maxHeight = 1.5F;
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(17)
-				.build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(17).build();
+    }
 }

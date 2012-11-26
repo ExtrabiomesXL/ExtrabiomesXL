@@ -7,22 +7,22 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.BiomeDecorator;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeRedwoodLush extends ExtrabiomeGenBase {
-	public BiomeRedwoodLush() {
-		super(Biome.REDWOODLUSH.getBiomeID());
+    public BiomeRedwoodLush() {
+        super(BiomeSettings.REDWOODLUSH.getID());
 
-		setColor(0x4AC758);
-		setBiomeName("Lush Redwoods");
-		temperature = 1.1F;
-		rainfall = 1.4F;
-		minHeight = 0.9F;
-		maxHeight = 1.5F;
-	}
+        setColor(0x4AC758);
+        setBiomeName("Lush Redwoods");
+        temperature = 1.1F;
+        rainfall = 1.4F;
+        minHeight = 0.9F;
+        maxHeight = 1.5F;
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(17)
-				.build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(17).build();
+    }
 }

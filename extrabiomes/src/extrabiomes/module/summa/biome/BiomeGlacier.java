@@ -7,21 +7,22 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.src.Block;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeGlacier extends ExtrabiomeGenBase {
 
-	public BiomeGlacier() {
-		super(Biome.GLACIER.getBiomeID());
-		spawnableCreatureList.clear();
-		topBlock = (byte) Block.blockSnow.blockID;
-		fillerBlock = (byte) Block.ice.blockID;
-		setColor(0x77A696);
-		setBiomeName("Glacier");
-		setEnableSnow();
-		temperature = 0.0F;
-		rainfall = 0.0F;
-		minHeight = 1.4F;
-		maxHeight = 2.1F;
-	}
+    public BiomeGlacier() {
+        super(BiomeSettings.GLACIER.getID());
+        spawnableCreatureList.clear();
+        topBlock = (byte) Block.blockSnow.blockID;
+        fillerBlock = (byte) Block.ice.blockID;
+        setColor(0x77A696);
+        setBiomeName("Glacier");
+        setEnableSnow();
+        temperature = 0.0F;
+        rainfall = 0.0F;
+        minHeight = 1.4F;
+        maxHeight = 2.1F;
+    }
 
 }

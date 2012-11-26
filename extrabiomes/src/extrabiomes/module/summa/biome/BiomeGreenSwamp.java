@@ -10,27 +10,26 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.EntitySlime;
 import net.minecraft.src.SpawnListEntry;
+import extrabiomes.lib.BiomeSettings;
 
 class BiomeGreenSwamp extends ExtrabiomeGenBase {
 
-	public BiomeGreenSwamp() {
-		super(Biome.GREENSWAMP.getBiomeID());
+    public BiomeGreenSwamp() {
+        super(BiomeSettings.GREENSWAMP.getID());
 
-		setColor(0x68C474);
-		setBiomeName("Green Swamplands");
-		temperature = BiomeGenBase.swampland.temperature - 0.1F;
-		rainfall = BiomeGenBase.swampland.rainfall;
-		minHeight = -0.2F;
-		maxHeight = 0.1F;
-		spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class,
-				1, 1, 1));
-	}
+        setColor(0x68C474);
+        setBiomeName("Green Swamplands");
+        temperature = BiomeGenBase.swampland.temperature - 0.1F;
+        rainfall = BiomeGenBase.swampland.rainfall;
+        minHeight = -0.2F;
+        maxHeight = 0.1F;
+        spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 1, 1, 1));
+    }
 
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new CustomBiomeDecorator.Builder(this).treesPerChunk(4)
-				.flowersPerChunk(0).deadBushPerChunk(0)
-				.mushroomsPerChunk(8).reedsPerChunk(10).clayPerChunk(1)
-				.waterlilyPerChunk(4).sandPerChunk(0, 0).build();
-	}
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new CustomBiomeDecorator.Builder(this).treesPerChunk(4).flowersPerChunk(0)
+                .deadBushPerChunk(0).mushroomsPerChunk(8).reedsPerChunk(10).clayPerChunk(1)
+                .waterlilyPerChunk(4).sandPerChunk(0, 0).build();
+    }
 }
