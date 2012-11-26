@@ -11,9 +11,6 @@
   <entry key="item.extrabiomes.logturner.name">Stammdreher</entry>
   <entry key="log.message.add.crackedsand">Rissiger Sand und das Ödlandbiom hinzugefügt.</entry>
   <entry key="log.message.add.redrock">Roter Stein und Gebrigskammbiom hinzugefügt.</entry>
-  <entry key="log.message.biome.disabled">Benutzerdefiniertes Biom %s deaktiviert.</entry>
-  <entry key="log.message.biome.village.enabled">Dorfgenerierung für benutzerdefiniertes Biom %s eingeschalten.</entry>
-  <entry key="log.message.config.exception.biomeid">Biom ID %d wird bereits von %s benutzt wenn %s hinzugefügt wird. Bitte korrigiere den Fehler in der Konfiguration.</entry>
   <entry key="log.message.initializing">Initialisieren.</entry>
   <entry key="log.message.load.success">Erfolgreich geladen.</entry>
   <entry key="log.message.plugin.init">Initialisiere %s Plug-In.</entry>

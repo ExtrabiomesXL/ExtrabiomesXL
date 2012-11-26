@@ -15,7 +15,7 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeSnowForest extends ExtrabiomeGenBase {
+public class BiomeSnowForest extends ExtrabiomeGenBase {
 
     public BiomeSnowForest() {
         super(BiomeSettings.SNOWYFOREST.getID());

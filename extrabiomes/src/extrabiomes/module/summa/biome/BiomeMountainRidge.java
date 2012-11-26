@@ -10,7 +10,7 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeMountainRidge extends ExtrabiomeGenBase {
+public class BiomeMountainRidge extends ExtrabiomeGenBase {
 
     public BiomeMountainRidge() {
         super(BiomeSettings.MOUNTAINRIDGE.getID());

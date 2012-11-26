@@ -8,7 +8,6 @@ package extrabiomes.module.summa.block;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Locale;
 
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
@@ -20,9 +19,8 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
-import extrabiomes.core.handler.BiomeHandler;
+import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.core.helper.LogHelper;
-import extrabiomes.core.utility.EnhancedConfiguration;
 import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
@@ -528,7 +526,7 @@ public enum BlockManager {
         final Collection<BiomeGenBase> biomes = new ArrayList();
         if (BiomeManager.mountainridge.isPresent()) biomes.add(BiomeManager.mountainridge.get());
         if (BiomeManager.wasteland.isPresent()) biomes.add(BiomeManager.wasteland.get());
-        BiomeHandler.disableDefaultGrassforBiomes(biomes);
+        BiomeManagerImpl.disableDefaultGrassforBiomes(biomes);
     }
 
     private boolean blockCreated = false;

@@ -17,10 +17,12 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
+import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.core.handler.BiomeHandler;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.lib.ItemSettings;
+import extrabiomes.module.summa.biome.VanillaBiome;
 import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.tool.LogTurner;
 import extrabiomes.module.summa.worldgen.LegendOakGenerator;
@@ -31,7 +33,7 @@ import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
 
 public class Summa {
 
-    private static BiomeHandler biomeManager = new BiomeHandler();
+    private static BiomeManagerImpl biomeManager = new BiomeManagerImpl();
 
     private static int              logTurnerID  = 0;
 
@@ -54,7 +56,8 @@ public class Summa {
 
         registerWorldGenerators();
 
-        biomeManager.init();
+        BiomeHandler.enableBiomes();
+        biomeManager.buildWeightedFloraLists();
         BlockManager.init();
 
         if (logTurnerID > 0) {
@@ -70,7 +73,11 @@ public class Summa {
 
     @ForgeSubscribe(priority = EventPriority.HIGHEST)
     public void preInit(ModulePreInitEvent event) throws Exception {
-        biomeManager.preInit();
+        BiomeHandler.init();
+        // TODO
+        VanillaBiome.preInit();
+
+        BiomeManagerImpl.populateAPIBiomes();
         BlockManager.preInit();
 
         logTurnerID = ItemSettings.LOGTURNER.getID();

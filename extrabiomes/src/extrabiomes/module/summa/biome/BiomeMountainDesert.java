@@ -11,7 +11,7 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeMountainDesert extends ExtrabiomeGenBase {
+public class BiomeMountainDesert extends ExtrabiomeGenBase {
 
     public BiomeMountainDesert() {
         super(BiomeSettings.MOUNTAINDESERT.getID());

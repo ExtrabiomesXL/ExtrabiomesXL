@@ -13,7 +13,7 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeMeadow extends ExtrabiomeGenBase {
+public class BiomeMeadow extends ExtrabiomeGenBase {
 
     public BiomeMeadow() {
         super(BiomeSettings.MEADOW.getID());

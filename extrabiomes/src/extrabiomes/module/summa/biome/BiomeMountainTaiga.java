@@ -12,7 +12,7 @@ import net.minecraft.src.EntityWolf;
 import net.minecraft.src.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeMountainTaiga extends ExtrabiomeGenBase {
+public class BiomeMountainTaiga extends ExtrabiomeGenBase {
 
     public BiomeMountainTaiga() {
         super(BiomeSettings.MOUNTAINTAIGA.getID());

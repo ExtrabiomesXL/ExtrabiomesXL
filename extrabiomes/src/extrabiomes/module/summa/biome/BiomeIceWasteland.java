@@ -10,7 +10,7 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.Block;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeIceWasteland extends ExtrabiomeGenBase {
+public class BiomeIceWasteland extends ExtrabiomeGenBase {
 
     public BiomeIceWasteland() {
         super(BiomeSettings.ICEWASTELAND.getID());

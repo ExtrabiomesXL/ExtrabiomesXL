@@ -14,7 +14,7 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeSnowRainforest extends BiomeTemporateRainforest {
+public class BiomeSnowRainforest extends BiomeTemporateRainforest {
 
     public BiomeSnowRainforest() {
         super(BiomeSettings.SNOWYRAINFOREST.getID());

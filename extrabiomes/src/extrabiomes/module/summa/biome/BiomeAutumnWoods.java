@@ -16,7 +16,7 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeAutumnWoods extends ExtrabiomeGenBase {
+public class BiomeAutumnWoods extends ExtrabiomeGenBase {
 
     public BiomeAutumnWoods() {
         super(BiomeSettings.AUTUMNWOODS.getID());

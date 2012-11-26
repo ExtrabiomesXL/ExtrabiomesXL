@@ -12,7 +12,7 @@ import net.minecraft.src.EntitySlime;
 import net.minecraft.src.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeGreenSwamp extends ExtrabiomeGenBase {
+public class BiomeGreenSwamp extends ExtrabiomeGenBase {
 
     public BiomeGreenSwamp() {
         super(BiomeSettings.GREENSWAMP.getID());

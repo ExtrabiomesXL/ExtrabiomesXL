@@ -9,7 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.src.Block;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeGlacier extends ExtrabiomeGenBase {
+public class BiomeGlacier extends ExtrabiomeGenBase {
 
     public BiomeGlacier() {
         super(BiomeSettings.GLACIER.getID());

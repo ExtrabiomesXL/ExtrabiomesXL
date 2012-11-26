@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import java.util.Locale;
 
 import net.minecraft.src.BiomeGenBase;
+import net.minecraftforge.common.BiomeManager;
 import extrabiomes.Extrabiomes;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.lib.BiomeSettings;
@@ -24,7 +25,7 @@ public enum VanillaBiome {
                 LogHelper.fine("Vanilla biome %s disabled.", biome.toString());
             }
 
-            VillageSpawnHelper.setVillageSpawn(biomeGen, biome.enableVillages);
+            BiomeManager.addVillageBiome(biomeGen, biome.enableVillages);
             LogHelper.fine("Village spawning %s for vanilla biome %s.",
                     biome.enableVillages ? "enabled" : "disabled", biome.toString());
         }

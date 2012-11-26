@@ -10,7 +10,7 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeWasteland extends ExtrabiomeGenBase {
+public class BiomeWasteland extends ExtrabiomeGenBase {
 
     public BiomeWasteland() {
         super(BiomeSettings.WASTELAND.getID());

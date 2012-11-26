@@ -12,7 +12,7 @@ import net.minecraft.src.EntityWolf;
 import net.minecraft.src.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeAlpine extends ExtrabiomeGenBase {
+public class BiomeAlpine extends ExtrabiomeGenBase {
 
     public BiomeAlpine() {
         super(BiomeSettings.ALPINE.getID());

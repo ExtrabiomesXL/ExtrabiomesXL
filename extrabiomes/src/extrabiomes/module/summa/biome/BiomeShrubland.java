@@ -9,7 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.src.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeShrubland extends ExtrabiomeGenBase {
+public class BiomeShrubland extends ExtrabiomeGenBase {
 
     public BiomeShrubland() {
         super(BiomeSettings.SHRUBLAND.getID());

@@ -10,7 +10,7 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeTemporateRainforest extends ExtrabiomeGenBase {
+public class BiomeTemporateRainforest extends ExtrabiomeGenBase {
 
     public BiomeTemporateRainforest() {
         this(BiomeSettings.TEMPORATERAINFOREST.getID());

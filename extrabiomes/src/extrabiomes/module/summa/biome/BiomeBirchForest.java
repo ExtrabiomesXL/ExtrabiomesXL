@@ -10,7 +10,7 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeBirchForest extends ExtrabiomeGenBase {
+public class BiomeBirchForest extends ExtrabiomeGenBase {
 
     public BiomeBirchForest() {
         super(BiomeSettings.BIRCHFOREST.getID());

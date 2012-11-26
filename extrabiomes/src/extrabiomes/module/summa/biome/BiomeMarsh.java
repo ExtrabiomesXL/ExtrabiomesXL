@@ -10,7 +10,7 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeMarsh extends ExtrabiomeGenBase {
+public class BiomeMarsh extends ExtrabiomeGenBase {
 
     public BiomeMarsh() {
         super(BiomeSettings.MARSH.getID());

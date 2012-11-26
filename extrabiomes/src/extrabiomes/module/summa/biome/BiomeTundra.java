@@ -9,7 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.src.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeTundra extends ExtrabiomeGenBase {
+public class BiomeTundra extends ExtrabiomeGenBase {
 
     public BiomeTundra() {
         super(BiomeSettings.TUNDRA.getID());

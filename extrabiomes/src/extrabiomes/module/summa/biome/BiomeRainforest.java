@@ -9,7 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.src.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeRainforest extends ExtrabiomeGenBase {
+public class BiomeRainforest extends ExtrabiomeGenBase {
 
     public BiomeRainforest() {
         super(BiomeSettings.RAINFOREST.getID());

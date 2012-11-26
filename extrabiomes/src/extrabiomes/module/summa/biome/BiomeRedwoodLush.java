@@ -9,7 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.src.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeRedwoodLush extends ExtrabiomeGenBase {
+public class BiomeRedwoodLush extends ExtrabiomeGenBase {
     public BiomeRedwoodLush() {
         super(BiomeSettings.REDWOODLUSH.getID());
 

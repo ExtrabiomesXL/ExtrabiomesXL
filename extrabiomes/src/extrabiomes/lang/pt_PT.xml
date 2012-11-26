@@ -11,9 +11,6 @@
   <entry key="item.extrabiomes.logturner.name">Girador de Troncos</entry>
   <entry key="log.message.add.crackedsand">Areia rachada foi adicionada ao terreno baldio.</entry>
   <entry key="log.message.add.redrock">Rocha vermelha foi adicionada a montanha vermelha.</entry>
-  <entry key="log.message.biome.disabled">O bioma %s está desativado.</entry>
-  <entry key="log.message.biome.village.enabled">Vilas ligadas no bioma %s.</entry>
-  <entry key="log.message.config.exception.biomeid">O ID de bioma %d ja esta a ser usado por %s quando adicionando %s. Faça uma revisão a configuração.</entry>
   <entry key="log.message.initializing">A inicializar.</entry>
   <entry key="log.message.load.success">Carregado com successo.</entry>
   <entry key="log.message.plugin.init">A inicializar o plugin %s.</entry>

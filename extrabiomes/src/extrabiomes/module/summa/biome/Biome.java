@@ -54,43 +54,10 @@ public enum Biome {
     WASTELAND(BiomeWasteland.class, BiomeSettings.WASTELAND),
     WOODLANDS(BiomeWoodlands.class, BiomeSettings.WOODLANDS);
 
-    private static final String                           LOG_MESSAGE_BIOME_DISABLED           = "log.message.biome.disabled";
-    private static final String                           LOG_MESSAGE_BIOME_VILLAGE_ENABLED    = "log.message.biome.village.enabled";
     private static final String                           LOG_MESSAGE_CONFIG_EXCEPTION_BIOMEID = "log.message.config.exception.biomeid";
 
     private static Optional<? extends List<BiomeGenBase>> activeBiomes                         = Optional
                                                                                                        .absent();
-
-    private static void createBiomes() throws InstantiationException, IllegalAccessException {
-        final Set<WorldType> worldTypes = new HashSet<WorldType>();
-        worldTypes.add(WorldType.DEFAULT);
-        worldTypes.add(WorldType.LARGE_BIOMES);
-        final DiscoverWorldTypesEvent event = new DiscoverWorldTypesEvent(worldTypes);
-        Api.getExtrabiomesXLEventBus().post(event);
-        for (final Biome biome : Biome.values()) {
-            if (biome.getSettings().getID() > 0) {
-                if (BiomeGenBase.biomeList[biome.getSettings().getID()] != null)
-                    throw new IllegalArgumentException(String.format(Extrabiomes.proxy
-                            .getStringLocalization(LOG_MESSAGE_CONFIG_EXCEPTION_BIOMEID), biome
-                            .getSettings().getID(), BiomeGenBase.biomeList[biome.getSettings()
-                            .getID()].biomeName, biome.toString()));
-
-                biome.biome = Optional.of(biome.biomeClass.newInstance());
-            }
-            if (biome.getSettings().isEnabled() && biome.biome.isPresent())
-                Extrabiomes.proxy.addBiome(worldTypes, biome.biome.get());
-            else
-                LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_BIOME_DISABLED),
-                        biome.toString());
-            if (biome.getSettings().allowVillages() && biome.biome.isPresent()) {
-                VillageSpawnHelper.setVillageSpawn(biome.biome.get(), true);
-                LogHelper.fine(
-                        Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_BIOME_VILLAGE_ENABLED),
-                        biome.toString());
-            }
-        }
-    }
-
     public static Collection<BiomeGenBase> getActive() {
         if (!activeBiomes.isPresent()) {
             activeBiomes = Optional.of(new ArrayList<BiomeGenBase>(Biome.values().length));
@@ -100,13 +67,9 @@ public enum Biome {
         return ImmutableSet.copyOf(activeBiomes.get());
     }
 
-    public static void preInit() throws InstantiationException, IllegalAccessException {
-        createBiomes();
-    }
-
-    private Optional<? extends BiomeGenBase>    biome = Optional.absent();
+    public Optional<? extends BiomeGenBase>    biome = Optional.absent();
     private final BiomeSettings                 settings;
-    private final Class<? extends BiomeGenBase> biomeClass;
+    public final Class<? extends BiomeGenBase> biomeClass;
 
     Biome(Class<? extends BiomeGenBase> biomeClass, BiomeSettings settings) {
         this.biomeClass = biomeClass;

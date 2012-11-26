@@ -13,7 +13,7 @@ import net.minecraft.src.EntityOcelot;
 import net.minecraft.src.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeExtremeJungle extends ExtrabiomeGenBase {
+public class BiomeExtremeJungle extends ExtrabiomeGenBase {
 
     public BiomeExtremeJungle() {
         super(BiomeSettings.EXTREMEJUNGLE.getID());

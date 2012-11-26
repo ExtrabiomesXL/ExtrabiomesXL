@@ -10,7 +10,7 @@ import net.minecraft.src.BiomeDecorator;
 import net.minecraft.src.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
 
-class BiomeSavanna extends ExtrabiomeGenBase {
+public class BiomeSavanna extends ExtrabiomeGenBase {
     public BiomeSavanna() {
         super(BiomeSettings.SAVANNA.getID());
 
