@@ -13,15 +13,19 @@ import java.util.Set;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.WorldType;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.event.ForgeSubscribe;
 
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
+import extrabiomes.api.Api;
+import extrabiomes.api.events.GetBiomeIDEvent;
 import extrabiomes.core.helper.BiomeHelper;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 
-public abstract class BiomeHandler {
+public enum BiomeHandler {
+    INSTANCE;
 
     private static List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
 
@@ -51,5 +55,14 @@ public abstract class BiomeHandler {
     public static void init() throws Exception {
         for (final BiomeSettings biome : BiomeSettings.values())
             if (biome.getID() > 0) BiomeHelper.createBiome(biome);
+
+        Api.getExtrabiomesXLEventBus().register(INSTANCE);
+    }
+
+    @ForgeSubscribe
+    public void handleBiomeIDRequestsFromAPI(GetBiomeIDEvent event) {
+        final Optional<BiomeSettings> settings = Optional.fromNullable(BiomeSettings
+                .valueOf(event.targetBiome.toUpperCase()));
+        if (settings.isPresent()) event.biomeID = settings.get().getID();
     }
 }
