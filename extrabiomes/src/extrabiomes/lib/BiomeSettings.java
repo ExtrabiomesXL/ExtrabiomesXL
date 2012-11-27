@@ -6,69 +6,114 @@
 
 package extrabiomes.lib;
 
+import net.minecraft.src.BiomeGenBase;
 import net.minecraftforge.common.Property;
+
+import com.google.common.base.Optional;
+
 import extrabiomes.core.utility.EnhancedConfiguration;
+import extrabiomes.module.summa.biome.BiomeAlpine;
+import extrabiomes.module.summa.biome.BiomeAutumnWoods;
+import extrabiomes.module.summa.biome.BiomeBirchForest;
+import extrabiomes.module.summa.biome.BiomeExtremeJungle;
+import extrabiomes.module.summa.biome.BiomeForestedHills;
+import extrabiomes.module.summa.biome.BiomeForestedIsland;
+import extrabiomes.module.summa.biome.BiomeGlacier;
+import extrabiomes.module.summa.biome.BiomeGreenHills;
+import extrabiomes.module.summa.biome.BiomeGreenSwamp;
+import extrabiomes.module.summa.biome.BiomeIceWasteland;
+import extrabiomes.module.summa.biome.BiomeMarsh;
+import extrabiomes.module.summa.biome.BiomeMeadow;
+import extrabiomes.module.summa.biome.BiomeMiniJungle;
+import extrabiomes.module.summa.biome.BiomeMountainDesert;
+import extrabiomes.module.summa.biome.BiomeMountainRidge;
+import extrabiomes.module.summa.biome.BiomeMountainTaiga;
+import extrabiomes.module.summa.biome.BiomePineForest;
+import extrabiomes.module.summa.biome.BiomeRainforest;
+import extrabiomes.module.summa.biome.BiomeRedwoodForest;
+import extrabiomes.module.summa.biome.BiomeRedwoodLush;
+import extrabiomes.module.summa.biome.BiomeSavanna;
+import extrabiomes.module.summa.biome.BiomeShrubland;
+import extrabiomes.module.summa.biome.BiomeSnowForest;
+import extrabiomes.module.summa.biome.BiomeSnowRainforest;
+import extrabiomes.module.summa.biome.BiomeTemporateRainforest;
+import extrabiomes.module.summa.biome.BiomeTundra;
+import extrabiomes.module.summa.biome.BiomeWasteland;
+import extrabiomes.module.summa.biome.BiomeWoodlands;
 
 public enum BiomeSettings {
     DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA,
-    ALPINE              (32),
-    AUTUMNWOODS         (33),
-    BIRCHFOREST         (34),
-    EXTREMEJUNGLE       (35),
-    FORESTEDHILLS       (36),
-    FORESTEDISLAND      (37),
-    GLACIER             (38),
-    GREENHILLS          (39),
-    GREENSWAMP          (40),
-    ICEWASTELAND        (41),
-    MARSH               (42),
-    MEADOW              (43),
-    MINIJUNGLE          (44),
-    MOUNTAINDESERT      (45),
-    MOUNTAINRIDGE       (46),
-    MOUNTAINTAIGA       (47),
-    PINEFOREST          (48),
-    RAINFOREST          (49),
-    REDWOODFOREST       (50),
-    REDWOODLUSH         (51),
-    SAVANNA             (52),
-    SHRUBLAND           (53),
-    SNOWYFOREST         (54),
-    SNOWYRAINFOREST     (55),
-    TEMPORATERAINFOREST (56),
-    TUNDRA              (57),
-    WASTELAND           (58),
-    WOODLANDS           (59);
+    ALPINE              (32, BiomeAlpine.class),
+    AUTUMNWOODS         (33, BiomeAutumnWoods.class),
+    BIRCHFOREST         (34, BiomeBirchForest.class),
+    EXTREMEJUNGLE       (35, BiomeExtremeJungle.class),
+    FORESTEDHILLS       (36, BiomeForestedHills.class),
+    FORESTEDISLAND      (37, BiomeForestedIsland.class),
+    GLACIER             (38, BiomeGlacier.class),
+    GREENHILLS          (39, BiomeGreenHills.class),
+    GREENSWAMP          (40, BiomeGreenSwamp.class),
+    ICEWASTELAND        (41, BiomeIceWasteland.class),
+    MARSH               (42, BiomeMarsh.class),
+    MEADOW              (43, BiomeMeadow.class),
+    MINIJUNGLE          (44, BiomeMiniJungle.class),
+    MOUNTAINDESERT      (45, BiomeMountainDesert.class),
+    MOUNTAINRIDGE       (46, BiomeMountainRidge.class),
+    MOUNTAINTAIGA       (47, BiomeMountainTaiga.class),
+    PINEFOREST          (48, BiomePineForest.class),
+    RAINFOREST          (49, BiomeRainforest.class),
+    REDWOODFOREST       (50, BiomeRedwoodForest.class),
+    REDWOODLUSH         (51, BiomeRedwoodLush.class),
+    SAVANNA             (52, BiomeSavanna.class),
+    SHRUBLAND           (53, BiomeShrubland.class),
+    SNOWYFOREST         (54, BiomeSnowForest.class),
+    SNOWYRAINFOREST     (55, BiomeSnowRainforest.class),
+    TEMPORATERAINFOREST (56, BiomeTemporateRainforest.class),
+    TUNDRA              (57, BiomeTundra.class),
+    WASTELAND           (58, BiomeWasteland.class),
+    WOODLANDS           (59, BiomeWoodlands.class);
 
-    private final int     defaultID;
+    private final int                                               defaultID;
 
-    private int           biomeID;
-    private boolean       enabled = true;
-    private boolean       allowVillages;
-    private final boolean isVanilla;
+    private int                                                     biomeID       = 0;
+    private boolean                                                 enabled       = true;
+    private boolean                                                 allowVillages = true;
+    private final Optional<? extends Class<? extends BiomeGenBase>> biomeClass;
+    private Optional<? extends BiomeGenBase>                        biome         = Optional
+                                                                                          .absent();
 
     private BiomeSettings() {
-        isVanilla = true;
-        defaultID = 0;
+        this(0, null);
     }
 
-    private BiomeSettings(int defaultID) {
+    private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass) {
         this.defaultID = defaultID;
         biomeID = this.defaultID;
-        isVanilla = false;
+        this.biomeClass = Optional.fromNullable(biomeClass);
     }
 
     public boolean allowVillages() {
         return allowVillages;
     }
 
+    public void createBiome() throws Exception {
+        if (biomeClass.isPresent() && !biome.isPresent())
+            biome = Optional.of(biomeClass.get().newInstance());
+    }
+
+    public Optional<? extends BiomeGenBase> getBiome() {
+        return biome;
+    }
+
     public int getID() {
-        if (isVanilla) throw new IllegalStateException("Vanilla biomes have no ID setting.");
         return biomeID;
     }
 
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public boolean isVanilla() {
+        return !biomeClass.isPresent();
     }
 
     private String keyAllowVillages() {
@@ -84,13 +129,13 @@ public enum BiomeSettings {
     }
 
     private String keyVanillaPrefix() {
-        return isVanilla ? "vanilla." : "";
+        return isVanilla() ? "vanilla." : "";
     }
 
     public void load(EnhancedConfiguration configuration) {
         Property property;
 
-        if (!isVanilla) {
+        if (!isVanilla()) {
             property = configuration.getBiome(keyID(), defaultID);
             biomeID = property.getInt(0);
         }

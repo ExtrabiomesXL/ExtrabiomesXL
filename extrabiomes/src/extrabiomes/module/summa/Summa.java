@@ -22,7 +22,6 @@ import extrabiomes.core.handler.BiomeHandler;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.lib.ItemSettings;
-import extrabiomes.module.summa.biome.VanillaBiome;
 import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.tool.LogTurner;
 import extrabiomes.module.summa.worldgen.LegendOakGenerator;
@@ -75,9 +74,10 @@ public class Summa {
     public void preInit(ModulePreInitEvent event) throws Exception {
         BiomeHandler.init();
         // TODO
-        VanillaBiome.preInit();
 
+        // remove after 3.6.0 release
         BiomeManagerImpl.populateAPIBiomes();
+        
         BlockManager.preInit();
 
         logTurnerID = ItemSettings.LOGTURNER.getID();

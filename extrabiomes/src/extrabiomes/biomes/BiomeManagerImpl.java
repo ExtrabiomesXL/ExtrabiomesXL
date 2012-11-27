@@ -37,7 +37,8 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
 import extrabiomes.api.BiomeManager;
-import extrabiomes.module.summa.biome.Biome;
+import extrabiomes.core.helper.BiomeHelper;
+import extrabiomes.lib.BiomeSettings;
 import extrabiomes.module.summa.biome.WeightedRandomChooser;
 import extrabiomes.module.summa.biome.WeightedWorldGenerator;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
@@ -285,34 +286,34 @@ public class BiomeManagerImpl extends BiomeManager {
     }
 
     public static void populateAPIBiomes() {
-        alpine = Biome.ALPINE.getBiome();
-        autumnwoods = Biome.AUTUMNWOODS.getBiome();
-        birchforest = Biome.BIRCHFOREST.getBiome();
-        extremejungle = Biome.EXTREMEJUNGLE.getBiome();
-        forestedhills = Biome.FORESTEDHILLS.getBiome();
-        forestedisland = Biome.FORESTEDISLAND.getBiome();
-        glacier = Biome.GLACIER.getBiome();
-        greenhills = Biome.GREENHILLS.getBiome();
-        greenswamp = Biome.GREENSWAMP.getBiome();
-        icewasteland = Biome.ICEWASTELAND.getBiome();
-        marsh = Biome.MARSH.getBiome();
-        meadow = Biome.MEADOW.getBiome();
-        minijungle = Biome.MINIJUNGLE.getBiome();
-        mountaindesert = Biome.MOUNTAINDESERT.getBiome();
-        mountainridge = Biome.MOUNTAINRIDGE.getBiome();
-        mountaintaiga = Biome.MOUNTAINTAIGA.getBiome();
-        pineforest = Biome.PINEFOREST.getBiome();
-        rainforest = Biome.RAINFOREST.getBiome();
-        redwoodforest = Biome.REDWOODFOREST.getBiome();
-        redwoodlush = Biome.REDWOODLUSH.getBiome();
-        savanna = Biome.SAVANNA.getBiome();
-        shrubland = Biome.SHRUBLAND.getBiome();
-        snowforest = Biome.SNOWYFOREST.getBiome();
-        snowyrainforest = Biome.SNOWYRAINFOREST.getBiome();
-        temperaterainforest = Biome.TEMPORATERAINFOREST.getBiome();
-        tundra = Biome.TUNDRA.getBiome();
-        wasteland = Biome.WASTELAND.getBiome();
-        woodlands = Biome.WOODLANDS.getBiome();
+        alpine = BiomeSettings.ALPINE.getBiome();
+        autumnwoods = BiomeSettings.AUTUMNWOODS.getBiome();
+        birchforest = BiomeSettings.BIRCHFOREST.getBiome();
+        extremejungle = BiomeSettings.EXTREMEJUNGLE.getBiome();
+        forestedhills = BiomeSettings.FORESTEDHILLS.getBiome();
+        forestedisland = BiomeSettings.FORESTEDISLAND.getBiome();
+        glacier = BiomeSettings.GLACIER.getBiome();
+        greenhills = BiomeSettings.GREENHILLS.getBiome();
+        greenswamp = BiomeSettings.GREENSWAMP.getBiome();
+        icewasteland = BiomeSettings.ICEWASTELAND.getBiome();
+        marsh = BiomeSettings.MARSH.getBiome();
+        meadow = BiomeSettings.MEADOW.getBiome();
+        minijungle = BiomeSettings.MINIJUNGLE.getBiome();
+        mountaindesert = BiomeSettings.MOUNTAINDESERT.getBiome();
+        mountainridge = BiomeSettings.MOUNTAINRIDGE.getBiome();
+        mountaintaiga = BiomeSettings.MOUNTAINTAIGA.getBiome();
+        pineforest = BiomeSettings.PINEFOREST.getBiome();
+        rainforest = BiomeSettings.RAINFOREST.getBiome();
+        redwoodforest = BiomeSettings.REDWOODFOREST.getBiome();
+        redwoodlush = BiomeSettings.REDWOODLUSH.getBiome();
+        savanna = BiomeSettings.SAVANNA.getBiome();
+        shrubland = BiomeSettings.SHRUBLAND.getBiome();
+        snowforest = BiomeSettings.SNOWYFOREST.getBiome();
+        snowyrainforest = BiomeSettings.SNOWYRAINFOREST.getBiome();
+        temperaterainforest = BiomeSettings.TEMPORATERAINFOREST.getBiome();
+        tundra = BiomeSettings.TUNDRA.getBiome();
+        wasteland = BiomeSettings.WASTELAND.getBiome();
+        woodlands = BiomeSettings.WOODLANDS.getBiome();
     }
 
     public BiomeManagerImpl() {
@@ -356,7 +357,7 @@ public class BiomeManagerImpl extends BiomeManager {
 
     @Override
     protected Collection<BiomeGenBase> getBiomeCollection() {
-        return ImmutableSet.copyOf(Biome.getActive());
+        return ImmutableSet.copyOf(BiomeHelper.getActiveBiomes());
     }
 
     @Override

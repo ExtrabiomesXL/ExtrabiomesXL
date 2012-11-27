@@ -13,9 +13,13 @@ import java.util.Set;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.WorldType;
 import net.minecraftforge.common.BiomeManager;
+
+import com.google.common.base.Optional;
+
+import extrabiomes.Extrabiomes;
 import extrabiomes.core.helper.BiomeHelper;
 import extrabiomes.core.helper.LogHelper;
-import extrabiomes.module.summa.biome.Biome;
+import extrabiomes.lib.BiomeSettings;
 
 public abstract class BiomeHandler {
 
@@ -24,22 +28,28 @@ public abstract class BiomeHandler {
     public static void enableBiomes() {
         final Set<WorldType> worldTypes = BiomeHelper.discoverWorldTypes();
 
-        for (final Biome biome : Biome.values()) {
-            if (biome.getSettings().isEnabled() && biome.biome.isPresent())
-                BiomeHelper.enableBiome(worldTypes, biome.biome.get());
-            else
-                LogHelper.fine("Custom biome %s disabled.", biome.toString());
+        for (final BiomeSettings setting : BiomeSettings.values()) {
+            final Optional<? extends BiomeGenBase> biome = setting.getBiome();
+            if (!setting.isVanilla()) {
+                if (setting.isEnabled() && biome.isPresent())
+                    BiomeHelper.enableBiome(worldTypes, biome.get());
+                else
+                    LogHelper.fine("Custom biome %s disabled.", setting.toString());
+            } else if (!setting.isEnabled()) {
+                Extrabiomes.proxy.removeBiome(BiomeHelper.settingToBiomeGenBase(setting));
+                LogHelper.fine("Vanilla biome %s disabled.", biome.toString());
+            }
 
-            if (biome.getSettings().allowVillages() && biome.biome.isPresent()) {
-                BiomeManager.addVillageBiome(biome.biome.get(), true);
-                LogHelper.fine("Village spawning enabled for custom biome %s.", biome.toString());
+            if (setting.allowVillages() && biome.isPresent()) {
+                BiomeManager.addVillageBiome(biome.get(), true);
+                LogHelper.fine("Village spawning enabled for custom biome %s.", setting.toString());
             }
         }
 
     }
 
     public static void init() throws Exception {
-        for (final Biome biome : Biome.values())
-            if (biome.getSettings().getID() > 0) BiomeHelper.createBiome(biome);
+        for (final BiomeSettings biome : BiomeSettings.values())
+            if (biome.getID() > 0) BiomeHelper.createBiome(biome);
     }
 }

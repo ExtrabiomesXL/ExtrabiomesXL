@@ -6,6 +6,8 @@
 
 package extrabiomes.core.helper;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,32 +21,34 @@ import com.google.common.collect.ImmutableSet;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Api;
 import extrabiomes.api.DiscoverWorldTypesEvent;
-import extrabiomes.module.summa.biome.Biome;
+import extrabiomes.lib.BiomeSettings;
 
 public abstract class BiomeHelper {
 
-    private static final Set<WorldType> worldTypes = new HashSet();
+    private static final Set<WorldType>                        worldTypes   = new HashSet();
+
+    private static Optional<? extends ArrayList<BiomeGenBase>> activeBiomes = Optional.absent();
 
     /**
      * <pre>
-     * static void createBiome(Biome biome);
+     * static void createBiome(BiomeSettings biome);
      * </pre>
      * 
      * create a custom biome.
      * <p>
      * 
-     * @param biome
+     * @param setting
      *            - the biome to create
      */
-    public static void createBiome(Biome biome) throws Exception {
-        if (BiomeGenBase.biomeList[biome.getSettings().getID()] != null)
+    public static void createBiome(BiomeSettings setting) throws Exception {
+        if (BiomeGenBase.biomeList[setting.getID()] != null)
             throw new IllegalArgumentException(
                     String.format(
                             "Biome id %d is already in use by %s when adding %s. Please review the configuration file.",
-                            biome.getSettings().getID(), BiomeGenBase.biomeList[biome.getSettings()
-                                    .getID()].biomeName, biome.toString()));
+                            setting.getID(), BiomeGenBase.biomeList[setting.getID()].biomeName,
+                            setting.toString()));
 
-        biome.biome = Optional.of(biome.biomeClass.newInstance());
+        setting.createBiome();
     }
 
     /**
@@ -86,5 +90,37 @@ public abstract class BiomeHelper {
         Extrabiomes.proxy.addBiome(worldTypes, biome);
         BiomeManager.addSpawnBiome(biome);
         BiomeManager.addStrongholdBiome(biome);
+    }
+
+    public static Collection<BiomeGenBase> getActiveBiomes() {
+        if (!activeBiomes.isPresent()) {
+            activeBiomes = Optional.of(new ArrayList<BiomeGenBase>(BiomeSettings.values().length));
+            for (final BiomeSettings setting : BiomeSettings.values())
+                if (setting.getBiome().isPresent() && !setting.isVanilla())
+                    activeBiomes.get().add(setting.getBiome().get());
+            activeBiomes.get().trimToSize();
+        }
+        return ImmutableSet.copyOf(activeBiomes.get());
+    }
+
+    public static BiomeGenBase settingToBiomeGenBase(BiomeSettings setting) {
+        switch (setting) {
+            case DESERT:
+                return BiomeGenBase.desert;
+            case EXTREMEHILLS:
+                return BiomeGenBase.extremeHills;
+            case FOREST:
+                return BiomeGenBase.forest;
+            case JUNGLE:
+                return BiomeGenBase.jungle;
+            case SWAMPLAND:
+                return BiomeGenBase.swampland;
+            case TAIGA:
+                return BiomeGenBase.taiga;
+            case PLAINS:
+                return BiomeGenBase.plains;
+            default:
+                return setting.getBiome().get();
+        }
     }
 }
