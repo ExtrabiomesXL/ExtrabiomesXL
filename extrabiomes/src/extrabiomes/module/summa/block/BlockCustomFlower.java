@@ -23,6 +23,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.proxy.CommonProxy;
 
+@SuppressWarnings("deprecation")
 public class BlockCustomFlower extends Block implements IPlantable {
 
 	public enum BlockType {
@@ -76,7 +77,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
 						y - 1, z));
 	}
 
-	private boolean canThisPlantGrowOnThisBlockID(int id) {
+    private boolean canThisPlantGrowOnThisBlockID(int id) {
 		return id == Block.grass.blockID
 				|| id == Block.dirt.blockID
 				|| id == Block.tilledField.blockID

@@ -15,6 +15,7 @@ import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 
+@SuppressWarnings("deprecation")
 public class LeafPileGenerator implements IWorldGenerator {
 
 	private final WorldGenerator	leafPileGen;
@@ -23,7 +24,7 @@ public class LeafPileGenerator implements IWorldGenerator {
 		leafPileGen = new WorldGenLeafPile(blockID);
 	}
 
-	@Override
+    @Override
 	public void generate(Random rand, int chunkX, int chunkZ,
 			World world, IChunkProvider chunkGenerator,
 			IChunkProvider chunkProvider)

@@ -21,12 +21,13 @@ import extrabiomes.core.helper.LogHelper;
 import extrabiomes.module.summa.block.BlockAutumnLeaves;
 import extrabiomes.module.summa.block.BlockCustomSapling;
 
+@SuppressWarnings("deprecation")
 public class IC2Plugin {
 
 	private static final String	MOD_NAME	= "IndustrialCraft 2";
 	private Optional<IC2API>	api			= Optional.absent();
 
-	private void addBiomeBonuses() {
+    private void addBiomeBonuses() {
 		api.get().addBiomeBonus(BiomeManager.greenswamp, 2, 2);
 		api.get().addBiomeBonus(BiomeManager.autumnwoods, 1, 1);
 		api.get().addBiomeBonus(BiomeManager.birchforest, 1, 1);

@@ -30,6 +30,7 @@ import extrabiomes.module.summa.worldgen.MountainDesertGenerator;
 import extrabiomes.module.summa.worldgen.MountainRidgeGenerator;
 import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
 
+@SuppressWarnings("deprecation")
 public class Summa {
 
     private static BiomeManagerImpl biomeManager = new BiomeManagerImpl();
@@ -73,11 +74,11 @@ public class Summa {
     @ForgeSubscribe(priority = EventPriority.HIGHEST)
     public void preInit(ModulePreInitEvent event) throws Exception {
         BiomeHandler.init();
-        // TODO
 
         // remove after 3.6.0 release
         BiomeManagerImpl.populateAPIBiomes();
         
+        // TODO
         BlockManager.preInit();
 
         logTurnerID = ItemSettings.LOGTURNER.getID();

@@ -28,6 +28,10 @@ import com.google.common.base.Optional;
  * @author ScottKillen
  * 
  */
+
+// The BiomeManager will be removed following release 3.6.0. Use extrabiomes.api.Biomes instead
+
+@Deprecated
 public abstract class BiomeManager {
 
 	protected enum GenType {

@@ -15,6 +15,7 @@ import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 
+@SuppressWarnings("deprecation")
 public class LegendOakGenerator implements IWorldGenerator {
 
 	private final WorldGenerator	treeGen;
@@ -23,7 +24,7 @@ public class LegendOakGenerator implements IWorldGenerator {
 		treeGen = new WorldGenLegendOak(false);
 	}
 
-	@Override
+    @Override
 	public void generate(Random rand, int chunkX, int chunkZ,
 			World world, IChunkProvider chunkGenerator,
 			IChunkProvider chunkProvider)

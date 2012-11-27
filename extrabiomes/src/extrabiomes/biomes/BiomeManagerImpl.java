@@ -49,6 +49,7 @@ import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 
+@SuppressWarnings("deprecation")
 public class BiomeManagerImpl extends BiomeManager {
 
     private static final WorldGenerator                                               ACACIA_TREE_GEN           = new WorldGenAcacia(
@@ -117,7 +118,7 @@ public class BiomeManagerImpl extends BiomeManager {
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 10);
     }
 
-    private static void addExtremeJungleTrees(Optional<? extends BiomeGenBase> biome) {
+     private static void addExtremeJungleTrees(Optional<? extends BiomeGenBase> biome) {
         if (!biome.isPresent()) return;
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 2);
         addWeightedTreeGenForBiome(biome.get(), SHRUB_GEN, 9);
@@ -355,7 +356,6 @@ public class BiomeManagerImpl extends BiomeManager {
         return Optional.absent();
     }
 
-    @Override
     protected Collection<BiomeGenBase> getBiomeCollection() {
         return ImmutableSet.copyOf(BiomeHelper.getActiveBiomes());
     }

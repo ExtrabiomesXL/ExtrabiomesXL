@@ -16,6 +16,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.module.summa.block.BlockCustomFlower;
 
+@SuppressWarnings("deprecation")
 public class FlowerGenerator implements IWorldGenerator {
 
 	private final WorldGenerator	autumnShrubGen;
@@ -46,7 +47,7 @@ public class FlowerGenerator implements IWorldGenerator {
 				BlockCustomFlower.BlockType.WHITE.metadata());
 	}
 
-	@Override
+    @Override
 	public void generate(Random rand, int chunkX, int chunkZ,
 			World world, IChunkProvider chunkGenerator,
 			IChunkProvider chunkProvider)

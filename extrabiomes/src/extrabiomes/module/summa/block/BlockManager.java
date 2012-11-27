@@ -41,6 +41,7 @@ import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 import extrabiomes.module.summa.worldgen.WorldGenWastelandGrass;
 import extrabiomes.proxy.CommonProxy;
 
+@SuppressWarnings("deprecation")
 public enum BlockManager {
     AUTUMNLEAVES {
         @Override

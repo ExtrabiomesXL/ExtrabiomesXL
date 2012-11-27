@@ -34,7 +34,8 @@ public class Api {
 	/**
 	 * @return true if ExtrtabiomesXL is installed and active
 	 */
-	public static boolean isExtrabiomesXLActive() {
+	@SuppressWarnings("deprecation")
+    public static boolean isExtrabiomesXLActive() {
 		return BiomeManager.isActive();
 	}
 

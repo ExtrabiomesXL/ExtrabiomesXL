@@ -25,6 +25,7 @@ import cpw.mods.fml.common.asm.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 
+@SuppressWarnings("deprecation")
 class BlockCustomTallGrass extends BlockFlower implements IShearable {
     enum BlockType {
         BROWN(0), SHORT_BROWN(1), DEAD(2), DEAD_TALL(3), DEAD_YELLOW(4);

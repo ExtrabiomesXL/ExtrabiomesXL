@@ -14,6 +14,7 @@ import net.minecraft.src.World;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 
+@SuppressWarnings("deprecation")
 public class QuicksandGenerator implements IWorldGenerator {
 
 	private final WorldGenQuicksand	genPit;
@@ -22,7 +23,7 @@ public class QuicksandGenerator implements IWorldGenerator {
 		genPit = new WorldGenQuicksand(quicksandID);
 	}
 
-	@Override
+    @Override
 	public void generate(Random random, int chunkX, int chunkZ,
 			World world, IChunkProvider chunkGenerator,
 			IChunkProvider chunkProvider)

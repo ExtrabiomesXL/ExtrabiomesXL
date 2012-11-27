@@ -15,6 +15,7 @@ import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 
+@SuppressWarnings("deprecation")
 public class CatTailGenerator implements IWorldGenerator {
 
 	private final WorldGenerator	catTailGen;
@@ -23,7 +24,7 @@ public class CatTailGenerator implements IWorldGenerator {
 		catTailGen = new WorldGenCatTail(blockID);
 	}
 
-	@Override
+    @Override
 	public void generate(Random rand, int chunkX, int chunkZ,
 			World world, IChunkProvider chunkGenerator,
 			IChunkProvider chunkProvider)

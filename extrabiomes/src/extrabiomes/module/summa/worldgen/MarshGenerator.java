@@ -15,12 +15,13 @@ import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 
+@SuppressWarnings("deprecation")
 public class MarshGenerator implements IWorldGenerator {
 
 	private static final WorldGenerator	genMarsh	= new WorldGenMarshGrass();
 	private static final WorldGenerator	genDirtBed	= new WorldGenMarshDirt();
 
-	@Override
+    @Override
 	public void generate(Random random, int chunkX, int chunkZ,
 			World world, IChunkProvider chunkGenerator,
 			IChunkProvider chunkProvider)

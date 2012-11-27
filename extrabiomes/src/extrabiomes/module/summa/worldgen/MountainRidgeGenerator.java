@@ -17,6 +17,7 @@ import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 
+@SuppressWarnings("deprecation")
 public class MountainRidgeGenerator implements IWorldGenerator {
 
 	private static final WorldGenerator	oasisGen	= new WorldGenOasis();

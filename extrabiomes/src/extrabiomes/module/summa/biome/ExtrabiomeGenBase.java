@@ -16,13 +16,14 @@ import com.google.common.base.Optional;
 
 import extrabiomes.api.BiomeManager;
 
+@SuppressWarnings("deprecation")
 abstract class ExtrabiomeGenBase extends BiomeGenBase {
 
 	protected ExtrabiomeGenBase(int id) {
 		super(id);
 	}
 
-	@Override
+    @Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 		final Optional<? extends WorldGenerator> grassGen = BiomeManager
 				.chooseRandomGrassGenforBiome(rand, this);
@@ -30,7 +31,7 @@ abstract class ExtrabiomeGenBase extends BiomeGenBase {
 		return super.getRandomWorldGenForGrass(rand);
 	}
 
-	@Override
+    @Override
 	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
 		final Optional<? extends WorldGenerator> treeGen = BiomeManager
 				.chooseRandomTreeGenforBiome(rand, this);

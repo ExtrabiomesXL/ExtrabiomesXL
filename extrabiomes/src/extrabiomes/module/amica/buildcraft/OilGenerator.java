@@ -10,6 +10,7 @@ import net.minecraft.src.World;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 
+@SuppressWarnings("deprecation")
 public class OilGenerator implements IWorldGenerator {
 
 	private final BuildcraftAPI	api;
@@ -18,7 +19,7 @@ public class OilGenerator implements IWorldGenerator {
 		this.api = api;
 	}
 
-	private void doPopulate(Random rand, World world, int x, int z) {
+    private void doPopulate(Random rand, World world, int x, int z) {
 		final BiomeGenBase biome = world.getWorldChunkManager()
 				.getBiomeGenAt(x, z);
 
