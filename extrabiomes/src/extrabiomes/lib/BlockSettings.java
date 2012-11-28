@@ -6,6 +6,7 @@
 
 package extrabiomes.lib;
 
+import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import extrabiomes.Extrabiomes;
 import extrabiomes.core.utility.EnhancedConfiguration;
@@ -67,10 +68,9 @@ public enum BlockSettings {
         switch (this) {
             case CRACKEDSAND:
             case REDROCK:
-                property = configuration.getRestrictedBlock(idKey(), defaultID);
-                property.comment = String.format(
+                property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(), defaultID, String.format(
                         Extrabiomes.proxy.getStringLocalization("config.block.terraingen.comment"),
-                        toString());
+                        toString()));
                 break;
             default:
                 property = configuration.getBlock(idKey(), defaultID);

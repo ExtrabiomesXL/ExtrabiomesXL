@@ -30,10 +30,8 @@ public enum ModuleControlSettings {
     }
 
     public void load(EnhancedConfiguration configuration) {
-        final Property property = configuration.get(CATEGORY_MODULE_CONTROL, keyEnabled(), true);
+        final Property property = configuration.get(CATEGORY_MODULE_CONTROL, keyEnabled(), true, Extrabiomes.proxy.getStringLocalization(commentLangKey()));
         enabled = property.getBoolean(false);
-        final String comment = Extrabiomes.proxy.getStringLocalization(commentLangKey());
-        if (!comment.isEmpty()) property.comment = comment;
     }
 
     @Override
