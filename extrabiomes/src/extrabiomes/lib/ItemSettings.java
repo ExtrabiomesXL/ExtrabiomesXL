@@ -6,7 +6,7 @@
 
 package extrabiomes.lib;
 
-import extrabiomes.core.utility.EnhancedConfiguration;
+import extrabiomes.utility.EnhancedConfiguration;
 
 public enum ItemSettings {
     LOGTURNER   (12870),

@@ -24,11 +24,11 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import extrabiomes.core.handler.ConfigurationHandler;
-import extrabiomes.core.helper.BlockHelper;
-import extrabiomes.core.helper.LogHelper;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
+import extrabiomes.handlers.ConfigurationHandler;
+import extrabiomes.helpers.BlockHelper;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Reference;
 import extrabiomes.localization.LocalizationHandler;
 import extrabiomes.proxy.CommonProxy;
@@ -46,7 +46,7 @@ public class Extrabiomes {
 
     public static final CreativeTabs  tabsEBXL                 = new CreativeTab(
                                                                        CreativeTabs.creativeTabArray.length,
-                                                                       Reference.MOD_ID);
+                                                                       "extrabiomesTab");
 
     private static final String       LOG_MESSAGE_INITIALIZING = "log.message.initializing";
     private static final String       LOG_MESSAGE_LOAD_SUCCESS = "log.message.load.success";
@@ -90,6 +90,8 @@ public class Extrabiomes {
 
         Module.registerModules();
         Module.postEvent(new ModulePreInitEvent());
+        proxy.addStringLocalization("itemGroup.extrabiomesTab", "en_US", Reference.MOD_ID);
+
     }
 
     public static void registerInitEventHandler(Object target) {

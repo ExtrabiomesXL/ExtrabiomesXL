@@ -8,7 +8,7 @@ package extrabiomes.lib;
 
 import net.minecraftforge.common.Property;
 import extrabiomes.Extrabiomes;
-import extrabiomes.core.utility.EnhancedConfiguration;
+import extrabiomes.utility.EnhancedConfiguration;
 
 public enum ModuleControlSettings {
     SUMMA, CAUTIA, FABRICA, AMICA;

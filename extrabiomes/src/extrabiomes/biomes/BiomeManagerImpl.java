@@ -37,7 +37,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
 import extrabiomes.api.BiomeManager;
-import extrabiomes.core.helper.BiomeHelper;
+import extrabiomes.helpers.BiomeHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.module.summa.biome.WeightedRandomChooser;
 import extrabiomes.module.summa.biome.WeightedWorldGenerator;

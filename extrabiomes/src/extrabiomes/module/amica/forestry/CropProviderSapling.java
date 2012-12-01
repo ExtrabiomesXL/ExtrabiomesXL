@@ -8,11 +8,14 @@ package extrabiomes.module.amica.forestry;
 
 import java.util.ArrayList;
 
+import com.google.common.collect.Lists;
+
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import extrabiomes.api.Stuff;
-import extrabiomes.module.summa.block.BlockCustomSapling;
+import extrabiomes.blocks.BlockCustomSapling;
+import extrabiomes.helpers.ForestryModHelper;
 import forestry.api.cultivation.ICropEntity;
 import forestry.api.cultivation.ICropProvider;
 
@@ -20,7 +23,7 @@ public class CropProviderSapling implements ICropProvider {
 
 	@Override
 	public boolean isGermling(ItemStack germling) {
-		return germling.itemID == Stuff.sapling.get().blockID && germling.getItemDamage() != BlockCustomSapling.BlockType.REDWOOD.metadata();
+		return ForestryModHelper.isGermling(germling);
 	}
 
 	@Override
@@ -32,10 +35,8 @@ public class CropProviderSapling implements ICropProvider {
 
 	@Override
 	public ItemStack[] getWindfall() {
-		ArrayList windfall = new ArrayList();
-		for (BlockCustomSapling.BlockType type: BlockCustomSapling.BlockType.values()) {
-			windfall.add(new ItemStack(Stuff.sapling.get(),1,type.metadata()));
-		}
+		ArrayList windfall = Lists.newArrayList(ForestryModHelper.getSaplings());
+
 		for (Object item : ForestryPlugin.loggerWindfall) {
 			windfall.add(item);
 		}
@@ -68,7 +69,7 @@ public class CropProviderSapling implements ICropProvider {
 			return false;
 		}
 		world.setBlockAndMetadataWithNotify(x, y, z,
-				Stuff.sapling.get().blockID, germling.getItemDamage());
+				germling.itemID, germling.getItemDamage());
 		return true;
 	}
 

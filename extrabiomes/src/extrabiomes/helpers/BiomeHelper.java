@@ -4,7 +4,7 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.core.helper;
+package extrabiomes.helpers;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -25,12 +25,12 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
+import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockGreenLeaves;
-import extrabiomes.core.helper.ForestryModHelper;
-import extrabiomes.core.helper.LogHelper;
+import extrabiomes.helpers.ForestryModHelper;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.block.BlockCustomFlower;
-import extrabiomes.module.summa.block.BlockCustomSapling;
 import extrabiomes.module.summa.block.BlockRedRock;
 
 public class ForestryPlugin {
@@ -93,10 +93,6 @@ public class ForestryPlugin {
         if (Stuff.quickSand.isPresent())
             backpackItems[DIGGER].add(new ItemStack(Stuff.quickSand.get()));
 
-        if (Stuff.sapling.isPresent())
-            for (final BlockCustomSapling.BlockType type : BlockCustomSapling.BlockType.values())
-                backpackItems[FORESTER].add(new ItemStack(Stuff.sapling.get(), 1, type.metadata()));
-
         if (Stuff.flower.isPresent())
             for (final BlockCustomFlower.BlockType type : BlockCustomFlower.BlockType.values())
                 backpackItems[FORESTER].add(new ItemStack(Stuff.flower.get(), 1, type.metadata()));
@@ -131,11 +127,9 @@ public class ForestryPlugin {
     }
 
     private void addRecipes() throws Exception {
-        if (fermenterAddRecipe.isPresent() && getForestryItem.isPresent()
-                && Stuff.sapling.isPresent())
-            for (final BlockCustomSapling.BlockType type : BlockCustomSapling.BlockType.values())
-                addFermenterRecipeSapling(new ItemStack(Stuff.sapling.get().blockID, 1,
-                        type.metadata()));
+        if (fermenterAddRecipe.isPresent() && getForestryItem.isPresent())
+            for (ItemStack sapling : ForestryModHelper.getSaplings())
+                addFermenterRecipeSapling(sapling);
         if (carpenterAddRecipe.isPresent() && Stuff.redRock.isPresent())
             carpenterAddRecipe.get().invoke(
                     carpenterManager,
@@ -148,7 +142,6 @@ public class ForestryPlugin {
     }
 
     private void addSaplings() {
-        if (!Stuff.sapling.isPresent()) return;
 
         final Optional<ItemStack> soil = Optional.fromNullable(getBlock("soil"));
         if (soil.isPresent()) {

@@ -18,7 +18,14 @@ public enum Element {
     LEAVES_AUTUMN_PURPLE,
     LEAVES_AUTUMN_YELLOW,
     LEAVES_FIR,
-    LEAVES_REDWOOD;
+    LEAVES_REDWOOD,
+    SAPLING_ACACIA,
+    SAPLING_AUTUMN_BROWN,
+    SAPLING_AUTUMN_ORANGE,
+    SAPLING_AUTUMN_PURPLE,
+    SAPLING_AUTUMN_YELLOW,
+    SAPLING_FIR,
+    SAPLING_REDWOOD;
     // @formatter:on
 
     private Optional<ItemStack> stack = Optional.absent();

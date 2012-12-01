@@ -32,7 +32,6 @@ public enum Stuff {
 	public static Optional<? extends Block>	quarterLogSW		= Optional.absent();
 	public static Optional<? extends Block>	quickSand			= Optional.absent();
 	public static Optional<? extends Block>	redRock				= Optional.absent();
-	public static Optional<? extends Block>	sapling				= Optional.absent();
 	public static Optional<? extends Block>	slabRedRock			= Optional.absent();
 	public static Optional<? extends Block>	slabRedRockDouble	= Optional.absent();
 	public static Optional<? extends Block>	slabWood			= Optional.absent();

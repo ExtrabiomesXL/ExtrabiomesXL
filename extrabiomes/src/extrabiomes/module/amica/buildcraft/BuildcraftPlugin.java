@@ -14,7 +14,7 @@ import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
-import extrabiomes.core.helper.LogHelper;
+import extrabiomes.helpers.LogHelper;
 
 public class BuildcraftPlugin {
 

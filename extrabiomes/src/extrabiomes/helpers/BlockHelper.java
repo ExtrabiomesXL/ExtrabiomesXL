@@ -4,12 +4,15 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.core.helper;
+package extrabiomes.helpers;
 
 import net.minecraft.src.ItemStack;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
+import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockGreenLeaves;
+import extrabiomes.handlers.SaplingBonemealEventHandler;
+import extrabiomes.handlers.SaplingFuelHandler;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ModuleControlSettings;
@@ -43,6 +46,7 @@ public abstract class BlockHelper {
     public static void createBlocks() {
         createAutumnLeaves();
         createGreenLeaves();
+        createSapling();
     }
 
     private static void createGreenLeaves() {
@@ -63,6 +67,45 @@ public abstract class BlockHelper {
                 .metadata()));
 
         ForestryModHelper.registerLeaves(new ItemStack(block, 1, -1));
+    }
+
+    private static void createSapling() {
+        final int blockID = BlockSettings.SAPLING.getID();
+        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
+
+        final BlockCustomSapling block = new BlockCustomSapling(blockID);
+        block.setBlockName("extrabiomes.sapling");
+
+        final CommonProxy proxy = Extrabiomes.proxy;
+        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+        proxy.registerOreInAllSubblocks("treeSapling", block);
+
+        Element.SAPLING_ACACIA.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.ACACIA
+                .metadata()));
+        Element.SAPLING_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.BROWN
+                .metadata()));
+        Element.SAPLING_AUTUMN_ORANGE.set(new ItemStack(block, 1,
+                BlockCustomSapling.BlockType.ORANGE.metadata()));
+        Element.SAPLING_AUTUMN_PURPLE.set(new ItemStack(block, 1,
+                BlockCustomSapling.BlockType.PURPLE.metadata()));
+        Element.SAPLING_AUTUMN_YELLOW.set(new ItemStack(block, 1,
+                BlockCustomSapling.BlockType.YELLOW.metadata()));
+        Element.SAPLING_FIR
+                .set(new ItemStack(block, 1, BlockCustomSapling.BlockType.FIR.metadata()));
+        Element.SAPLING_REDWOOD.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.REDWOOD
+                .metadata()));
+
+        ForestryModHelper.registerSapling(new ItemStack(block, 1, -1));
+        
+        // all but redwood
+        final Element[] forestrySaplings = { Element.SAPLING_ACACIA, Element.SAPLING_AUTUMN_BROWN,
+                Element.SAPLING_AUTUMN_ORANGE, Element.SAPLING_AUTUMN_PURPLE,
+                Element.SAPLING_AUTUMN_YELLOW, Element.SAPLING_FIR };
+        for (final Element sapling : forestrySaplings)
+            ForestryModHelper.registerGermling(sapling.get());
+
+        proxy.registerEventHandler(new SaplingBonemealEventHandler(block));
+        proxy.registerFuelHandler(new SaplingFuelHandler(block.blockID));
     }
 
 }

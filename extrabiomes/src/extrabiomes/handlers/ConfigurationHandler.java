@@ -4,20 +4,20 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.core.handler;
+package extrabiomes.handlers;
 
 import java.io.File;
 import java.util.logging.Level;
 
 import com.google.common.base.Optional;
 
-import extrabiomes.core.helper.LogHelper;
-import extrabiomes.core.utility.EnhancedConfiguration;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.ItemSettings;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.lib.Reference;
+import extrabiomes.utility.EnhancedConfiguration;
 
 /**
  * Loads configuration data

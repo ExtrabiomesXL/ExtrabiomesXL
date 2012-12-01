@@ -11,7 +11,7 @@ import net.minecraftforge.event.EventBus;
 
 import com.google.common.base.Optional;
 
-import extrabiomes.core.helper.LogHelper;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.module.amica.Amica;
 import extrabiomes.module.cautia.Cautia;

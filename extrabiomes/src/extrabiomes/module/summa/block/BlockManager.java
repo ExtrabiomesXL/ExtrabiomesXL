@@ -20,12 +20,14 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
 import extrabiomes.biomes.BiomeManagerImpl;
-import extrabiomes.core.helper.LogHelper;
 import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LogActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
+import extrabiomes.handlers.SaplingBonemealEventHandler;
+import extrabiomes.handlers.SaplingFuelHandler;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
@@ -211,32 +213,6 @@ public enum BlockManager {
             Extrabiomes.postInitEvent(new RedRockActiveEvent(thisBlock));
 
             addRedRockToMountainRidge(thisBlock.blockID);
-        }
-    },
-    SAPLING {
-        @Override
-        protected void create() {
-            Stuff.sapling = Optional.of(new BlockCustomSapling(getSettings().getID()));
-        }
-
-        @Override
-        protected BlockSettings getSettings() {
-            return BlockSettings.SAPLING;
-        }
-
-        @Override
-        protected void prepare() {
-            final CommonProxy proxy = Extrabiomes.proxy;
-            final Block thisBlock = Stuff.sapling.get();
-
-            thisBlock.setBlockName("extrabiomes.sapling");
-            proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class);
-
-            proxy.registerOre("treeSapling", new ItemStack(thisBlock, 1, -1));
-
-            proxy.registerEventHandler(new SaplingBonemealEventhandler(
-                    (BlockCustomSapling) thisBlock));
-            proxy.registerFuelHandler(new FuelHandlerSapling(thisBlock.blockID));
         }
     },
     CUSTOMLOG {

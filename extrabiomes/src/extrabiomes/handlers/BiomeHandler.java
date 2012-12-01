@@ -4,7 +4,7 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.core.handler;
+package extrabiomes.handlers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Api;
 import extrabiomes.api.events.GetBiomeIDEvent;
-import extrabiomes.core.helper.BiomeHelper;
-import extrabiomes.core.helper.LogHelper;
+import extrabiomes.helpers.BiomeHelper;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 
 public enum BiomeHandler {

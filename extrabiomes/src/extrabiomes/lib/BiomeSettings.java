@@ -11,7 +11,6 @@ import net.minecraftforge.common.Property;
 
 import com.google.common.base.Optional;
 
-import extrabiomes.core.utility.EnhancedConfiguration;
 import extrabiomes.module.summa.biome.BiomeAlpine;
 import extrabiomes.module.summa.biome.BiomeAutumnWoods;
 import extrabiomes.module.summa.biome.BiomeBirchForest;
@@ -40,6 +39,7 @@ import extrabiomes.module.summa.biome.BiomeTemporateRainforest;
 import extrabiomes.module.summa.biome.BiomeTundra;
 import extrabiomes.module.summa.biome.BiomeWasteland;
 import extrabiomes.module.summa.biome.BiomeWoodlands;
+import extrabiomes.utility.EnhancedConfiguration;
 
 public enum BiomeSettings {
     DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA,

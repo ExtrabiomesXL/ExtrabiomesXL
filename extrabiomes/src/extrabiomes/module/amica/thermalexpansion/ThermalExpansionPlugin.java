@@ -17,7 +17,7 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
-import extrabiomes.core.helper.LogHelper;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.module.summa.block.BlockCustomLog;
 import extrabiomes.module.summa.block.BlockQuarterLog;
