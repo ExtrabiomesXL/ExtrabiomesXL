@@ -43,39 +43,6 @@ import extrabiomes.proxy.CommonProxy;
 
 @SuppressWarnings("deprecation")
 public enum BlockManager {
-    AUTUMNLEAVES {
-        @Override
-        protected void create() {
-            Stuff.leavesAutumn = Optional.of(new BlockAutumnLeaves(getSettings().getID()));
-        }
-
-        @Override
-        protected BlockSettings getSettings() {
-            return BlockSettings.AUTUMNLEAVES;
-        }
-
-        @Override
-        protected void prepare() {
-            final CommonProxy proxy = Extrabiomes.proxy;
-            final Block thisBlock = Stuff.leavesAutumn.get();
-
-            thisBlock.setBlockName("extrabiomes.autumnleaves");
-            proxy.registerBlock(thisBlock, extrabiomes.module.summa.block.ItemCustomLeaves.class);
-
-            proxy.registerOre("treeLeaves", new ItemStack(thisBlock, 1, -1));
-
-            WorldGenAutumnTree.setLeavesBlock(thisBlock,
-                    BlockAutumnLeaves.BlockType.BROWN.metadata(),
-                    BlockAutumnLeaves.BlockType.ORANGE.metadata(),
-                    BlockAutumnLeaves.BlockType.PURPLE.metadata(),
-                    BlockAutumnLeaves.BlockType.YELLOW.metadata());
-            WorldGenBigAutumnTree.setLeavesBlock(thisBlock,
-                    BlockAutumnLeaves.BlockType.BROWN.metadata(),
-                    BlockAutumnLeaves.BlockType.ORANGE.metadata(),
-                    BlockAutumnLeaves.BlockType.PURPLE.metadata(),
-                    BlockAutumnLeaves.BlockType.YELLOW.metadata());
-        }
-    },
     CATTAIL {
         @Override
         protected void create() {

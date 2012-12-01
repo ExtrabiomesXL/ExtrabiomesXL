@@ -17,8 +17,8 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
+import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.core.helper.LogHelper;
-import extrabiomes.module.summa.block.BlockAutumnLeaves;
 import extrabiomes.module.summa.block.BlockCustomSapling;
 
 @SuppressWarnings("deprecation")
@@ -55,18 +55,18 @@ public class IC2Plugin {
 			return;
 		}
 
-		if (Stuff.leavesAutumn.isPresent())
-			for (final BlockAutumnLeaves.BlockType type : BlockAutumnLeaves.BlockType
-					.values())
-				api.get().addCraftingRecipe(
-						target,
-						new Object[] {
-								"PPP",
-								"P P",
-								"PPP",
-								Character.valueOf('P'),
-								new ItemStack(Stuff.leavesAutumn.get(),
-										1, type.metadata()) });
+//		if (Stuff.leavesAutumn.isPresent())
+//			for (final BlockAutumnLeaves.BlockType type : BlockAutumnLeaves.BlockType
+//					.values())
+//				api.get().addCraftingRecipe(
+//						target,
+//						new Object[] {
+//								"PPP",
+//								"P P",
+//								"PPP",
+//								Character.valueOf('P'),
+//								new ItemStack(Stuff.leavesAutumn.get(),
+//										1, type.metadata()) });
 
 		target = target.copy();
 		target.stackSize = 2;

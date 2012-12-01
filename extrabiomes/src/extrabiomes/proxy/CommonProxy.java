@@ -148,6 +148,10 @@ public class CommonProxy {
         OreDictionary.registerOre(name, ore);
     }
 
+    public void registerOreInAllSubblocks(String name, Block ore) {
+        OreDictionary.registerOre(name, new ItemStack(ore, 1, -1));
+    }
+
     public void registerRenderInformation() {}
 
     public void registerScarecrowRendering() {}

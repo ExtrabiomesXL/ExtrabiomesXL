@@ -11,62 +11,38 @@ import java.util.Random;
 import net.minecraft.src.Block;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.World;
-import net.minecraft.src.WorldGenerator;
 
-public class WorldGenBigAutumnTree extends WorldGenerator {
+public class WorldGenBigAutumnTree extends WorldGenAutumnTree {
 
-    private static Block        trunkBlock           = Block.wood;
-    private static int          trunkMetadata        = 0;
-    private static Block        leavesBlock          = Block.leaves;
-    private static int          brownLeavesMetadata  = 0;
-    private static int          orangeLeavesMetadata = 0;
-    private static int          purpleLeavesMetadata = 0;
-    private static int          yellowLeavesMetadata = 0;
+    private static Block        trunkBlock      = Block.wood;
+    private static int          trunkMetadata   = 0;
 
-    private static final byte[] otherCoordPairs      = new byte[] { (byte) 2, (byte) 0, (byte) 0,
-            (byte) 1, (byte) 2, (byte) 1            };
-
-    public static void setLeavesBlock(Block block, int brownMetadata, int orangeMetadata,
-            int purpleMetadata, int yellowMetadata)
-    {
-        WorldGenBigAutumnTree.leavesBlock = block;
-        WorldGenBigAutumnTree.brownLeavesMetadata = brownMetadata;
-        WorldGenBigAutumnTree.orangeLeavesMetadata = orangeMetadata;
-        WorldGenBigAutumnTree.purpleLeavesMetadata = purpleMetadata;
-        WorldGenBigAutumnTree.yellowLeavesMetadata = yellowMetadata;
-    }
+    private static final byte[] otherCoordPairs = new byte[] { (byte) 2, (byte) 0, (byte) 0,
+            (byte) 1, (byte) 2, (byte) 1       };
 
     public static void setTrunkBlock(Block block, int metadata) {
         WorldGenBigAutumnTree.trunkBlock = block;
         WorldGenBigAutumnTree.trunkMetadata = metadata;
     }
 
-    private final Random                            rand              = new Random();
-    private World                                   world;
-    private final int[]                             basePos           = new int[] { 0, 0, 0 };
-    private int                                     heightLimit       = 0;
-    private int                                     height;
-    private final double                            heightAttenuation = 0.618D;
-    private final double                            branchSlope       = 0.381D;
-    private double                                  scaleWidth        = 1.0D;
-    private double                                  leafDensity       = 1.0D;
-    private int                                     heightLimitLimit  = 12;
-    private int                                     leafDistanceLimit = 4;
-    private int[][]                                 leafNodes;
-    private final WorldGenAutumnTree.AutumnTreeType type;
+    private final Random rand              = new Random();
+    private World        world;
+    private final int[]  basePos           = new int[] { 0, 0, 0 };
+    private int          heightLimit       = 0;
+    private int          height;
+    private final double heightAttenuation = 0.618D;
+    private final double branchSlope       = 0.381D;
+    private double       scaleWidth        = 1.0D;
+    private double       leafDensity       = 1.0D;
+    private int          heightLimitLimit  = 12;
+    private int          leafDistanceLimit = 4;
+    private int[][]      leafNodes;
 
-    public WorldGenBigAutumnTree(boolean notify, WorldGenAutumnTree.AutumnTreeType type) {
-        super(notify);
-        this.type = type;
+    public WorldGenBigAutumnTree(boolean notify, AutumnTreeType type) {
+        super(notify, type);
     }
 
-    /**
-     * Checks a line of blocks in the world from the first coordinate to
-     * triplet to the second, returning the distance (in blocks) before
-     * a non-air, non-leaf block is encountered and/or the end is
-     * encountered.
-     */
-    int checkBlockLine(int[] par1ArrayOfInteger, int[] par2ArrayOfInteger) {
+    private int checkBlockLine(int[] par1ArrayOfInteger, int[] par2ArrayOfInteger) {
         final int[] var3 = new int[] { 0, 0, 0 };
         byte var4 = 0;
         byte var5;
@@ -123,17 +99,13 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
         if (!validTreeLocation()) return false;
 
         generateLeafNodeList();
-        generateLeaves(leavesBlock.blockID, getLeavesMetadata());
+        generateLeaves(type.getID(), type.getMetadata());
         generateTrunk(trunkBlock.blockID, trunkMetadata);
         generateLeafNodeBases(trunkBlock.blockID, trunkMetadata);
         return true;
     }
 
-    /**
-     * Generates the leaves surrounding an individual entry in the
-     * leafNodes list.
-     */
-    void generateLeafNode(int x, int y, int z, int leafID, int leafMeta) {
+    private void generateLeafNode(int x, int y, int z, int leafID, int leafMeta) {
         int y1 = y;
 
         for (final int heightLimit = y + leafDistanceLimit; y1 < heightLimit; ++y1) {
@@ -142,11 +114,7 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
         }
     }
 
-    /**
-     * Generates additional wood blocks to fill out the bases of
-     * different leaf nodes that would otherwise degrade.
-     */
-    void generateLeafNodeBases(int woodID, int woodMeta) {
+    private void generateLeafNodeBases(int woodID, int woodMeta) {
         int var1 = 0;
         final int var2 = leafNodes.length;
 
@@ -161,7 +129,7 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
         }
     }
 
-    void generateLeafNodeList() {
+    private void generateLeafNodeList() {
         height = (int) (heightLimit * heightAttenuation);
 
         if (height >= heightLimit) height = heightLimit - 1;
@@ -229,11 +197,7 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
         System.arraycopy(var2, 0, leafNodes, 0, var4);
     }
 
-    /**
-     * Generates the leaf portion of the tree as specified by the
-     * leafNodes list.
-     */
-    void generateLeaves(int leafID, int leafMeta) {
+    private void generateLeaves(int leafID, int leafMeta) {
         int node = 0;
 
         for (final int length = leafNodes.length; node < length; ++node)
@@ -241,12 +205,7 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
                     leafMeta);
     }
 
-    /**
-     * Places the trunk for the big tree that is being generated. Able
-     * to generate double-sized trunks by changing a field that is
-     * always 1 to 2.
-     */
-    void generateTrunk(int woodID, int woodMeta) {
+    private void generateTrunk(int woodID, int woodMeta) {
         final int var1 = basePos[0];
         final int var2 = basePos[1];
         final int var3 = basePos[1] + height;
@@ -256,7 +215,8 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
         placeBlockLine(var5, var6, woodID, woodMeta);
     }
 
-    void genTreeLayer(int x, int y, int z, float size, byte par5, int leafBlockID, int leafBlockMeta)
+    private void genTreeLayer(int x, int y, int z, float size, byte par5, int leafBlockID,
+            int leafBlockMeta)
     {
         final int var7 = (int) (size + 0.618D);
         final byte var8 = otherCoordPairs[par5];
@@ -294,23 +254,7 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
         }
     }
 
-    private int getLeavesMetadata() {
-        switch (type) {
-            case BROWN:
-                return brownLeavesMetadata;
-            case ORANGE:
-                return orangeLeavesMetadata;
-            case PURPLE:
-                return purpleLeavesMetadata;
-            default:
-                return yellowLeavesMetadata;
-        }
-    }
-
-    /**
-     * Gets the rough size of a layer of the tree.
-     */
-    float layerSize(int par1) {
+    private float layerSize(int par1) {
         if (par1 < heightLimit * 0.3D)
             return -1.618F;
         else {
@@ -331,11 +275,7 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
         }
     }
 
-    /**
-     * Indicates whether or not a leaf node requires additional wood to
-     * be added to preserve integrity.
-     */
-    boolean leafNodeNeedsBase(int par1) {
+    private boolean leafNodeNeedsBase(int par1) {
         return par1 >= heightLimit * 0.2D;
     }
 
@@ -345,11 +285,8 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
                 : -1.0F;
     }
 
-    /**
-     * Places a line of the specified block ID into the world from the
-     * first coordinate triplet to the second.
-     */
-    void placeBlockLine(int[] par1ArrayOfInteger, int[] par2ArrayOfInteger, int woodID, int woodMeta)
+    private void placeBlockLine(int[] par1ArrayOfInteger, int[] par2ArrayOfInteger, int woodID,
+            int woodMeta)
     {
         final int[] var4 = new int[] { 0, 0, 0 };
         byte var5 = 0;
@@ -397,9 +334,6 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
         }
     }
 
-    /**
-     * Rescales the generator settings, only used in WorldGenBigTree
-     */
     @Override
     public void setScale(double par1, double par3, double par5) {
         heightLimitLimit = (int) (par1 * 12.0D);
@@ -410,11 +344,7 @@ public class WorldGenBigAutumnTree extends WorldGenerator {
         leafDensity = par5;
     }
 
-    /**
-     * Returns a boolean indicating whether or not the current location
-     * for the tree, spanning basePos to to the height limit, is valid.
-     */
-    boolean validTreeLocation() {
+    private boolean validTreeLocation() {
         final int[] var1 = new int[] { basePos[0], basePos[1], basePos[2] };
         final int[] var2 = new int[] { basePos[0], basePos[1] + heightLimit - 1, basePos[2] };
         final int var3 = world.getBlockId(basePos[0], basePos[1] - 1, basePos[2]);

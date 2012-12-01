@@ -12,6 +12,7 @@ import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_INIT;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.Item;
@@ -24,9 +25,9 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
+import extrabiomes.core.helper.ForestryModHelper;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.module.summa.TreeSoilRegistry;
-import extrabiomes.module.summa.block.BlockAutumnLeaves;
 import extrabiomes.module.summa.block.BlockCustomFlower;
 import extrabiomes.module.summa.block.BlockCustomSapling;
 import extrabiomes.module.summa.block.BlockGreenLeaves;
@@ -79,6 +80,11 @@ public class ForestryPlugin {
     }
 
     private void addBackPackItems() {
+
+        final Collection<ItemStack> items = ForestryModHelper.getForestryBackPackItems();
+        for (final ItemStack item : items)
+            backpackItems[FORESTER].add(item);
+
         if (Stuff.crackedSand.isPresent())
             backpackItems[DIGGER].add(new ItemStack(Stuff.crackedSand.get()));
         if (Stuff.redRock.isPresent())
@@ -86,11 +92,6 @@ public class ForestryPlugin {
                     BlockRedRock.BlockType.RED_COBBLE.metadata()));
         if (Stuff.quickSand.isPresent())
             backpackItems[DIGGER].add(new ItemStack(Stuff.quickSand.get()));
-
-        if (Stuff.leavesAutumn.isPresent())
-            for (final BlockAutumnLeaves.BlockType type : BlockAutumnLeaves.BlockType.values())
-                backpackItems[FORESTER].add(new ItemStack(Stuff.leavesAutumn.get(), 1, type
-                        .metadata()));
 
         if (Stuff.leavesGreen.isPresent())
             for (final BlockGreenLeaves.BlockType type : BlockGreenLeaves.BlockType.values())
@@ -129,7 +130,10 @@ public class ForestryPlugin {
     }
 
     private void addGlobals() {
-        if (Stuff.leavesAutumn.isPresent()) leafBlockIds.add(Stuff.leavesAutumn.get().blockID);
+        final Collection<ItemStack> items = ForestryModHelper.getLeaves();
+        for (final ItemStack item : items)
+            leafBlockIds.add(item);
+
         if (Stuff.leavesGreen.isPresent()) leafBlockIds.add(Stuff.leavesGreen.get().blockID);
     }
 
@@ -183,8 +187,8 @@ public class ForestryPlugin {
     @ForgeSubscribe
     public void preInit(PluginEvent.Pre event) {
         if (!isEnabled()) return;
-        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
-                "Forestry");
+        LogHelper
+                .fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT), "Forestry");
         try {
             Class cls = Class.forName("forestry.api.core.ItemInterface");
             getForestryItem = Optional.fromNullable(cls.getMethod("getItem", String.class));

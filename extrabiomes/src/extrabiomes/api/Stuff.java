@@ -24,7 +24,6 @@ public enum Stuff {
 	public static Optional<? extends Block>	flower				= Optional.absent();
 	public static Optional<? extends Block>	grass				= Optional.absent();
 	public static Optional<? extends Block>	leafPile			= Optional.absent();
-	public static Optional<? extends Block>	leavesAutumn		= Optional.absent();
 	public static Optional<? extends Block>	leavesGreen			= Optional.absent();
 	public static Optional<? extends Block>	log					= Optional.absent();
 	public static Optional<? extends Block>	planks				= Optional.absent();   

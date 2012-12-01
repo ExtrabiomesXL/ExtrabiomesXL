@@ -25,6 +25,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.core.handler.ConfigurationHandler;
+import extrabiomes.core.helper.BlockHelper;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
@@ -84,6 +85,8 @@ public class Extrabiomes {
 
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(),
                 "/extrabiomes/extrabiomes.cfg"));
+
+        BlockHelper.createBlocks();
 
         Module.registerModules();
         Module.postEvent(new ModulePreInitEvent());
