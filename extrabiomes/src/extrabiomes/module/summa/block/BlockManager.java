@@ -160,36 +160,6 @@ public enum BlockManager {
             }
         }
     },
-    GREENLEAVES {
-        @Override
-        protected void create() {
-            Stuff.leavesGreen = Optional.of(new BlockGreenLeaves(getSettings().getID()));
-        }
-
-        @Override
-        protected BlockSettings getSettings() {
-            return BlockSettings.GREENLEAVES;
-        }
-
-        @Override
-        protected void prepare() {
-            final CommonProxy proxy = Extrabiomes.proxy;
-            final Block thisBlock = Stuff.leavesGreen.get();
-
-            thisBlock.setBlockName("extrabiomes.greenleaves");
-            proxy.registerBlock(thisBlock, extrabiomes.module.summa.block.ItemCustomLeaves.class);
-
-            proxy.registerOre("treeLeaves", new ItemStack(thisBlock, 1, -1));
-
-            WorldGenAcacia.setLeavesBlock(thisBlock, BlockGreenLeaves.BlockType.ACACIA.metadata());
-            WorldGenFirTree.setLeavesBlock(thisBlock, BlockGreenLeaves.BlockType.FIR.metadata());
-            WorldGenFirTreeHuge
-                    .setLeavesBlock(thisBlock, BlockGreenLeaves.BlockType.FIR.metadata());
-            WorldGenRedwood
-                    .setLeavesBlock(thisBlock, BlockGreenLeaves.BlockType.REDWOOD.metadata());
-
-        }
-    },
     LEAFPILE {
         @Override
         protected void create() {

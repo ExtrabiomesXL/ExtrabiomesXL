@@ -25,12 +25,12 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
+import extrabiomes.blocks.BlockGreenLeaves;
 import extrabiomes.core.helper.ForestryModHelper;
 import extrabiomes.core.helper.LogHelper;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.block.BlockCustomFlower;
 import extrabiomes.module.summa.block.BlockCustomSapling;
-import extrabiomes.module.summa.block.BlockGreenLeaves;
 import extrabiomes.module.summa.block.BlockRedRock;
 
 public class ForestryPlugin {
@@ -93,11 +93,6 @@ public class ForestryPlugin {
         if (Stuff.quickSand.isPresent())
             backpackItems[DIGGER].add(new ItemStack(Stuff.quickSand.get()));
 
-        if (Stuff.leavesGreen.isPresent())
-            for (final BlockGreenLeaves.BlockType type : BlockGreenLeaves.BlockType.values())
-                backpackItems[FORESTER].add(new ItemStack(Stuff.leavesGreen.get(), 1, type
-                        .metadata()));
-
         if (Stuff.sapling.isPresent())
             for (final BlockCustomSapling.BlockType type : BlockCustomSapling.BlockType.values())
                 backpackItems[FORESTER].add(new ItemStack(Stuff.sapling.get(), 1, type.metadata()));
@@ -132,9 +127,7 @@ public class ForestryPlugin {
     private void addGlobals() {
         final Collection<ItemStack> items = ForestryModHelper.getLeaves();
         for (final ItemStack item : items)
-            leafBlockIds.add(item);
-
-        if (Stuff.leavesGreen.isPresent()) leafBlockIds.add(Stuff.leavesGreen.get().blockID);
+            leafBlockIds.add(item.itemID);
     }
 
     private void addRecipes() throws Exception {

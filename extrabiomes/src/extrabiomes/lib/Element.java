@@ -12,10 +12,13 @@ import com.google.common.base.Optional;
 
 public enum Element {
     // @formatter:off
+    LEAVES_ACACIA,
     LEAVES_AUTUMN_BROWN,
     LEAVES_AUTUMN_ORANGE,
     LEAVES_AUTUMN_PURPLE,
-    LEAVES_AUTUMN_YELLOW;
+    LEAVES_AUTUMN_YELLOW,
+    LEAVES_FIR,
+    LEAVES_REDWOOD;
     // @formatter:on
 
     private Optional<ItemStack> stack = Optional.absent();

@@ -9,6 +9,7 @@ package extrabiomes.core.helper;
 import net.minecraft.src.ItemStack;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
+import extrabiomes.blocks.BlockGreenLeaves;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ModuleControlSettings;
@@ -41,6 +42,27 @@ public abstract class BlockHelper {
 
     public static void createBlocks() {
         createAutumnLeaves();
+        createGreenLeaves();
+    }
+
+    private static void createGreenLeaves() {
+        final int blockID = BlockSettings.GREENLEAVES.getID();
+        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
+
+        final BlockGreenLeaves block = new BlockGreenLeaves(blockID);
+        block.setBlockName("extrabiomes.greenleaves");
+
+        final CommonProxy proxy = Extrabiomes.proxy;
+        proxy.registerBlock(block, extrabiomes.module.summa.block.ItemCustomLeaves.class);
+        proxy.registerOreInAllSubblocks("treeLeaves", block);
+
+        Element.LEAVES_ACACIA.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.ACACIA
+                .metadata()));
+        Element.LEAVES_FIR.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.FIR.metadata()));
+        Element.LEAVES_REDWOOD.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.REDWOOD
+                .metadata()));
+
+        ForestryModHelper.registerLeaves(new ItemStack(block, 1, -1));
     }
 
 }
