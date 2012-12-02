@@ -13,22 +13,34 @@ import java.util.List;
 import net.minecraft.src.ItemStack;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 
 public abstract class ForestryModHelper {
 
-    private static List<ItemStack> germlings = new ArrayList();
-    private static List<ItemStack> leaves    = new ArrayList();
-    private static List<ItemStack> saplings  = new ArrayList();
+    private static List<ItemStack> backpackForestry = new ArrayList();
+    private static List<ItemStack> basicFlowers     = new ArrayList();
+    private static List<ItemStack> flowers          = new ArrayList();
+    private static List<ItemStack> germlings        = new ArrayList();
+    private static List<ItemStack> leaves           = new ArrayList();
+    private static List<ItemStack> saplings         = new ArrayList();
+
+    public static void addToForestryBackpack(ItemStack stack) {
+        backpackForestry.add(stack);
+    }
+
+    public static Collection<ItemStack> getBasicFlowers() {
+        return ImmutableList.copyOf(basicFlowers);
+    }
 
     public static Collection<ItemStack> getForestryBackPackItems() {
-        final List<ItemStack> list = Lists.newArrayList(leaves);
-        list.addAll(saplings);
-        return ImmutableList.copyOf(list);
+        return ImmutableList.copyOf(backpackForestry);
     }
 
     public static Collection<ItemStack> getLeaves() {
         return ImmutableList.copyOf(leaves);
+    }
+
+    public static Collection<ItemStack> getSaplings() {
+        return ImmutableList.copyOf(saplings);
     }
 
     public static boolean isGermling(ItemStack stack) {
@@ -37,6 +49,26 @@ public abstract class ForestryModHelper {
         for (final ItemStack is : germlings)
             if (ItemStack.areItemStacksEqual(is, stack)) return true;
         return false;
+    }
+
+    public static void registerBasicFlower(ItemStack stack) {
+
+        // To enforce uniqueness in the List (should be a Set, but
+        // ItemStack.equals() is not defined. -.-
+        for (final ItemStack is : basicFlowers)
+            if (ItemStack.areItemStacksEqual(is, stack)) return;
+
+        basicFlowers.add(stack);
+    }
+
+    public static void registerFlower(ItemStack stack) {
+
+        // To enforce uniqueness in the List (should be a Set, but
+        // ItemStack.equals() is not defined. -.-
+        for (final ItemStack is : flowers)
+            if (ItemStack.areItemStacksEqual(is, stack)) return;
+
+        flowers.add(stack);
     }
 
     public static void registerGermling(ItemStack stack) {
@@ -67,10 +99,6 @@ public abstract class ForestryModHelper {
             if (ItemStack.areItemStacksEqual(is, stack)) return;
 
         saplings.add(stack);
-    }
-
-    public static Collection<ItemStack> getSaplings() {
-        return ImmutableList.copyOf(saplings);
     }
 
 }

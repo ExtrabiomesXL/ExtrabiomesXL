@@ -20,6 +20,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
+import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.events.BlockActiveEvent.AcaciaStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FirStairsActiveEvent;
@@ -38,7 +39,6 @@ import extrabiomes.module.fabrica.block.BlockCustomWall;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.module.fabrica.block.BlockCustomWoodSlab;
 import extrabiomes.module.fabrica.block.BlockRedRockSlab;
-import extrabiomes.module.summa.block.BlockCustomFlower;
 import extrabiomes.module.summa.block.BlockCustomLog;
 import extrabiomes.module.summa.block.BlockQuarterLog;
 import extrabiomes.module.summa.block.BlockRedRock;

@@ -97,30 +97,6 @@ public enum BlockManager {
             FacadeHelper.addBuildcraftFacade(thisBlock.blockID);
         }
     },
-    FLOWER {
-        @Override
-        protected void create() {
-            Stuff.flower = Optional.of(new BlockCustomFlower(getSettings().getID()));
-        }
-
-        @Override
-        protected BlockSettings getSettings() {
-            return BlockSettings.FLOWER;
-        }
-
-        @Override
-        protected void prepare() {
-            final CommonProxy proxy = Extrabiomes.proxy;
-            final Block thisBlock = Stuff.flower.get();
-
-            thisBlock.setBlockName("extrabiomes.flower");
-            proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class);
-
-            Extrabiomes.postInitEvent(new FlowerActiveEvent(thisBlock));
-
-            proxy.registerWorldGenerator(new FlowerGenerator(thisBlock.blockID));
-        }
-    },
     GRASS {
         @Override
         protected void create() {

@@ -26,11 +26,9 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockCustomSapling;
-import extrabiomes.blocks.BlockGreenLeaves;
 import extrabiomes.helpers.ForestryModHelper;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.module.summa.TreeSoilRegistry;
-import extrabiomes.module.summa.block.BlockCustomFlower;
 import extrabiomes.module.summa.block.BlockRedRock;
 
 public class ForestryPlugin {
@@ -92,23 +90,11 @@ public class ForestryPlugin {
                     BlockRedRock.BlockType.RED_COBBLE.metadata()));
         if (Stuff.quickSand.isPresent())
             backpackItems[DIGGER].add(new ItemStack(Stuff.quickSand.get()));
-
-        if (Stuff.flower.isPresent())
-            for (final BlockCustomFlower.BlockType type : BlockCustomFlower.BlockType.values())
-                backpackItems[FORESTER].add(new ItemStack(Stuff.flower.get(), 1, type.metadata()));
     }
 
     private void addBasicFlowers() {
-        if (!Stuff.flower.isPresent()) return;
-
-        plainFlowers.add(new ItemStack(Stuff.flower.get(), 1, BlockCustomFlower.BlockType.HYDRANGEA
-                .metadata()));
-        plainFlowers.add(new ItemStack(Stuff.flower.get(), 1, BlockCustomFlower.BlockType.ORANGE
-                .metadata()));
-        plainFlowers.add(new ItemStack(Stuff.flower.get(), 1, BlockCustomFlower.BlockType.PURPLE
-                .metadata()));
-        plainFlowers.add(new ItemStack(Stuff.flower.get(), 1, BlockCustomFlower.BlockType.WHITE
-                .metadata()));
+        for (final ItemStack flower : ForestryModHelper.getBasicFlowers())
+            plainFlowers.add(flower);
     }
 
     private void addFermenterRecipeSapling(ItemStack resource) throws Exception {
@@ -128,7 +114,7 @@ public class ForestryPlugin {
 
     private void addRecipes() throws Exception {
         if (fermenterAddRecipe.isPresent() && getForestryItem.isPresent())
-            for (ItemStack sapling : ForestryModHelper.getSaplings())
+            for (final ItemStack sapling : ForestryModHelper.getSaplings())
                 addFermenterRecipeSapling(sapling);
         if (carpenterAddRecipe.isPresent() && Stuff.redRock.isPresent())
             carpenterAddRecipe.get().invoke(

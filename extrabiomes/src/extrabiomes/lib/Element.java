@@ -12,6 +12,11 @@ import com.google.common.base.Optional;
 
 public enum Element {
     // @formatter:off
+    AUTUMN_SHRUB,
+    FLOWER_ORANGE,
+    FLOWER_PURPLE,
+    FLOWER_WHITE,
+    HYDRANGEA,
     LEAVES_ACACIA,
     LEAVES_AUTUMN_BROWN,
     LEAVES_AUTUMN_ORANGE,
@@ -19,13 +24,16 @@ public enum Element {
     LEAVES_AUTUMN_YELLOW,
     LEAVES_FIR,
     LEAVES_REDWOOD,
+    ROOT,
     SAPLING_ACACIA,
     SAPLING_AUTUMN_BROWN,
     SAPLING_AUTUMN_ORANGE,
     SAPLING_AUTUMN_PURPLE,
     SAPLING_AUTUMN_YELLOW,
     SAPLING_FIR,
-    SAPLING_REDWOOD;
+    SAPLING_REDWOOD,
+    TINY_CACTUS,
+    TOADSTOOL;
     // @formatter:on
 
     private Optional<ItemStack> stack = Optional.absent();

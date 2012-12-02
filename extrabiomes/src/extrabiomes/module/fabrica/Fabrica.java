@@ -19,6 +19,7 @@ import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
+import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.lib.ItemSettings;
@@ -26,7 +27,6 @@ import extrabiomes.module.fabrica.block.BlockManager;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ItemScarecrow;
-import extrabiomes.module.summa.block.BlockCustomFlower;
 
 public class Fabrica {
 

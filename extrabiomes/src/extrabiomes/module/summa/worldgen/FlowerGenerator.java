@@ -14,7 +14,7 @@ import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
-import extrabiomes.module.summa.block.BlockCustomFlower;
+import extrabiomes.blocks.BlockCustomFlower;
 
 @SuppressWarnings("deprecation")
 public class FlowerGenerator implements IWorldGenerator {
