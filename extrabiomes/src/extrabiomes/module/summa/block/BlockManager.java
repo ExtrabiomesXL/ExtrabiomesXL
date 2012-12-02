@@ -78,59 +78,6 @@ public enum BlockManager {
             }
         }
     },
-    LEAFPILE {
-        @Override
-        protected void create() {
-            Stuff.leafPile = Optional.of(new BlockLeafPile(getSettings().getID()));
-        }
-
-        @Override
-        protected BlockSettings getSettings() {
-            return BlockSettings.LEAFPILE;
-        }
-
-        @Override
-        protected void prepare() {
-            final CommonProxy proxy = Extrabiomes.proxy;
-            final Block thisBlock = Stuff.leafPile.get();
-
-            thisBlock.setBlockName("extrabiomes.leafpile");
-            proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
-            proxy.registerBlock(thisBlock);
-
-            Extrabiomes.postInitEvent(new LeafPileActiveEvent(thisBlock));
-
-            proxy.registerWorldGenerator(new LeafPileGenerator(thisBlock.blockID));
-        }
-    },
-    REDROCK(true) {
-        @Override
-        protected void create() {
-            Stuff.redRock = Optional.of(new BlockRedRock(getSettings().getID()));
-        }
-
-        @Override
-        protected BlockSettings getSettings() {
-            return BlockSettings.REDROCK;
-        }
-
-        @Override
-        protected void prepare() {
-            final CommonProxy proxy = Extrabiomes.proxy;
-            final Block thisBlock = Stuff.redRock.get();
-
-            thisBlock.setBlockName("extrabiomes.redrock");
-            proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
-            proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class);
-
-            for (final BlockRedRock.BlockType type : BlockRedRock.BlockType.values())
-                FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
-
-            Extrabiomes.postInitEvent(new RedRockActiveEvent(thisBlock));
-
-            addRedRockToMountainRidge(thisBlock.blockID);
-        }
-    },
     CUSTOMLOG {
         @Override
         protected void create() {
@@ -290,17 +237,6 @@ public enum BlockManager {
             Extrabiomes.proxy.registerEventHandler(thisBlock);
         }
     };
-
-    private static final String LOG_MESSAGE_ADD_REDROCK = "log.message.add.redrock";
-
-    private static void addRedRockToMountainRidge(int redrockID) {
-        if (!BiomeManager.mountainridge.isPresent()) return;
-
-        final BiomeGenBase mountainridge = BiomeManager.mountainridge.get();
-        mountainridge.topBlock = (byte) redrockID;
-        mountainridge.fillerBlock = (byte) redrockID;
-        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_ADD_REDROCK));
-    }
 
     private static void createBlocks() throws Exception {
         for (final BlockManager block : BlockManager.values())

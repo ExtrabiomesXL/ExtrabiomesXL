@@ -9,8 +9,6 @@
   <entry key="config.summa.comment">Setze "summa" aus "false", um den Mod auszuschalten.</entry>
   <entry key="item.extrabiomes.scarecrow.name">Vogelscheuche</entry>
   <entry key="item.extrabiomes.logturner.name">Stammdreher</entry>
-  <entry key="log.message.add.crackedsand">Rissiger Sand und das Ödlandbiom hinzugefügt.</entry>
-  <entry key="log.message.add.redrock">Roter Stein und Gebrigskammbiom hinzugefügt.</entry>
   <entry key="log.message.initializing">Initialisieren.</entry>
   <entry key="log.message.load.success">Erfolgreich geladen.</entry>
   <entry key="log.message.plugin.init">Initialisiere %s Plug-In.</entry>

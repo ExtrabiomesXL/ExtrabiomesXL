@@ -28,8 +28,8 @@ import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.helpers.ForestryModHelper;
 import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.Element;
 import extrabiomes.module.summa.TreeSoilRegistry;
-import extrabiomes.module.summa.block.BlockRedRock;
 
 public class ForestryPlugin {
     private Object                  fermenterManager;
@@ -86,9 +86,6 @@ public class ForestryPlugin {
         for (final ItemStack item : items)
             backpackItems[DIGGER].add(item);
 
-        if (Stuff.redRock.isPresent())
-            backpackItems[DIGGER].add(new ItemStack(Stuff.redRock.get(), 1,
-                    BlockRedRock.BlockType.RED_COBBLE.metadata()));
         if (Stuff.quickSand.isPresent())
             backpackItems[DIGGER].add(new ItemStack(Stuff.quickSand.get()));
     }
@@ -117,15 +114,11 @@ public class ForestryPlugin {
         if (fermenterAddRecipe.isPresent() && getForestryItem.isPresent())
             for (final ItemStack sapling : ForestryModHelper.getSaplings())
                 addFermenterRecipeSapling(sapling);
-        if (carpenterAddRecipe.isPresent() && Stuff.redRock.isPresent())
-            carpenterAddRecipe.get().invoke(
-                    carpenterManager,
-                    10,
-                    new LiquidStack(Block.waterStill.blockID, 3000, 0),
-                    null,
+        if (carpenterAddRecipe.isPresent() && Element.RED_ROCK.isPresent())
+            carpenterAddRecipe.get().invoke(carpenterManager, 10,
+                    new LiquidStack(Block.waterStill.blockID, 3000, 0), null,
                     new ItemStack(Item.clay, 4),
-                    new Object[] { "#", Character.valueOf('#'),
-                            new ItemStack(Stuff.redRock.get(), 1, 1) });
+                    new Object[] { "#", Character.valueOf('#'), Element.RED_ROCK.get() });
     }
 
     private void addSaplings() {

@@ -9,8 +9,6 @@
   <entry key="config.summa.comment">Desliga summa para desativar o mod.</entry>
   <entry key="item.extrabiomes.scarecrow.name">Espantalho</entry>
   <entry key="item.extrabiomes.logturner.name">Girador de Troncos</entry>
-  <entry key="log.message.add.crackedsand">Areia rachada foi adicionada ao terreno baldio.</entry>
-  <entry key="log.message.add.redrock">Rocha vermelha foi adicionada a montanha vermelha.</entry>
   <entry key="log.message.initializing">A inicializar.</entry>
   <entry key="log.message.load.success">Carregado com successo.</entry>
   <entry key="log.message.plugin.init">A inicializar o plugin %s.</entry>

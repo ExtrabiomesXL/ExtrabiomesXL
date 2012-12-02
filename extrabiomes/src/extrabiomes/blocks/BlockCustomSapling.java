@@ -68,15 +68,10 @@ public class BlockCustomSapling extends BlockFlower {
         return metadata & METADATA_BITMASK;
     }
 
-    public BlockCustomSapling(int id) {
-        super(id, 16);
+    public BlockCustomSapling(int id, int index) {
+        super(id, index);
         final float var3 = 0.4F;
         setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
-        setHardness(0F);
-        setStepSound(soundGrassFootstep);
-        setRequiresSelfNotify();
-        setTextureFile("/extrabiomes/extrabiomes.png");
-        setCreativeTab(Extrabiomes.tabsEBXL);
     }
 
     private void attemptGrowTree(World world, int x, int y, int z, Random rand) {

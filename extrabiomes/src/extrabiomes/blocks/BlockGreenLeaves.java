@@ -117,16 +117,8 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
     int[] adjacentTreeBlocks;
 
-    public BlockGreenLeaves(int id) {
-        super(id, 80, Material.leaves, false);
-        setTickRandomly(true);
-        setHardness(0.2F);
-        setLightOpacity(1);
-        setStepSound(soundGrassFootstep);
-        setRequiresSelfNotify();
-        Block.setBurnProperties(blockID, 30, 60);
-        setTextureFile("/extrabiomes/extrabiomes.png");
-        setCreativeTab(Extrabiomes.tabsEBXL);
+    public BlockGreenLeaves(int id, int index, Material material, boolean useFastGraphics) {
+        super(id, index, material, useFastGraphics);
     }
 
     @Override

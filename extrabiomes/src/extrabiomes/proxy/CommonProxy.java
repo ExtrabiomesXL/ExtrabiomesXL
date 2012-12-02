@@ -173,4 +173,8 @@ public class CommonProxy {
         MinecraftForge.setBlockHarvestLevel(block, toolClass, harvestLevel);
     }
 
+    public void setBurnProperties(int id, int encouragement, int flammability) {
+        Block.setBurnProperties(id, encouragement, flammability);
+    }
+
 }

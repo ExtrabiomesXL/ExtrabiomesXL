@@ -9,8 +9,6 @@
   <entry key="config.summa.comment">Mettez summa sur "false" pour désactiver le mod.</entry>
   <entry key="item.extrabiomes.scarecrow.name">Épouvantail</entry>
   <entry key="item.extrabiomes.logturner.name">Buch'orienteur</entry>
-  <entry key="log.message.add.crackedsand">Sable fissuré ajouté au biôme terres abandonnées.</entry>
-  <entry key="log.message.add.redrock">Latérite ajoutée au biôme montagnes rouges.</entry>
   <entry key="log.message.initializing">Initialisation.</entry>
   <entry key="log.message.load.success">Chargement réussi.</entry>
   <entry key="log.message.plugin.init">Initialisation du plugin %s.</entry>

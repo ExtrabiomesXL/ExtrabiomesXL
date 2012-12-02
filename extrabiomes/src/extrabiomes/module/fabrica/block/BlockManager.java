@@ -24,8 +24,8 @@ import extrabiomes.events.BlockActiveEvent.RedwoodStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WallActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WoodSlabActiveEvent;
 import extrabiomes.lib.BlockSettings;
+import extrabiomes.lib.Element;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
-import extrabiomes.module.summa.block.BlockRedRock;
 import extrabiomes.proxy.CommonProxy;
 
 public enum BlockManager {
@@ -238,7 +238,8 @@ public enum BlockManager {
         @Override
         protected void create() {
             Stuff.stairsRedCobble = Optional.of(new BlockCustomStairs(getSettings().getID(),
-                    Stuff.redRock.get(), BlockRedRock.BlockType.RED_COBBLE.metadata()));
+                    Block.blocksList[Element.RED_COBBLE.get().itemID], Element.RED_COBBLE.get()
+                            .getItemDamage()));
         }
 
         @Override
@@ -262,7 +263,8 @@ public enum BlockManager {
         @Override
         protected void create() {
             Stuff.stairsRedRockBrick = Optional.of(new BlockCustomStairs(getSettings().getID(),
-                    Stuff.redRock.get(), BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()));
+                    Block.blocksList[Element.RED_ROCK_BRICK.get().itemID], Element.RED_ROCK_BRICK
+                            .get().getItemDamage()));
         }
 
         @Override
