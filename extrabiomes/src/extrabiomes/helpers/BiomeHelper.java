@@ -29,6 +29,15 @@ public abstract class BiomeHelper {
 
     private static Optional<? extends ArrayList<BiomeGenBase>> activeBiomes = Optional.absent();
 
+    public static void addTerrainBlockstoBiome(BiomeSettings biome, int topBlockID,
+            int fillerBlockID)
+    {
+        if (!biome.getBiome().isPresent()) return;
+        final BiomeGenBase baseBiome = biome.getBiome().get();
+        baseBiome.topBlock = (byte) topBlockID;
+        baseBiome.fillerBlock = (byte) fillerBlockID;
+    }
+
     /**
      * <pre>
      * static void createBiome(BiomeSettings biome);

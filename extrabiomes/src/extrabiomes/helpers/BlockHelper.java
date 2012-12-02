@@ -6,19 +6,25 @@
 
 package extrabiomes.helpers;
 
+import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.Material;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCatTail;
+import extrabiomes.blocks.GenericTerrainBlock;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockGreenLeaves;
+import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
 import extrabiomes.handlers.SaplingBonemealEventHandler;
 import extrabiomes.handlers.SaplingFuelHandler;
+import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ModuleControlSettings;
+import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.proxy.CommonProxy;
@@ -33,7 +39,7 @@ public abstract class BlockHelper {
         block.setBlockName("extrabiomes.autumnleaves");
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.module.summa.block.ItemCustomLeaves.class);
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomLeaves.class);
         proxy.registerOreInAllSubblocks("treeLeaves", block);
 
         Element.LEAVES_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.BROWN
@@ -47,12 +53,13 @@ public abstract class BlockHelper {
 
         final ItemStack stack = new ItemStack(block, 1, -1);
         ForestryModHelper.registerLeaves(stack);
-        ForestryModHelper.addToForestryBackpack(stack);
+        ForestryModHelper.addToForesterBackpack(stack);
     }
 
     public static void createBlocks() {
         createAutumnLeaves();
         createCattail();
+        createCrackedSand();
         createFlower();
         createGreenLeaves();
         createSapling();
@@ -66,12 +73,36 @@ public abstract class BlockHelper {
         block.setBlockName("extrabiomes.cattail");
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.module.summa.block.ItemCatTail.class);
+        proxy.registerBlock(block, extrabiomes.items.ItemCatTail.class);
         proxy.registerOre("reedTypha", block);
 
         Element.CATTAIL.set(new ItemStack(block));
 
         proxy.registerWorldGenerator(new CatTailGenerator(block.blockID));
+    }
+
+    private static void createCrackedSand() {
+        final int blockID = BlockSettings.CRACKEDSAND.getID();
+        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
+
+        final GenericTerrainBlock block = new GenericTerrainBlock(blockID, 0, Material.rock);
+        block.setBlockName("extrabiomes.crackedsand").setHardness(1.2F)
+                .setStepSound(Block.soundStoneFootstep)
+                .setTextureFile("/extrabiomes/extrabiomes.png")
+                .setCreativeTab(Extrabiomes.tabsEBXL);
+
+        final CommonProxy proxy = Extrabiomes.proxy;
+        proxy.setBlockHarvestLevel(block, "pickaxe", 0);
+        proxy.registerBlock(block);
+
+        proxy.registerOre("sandCracked", block);
+
+        Element.CRACKEDSAND.set(new ItemStack(block));
+
+        Extrabiomes.postInitEvent(new CrackedSandActiveEvent(block));
+        BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.WASTELAND, block.blockID, block.blockID);
+
+        FacadeHelper.addBuildcraftFacade(block.blockID);
     }
 
     private static void createFlower() {
@@ -102,7 +133,7 @@ public abstract class BlockHelper {
 
         final ItemStack stack = new ItemStack(block, 1, -1);
         ForestryModHelper.registerFlower(stack);
-        ForestryModHelper.addToForestryBackpack(stack);
+        ForestryModHelper.addToForesterBackpack(stack);
 
         ForestryModHelper.registerBasicFlower(Element.HYDRANGEA.get());
         ForestryModHelper.registerBasicFlower(Element.FLOWER_ORANGE.get());
@@ -122,7 +153,7 @@ public abstract class BlockHelper {
         block.setBlockName("extrabiomes.greenleaves");
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.module.summa.block.ItemCustomLeaves.class);
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomLeaves.class);
         proxy.registerOreInAllSubblocks("treeLeaves", block);
 
         Element.LEAVES_ACACIA.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.ACACIA
@@ -133,7 +164,7 @@ public abstract class BlockHelper {
 
         final ItemStack stack = new ItemStack(block, 1, -1);
         ForestryModHelper.registerLeaves(stack);
-        ForestryModHelper.addToForestryBackpack(stack);
+        ForestryModHelper.addToForesterBackpack(stack);
     }
 
     private static void createSapling() {
@@ -164,7 +195,7 @@ public abstract class BlockHelper {
 
         final ItemStack stack = new ItemStack(block, 1, -1);
         ForestryModHelper.registerSapling(stack);
-        ForestryModHelper.addToForestryBackpack(stack);
+        ForestryModHelper.addToForesterBackpack(stack);
 
         // all but redwood
         final Element[] forestrySaplings = { Element.SAPLING_ACACIA, Element.SAPLING_AUTUMN_BROWN,

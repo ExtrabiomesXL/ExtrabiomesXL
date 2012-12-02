@@ -20,22 +20,14 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
 import extrabiomes.biomes.BiomeManagerImpl;
-import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
-import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LogActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
-import extrabiomes.handlers.SaplingBonemealEventHandler;
-import extrabiomes.handlers.SaplingFuelHandler;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
-import extrabiomes.module.summa.worldgen.CatTailGenerator;
-import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.module.summa.worldgen.LeafPileGenerator;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
-import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
-import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenLegendOak;
@@ -45,34 +37,6 @@ import extrabiomes.proxy.CommonProxy;
 
 @SuppressWarnings("deprecation")
 public enum BlockManager {
-    CRACKEDSAND(true) {
-        @Override
-        protected void create() {
-            Stuff.crackedSand = Optional.of(new BlockCrackedSand(getSettings().getID()));
-        }
-
-        @Override
-        protected BlockSettings getSettings() {
-            return BlockSettings.CRACKEDSAND;
-        }
-
-        @Override
-        protected void prepare() {
-            final CommonProxy proxy = Extrabiomes.proxy;
-            final Block thisBlock = Stuff.crackedSand.get();
-
-            thisBlock.setBlockName("extrabiomes.crackedsand");
-            proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
-            proxy.registerBlock(thisBlock);
-
-            proxy.registerOre("sandCracked", thisBlock);
-
-            Extrabiomes.postInitEvent(new CrackedSandActiveEvent(thisBlock));
-            addCrackedSandToWasteland(thisBlock.blockID);
-
-            FacadeHelper.addBuildcraftFacade(thisBlock.blockID);
-        }
-    },
     GRASS {
         @Override
         protected void create() {
@@ -327,17 +291,7 @@ public enum BlockManager {
         }
     };
 
-    private static final String LOG_MESSAGE_ADD_REDROCK     = "log.message.add.redrock";
-    private static final String LOG_MESSAGE_ADD_CRACKEDSAND = "log.message.add.crackedsand";
-
-    private static void addCrackedSandToWasteland(int crackedsandID) {
-        if (!BiomeManager.wasteland.isPresent()) return;
-
-        final BiomeGenBase wasteland = BiomeManager.wasteland.get();
-        wasteland.topBlock = (byte) crackedsandID;
-        wasteland.fillerBlock = (byte) crackedsandID;
-        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_ADD_CRACKEDSAND));
-    }
+    private static final String LOG_MESSAGE_ADD_REDROCK = "log.message.add.redrock";
 
     private static void addRedRockToMountainRidge(int redrockID) {
         if (!BiomeManager.mountainridge.isPresent()) return;

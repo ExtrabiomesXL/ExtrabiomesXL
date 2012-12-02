@@ -14,6 +14,7 @@ public enum Element {
     // @formatter:off
     AUTUMN_SHRUB,
     CATTAIL,
+    CRACKEDSAND,
     FLOWER_ORANGE,
     FLOWER_PURPLE,
     FLOWER_WHITE,

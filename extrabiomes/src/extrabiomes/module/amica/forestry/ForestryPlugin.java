@@ -78,13 +78,14 @@ public class ForestryPlugin {
     }
 
     private void addBackPackItems() {
-
-        final Collection<ItemStack> items = ForestryModHelper.getForestryBackPackItems();
+        Collection<ItemStack> items = ForestryModHelper.getForesterBackPackItems();
         for (final ItemStack item : items)
             backpackItems[FORESTER].add(item);
 
-        if (Stuff.crackedSand.isPresent())
-            backpackItems[DIGGER].add(new ItemStack(Stuff.crackedSand.get()));
+        items = ForestryModHelper.getForesterBackPackItems();
+        for (final ItemStack item : items)
+            backpackItems[DIGGER].add(item);
+
         if (Stuff.redRock.isPresent())
             backpackItems[DIGGER].add(new ItemStack(Stuff.redRock.get(), 1,
                     BlockRedRock.BlockType.RED_COBBLE.metadata()));

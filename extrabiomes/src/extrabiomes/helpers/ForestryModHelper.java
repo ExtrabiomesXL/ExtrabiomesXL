@@ -16,23 +16,32 @@ import com.google.common.collect.ImmutableList;
 
 public abstract class ForestryModHelper {
 
-    private static List<ItemStack> backpackForestry = new ArrayList();
+    private static List<ItemStack> backpackDigger   = new ArrayList();
+    private static List<ItemStack> backpackForester = new ArrayList();
     private static List<ItemStack> basicFlowers     = new ArrayList();
     private static List<ItemStack> flowers          = new ArrayList();
     private static List<ItemStack> germlings        = new ArrayList();
     private static List<ItemStack> leaves           = new ArrayList();
     private static List<ItemStack> saplings         = new ArrayList();
 
-    public static void addToForestryBackpack(ItemStack stack) {
-        backpackForestry.add(stack);
+    public static void addToForesterBackpack(ItemStack stack) {
+        backpackForester.add(stack);
+    }
+
+    public static void addToDiggerBackpack(ItemStack stack) {
+        backpackDigger.add(stack);
     }
 
     public static Collection<ItemStack> getBasicFlowers() {
         return ImmutableList.copyOf(basicFlowers);
     }
 
-    public static Collection<ItemStack> getForestryBackPackItems() {
-        return ImmutableList.copyOf(backpackForestry);
+    public static Collection<ItemStack> getDiggerBackPackItems() {
+        return ImmutableList.copyOf(backpackDigger);
+    }
+
+    public static Collection<ItemStack> getForesterBackPackItems() {
+        return ImmutableList.copyOf(backpackForester);
     }
 
     public static Collection<ItemStack> getLeaves() {

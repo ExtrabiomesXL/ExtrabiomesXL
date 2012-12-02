@@ -4,23 +4,17 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.module.summa.block;
+package extrabiomes.blocks;
 
 import net.minecraft.src.Block;
-import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Material;
 import extrabiomes.Extrabiomes;
 import extrabiomes.utility.IDRestrictionAnnotation;
 
 @IDRestrictionAnnotation(maxIDRValue = 255)
-class BlockCrackedSand extends Block {
+public class GenericTerrainBlock extends Block {
 
-	BlockCrackedSand(int id)
-	{
-		super(id, 0, Material.rock);
-		setHardness(1.2F);
-		setStepSound(Block.soundStoneFootstep);
-		setTextureFile("/extrabiomes/extrabiomes.png");
-		setCreativeTab(Extrabiomes.tabsEBXL);
-	}
+    public GenericTerrainBlock(int id, int index, Material material) {
+        super(id, index, material);
+    }
 }

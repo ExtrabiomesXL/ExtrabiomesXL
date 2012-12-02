@@ -61,8 +61,8 @@ public class Fabrica {
                 IRecipe recipe = new ShapelessOreRecipe(Stuff.paste.get(), Block.cactus);
                 Extrabiomes.proxy.addRecipe(recipe);
 
-                recipe = new ShapelessOreRecipe(Stuff.paste.get(), Element.TINY_CACTUS,
-                        Element.TINY_CACTUS, Element.TINY_CACTUS, Element.TINY_CACTUS);
+                recipe = new ShapelessOreRecipe(Stuff.paste.get(), Element.TINY_CACTUS.get(),
+                        Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get());
                 Extrabiomes.proxy.addRecipe(recipe);
 
                 Extrabiomes.proxy.addSmelting(Stuff.paste.get().shiftedIndex, 0, new ItemStack(
