@@ -19,9 +19,9 @@ import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
-import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
+import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
 import extrabiomes.module.fabrica.block.BlockManager;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
@@ -57,14 +57,12 @@ public class Fabrica {
                     .setIconIndex(111).setCreativeTab(Extrabiomes.tabsEBXL)
                     .setTextureFile("/extrabiomes/extrabiomes.png"));
 
-            if (Stuff.flower.isPresent()) {
+            if (Element.TINY_CACTUS.isPresent()) {
                 IRecipe recipe = new ShapelessOreRecipe(Stuff.paste.get(), Block.cactus);
                 Extrabiomes.proxy.addRecipe(recipe);
 
-                final ItemStack tinyCactus = new ItemStack(Stuff.flower.get(), 1,
-                        BlockCustomFlower.BlockType.TINY_CACTUS.metadata());
-                recipe = new ShapelessOreRecipe(Stuff.paste.get(), tinyCactus, tinyCactus,
-                        tinyCactus, tinyCactus);
+                recipe = new ShapelessOreRecipe(Stuff.paste.get(), Element.TINY_CACTUS,
+                        Element.TINY_CACTUS, Element.TINY_CACTUS, Element.TINY_CACTUS);
                 Extrabiomes.proxy.addRecipe(recipe);
 
                 Extrabiomes.proxy.addSmelting(Stuff.paste.get().shiftedIndex, 0, new ItemStack(

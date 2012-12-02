@@ -45,30 +45,6 @@ import extrabiomes.proxy.CommonProxy;
 
 @SuppressWarnings("deprecation")
 public enum BlockManager {
-    CATTAIL {
-        @Override
-        protected void create() {
-            Stuff.cattail = Optional.of(new BlockCatTail(getSettings().getID()));
-        }
-
-        @Override
-        protected BlockSettings getSettings() {
-            return BlockSettings.CATTAIL;
-        }
-
-        @Override
-        protected void prepare() {
-            final CommonProxy proxy = Extrabiomes.proxy;
-            final Block thisBlock = Stuff.cattail.get();
-
-            thisBlock.setBlockName("extrabiomes.cattail");
-            proxy.registerBlock(thisBlock, extrabiomes.module.summa.block.ItemCatTail.class);
-
-            proxy.registerOre("reedTypha", thisBlock);
-
-            proxy.registerWorldGenerator(new CatTailGenerator(thisBlock.blockID));
-        }
-    },
     CRACKEDSAND(true) {
         @Override
         protected void create() {

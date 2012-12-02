@@ -13,6 +13,7 @@ import com.google.common.base.Optional;
 public enum Element {
     // @formatter:off
     AUTUMN_SHRUB,
+    CATTAIL,
     FLOWER_ORANGE,
     FLOWER_PURPLE,
     FLOWER_WHITE,

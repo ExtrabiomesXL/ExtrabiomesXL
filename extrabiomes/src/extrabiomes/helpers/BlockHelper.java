@@ -9,6 +9,7 @@ package extrabiomes.helpers;
 import net.minecraft.src.ItemStack;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
+import extrabiomes.blocks.BlockCatTail;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockGreenLeaves;
@@ -18,6 +19,7 @@ import extrabiomes.handlers.SaplingFuelHandler;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ModuleControlSettings;
+import extrabiomes.module.summa.worldgen.CatTailGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.proxy.CommonProxy;
 
@@ -50,9 +52,26 @@ public abstract class BlockHelper {
 
     public static void createBlocks() {
         createAutumnLeaves();
+        createCattail();
+        createFlower();
         createGreenLeaves();
         createSapling();
-        createFlower();
+    }
+
+    private static void createCattail() {
+        final int blockID = BlockSettings.CATTAIL.getID();
+        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
+
+        final BlockCatTail block = new BlockCatTail(blockID);
+        block.setBlockName("extrabiomes.cattail");
+
+        final CommonProxy proxy = Extrabiomes.proxy;
+        proxy.registerBlock(block, extrabiomes.module.summa.block.ItemCatTail.class);
+        proxy.registerOre("reedTypha", block);
+
+        Element.CATTAIL.set(new ItemStack(block));
+
+        proxy.registerWorldGenerator(new CatTailGenerator(block.blockID));
     }
 
     private static void createFlower() {

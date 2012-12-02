@@ -4,7 +4,7 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.module.summa.block;
+package extrabiomes.blocks;
 
 import extrabiomes.Extrabiomes;
 import net.minecraft.src.Block;
@@ -13,7 +13,7 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 
-class BlockCatTail extends BlockFlower {
+public class BlockCatTail extends BlockFlower {
 
 	public BlockCatTail(int id) {
 		super(id, 79, Material.plants);
