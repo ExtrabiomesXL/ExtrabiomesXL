@@ -4,7 +4,7 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.module.summa.block;
+package extrabiomes.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,8 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 
 @SuppressWarnings("deprecation")
-class BlockCustomTallGrass extends BlockFlower implements IShearable {
-    enum BlockType {
+public class BlockCustomTallGrass extends BlockFlower implements IShearable {
+    public enum BlockType {
         BROWN(0), SHORT_BROWN(1), DEAD(2), DEAD_TALL(3), DEAD_YELLOW(4);
 
         private final int metadata;
@@ -41,15 +41,10 @@ class BlockCustomTallGrass extends BlockFlower implements IShearable {
         }
     }
 
-    public BlockCustomTallGrass(int id) {
-        super(id, 48, Material.vine);
+    public BlockCustomTallGrass(int id, int index, Material material) {
+        super(id, index, material);
         final float var3 = 0.4F;
         setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.8F, 0.5F + var3);
-        setHardness(0F);
-        setStepSound(soundGrassFootstep);
-        setTextureFile("/extrabiomes/extrabiomes.png");
-        setCreativeTab(Extrabiomes.tabsEBXL);
-        setBurnProperties(blockID, 60, 100);
     }
 
     @Override

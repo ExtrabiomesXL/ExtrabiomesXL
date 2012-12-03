@@ -19,7 +19,6 @@ public enum Stuff {
 	public static Optional<? extends Item>	scarecrow			= Optional.absent();
 	public static Optional<? extends Item>	paste				= Optional.absent();
 
-	public static Optional<? extends Block>	grass				= Optional.absent();
 	public static Optional<? extends Block>	log					= Optional.absent();
 	public static Optional<? extends Block>	planks				= Optional.absent();   
 	public static Optional<? extends Block>	quarterLogNE		= Optional.absent();

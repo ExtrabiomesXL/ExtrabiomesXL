@@ -9,11 +9,13 @@ package extrabiomes.helpers;
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
+import net.minecraft.src.WorldGenTallGrass;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCatTail;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomSapling;
+import extrabiomes.blocks.BlockCustomTallGrass;
 import extrabiomes.blocks.BlockGreenLeaves;
 import extrabiomes.blocks.BlockRedRock;
 import extrabiomes.blocks.GenericTerrainBlock;
@@ -70,6 +72,7 @@ public abstract class BlockHelper {
         createCattail();
         createCrackedSand();
         createFlower();
+        createGrass();
         createGreenLeaves();
         createLeafPile();
         createRedRock();
@@ -162,6 +165,50 @@ public abstract class BlockHelper {
         Extrabiomes.postInitEvent(new FlowerActiveEvent(block));
 
         proxy.registerWorldGenerator(new FlowerGenerator(block.blockID));
+    }
+
+    private static void createGrass() {
+        final int blockID = BlockSettings.GRASS.getID();
+        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
+
+        final BlockCustomTallGrass block = new BlockCustomTallGrass(blockID, 48, Material.vine);
+        block.setBlockName("extrabiomes.tallgrass")
+        .setHardness(0.0F)
+        .setStepSound(Block.soundGrassFootstep)
+                .setTextureFile("/extrabiomes/extrabiomes.png")
+                .setCreativeTab(Extrabiomes.tabsEBXL);
+
+        final CommonProxy proxy = Extrabiomes.proxy;
+        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+        proxy.setBurnProperties(block.blockID, 60, 100);
+
+        Element.GRASS_BROWN.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.BROWN
+                .metadata()));
+        Element.GRASS_DEAD.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD
+                .metadata()));
+        Element.GRASS_BROWN_SHORT.set(new ItemStack(block, 1,
+                BlockCustomTallGrass.BlockType.SHORT_BROWN.metadata()));
+        Element.GRASS_DEAD_TALL.set(new ItemStack(block, 1,
+                BlockCustomTallGrass.BlockType.DEAD_TALL.metadata()));
+        Element.GRASS_DEAD_YELLOW.set(new ItemStack(block, 1,
+                BlockCustomTallGrass.BlockType.DEAD_YELLOW.metadata()));
+
+        ItemStack grassStack = Element.GRASS_BROWN.get();
+        BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(),
+                new WorldGenTallGrass(grassStack.itemID, grassStack.getItemDamage()), 100);
+        grassStack = Element.GRASS_BROWN_SHORT.get();
+        BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(),
+                new WorldGenTallGrass(grassStack.itemID, grassStack.getItemDamage()), 100);
+
+        grassStack = Element.GRASS_DEAD.get();
+        BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(
+                grassStack.itemID, grassStack.getItemDamage()), 90);
+        grassStack = Element.GRASS_DEAD_YELLOW.get();
+        BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(
+                grassStack.itemID, grassStack.getItemDamage()), 90);
+        grassStack = Element.GRASS_DEAD_TALL.get();
+        BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(
+                grassStack.itemID, grassStack.getItemDamage()), 35);
     }
 
     private static void createGreenLeaves() {

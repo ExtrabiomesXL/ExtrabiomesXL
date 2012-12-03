@@ -37,47 +37,6 @@ import extrabiomes.proxy.CommonProxy;
 
 @SuppressWarnings("deprecation")
 public enum BlockManager {
-    GRASS {
-        @Override
-        protected void create() {
-            Stuff.grass = Optional.of(new BlockCustomTallGrass(getSettings().getID()));
-        }
-
-        @Override
-        protected BlockSettings getSettings() {
-            return BlockSettings.GRASS;
-        }
-
-        @Override
-        protected void prepare() {
-            final CommonProxy proxy = Extrabiomes.proxy;
-            final Block thisBlock = Stuff.grass.get();
-
-            thisBlock.setBlockName("extrabiomes.tallgrass");
-            proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class);
-
-            if (BiomeManager.mountainridge.isPresent()) {
-                BiomeManager.addWeightedGrassGenForBiome(BiomeManager.mountainridge.get(),
-                        new WorldGenTallGrass(thisBlock.blockID,
-                                BlockCustomTallGrass.BlockType.BROWN.metadata()), 100);
-                BiomeManager.addWeightedGrassGenForBiome(BiomeManager.mountainridge.get(),
-                        new WorldGenTallGrass(thisBlock.blockID,
-                                BlockCustomTallGrass.BlockType.SHORT_BROWN.metadata()), 100);
-            }
-
-            if (BiomeManager.wasteland.isPresent()) {
-                BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland.get(),
-                        new WorldGenWastelandGrass(thisBlock.blockID,
-                                BlockCustomTallGrass.BlockType.DEAD.metadata()), 90);
-                BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland.get(),
-                        new WorldGenWastelandGrass(thisBlock.blockID,
-                                BlockCustomTallGrass.BlockType.DEAD_YELLOW.metadata()), 90);
-                BiomeManager.addWeightedGrassGenForBiome(BiomeManager.wasteland.get(),
-                        new WorldGenWastelandGrass(thisBlock.blockID,
-                                BlockCustomTallGrass.BlockType.DEAD_TALL.metadata()), 35);
-            }
-        }
-    },
     CUSTOMLOG {
         @Override
         protected void create() {
