@@ -4,7 +4,7 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.module.summa.block;
+package extrabiomes.renderers;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.IBlockAccess;

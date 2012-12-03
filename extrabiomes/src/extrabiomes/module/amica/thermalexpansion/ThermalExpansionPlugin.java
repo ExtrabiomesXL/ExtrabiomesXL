@@ -20,7 +20,6 @@ import extrabiomes.api.Stuff;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Element;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
-import extrabiomes.module.summa.block.BlockQuarterLog;
 
 public class ThermalExpansionPlugin {
 
@@ -38,63 +37,21 @@ public class ThermalExpansionPlugin {
 
         addSawmillRecipe(Element.LOG_ACACIA, Optional.of(new ItemStack(Stuff.planks.get(), 1,
                 BlockCustomWood.BlockType.ACACIA.metadata())));
-        addSawmillRecipe(Element.LOG_FIR, Optional.of(new ItemStack(Stuff.planks.get(), 1,
-                BlockCustomWood.BlockType.FIR.metadata())));
 
-        if (Stuff.planks.isPresent()) {
-            ItemStack input = new ItemStack(Stuff.quarterLogNE.get(), 1,
-                    BlockQuarterLog.BlockType.FIR.metadata());
-            ItemStack primaryOutput = new ItemStack(Stuff.planks.get(), 6,
-                    BlockCustomWood.BlockType.FIR.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
+        for (final Element input : new Element[] { Element.LOG_FIR, Element.LOG_HUGE_FIR_NE,
+                Element.LOG_HUGE_FIR_NW, Element.LOG_HUGE_FIR_SE, Element.LOG_HUGE_FIR_SW })
+            addSawmillRecipe(input, Optional.of(new ItemStack(Stuff.planks.get(), 1,
+                    BlockCustomWood.BlockType.FIR.metadata())));
 
-            input = new ItemStack(Stuff.quarterLogNW.get(), 1,
-                    BlockQuarterLog.BlockType.FIR.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
+        for (final Element input : new Element[] { Element.LOG_HUGE_REDWOOD_NE,
+                Element.LOG_HUGE_REDWOOD_NW, Element.LOG_HUGE_REDWOOD_SE,
+                Element.LOG_HUGE_REDWOOD_SW })
+            addSawmillRecipe(input, Optional.of(new ItemStack(Stuff.planks.get(), 1,
+                    BlockCustomWood.BlockType.REDWOOD.metadata())));
 
-            input = new ItemStack(Stuff.quarterLogSE.get(), 1,
-                    BlockQuarterLog.BlockType.FIR.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-
-            input = new ItemStack(Stuff.quarterLogSW.get(), 1,
-                    BlockQuarterLog.BlockType.FIR.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-
-            input = new ItemStack(Stuff.quarterLogNE.get(), 1,
-                    BlockQuarterLog.BlockType.REDWOOD.metadata());
-            primaryOutput = new ItemStack(Stuff.planks.get(), 6,
-                    BlockCustomWood.BlockType.REDWOOD.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-
-            input = new ItemStack(Stuff.quarterLogNW.get(), 1,
-                    BlockQuarterLog.BlockType.REDWOOD.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-
-            input = new ItemStack(Stuff.quarterLogSE.get(), 1,
-                    BlockQuarterLog.BlockType.REDWOOD.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-
-            input = new ItemStack(Stuff.quarterLogSW.get(), 1,
-                    BlockQuarterLog.BlockType.REDWOOD.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-
-            input = new ItemStack(Stuff.quarterLogNE.get(), 1,
-                    BlockQuarterLog.BlockType.OAK.metadata());
-            primaryOutput = new ItemStack(Block.planks, 6);
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-
-            input = new ItemStack(Stuff.quarterLogNW.get(), 1,
-                    BlockQuarterLog.BlockType.OAK.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-
-            input = new ItemStack(Stuff.quarterLogSE.get(), 1,
-                    BlockQuarterLog.BlockType.OAK.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-
-            input = new ItemStack(Stuff.quarterLogSW.get(), 1,
-                    BlockQuarterLog.BlockType.OAK.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-        }
+        for (final Element input : new Element[] { Element.LOG_HUGE_OAK_NE,
+                Element.LOG_HUGE_OAK_NW, Element.LOG_HUGE_OAK_SE, Element.LOG_HUGE_OAK_SW })
+            addSawmillRecipe(input, Optional.of(new ItemStack(Block.planks)));
     }
 
     @ForgeSubscribe

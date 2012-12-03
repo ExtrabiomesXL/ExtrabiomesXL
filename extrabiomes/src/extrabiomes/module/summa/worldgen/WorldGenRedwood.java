@@ -18,7 +18,9 @@ import extrabiomes.module.summa.TreeSoilRegistry;
 public class WorldGenRedwood extends WorldGenerator {
 
     private enum TreeBlock {
-        LEAVES(new ItemStack(Block.leaves));
+        LEAVES(new ItemStack(Block.leaves)), TRUNK_NE(new ItemStack(Block.wood, 1, 1)), TRUNK_NW(
+                new ItemStack(Block.wood, 1, 1)), TRUNK_SE(new ItemStack(Block.wood, 1, 1)), TRUNK_SW(
+                new ItemStack(Block.wood, 1, 1));
 
         private ItemStack      stack;
 
@@ -26,6 +28,14 @@ public class WorldGenRedwood extends WorldGenerator {
 
         private static void loadCustomBlocks() {
             if (Element.LEAVES_REDWOOD.isPresent()) LEAVES.stack = Element.LEAVES_REDWOOD.get();
+            if (Element.LOG_HUGE_REDWOOD_NE.isPresent())
+                TRUNK_NE.stack = Element.LOG_HUGE_REDWOOD_NE.get();
+            if (Element.LOG_HUGE_REDWOOD_NW.isPresent())
+                TRUNK_NW.stack = Element.LOG_HUGE_REDWOOD_NW.get();
+            if (Element.LOG_HUGE_REDWOOD_SE.isPresent())
+                TRUNK_SE.stack = Element.LOG_HUGE_REDWOOD_SE.get();
+            if (Element.LOG_HUGE_REDWOOD_SW.isPresent())
+                TRUNK_SW.stack = Element.LOG_HUGE_REDWOOD_SW.get();
 
             loadedCustomBlocks = true;
         }
@@ -44,22 +54,6 @@ public class WorldGenRedwood extends WorldGenerator {
             return stack.getItemDamage();
         }
 
-    }
-
-    private static Block trunkBlockNE  = Block.wood;
-    private static Block trunkBlockNW  = Block.wood;
-    private static Block trunkBlockSE  = Block.wood;
-    private static Block trunkBlockSW  = Block.wood;
-    private static int   trunkMetadata = 1;
-
-    public static void setTrunkBlock(Block blockNW, Block blockNE, Block blockSW, Block blockSE,
-            int metadata)
-    {
-        WorldGenRedwood.trunkBlockNW = blockNW;
-        WorldGenRedwood.trunkBlockNE = blockNE;
-        WorldGenRedwood.trunkBlockSW = blockSW;
-        WorldGenRedwood.trunkBlockSE = blockSE;
-        WorldGenRedwood.trunkMetadata = metadata;
     }
 
     public WorldGenRedwood(boolean doNotify) {
@@ -147,11 +141,14 @@ public class WorldGenRedwood extends WorldGenerator {
 
             if (Block.blocksList[j4] == null || Block.blocksList[j4].isLeaves(world, x, y + y1, z))
             {
-                setBlockAndMetadata(world, x, y + y1, z, trunkBlockSE.blockID, trunkMetadata);
-                setBlockAndMetadata(world, x - 1, y + y1, z, trunkBlockSW.blockID, trunkMetadata);
-                setBlockAndMetadata(world, x, y + y1, z - 1, trunkBlockNE.blockID, trunkMetadata);
-                setBlockAndMetadata(world, x - 1, y + y1, z - 1, trunkBlockNW.blockID,
-                        trunkMetadata);
+                setBlockAndMetadata(world, x, y + y1, z, TreeBlock.TRUNK_SE.getID(),
+                        TreeBlock.TRUNK_SE.getMetadata());
+                setBlockAndMetadata(world, x - 1, y + y1, z, TreeBlock.TRUNK_SW.getID(),
+                        TreeBlock.TRUNK_SW.getMetadata());
+                setBlockAndMetadata(world, x, y + y1, z - 1, TreeBlock.TRUNK_NE.getID(),
+                        TreeBlock.TRUNK_NE.getMetadata());
+                setBlockAndMetadata(world, x - 1, y + y1, z - 1, TreeBlock.TRUNK_NW.getID(),
+                        TreeBlock.TRUNK_NW.getMetadata());
             }
         }
 

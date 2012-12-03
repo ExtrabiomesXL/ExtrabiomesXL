@@ -18,7 +18,9 @@ import extrabiomes.module.summa.TreeSoilRegistry;
 public class WorldGenFirTreeHuge extends WorldGenerator {
 
     private enum TreeBlock {
-        LEAVES(new ItemStack(Block.leaves, 1, 1));
+        LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK_NE(new ItemStack(Block.wood, 1, 1)), TRUNK_NW(
+                new ItemStack(Block.wood, 1, 1)), TRUNK_SE(new ItemStack(Block.wood, 1, 1)), TRUNK_SW(
+                new ItemStack(Block.wood, 1, 1));
 
         private ItemStack      stack;
 
@@ -26,6 +28,14 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 
         private static void loadCustomBlocks() {
             if (Element.LEAVES_FIR.isPresent()) LEAVES.stack = Element.LEAVES_FIR.get();
+            if (Element.LOG_HUGE_FIR_NE.isPresent())
+                TRUNK_NE.stack = Element.LOG_HUGE_FIR_NE.get();
+            if (Element.LOG_HUGE_FIR_NW.isPresent())
+                TRUNK_NW.stack = Element.LOG_HUGE_FIR_NW.get();
+            if (Element.LOG_HUGE_FIR_SE.isPresent())
+                TRUNK_SE.stack = Element.LOG_HUGE_FIR_SE.get();
+            if (Element.LOG_HUGE_FIR_SW.isPresent())
+                TRUNK_SW.stack = Element.LOG_HUGE_FIR_SW.get();
 
             loadedCustomBlocks = true;
         }
@@ -46,27 +56,11 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 
     }
 
-    private static Block trunkBlockNE  = Block.wood;
-    private static Block trunkBlockNW  = Block.wood;
-    private static Block trunkBlockSE  = Block.wood;
-    private static Block trunkBlockSW  = Block.wood;
-    private static int   trunkMetadata = 1;
-
     private static void setBlockandMetadataIfChunkExists(World world, int x, int y, int z,
             int blockId, int metadata)
     {
         if (world.getChunkProvider().chunkExists(x >> 4, z >> 4))
             world.setBlockAndMetadata(x, y, z, blockId, metadata);
-    }
-
-    public static void setTrunkBlock(Block blockNW, Block blockNE, Block blockSW, Block blockSE,
-            int metadata)
-    {
-        WorldGenFirTreeHuge.trunkBlockNW = blockNW;
-        WorldGenFirTreeHuge.trunkBlockNE = blockNE;
-        WorldGenFirTreeHuge.trunkBlockSW = blockSW;
-        WorldGenFirTreeHuge.trunkBlockSE = blockSE;
-        WorldGenFirTreeHuge.trunkMetadata = metadata;
     }
 
     public WorldGenFirTreeHuge(boolean doNotify) {
@@ -158,11 +152,14 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 
             if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + l3, z))
             {
-                setBlockAndMetadata(world, x, y + l3, z, trunkBlockSE.blockID, trunkMetadata);
-                setBlockAndMetadata(world, x - 1, y + l3, z, trunkBlockSW.blockID, trunkMetadata);
-                setBlockAndMetadata(world, x, y + l3, z - 1, trunkBlockNE.blockID, trunkMetadata);
-                setBlockAndMetadata(world, x - 1, y + l3, z - 1, trunkBlockNW.blockID,
-                        trunkMetadata);
+                setBlockAndMetadata(world, x, y + l3, z, TreeBlock.TRUNK_SE.getID(),
+                        TreeBlock.TRUNK_SE.getMetadata());
+                setBlockAndMetadata(world, x - 1, y + l3, z, TreeBlock.TRUNK_SW.getID(),
+                        TreeBlock.TRUNK_SW.getMetadata());
+                setBlockAndMetadata(world, x, y + l3, z - 1, TreeBlock.TRUNK_NE.getID(),
+                        TreeBlock.TRUNK_NE.getMetadata());
+                setBlockAndMetadata(world, x - 1, y + l3, z - 1, TreeBlock.TRUNK_NW.getID(),
+                        TreeBlock.TRUNK_NW.getMetadata());
             }
         }
 

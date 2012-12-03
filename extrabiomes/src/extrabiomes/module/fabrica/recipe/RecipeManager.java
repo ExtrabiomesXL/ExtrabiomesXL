@@ -22,6 +22,7 @@ import com.google.common.base.Optional;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomLog;
+import extrabiomes.blocks.BlockQuarterLog;
 import extrabiomes.blocks.BlockRedRock;
 import extrabiomes.events.BlockActiveEvent.AcaciaStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
@@ -41,7 +42,6 @@ import extrabiomes.module.fabrica.block.BlockCustomWall;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.module.fabrica.block.BlockCustomWoodSlab;
 import extrabiomes.module.fabrica.block.BlockRedRockSlab;
-import extrabiomes.module.summa.block.BlockQuarterLog;
 import extrabiomes.proxy.CommonProxy;
 
 public class RecipeManager {

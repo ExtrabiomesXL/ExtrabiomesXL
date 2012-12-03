@@ -22,7 +22,6 @@ import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.handlers.BiomeHandler;
 import extrabiomes.lib.ItemSettings;
-import extrabiomes.module.summa.block.BlockManager;
 import extrabiomes.module.summa.tool.LogTurner;
 import extrabiomes.module.summa.worldgen.LegendOakGenerator;
 import extrabiomes.module.summa.worldgen.MarshGenerator;
@@ -58,7 +57,6 @@ public class Summa {
 
         BiomeHandler.enableBiomes();
         biomeManager.buildWeightedFloraLists();
-        BlockManager.init();
 
         if (logTurnerID > 0) {
             Stuff.logTurner = Optional.of(new LogTurner(logTurnerID)
@@ -77,9 +75,6 @@ public class Summa {
 
         // remove after 3.6.0 release
         BiomeManagerImpl.populateAPIBiomes();
-        
-        // TODO
-        BlockManager.preInit();
 
         logTurnerID = ItemSettings.LOGTURNER.getID();
 
