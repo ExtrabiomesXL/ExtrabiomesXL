@@ -32,6 +32,8 @@ public enum Element {
     LEAVES_AUTUMN_YELLOW,
     LEAVES_FIR,
     LEAVES_REDWOOD,
+    LOG_ACACIA,
+    LOG_FIR,
     RED_COBBLE,
     RED_ROCK,
     RED_ROCK_BRICK,

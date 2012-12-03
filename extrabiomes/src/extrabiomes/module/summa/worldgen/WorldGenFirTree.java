@@ -18,7 +18,7 @@ import extrabiomes.module.summa.TreeSoilRegistry;
 public class WorldGenFirTree extends WorldGenerator {
 
     private enum TreeBlock {
-        LEAVES(new ItemStack(Block.leaves, 1, 1));
+        LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK(new ItemStack(Block.wood, 1, 1));
 
         private ItemStack      stack;
 
@@ -26,6 +26,7 @@ public class WorldGenFirTree extends WorldGenerator {
 
         private static void loadCustomBlocks() {
             if (Element.LEAVES_FIR.isPresent()) LEAVES.stack = Element.LEAVES_FIR.get();
+            if (Element.LOG_FIR.isPresent()) TRUNK.stack = Element.LOG_FIR.get();
 
             loadedCustomBlocks = true;
         }
@@ -44,14 +45,6 @@ public class WorldGenFirTree extends WorldGenerator {
             return stack.getItemDamage();
         }
 
-    }
-
-    private static Block trunkBlock    = Block.wood;
-    private static int   trunkMetadata = 1;
-
-    public static void setTrunkBlock(Block block, int metadata) {
-        WorldGenFirTree.trunkBlock = block;
-        WorldGenFirTree.trunkMetadata = metadata;
     }
 
     public WorldGenFirTree(boolean par1) {
@@ -128,7 +121,8 @@ public class WorldGenFirTree extends WorldGenerator {
             final int id = world.getBlockId(x, y + l3, z);
 
             if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + l3, z))
-                setBlockAndMetadata(world, x, y + l3, z, trunkBlock.blockID, trunkMetadata);
+                setBlockAndMetadata(world, x, y + l3, z, TreeBlock.TRUNK.getID(),
+                        TreeBlock.TRUNK.getMetadata());
         }
 
         return true;

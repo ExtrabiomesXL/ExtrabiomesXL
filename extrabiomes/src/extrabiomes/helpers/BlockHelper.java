@@ -14,6 +14,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCatTail;
 import extrabiomes.blocks.BlockCustomFlower;
+import extrabiomes.blocks.BlockCustomLog;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockCustomTallGrass;
 import extrabiomes.blocks.BlockGreenLeaves;
@@ -22,6 +23,7 @@ import extrabiomes.blocks.GenericTerrainBlock;
 import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
+import extrabiomes.events.BlockActiveEvent.LogActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
 import extrabiomes.handlers.SaplingBonemealEventHandler;
 import extrabiomes.handlers.SaplingFuelHandler;
@@ -77,6 +79,7 @@ public abstract class BlockHelper {
         createLeafPile();
         createRedRock();
         createSapling();
+        createWood();
     }
 
     private static void createCattail() {
@@ -153,9 +156,7 @@ public abstract class BlockHelper {
         Element.TOADSTOOL.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.TOADSTOOL
                 .metadata()));
 
-        final ItemStack stack = new ItemStack(block, 1, -1);
-        ForestryModHelper.registerFlower(stack);
-        ForestryModHelper.addToForesterBackpack(stack);
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, -1));
 
         ForestryModHelper.registerBasicFlower(Element.HYDRANGEA.get());
         ForestryModHelper.registerBasicFlower(Element.FLOWER_ORANGE.get());
@@ -172,9 +173,8 @@ public abstract class BlockHelper {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCustomTallGrass block = new BlockCustomTallGrass(blockID, 48, Material.vine);
-        block.setBlockName("extrabiomes.tallgrass")
-        .setHardness(0.0F)
-        .setStepSound(Block.soundGrassFootstep)
+        block.setBlockName("extrabiomes.tallgrass").setHardness(0.0F)
+                .setStepSound(Block.soundGrassFootstep)
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
 
@@ -328,6 +328,34 @@ public abstract class BlockHelper {
 
         proxy.registerEventHandler(new SaplingBonemealEventHandler(block));
         proxy.registerFuelHandler(new SaplingFuelHandler(block.blockID));
+    }
+
+    private static void createWood() {
+        final int blockID = BlockSettings.CUSTOMLOG.getID();
+        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
+
+        final BlockCustomLog block = new BlockCustomLog(blockID, 97);
+        block.setBlockName("extrabiomes.log").setStepSound(Block.soundWoodFootstep)
+                .setRequiresSelfNotify().setHardness(2.0F)
+                .setResistance(Block.wood.getExplosionResistance(null) * 5.0F)
+                .setTextureFile("/extrabiomes/extrabiomes.png")
+                .setCreativeTab(Extrabiomes.tabsEBXL);
+
+        final CommonProxy proxy = Extrabiomes.proxy;
+        proxy.setBlockHarvestLevel(block, "axe", 0);
+        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+        proxy.registerOre("logWood", new ItemStack(block, 1, -1));
+        proxy.registerEventHandler(block);
+        proxy.setBurnProperties(block.blockID, 5, 5);
+
+        Element.LOG_ACACIA.set(new ItemStack(block, 1, BlockCustomLog.BlockType.ACACIA.metadata()));
+        Element.LOG_FIR.set(new ItemStack(block, 1, BlockCustomLog.BlockType.FIR.metadata()));
+
+        Extrabiomes.postInitEvent(new LogActiveEvent(block));
+
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, -1));
+        for (final BlockRedRock.BlockType type : BlockRedRock.BlockType.values())
+            FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
     }
 
 }

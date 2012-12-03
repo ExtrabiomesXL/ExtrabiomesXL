@@ -18,8 +18,8 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
 import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.Element;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
-import extrabiomes.module.summa.block.BlockCustomLog;
 import extrabiomes.module.summa.block.BlockQuarterLog;
 
 public class ThermalExpansionPlugin {
@@ -28,23 +28,24 @@ public class ThermalExpansionPlugin {
     private static final String           MOD_NAME = "Thermal Expansion";
     private Optional<ThermalExpansionAPI> api      = Optional.absent();
 
+    private void addSawmillRecipe(Element input, Optional<ItemStack> output) {
+        if (!output.isPresent() || !input.isPresent()) return;
+        api.get().addSawmillLogToPlankRecipe(input.get(), output.get());
+    }
+
     private void addSawmillRecipes() {
         if (!api.isPresent()) return;
 
-        if (Stuff.log.isPresent() && Stuff.planks.isPresent()) {
-            ItemStack input = new ItemStack(Stuff.log.get(), 1,
-                    BlockCustomLog.BlockType.ACACIA.metadata());
-            ItemStack primaryOutput = new ItemStack(Stuff.planks.get(), 1,
-                    BlockCustomWood.BlockType.ACACIA.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
+        addSawmillRecipe(Element.LOG_ACACIA, Optional.of(new ItemStack(Stuff.planks.get(), 1,
+                BlockCustomWood.BlockType.ACACIA.metadata())));
+        addSawmillRecipe(Element.LOG_FIR, Optional.of(new ItemStack(Stuff.planks.get(), 1,
+                BlockCustomWood.BlockType.FIR.metadata())));
 
-            input = new ItemStack(Stuff.log.get(), 1, BlockCustomLog.BlockType.FIR.metadata());
-            primaryOutput = new ItemStack(Stuff.planks.get(), 6,
-                    BlockCustomWood.BlockType.FIR.metadata());
-            api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
-
-            input = new ItemStack(Stuff.quarterLogNE.get(), 1,
+        if (Stuff.planks.isPresent()) {
+            ItemStack input = new ItemStack(Stuff.quarterLogNE.get(), 1,
                     BlockQuarterLog.BlockType.FIR.metadata());
+            ItemStack primaryOutput = new ItemStack(Stuff.planks.get(), 6,
+                    BlockCustomWood.BlockType.FIR.metadata());
             api.get().addSawmillLogToPlankRecipe(input, primaryOutput);
 
             input = new ItemStack(Stuff.quarterLogNW.get(), 1,
@@ -111,8 +112,7 @@ public class ThermalExpansionPlugin {
     @ForgeSubscribe
     public void preInit(PluginEvent.Pre event) {
         if (!Extrabiomes.proxy.isModLoaded(MODID)) return;
-        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT),
-                MOD_NAME);
+        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT), MOD_NAME);
         try {
             api = Optional.of(new ThermalExpansionAPI());
         } catch (final Exception ex) {

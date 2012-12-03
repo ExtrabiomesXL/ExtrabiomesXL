@@ -19,7 +19,6 @@ public abstract class ForestryModHelper {
     private static List<ItemStack> backpackDigger   = new ArrayList();
     private static List<ItemStack> backpackForester = new ArrayList();
     private static List<ItemStack> basicFlowers     = new ArrayList();
-    private static List<ItemStack> flowers          = new ArrayList();
     private static List<ItemStack> germlings        = new ArrayList();
     private static List<ItemStack> leaves           = new ArrayList();
     private static List<ItemStack> saplings         = new ArrayList();
@@ -68,16 +67,6 @@ public abstract class ForestryModHelper {
             if (ItemStack.areItemStacksEqual(is, stack)) return;
 
         basicFlowers.add(stack);
-    }
-
-    public static void registerFlower(ItemStack stack) {
-
-        // To enforce uniqueness in the List (should be a Set, but
-        // ItemStack.equals() is not defined. -.-
-        for (final ItemStack is : flowers)
-            if (ItemStack.areItemStacksEqual(is, stack)) return;
-
-        flowers.add(stack);
     }
 
     public static void registerGermling(ItemStack stack) {

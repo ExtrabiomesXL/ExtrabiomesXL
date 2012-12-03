@@ -18,7 +18,7 @@ import extrabiomes.module.summa.TreeSoilRegistry;
 public class WorldGenAcacia extends WorldGenerator {
 
     private enum TreeBlock {
-        LEAVES(new ItemStack(Block.leaves));
+        LEAVES(new ItemStack(Block.leaves)), TRUNK(new ItemStack(Block.wood));
 
         private ItemStack      stack;
 
@@ -26,6 +26,7 @@ public class WorldGenAcacia extends WorldGenerator {
 
         private static void loadCustomBlocks() {
             if (Element.LEAVES_ACACIA.isPresent()) LEAVES.stack = Element.LEAVES_ACACIA.get();
+            if (Element.LOG_ACACIA.isPresent()) TRUNK.stack = Element.LOG_ACACIA.get();
 
             loadedCustomBlocks = true;
         }
@@ -44,14 +45,6 @@ public class WorldGenAcacia extends WorldGenerator {
             return stack.getItemDamage();
         }
 
-    }
-
-    private static Block trunkBlock    = Block.wood;
-    private static int   trunkMetadata = 0;
-
-    public static void setTrunkBlock(Block block, int metadata) {
-        WorldGenAcacia.trunkBlock = block;
-        WorldGenAcacia.trunkMetadata = metadata;
     }
 
     public WorldGenAcacia(final boolean doNotify) {
@@ -123,7 +116,8 @@ public class WorldGenAcacia extends WorldGenerator {
             if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x, y + y1, z))
                 continue;
 
-            setBlockAndMetadata(world, x, y + y1, z, trunkBlock.blockID, trunkMetadata);
+            setBlockAndMetadata(world, x, y + y1, z, TreeBlock.TRUNK.getID(),
+                    TreeBlock.TRUNK.getMetadata());
 
         }
         return true;

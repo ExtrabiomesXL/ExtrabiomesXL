@@ -12,7 +12,6 @@ import java.util.Collection;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
-import net.minecraft.src.WorldGenTallGrass;
 
 import com.google.common.base.Optional;
 
@@ -20,56 +19,16 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.api.Stuff;
 import extrabiomes.biomes.BiomeManagerImpl;
-import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LogActiveEvent;
-import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
-import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
-import extrabiomes.module.summa.worldgen.LeafPileGenerator;
-import extrabiomes.module.summa.worldgen.WorldGenAcacia;
-import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenLegendOak;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
-import extrabiomes.module.summa.worldgen.WorldGenWastelandGrass;
 import extrabiomes.proxy.CommonProxy;
 
 @SuppressWarnings("deprecation")
 public enum BlockManager {
-    CUSTOMLOG {
-        @Override
-        protected void create() {
-            Stuff.log = Optional.of(new BlockCustomLog(getSettings().getID()));
-        }
-
-        @Override
-        protected BlockSettings getSettings() {
-            return BlockSettings.CUSTOMLOG;
-        }
-
-        @Override
-        protected void prepare() {
-            final CommonProxy proxy = Extrabiomes.proxy;
-            final Block thisBlock = Stuff.log.get();
-
-            thisBlock.setBlockName("extrabiomes.log");
-            proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class);
-            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-
-            proxy.registerOre("logWood", new ItemStack(thisBlock, 1, -1));
-
-            for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType.values())
-                FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
-
-            WorldGenAcacia.setTrunkBlock(thisBlock, BlockCustomLog.BlockType.ACACIA.metadata());
-            WorldGenFirTree.setTrunkBlock(thisBlock, BlockCustomLog.BlockType.FIR.metadata());
-
-            Extrabiomes.postInitEvent(new LogActiveEvent(thisBlock));
-
-            Extrabiomes.proxy.registerEventHandler(thisBlock);
-        }
-    },
     QUARTERLOG0 {
         @Override
         protected void create() {
