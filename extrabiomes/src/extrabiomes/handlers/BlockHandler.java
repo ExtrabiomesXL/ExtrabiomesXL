@@ -4,14 +4,13 @@
  * license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package extrabiomes.helpers;
+package extrabiomes.handlers;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.WorldGenTallGrass;
 import extrabiomes.Extrabiomes;
-import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCatTail;
 import extrabiomes.blocks.BlockCustomFlower;
@@ -28,8 +27,8 @@ import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
 import extrabiomes.events.BlockActiveEvent.LogActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
-import extrabiomes.handlers.SaplingBonemealEventHandler;
-import extrabiomes.handlers.SaplingFuelHandler;
+import extrabiomes.helpers.BiomeHelper;
+import extrabiomes.helpers.ForestryModHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
@@ -41,7 +40,7 @@ import extrabiomes.module.summa.worldgen.LeafPileGenerator;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.renderers.RenderQuarterLog;
 
-public abstract class BlockHelper {
+public abstract class BlockHandler {
 
     private static void createAutumnLeaves() {
         final int blockID = BlockSettings.AUTUMNLEAVES.getID();
@@ -83,11 +82,6 @@ public abstract class BlockHelper {
         createRedRock();
         createSapling();
         createLogs();
-    }
-    
-    private static void createLogs() {
-        createWood();
-        createQuarterLogs();
     }
 
     private static void createCattail() {
@@ -266,6 +260,78 @@ public abstract class BlockHelper {
         proxy.registerWorldGenerator(new LeafPileGenerator(block.blockID));
     }
 
+    private static void createLogs() {
+        createWood();
+        createQuarterLogs();
+    }
+
+    private static void createQuarterLogs() {
+        final int blockIDNW = BlockSettings.QUARTERLOG0.getID();
+        final int blockIDNE = BlockSettings.QUARTERLOG1.getID();
+        final int blockIDSW = BlockSettings.QUARTERLOG2.getID();
+        final int blockIDSE = BlockSettings.QUARTERLOG3.getID();
+        if (!ModuleControlSettings.SUMMA.isEnabled() || blockIDNE <= 0 || blockIDNW <= 0
+                || blockIDSE <= 0 || blockIDSW <= 0) return;
+
+        final BlockQuarterLog blockNW = new BlockQuarterLog(blockIDNW, 144,
+                BlockQuarterLog.BarkOn.NW);
+        final BlockQuarterLog blockNE = new BlockQuarterLog(blockIDNE, 144,
+                BlockQuarterLog.BarkOn.NE);
+        final BlockQuarterLog blockSW = new BlockQuarterLog(blockIDSW, 144,
+                BlockQuarterLog.BarkOn.SW);
+        final BlockQuarterLog blockSE = new BlockQuarterLog(blockIDSE, 144,
+                BlockQuarterLog.BarkOn.SE);
+
+        for (final Block block : new Block[] { blockNW, blockNE, blockSW, blockSE }) {
+            block.setBlockName("extrabiomes.log.quarter").setStepSound(Block.soundWoodFootstep)
+                    .setRequiresSelfNotify().setHardness(2.0F)
+                    .setResistance(Block.wood.getExplosionResistance(null) * 5.0F)
+                    .setTextureFile("/extrabiomes/extrabiomes.png")
+                    .setCreativeTab(Extrabiomes.tabsEBXL);
+
+            final CommonProxy proxy = Extrabiomes.proxy;
+            proxy.setBlockHarvestLevel(block, "axe", 0);
+            proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+            proxy.registerOre("logWood", new ItemStack(block, 1, -1));
+            proxy.registerEventHandler(block);
+            proxy.setBurnProperties(block.blockID, 5, 5);
+        }
+
+        Element.LOG_HUGE_FIR_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.FIR
+                .metadata()));
+        Element.LOG_HUGE_FIR_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.FIR
+                .metadata()));
+        Element.LOG_HUGE_FIR_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.FIR
+                .metadata()));
+        Element.LOG_HUGE_FIR_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.FIR
+                .metadata()));
+        Element.LOG_HUGE_OAK_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.OAK
+                .metadata()));
+        Element.LOG_HUGE_OAK_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.OAK
+                .metadata()));
+        Element.LOG_HUGE_OAK_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.OAK
+                .metadata()));
+        Element.LOG_HUGE_OAK_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.OAK
+                .metadata()));
+        Element.LOG_HUGE_REDWOOD_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.REDWOOD
+                .metadata()));
+        Element.LOG_HUGE_REDWOOD_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.REDWOOD
+                .metadata()));
+        Element.LOG_HUGE_REDWOOD_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.REDWOOD
+                .metadata()));
+        Element.LOG_HUGE_REDWOOD_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.REDWOOD
+                .metadata()));
+
+        BlockQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderQuarterLog()));
+
+        for (final Block block : new Block[] { blockNW, blockNE, blockSW, blockSE }) {
+            Extrabiomes.postInitEvent(new LogActiveEvent(block));
+            ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, -1));
+        }
+        for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType.values())
+            FacadeHelper.addBuildcraftFacade(blockSE.blockID, type.metadata());
+    }
+
     private static void createRedRock() {
         final int blockID = BlockSettings.REDROCK.getID();
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
@@ -364,60 +430,6 @@ public abstract class BlockHelper {
         ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, -1));
         for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType.values())
             FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
-    }
-
-    private static void createQuarterLogs() {
-        final int blockIDNW = BlockSettings.QUARTERLOG0.getID();
-        final int blockIDNE = BlockSettings.QUARTERLOG1.getID();
-        final int blockIDSW = BlockSettings.QUARTERLOG2.getID();
-        final int blockIDSE = BlockSettings.QUARTERLOG3.getID();
-        if (!ModuleControlSettings.SUMMA.isEnabled() || blockIDNE <= 0 || blockIDNW <= 0 || blockIDSE <= 0 || blockIDSW <= 0) return;
-
-        final BlockQuarterLog blockNW = new BlockQuarterLog(blockIDNW, 144, BlockQuarterLog.BarkOn.NW);
-        final BlockQuarterLog blockNE = new BlockQuarterLog(blockIDNE, 144, BlockQuarterLog.BarkOn.NE);
-        final BlockQuarterLog blockSW = new BlockQuarterLog(blockIDSW, 144, BlockQuarterLog.BarkOn.SW);
-        final BlockQuarterLog blockSE = new BlockQuarterLog(blockIDSE, 144, BlockQuarterLog.BarkOn.SE);
-        
-        for (Block block: new Block[] {blockNW, blockNE, blockSW, blockSE}) {
-            block.setBlockName("extrabiomes.log.quarter")
-            .        setStepSound(Block.soundWoodFootstep)
-        .setRequiresSelfNotify()
-        .setHardness(2.0F)
-        .setResistance(Block.wood.getExplosionResistance(null) * 5.0F)
-                .setTextureFile("/extrabiomes/extrabiomes.png")
-                .setCreativeTab(Extrabiomes.tabsEBXL);
-
-            final CommonProxy proxy = Extrabiomes.proxy;
-            proxy.setBlockHarvestLevel(block, "axe", 0);
-            proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
-            proxy.registerOre("logWood", new ItemStack(block, 1, -1));
-            proxy.registerEventHandler(block);
-            proxy.setBurnProperties(block.blockID, 5, 5);
-        }
-
-        Element.LOG_HUGE_FIR_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.FIR.metadata()));
-        Element.LOG_HUGE_FIR_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.FIR.metadata()));
-        Element.LOG_HUGE_FIR_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.FIR.metadata()));
-        Element.LOG_HUGE_FIR_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.FIR.metadata()));
-        Element.LOG_HUGE_OAK_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.OAK.metadata()));
-        Element.LOG_HUGE_OAK_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.OAK.metadata()));
-        Element.LOG_HUGE_OAK_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.OAK.metadata()));
-        Element.LOG_HUGE_OAK_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.OAK.metadata()));
-        Element.LOG_HUGE_REDWOOD_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.REDWOOD.metadata()));
-        Element.LOG_HUGE_REDWOOD_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.REDWOOD.metadata()));
-        Element.LOG_HUGE_REDWOOD_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.REDWOOD.metadata()));
-        Element.LOG_HUGE_REDWOOD_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.REDWOOD.metadata()));
-        
-        BlockQuarterLog.setRenderId(Extrabiomes.proxy
-                .registerBlockHandler(new RenderQuarterLog()));
-
-
-        for (Block block: new Block[] {blockNW, blockNE, blockSW, blockSE}) {
-            Extrabiomes.postInitEvent(new LogActiveEvent(block));
-            ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, -1));
-        }
-        for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType.values())
-            FacadeHelper.addBuildcraftFacade(blockSE.blockID, type.metadata());
     }
 
 }

@@ -46,6 +46,7 @@ public enum Element {
     LOG_HUGE_REDWOOD_NW,
     LOG_HUGE_REDWOOD_SE,
     LOG_HUGE_REDWOOD_SW,
+    LOGTURNER,
     RED_COBBLE,
     RED_ROCK,
     RED_ROCK_BRICK,

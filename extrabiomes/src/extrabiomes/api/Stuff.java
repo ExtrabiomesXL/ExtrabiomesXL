@@ -15,7 +15,6 @@ import com.google.common.base.Optional;
 public enum Stuff {
 	INSTANCE;
 
-	public static Optional<? extends Item>	logTurner			= Optional.absent();
 	public static Optional<? extends Item>	scarecrow			= Optional.absent();
 	public static Optional<? extends Item>	paste				= Optional.absent();
 

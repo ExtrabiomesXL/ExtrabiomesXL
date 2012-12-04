@@ -23,6 +23,11 @@ import extrabiomes.api.events.GetBiomeIDEvent;
 import extrabiomes.helpers.BiomeHelper;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.module.summa.worldgen.LegendOakGenerator;
+import extrabiomes.module.summa.worldgen.MarshGenerator;
+import extrabiomes.module.summa.worldgen.MountainDesertGenerator;
+import extrabiomes.module.summa.worldgen.MountainRidgeGenerator;
+import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
 
 public enum BiomeHandler {
     INSTANCE;
@@ -57,6 +62,20 @@ public enum BiomeHandler {
             if (biome.getID() > 0) BiomeHelper.createBiome(biome);
 
         Api.getExtrabiomesXLEventBus().register(INSTANCE);
+    }
+
+    public static void registerWorldGenerators() {
+        if (BiomeSettings.MARSH.getBiome().isPresent())
+            Extrabiomes.proxy.registerWorldGenerator(new MarshGenerator());
+
+        if (BiomeSettings.MOUNTAINDESERT.getBiome().isPresent())
+            Extrabiomes.proxy.registerWorldGenerator(new MountainDesertGenerator());
+
+        if (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent())
+            Extrabiomes.proxy.registerWorldGenerator(new MountainRidgeGenerator());
+
+        Extrabiomes.proxy.registerWorldGenerator(new VanillaFloraGenerator());
+        Extrabiomes.proxy.registerWorldGenerator(new LegendOakGenerator());
     }
 
     @ForgeSubscribe

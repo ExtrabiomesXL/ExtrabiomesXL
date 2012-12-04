@@ -24,10 +24,14 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
+import extrabiomes.handlers.BiomeHandler;
+import extrabiomes.handlers.BlockHandler;
 import extrabiomes.handlers.ConfigurationHandler;
-import extrabiomes.helpers.BlockHelper;
+import extrabiomes.handlers.ItemHandler;
+import extrabiomes.handlers.RecipeHandler;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Reference;
 import extrabiomes.localization.LocalizationHandler;
@@ -74,10 +78,7 @@ public class Extrabiomes {
     }
 
     @PreInit
-    public static void preInit(FMLPreInitializationEvent event) throws InstantiationException,
-            IllegalAccessException
-    {
-
+    public static void preInit(FMLPreInitializationEvent event) throws Exception {
         LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_INITIALIZING));
 
         // Load the localization files into the LanguageRegistry
@@ -86,7 +87,20 @@ public class Extrabiomes {
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(),
                 "/extrabiomes/extrabiomes.cfg"));
 
-        BlockHelper.createBlocks();
+        BiomeHandler.init();
+
+        // remove after 3.6.0 release
+        BiomeManagerImpl.populateAPIBiomes();
+        new BiomeManagerImpl();
+        //
+
+        BlockHandler.createBlocks();
+        ItemHandler.createItems();
+        RecipeHandler.writeRecipes();
+
+        BiomeHandler.registerWorldGenerators();
+        BiomeHandler.enableBiomes();
+        BiomeManagerImpl.buildWeightedFloraLists();
 
         Module.registerModules();
         Module.postEvent(new ModulePreInitEvent());

@@ -16,10 +16,9 @@ import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.module.amica.Amica;
 import extrabiomes.module.cautia.Cautia;
 import extrabiomes.module.fabrica.Fabrica;
-import extrabiomes.module.summa.Summa;
 
 enum Module {
-    SUMMA(Summa.class), CAUTIA(Cautia.class), FABRICA(Fabrica.class), AMICA(Amica.class);
+    CAUTIA(Cautia.class), FABRICA(Fabrica.class), AMICA(Amica.class);
 
     private static final String       MODULE_STATUS_DISABLED = "module.status.disabled";
     private static final String       MODULE_STATUS_ENABLED  = "module.status.enabled";
@@ -33,9 +32,6 @@ enum Module {
         for (final Module module : Module.values()) {
 
             switch (module) {
-                case SUMMA:
-                    module.enabled = ModuleControlSettings.SUMMA.isEnabled();
-                    break;
                 case CAUTIA:
                     module.enabled = ModuleControlSettings.CAUTIA.isEnabled();
                     break;

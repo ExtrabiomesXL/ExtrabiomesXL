@@ -335,7 +335,7 @@ public class BiomeManagerImpl extends BiomeManager {
         choices.put(biome, new WeightedWorldGenerator(treeGen, weight));
     }
 
-    public void buildWeightedFloraLists() {
+    public static void buildWeightedFloraLists() {
         buildWeightedBiomeTreeList();
         buildWeightedBiomeGrassList();
     }
