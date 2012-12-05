@@ -12,38 +12,44 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.utility.EnhancedConfiguration;
 
 public enum BlockSettings {
-    AUTUMNLEAVES        (200),
-    CATTAIL             (201),
-    CRACKEDSAND         (202),
-    FLOWER              (203),
-    GRASS               (204),
-    GREENLEAVES         (205),
-    LEAFPILE            (206),
-    REDROCK             (207),
-    SAPLING             (208),
-    CUSTOMLOG           (209),
-    QUARTERLOG0         (210),
-    QUARTERLOG1         (211),
-    QUARTERLOG2         (212),
-    QUARTERLOG3         (213),
-    QUICKSAND           (214),
-    PLANKS              (215),
-    WOODSLAB            (216),
-    DOUBLEWOODSLAB      (217),
-    REDWOODSTAIRS       (218),
-    FIRSTAIRS           (219),
-    ACACIASTAIRS        (220),
-    REDROCKSLAB         (221),
-    DOUBLEREDROCKSLAB   (222),
-    REDCOBBLESTAIRS     (223),
-    REDROCKBRICKSTAIRS  (224),
-    WALL                (225);
+    // @formatter:off
+    AUTUMNLEAVES        (2200),
+    CATTAIL             (2201),
+    CRACKEDSAND         (255),
+    FLOWER              (2202),
+    GRASS               (2203),
+    GREENLEAVES         (2204),
+    LEAFPILE            (2205),
+    REDROCK             (2206),
+    SAPLING             (2207),
+    CUSTOMLOG           (2208),
+    QUARTERLOG0         (2209),
+    QUARTERLOG1         (2211),
+    QUARTERLOG2         (2212),
+    QUARTERLOG3         (2213),
+    QUICKSAND           (2214),
+    PLANKS              (2215),
+    WOODSLAB            (2216),
+    DOUBLEWOODSLAB      (2217),
+    REDWOODSTAIRS       (2218),
+    FIRSTAIRS           (2219),
+    ACACIASTAIRS        (2220),
+    REDROCKSLAB         (254),
+    DOUBLEREDROCKSLAB   (2222),
+    REDCOBBLESTAIRS     (2223),
+    REDROCKBRICKSTAIRS  (2221),
+    WALL                (2210);
+    // Next block IDs 253 (decending) and 2224 (ascending)
+
+    // @formatter:on
 
     private int            blockID;
 
     private final int      defaultID;
 
     private static boolean clearedQuarterLogs = false;
+
+    static boolean         clearedWoodSlabs   = false;
 
     private BlockSettings(int defaultID) {
         this.defaultID = defaultID;
@@ -68,9 +74,10 @@ public enum BlockSettings {
         switch (this) {
             case CRACKEDSAND:
             case REDROCK:
-                property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(), defaultID, String.format(
-                        Extrabiomes.proxy.getStringLocalization("config.block.terraingen.comment"),
-                        toString()));
+                property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(),
+                        defaultID, String.format(Extrabiomes.proxy
+                                .getStringLocalization("config.block.terraingen.comment"),
+                                toString()));
                 break;
             default:
                 property = configuration.getBlock(idKey(), defaultID);
@@ -87,48 +94,41 @@ public enum BlockSettings {
                     setting.setToZero(configuration);
                 clearedQuarterLogs = true;
             }
-        
-        if (this == PLANKS) {
+
+        if (this == PLANKS)
             if (blockID == 0) {
-                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB, FIRSTAIRS, REDWOODSTAIRS, ACACIASTAIRS };
+                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB, FIRSTAIRS,
+                        REDWOODSTAIRS, ACACIASTAIRS };
 
                 for (final BlockSettings setting : settings)
                     setting.setToZero(configuration);
             }
-        }
-        
-        if (this == REDROCK) {
-            if (blockID == 0) {
-                final BlockSettings[] settings = { REDROCKSLAB, WALL };
 
-                for (final BlockSettings setting : settings)
-                    setting.setToZero(configuration);
-            }
-        }
-        
-        if (this == WOODSLAB || this == DOUBLEWOODSLAB) {
-            if (blockID == 0 && ! clearedWoodSlabs) {
-                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB };
+        if (this == REDROCK) if (blockID == 0) {
+            final BlockSettings[] settings = { REDROCKSLAB, WALL };
 
-                for (final BlockSettings setting : settings)
-                    setting.setToZero(configuration);
-                clearedWoodSlabs = true;
-            }
+            for (final BlockSettings setting : settings)
+                setting.setToZero(configuration);
         }
-        
-        if (this == REDROCKSLAB || this == DOUBLEREDROCKSLAB) {
-            if (blockID == 0 && ! clearedWoodSlabs) {
+
+        if (this == WOODSLAB || this == DOUBLEWOODSLAB) if (blockID == 0 && !clearedWoodSlabs) {
+            final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB };
+
+            for (final BlockSettings setting : settings)
+                setting.setToZero(configuration);
+            clearedWoodSlabs = true;
+        }
+
+        if (this == REDROCKSLAB || this == DOUBLEREDROCKSLAB)
+            if (blockID == 0 && !clearedWoodSlabs) {
                 final BlockSettings[] settings = { REDROCKSLAB, DOUBLEREDROCKSLAB };
 
                 for (final BlockSettings setting : settings)
                     setting.setToZero(configuration);
                 clearedWoodSlabs = true;
             }
-        }
     }
 
-    static boolean clearedWoodSlabs = false;
-    
     private void setToZero(EnhancedConfiguration configuration) {
         final Property property = configuration.getBlock(idKey(), 0);
         property.value = Integer.toString(0);
