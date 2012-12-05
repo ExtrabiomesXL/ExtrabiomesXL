@@ -42,35 +42,20 @@ import extrabiomes.module.summa.biome.BiomeWoodlands;
 import extrabiomes.utility.EnhancedConfiguration;
 
 public enum BiomeSettings {
-    DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA,
-    ALPINE              (32, BiomeAlpine.class),
-    AUTUMNWOODS         (33, BiomeAutumnWoods.class),
-    BIRCHFOREST         (34, BiomeBirchForest.class),
-    EXTREMEJUNGLE       (35, BiomeExtremeJungle.class),
-    FORESTEDHILLS       (36, BiomeForestedHills.class),
-    FORESTEDISLAND      (37, BiomeForestedIsland.class),
-    GLACIER             (38, BiomeGlacier.class),
-    GREENHILLS          (39, BiomeGreenHills.class),
-    GREENSWAMP          (40, BiomeGreenSwamp.class),
-    ICEWASTELAND        (41, BiomeIceWasteland.class),
-    MARSH               (42, BiomeMarsh.class),
-    MEADOW              (43, BiomeMeadow.class),
-    MINIJUNGLE          (44, BiomeMiniJungle.class),
-    MOUNTAINDESERT      (45, BiomeMountainDesert.class),
-    MOUNTAINRIDGE       (46, BiomeMountainRidge.class),
-    MOUNTAINTAIGA       (47, BiomeMountainTaiga.class),
-    PINEFOREST          (48, BiomePineForest.class),
-    RAINFOREST          (49, BiomeRainforest.class),
-    REDWOODFOREST       (50, BiomeRedwoodForest.class),
-    REDWOODLUSH         (51, BiomeRedwoodLush.class),
-    SAVANNA             (52, BiomeSavanna.class),
-    SHRUBLAND           (53, BiomeShrubland.class),
-    SNOWYFOREST         (54, BiomeSnowForest.class),
-    SNOWYRAINFOREST     (55, BiomeSnowRainforest.class),
-    TEMPORATERAINFOREST (56, BiomeTemporateRainforest.class),
-    TUNDRA              (57, BiomeTundra.class),
-    WASTELAND           (58, BiomeWasteland.class),
-    WOODLANDS           (59, BiomeWoodlands.class);
+    DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA, ALPINE(32, BiomeAlpine.class), AUTUMNWOODS(
+            33, BiomeAutumnWoods.class), BIRCHFOREST(34, BiomeBirchForest.class), EXTREMEJUNGLE(35,
+            BiomeExtremeJungle.class), FORESTEDHILLS(36, BiomeForestedHills.class), FORESTEDISLAND(
+            37, BiomeForestedIsland.class), GLACIER(38, BiomeGlacier.class), GREENHILLS(39,
+            BiomeGreenHills.class), GREENSWAMP(40, BiomeGreenSwamp.class), ICEWASTELAND(41,
+            BiomeIceWasteland.class), MARSH(42, BiomeMarsh.class), MEADOW(43, BiomeMeadow.class), MINIJUNGLE(
+            44, BiomeMiniJungle.class), MOUNTAINDESERT(45, BiomeMountainDesert.class), MOUNTAINRIDGE(
+            46, BiomeMountainRidge.class), MOUNTAINTAIGA(47, BiomeMountainTaiga.class), PINEFOREST(
+            48, BiomePineForest.class), RAINFOREST(49, BiomeRainforest.class), REDWOODFOREST(50,
+            BiomeRedwoodForest.class), REDWOODLUSH(51, BiomeRedwoodLush.class), SAVANNA(52,
+            BiomeSavanna.class), SHRUBLAND(53, BiomeShrubland.class), SNOWYFOREST(54,
+            BiomeSnowForest.class), SNOWYRAINFOREST(55, BiomeSnowRainforest.class), TEMPORATERAINFOREST(
+            56, BiomeTemporateRainforest.class), TUNDRA(57, BiomeTundra.class), WASTELAND(58,
+            BiomeWasteland.class), WOODLANDS(59, BiomeWoodlands.class);
 
     private final int                                               defaultID;
 
@@ -141,12 +126,12 @@ public enum BiomeSettings {
         }
 
         property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyEnabled(), true);
-        if (biomeID == 0) property.value = Boolean.toString(false);
+        if (!isVanilla() && biomeID == 0) property.value = Boolean.toString(false);
         enabled = property.getBoolean(false);
 
         property = configuration
                 .get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), true);
-        if (biomeID == 0) property.value = Boolean.toString(false);
+        if (!isVanilla() && biomeID == 0) property.value = Boolean.toString(false);
         allowVillages = property.getBoolean(false);
 
     }
