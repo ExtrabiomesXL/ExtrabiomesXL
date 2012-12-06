@@ -21,42 +21,9 @@ public abstract class BlockActiveEvent extends Event {
 
 	}
 
-	public static class CrackedSandActiveEvent extends BlockActiveEvent
-	{
-
-		public CrackedSandActiveEvent(Block block) {
-			super(block);
-		}
-
-	}
-
 	public static class FirStairsActiveEvent extends BlockActiveEvent {
 
 		public FirStairsActiveEvent(Block block) {
-			super(block);
-		}
-
-	}
-
-	public static class FlowerActiveEvent extends BlockActiveEvent {
-
-		public FlowerActiveEvent(Block block) {
-			super(block);
-		}
-
-	}
-
-	public static class LeafPileActiveEvent extends BlockActiveEvent {
-
-		public LeafPileActiveEvent(Block block) {
-			super(block);
-		}
-
-	}
-
-	public static class LogActiveEvent extends BlockActiveEvent {
-
-		public LogActiveEvent(Block block) {
 			super(block);
 		}
 

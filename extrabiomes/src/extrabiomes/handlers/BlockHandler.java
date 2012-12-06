@@ -22,10 +22,6 @@ import extrabiomes.blocks.BlockLeafPile;
 import extrabiomes.blocks.BlockQuarterLog;
 import extrabiomes.blocks.BlockRedRock;
 import extrabiomes.blocks.GenericTerrainBlock;
-import extrabiomes.events.BlockActiveEvent.CrackedSandActiveEvent;
-import extrabiomes.events.BlockActiveEvent.FlowerActiveEvent;
-import extrabiomes.events.BlockActiveEvent.LeafPileActiveEvent;
-import extrabiomes.events.BlockActiveEvent.LogActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
 import extrabiomes.helpers.BiomeHelper;
 import extrabiomes.helpers.ForestryModHelper;
@@ -122,7 +118,6 @@ public abstract class BlockHandler {
         final ItemStack stack = new ItemStack(block);
         Element.CRACKEDSAND.set(stack);
 
-        Extrabiomes.postInitEvent(new CrackedSandActiveEvent(block));
         BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.WASTELAND, block.blockID, block.blockID);
 
         ForestryModHelper.addToDiggerBackpack(stack);
@@ -164,8 +159,6 @@ public abstract class BlockHandler {
         ForestryModHelper.registerBasicFlower(Element.FLOWER_ORANGE.get());
         ForestryModHelper.registerBasicFlower(Element.FLOWER_PURPLE.get());
         ForestryModHelper.registerBasicFlower(Element.FLOWER_WHITE.get());
-
-        Extrabiomes.postInitEvent(new FlowerActiveEvent(block));
 
         proxy.registerWorldGenerator(new FlowerGenerator(block.blockID));
     }
@@ -255,8 +248,6 @@ public abstract class BlockHandler {
 
         Element.LEAFPILE.set(new ItemStack(block));
 
-        Extrabiomes.postInitEvent(new LeafPileActiveEvent(block));
-
         proxy.registerWorldGenerator(new LeafPileGenerator(block.blockID));
     }
 
@@ -324,10 +315,6 @@ public abstract class BlockHandler {
 
         BlockQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderQuarterLog()));
 
-        for (final Block block : new Block[] { blockNW, blockNE, blockSW, blockSE }) {
-            Extrabiomes.postInitEvent(new LogActiveEvent(block));
-            ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, -1));
-        }
         for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType.values())
             FacadeHelper.addBuildcraftFacade(blockSE.blockID, type.metadata());
     }
@@ -424,8 +411,6 @@ public abstract class BlockHandler {
 
         Element.LOG_ACACIA.set(new ItemStack(block, 1, BlockCustomLog.BlockType.ACACIA.metadata()));
         Element.LOG_FIR.set(new ItemStack(block, 1, BlockCustomLog.BlockType.FIR.metadata()));
-
-        Extrabiomes.postInitEvent(new LogActiveEvent(block));
 
         ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, -1));
         for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType.values())

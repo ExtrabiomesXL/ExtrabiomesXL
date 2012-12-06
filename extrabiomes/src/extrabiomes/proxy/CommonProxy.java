@@ -61,6 +61,10 @@ public class CommonProxy {
         FurnaceRecipes.smelting().addSmelting(itemID, metadata, itemstack, experience);
     }
 
+    public void addSmelting(ItemStack input, ItemStack output, float experience) {
+        addSmelting(input.itemID, input.getItemDamage(), output, experience);
+    }
+
     public void addStringLocalization(String key, String lang, String value) {
         LanguageRegistry.instance().addStringLocalization(key, lang, value);
     }

@@ -68,6 +68,7 @@ public class Extrabiomes {
     @PostInit
     public static void postInit(FMLPostInitializationEvent event) {
         PluginManager.activatePlugins();
+        RecipeHandler.init();
         initBus = Optional.absent();
         Module.releaseStaticResources();
         LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_LOAD_SUCCESS));
@@ -96,8 +97,7 @@ public class Extrabiomes {
 
         BlockHandler.createBlocks();
         ItemHandler.createItems();
-        RecipeHandler.writeRecipes();
-
+ 
         BiomeHandler.registerWorldGenerators();
         BiomeHandler.enableBiomes();
         BiomeManagerImpl.buildWeightedFloraLists();
