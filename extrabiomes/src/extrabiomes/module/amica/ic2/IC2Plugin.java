@@ -58,6 +58,19 @@ public class IC2Plugin {
                 BiomeSettings.MOUNTAINRIDGE.getBiome(), BiomeSettings.WASTELAND.getBiome()), 1, 0);
     }
 
+    private void addTreeTapRecipes() {
+        ItemStack target;
+
+        try {
+            target = getTreeTap();
+        } catch (final NullPointerException e) {
+            return;
+        }
+
+        api.get().addCraftingRecipe(target,
+                new Object[] { " P ", "PPP", "P  ", Character.valueOf('P'), "plankWood" });
+    }
+
     private void addPlantBallRecipes() {
         ItemStack target;
 
@@ -84,11 +97,18 @@ public class IC2Plugin {
         return opt.get();
     }
 
+    private ItemStack getTreeTap() throws NullPointerException {
+        final Optional<ItemStack> opt = api.get().getItem("treetap");
+        if (!opt.isPresent()) throw new NullPointerException("IC2 rwturned null for 'plantBall'.");
+        return opt.get();
+    }
+
     @ForgeSubscribe
     public void init(PluginEvent.Init event) {
         if (!api.isPresent()) return;
 
         addPlantBallRecipes();
+        addTreeTapRecipes();
         addBiomeBonuses();
     }
 
