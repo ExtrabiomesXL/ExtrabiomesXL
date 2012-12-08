@@ -156,8 +156,10 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, final int metadata) {
-        return blockIndexInTexture + 2 * unmarkedMetadata(metadata) + (isOpaqueCube() ? 1 : 0);
+    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+        metadata = unmarkedMetadata(metadata);
+        if (metadata > 3) metadata = 3;
+        return blockIndexInTexture + 2 * metadata + (isOpaqueCube() ? 1 : 0);
     }
 
     @Override

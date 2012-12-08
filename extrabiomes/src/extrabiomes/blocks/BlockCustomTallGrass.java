@@ -83,6 +83,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
 
     @Override
     public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+        if (metadata > 4) metadata = 4;
         return super.getBlockTextureFromSideAndMetadata(side, metadata) + metadata;
     }
 

@@ -41,7 +41,8 @@ public class BlockCustomLog extends BlockLog {
     @Override
     public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
         final int orientation = metadata & 12;
-        final int type = metadata & 3;
+        int type = metadata & 3;
+        if (type > 1) type = 0;
         if (orientation == 0 && (side == 1 || side == 0) || orientation == 4
                 && (side == 5 || side == 4) || orientation == 8 && (side == 2 || side == 3))
             return blockIndexInTexture + 16 + type;

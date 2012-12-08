@@ -97,7 +97,9 @@ public class BlockCustomSapling extends BlockFlower {
 
     @Override
     public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
-        return super.getBlockTextureFromSide(side) + unmarkedMetadata(metadata);
+        metadata = unmarkedMetadata(metadata);
+        if (metadata > 6) metadata = 0;
+        return super.getBlockTextureFromSide(side) + metadata;
     }
 
     @Override

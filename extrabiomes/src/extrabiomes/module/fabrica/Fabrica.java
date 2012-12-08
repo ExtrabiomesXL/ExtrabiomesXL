@@ -78,8 +78,6 @@ public class Fabrica {
         pasteID = ItemSettings.PASTE.getID();
 
         if (scarecrowID > 0) Extrabiomes.proxy.registerScarecrowRendering();
-
-        Extrabiomes.registerInitEventHandler(new RecipeManager());
     }
 
 }

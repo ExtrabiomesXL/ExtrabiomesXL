@@ -35,6 +35,7 @@ import extrabiomes.handlers.RecipeHandler;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Reference;
 import extrabiomes.localization.LocalizationHandler;
+import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
 
@@ -94,6 +95,8 @@ public class Extrabiomes {
         BiomeManagerImpl.populateAPIBiomes();
         new BiomeManagerImpl();
         //
+
+        Extrabiomes.registerInitEventHandler(new RecipeManager());
 
         BlockHandler.createBlocks();
         ItemHandler.createItems();

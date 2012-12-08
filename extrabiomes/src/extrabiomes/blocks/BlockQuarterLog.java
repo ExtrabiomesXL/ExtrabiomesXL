@@ -84,7 +84,9 @@ public class BlockQuarterLog extends BlockLog {
     @Override
     public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
         final int orientation = metadata & 12;
-        final int type = metadata & 3;
+        int type = metadata & 3;
+        
+        if (type > 2) type = 0;
 
         int offset = 0;
         switch (barkOnSides) {
