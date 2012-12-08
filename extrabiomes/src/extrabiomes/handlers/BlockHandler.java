@@ -129,7 +129,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCustomFlower block = new BlockCustomFlower(blockID, 32, Material.plants);
-        block.setBlockName("extrabiomes.greenleaves").setTickRandomly(true).setHardness(0.0F)
+        block.setBlockName("extrabiomes.flower").setTickRandomly(true).setHardness(0.0F)
                 .setStepSound(Block.soundGrassFootstep)
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
