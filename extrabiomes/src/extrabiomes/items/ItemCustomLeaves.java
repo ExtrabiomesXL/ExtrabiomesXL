@@ -12,8 +12,17 @@ import extrabiomes.utility.MultiItemBlock;
 public class ItemCustomLeaves extends MultiItemBlock {
 
     private static final int METADATA_BITMASK       = 0x3;
-    private static int unmarkedMetadata(int metadata) {
+    protected static int unmarkedMetadata(int metadata) {
         return metadata & METADATA_BITMASK;
+    }
+
+    @Override
+    public String getItemNameIS(ItemStack itemstack) {
+        int metadata = unmarkedMetadata(itemstack.getItemDamage());
+        if (metadata > 3) metadata = 3;
+        itemstack = itemstack.copy();
+        itemstack.setItemDamage(metadata);
+        return super.getItemNameIS(itemstack);
     }
 
     private static final int METADATA_USERPLACEDBIT = 0x4;

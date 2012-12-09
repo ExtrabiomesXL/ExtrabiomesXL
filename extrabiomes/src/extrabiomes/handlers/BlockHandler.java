@@ -135,7 +135,7 @@ public abstract class BlockHandler {
                 .setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+        proxy.registerBlock(block, extrabiomes.items.ItemFlower.class);
 
         Element.AUTUMN_SHRUB.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.AUTUMN_SHRUB
                 .metadata()));
@@ -174,7 +174,7 @@ public abstract class BlockHandler {
                 .setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+        proxy.registerBlock(block, extrabiomes.items.ItemGrass.class);
         proxy.setBurnProperties(block.blockID, 60, 100);
 
         Element.GRASS_BROWN.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.BROWN
@@ -217,7 +217,7 @@ public abstract class BlockHandler {
                 .setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemCustomLeaves.class);
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomGreenLeaves.class);
         proxy.registerOreInAllSubblocks("treeLeaves", block);
         proxy.setBurnProperties(block.blockID, 30, 60);
 
@@ -330,7 +330,7 @@ public abstract class BlockHandler {
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "pickaxe", 0);
-        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+        proxy.registerBlock(block, extrabiomes.items.ItemRedRock.class);
 
         Element.RED_ROCK.set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_ROCK.metadata()));
         Element.RED_COBBLE
@@ -358,7 +358,7 @@ public abstract class BlockHandler {
                 .setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+        proxy.registerBlock(block, extrabiomes.items.ItemSapling.class);
         proxy.registerOreInAllSubblocks("treeSapling", block);
 
         Element.SAPLING_ACACIA.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.ACACIA
