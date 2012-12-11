@@ -7,21 +7,30 @@
 package extrabiomes.localization;
 
 public enum Localization {
-	US("en_US"), GERMAN("de_DE"), FRENCH("fr_FR"), PORTUGAL("pt_PT"), BRAZIL("pt_BR"), ITALIAN("it_IT")/* CZECH("cs_CZ"), WELSH("cy_GB"), SPANISH("es_ES"), FRENCH("fr_FR"),
-	JAPANESE("ja_JP"), DUTCH("nl_NL"), POLISH("pl_PL"), RUSSIAN("ru_RU"), SERBIAN("sr_RS"), SWEDISH("sv_SE"),
-	CHINESE("zh_CN")*/;
+    US("en_US"), GERMAN("de_DE"), FRENCH("fr_FR"), PORTUGAL("pt_PT"), BRAZIL("pt_BR"), ITALIAN(
+            "it_IT"), RUSSIAN("ru_RU")/*
+                                       * CZECH("cs_CZ"), WELSH("cy_GB"),
+                                       * SPANISH("es_ES"),
+                                       * FRENCH("fr_FR"),
+                                       * JAPANESE("ja_JP"),
+                                       * DUTCH("nl_NL"),
+                                       * POLISH("pl_PL"),
+                                       * SERBIAN("sr_RS"),
+                                       * SWEDISH("sv_SE"),
+                                       * CHINESE("zh_CN")
+                                       */;
 
-	private final String locale;
+    private final String locale;
 
-	Localization(String locale) {
-		this.locale = locale;
-	}
+    Localization(String locale) {
+        this.locale = locale;
+    }
 
-	public String locale() {
-		return locale;
-	}
-	
-	public String filename() {
-		return String.format("/extrabiomes/lang/%s.xml", locale);
-	}
+    public String filename() {
+        return String.format("/extrabiomes/lang/%s.xml", locale);
+    }
+
+    public String locale() {
+        return locale;
+    }
 }
