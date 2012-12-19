@@ -8,11 +8,11 @@ package extrabiomes.module.summa.worldgen;
 
 import java.util.Random;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.Direction;
-import net.minecraft.src.Facing;
-import net.minecraft.src.World;
-import net.minecraft.src.WorldGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Facing;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 class WorldGenMarshDirt extends WorldGenerator {
 

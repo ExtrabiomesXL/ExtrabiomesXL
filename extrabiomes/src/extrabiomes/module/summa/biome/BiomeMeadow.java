@@ -6,11 +6,11 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.ColorizerFoliage;
-import net.minecraft.src.ColorizerGrass;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.ColorizerGrass;
+import net.minecraft.world.biome.BiomeDecorator;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 
 public class BiomeMeadow extends ExtrabiomeGenBase {

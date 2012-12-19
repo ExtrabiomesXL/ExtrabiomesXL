@@ -6,10 +6,10 @@
 
 package extrabiomes.module.fabrica;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.IRecipe;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -24,7 +24,6 @@ import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
 import extrabiomes.module.fabrica.block.BlockManager;
-import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ItemScarecrow;
 

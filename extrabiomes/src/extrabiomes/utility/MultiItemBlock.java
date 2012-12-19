@@ -6,11 +6,11 @@
 
 package extrabiomes.utility;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.ItemBlock;
-import net.minecraft.src.ItemStack;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class MultiItemBlock extends ItemBlock {
 

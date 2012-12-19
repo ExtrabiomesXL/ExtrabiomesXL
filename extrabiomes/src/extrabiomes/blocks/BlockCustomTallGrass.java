@@ -10,18 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.src.BlockFlower;
-import net.minecraft.src.ColorizerGrass;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
-import net.minecraft.src.World;
+import net.minecraft.block.BlockFlower;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.ColorizerGrass;
+import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
 import com.google.common.base.Optional;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.BiomeManager;
 

@@ -8,10 +8,10 @@ package extrabiomes.module.summa.worldgen;
 
 import java.util.Random;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
-import net.minecraft.src.WorldGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import extrabiomes.lib.Element;
 import extrabiomes.module.summa.TreeSoilRegistry;
 

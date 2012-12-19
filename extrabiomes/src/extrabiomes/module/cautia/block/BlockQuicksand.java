@@ -6,17 +6,12 @@
 
 package extrabiomes.module.cautia.block;
 
-import java.util.ArrayList;
-
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
 import extrabiomes.Extrabiomes;
-
-import net.minecraft.src.AxisAlignedBB;
-import net.minecraft.src.Block;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Entity;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
-import net.minecraft.src.World;
 
 class BlockQuicksand extends Block {
 

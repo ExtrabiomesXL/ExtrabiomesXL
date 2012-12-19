@@ -6,14 +6,14 @@
 
 package extrabiomes.module.fabrica.scarecrow;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.EntityAILookIdle;
-import net.minecraft.src.EntityAIWatchClosest;
-import net.minecraft.src.EntityCreature;
-import net.minecraft.src.EntityMob;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.Item;
-import net.minecraft.src.World;
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.world.World;
 
 public class EntityScarecrow extends EntityCreature {
 	public EntityScarecrow(World world) {

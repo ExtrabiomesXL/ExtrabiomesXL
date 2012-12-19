@@ -8,13 +8,12 @@ package extrabiomes.module.amica.forestry;
 
 import java.util.ArrayList;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
 import com.google.common.collect.Lists;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
-import extrabiomes.api.Stuff;
-import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.helpers.ForestryModHelper;
 import forestry.api.cultivation.ICropEntity;
 import forestry.api.cultivation.ICropProvider;

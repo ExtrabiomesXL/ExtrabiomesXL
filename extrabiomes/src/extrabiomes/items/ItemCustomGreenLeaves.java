@@ -6,7 +6,7 @@
 
 package extrabiomes.items;
 
-import net.minecraft.src.ItemStack;
+import net.minecraft.item.ItemStack;
 
 public class ItemCustomGreenLeaves extends ItemCustomLeaves {
 

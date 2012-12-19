@@ -1,6 +1,6 @@
 package extrabiomes.items;
 
-import net.minecraft.src.ItemStack;
+import net.minecraft.item.ItemStack;
 import extrabiomes.utility.MultiItemBlock;
 
 public class ItemGrass extends MultiItemBlock {

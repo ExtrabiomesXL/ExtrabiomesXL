@@ -6,8 +6,8 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.Block;
+import net.minecraft.block.Block;
+import net.minecraft.world.biome.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 
 public class BiomeIceWasteland extends ExtrabiomeGenBase {

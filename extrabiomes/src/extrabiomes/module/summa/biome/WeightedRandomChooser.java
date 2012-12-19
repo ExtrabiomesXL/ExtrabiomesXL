@@ -9,7 +9,7 @@ package extrabiomes.module.summa.biome;
 import java.util.Collection;
 import java.util.Random;
 
-import net.minecraft.src.WeightedRandomItem;
+import net.minecraft.util.WeightedRandomItem;
 
 import com.google.common.base.Optional;
 

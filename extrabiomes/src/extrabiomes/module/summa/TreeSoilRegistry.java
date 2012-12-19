@@ -9,7 +9,7 @@ package extrabiomes.module.summa;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.src.Block;
+import net.minecraft.block.Block;
 
 public enum TreeSoilRegistry {
 	INSTANCE;
