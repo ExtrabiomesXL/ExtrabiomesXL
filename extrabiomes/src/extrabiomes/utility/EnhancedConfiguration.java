@@ -9,7 +9,8 @@ package extrabiomes.utility;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.src.BiomeGenBase;
+
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 

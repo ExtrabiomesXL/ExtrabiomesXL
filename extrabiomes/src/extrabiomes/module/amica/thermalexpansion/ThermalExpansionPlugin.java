@@ -8,8 +8,8 @@ package extrabiomes.module.amica.thermalexpansion;
 
 import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_ERROR;
 import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_INIT;
-import net.minecraft.src.Block;
-import net.minecraft.src.ItemStack;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
 
 import com.google.common.base.Optional;

@@ -6,8 +6,8 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.src.WeightedRandomItem;
-import net.minecraft.src.WorldGenerator;
+import net.minecraft.util.WeightedRandomItem;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WeightedWorldGenerator extends WeightedRandomItem {
 

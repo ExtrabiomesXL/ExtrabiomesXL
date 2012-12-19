@@ -6,8 +6,8 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.SpawnListEntry;
+import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 
 public class BiomeBirchForest extends ExtrabiomeGenBase {
@@ -22,7 +22,7 @@ public class BiomeBirchForest extends ExtrabiomeGenBase {
         minHeight = 0.0F;
         maxHeight = 0.4F;
 
-        spawnableCreatureList.add(new SpawnListEntry(net.minecraft.src.EntityWolf.class, 5, 4, 4));
+        spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }
 
     @Override

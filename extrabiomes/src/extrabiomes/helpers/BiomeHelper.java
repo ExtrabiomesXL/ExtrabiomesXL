@@ -11,9 +11,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.WorldGenerator;
-import net.minecraft.src.WorldType;
+import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeManager;
 
 import com.google.common.base.Optional;
@@ -133,12 +133,13 @@ public abstract class BiomeHelper {
                 return setting.getBiome().get();
         }
     }
-    
+
     @SuppressWarnings("deprecation")
-    public static void addWeightedGrassGen(Optional<? extends BiomeGenBase> biome, WorldGenerator grassGen, int weight)
+    public static void addWeightedGrassGen(Optional<? extends BiomeGenBase> biome,
+            WorldGenerator grassGen, int weight)
     {
         if (!biome.isPresent()) return;
-        
+
         extrabiomes.api.BiomeManager.addWeightedGrassGenForBiome(biome.get(), grassGen, weight);
     }
 }

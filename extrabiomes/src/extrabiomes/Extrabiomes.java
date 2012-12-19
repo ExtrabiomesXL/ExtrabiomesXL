@@ -8,7 +8,7 @@ package extrabiomes;
 
 import java.io.File;
 
-import net.minecraft.src.CreativeTabs;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.EventBus;
 

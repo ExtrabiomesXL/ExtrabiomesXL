@@ -6,13 +6,13 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.ColorizerFoliage;
-import net.minecraft.src.ColorizerGrass;
-import net.minecraft.src.SpawnListEntry;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.ColorizerGrass;
+import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.SpawnListEntry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 
 public class BiomeWoodlands extends ExtrabiomeGenBase {
@@ -27,7 +27,7 @@ public class BiomeWoodlands extends ExtrabiomeGenBase {
         minHeight = 0.2F;
         maxHeight = 0.4F;
 
-        spawnableCreatureList.add(new SpawnListEntry(net.minecraft.src.EntityWolf.class, 5, 4, 4));
+        spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }
 
     @Override

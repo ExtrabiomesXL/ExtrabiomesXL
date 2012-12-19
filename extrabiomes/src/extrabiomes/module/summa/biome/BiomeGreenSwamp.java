@@ -6,10 +6,10 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.EntitySlime;
-import net.minecraft.src.SpawnListEntry;
+import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 
 public class BiomeGreenSwamp extends ExtrabiomeGenBase {

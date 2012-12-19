@@ -6,7 +6,7 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.src.BiomeDecorator;
+import net.minecraft.world.biome.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 
 public class BiomeRainforest extends ExtrabiomeGenBase {

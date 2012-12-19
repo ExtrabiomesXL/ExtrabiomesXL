@@ -8,7 +8,7 @@ package extrabiomes.api;
 
 import java.util.Collection;
 
-import net.minecraft.src.WorldType;
+import net.minecraft.world.WorldType;
 import net.minecraftforge.event.Event;
 
 /**

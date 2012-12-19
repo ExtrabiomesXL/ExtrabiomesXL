@@ -6,9 +6,7 @@
 
 package extrabiomes.module.cautia.block;
 
-import java.util.Locale;
-
-import net.minecraft.src.Block;
+import net.minecraft.block.Block;
 
 import com.google.common.base.Optional;
 

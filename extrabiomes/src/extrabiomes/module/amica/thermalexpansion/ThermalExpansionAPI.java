@@ -8,7 +8,7 @@ package extrabiomes.module.amica.thermalexpansion;
 
 import java.lang.reflect.Method;
 
-import net.minecraft.src.ItemStack;
+import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Optional;
 

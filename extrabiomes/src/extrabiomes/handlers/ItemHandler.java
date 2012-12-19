@@ -6,7 +6,7 @@
 
 package extrabiomes.handlers;
 
-import net.minecraft.src.ItemStack;
+import net.minecraft.item.ItemStack;
 import extrabiomes.Extrabiomes;
 import extrabiomes.items.LogTurner;
 import extrabiomes.lib.Element;

@@ -8,8 +8,8 @@ package extrabiomes.module.amica.ic2;
 
 import java.lang.reflect.Method;
 
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.ItemStack;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.BiomeGenBase;
 
 import com.google.common.base.Optional;
 

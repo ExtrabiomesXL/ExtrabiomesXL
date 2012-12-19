@@ -6,9 +6,9 @@
 
 package extrabiomes.module.fabrica.block;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockHalfSlab;
-import net.minecraft.src.ItemStack;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockHalfSlab;
+import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Optional;
 

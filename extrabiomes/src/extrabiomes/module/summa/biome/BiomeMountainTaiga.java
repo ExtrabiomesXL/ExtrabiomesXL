@@ -6,10 +6,10 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.src.BiomeDecorator;
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.EntityWolf;
-import net.minecraft.src.SpawnListEntry;
+import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 
 public class BiomeMountainTaiga extends ExtrabiomeGenBase {

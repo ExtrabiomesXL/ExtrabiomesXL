@@ -8,8 +8,8 @@ package extrabiomes.module.amica.forestry;
 
 import java.util.ArrayList;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.World;
+import net.minecraft.block.Block;
+import net.minecraft.world.World;
 import forestry.api.cultivation.ICropEntity;
 
 public class CropSapling implements ICropEntity {

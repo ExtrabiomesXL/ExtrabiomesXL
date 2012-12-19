@@ -11,8 +11,8 @@ import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_INIT;
 
 import java.util.Collection;
 
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.ItemStack;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.ForgeSubscribe;
 
 import com.google.common.base.Optional;
