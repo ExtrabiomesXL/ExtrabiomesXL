@@ -55,60 +55,13 @@ public class IC2Plugin {
                 Lists.newArrayList(BiomeSettings.EXTREMEJUNGLE.getBiome(),
                         BiomeSettings.MINIJUNGLE.getBiome()), 1, 2);
         addBiomeBonus(Lists.newArrayList(BiomeSettings.MOUNTAINDESERT.getBiome(),
-                BiomeSettings.MOUNTAINRIDGE.getBiome(), BiomeSettings.WASTELAND.getBiome()), 1, 0);
-    }
-
-    private void addTreeTapRecipes() {
-        ItemStack target;
-
-        try {
-            target = getTreeTap();
-        } catch (final NullPointerException e) {
-            return;
-        }
-
-        api.get().addCraftingRecipe(target,
-                new Object[] { " P ", "PPP", "P  ", Character.valueOf('P'), "plankWood" });
-    }
-
-    private void addPlantBallRecipes() {
-        ItemStack target;
-
-        try {
-            target = getPlantBall();
-        } catch (final NullPointerException e) {
-            return;
-        }
-
-        api.get().addCraftingRecipe(target,
-                new Object[] { "PPP", "P P", "PPP", Character.valueOf('P'), "treeLeaves" });
-
-        target = target.copy();
-        target.stackSize = 2;
-
-        for (final BlockCustomSapling.BlockType type : BlockCustomSapling.BlockType.values())
-            api.get().addCraftingRecipe(target,
-                    new Object[] { "PPP", "P P", "PPP", Character.valueOf('P'), "treeSapling" });
-    }
-
-    private ItemStack getPlantBall() throws NullPointerException {
-        final Optional<ItemStack> opt = api.get().getItem("plantBall");
-        if (!opt.isPresent()) throw new NullPointerException("IC2 rwturned null for 'plantBall'.");
-        return opt.get();
-    }
-
-    private ItemStack getTreeTap() throws NullPointerException {
-        final Optional<ItemStack> opt = api.get().getItem("treetap");
-        if (!opt.isPresent()) throw new NullPointerException("IC2 rwturned null for 'plantBall'.");
-        return opt.get();
+                BiomeSettings.MOUNTAINRIDGE.getBiome(), BiomeSettings.WASTELAND.getBiome()), 0, 0);
     }
 
     @ForgeSubscribe
     public void init(PluginEvent.Init event) {
         if (!api.isPresent()) return;
 
-        addPlantBallRecipes();
-        addTreeTapRecipes();
         addBiomeBonuses();
     }
 
