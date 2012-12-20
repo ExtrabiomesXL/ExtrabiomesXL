@@ -4,7 +4,7 @@ echo Backing up src
 XCOPY src src-bak /E /I /Q
 echo.
 echo Copying source 
-XCOPY extrabiomes\src src\common /E /Q
+XCOPY extrabiomes\src src\minecraft /E /Q
 echo.
 call recompile.bat
 call reobfuscate.bat

@@ -1,8 +1,8 @@
 
 package extrabiomes.api;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.Item;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 
 import com.google.common.base.Optional;
 

@@ -6,7 +6,7 @@
 
 package extrabiomes.handlers;
 
-import net.minecraft.src.ItemStack;
+import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
 public class SaplingFuelHandler implements IFuelHandler {

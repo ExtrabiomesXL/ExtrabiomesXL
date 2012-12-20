@@ -1,10 +1,10 @@
 
 package extrabiomes.handlers;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.IRecipe;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import extrabiomes.Extrabiomes;

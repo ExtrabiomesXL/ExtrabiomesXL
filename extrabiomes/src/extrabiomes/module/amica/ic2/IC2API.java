@@ -8,22 +8,12 @@ package extrabiomes.module.amica.ic2;
 
 import java.lang.reflect.Method;
 
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.ItemStack;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.BiomeGenBase;
 
 import com.google.common.base.Optional;
 
 class IC2API {
-
-	/**
-	 * public void addCraftingRecipe(ItemStack result, Object[] args);
-	 */
-	private Optional<Method>	addCraftingRecipe	= Optional.absent();
-
-	/**
-	 * public static ItemStack getItem(String name);
-	 */
-	private Optional<Method>	getItem				= Optional.absent();
 
 	/**
 	 * public static void addBiomeBonus(BiomeGenBase biome, int
@@ -33,25 +23,6 @@ class IC2API {
 
 	IC2API() {
 		Class cls;
-		try {
-			cls = Class.forName("ic2.api.Ic2Recipes");
-			addCraftingRecipe = Optional.fromNullable(cls.getMethod(
-					"addCraftingRecipe", ItemStack.class,
-					Object[].class));
-		} catch (final Exception e) {
-			e.printStackTrace();
-			addCraftingRecipe = Optional.absent();
-		}
-
-		try {
-			cls = Class.forName("ic2.api.Items");
-			getItem = Optional.fromNullable(cls.getMethod("getItem",
-					String.class));
-		} catch (final Exception e) {
-			e.printStackTrace();
-			getItem = Optional.absent();
-		}
-
 		try {
 			cls = Class.forName("ic2.api.Crops");
 			addBiomeBonus = Optional.fromNullable(cls.getMethod(
@@ -80,25 +51,5 @@ class IC2API {
 	{
 		if (biome.isPresent())
 			addBiomeBonus(biome.get(), humidityBonus, nutrientsBonus);
-	}
-
-	void addCraftingRecipe(ItemStack result, Object[] args) {
-		try {
-			addCraftingRecipe.get().invoke(null, result, args);
-		} catch (final IllegalStateException e) {} catch (final Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	Optional<ItemStack> getItem(String name) {
-		try {
-			return Optional.fromNullable((ItemStack) getItem.get()
-					.invoke(null, name));
-		} catch (final IllegalStateException e) {} catch (final Exception e)
-		{
-			e.printStackTrace();
-		}
-		return Optional.absent();
 	}
 }

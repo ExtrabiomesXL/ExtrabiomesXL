@@ -4,7 +4,7 @@ package extrabiomes.module.amica.buildcraft;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import net.minecraft.src.World;
+import net.minecraft.world.World;
 
 import com.google.common.base.Optional;
 

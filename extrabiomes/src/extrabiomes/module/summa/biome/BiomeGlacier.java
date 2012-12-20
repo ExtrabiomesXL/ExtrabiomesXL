@@ -6,7 +6,7 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.src.Block;
+import net.minecraft.block.Block;
 import extrabiomes.lib.BiomeSettings;
 
 public class BiomeGlacier extends ExtrabiomeGenBase {

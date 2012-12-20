@@ -6,9 +6,8 @@
 
 package extrabiomes.blocks;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.Material;
-import extrabiomes.Extrabiomes;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import extrabiomes.utility.IDRestrictionAnnotation;
 
 @IDRestrictionAnnotation(maxIDRValue = 255)

@@ -6,7 +6,7 @@
 
 package extrabiomes.items;
 
-import net.minecraft.src.ItemBlock;
+import net.minecraft.item.ItemBlock;
 
 public class ItemCatTail extends ItemBlock {
 

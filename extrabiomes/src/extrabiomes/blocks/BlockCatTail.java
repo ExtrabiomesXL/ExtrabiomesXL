@@ -6,10 +6,10 @@
 
 package extrabiomes.blocks;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockFlower;
-import net.minecraft.src.Material;
-import net.minecraft.src.World;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFlower;
+import net.minecraft.block.material.Material;
+import net.minecraft.world.World;
 
 public class BlockCatTail extends BlockFlower {
 

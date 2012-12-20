@@ -1,10 +1,10 @@
 package extrabiomes.utility;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.api.Stuff;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Item;
 
 public class CreativeTab extends CreativeTabs {
 	public CreativeTab(int par1, String par2Str) {

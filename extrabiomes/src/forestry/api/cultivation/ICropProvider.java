@@ -1,7 +1,7 @@
 package forestry.api.cultivation;
 
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public abstract interface ICropProvider {
 	public abstract boolean isGermling(ItemStack germling);

@@ -21,11 +21,6 @@
 			<locationURI>MCP_LOC/extrabiomes/src</locationURI>
 		</link>
 		<link>
-			<name>common</name>
-			<type>2</type>
-			<locationURI>MCP_LOC/src/common</locationURI>
-		</link>
-		<link>
 			<name>jars</name>
 			<type>2</type>
 			<locationURI>MCP_LOC/jars</locationURI>

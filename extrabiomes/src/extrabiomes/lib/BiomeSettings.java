@@ -6,7 +6,7 @@
 
 package extrabiomes.lib;
 
-import net.minecraft.src.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.Property;
 
 import com.google.common.base.Optional;

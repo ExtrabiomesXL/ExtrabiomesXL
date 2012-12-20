@@ -6,10 +6,10 @@
 
 package extrabiomes.handlers;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
-import net.minecraft.src.WorldGenTallGrass;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCatTail;

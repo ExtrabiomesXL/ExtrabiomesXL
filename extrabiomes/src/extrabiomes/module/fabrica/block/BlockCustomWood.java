@@ -8,11 +8,11 @@ package extrabiomes.module.fabrica.block;
 
 import java.util.List;
 
-import net.minecraft.src.BlockWood;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.ItemStack;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import net.minecraft.block.BlockWood;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 
 public class BlockCustomWood extends BlockWood {

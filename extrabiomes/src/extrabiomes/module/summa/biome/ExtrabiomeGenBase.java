@@ -6,11 +6,10 @@
 
 package extrabiomes.module.summa.biome;
 
-import java.lang.reflect.Field;
 import java.util.Random;
 
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.WorldGenerator;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.google.common.base.Optional;
 
