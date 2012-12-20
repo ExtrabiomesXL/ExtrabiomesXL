@@ -11,7 +11,7 @@ cd ..
 echo "Generated version of ${JOB_NAME} is:  ${VERSION}"
 
 echo "Copying ${JOB_NAME} into MCP..."
-cd src/common
+cd src/minecraft
 cp -rf ../../extrabiomes/src/* .
 cd ../..
 
