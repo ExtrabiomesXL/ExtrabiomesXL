@@ -5,7 +5,7 @@ echo Backing up src
 cp -R src src-bak 
 echo
 echo Copying source
-cp -R extrabiomes/src src/common
+cp -R extrabiomes/src src/minecraft
 echo
 ./recompile.sh
 ./reobfuscate.sh
