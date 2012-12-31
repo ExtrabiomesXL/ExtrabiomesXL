@@ -82,7 +82,7 @@ public class ForestryPlugin {
         for (final ItemStack item : items)
             backpackItems[FORESTER].add(item);
 
-        items = ForestryModHelper.getForesterBackPackItems();
+        items = ForestryModHelper.getDiggerBackPackItems();
         for (final ItemStack item : items)
             backpackItems[DIGGER].add(item);
 

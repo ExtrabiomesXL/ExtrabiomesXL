@@ -64,7 +64,7 @@ public class Fabrica {
                         Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get());
                 Extrabiomes.proxy.addRecipe(recipe);
 
-                Extrabiomes.proxy.addSmelting(Stuff.paste.get().shiftedIndex, 0, new ItemStack(
+                Extrabiomes.proxy.addSmelting(Stuff.paste.get().itemID, 0, new ItemStack(
                         Item.dyePowder, 1, 2), 0.2F);
             }
         }

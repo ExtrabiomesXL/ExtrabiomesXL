@@ -46,7 +46,7 @@ public class EntityScarecrow extends EntityCreature {
 
 	@Override
 	protected void dropFewItems(boolean par1, int par2) {
-		dropItem(Item.stick.shiftedIndex, 3);
+		dropItem(Item.stick.itemID, 3);
 		dropItem(Block.melon.blockID, 1);
 		dropItem(Block.pumpkin.blockID, 1);
 	}
