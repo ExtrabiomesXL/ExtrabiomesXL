@@ -51,7 +51,7 @@ public class ForestryPlugin {
 
     /**
      * public void addRecipe(ItemStack resource, int fermentationValue,
-     * float modifier, LiquidStack output, LiquisStack liquid);
+     * float modifier, LiquidStack output, LiquidStack liquid);
      */
     private Optional<Method>        fermenterAddRecipe = Optional.absent();
 
@@ -191,6 +191,7 @@ public class ForestryPlugin {
             cls = Class.forName("forestry.api.recipes.IFermenterManager");
             fermenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", ItemStack.class,
                     int.class, float.class, LiquidStack.class, LiquidStack.class));
+            
             cls = Class.forName("forestry.api.recipes.ICarpenterManager");
             carpenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", int.class,
                     LiquidStack.class, ItemStack.class, ItemStack.class, Object[].class));
