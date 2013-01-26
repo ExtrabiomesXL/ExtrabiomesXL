@@ -375,10 +375,19 @@ public abstract class BlockHandler {
                 .set(new ItemStack(block, 1, BlockCustomSapling.BlockType.FIR.metadata()));
         Element.SAPLING_REDWOOD.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.REDWOOD
                 .metadata()));
-
+        
         final ItemStack stack = new ItemStack(block, 1, -1);
-        ForestryModHelper.registerSapling(stack);
         ForestryModHelper.addToForesterBackpack(stack);
+        
+        // The fermenter checks the damage value when deciding if the item can be fermented
+        // requiring each type to be registered separately
+        ForestryModHelper.registerSapling(Element.SAPLING_ACACIA.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_AUTUMN_BROWN.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_AUTUMN_ORANGE.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_AUTUMN_PURPLE.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_AUTUMN_YELLOW.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_FIR.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_REDWOOD.get());
 
         // all but redwood
         final Element[] forestrySaplings = { Element.SAPLING_ACACIA, Element.SAPLING_AUTUMN_BROWN,
