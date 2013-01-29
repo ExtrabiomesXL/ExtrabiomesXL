@@ -43,7 +43,7 @@ public class OilGenerator implements IWorldGenerator {
 							|| BiomeManager.wasteland.isPresent()
 							&& (byte) id == BiomeManager.wasteland
 									.get().topBlock)
-						api.generateSurfaceDeposit(world, i, j, k, 3);
+						api.generateSurfaceDeposit(world, rand, i, j, k, 3);
 
 					break;
 				}
