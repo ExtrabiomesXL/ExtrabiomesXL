@@ -22,6 +22,8 @@ import net.minecraftforge.liquids.LiquidStack;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
+
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
@@ -129,6 +131,9 @@ public class ForestryPlugin {
             BlockCustomSapling.setForestrySoilID(soil.get().itemID);
         }
         arborealCrops.add(new CropProviderSapling());
+        
+        for(ItemStack sapling : ForestryModHelper.getSaplings())
+        	FMLInterModComms.sendMessage("Forestry", "add-farmable-sapling", String.format("farmArboreal@%s.%s", sapling.itemID, sapling.getItemDamage()));
     }
 
     private LiquidStack getLiquidStack(String name) throws Exception {
