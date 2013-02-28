@@ -116,11 +116,11 @@ public class ForestryPlugin {
         if (fermenterAddRecipe.isPresent() && getForestryItem.isPresent())
             for (final ItemStack sapling : ForestryModHelper.getSaplings())
                 addFermenterRecipeSapling(sapling);
-        if (carpenterAddRecipe.isPresent() && Element.RED_ROCK.isPresent())
+        if (carpenterAddRecipe.isPresent() && Element.RED_COBBLE.isPresent())
             carpenterAddRecipe.get().invoke(carpenterManager, 10,
                     new LiquidStack(Block.waterStill.blockID, 3000, 0), null,
                     new ItemStack(Item.clay, 4),
-                    new Object[] { "#", Character.valueOf('#'), Element.RED_ROCK.get() });
+                    new Object[] { "#", Character.valueOf('#'), Element.RED_COBBLE.get() });
     }
 
     private void addSaplings() {
