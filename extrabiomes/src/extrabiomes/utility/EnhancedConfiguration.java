@@ -22,6 +22,7 @@ import net.minecraftforge.common.Property;
 public class EnhancedConfiguration extends Configuration {
 
     public static final String  CATEGORY_BIOME  = "biome";
+    public static final String  CATEGORY_DECORATION  = "decoration";
     private final List<Integer> assignedIdsList = new ArrayList<Integer>();
     private final boolean[]     configBiomes    = new boolean[BiomeGenBase.biomeList.length];
 

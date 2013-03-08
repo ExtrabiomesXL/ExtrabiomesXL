@@ -8,6 +8,7 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.biome.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeRedwoodLush extends ExtrabiomeGenBase {
     public BiomeRedwoodLush() {
@@ -23,6 +24,6 @@ public class BiomeRedwoodLush extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(17).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.REDWOODLUSH).build();
     }
 }

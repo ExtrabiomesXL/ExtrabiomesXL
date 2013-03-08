@@ -8,6 +8,7 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.biome.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeTundra extends ExtrabiomeGenBase {
 
@@ -24,8 +25,7 @@ public class BiomeTundra extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).flowersPerChunk(-999).grassPerChunk(-999)
-                .sandPerChunk(0, 0).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.TUNDRA).build();
     }
 
 }

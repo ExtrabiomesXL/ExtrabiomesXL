@@ -15,6 +15,7 @@ import net.minecraft.world.biome.SpawnListEntry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeAutumnWoods extends ExtrabiomeGenBase {
 
@@ -32,8 +33,7 @@ public class BiomeAutumnWoods extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(9).grassPerChunk(6)
-                .mushroomsPerChunk(3).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.AUTUMNWOODS).build();
     }
 
     @Override

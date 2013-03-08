@@ -14,6 +14,7 @@ import com.google.common.base.Optional;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
+import extrabiomes.lib.DecorationSettings;
 import extrabiomes.lib.ItemSettings;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.lib.Reference;
@@ -34,6 +35,9 @@ public abstract class ConfigurationHandler {
 
             for (final BiomeSettings setting : BiomeSettings.values())
                 setting.load(configuration);
+            
+            for (final DecorationSettings setting : DecorationSettings.values())
+            	setting.load(configuration);
 
             for (final BlockSettings setting : BlockSettings.values())
                 setting.load(configuration);

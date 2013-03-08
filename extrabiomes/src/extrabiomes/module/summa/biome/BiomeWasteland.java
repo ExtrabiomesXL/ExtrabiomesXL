@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeWasteland extends ExtrabiomeGenBase {
 
@@ -30,7 +31,7 @@ public class BiomeWasteland extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).deadBushPerChunk(3).grassPerChunk(1).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.WASTELAND).build();
     }
 
 }
