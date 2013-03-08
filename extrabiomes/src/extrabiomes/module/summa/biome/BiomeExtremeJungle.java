@@ -12,6 +12,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeExtremeJungle extends ExtrabiomeGenBase {
 
@@ -30,7 +31,6 @@ public class BiomeExtremeJungle extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(50).grassPerChunk(25)
-                .flowersPerChunk(4).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.EXTREMEJUNGLE).build();
     }
 }

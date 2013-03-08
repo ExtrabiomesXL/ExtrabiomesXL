@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeTemporateRainforest extends ExtrabiomeGenBase {
 
@@ -31,7 +32,6 @@ public class BiomeTemporateRainforest extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(17).mushroomsPerChunk(2)
-                .grassPerChunk(16).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.TEMPORATERAINFOREST).build();
     }
 }

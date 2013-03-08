@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMountainRidge extends ExtrabiomeGenBase {
 
@@ -27,6 +28,6 @@ public class BiomeMountainRidge extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(0).grassPerChunk(12).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MOUNTAINRIDGE).build();
     }
 }

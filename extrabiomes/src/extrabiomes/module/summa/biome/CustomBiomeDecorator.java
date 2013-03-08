@@ -6,6 +6,10 @@
 
 package extrabiomes.module.summa.biome;
 
+import java.util.Map;
+
+import extrabiomes.lib.DecorationSettings;
+import extrabiomes.lib.DecorationSettings.Decoration;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 
@@ -17,6 +21,8 @@ class CustomBiomeDecorator extends BiomeDecorator {
 		private final BiomeGenBase	biome;
 
 		// optional parms - initialized to defaults
+		// NB: DecorationSettings populates config files with a copy of this data - but does
+		//     not read its defaults from this class
 		private int					waterlilyPerChunk		= 0;
 		private int					treesPerChunk			= 0;
 		private int					flowersPerChunk			= 2;
@@ -32,6 +38,35 @@ class CustomBiomeDecorator extends BiomeDecorator {
 
 		Builder(BiomeGenBase biome) {
 			this.biome = biome;
+		}
+		
+		Builder loadSettings(DecorationSettings dec) {
+			Map<Decoration,Integer> settings = dec.getSettings();
+			
+			if( settings.containsKey(Decoration.BIGMUSHROOMS) )
+				bigMushroomsPerChunk(settings.get(Decoration.BIGMUSHROOMS));
+			if( settings.containsKey(Decoration.CACTI) )
+				cactiPerChunk(settings.get(Decoration.CACTI));
+			if( settings.containsKey(Decoration.CLAY) )
+				clayPerChunk(settings.get(Decoration.CLAY));
+			if( settings.containsKey(Decoration.DEADBUSH) )
+				deadBushPerChunk(settings.get(Decoration.DEADBUSH));
+			if( settings.containsKey(Decoration.FLOWERS) )
+				flowersPerChunk(settings.get(Decoration.FLOWERS));
+			if( settings.containsKey(Decoration.GRASS) )
+				grassPerChunk(settings.get(Decoration.GRASS));
+			if( settings.containsKey(Decoration.MUSHROOMS) )
+				mushroomsPerChunk(settings.get(Decoration.MUSHROOMS));
+			if( settings.containsKey(Decoration.REEDS) )
+				reedsPerChunk(settings.get(Decoration.REEDS));
+			if( settings.containsKey(Decoration.SAND) && settings.containsKey(Decoration.SAND2) )
+				sandPerChunk(settings.get(Decoration.SAND), settings.get(Decoration.SAND2));			
+			if( settings.containsKey(Decoration.TREES) )
+				treesPerChunk(settings.get(Decoration.TREES));
+			if( settings.containsKey(Decoration.WATERLILY) )
+				waterlilyPerChunk(settings.get(Decoration.WATERLILY));
+			
+			return this;
 		}
 
 		Builder bigMushroomsPerChunk(int val) {

@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMountainDesert extends ExtrabiomeGenBase {
 
@@ -30,7 +31,6 @@ public class BiomeMountainDesert extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(0).deadBushPerChunk(2)
-                .reedsPerChunk(50).cactiPerChunk(10).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MOUNTAINDESERT).build();
     }
 }

@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeBirchForest extends ExtrabiomeGenBase {
 
@@ -27,6 +28,6 @@ public class BiomeBirchForest extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(7).grassPerChunk(1).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.BIRCHFOREST).build();
     }
 }

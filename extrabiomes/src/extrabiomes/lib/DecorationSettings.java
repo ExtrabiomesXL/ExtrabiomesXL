@@ -94,8 +94,8 @@ public enum DecorationSettings {
 		CLAY(".clay",1),
 		BIGMUSHROOMS(".bigMushrooms",0);
 		
-		public final String key;
-		public final int def;
+		public final String key;	// config file key
+		public final int def;		// default value
 		
 		private Decoration( String key, int def ) {
 			this.key = key;
@@ -163,6 +163,10 @@ public enum DecorationSettings {
     		return settings.get(decoration).intValue();
     	else
     		return decoration.def;
+    }
+    
+    public Map<Decoration,Integer> getSettings() {
+    	return settings;
     }
 
     @Override

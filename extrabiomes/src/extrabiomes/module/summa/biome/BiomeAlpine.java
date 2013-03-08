@@ -11,6 +11,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeAlpine extends ExtrabiomeGenBase {
 
@@ -32,7 +33,6 @@ public class BiomeAlpine extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(7).flowersPerChunk(0)
-                .grassPerChunk(0).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.ALPINE).build();
     }
 }
