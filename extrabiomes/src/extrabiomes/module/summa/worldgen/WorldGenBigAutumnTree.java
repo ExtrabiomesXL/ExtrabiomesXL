@@ -245,8 +245,12 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree {
                                     var11[2]))
                         ++var13;
                     else {
-                        setBlockAndMetadata(world, var11[0], var11[1], var11[2], leafBlockID,
-                                leafBlockMeta);
+						if (blockID == 0
+								|| Block.blocksList[blockID]
+										.canBeReplacedByLeaves(world, var11[0],
+												var11[1], var11[2]))
+							setBlockAndMetadata(world, var11[0], var11[1],
+									var11[2], leafBlockID, leafBlockMeta);
                         ++var13;
                     }
                 }
