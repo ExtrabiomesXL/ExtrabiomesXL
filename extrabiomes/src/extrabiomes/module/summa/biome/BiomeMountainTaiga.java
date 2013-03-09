@@ -11,6 +11,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMountainTaiga extends ExtrabiomeGenBase {
 
@@ -29,6 +30,6 @@ public class BiomeMountainTaiga extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(10).grassPerChunk(1).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MOUNTAINTAIGA).build();
     }
 }

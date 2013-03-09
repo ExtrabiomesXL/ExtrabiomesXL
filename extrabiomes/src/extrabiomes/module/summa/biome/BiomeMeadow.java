@@ -12,6 +12,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMeadow extends ExtrabiomeGenBase {
 
@@ -24,8 +25,7 @@ public class BiomeMeadow extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(0).grassPerChunk(12)
-                .flowersPerChunk(9).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MEADOW).build();
     }
 
     @Override

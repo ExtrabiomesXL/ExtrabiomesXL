@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeSavanna extends ExtrabiomeGenBase {
     public BiomeSavanna() {
@@ -24,7 +25,6 @@ public class BiomeSavanna extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(0).flowersPerChunk(1)
-                .grassPerChunk(17).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.SAVANNA).build();
     }
 }

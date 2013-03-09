@@ -12,6 +12,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMiniJungle extends ExtrabiomeGenBase {
 
@@ -32,8 +33,6 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(15).grassPerChunk(9)
-                .flowersPerChunk(5).reedsPerChunk(70).clayPerChunk(3).mushroomsPerChunk(2)
-                .waterlilyPerChunk(12).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MINIJUNGLE).build();
     }
 }

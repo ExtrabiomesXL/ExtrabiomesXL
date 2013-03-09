@@ -15,6 +15,7 @@ import net.minecraft.world.biome.SpawnListEntry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomePineForest extends ExtrabiomeGenBase {
 
@@ -33,7 +34,7 @@ public class BiomePineForest extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(10).grassPerChunk(1).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.PINEFOREST).build();
     }
 
     @Override

@@ -11,6 +11,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 public class BiomeGreenSwamp extends ExtrabiomeGenBase {
 
@@ -28,8 +29,6 @@ public class BiomeGreenSwamp extends ExtrabiomeGenBase {
 
     @Override
     public BiomeDecorator createBiomeDecorator() {
-        return new CustomBiomeDecorator.Builder(this).treesPerChunk(4).flowersPerChunk(0)
-                .deadBushPerChunk(0).mushroomsPerChunk(8).reedsPerChunk(10).clayPerChunk(1)
-                .waterlilyPerChunk(4).sandPerChunk(0, 0).build();
+        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.GREENSWAMP).build();
     }
 }
