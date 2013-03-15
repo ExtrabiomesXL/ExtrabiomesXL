@@ -24,7 +24,7 @@ public abstract class ItemHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || itemID <= 0) return;
 
         final LogTurner logTurner = new LogTurner(itemID);
-        logTurner.setItemName("extrabiomes.logturner").setIconIndex(112)
+        logTurner.setUnlocalizedName("extrabiomes.logturner").setIconIndex(112)
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
 
