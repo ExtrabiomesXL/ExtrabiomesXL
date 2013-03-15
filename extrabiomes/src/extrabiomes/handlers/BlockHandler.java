@@ -43,7 +43,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockAutumnLeaves block = new BlockAutumnLeaves(blockID, 3, Material.leaves, false);
-        block.setBlockName("extrabiomes.autumnleaves").setTickRandomly(true).setHardness(0.2F)
+        block.setUnlocalizedName("extrabiomes.autumnleaves").setTickRandomly(true).setHardness(0.2F)
                 .setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setRequiresSelfNotify()
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
@@ -85,7 +85,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCatTail block = new BlockCatTail(blockID, 79, Material.plants);
-        block.setBlockName("extrabiomes.cattail").setHardness(0.0F)
+        block.setUnlocalizedName("extrabiomes.cattail").setHardness(0.0F)
                 .setStepSound(Block.soundGrassFootstep)
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
@@ -104,7 +104,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final GenericTerrainBlock block = new GenericTerrainBlock(blockID, 0, Material.rock);
-        block.setBlockName("extrabiomes.crackedsand").setHardness(1.2F)
+        block.setUnlocalizedName("extrabiomes.crackedsand").setHardness(1.2F)
                 .setStepSound(Block.soundStoneFootstep)
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
@@ -129,7 +129,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCustomFlower block = new BlockCustomFlower(blockID, 32, Material.plants);
-        block.setBlockName("extrabiomes.flower").setTickRandomly(true).setHardness(0.0F)
+        block.setUnlocalizedName("extrabiomes.flower").setTickRandomly(true).setHardness(0.0F)
                 .setStepSound(Block.soundGrassFootstep)
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
@@ -168,7 +168,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCustomTallGrass block = new BlockCustomTallGrass(blockID, 48, Material.vine);
-        block.setBlockName("extrabiomes.tallgrass").setHardness(0.0F)
+        block.setUnlocalizedName("extrabiomes.tallgrass").setHardness(0.0F)
                 .setStepSound(Block.soundGrassFootstep)
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
@@ -211,7 +211,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockGreenLeaves block = new BlockGreenLeaves(blockID, 80, Material.leaves, false);
-        block.setBlockName("extrabiomes.greenleaves").setTickRandomly(true).setHardness(0.2F)
+        block.setUnlocalizedName("extrabiomes.greenleaves").setTickRandomly(true).setHardness(0.2F)
                 .setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setRequiresSelfNotify()
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
@@ -237,7 +237,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockLeafPile block = new BlockLeafPile(blockID, 64, Material.vine);
-        block.setBlockName("extrabiomes.leafpile").setHardness(0.0F).setTickRandomly(true)
+        block.setUnlocalizedName("extrabiomes.leafpile").setHardness(0.0F).setTickRandomly(true)
                 .setStepSound(Block.soundGrassFootstep)
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
@@ -274,7 +274,7 @@ public abstract class BlockHandler {
                 BlockQuarterLog.BarkOn.SE);
 
         for (final Block block : new Block[] { blockNW, blockNE, blockSW, blockSE }) {
-            block.setBlockName("extrabiomes.log.quarter").setStepSound(Block.soundWoodFootstep)
+            block.setUnlocalizedName("extrabiomes.log.quarter").setStepSound(Block.soundWoodFootstep)
                     .setRequiresSelfNotify().setHardness(2.0F)
                     .setResistance(Block.wood.getExplosionResistance(null) * 5.0F)
                     .setTextureFile("/extrabiomes/extrabiomes.png")
@@ -324,7 +324,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockRedRock block = new BlockRedRock(blockID, 2, Material.rock);
-        block.setBlockName("extrabiomes.redrock").setHardness(1.5F).setResistance(2.0F)
+        block.setUnlocalizedName("extrabiomes.redrock").setHardness(1.5F).setResistance(2.0F)
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
 
@@ -352,7 +352,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCustomSapling block = new BlockCustomSapling(blockID, 16);
-        block.setBlockName("extrabiomes.sapling").setHardness(0.0F)
+        block.setUnlocalizedName("extrabiomes.sapling").setHardness(0.0F)
                 .setStepSound(Block.soundGrassFootstep).setRequiresSelfNotify()
                 .setTextureFile("/extrabiomes/extrabiomes.png")
                 .setCreativeTab(Extrabiomes.tabsEBXL);
@@ -396,7 +396,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCustomLog block = new BlockCustomLog(blockID, 97);
-        block.setBlockName("extrabiomes.log").setStepSound(Block.soundWoodFootstep)
+        block.setUnlocalizedName("extrabiomes.log").setStepSound(Block.soundWoodFootstep)
                 .setRequiresSelfNotify().setHardness(2.0F)
                 .setResistance(Block.wood.getExplosionResistance(null) * 5.0F)
                 .setTextureFile("/extrabiomes/extrabiomes.png")

@@ -37,7 +37,7 @@ class WorldGenLeafPile extends WorldGenerator {
 			if (world.isAirBlock(x1, y1, z1)
 					&& Block.blocksList[blockID].canBlockStay(world,
 							x1, y1, z1))
-				world.setBlock(x1, y1, z1, blockID);
+				world.func_94575_c(x1, y1, z1, blockID);
 		}
 
 		return true;

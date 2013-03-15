@@ -126,12 +126,12 @@ public enum BiomeSettings {
         }
 
         property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyEnabled(), true);
-        if (!isVanilla() && biomeID == 0) property.value = Boolean.toString(false);
+        if (!isVanilla() && biomeID == 0) property.set(Boolean.toString(false));
         enabled = property.getBoolean(false);
 
         property = configuration
                 .get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), true);
-        if (!isVanilla() && biomeID == 0) property.value = Boolean.toString(false);
+        if (!isVanilla() && biomeID == 0) property.set(Boolean.toString(false));
         allowVillages = property.getBoolean(false);
 
     }

@@ -79,7 +79,7 @@ public class BlockCustomSapling extends BlockFlower {
             final int metadata = world.getBlockMetadata(x, y, z);
 
             if (!isMarkedMetadata(metadata))
-                world.setBlockMetadataWithNotify(x, y, z, markedMetadata(metadata));
+                world.setBlockMetadataWithNotify(x, y, z, markedMetadata(metadata), 3);
             else
                 growTree(world, x, y, z, rand);
         }
@@ -174,30 +174,30 @@ public class BlockCustomSapling extends BlockFlower {
 
         if (tree != null) {
             if (isHuge) {
-                world.setBlock(x + x1, y, z + z1, 0);
-                world.setBlock(x + x1 + 1, y, z + z1, 0);
-                world.setBlock(x + x1, y, z + z1 + 1, 0);
-                world.setBlock(x + x1 + 1, y, z + z1 + 1, 0);
+                world.func_94575_c(x + x1, y, z + z1, 0);
+                world.func_94575_c(x + x1 + 1, y, z + z1, 0);
+                world.func_94575_c(x + x1, y, z + z1 + 1, 0);
+                world.func_94575_c(x + x1 + 1, y, z + z1 + 1, 0);
             } else
-                world.setBlock(x, y, z, 0);
+                world.func_94575_c(x, y, z, 0);
 
             final int offset = isHuge ? 1 : 0;
 
             if (!tree.generate(world, rand, x + x1 + offset, y, z + z1 + offset)) {
                 if (isHuge) {
-                    world.setBlockAndMetadata(x + x1, y, z + z1, blockID, metadata);
-                    world.setBlockAndMetadata(x + x1 + 1, y, z + z1, blockID, metadata);
-                    world.setBlockAndMetadata(x + x1, y, z + z1 + 1, blockID, metadata);
-                    world.setBlockAndMetadata(x + x1 + 1, y, z + z1 + 1, blockID, metadata);
+                    world.setBlockAndMetadataWithNotify(x + x1, y, z + z1, blockID, metadata, 3);
+                    world.setBlockAndMetadataWithNotify(x + x1 + 1, y, z + z1, blockID, metadata, 3);
+                    world.setBlockAndMetadataWithNotify(x + x1, y, z + z1 + 1, blockID, metadata, 3);
+                    world.setBlockAndMetadataWithNotify(x + x1 + 1, y, z + z1 + 1, blockID, metadata, 3);
                 } else
-                    world.setBlockAndMetadata(x, y, z, blockID, metadata);
+                    world.setBlockAndMetadataWithNotify(x, y, z, blockID, metadata, 3);
             } else if (isForestryFarmed) if (isHuge) {
-                world.setBlock(x + x1, y - 1, z + z1, Block.sand.blockID);
-                world.setBlock(x + x1 + 1, y - 1, z + z1, Block.sand.blockID);
-                world.setBlock(x + x1, y - 1, z + z1 + 1, Block.sand.blockID);
-                world.setBlock(x + x1 + 1, y - 1, z + z1 + 1, Block.sand.blockID);
+                world.func_94575_c(x + x1, y - 1, z + z1, Block.sand.blockID);
+                world.func_94575_c(x + x1 + 1, y - 1, z + z1, Block.sand.blockID);
+                world.func_94575_c(x + x1, y - 1, z + z1 + 1, Block.sand.blockID);
+                world.func_94575_c(x + x1 + 1, y - 1, z + z1 + 1, Block.sand.blockID);
             } else
-                world.setBlock(x, y - 1, z, Block.sand.blockID);
+                world.func_94575_c(x, y - 1, z, Block.sand.blockID);
         }
     }
 
