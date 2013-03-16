@@ -33,7 +33,7 @@ class WorldGenMetadataFlowers extends WorldGenerator {
 			if (world.isAirBlock(x1, y1, z1)
 					&& Block.blocksList[blockId].canBlockStay(world,
 							x1, y1, z1))
-				world.setBlockAndMetadata(x1, y1, z1, blockId, metadata);
+				world.setBlockAndMetadataWithNotify(x1, y1, z1, blockId, metadata, 3);
 		}
 
 		return true;

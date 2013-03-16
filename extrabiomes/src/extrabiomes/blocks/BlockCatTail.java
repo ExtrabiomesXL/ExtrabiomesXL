@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class BlockCatTail extends BlockFlower {
 
     public BlockCatTail(int id, int index, Material material) {
-        super(id, index, material);
+        super(id, material);
         disableStats();
         final float f = 0.375F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F, 0.5F + f);
@@ -49,7 +49,7 @@ public class BlockCatTail extends BlockFlower {
     public void onNeighborBlockChange(World world, int x, int y, int z, int idNeighbor) {
         if (!canBlockStay(world, x, y, z)) {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlockWithNotify(x, y, z, 0);
+            world.func_94575_c(x, y, z, 0);
         }
     }
 }

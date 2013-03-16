@@ -131,7 +131,7 @@ public enum BlockSettings {
 
     private void setToZero(EnhancedConfiguration configuration) {
         final Property property = configuration.getBlock(idKey(), 0);
-        property.value = Integer.toString(0);
+        property.set(Integer.toString(0));
         blockID = 0;
     }
 

@@ -34,7 +34,7 @@ public class CropSapling implements ICropEntity {
 	public ArrayList doHarvest() {
 		final ArrayList harvest = Block.blocksList[blockID]
 				.getBlockDropped(world, x, y, z, metadata, 0);
-		world.setBlockAndMetadataWithNotify(x, y, z, 0, 0);
+		world.setBlockAndMetadataWithNotify(x, y, z, 0, 0, 3);
 		return harvest;
 	}
 

@@ -15,12 +15,12 @@ public class ItemCustomGreenLeaves extends ItemCustomLeaves {
     }
 
     @Override
-    public String getItemNameIS(ItemStack itemstack) {
+    public String getUnlocalizedName(ItemStack itemstack) {
         int metadata = unmarkedMetadata(itemstack.getItemDamage());
         if (metadata > 2) metadata = 0;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
-        return super.getItemNameIS(itemstack);
+        return super.getUnlocalizedName(itemstack);
     }
 
 }

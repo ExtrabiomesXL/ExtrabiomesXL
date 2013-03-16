@@ -11,9 +11,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
@@ -40,10 +42,19 @@ public class BlockCustomFlower extends Block implements IPlantable {
             return metadata;
         }
     }
+    
+    private Icon autumnShrub;
+    private Icon hydrangea;
+    private Icon orange;
+    private Icon purple;
+    private Icon tinyCactus;
+    private Icon root;
+    private Icon toadstool;
+    private Icon white;
 
     public BlockCustomFlower(int id, int index, Material material) {
         super(id, material);
-        blockIndexInTexture = index;
+        //blockIndexInTexture = index;
         final float var4 = 0.2F;
         setBlockBounds(0.5F - var4, 0.0F, 0.5F - var4, 0.5F + var4, var4 * 3.0F, 0.5F + var4);
 
@@ -54,6 +65,18 @@ public class BlockCustomFlower extends Block implements IPlantable {
         proxy.addGrassPlant(this, BlockType.PURPLE.metadata(), 5);
         proxy.addGrassPlant(this, BlockType.WHITE.metadata(), 5);
     }
+    
+    @Override
+	public void func_94332_a(IconRegister iconRegister){
+		autumnShrub = iconRegister.func_94245_a(Extrabiomes.TexturePath + "autumnshrub");
+		hydrangea = iconRegister.func_94245_a(Extrabiomes.TexturePath + "hydrangea");
+		orange = iconRegister.func_94245_a(Extrabiomes.TexturePath + "orangeflowers");
+		purple = iconRegister.func_94245_a(Extrabiomes.TexturePath + "purpleflowers");
+		tinyCactus  = iconRegister.func_94245_a(Extrabiomes.TexturePath + "tinycactus");
+		root = iconRegister.func_94245_a(Extrabiomes.TexturePath + "root");
+		toadstool = iconRegister.func_94245_a(Extrabiomes.TexturePath + "toadstools");
+		white = iconRegister.func_94245_a(Extrabiomes.TexturePath + "whiteflowers");
+	}
 
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
@@ -76,7 +99,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
     private void checkFlowerChange(World world, int x, int y, int z) {
         if (!canBlockStay(world, x, y, z)) {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlockWithNotify(x, y, z, 0);
+            world.func_94575_c(x, y, z, 0);
         }
     }
 
@@ -86,9 +109,20 @@ public class BlockCustomFlower extends Block implements IPlantable {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         if (metadata > 7) metadata = 7;
-        return super.getBlockTextureFromSideAndMetadata(side, metadata) + metadata;
+        //return super.getBlockTextureFromSideAndMetadata(side, metadata) + metadata;
+        switch(metadata){
+        case 0: return autumnShrub;
+        case 1: return hydrangea;
+        case 2: return orange;
+        case 3: return purple;
+        case 4: return tinyCactus;
+        case 5: return root;
+        case 6: return toadstool;
+        case 7: return white;
+        default: return autumnShrub;
+        }
     }
 
     @Override
@@ -126,7 +160,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
         if (metadata == BlockType.TINY_CACTUS.metadata())
             return super.getSelectedBoundingBoxFromPool(world, x, y, z);
 
-        return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool(x, y, z, x + 1, y + maxY, z + 1);
+        return AxisAlignedBB.getAABBPool().getAABB(x, y, z, x + 1, y + maxY, z + 1);
 
     }
 

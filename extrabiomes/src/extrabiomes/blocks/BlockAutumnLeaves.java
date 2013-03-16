@@ -10,13 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.opengl.EXTAbgr;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -36,12 +40,15 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
         private ItemStack      sapling            = new ItemStack(Block.sapling);
         private static boolean loadedCustomBlocks = false;
 
+        
+        
         static BlockType fromMetadata(int metadata) {
             metadata = unmarkedMetadata(metadata);
             for (final BlockType type : BlockType.values())
                 if (type.metadata() == metadata) return type;
             return null;
         }
+        
 
         private static void loadCustomBlocks() {
             if (Element.SAPLING_AUTUMN_BROWN.isPresent())
@@ -74,6 +81,19 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
             return metadata;
         }
     }
+    
+    private Icon leavesOrange;
+    private Icon leavesRed;
+    private Icon leavesBrown;
+    private Icon leavesYellow;
+    
+    @Override
+    public void func_94332_a(IconRegister iconRegister){
+    	leavesOrange = iconRegister.func_94245_a(Extrabiomes.TexturePath + "leavesorangefancy");
+    	leavesRed = iconRegister.func_94245_a(Extrabiomes.TexturePath + "leavesredfancy");
+    	leavesBrown = iconRegister.func_94245_a(Extrabiomes.TexturePath + "leavesbrownfancy");
+    	leavesYellow = iconRegister.func_94245_a(Extrabiomes.TexturePath + "leavesyellowfancy");
+    }
 
     private static final int METADATA_BITMASK       = 0x3;
     private static final int METADATA_USERPLACEDBIT = 0x4;
@@ -103,12 +123,12 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     int[] adjacentTreeBlocks;
 
     public BlockAutumnLeaves(int id, int index, Material material, boolean useFastGraphics) {
-        super(id, index, material, useFastGraphics);
+        super(id, material, useFastGraphics);
     }
 
     @Override
     public void beginLeavesDecay(World world, int x, int y, int z) {
-        world.setBlockMetadata(x, y, z, setDecayOnMetadata(world.getBlockMetadata(x, y, z)));
+        world.setBlockMetadataWithNotify(x, y, z, setDecayOnMetadata(world.getBlockMetadata(x, y, z)), 3);
     }
 
     @Override
@@ -156,10 +176,21 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         metadata = unmarkedMetadata(metadata);
         if (metadata > 3) metadata = 3;
-        return blockIndexInTexture + 2 * metadata + (isOpaqueCube() ? 1 : 0);
+        //return blockIndexInTexture + 2 * metadata + (isOpaqueCube() ? 1 : 0);
+        switch(metadata){
+        case 0: return leavesBrown;
+        	
+        case 1: return leavesOrange;
+        	
+        case 2: return leavesRed;
+        	
+        case 3: return leavesYellow;
+        
+        default: return leavesBrown;
+        }
     }
 
     @Override
@@ -211,7 +242,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 
     private void removeLeaves(World world, int x, final int y, final int z) {
         dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-        world.setBlockWithNotify(x, y, z, 0);
+        world.func_94575_c(x, y, z, 0);
     }
 
     @Override
@@ -302,7 +333,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
         }
 
         if (adjacentTreeBlocks[var11 * var10 + var11 * var9 + var11] >= 0)
-            world.setBlockMetadata(x, y, z, clearDecayOnMetadata(metadata));
+            world.setBlockMetadataWithNotify(x, y, z, clearDecayOnMetadata(metadata), 3);
         else
             removeLeaves(world, x, y, z);
     }

@@ -40,7 +40,7 @@ public class BlockRedRock extends Block {
     }
 
     public BlockRedRock(int id, int index, Material material) {
-        super(id, index, material);
+        super(id, material);
     }
 
     @Override

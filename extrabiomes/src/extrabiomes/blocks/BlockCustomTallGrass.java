@@ -12,6 +12,7 @@ import java.util.Random;
 
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.ColorizerGrass;
@@ -42,10 +43,17 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
     }
 
     public BlockCustomTallGrass(int id, int index, Material material) {
-        super(id, index, material);
+        super(id, material);
         final float var3 = 0.4F;
         setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.8F, 0.5F + var3);
     }
+    
+    @Override
+    public voi(IconRegister iconRegister)
+    {
+             super.iconIndex = iconRegister.func_94245_a("ropesplus:hscartridge");
+    }
+
 
     @Override
     protected boolean canThisPlantGrowOnThisBlockID(int id) {
