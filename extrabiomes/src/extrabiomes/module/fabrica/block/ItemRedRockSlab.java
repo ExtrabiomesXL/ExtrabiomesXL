@@ -32,7 +32,7 @@ public class ItemRedRockSlab extends ItemSlab {
 	}
 
 	@Override
-	public String getItemNameIS(ItemStack itemStack) {
+	public String getUnlocalizedName(ItemStack itemStack) {
 		return singleSlab.get().getFullSlabName(
 				itemStack.getItemDamage());
 	}

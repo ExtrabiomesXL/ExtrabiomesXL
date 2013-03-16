@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.BlockStep;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -37,6 +39,9 @@ public class BlockRedRockSlab extends BlockStep {
 	}
 
 	private static int	singleSlabID	= 0;
+	private Icon sideTexture;
+	private Icon redRockTop;
+	private Icon redRockSide;
 
 	public BlockRedRockSlab(int id, boolean isDouble) {
 		super(id, isDouble);
@@ -44,9 +49,16 @@ public class BlockRedRockSlab extends BlockStep {
 		setHardness(2.0F);
 		setResistance(10.0F);
 		setStepSound(soundStoneFootstep);
-		setTextureFile("/extrabiomes/extrabiomes.png");
 		setLightOpacity(0);
 		setCreativeTab(Extrabiomes.tabsEBXL);
+	}
+	
+	@Override
+	public void func_94332_a(IconRegister iconRegister){
+		field_94336_cN = iconRegister.func_94245_a("extrabiomesxl:redrockslabtop");
+		sideTexture = iconRegister.func_94245_a("extrabiomesxl:redrockslabside");
+		redRockTop = iconRegister.func_94245_a("extrabiomesxl:redrock");
+		redRockSide = iconRegister.func_94245_a("extrabiomesxl:redrockbrick");
 	}
 
 	@Override
@@ -55,13 +67,18 @@ public class BlockRedRockSlab extends BlockStep {
 	}
 
 	@Override
-	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
+	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
 		metadata &= 7;
-		return metadata == BlockType.REDROCK.metadata() ? side < 2 ? 14
-				: 13
-				: metadata == BlockType.REDROCKBRICK.metadata() ? 11
-						: 12;
+		if(side < 2){
+			return field_94336_cN;
+		}else{
+			return sideTexture;
+		}
+		/*return metadata == BlockType.REDROCK.metadata() ? side < 2 ? field_94336_cN
+				: sideTexture;
+				/*: metadata == BlockType.REDROCKBRICK.metadata() ? 11
+						: 12;*/
 	}
 
 	@Override
@@ -78,7 +95,7 @@ public class BlockRedRockSlab extends BlockStep {
 				blockStepType = BlockType.REDCOBBLE.toString();
 		}
 
-		return super.getBlockName() + "." + blockStepType;
+		return super.getUnlocalizedName() + "." + blockStepType;
 	}
 
 	@Override

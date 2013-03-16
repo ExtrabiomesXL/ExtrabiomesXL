@@ -33,9 +33,8 @@ public class BlockCustomLog extends BlockLog {
         }
     }
 
-    public BlockCustomLog(int id, int index) {
+    public BlockCustomLog(int id) {
         super(id);
-        blockIndexInTexture = index;
     }
 
     @Override
@@ -77,8 +76,8 @@ public class BlockCustomLog extends BlockLog {
                 final int type = metadata & 3;
 
                 orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
-                event.world.setBlockAndMetadata(event.x, event.y, event.z, blockID, type
-                        | orientation);
+                event.world.setBlockAndMetadataWithNotify(event.x, event.y, event.z, blockID, type
+                        | orientation, 3);
             }
             event.setHandled();
         }

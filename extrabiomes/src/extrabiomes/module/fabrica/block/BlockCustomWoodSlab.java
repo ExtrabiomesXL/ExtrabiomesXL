@@ -82,7 +82,7 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
 				woodType = BlockType.REDWOOD.toString();
 		}
 
-		return super.getBlockName() + "." + woodType;
+		return super.getUnlocalizedName() + "." + woodType;
 	}
 
 	@Override

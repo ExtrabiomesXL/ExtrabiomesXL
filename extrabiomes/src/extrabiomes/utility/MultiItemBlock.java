@@ -38,8 +38,8 @@ public class MultiItemBlock extends ItemBlock {
 	}
 
 	@Override
-	public String getItemNameIS(ItemStack itemstack) {
-		return super.getItemNameIS(itemstack) + "."
+	public String getUnlocalizedName(ItemStack itemstack) {
+		return super.getUnlocalizedName(itemstack) + "."
 				+ itemstack.getItemDamage();
 	}
 

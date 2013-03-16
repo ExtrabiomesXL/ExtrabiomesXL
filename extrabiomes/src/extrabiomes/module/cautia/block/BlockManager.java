@@ -34,7 +34,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.quickSand.get();
 
-            thisBlock.setBlockName("extrabiomes.quicksand");
+            thisBlock.setUnlocalizedName("extrabiomes.quicksand");
             proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
             proxy.registerBlock(thisBlock);
 

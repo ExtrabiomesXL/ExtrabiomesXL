@@ -10,12 +10,12 @@ public class ItemFlower extends MultiItemBlock {
     }
 
     @Override
-    public String getItemNameIS(ItemStack itemstack) {
+    public String getUnlocalizedName(ItemStack itemstack) {
         int metadata = itemstack.getItemDamage();
         if (metadata > 7) metadata = 7;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
-        return super.getItemNameIS(itemstack);
+        return super.getUnlocalizedName(itemstack);
     }
 
 }

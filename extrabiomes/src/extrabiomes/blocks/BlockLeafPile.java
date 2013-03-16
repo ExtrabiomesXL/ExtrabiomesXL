@@ -44,7 +44,7 @@ public class BlockLeafPile extends Block {
     private void checkFlowerChange(World world, int x, int y, int z) {
         if (!canBlockStay(world, x, y, z)) {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlockWithNotify(x, y, z, 0);
+            world.func_94575_c(x, y, z, 0);
         }
     }
 

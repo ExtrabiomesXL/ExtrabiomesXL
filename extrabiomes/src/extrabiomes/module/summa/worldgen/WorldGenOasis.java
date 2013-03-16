@@ -41,7 +41,7 @@ class WorldGenOasis extends WorldGenerator {
                             || blocktoReplace == Block.sand.blockID
                             || blocktoReplace == Block.sandStone.blockID
                             || blocktoReplace == BiomeManager.mountainridge.get().topBlock)
-                        world.setBlock(x1, y1, z1, Block.grass.blockID);
+                        world.func_94575_c(x1, y1, z1, Block.grass.blockID);
                 }
             }
 

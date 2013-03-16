@@ -39,7 +39,7 @@ class WorldGenTinyCactus extends WorldGenerator {
                 final int id = world.getBlockId(x1, y1 + y2 - 1, z1);
                 if (id == Block.sand.blockID
                         || (byte) id == BiomeManager.mountainridge.get().topBlock)
-                    world.setBlockAndMetadata(x1, y1 + y2, z1, blockID, metadata);
+                    world.setBlockAndMetadataWithNotify(x1, y1 + y2, z1, blockID, metadata, 3);
             }
         }
 

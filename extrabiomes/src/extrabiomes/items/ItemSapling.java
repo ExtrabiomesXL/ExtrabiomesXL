@@ -16,12 +16,12 @@ public class ItemSapling extends MultiItemBlock {
     private static final int METADATA_BITMASK = 0x7;
 
     @Override
-    public String getItemNameIS(ItemStack itemstack) {
+    public String getUnlocalizedName(ItemStack itemstack) {
         int metadata = unmarkedMetadata(itemstack.getItemDamage());
         if (metadata > 6) metadata = 0;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
-        return super.getItemNameIS(itemstack);
+        return super.getUnlocalizedName(itemstack);
     }
 
 }

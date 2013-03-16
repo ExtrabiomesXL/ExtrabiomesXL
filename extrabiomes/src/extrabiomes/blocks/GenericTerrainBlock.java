@@ -14,6 +14,6 @@ import extrabiomes.utility.IDRestrictionAnnotation;
 public class GenericTerrainBlock extends Block {
 
     public GenericTerrainBlock(int id, int index, Material material) {
-        super(id, index, material);
+        super(id, material);
     }
 }

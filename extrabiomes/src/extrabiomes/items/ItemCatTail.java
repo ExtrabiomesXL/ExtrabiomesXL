@@ -6,13 +6,21 @@
 
 package extrabiomes.items;
 
+import extrabiomes.Extrabiomes;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemBlock;
 
 public class ItemCatTail extends ItemBlock {
 
     public ItemCatTail(int id) {
         super(id);
-        setIconIndex(95);
     }
+    
+    @Override
+    public void func_94581_a(IconRegister iconRegister)
+    {
+             iconIndex = iconRegister.func_94245_a(Extrabiomes.TexturePath + "cattail");
+    }
+
 
 }
