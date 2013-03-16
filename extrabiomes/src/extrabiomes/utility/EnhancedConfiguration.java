@@ -49,14 +49,14 @@ public class EnhancedConfiguration extends Configuration {
         }
 
         if (BiomeGenBase.biomeList[defaultID] == null && !configBiomes[defaultID]) {
-            prop.set(Integer.toString(defaultID));
+            prop.value = Integer.toString(defaultID);
             configBiomes[defaultID] = true;
             return prop;
         }
 
         for (int j = configBiomes.length - 1; j > 0; j--)
             if (BiomeGenBase.biomeList[j] == null && !configBiomes[j]) {
-                prop.set(Integer.toString(j));
+                prop.value = Integer.toString(j);
                 configBiomes[j] = true;
                 return prop;
             }

@@ -108,7 +108,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 
     @Override
     public void beginLeavesDecay(World world, int x, int y, int z) {
-        world.setBlockMetadataWithNotify(x, y, z, setDecayOnMetadata(world.getBlockMetadata(x, y, z)), 3);
+        world.setBlockMetadata(x, y, z, setDecayOnMetadata(world.getBlockMetadata(x, y, z)));
     }
 
     @Override
@@ -211,7 +211,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 
     private void removeLeaves(World world, int x, final int y, final int z) {
         dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-        world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+        world.setBlockWithNotify(x, y, z, 0);
     }
 
     @Override
@@ -302,7 +302,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
         }
 
         if (adjacentTreeBlocks[var11 * var10 + var11 * var9 + var11] >= 0)
-            world.setBlockMetadataWithNotify(x, y, z, clearDecayOnMetadata(metadata), 3);
+            world.setBlockMetadata(x, y, z, clearDecayOnMetadata(metadata));
         else
             removeLeaves(world, x, y, z);
     }

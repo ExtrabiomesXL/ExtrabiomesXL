@@ -34,12 +34,12 @@ class WorldGenMarshDirt extends WorldGenerator {
 					if (Block.dirt.canPlaceBlockOnSide(world, x1, y1,
 							z1, side))
 					{
-						world.setBlockAndMetadataWithNotify(
+						world.setBlockAndMetadata(
 								x1,
 								y1,
 								z1,
 								Block.dirt.blockID,
-								1 << Direction.vineGrowth[Facing.faceToSide[side]], 3);
+								1 << Direction.vineGrowth[Facing.faceToSide[side]]);
 						continue label0;
 					}
 

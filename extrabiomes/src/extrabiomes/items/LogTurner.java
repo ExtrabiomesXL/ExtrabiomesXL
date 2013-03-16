@@ -54,7 +54,7 @@ public class LogTurner extends ItemTool {
             final int type = metadata & 3;
 
             orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
-            world.setBlockAndMetadataWithNotify(x, y, z, blockID, type | orientation, 3);
+            world.setBlockAndMetadata(x, y, z, blockID, type | orientation);
         }
         return true;
     }

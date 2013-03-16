@@ -45,7 +45,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.planks.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.planks");
+            thisBlock.setBlockName("extrabiomes.planks");
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
             proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class);
             for (final BlockCustomWood.BlockType type : BlockCustomWood.BlockType.values())
@@ -72,7 +72,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.slabWood.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.woodslab");
+            thisBlock.setBlockName("extrabiomes.woodslab");
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
 
             proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisBlock.blockID));
@@ -96,7 +96,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.slabWoodDouble.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.woodslab");
+            thisBlock.setBlockName("extrabiomes.woodslab");
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
             ItemWoodSlab.setSlabs((BlockHalfSlab) Stuff.slabWood.get(),
                     (BlockHalfSlab) Stuff.slabWoodDouble.get());
@@ -128,7 +128,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.stairsRedwood.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.stairs.redwood");
+            thisBlock.setBlockName("extrabiomes.stairs.redwood");
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
             proxy.registerBlock(thisBlock);
 
@@ -153,7 +153,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.stairsFir.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.stairs.fir");
+            thisBlock.setBlockName("extrabiomes.stairs.fir");
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
             proxy.registerBlock(thisBlock);
 
@@ -178,7 +178,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.stairsAcacia.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.stairs.acacia");
+            thisBlock.setBlockName("extrabiomes.stairs.acacia");
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
             proxy.registerBlock(thisBlock);
 
@@ -202,7 +202,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.slabRedRock.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.redrockslab");
+            thisBlock.setBlockName("extrabiomes.redrockslab");
             proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
 
             Extrabiomes.postInitEvent(new RedRockSlabActiveEvent(thisBlock));
@@ -225,7 +225,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.slabRedRockDouble.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.redrockslab");
+            thisBlock.setBlockName("extrabiomes.redrockslab");
             proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
             ItemRedRockSlab.setSlabs((BlockHalfSlab) Stuff.slabRedRock.get(),
                     (BlockHalfSlab) Stuff.slabRedRockDouble.get());
@@ -252,7 +252,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.stairsRedCobble.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.stairs.redcobble");
+            thisBlock.setBlockName("extrabiomes.stairs.redcobble");
             proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
             proxy.registerBlock(thisBlock);
 
@@ -277,7 +277,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.stairsRedRockBrick.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.stairs.redrockbrick");
+            thisBlock.setBlockName("extrabiomes.stairs.redrockbrick");
             proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
             proxy.registerBlock(thisBlock);
 
@@ -300,7 +300,7 @@ public enum BlockManager {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.wall.get();
 
-            thisBlock.setUnlocalizedName("extrabiomes.wall");
+            thisBlock.setBlockName("extrabiomes.wall");
             proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
             proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class);
 

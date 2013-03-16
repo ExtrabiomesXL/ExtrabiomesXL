@@ -99,10 +99,10 @@ public class WorldGenRedwood extends WorldGenerator {
 						return false;
 		}
 
-		world.func_94575_c(x, y - 1, z, Block.dirt.blockID);
-		world.func_94575_c(x - 1, y - 1, z, Block.dirt.blockID);
-		world.func_94575_c(x, y - 1, z - 1, Block.dirt.blockID);
-		world.func_94575_c(x - 1, y - 1, z - 1, Block.dirt.blockID);
+		world.setBlock(x, y - 1, z, Block.dirt.blockID);
+		world.setBlock(x - 1, y - 1, z, Block.dirt.blockID);
+		world.setBlock(x, y - 1, z - 1, Block.dirt.blockID);
+		world.setBlock(x - 1, y - 1, z - 1, Block.dirt.blockID);
 		int l1 = rand.nextInt(2);
 		int j2 = 1;
 		boolean flag1 = false;

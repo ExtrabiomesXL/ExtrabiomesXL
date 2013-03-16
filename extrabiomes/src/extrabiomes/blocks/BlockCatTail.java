@@ -49,7 +49,7 @@ public class BlockCatTail extends BlockFlower {
     public void onNeighborBlockChange(World world, int x, int y, int z, int idNeighbor) {
         if (!canBlockStay(world, x, y, z)) {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+            world.setBlockWithNotify(x, y, z, 0);
         }
     }
 }

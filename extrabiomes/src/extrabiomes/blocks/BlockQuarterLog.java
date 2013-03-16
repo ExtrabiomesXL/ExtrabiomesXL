@@ -403,41 +403,41 @@ public class BlockQuarterLog extends BlockLog {
 
             if (thisMeta == northMeta) {
                 if (northID == BarkOn.NW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta);
                     return;
                 }
                 if (northID == BarkOn.NE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta);
                     return;
                 }
             }
             if (thisMeta == eastMeta) {
                 if (eastID == BarkOn.NE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta);
                     return;
                 }
                 if (eastID == BarkOn.SE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta);
                     return;
                 }
             }
             if (thisMeta == southMeta) {
                 if (southID == BarkOn.SW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta);
                     return;
                 }
                 if (southID == BarkOn.SE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta);
                     return;
                 }
             }
             if (thisMeta == westMeta) {
                 if (westID == BarkOn.NW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta);
                     return;
                 }
                 if (westID == BarkOn.SW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta);
                     return;
                 }
             }
@@ -457,41 +457,41 @@ public class BlockQuarterLog extends BlockLog {
 
             if (thisMeta == upMeta) {
                 if (upID == BarkOn.NW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta);
                     return;
                 }
                 if (upID == BarkOn.NE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta);
                     return;
                 }
             }
             if (thisMeta == eastMeta) {
                 if (eastID == BarkOn.NE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta);
                     return;
                 }
                 if (eastID == BarkOn.SE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta);
                     return;
                 }
             }
             if (thisMeta == downMeta) {
                 if (downID == BarkOn.SW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta);
                     return;
                 }
                 if (downID == BarkOn.SE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta);
                     return;
                 }
             }
             if (thisMeta == westMeta) {
                 if (westID == BarkOn.NW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta);
                     return;
                 }
                 if (westID == BarkOn.SW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta);
                     return;
                 }
             }
@@ -511,41 +511,41 @@ public class BlockQuarterLog extends BlockLog {
 
             if (thisMeta == northMeta) {
                 if (northID == BarkOn.SW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta);
                     return;
                 }
                 if (northID == BarkOn.NE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta);
                     return;
                 }
             }
             if (thisMeta == upMeta) {
                 if (upID == BarkOn.NW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SE.blockID, thisMeta);
                     return;
                 }
                 if (upID == BarkOn.NE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta);
                     return;
                 }
             }
             if (thisMeta == southMeta) {
                 if (southID == BarkOn.SE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.SW.blockID, thisMeta);
                     return;
                 }
                 if (southID == BarkOn.NW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta);
                     return;
                 }
             }
             if (thisMeta == downMeta) {
                 if (downID == BarkOn.SW.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NE.blockID, thisMeta);
                     return;
                 }
                 if (downID == BarkOn.SE.blockID) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlockAndMetadataWithNotify(x, y, z, BarkOn.NW.blockID, thisMeta);
                     return;
                 }
             }
@@ -570,7 +570,7 @@ public class BlockQuarterLog extends BlockLog {
                 orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
 
                 if (orientation == 0) id = getNextBlockID();
-                event.world.setBlockAndMetadataWithNotify(event.x, event.y, event.z, id, type | orientation, 3);
+                event.world.setBlockAndMetadata(event.x, event.y, event.z, id, type | orientation);
             }
             event.setHandled();
         }
