@@ -68,7 +68,7 @@ public class CropProviderSapling implements ICropProvider {
 			return false;
 		}
 		world.setBlockAndMetadataWithNotify(x, y, z,
-				germling.itemID, germling.getItemDamage(), 3);
+				germling.itemID, germling.getItemDamage());
 		return true;
 	}
 

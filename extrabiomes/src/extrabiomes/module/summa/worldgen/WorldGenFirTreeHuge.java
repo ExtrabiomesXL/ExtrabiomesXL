@@ -63,7 +63,7 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 	private static void setBlockandMetadataIfChunkExists(World world, int x,
 			int y, int z, int blockId, int metadata) {
 		if (world.getChunkProvider().chunkExists(x >> 4, z >> 4))
-			world.setBlockAndMetadataWithNotify(x, y, z, blockId, metadata, 3);
+			world.setBlockAndMetadata(x, y, z, blockId, metadata);
 	}
 
 	public WorldGenFirTreeHuge(boolean doNotify) {
@@ -110,10 +110,10 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 				|| y >= 256 - height - 1)
 			return false;
 
-		world.func_94575_c(x, y - 1, z, Block.dirt.blockID);
-		world.func_94575_c(x - 1, y - 1, z, Block.dirt.blockID);
-		world.func_94575_c(x, y - 1, z - 1, Block.dirt.blockID);
-		world.func_94575_c(x - 1, y - 1, z - 1, Block.dirt.blockID);
+		world.setBlock(x, y - 1, z, Block.dirt.blockID);
+		world.setBlock(x - 1, y - 1, z, Block.dirt.blockID);
+		world.setBlock(x, y - 1, z - 1, Block.dirt.blockID);
+		world.setBlock(x - 1, y - 1, z - 1, Block.dirt.blockID);
 		int l1 = rand.nextInt(2);
 		int j2 = 1;
 		boolean flag1 = false;

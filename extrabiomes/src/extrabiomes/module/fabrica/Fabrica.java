@@ -37,7 +37,7 @@ public class Fabrica {
         BlockManager.init();
 
         if (scarecrowID > 0) {
-            Stuff.scarecrow = Optional.of(new ItemScarecrow(scarecrowID).setUnlocalizedName(
+            Stuff.scarecrow = Optional.of(new ItemScarecrow(scarecrowID).setItemName(
                     ItemScarecrow.NAME).setIconIndex(96));
 
             final int scarecrowEntityID = Extrabiomes.proxy.findGlobalUniqueEntityId();
@@ -52,7 +52,7 @@ public class Fabrica {
         }
 
         if (pasteID > 0) {
-            Stuff.paste = Optional.of(new Item(pasteID).setUnlocalizedName("extrabiomes.paste")
+            Stuff.paste = Optional.of(new Item(pasteID).setItemName("extrabiomes.paste")
                     .setIconIndex(111).setCreativeTab(Extrabiomes.tabsEBXL)
                     .setTextureFile("/extrabiomes/extrabiomes.png"));
 

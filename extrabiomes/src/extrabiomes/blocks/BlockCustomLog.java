@@ -77,8 +77,8 @@ public class BlockCustomLog extends BlockLog {
                 final int type = metadata & 3;
 
                 orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
-                event.world.setBlockAndMetadataWithNotify(event.x, event.y, event.z, blockID, type
-                        | orientation, 3);
+                event.world.setBlockAndMetadata(event.x, event.y, event.z, blockID, type
+                        | orientation);
             }
             event.setHandled();
         }

@@ -124,7 +124,7 @@ public class WorldGenAutumnTree extends WorldGenerator {
 
 		if (!isRoomToGrow(world, x, y, z, height)) return false;
 
-		world.func_94575_c(x, y - 1, z, Block.dirt.blockID);
+		world.setBlock(x, y - 1, z, Block.dirt.blockID);
 		growLeaves(world, rand, x, y, z, height, type.getID(),
 				type.getMetadata());
 		growTrunk(world, x, y, z, height, trunkBlock.blockID,

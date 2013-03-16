@@ -155,7 +155,7 @@ public enum DecorationSettings {
     		return;
     	
     	Property property = configuration.get(EnhancedConfiguration.CATEGORY_DECORATION, toString() + decoration.key, decoration.def );
-    	property.set(settings.get(decoration).toString());
+    	property.value = settings.get(decoration).toString();
     }
     
     public int getValue( Decoration decoration ) {
