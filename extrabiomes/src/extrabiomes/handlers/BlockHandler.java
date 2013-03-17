@@ -210,7 +210,7 @@ public abstract class BlockHandler {
         final int blockID = BlockSettings.GREENLEAVES.getID();
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
-        final BlockGreenLeaves block = new BlockGreenLeaves(blockID, 80, Material.leaves, false);
+        final BlockGreenLeaves block = new BlockGreenLeaves(blockID, Material.leaves, false);
         block.setUnlocalizedName("extrabiomes.greenleaves").setTickRandomly(true).setHardness(0.2F)
                 .setLightOpacity(1).setStepSound(Block.soundGrassFootstep)/*.setRequiresSelfNotify()*/
                 /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
