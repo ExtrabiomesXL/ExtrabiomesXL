@@ -16,8 +16,8 @@ public class BlockCustomStairs extends BlockStairs {
 			int modelMetadata)
 	{
 		super(blockID, modelBlock, modelMetadata);
-		setRequiresSelfNotify();
-		setTextureFile("/extrabiomes/extrabiomes.png");
+		//setRequiresSelfNotify();
+		//setTextureFile("/extrabiomes/extrabiomes.png");
 		setLightOpacity(0);
 		setCreativeTab(Extrabiomes.tabsEBXL);
 	}

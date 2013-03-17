@@ -68,14 +68,14 @@ public class BlockCustomFlower extends Block implements IPlantable {
     
     @Override
 	public void func_94332_a(IconRegister iconRegister){
-		autumnShrub = iconRegister.func_94245_a(Extrabiomes.TexturePath + "autumnshrub");
-		hydrangea = iconRegister.func_94245_a(Extrabiomes.TexturePath + "hydrangea");
-		orange = iconRegister.func_94245_a(Extrabiomes.TexturePath + "orangeflowers");
-		purple = iconRegister.func_94245_a(Extrabiomes.TexturePath + "purpleflowers");
-		tinyCactus  = iconRegister.func_94245_a(Extrabiomes.TexturePath + "tinycactus");
-		root = iconRegister.func_94245_a(Extrabiomes.TexturePath + "root");
-		toadstool = iconRegister.func_94245_a(Extrabiomes.TexturePath + "toadstools");
-		white = iconRegister.func_94245_a(Extrabiomes.TexturePath + "whiteflowers");
+		autumnShrub = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "autumnshrub");
+		hydrangea = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "hydrangea");
+		orange = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "orangeflowers");
+		purple = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "purpleflowers");
+		tinyCactus  = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "tinycactus");
+		root = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "root");
+		toadstool = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "toadstools");
+		white = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "whiteflowers");
 	}
 
     @Override

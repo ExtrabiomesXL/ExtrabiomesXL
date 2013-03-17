@@ -56,7 +56,7 @@ public class Extrabiomes {
     private static final String       LOG_MESSAGE_INITIALIZING = "log.message.initializing";
     private static final String       LOG_MESSAGE_LOAD_SUCCESS = "log.message.load.success";
     
-    public static final String        TEXTRURE_PATH = "extrabiomes:";
+    public static final String        TEXTURE_PATH = "extrabiomes:";
 
     private static Optional<EventBus> initBus                  = Optional.of(new EventBus());
 

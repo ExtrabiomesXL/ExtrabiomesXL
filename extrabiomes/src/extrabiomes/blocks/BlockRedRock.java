@@ -14,8 +14,10 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -38,9 +40,18 @@ public class BlockRedRock extends Block {
             return metadata;
         }
     }
+    
+    private Icon[] textures;
 
     public BlockRedRock(int id, int index, Material material) {
         super(id, material);
+    }
+    
+    @Override
+    public void func_94332_a(IconRegister iconRegister){
+    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrock");
+    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockbrick");
     }
 
     @Override
@@ -62,9 +73,9 @@ public class BlockRedRock extends Block {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         if (metadata > 2) metadata = 2;
-        return metadata == RED_ROCK_BRICK.metadata() ? 11 : metadata == RED_COBBLE.metadata() ? 12
+        return metadata == RED_ROCK_BRICK.metadata() ? textures[2] : metadata == RED_COBBLE.metadata() ? textures[1]
                 : super.getBlockTextureFromSideAndMetadata(side, metadata);
     }
 

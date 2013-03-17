@@ -8,20 +8,29 @@ package extrabiomes.module.cautia.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import extrabiomes.Extrabiomes;
 
 class BlockQuicksand extends Block {
 
 	BlockQuicksand(int id) {
-		super(id, 1, Material.sand);
+		super(id, Material.sand);
 		setHardness(4.0F);
 		setStepSound(Block.soundSandFootstep);
-		setTextureFile("/extrabiomes/extrabiomes.png");
+		//setTextureFile("/extrabiomes/extrabiomes.png");
 		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
+	
+	private Icon texture;
+	
+	@Override
+    public void func_94332_a(IconRegister iconRegister){
+    	texture = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "quicksand");
+    }
 
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world,

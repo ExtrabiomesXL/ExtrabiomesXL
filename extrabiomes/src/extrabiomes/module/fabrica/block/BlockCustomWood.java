@@ -9,8 +9,10 @@ package extrabiomes.module.fabrica.block;
 import java.util.List;
 
 import net.minecraft.block.BlockWood;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -29,23 +31,32 @@ public class BlockCustomWood extends BlockWood {
 			return metadata;
 		}
 	}
+	
+	private Icon[] textures;
 
 	public BlockCustomWood(int id) {
 		super(id);
-		blockIndexInTexture = 128;
-		setTextureFile("/extrabiomes/extrabiomes.png");
+		//blockIndexInTexture = 128;
+		//setTextureFile("/extrabiomes/extrabiomes.png");
 		setStepSound(soundWoodFootstep);
-		setRequiresSelfNotify();
+		//setRequiresSelfNotify();
 		setHardness(2.0F);
 		setResistance(5.0F);
 		setBurnProperties(blockID, 5, 20);
 		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
+	
+	@Override
+    public void func_94332_a(IconRegister iconRegister){
+    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "planksredwood");
+    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "planksfir");
+    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "planksacacia");
+    }
 
 	@Override
-	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
+	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
-		return blockIndexInTexture + metadata;
+		return textures[metadata];
 	}
 
 	@Override

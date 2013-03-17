@@ -11,11 +11,14 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraftforge.event.ForgeSubscribe;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
 
 public class BlockCustomLog extends BlockLog {
@@ -32,20 +35,36 @@ public class BlockCustomLog extends BlockLog {
             return metadata;
         }
     }
+    
+    private Icon[] textures;
 
     public BlockCustomLog(int id) {
         super(id);
     }
+    
+    @Override
+    public void func_94332_a(IconRegister iconRegister){
+    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firbottomleft");
+    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firbottomright");
+    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firsideleft");
+    	textures[3] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firsideright");
+    	textures[4] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firtopleft");
+    	textures[5] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firtopright");
+    	textures[6] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logfirsideleft");
+    	textures[7] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logfirsideright");
+    	textures[8] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logacaciatop");
+    	textures[9] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logacaciaside");
+    }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         final int orientation = metadata & 12;
         int type = metadata & 3;
         if (type > 1) type = 0;
         if (orientation == 0 && (side == 1 || side == 0) || orientation == 4
                 && (side == 5 || side == 4) || orientation == 8 && (side == 2 || side == 3))
-            return blockIndexInTexture + 16 + type;
-        return blockIndexInTexture + type;
+            return textures[orientation];
+        return textures[9];//TODO CHECK
     }
 
     @Override
