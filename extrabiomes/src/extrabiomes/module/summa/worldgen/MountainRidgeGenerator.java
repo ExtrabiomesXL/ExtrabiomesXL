@@ -54,7 +54,7 @@ public class MountainRidgeGenerator implements IWorldGenerator {
 
 			if (id != 0
 					&& Block.blocksList[id].isGenMineableReplaceable(
-							world, x1, y1, z1))
+							world, x1, y1, z1, Block.stone.blockID))
 				world.func_94575_c(x1, y1, z1, Block.oreEmerald.blockID);
 		}
 		

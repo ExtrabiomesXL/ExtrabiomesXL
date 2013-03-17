@@ -11,8 +11,10 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.relauncher.Side;
@@ -42,6 +44,8 @@ public class BlockCustomSapling extends BlockFlower {
             return metadata;
         }
     }
+    
+    private Icon[] textures;
 
     private static final int METADATA_BITMASK = 0x7;
     private static final int METADATA_MARKBIT = 0x8;
@@ -73,6 +77,18 @@ public class BlockCustomSapling extends BlockFlower {
         final float var3 = 0.4F;
         setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
     }
+    
+    @Override
+    public void func_94332_a(IconRegister iconRegistry)
+    {
+	    textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingbrown");
+	    textures[1] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingorange");
+	    textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingpurple");
+	    textures[1] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingyellow");
+	    textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingfir");
+	    textures[1] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingredwood");
+	    textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingacacia");
+    }
 
     private void attemptGrowTree(World world, int x, int y, int z, Random rand) {
         if (isEnoughLightToGrow(world, x, y + 1, z) && rand.nextInt(7) == 0) {
@@ -96,10 +112,10 @@ public class BlockCustomSapling extends BlockFlower {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         metadata = unmarkedMetadata(metadata);
         if (metadata > 6) metadata = 0;
-        return super.getBlockTextureFromSide(side) + metadata;
+        return textures[metadata];
     }
 
     @Override

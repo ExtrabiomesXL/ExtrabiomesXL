@@ -38,7 +38,7 @@ public class Fabrica {
 
         if (scarecrowID > 0) {
             Stuff.scarecrow = Optional.of(new ItemScarecrow(scarecrowID).setUnlocalizedName(
-                    ItemScarecrow.NAME).setIconIndex(96));
+                    ItemScarecrow.NAME)/*.setIconIndex(96)*/);
 
             final int scarecrowEntityID = Extrabiomes.proxy.findGlobalUniqueEntityId();
             Extrabiomes.proxy.registerEntityID(EntityScarecrow.class, ItemScarecrow.NAME,
@@ -53,8 +53,8 @@ public class Fabrica {
 
         if (pasteID > 0) {
             Stuff.paste = Optional.of(new Item(pasteID).setUnlocalizedName("extrabiomes.paste")
-                    .setIconIndex(111).setCreativeTab(Extrabiomes.tabsEBXL)
-                    .setTextureFile("/extrabiomes/extrabiomes.png"));
+                    /*.setIconIndex(111)*/.setCreativeTab(Extrabiomes.tabsEBXL)
+                    /*.setTextureFile("/extrabiomes/extrabiomes.png")*/);
 
             if (Element.TINY_CACTUS.isPresent()) {
                 IRecipe recipe = new ShapelessOreRecipe(Stuff.paste.get(), Block.cactus);

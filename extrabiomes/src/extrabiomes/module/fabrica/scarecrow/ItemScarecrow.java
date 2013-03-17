@@ -7,12 +7,14 @@
 package extrabiomes.module.fabrica.scarecrow;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Facing;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 import com.google.common.base.Optional;
@@ -40,10 +42,18 @@ public class ItemScarecrow extends Item {
 			return entity.isPresent();
 		}
 	}
+	
+
+	@Override
+	public void func_94581_a(IconRegister iconRegister)
+	{
+		iconIndex = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "scarecrow");
+	}
+	
 
 	public ItemScarecrow(int id) {
 		super(id);
-		setTextureFile("/extrabiomes/extrabiomes.png");
+		//setTextureFile("/extrabiomes/extrabiomes.png");
 		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
 

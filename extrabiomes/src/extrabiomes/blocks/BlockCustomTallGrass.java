@@ -15,6 +15,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -41,6 +42,8 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
             return metadata;
         }
     }
+    
+    private Icon[] textures;
 
     public BlockCustomTallGrass(int id, int index, Material material) {
         super(id, material);
@@ -49,9 +52,13 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
     }
     
     @Override
-    public voi(IconRegister iconRegister)
+    public void func_94332_a(IconRegister iconRegistry)
     {
-             super.iconIndex = iconRegister.func_94245_a("ropesplus:hscartridge");
+    	textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "browngrasstall");
+    	textures[1] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "browngrassshort");
+    	textures[3] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrassshort");
+    	textures[4] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrasstall");
+    	textures[5] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrassyellow");
     }
 
 
@@ -90,9 +97,9 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         if (metadata > 4) metadata = 4;
-        return super.getBlockTextureFromSideAndMetadata(side, metadata) + metadata;
+        return textures[metadata];
     }
 
     @Override

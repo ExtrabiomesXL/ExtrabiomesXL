@@ -19,7 +19,7 @@ public class ItemCatTail extends ItemBlock {
     @Override
     public void func_94581_a(IconRegister iconRegister)
     {
-             iconIndex = iconRegister.func_94245_a(Extrabiomes.TexturePath + "cattail");
+             iconIndex = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "cattail");
     }
 
 

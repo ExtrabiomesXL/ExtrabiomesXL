@@ -117,8 +117,8 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
     int[] adjacentTreeBlocks;
 
-    public BlockGreenLeaves(int id, int index, Material material, boolean useFastGraphics) {
-        super(id, index, material, useFastGraphics);
+    public BlockGreenLeaves(int id, Material material, boolean useFastGraphics) {
+        super(id, material, useFastGraphics);
     }
 
     @Override
@@ -181,7 +181,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         metadata = unmarkedMetadata(metadata);
         if (metadata > 2) metadata = 0;
         return blockIndexInTexture + unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1);

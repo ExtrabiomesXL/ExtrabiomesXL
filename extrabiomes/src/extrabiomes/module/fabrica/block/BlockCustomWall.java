@@ -11,8 +11,10 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWall;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -34,13 +36,20 @@ public class BlockCustomWall extends BlockWall {
             return metadata;
         }
     }
+    
+    private Icon texture;
 
     public BlockCustomWall(int id) {
         super(id, Block.blocksList[Element.RED_COBBLE.get().itemID]);
-        setTextureFile("/extrabiomes/extrabiomes.png");
+        //setTextureFile("/extrabiomes/extrabiomes.png");
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
 
+    @Override
+    public void func_94332_a(IconRegister iconRegister){
+    	texture = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+    }
+    	
     @Override
     public void addCreativeItems(ArrayList itemList) {
         for (final BlockType blockType : BlockType.values())
@@ -53,8 +62,8 @@ public class BlockCustomWall extends BlockWall {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
-        return 12;
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+        return texture;
     }
 
     @Override

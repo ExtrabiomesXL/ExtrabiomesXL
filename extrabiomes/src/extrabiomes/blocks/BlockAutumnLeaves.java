@@ -89,10 +89,10 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     
     @Override
     public void func_94332_a(IconRegister iconRegister){
-    	leavesOrange = iconRegister.func_94245_a(Extrabiomes.TexturePath + "leavesorangefancy");
-    	leavesRed = iconRegister.func_94245_a(Extrabiomes.TexturePath + "leavesredfancy");
-    	leavesBrown = iconRegister.func_94245_a(Extrabiomes.TexturePath + "leavesbrownfancy");
-    	leavesYellow = iconRegister.func_94245_a(Extrabiomes.TexturePath + "leavesyellowfancy");
+    	leavesOrange = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesorangefancy");
+    	leavesRed = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesredfancy");
+    	leavesBrown = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesbrownfancy");
+    	leavesYellow = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesyellowfancy");
     }
 
     private static final int METADATA_BITMASK       = 0x3;
