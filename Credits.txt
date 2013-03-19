@@ -1,4 +1,5 @@
 MisterFiber - Original developer, concept.
+ExterminatorJeff - Lead developer.
 ScottKillen - Saviour of original mod, master coder, technical support, buddy.
 TDWP_FTW - Some graphics, many ideas, blocks, some biomes.
 

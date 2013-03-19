@@ -26,12 +26,6 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
-	public void registerRenderInformation() {
-		MinecraftForgeClient
-				.preloadTexture("/extrabiomes/extrabiomes.png");
-	}
-
-	@Override
 	public void registerScarecrowRendering() {
 		RenderingRegistry.registerEntityRenderingHandler(
 				EntityScarecrow.class, new RenderScarecrow(
