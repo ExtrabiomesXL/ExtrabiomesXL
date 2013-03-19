@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class EntityScarecrow extends EntityCreature {
 	public EntityScarecrow(World world) {
 		super(world);
-		texture = "/extrabiomes/scarecrow.png";
+		texture = "/mods/ExtrabiomesXL/textures/models/scarecrow.png";
 		preventEntitySpawning = true;
 		tasks.addTask(7, new EntityAIWatchClosest(this,
 				EntityPlayer.class, 50.0F));
