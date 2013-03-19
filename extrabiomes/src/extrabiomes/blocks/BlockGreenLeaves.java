@@ -13,9 +13,11 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.Icon;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
@@ -116,9 +118,21 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     }
 
     int[] adjacentTreeBlocks;
+    
+    private Icon[] textures  = {null, null, null, null, null, null, null, null};
 
     public BlockGreenLeaves(int id, Material material, boolean useFastGraphics) {
         super(id, material, useFastGraphics);
+    }
+    
+    @Override
+    public void func_94332_a(IconRegister iconRegister){
+    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesfirfancy");
+    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesfirfast");
+    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesredwoodfancy");
+    	textures[3] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesredwoodfast");
+    	textures[4] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesacaciafancy");
+    	textures[5] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesacaciafast");
     }
 
     @Override
@@ -184,7 +198,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         metadata = unmarkedMetadata(metadata);
         if (metadata > 2) metadata = 0;
-        return blockIndexInTexture + unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1);
+        return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
 
     @SideOnly(Side.CLIENT)

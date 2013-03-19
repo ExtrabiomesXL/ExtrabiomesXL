@@ -32,7 +32,7 @@ public class BlockCustomWood extends BlockWood {
 		}
 	}
 	
-	private Icon[] textures;
+	private Icon[] textures  = {null, null, null, null, null, null, null, null};
 
 	public BlockCustomWood(int id) {
 		super(id);

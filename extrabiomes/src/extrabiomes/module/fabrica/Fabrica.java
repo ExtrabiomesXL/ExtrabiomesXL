@@ -24,6 +24,7 @@ import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
 import extrabiomes.module.fabrica.block.BlockManager;
+import extrabiomes.module.fabrica.block.ItemPaste;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ItemScarecrow;
 
@@ -52,9 +53,8 @@ public class Fabrica {
         }
 
         if (pasteID > 0) {
-            Stuff.paste = Optional.of(new Item(pasteID).setUnlocalizedName("extrabiomes.paste")
-                    /*.setIconIndex(111)*/.setCreativeTab(Extrabiomes.tabsEBXL)
-                    /*.setTextureFile("/extrabiomes/extrabiomes.png")*/);
+            Stuff.paste = Optional.of(new ItemPaste(pasteID).setUnlocalizedName("extrabiomes.paste")
+                    /*.setIconIndex(111)*/.setCreativeTab(Extrabiomes.tabsEBXL));
 
             if (Element.TINY_CACTUS.isPresent()) {
                 IRecipe recipe = new ShapelessOreRecipe(Stuff.paste.get(), Block.cactus);

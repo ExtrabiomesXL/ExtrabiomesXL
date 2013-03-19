@@ -6,6 +6,7 @@
 
 package extrabiomes.blocks;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -36,24 +37,35 @@ public class BlockCustomLog extends BlockLog {
         }
     }
     
-    private Icon[] textures;
-
+    private Icon[] textures  = {null, null, null, null};
+    private HashMap<Integer, Icon> texturesMap;
+    private int index = 97;
+    
     public BlockCustomLog(int id) {
         super(id);
+        texturesMap = new HashMap();
     }
     
     @Override
     public void func_94332_a(IconRegister iconRegister){
-    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firbottomleft");
-    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firbottomright");
-    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firsideleft");
-    	textures[3] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firsideright");
-    	textures[4] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firtopleft");
-    	textures[5] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firtopright");
-    	textures[6] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logfirsideleft");
-    	textures[7] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logfirsideright");
-    	textures[8] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logacaciatop");
-    	textures[9] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logacaciaside");
+    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logredwoodside");
+    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logredwoodtop");
+
+    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logacaciaside");
+    	textures[3] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logacaciatop");
+    	
+    	setupTextures(index);
+    }
+    
+    private void setupTextures(int index){
+    	//row 1
+    	texturesMap.put(index, textures[0]);
+    	texturesMap.put(index + 1, textures[2]);
+
+    	//row2
+    	texturesMap.put(index + 16, textures[1]);
+    	texturesMap.put(index + 17, textures[3]);
+    	
     }
 
     @Override
@@ -63,8 +75,8 @@ public class BlockCustomLog extends BlockLog {
         if (type > 1) type = 0;
         if (orientation == 0 && (side == 1 || side == 0) || orientation == 4
                 && (side == 5 || side == 4) || orientation == 8 && (side == 2 || side == 3))
-            return textures[orientation];
-        return textures[9];//TODO CHECK
+            return texturesMap.get(index + 16 + type);
+        return texturesMap.get(index + type);
     }
 
     @Override

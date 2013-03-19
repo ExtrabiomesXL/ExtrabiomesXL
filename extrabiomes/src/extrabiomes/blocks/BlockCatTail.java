@@ -6,19 +6,34 @@
 
 package extrabiomes.blocks;
 
+import extrabiomes.Extrabiomes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 public class BlockCatTail extends BlockFlower {
 
+	private Icon texture;
+	
     public BlockCatTail(int id, int index, Material material) {
         super(id, material);
         disableStats();
         final float f = 0.375F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F, 0.5F + f);
     }
+    
+	@Override
+    public void func_94332_a(IconRegister iconRegister){
+    	texture = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "cattail");
+    }
+	
+	@Override
+	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+		return texture;
+	}
 
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {

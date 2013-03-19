@@ -31,6 +31,11 @@ class BlockQuicksand extends Block {
     public void func_94332_a(IconRegister iconRegister){
     	texture = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "quicksand");
     }
+	
+	@Override
+	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+		return texture;
+	}
 
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world,
