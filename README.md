@@ -10,7 +10,10 @@
 1. Properly install MCP and Forge source code into a folder.
 - Successfully build using the forge setup script.
 - Clone this git into the folder.
-- To manually build the mod, execute build_extrabiomesXL.bat -or - build_extrabiomesXL.sh from within the MCP folder.
+- Use the eclipse folder in your MCP setup as your workspace.
+- Add "common" and "resources" as linked folders and set both as source folders
+
+- To manually build the mod, execute build_extrabiomesXL.bat -or - build_extrabiomesXL.sh from within the MCP folder (scripts currently outdated and non-functioning).
 - Zip the files found in reobf/minecraft.
 - Install the resulting mod archive by dropping it in the mods folder on the client or server. The mod is universal and works on both the client and the server.
 
