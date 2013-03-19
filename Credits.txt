@@ -11,7 +11,6 @@ HarpSeal - Cool guy.
 toughenough6 - First post on original topic.
 paull105 (AKA, SirDerpingtons) - First video showcase of ExtraBiomes.
 Ancetras - Love that texture pack.
-851853 - Giving MisterFiber an awesome laugh for 2 days (http://i.imgur.com/DuKHu.png)
 Delocuro - textures for biome colored leaves.
 SirSengir - For providing a great example of a simple yet powerful API
 Eloraam - For graciously providing help with RedPower integration
