@@ -108,6 +108,8 @@ public abstract class BlockHandler {
                 .setStepSound(Block.soundStoneFootstep)
                 /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
                 .setCreativeTab(Extrabiomes.tabsEBXL);
+        
+        block.texturePath = "crackedsand";
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "pickaxe", 0);

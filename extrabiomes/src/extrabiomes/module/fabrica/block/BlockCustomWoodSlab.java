@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.BlockWoodSlab;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -37,6 +39,8 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
 	}
 
 	private static int	singleSlabID	= 0;
+	
+	private Icon[] textures  = {null, null, null, null, null, null, null, null};
 
 	public BlockCustomWoodSlab(int id, boolean isDouble) {
 		super(id, isDouble);
@@ -45,10 +49,17 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
 		setResistance(5.0F);
 		setStepSound(soundWoodFootstep);
 		setBurnProperties(blockID, 5, 20);
-		setTextureFile("/extrabiomes/extrabiomes.png");
+		//setTextureFile("/extrabiomes/extrabiomes.png");
 		setLightOpacity(0);
 		setCreativeTab(Extrabiomes.tabsEBXL);
 	}
+	
+	@Override
+    public void func_94332_a(IconRegister iconRegister){
+    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "planksredwood");
+    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "planksfir");
+    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "planksacacia");
+    }
 
 	@Override
 	protected ItemStack createStackedBlock(int damage) {
@@ -56,16 +67,9 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
 	}
 
 	@Override
-	public int getBlockTextureFromSideAndMetadata(int side, int metadata)
+	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
-		switch (metadata & 7) {
-			case 1:
-				return 129;
-			case 2:
-				return 130;
-			default:
-				return 128;
-		}
+		return textures[metadata & 7];
 	}
 
 	@Override

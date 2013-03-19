@@ -42,6 +42,7 @@ public class BlockRedRockSlab extends BlockStep {
 	private Icon sideTexture;
 	private Icon redRockTop;
 	private Icon redRockSide;
+	private Icon[] textures = {null, null, null, null};
 
 	public BlockRedRockSlab(int id, boolean isDouble) {
 		super(id, isDouble);
@@ -55,10 +56,10 @@ public class BlockRedRockSlab extends BlockStep {
 	
 	@Override
 	public void func_94332_a(IconRegister iconRegister){
-		field_94336_cN = iconRegister.func_94245_a("extrabiomesxl:redrockslabtop");
-		sideTexture = iconRegister.func_94245_a("extrabiomesxl:redrockslabside");
-		redRockTop = iconRegister.func_94245_a("extrabiomesxl:redrock");
-		redRockSide = iconRegister.func_94245_a("extrabiomesxl:redrockbrick");
+		textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+		textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockbrick");
+		textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockslabside");
+		textures[3] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockslabtop");
 	}
 
 	@Override
@@ -70,15 +71,10 @@ public class BlockRedRockSlab extends BlockStep {
 	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
 		metadata &= 7;
-		if(side < 2){
-			return field_94336_cN;
-		}else{
-			return sideTexture;
-		}
-		/*return metadata == BlockType.REDROCK.metadata() ? side < 2 ? field_94336_cN
-				: sideTexture;
-				/*: metadata == BlockType.REDROCKBRICK.metadata() ? 11
-						: 12;*/
+		return metadata == BlockType.REDROCK.metadata() ? side < 2 ? textures[3]
+				: textures[2]
+				: metadata == BlockType.REDROCKBRICK.metadata() ? textures[1]
+						: textures[0];
 	}
 
 	@Override

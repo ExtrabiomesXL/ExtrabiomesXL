@@ -43,7 +43,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
         }
     }
     
-    private Icon[] textures;
+    private Icon[] textures = {null, null, null, null, null, null, null, null};
 
     public BlockCustomTallGrass(int id, int index, Material material) {
         super(id, material);
@@ -56,9 +56,9 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
     {
     	textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "browngrasstall");
     	textures[1] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "browngrassshort");
-    	textures[3] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrassshort");
-    	textures[4] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrasstall");
-    	textures[5] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrassyellow");
+    	textures[2] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrassshort");
+    	textures[3] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrasstall");
+    	textures[4] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrassyellow");
     }
 
 

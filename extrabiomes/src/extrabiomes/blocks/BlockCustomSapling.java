@@ -45,7 +45,7 @@ public class BlockCustomSapling extends BlockFlower {
         }
     }
     
-    private Icon[] textures;
+    private Icon[] textures  = {null, null, null, null, null, null, null, null};
 
     private static final int METADATA_BITMASK = 0x7;
     private static final int METADATA_MARKBIT = 0x8;
@@ -83,11 +83,11 @@ public class BlockCustomSapling extends BlockFlower {
     {
 	    textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingbrown");
 	    textures[1] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingorange");
-	    textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingpurple");
-	    textures[1] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingyellow");
-	    textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingfir");
-	    textures[1] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingredwood");
-	    textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingacacia");
+	    textures[2] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingred");
+	    textures[3] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingyellow");
+	    textures[4] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingfir");
+	    textures[5] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingredwood");
+	    textures[6] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingacacia");
     }
 
     private void attemptGrowTree(World world, int x, int y, int z, Random rand) {
@@ -114,7 +114,7 @@ public class BlockCustomSapling extends BlockFlower {
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         metadata = unmarkedMetadata(metadata);
-        if (metadata > 6) metadata = 0;
+        //if (metadata > 6) metadata = 0;
         return textures[metadata];
     }
 

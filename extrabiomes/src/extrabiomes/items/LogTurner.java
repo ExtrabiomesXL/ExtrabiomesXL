@@ -7,10 +7,12 @@
 package extrabiomes.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
@@ -20,7 +22,14 @@ public class LogTurner extends ItemTool {
     public LogTurner(int id) {
         super(id, 1, EnumToolMaterial.WOOD, new Block[] {});
     }
+       
+    @Override
+    public void func_94581_a(IconRegister iconRegister)
+    {
+    	iconIndex = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logturner");
+    }
 
+    
     @Override
     public boolean isDamageable() {
         return false;

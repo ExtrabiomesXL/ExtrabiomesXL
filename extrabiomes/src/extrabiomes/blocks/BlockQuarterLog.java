@@ -6,21 +6,25 @@
 
 package extrabiomes.blocks;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPistonBase;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeSubscribe;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
 
 public class BlockQuarterLog extends BlockLog {
@@ -73,16 +77,90 @@ public class BlockQuarterLog extends BlockLog {
     }
 
     private final BarkOn barkOnSides;
-
+    
+    private HashMap<Integer, Icon> textures;
+    private Icon[] textureArray = {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null};
+    private int index;
+    
     public BlockQuarterLog(int id, int index, BarkOn barkOnSides) {
         super(id);
         this.barkOnSides = barkOnSides;
         barkOnSides.blockID = blockID;
-        blockIndexInTexture = index;
+        this.index = index;
+        textures = new HashMap();
+    }
+    
+    @Override
+    public void func_94332_a(IconRegister iconRegister){
+    	textureArray[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logredwoodsideleft");
+    	textureArray[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logredwoodsideright");
+    	textureArray[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redwoodtopleft");
+    	textureArray[3] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redwoodtopright");
+    	textureArray[4] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redwoodbottomleft");
+    	textureArray[5] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redwoodbottomright");
+    	textureArray[6] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redwoodsideleft");
+    	textureArray[7] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redwoodsideright");
+    	
+    	textureArray[8] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logfirsideleft");
+    	textureArray[9] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logfirsideright");
+    	textureArray[10] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firtopleft");
+    	textureArray[11] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firtopright");
+    	textureArray[12] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firbottomleft");
+    	textureArray[13] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firbottomright");
+    	textureArray[14] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firsideleft");
+    	textureArray[15] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "firsideright");
+    	
+    	textureArray[16] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logoaksideleft");
+    	textureArray[17] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logoaksideright");
+    	textureArray[18] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "oaktopleft");
+    	textureArray[19] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "oaktopright");
+    	textureArray[20] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "oakbottomleft");
+    	textureArray[21] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "oakbottomright");
+    	textureArray[22] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "oaksideleft");
+    	textureArray[23] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "oaksideright");
+    	
+    	setupTextures(index);
+    }
+    
+    public void setupTextures(int index){
+    	//The intention here is to maintain the old system of using texture sheet indexes to choose a texture. This is because reworking these texture
+    	//orientation methods to work with the new system will take quite some time.
+    	
+    	//row 1
+    	textures.put(index, textureArray[0]);
+    	textures.put(index + 1, textureArray[1]);
+    	textures.put(index + 2, textureArray[8]);
+    	textures.put(index + 3, textureArray[9]);
+    	textures.put(index + 4, textureArray[16]);
+    	textures.put(index + 5, textureArray[17]);
+    	
+    	//row2
+    	textures.put(index + 16, textureArray[2]);
+    	textures.put(index + 17, textureArray[3]);
+    	textures.put(index + 18, textureArray[10]);
+    	textures.put(index + 19, textureArray[11]);
+    	textures.put(index + 20, textureArray[18]);
+    	textures.put(index + 21, textureArray[19]);
+    	
+    	//row3
+    	textures.put(index + 32, textureArray[4]);
+    	textures.put(index + 33, textureArray[5]);
+    	textures.put(index + 34, textureArray[12]);
+    	textures.put(index + 35, textureArray[13]);
+    	textures.put(index + 36, textureArray[20]);
+    	textures.put(index + 37, textureArray[21]);
+    	
+    	//row4
+    	textures.put(index + 48, textureArray[6]);
+    	textures.put(index + 49, textureArray[7]);
+    	textures.put(index + 50, textureArray[14]);
+    	textures.put(index + 51, textureArray[15]);
+    	textures.put(index + 52, textureArray[22]);
+    	textures.put(index + 53, textureArray[23]);
     }
 
-    @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    //@Override
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         final int orientation = metadata & 12;
         int type = metadata & 3;
         
@@ -103,8 +181,7 @@ public class BlockQuarterLog extends BlockLog {
                 offset = getNWTextureOffset(side, orientation);
                 break;
         }
-
-        return blockIndexInTexture + offset + type * 2;
+        return textures.get(index + offset + type * 2);
     }
 
     private int getNETextureOffset(int side, final int orientation) {
