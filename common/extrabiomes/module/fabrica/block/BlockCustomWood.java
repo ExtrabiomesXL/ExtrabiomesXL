@@ -47,10 +47,10 @@ public class BlockCustomWood extends BlockWood {
 	}
 	
 	@Override
-    public void func_94332_a(IconRegister iconRegister){
-    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "planksredwood");
-    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "planksfir");
-    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "planksacacia");
+    public void registerIcons(IconRegister iconRegister){
+    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksredwood");
+    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksfir");
+    	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksacacia");
     }
 
 	@Override

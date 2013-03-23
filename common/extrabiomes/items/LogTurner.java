@@ -24,9 +24,9 @@ public class LogTurner extends ItemTool {
     }
        
     @Override
-    public void func_94581_a(IconRegister iconRegister)
+    public void updateIcons(IconRegister iconRegister)
     {
-    	iconIndex = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logturner");
+    	iconIndex = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logturner");
     }
 
     
@@ -63,7 +63,7 @@ public class LogTurner extends ItemTool {
             final int type = metadata & 3;
 
             orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
-            world.setBlockAndMetadataWithNotify(x, y, z, blockID, type | orientation, 3);
+            world.setBlock(x, y, z, blockID, type | orientation, 3);
         }
         return true;
     }

@@ -83,7 +83,7 @@ public class WorldGenFirTree extends WorldGenerator {
                 }
         }
 
-        world.func_94575_c(x, y - 1, z, Block.dirt.blockID);
+        world.setBlock(x, y - 1, z, Block.dirt.blockID);
         int l1 = rand.nextInt(2);
         int j2 = 1;
         boolean flag1 = false;

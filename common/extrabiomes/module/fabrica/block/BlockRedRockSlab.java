@@ -55,11 +55,11 @@ public class BlockRedRockSlab extends BlockStep {
 	}
 	
 	@Override
-	public void func_94332_a(IconRegister iconRegister){
-		textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockcobble");
-		textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockbrick");
-		textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockslabside");
-		textures[3] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockslabtop");
+	public void registerIcons(IconRegister iconRegister){
+		textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+		textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");
+		textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockslabside");
+		textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockslabtop");
 	}
 
 	@Override

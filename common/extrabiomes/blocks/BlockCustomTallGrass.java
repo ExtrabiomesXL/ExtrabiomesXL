@@ -52,13 +52,13 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
     }
     
     @Override
-    public void func_94332_a(IconRegister iconRegistry)
+    public void registerIcons(IconRegister iconRegistry)
     {
-    	textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "browngrasstall");
-    	textures[1] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "browngrassshort");
-    	textures[2] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrassshort");
-    	textures[3] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrasstall");
-    	textures[4] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "deadgrassyellow");
+    	textures[0] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "browngrasstall");
+    	textures[1] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "browngrassshort");
+    	textures[2] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "deadgrassshort");
+    	textures[3] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "deadgrasstall");
+    	textures[4] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "deadgrassyellow");
     }
 
 

@@ -88,11 +88,11 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     private Icon leavesYellow;
     
     @Override
-    public void func_94332_a(IconRegister iconRegister){
-    	leavesOrange = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesorangefancy");
-    	leavesRed = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesredfancy");
-    	leavesBrown = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesbrownfancy");
-    	leavesYellow = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesyellowfancy");
+    public void registerIcons(IconRegister iconRegister){
+    	leavesOrange = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangefancy");
+    	leavesRed = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredfancy");
+    	leavesBrown = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownfancy");
+    	leavesYellow = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowfancy");
     }
 
     private static final int METADATA_BITMASK       = 0x3;
@@ -242,7 +242,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 
     private void removeLeaves(World world, int x, final int y, final int z) {
         dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-        world.func_94575_c(x, y, z, 0);
+        world.setBlock(x, y, z, 0);
     }
 
     @Override

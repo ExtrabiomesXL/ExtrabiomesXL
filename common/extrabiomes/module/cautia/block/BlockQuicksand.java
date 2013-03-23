@@ -28,8 +28,8 @@ class BlockQuicksand extends Block {
 	private Icon texture;
 	
 	@Override
-    public void func_94332_a(IconRegister iconRegister){
-    	texture = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "quicksand");
+    public void registerIcons(IconRegister iconRegister){
+    	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "quicksand");
     }
 	
 	@Override

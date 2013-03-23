@@ -34,7 +34,7 @@ class WorldGenMarshDirt extends WorldGenerator {
 					if (Block.dirt.canPlaceBlockOnSide(world, x1, y1,
 							z1, side))
 					{
-						world.setBlockAndMetadataWithNotify(
+						world.setBlock(
 								x1,
 								y1,
 								z1,

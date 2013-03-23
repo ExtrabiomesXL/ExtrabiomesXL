@@ -85,7 +85,7 @@ public class WorldGenAcacia extends WorldGenerator {
         if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1)
             return false;
 
-        world.func_94575_c(x, y - 1, z, Block.dirt.blockID);
+        world.setBlock(x, y - 1, z, Block.dirt.blockID);
         final byte canopyHeight = 3;
         final int minCanopyRadius = 0;
 

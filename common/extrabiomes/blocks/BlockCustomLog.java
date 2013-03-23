@@ -47,12 +47,12 @@ public class BlockCustomLog extends BlockLog {
     }
     
     @Override
-    public void func_94332_a(IconRegister iconRegister){
-    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logredwoodside");
-    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logredwoodtop");
+    public void registerIcons(IconRegister iconRegister){
+    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodside");
+    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodtop");
 
-    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logacaciaside");
-    	textures[3] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "logacaciatop");
+    	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciaside");
+    	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciatop");
     	
     	setupTextures(index);
     }
@@ -107,7 +107,7 @@ public class BlockCustomLog extends BlockLog {
                 final int type = metadata & 3;
 
                 orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
-                event.world.setBlockAndMetadataWithNotify(event.x, event.y, event.z, blockID, type
+                event.world.setBlock(event.x, event.y, event.z, blockID, type
                         | orientation, 3);
             }
             event.setHandled();
