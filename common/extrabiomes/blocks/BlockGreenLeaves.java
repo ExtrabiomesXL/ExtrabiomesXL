@@ -126,13 +126,13 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     }
     
     @Override
-    public void func_94332_a(IconRegister iconRegister){
-    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesfirfancy");
-    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesfirfast");
-    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesredwoodfancy");
-    	textures[3] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesredwoodfast");
-    	textures[4] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesacaciafancy");
-    	textures[5] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leavesacaciafast");
+    public void registerIcons(IconRegister iconRegister){
+    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfancy");
+    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfast");
+    	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfancy");
+    	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfast");
+    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafancy");
+    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafast");
     }
 
     @Override

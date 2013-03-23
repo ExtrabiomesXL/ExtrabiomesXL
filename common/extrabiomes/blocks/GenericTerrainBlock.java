@@ -25,8 +25,8 @@ public class GenericTerrainBlock extends Block {
     public String texturePath;
     
     @Override
-    public void func_94332_a(IconRegister iconRegister){
-    	texture = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + texturePath);
+    public void registerIcons(IconRegister iconRegister){
+    	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texturePath);
     }
 	
 	@Override

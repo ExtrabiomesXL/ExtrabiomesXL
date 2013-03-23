@@ -48,10 +48,10 @@ public class BlockRedRock extends Block {
     }
     
     @Override
-    public void func_94332_a(IconRegister iconRegister){
-    	textures[0] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrock");
-    	textures[1] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockcobble");
-    	textures[2] = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "redrockbrick");
+    public void registerIcons(IconRegister iconRegister){
+    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrock");
+    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+    	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");
     }
 
     @Override

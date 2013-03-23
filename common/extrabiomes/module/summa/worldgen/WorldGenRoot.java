@@ -38,7 +38,7 @@ class WorldGenRoot extends WorldGenerator {
 			for (int y2 = 0; y2 < i1; y2++)
 				if (Block.blocksList[blockID].canBlockStay(world, x1,
 						y1 + y2, z1))
-					world.setBlockAndMetadataWithNotify(x1, y1 + y2, z1, blockID,
+					world.setBlock(x1, y1 + y2, z1, blockID,
 							metadata, 3);
 		}
 

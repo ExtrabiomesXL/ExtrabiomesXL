@@ -36,8 +36,8 @@ public class BlockLeafPile extends Block {
     }
     
     @Override
-    public void func_94332_a(IconRegister iconRegister){
-    	texture = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "leafpile");
+    public void registerIcons(IconRegister iconRegister){
+    	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leafpile");
     }
     
     @Override//Change this to more appropriate method
@@ -59,7 +59,7 @@ public class BlockLeafPile extends Block {
     private void checkFlowerChange(World world, int x, int y, int z) {
         if (!canBlockStay(world, x, y, z)) {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.func_94575_c(x, y, z, 0);
+            world.setBlock(x, y, z, 0);
         }
     }
 

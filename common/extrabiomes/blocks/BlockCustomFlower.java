@@ -67,15 +67,15 @@ public class BlockCustomFlower extends Block implements IPlantable {
     }
     
     @Override
-	public void func_94332_a(IconRegister iconRegister){
-		autumnShrub = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "autumnshrub");
-		hydrangea = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "hydrangea");
-		orange = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "orangeflowers");
-		purple = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "purpleflowers");
-		tinyCactus  = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "tinycactus");
-		root = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "root");
-		toadstool = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "toadstools");
-		white = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "whiteflowers");
+	public void registerIcons(IconRegister iconRegister){
+		autumnShrub = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "autumnshrub");
+		hydrangea = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "hydrangea");
+		orange = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "orangeflowers");
+		purple = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "purpleflowers");
+		tinyCactus  = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "tinycactus");
+		root = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "root");
+		toadstool = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "toadstools");
+		white = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "whiteflowers");
 	}
 
     @Override
@@ -99,7 +99,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
     private void checkFlowerChange(World world, int x, int y, int z) {
         if (!canBlockStay(world, x, y, z)) {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.func_94575_c(x, y, z, 0);
+            world.setBlock(x, y, z, 0);
         }
     }
 

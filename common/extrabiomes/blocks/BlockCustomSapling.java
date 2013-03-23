@@ -79,15 +79,15 @@ public class BlockCustomSapling extends BlockFlower {
     }
     
     @Override
-    public void func_94332_a(IconRegister iconRegistry)
+    public void registerIcons(IconRegister iconRegistry)
     {
-	    textures[0] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingbrown");
-	    textures[1] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingorange");
-	    textures[2] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingred");
-	    textures[3] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingyellow");
-	    textures[4] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingfir");
-	    textures[5] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingredwood");
-	    textures[6] = iconRegistry.func_94245_a(Extrabiomes.TEXTURE_PATH + "saplingacacia");
+	    textures[0] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingbrown");
+	    textures[1] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingorange");
+	    textures[2] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingred");
+	    textures[3] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingyellow");
+	    textures[4] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingfir");
+	    textures[5] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingredwood");
+	    textures[6] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingacacia");
     }
 
     private void attemptGrowTree(World world, int x, int y, int z, Random rand) {
@@ -190,30 +190,30 @@ public class BlockCustomSapling extends BlockFlower {
 
         if (tree != null) {
             if (isHuge) {
-                world.func_94575_c(x + x1, y, z + z1, 0);
-                world.func_94575_c(x + x1 + 1, y, z + z1, 0);
-                world.func_94575_c(x + x1, y, z + z1 + 1, 0);
-                world.func_94575_c(x + x1 + 1, y, z + z1 + 1, 0);
+                world.setBlock(x + x1, y, z + z1, 0);
+                world.setBlock(x + x1 + 1, y, z + z1, 0);
+                world.setBlock(x + x1, y, z + z1 + 1, 0);
+                world.setBlock(x + x1 + 1, y, z + z1 + 1, 0);
             } else
-                world.func_94575_c(x, y, z, 0);
+                world.setBlock(x, y, z, 0);
 
             final int offset = isHuge ? 1 : 0;
 
             if (!tree.generate(world, rand, x + x1 + offset, y, z + z1 + offset)) {
                 if (isHuge) {
-                    world.setBlockAndMetadataWithNotify(x + x1, y, z + z1, blockID, metadata, 3);
-                    world.setBlockAndMetadataWithNotify(x + x1 + 1, y, z + z1, blockID, metadata, 3);
-                    world.setBlockAndMetadataWithNotify(x + x1, y, z + z1 + 1, blockID, metadata, 3);
-                    world.setBlockAndMetadataWithNotify(x + x1 + 1, y, z + z1 + 1, blockID, metadata, 3);
+                    world.setBlock(x + x1, y, z + z1, blockID, metadata, 3);
+                    world.setBlock(x + x1 + 1, y, z + z1, blockID, metadata, 3);
+                    world.setBlock(x + x1, y, z + z1 + 1, blockID, metadata, 3);
+                    world.setBlock(x + x1 + 1, y, z + z1 + 1, blockID, metadata, 3);
                 } else
-                    world.setBlockAndMetadataWithNotify(x, y, z, blockID, metadata, 3);
+                    world.setBlock(x, y, z, blockID, metadata, 3);
             } else if (isForestryFarmed) if (isHuge) {
-                world.func_94575_c(x + x1, y - 1, z + z1, Block.sand.blockID);
-                world.func_94575_c(x + x1 + 1, y - 1, z + z1, Block.sand.blockID);
-                world.func_94575_c(x + x1, y - 1, z + z1 + 1, Block.sand.blockID);
-                world.func_94575_c(x + x1 + 1, y - 1, z + z1 + 1, Block.sand.blockID);
+                world.setBlock(x + x1, y - 1, z + z1, Block.sand.blockID);
+                world.setBlock(x + x1 + 1, y - 1, z + z1, Block.sand.blockID);
+                world.setBlock(x + x1, y - 1, z + z1 + 1, Block.sand.blockID);
+                world.setBlock(x + x1 + 1, y - 1, z + z1 + 1, Block.sand.blockID);
             } else
-                world.func_94575_c(x, y - 1, z, Block.sand.blockID);
+                world.setBlock(x, y - 1, z, Block.sand.blockID);
         }
     }
 

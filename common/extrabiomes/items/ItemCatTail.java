@@ -17,9 +17,9 @@ public class ItemCatTail extends ItemBlock {
     }
     
     @Override
-    public void func_94581_a(IconRegister iconRegister)
+    public void updateIcons(IconRegister iconRegister)
     {
-             iconIndex = iconRegister.func_94245_a(Extrabiomes.TEXTURE_PATH + "cattail");
+             iconIndex = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cattail");
     }
 
 

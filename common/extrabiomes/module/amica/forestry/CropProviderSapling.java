@@ -67,7 +67,7 @@ public class CropProviderSapling implements ICropProvider {
 		if (below != forestrySoilID() || (meta & 0x3) != 0) {
 			return false;
 		}
-		world.setBlockAndMetadataWithNotify(x, y, z,
+		world.setBlock(x, y, z,
 				germling.itemID, germling.getItemDamage(), 3);
 		return true;
 	}
