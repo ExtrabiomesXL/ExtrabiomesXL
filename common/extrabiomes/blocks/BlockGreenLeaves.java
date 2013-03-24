@@ -272,7 +272,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
     private void removeLeaves(World world, int x, int y, int z) {
         dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-        world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+        world.setBlock(x, y, z, 0, 0, 0x02);
     }
 
     @Override
@@ -363,10 +363,10 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
                             }
         }
 
-        if (adjacentTreeBlocks[var11 * var10 + var11 * var9 + var11] >= 0)
-            world.setBlockMetadataWithNotify(x, y, z, clearDecayOnMetadata(metadata), 3);
-        else
-            removeLeaves(world, x, y, z);
+       if (adjacentTreeBlocks[var11 * var10 + var11 * var9 + var11] >= 0)
+           world.setBlockMetadataWithNotify(x, y, z, clearDecayOnMetadata(metadata), 3);
+       else
+    	   removeLeaves(world, x, y, z);
     }
 
 }
