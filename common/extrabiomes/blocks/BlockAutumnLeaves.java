@@ -81,18 +81,19 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
             return metadata;
         }
     }
-    
-    private Icon leavesOrange;
-    private Icon leavesRed;
-    private Icon leavesBrown;
-    private Icon leavesYellow;
+
+    private Icon[] textures = {null, null, null, null, null, null, null, null};
     
     @Override
     public void registerIcons(IconRegister iconRegister){
-    	leavesOrange = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangefancy");
-    	leavesRed = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredfancy");
-    	leavesBrown = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownfancy");
-    	leavesYellow = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowfancy");
+    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangefancy");
+    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangefast");
+    	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredfancy");
+    	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredfast");
+    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownfancy");
+    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownfast");
+    	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowfancy");
+    	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowfast");
     }
 
     private static final int METADATA_BITMASK       = 0x3;
@@ -178,19 +179,8 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
         metadata = unmarkedMetadata(metadata);
-        if (metadata > 3) metadata = 3;
-        //return blockIndexInTexture + 2 * metadata + (isOpaqueCube() ? 1 : 0);
-        switch(metadata){
-        case 0: return leavesBrown;
-        	
-        case 1: return leavesOrange;
-        	
-        case 2: return leavesRed;
-        	
-        case 3: return leavesYellow;
-        
-        default: return leavesBrown;
-        }
+        if (metadata > 4) metadata = 4;
+            return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
 
     @Override
