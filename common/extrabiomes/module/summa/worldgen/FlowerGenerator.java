@@ -55,7 +55,7 @@ public class FlowerGenerator implements IWorldGenerator {
 		chunkX = chunkX << 4;
 		chunkZ = chunkZ << 4;
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
-				chunkX);
+				chunkZ);
 
 		if (BiomeManager.autumnwoods.isPresent()
 				&& biome == BiomeManager.autumnwoods.get())
