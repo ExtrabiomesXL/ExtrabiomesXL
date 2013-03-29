@@ -39,7 +39,7 @@ class WorldGenRoot extends WorldGenerator {
 				if (Block.blocksList[blockID].canBlockStay(world, x1,
 						y1 + y2, z1))
 					world.setBlock(x1, y1 + y2, z1, blockID,
-							metadata, 3);
+							metadata, 2);
 		}
 
 		return true;

@@ -29,7 +29,7 @@ public class VanillaFloraGenerator implements IWorldGenerator {
 		chunkX = chunkX << 4;
 		chunkZ = chunkZ << 4;
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
-				chunkX);
+				chunkZ);
 
 		final boolean biomeIsExtremeJungle = BiomeManager.extremejungle
 				.isPresent()

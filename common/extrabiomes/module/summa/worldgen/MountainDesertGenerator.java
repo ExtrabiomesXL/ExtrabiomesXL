@@ -30,7 +30,7 @@ public class MountainDesertGenerator implements IWorldGenerator {
 		chunkX = chunkX << 4;
 		chunkZ = chunkZ << 4;
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
-				chunkX);
+				chunkZ);
 
 		if (BiomeManager.mountaindesert.isPresent() && biome == BiomeManager.mountaindesert.get())
 			generateRareDesertWell(random, chunkX, chunkZ, world);

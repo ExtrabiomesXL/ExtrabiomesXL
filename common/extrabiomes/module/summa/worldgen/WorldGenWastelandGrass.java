@@ -43,7 +43,7 @@ public class WorldGenWastelandGrass extends WorldGenerator {
 					&& Block.blocksList[grassID].canBlockStay(world,
 							x1, y1, z1))
 				world.setBlock(x1, y1, z1, grassID,
-						grassMeta, 3);
+						grassMeta, 2);
 		}
 
 		return true;

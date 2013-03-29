@@ -32,7 +32,7 @@ public class LeafPileGenerator implements IWorldGenerator {
 		chunkX = chunkX << 4;
 		chunkZ = chunkZ << 4;
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
-				chunkX);
+				chunkZ);
 
 		if (BiomeManager.greenswamp.isPresent()
 				&& biome == BiomeManager.greenswamp.get()
