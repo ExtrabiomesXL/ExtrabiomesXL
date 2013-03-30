@@ -55,6 +55,7 @@ public class BlockRedRockSlab extends BlockStep {
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister){
 		textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
 		textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");

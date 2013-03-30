@@ -48,6 +48,7 @@ public class BlockRedRock extends Block {
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
     	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrock");
     	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");

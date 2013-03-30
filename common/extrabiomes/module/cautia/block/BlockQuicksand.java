@@ -6,6 +6,8 @@
 
 package extrabiomes.module.cautia.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -28,6 +30,7 @@ class BlockQuicksand extends Block {
 	private Icon texture;
 	
 	@Override
+	@SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
     	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "quicksand");
     }

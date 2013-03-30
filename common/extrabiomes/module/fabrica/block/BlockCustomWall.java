@@ -46,6 +46,7 @@ public class BlockCustomWall extends BlockWall {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
     	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
     }

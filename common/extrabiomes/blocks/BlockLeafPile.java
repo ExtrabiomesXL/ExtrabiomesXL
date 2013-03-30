@@ -36,6 +36,7 @@ public class BlockLeafPile extends Block {
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
     	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leafpile");
     }

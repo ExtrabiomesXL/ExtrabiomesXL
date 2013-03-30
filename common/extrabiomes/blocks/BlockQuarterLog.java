@@ -91,6 +91,7 @@ public class BlockQuarterLog extends BlockLog {
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
     	textureArray[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideleft");
     	textureArray[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideright");

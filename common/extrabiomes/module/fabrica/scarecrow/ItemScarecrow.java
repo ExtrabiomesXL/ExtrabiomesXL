@@ -19,6 +19,9 @@ import net.minecraft.world.World;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import extrabiomes.Extrabiomes;
 
 public class ItemScarecrow extends Item {
@@ -45,6 +48,7 @@ public class ItemScarecrow extends Item {
 	
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void updateIcons(IconRegister iconRegister)
 	{
 		iconIndex = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "scarecrow");

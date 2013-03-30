@@ -47,6 +47,7 @@ public class BlockCustomWood extends BlockWood {
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
     	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksredwood");
     	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksfir");

@@ -6,6 +6,8 @@
 
 package extrabiomes.blocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
@@ -26,6 +28,7 @@ public class BlockCatTail extends BlockFlower {
     }
     
 	@Override
+	@SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
     	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cattail");
     }

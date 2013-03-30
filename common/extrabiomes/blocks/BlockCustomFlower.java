@@ -67,6 +67,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister){
 		autumnShrub = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "autumnshrub");
 		hydrangea = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "hydrangea");

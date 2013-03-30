@@ -79,6 +79,7 @@ public class BlockCustomSapling extends BlockFlower {
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegistry)
     {
 	    textures[0] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingbrown");

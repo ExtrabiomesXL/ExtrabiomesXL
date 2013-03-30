@@ -6,6 +6,8 @@
 
 package extrabiomes.blocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -25,6 +27,7 @@ public class GenericTerrainBlock extends Block {
     public String texturePath;
     
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
     	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texturePath);
     }

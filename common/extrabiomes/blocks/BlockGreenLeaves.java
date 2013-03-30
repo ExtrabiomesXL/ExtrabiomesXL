@@ -126,6 +126,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
     	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfancy");
     	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfast");
