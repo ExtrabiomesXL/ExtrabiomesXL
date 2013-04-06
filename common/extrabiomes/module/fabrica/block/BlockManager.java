@@ -51,7 +51,10 @@ public enum BlockManager {
             for (final BlockCustomWood.BlockType type : BlockCustomWood.BlockType.values())
                 FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
 
-            proxy.registerOre("plankWood", new ItemStack(thisBlock, 1, -1));
+            for(int i = 0; i < 3; i++){
+            	proxy.registerOre("plankWood", new ItemStack(thisBlock, 1, i));
+            }
+            
 
             Extrabiomes.postInitEvent(new PlankActiveEvent(thisBlock));
         }
