@@ -1,0 +1,28 @@
+MisterFiber - Original developer, concept.
+ExterminatorJeff - Lead developer.
+ScottKillen - Saviour of original mod, master coder, technical support, buddy.
+TDWP_FTW - Some graphics, many ideas, blocks, some biomes.
+
+Shout out to:
+BlacksWhites - Idea for Wasteland.
+MindKrafter - Idea for Marsh.
+Exalm - Continuing development of the original ExtraBiomes.
+HarpSeal - Cool guy.
+toughenough6 - First post on original topic.
+paull105 (AKA, SirDerpingtons) - First video showcase of ExtraBiomes.
+Ancetras - Love that texture pack.
+Delocuro - textures for biome colored leaves.
+SirSengir - For providing a great example of a simple yet powerful API
+Eloraam - For graciously providing help with RedPower integration
+AtomicStryker - For helping with the final step of porting to bukkit
+mushroomhostage - For embracing the job of porting to bukkit
+Rorax - For providing great data regarding Forestry bee generation and testing the fix.
+mistaqur - for embracing the concept of opensource and being the first community member to fix a bug and add a feature.
+MrAndrew420 - for being the first to embrace the wiki and post screenshots of nearly every biome
+
+The Buildcraft Development Team
+  Extrabiomes XL uses a modified version of OilPopulate.java from BuildCraft.
+  The modified source is available here:
+  https://github.com/ScottKillen/ExtrabiomesXL/tree/master/extrabiomes/src/common/extrabiomes/plugins/buildcraft
+  BuildCraft is distributed under the Minecraft Mod Public License 1.0 at
+  https://github.com/SirSengir/BuildCraft/
