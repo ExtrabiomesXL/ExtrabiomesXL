@@ -68,7 +68,7 @@ public class ForestryPlugin {
 
     private static final int        FORESTER           = 2;
 
-    private static final int        BIOMASS_SAPLINGS   = 200;
+    private static final int        BIOMASS_SAPLINGS   = 250;
     
     static ItemStack getBlock(String name) {
         try {
