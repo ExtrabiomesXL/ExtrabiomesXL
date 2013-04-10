@@ -181,13 +181,17 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
         dropBlockAsItem_do(world, x, y, z, new ItemStack(idDropped, 1, damageDropped));
     }
 
-    @Override
-    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int metadata,
-            float chance, int par7)
-    {
-        if (world.isRemote) return;
+    private void leafTypeDropper(IBlockAccess iBlockAccess, World world, int x, int y, int z, int metadata, int par7) {
+        final int damageValue = unmarkedMetadata(iBlockAccess.getBlockMetadata(x, y, z));
+        if (world.isRemote)
+            return;
 
-        if (world.rand.nextInt(20) == 0) doSaplingDrop(world, x, y, z, metadata, par7);
+        if (damageValue != BlockType.ACACIA.metadata)
+            if (world.rand.nextInt(20) == 0)
+                doSaplingDrop(world, x, y, z, metadata, par7);
+        else
+            if (world.rand.nextInt(80) == 0)
+                doSaplingDrop(world, x, y, z, metadata, par7);
     }
 
     @Override
