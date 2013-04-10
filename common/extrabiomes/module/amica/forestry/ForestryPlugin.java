@@ -38,12 +38,9 @@ public class ForestryPlugin {
     private Object                  carpenterManager;
     private static boolean          enabled            = true;
 
-    private ArrayList               arborealCrops;
     private ArrayList               plainFlowers;
     private ArrayList               leafBlockIds;
     private ArrayList[]             backpackItems;
-
-    public static ArrayList         loggerWindfall;
 
     /**
      * public void addRecipe(int packagingTime, LiquidStack liquid,
@@ -71,6 +68,8 @@ public class ForestryPlugin {
 
     private static final int        FORESTER           = 2;
 
+    private static final int        BIOMASS_SAPLINGS   = 250;
+    
     static ItemStack getBlock(String name) {
         try {
             return (ItemStack) getForestryBlock.get().invoke(null, name);
@@ -98,11 +97,11 @@ public class ForestryPlugin {
     }
 
     private void addFermenterRecipeSapling(ItemStack resource) throws Exception {
-        fermenterAddRecipe.get().invoke(fermenterManager, resource, 800, 1.0f,
+        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.0f,
                 getLiquidStack("liquidBiomass"), new LiquidStack(Block.waterStill.blockID, 1, 0));
-        fermenterAddRecipe.get().invoke(fermenterManager, resource, 800, 1.5f,
+        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f,
                 getLiquidStack("liquidBiomass"), getLiquidStack("liquidJuice"));
-        fermenterAddRecipe.get().invoke(fermenterManager, resource, 800, 1.5f,
+        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f,
                 getLiquidStack("liquidBiomass"), getLiquidStack("liquidHoney"));
     }
 
@@ -130,7 +129,6 @@ public class ForestryPlugin {
             TreeSoilRegistry.addValidSoil(Block.blocksList[soil.get().itemID]);
             BlockCustomSapling.setForestrySoilID(soil.get().itemID);
         }
-        arborealCrops.add(new CropProviderSapling());
         
         for(ItemStack sapling : ForestryModHelper.getSaplings())
         	FMLInterModComms.sendMessage("Forestry", "add-farmable-sapling", String.format("farmArboreal@%s.%s", sapling.itemID, sapling.getItemDamage()));
@@ -172,14 +170,6 @@ public class ForestryPlugin {
             fermenterManager = fld.get(null);
             fld = cls.getField("carpenterManager");
             carpenterManager = fld.get(null);
-
-            cls = Class.forName("forestry.api.core.ForestryAPI");
-            fld = cls.getField("loggerWindfall");
-            loggerWindfall = (ArrayList) fld.get(null);
-
-            cls = Class.forName("forestry.api.cultivation.CropProviders");
-            fld = cls.getField("arborealCrops");
-            arborealCrops = (ArrayList) fld.get(null);
 
             cls = Class.forName("forestry.api.apiculture.FlowerManager");
             fld = cls.getField("plainFlowers");
