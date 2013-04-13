@@ -9,12 +9,17 @@ package extrabiomes.handlers;
 import java.io.File;
 import java.util.logging.Level;
 
+import net.minecraftforge.common.ConfigCategory;
+import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.Property;
+
 import com.google.common.base.Optional;
 
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.DecorationSettings;
+import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.ItemSettings;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.lib.Reference;
@@ -47,6 +52,11 @@ public abstract class ConfigurationHandler {
 
             for (final ModuleControlSettings setting : ModuleControlSettings.values())
                 setting.load(configuration);
+            
+            Property bigTreeSaplingDropRateProperty = configuration.get(Configuration.CATEGORY_GENERAL, "Big tree sapling drop rate", 80);
+            bigTreeSaplingDropRateProperty.comment = "This controls the chance of a sapling dropping when a leaf block decays. A larger number reduces the number of saplings dropped.";
+            GeneralSettings.bigTreeSaplingDropModifier = bigTreeSaplingDropRateProperty.getInt(80);
+            
         } catch (final Exception e) {
             LogHelper.log(Level.SEVERE, e, "%s had had a problem loading its configuration",
                     Reference.MOD_NAME);

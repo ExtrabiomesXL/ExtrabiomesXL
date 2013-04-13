@@ -30,6 +30,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.lib.Element;
+import extrabiomes.lib.GeneralSettings;
 
 public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
@@ -190,7 +191,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
             if (world.rand.nextInt(20) == 0)
                 doSaplingDrop(world, x, y, z, metadata, par7);
         else
-            if (world.rand.nextInt(80) == 0)
+            if (world.rand.nextInt(GeneralSettings.bigTreeSaplingDropModifier) == 0)
                 doSaplingDrop(world, x, y, z, metadata, par7);
     }
 
