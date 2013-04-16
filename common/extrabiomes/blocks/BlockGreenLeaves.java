@@ -181,6 +181,11 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
         final int damageDropped = damageDropped(metadata);
         dropBlockAsItem_do(world, x, y, z, new ItemStack(idDropped, 1, damageDropped));
     }
+    
+    @Override
+    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int metadata, float chance, int par7){
+    	leafTypeDropper(world, world, x, y, z, metadata, par7);
+    }
 
     private void leafTypeDropper(IBlockAccess iBlockAccess, World world, int x, int y, int z, int metadata, int par7) {
         final int damageValue = unmarkedMetadata(iBlockAccess.getBlockMetadata(x, y, z));
@@ -201,7 +206,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     }
 
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata){
         metadata = unmarkedMetadata(metadata);
         if (metadata > 2) metadata = 0;
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
