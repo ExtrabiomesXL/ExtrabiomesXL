@@ -53,9 +53,9 @@ public abstract class ConfigurationHandler {
             for (final ModuleControlSettings setting : ModuleControlSettings.values())
                 setting.load(configuration);
             
-            Property bigTreeSaplingDropRateProperty = configuration.get(Configuration.CATEGORY_GENERAL, "Big tree sapling drop rate", 20);
-            bigTreeSaplingDropRateProperty.comment = "Big tree sapling drop rate controls the chance of a sapling dropping when a redwood or fir leaf block decays.\nA larger number reduces the number of saplings dropped.\n\t20 for default drop rate\n\t80 for recommended decreased drop rate.";
-            GeneralSettings.bigTreeSaplingDropModifier = bigTreeSaplingDropRateProperty.getInt(20);
+            Property bigTreeSaplingDropRateProperty = configuration.get(Configuration.CATEGORY_GENERAL, "Relative sapling drops", false);
+            bigTreeSaplingDropRateProperty.comment = "Setting relative sapling drops to true will decrease the amount of saplings dropped by decaying fir and redwood leaf blocks to a more reasonable amount.";
+            GeneralSettings.bigTreeSaplingDropModifier = bigTreeSaplingDropRateProperty.getBoolean(false);
             
         } catch (final Exception e) {
             LogHelper.log(Level.SEVERE, e, "%s had had a problem loading its configuration",

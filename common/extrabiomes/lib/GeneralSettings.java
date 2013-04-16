@@ -2,6 +2,6 @@ package extrabiomes.lib;
 
 public class GeneralSettings {
 
-	public static int bigTreeSaplingDropModifier = 1;
+	public static boolean bigTreeSaplingDropModifier = false;
 	
 }

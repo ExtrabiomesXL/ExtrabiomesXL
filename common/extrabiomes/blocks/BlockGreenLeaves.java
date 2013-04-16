@@ -192,11 +192,11 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
         if (world.isRemote)
             return;
 
-        if (damageValue != BlockType.ACACIA.metadata)
+        if (damageValue != BlockType.ACACIA.metadata || !GeneralSettings.bigTreeSaplingDropModifier)
             if (world.rand.nextInt(20) == 0)
                 doSaplingDrop(world, x, y, z, metadata, par7);
         else
-            if (world.rand.nextInt(GeneralSettings.bigTreeSaplingDropModifier) == 0)
+            if (world.rand.nextInt(90) == 0)
                 doSaplingDrop(world, x, y, z, metadata, par7);
     }
 
