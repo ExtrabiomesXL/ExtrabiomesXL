@@ -24,9 +24,9 @@ public class LogTurner extends ItemTool {
     }
        
     @Override
-    public void updateIcons(IconRegister iconRegister)
+    public void registerIcons(IconRegister iconRegister)
     {
-    	iconIndex = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logturner");
+    	itemIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logturner");
     }
 
     

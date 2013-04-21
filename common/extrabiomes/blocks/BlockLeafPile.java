@@ -42,7 +42,7 @@ public class BlockLeafPile extends Block {
     }
     
     @Override//Change this to more appropriate method
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata){
+    public Icon getIcon(int side, int metadata){
     	return texture;
     }
 

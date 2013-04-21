@@ -178,7 +178,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     }
 
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getIcon(int side, int metadata) {
         metadata = unmarkedMetadata(metadata);
         if (metadata > 4) metadata = 4;
             return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];

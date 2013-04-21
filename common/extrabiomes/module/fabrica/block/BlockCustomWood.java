@@ -55,7 +55,7 @@ public class BlockCustomWood extends BlockWood {
     }
 
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
+	public Icon getIcon(int side, int metadata)
 	{
 		return textures[metadata];
 	}

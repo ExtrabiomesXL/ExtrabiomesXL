@@ -70,7 +70,7 @@ public class BlockCustomLog extends BlockLog {
     }
 
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getIcon(int side, int metadata) {
         final int orientation = metadata & 12;
         int type = metadata & 3;
         if (type > 1) type = 0;

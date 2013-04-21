@@ -39,7 +39,7 @@ class WorldGenMarshDirt extends WorldGenerator {
 								y1,
 								z1,
 								Block.dirt.blockID,
-								1 << Direction.vineGrowth[Facing.faceToSide[side]], 3);
+								1 << Direction.facingToDirection[Facing.oppositeSide[side]], 3);
 						continue label0;
 					}
 

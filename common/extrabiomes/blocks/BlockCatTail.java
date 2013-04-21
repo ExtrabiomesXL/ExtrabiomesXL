@@ -34,7 +34,7 @@ public class BlockCatTail extends BlockFlower {
     }
 	
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+	public Icon getIcon(int side, int metadata) {
 		return texture;
 	}
 

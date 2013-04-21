@@ -15,8 +15,8 @@ public class ItemPaste extends Item{
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public void updateIcons(IconRegister iconRegister)
+    public void registerIcons(IconRegister iconRegister)
     {
-    	iconIndex = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cactuspaste");
+    	itemIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cactuspaste");
     }
 }

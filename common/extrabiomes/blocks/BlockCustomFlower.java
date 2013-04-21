@@ -110,7 +110,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
     }
 
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getIcon(int side, int metadata) {
         if (metadata > 7) metadata = 7;
         //return super.getBlockTextureFromSideAndMetadata(side, metadata) + metadata;
         switch(metadata){
