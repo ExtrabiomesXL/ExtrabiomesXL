@@ -8,8 +8,11 @@ package extrabiomes.module.fabrica.scarecrow;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -20,13 +23,37 @@ public class EntityScarecrow extends EntityCreature {
 		super(world);
 		texture = "/mods/ExtrabiomesXL/textures/models/scarecrow.png";
 		preventEntitySpawning = true;
-		tasks.addTask(7, new EntityAIWatchClosest(this,
+		tasks.addTask(4, new EntityAIWatchClosest(this,
 				EntityPlayer.class, 50.0F));
-		tasks.addTask(7, new EntityAIWatchClosest(this,
+		tasks.addTask(4, new EntityAIWatchClosest(this,
 				EntityCreature.class, 50.0F));
-		tasks.addTask(7, new EntityAIWatchClosest(this,
+		tasks.addTask(1, new EntityAIScareClosest(this,
 				EntityMob.class, 50.0F));
 		tasks.addTask(7, new EntityAILookIdle(this));
+	}
+	
+	private class EntityAIScareClosest extends EntityAIWatchClosest
+	{
+		
+		public EntityAIScareClosest(EntityLiving par1EntityLiving, Class par2Class, float par3) {
+			super(par1EntityLiving, par2Class, par3);
+		}
+		
+		@Override
+		public void startExecuting()
+		{
+			super.startExecuting();
+			if (closestEntity instanceof EntityCreeper)
+			{
+				((EntityCreeper) closestEntity).tasks.addTask(1, 
+						new EntityAIAvoidEntity(
+								(EntityCreature) closestEntity,
+								EntityScarecrow.class,
+								10.0F, 
+								0.3F, 
+								0.4F));
+			}
+		}
 	}
 
 	@Override
