@@ -13,22 +13,23 @@ import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-public class EntityScarecrow extends EntityCreature {
+public class EntityScarecrow extends EntityGolem {
 	public EntityScarecrow(World world) {
 		super(world);
 		texture = "/mods/ExtrabiomesXL/textures/models/scarecrow.png";
 		preventEntitySpawning = true;
-		tasks.addTask(4, new EntityAIWatchClosest(this,
-				EntityPlayer.class, 50.0F));
-		tasks.addTask(4, new EntityAIWatchClosest(this,
-				EntityCreature.class, 50.0F));
 		tasks.addTask(1, new EntityAIScareClosest(this,
 				EntityMob.class, 50.0F));
+		tasks.addTask(2, new EntityAIScareClosest(this,
+				EntityCreature.class, 50.0F));
+		tasks.addTask(3, new EntityAIWatchClosest(this,
+				EntityPlayer.class, 50.0F));
 		tasks.addTask(7, new EntityAILookIdle(this));
 	}
 	
@@ -43,9 +44,9 @@ public class EntityScarecrow extends EntityCreature {
 		public void startExecuting()
 		{
 			super.startExecuting();
-			if (closestEntity instanceof EntityCreeper)
+			if (closestEntity instanceof EntityCreature && !(closestEntity instanceof EntityGolem))
 			{
-				((EntityCreeper) closestEntity).tasks.addTask(1, 
+				((EntityCreature) closestEntity).tasks.addTask(1, 
 						new EntityAIAvoidEntity(
 								(EntityCreature) closestEntity,
 								EntityScarecrow.class,
@@ -58,6 +59,11 @@ public class EntityScarecrow extends EntityCreature {
 
 	@Override
 	public boolean canBePushed() {
+		return false;
+	}
+	
+	@Override
+	public boolean canBeCollidedWith() {
 		return false;
 	}
 
@@ -76,21 +82,6 @@ public class EntityScarecrow extends EntityCreature {
 		dropItem(Item.stick.itemID, 3);
 		dropItem(Block.melon.blockID, 1);
 		dropItem(Block.pumpkin.blockID, 1);
-	}
-
-	@Override
-	protected String getDeathSound() {
-		return null;
-	}
-
-	@Override
-	protected String getHurtSound() {
-		return null;
-	}
-
-	@Override
-	protected String getLivingSound() {
-		return null;
 	}
 
 	@Override
