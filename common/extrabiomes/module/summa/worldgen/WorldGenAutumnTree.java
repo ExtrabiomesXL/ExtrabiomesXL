@@ -47,12 +47,6 @@ public class WorldGenAutumnTree extends WorldGenerator {
 
 	private static Block		trunkBlock					= Block.wood;
 	private static int			trunkMetadata				= 1;
-	private static ItemStack			brownLeaves			= new ItemStack(Block.leaves);
-	private static ItemStack			orangeLeaves		= brownLeaves;
-	private static ItemStack purpleLeaves		= brownLeaves;
-
-	private static ItemStack yellowLeaves		= brownLeaves;
-
 	private static final int	BASE_HEIGHT					= 4;
 
 	private static final int	CANOPY_HEIGHT				= 3;

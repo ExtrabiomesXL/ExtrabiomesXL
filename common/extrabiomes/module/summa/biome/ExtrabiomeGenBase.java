@@ -15,7 +15,6 @@ import com.google.common.base.Optional;
 
 import extrabiomes.api.BiomeManager;
 
-@SuppressWarnings("deprecation")
 abstract class ExtrabiomeGenBase extends BiomeGenBase {
 
 	protected ExtrabiomeGenBase(int id) {

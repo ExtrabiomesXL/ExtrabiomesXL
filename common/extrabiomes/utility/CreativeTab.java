@@ -11,6 +11,7 @@ public class CreativeTab extends CreativeTabs {
 		super(par1, par2Str);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem() {
 		if (!Stuff.scarecrow.isPresent())

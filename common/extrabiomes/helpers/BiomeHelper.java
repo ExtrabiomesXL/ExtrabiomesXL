@@ -26,7 +26,7 @@ import extrabiomes.lib.BiomeSettings;
 
 public abstract class BiomeHelper {
 
-    private static final Set<WorldType>                        worldTypes   = new HashSet();
+    private static final Set<WorldType>                        worldTypes   = new HashSet<WorldType>();
 
     private static Optional<? extends ArrayList<BiomeGenBase>> activeBiomes = Optional.absent();
 

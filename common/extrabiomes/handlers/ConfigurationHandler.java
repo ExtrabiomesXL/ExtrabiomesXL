@@ -9,7 +9,6 @@ package extrabiomes.handlers;
 import java.io.File;
 import java.util.logging.Level;
 
-import net.minecraftforge.common.ConfigCategory;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 

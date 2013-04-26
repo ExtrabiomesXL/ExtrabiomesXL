@@ -22,6 +22,7 @@ public class BuildcraftAPI {
 	private static Optional<Method>	generateSurfaceDeposit	= Optional.absent();
 	boolean useRandom = false;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	BuildcraftAPI() {
 		Class cls;
 		try {

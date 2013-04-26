@@ -22,7 +22,8 @@ class ThermalExpansionAPI {
      */
     private Optional<Method> addSawmillLogToPlankRecipe = Optional.absent();
 
-    ThermalExpansionAPI() {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	ThermalExpansionAPI() {
         try {
             final Class cls = Class.forName("thermalexpansion.api.crafting.CraftingHelpers");
             addSawmillLogToPlankRecipe = Optional.fromNullable(cls.getMethod(

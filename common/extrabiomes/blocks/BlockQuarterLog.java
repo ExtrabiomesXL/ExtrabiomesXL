@@ -16,7 +16,6 @@ import net.minecraft.block.BlockPistonBase;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
@@ -58,7 +57,7 @@ public class BlockQuarterLog extends BlockLog {
             EntityLiving entity)
     {
         final int direction = BlockPistonBase.determineOrientation(world, x, y, z,
-                (EntityPlayer) entity);
+                entity);
 
         switch (direction) {
             case 0:
@@ -87,7 +86,7 @@ public class BlockQuarterLog extends BlockLog {
         this.barkOnSides = barkOnSides;
         barkOnSides.blockID = blockID;
         this.index = index;
-        textures = new HashMap();
+        textures = new HashMap<Integer, Icon>();
     }
     
     @Override
@@ -388,6 +387,7 @@ public class BlockQuarterLog extends BlockLog {
     }
 
     @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list) {
         for (final BlockType type : BlockType.values())

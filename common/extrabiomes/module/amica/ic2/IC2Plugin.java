@@ -11,7 +11,6 @@ import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_INIT;
 
 import java.util.Collection;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.ForgeSubscribe;
 
@@ -20,7 +19,6 @@ import com.google.common.collect.Lists;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
-import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 
@@ -43,7 +41,8 @@ public class IC2Plugin {
         api.get().addBiomeBonus(biome, humidityBonus, nutrientsBonus);
     }
 
-    private void addBiomeBonuses() {
+    @SuppressWarnings("unchecked")
+	private void addBiomeBonuses() {
         addBiomeBonus(BiomeSettings.GREENSWAMP.getBiome(), 2, 2);
         addBiomeBonus(Lists.newArrayList(BiomeSettings.AUTUMNWOODS.getBiome(),
                 BiomeSettings.BIRCHFOREST.getBiome(), BiomeSettings.FORESTEDHILLS.getBiome(),

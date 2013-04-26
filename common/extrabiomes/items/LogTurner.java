@@ -12,7 +12,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;

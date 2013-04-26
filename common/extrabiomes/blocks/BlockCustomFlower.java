@@ -165,7 +165,8 @@ public class BlockCustomFlower extends Block implements IPlantable {
 
     }
 
-    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
         if (tab == Extrabiomes.tabsEBXL) for (final BlockType type : BlockType.values())

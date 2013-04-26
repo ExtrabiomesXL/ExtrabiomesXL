@@ -18,7 +18,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeSnowForest extends ExtrabiomeGenBase {
 
-    public BiomeSnowForest() {
+    @SuppressWarnings("unchecked")
+	public BiomeSnowForest() {
         super(BiomeSettings.SNOWYFOREST.getID());
 
         setColor(0x5BA68D);

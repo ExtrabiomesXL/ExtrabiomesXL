@@ -7,7 +7,6 @@
 
 package extrabiomes.proxy;
 
-import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;

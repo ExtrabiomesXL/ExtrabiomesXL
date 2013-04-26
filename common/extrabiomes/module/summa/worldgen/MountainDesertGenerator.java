@@ -12,17 +12,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenDesertWells;
-import net.minecraft.world.gen.feature.WorldGenVines;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 
 @SuppressWarnings("deprecation")
 public class MountainDesertGenerator implements IWorldGenerator {
 
-	private static final WorldGenerator	vineGen	= new WorldGenVines();
-
-    @Override
+	@Override
 	public void generate(Random random, int chunkX, int chunkZ,
 			World world, IChunkProvider chunkGenerator,
 			IChunkProvider chunkProvider)

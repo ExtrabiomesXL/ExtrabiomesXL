@@ -46,8 +46,6 @@ public class RecipeManager {
     private Optional<ItemStack>   redCobbleItem    = Optional.absent();
     private Optional<ItemStack>   redRockBrickItem = Optional.absent();
 
-    private final ItemStack       charcoal         = new ItemStack(Item.coal, 1, 1);
-
     private final List<ItemStack> acaciaLogs       = new ArrayList<ItemStack>();
     private final List<ItemStack> firLogs          = new ArrayList<ItemStack>();
     private final List<ItemStack> oakLogs          = new ArrayList<ItemStack>();

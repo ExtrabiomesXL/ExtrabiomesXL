@@ -19,7 +19,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeForestedIsland extends ExtrabiomeGenBase {
 
-    public BiomeForestedIsland() {
+    @SuppressWarnings("unchecked")
+	public BiomeForestedIsland() {
         super(BiomeSettings.FORESTEDISLAND.getID());
 
         setColor(0x62BF6C);

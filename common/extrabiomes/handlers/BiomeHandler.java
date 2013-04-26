@@ -6,8 +6,6 @@
 
 package extrabiomes.handlers;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import net.minecraft.world.WorldType;
@@ -31,8 +29,6 @@ import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
 
 public enum BiomeHandler {
     INSTANCE;
-
-    private static List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
 
     public static void enableBiomes() {
         final Set<WorldType> worldTypes = BiomeHelper.discoverWorldTypes();

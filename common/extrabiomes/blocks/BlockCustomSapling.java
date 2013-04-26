@@ -120,6 +120,7 @@ public class BlockCustomSapling extends BlockFlower {
     }
 
     @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
         if (tab == Extrabiomes.tabsEBXL) for (final BlockType blockType : BlockType.values())

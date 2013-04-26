@@ -81,9 +81,9 @@ public class BiomeManagerImpl extends BiomeManager {
     private static final WorldGenerator                                               SWAMP_TREE_GEN            = new WorldGenSwamp();
     private static final WorldGenerator                                               TAIGA_GEN                 = new WorldGenTaiga1();
 
-    private static final Collection<BiomeGenBase>                                     disableDefaultGrassBiomes = new ArrayList();
+    private static final Collection<BiomeGenBase>                                     disableDefaultGrassBiomes = new ArrayList<BiomeGenBase>();
 
-    private final static Map<GenType, Multimap<BiomeGenBase, WeightedWorldGenerator>> weightedChoices           = new EnumMap(
+    private final static Map<GenType, Multimap<BiomeGenBase, WeightedWorldGenerator>> weightedChoices           = new EnumMap<GenType, Multimap<BiomeGenBase, WeightedWorldGenerator>>(
                                                                                                                         GenType.class);
 
     private static void addAlpineTrees(Optional<? extends BiomeGenBase> biome) {
@@ -356,7 +356,8 @@ public class BiomeManagerImpl extends BiomeManager {
         return Optional.absent();
     }
 
-    protected Collection<BiomeGenBase> getBiomeCollection() {
+    @Override
+	protected Collection<BiomeGenBase> getBiomeCollection() {
         return ImmutableSet.copyOf(BiomeHelper.getActiveBiomes());
     }
 

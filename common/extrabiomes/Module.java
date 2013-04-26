@@ -60,9 +60,9 @@ enum Module {
 
     private boolean     enabled = false;
 
-    private final Class pluginClass;
+    private final Class<?> pluginClass;
 
-    private Module(Class pluginClass) {
+    private Module(Class<?> pluginClass) {
         this.pluginClass = pluginClass;
     }
 

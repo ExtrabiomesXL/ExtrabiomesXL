@@ -8,7 +8,6 @@ package extrabiomes.module.amica.ic2;
 
 import java.lang.reflect.Method;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 
 import com.google.common.base.Optional;
@@ -21,6 +20,7 @@ class IC2API {
 	 */
 	private Optional<Method>	addBiomeBonus		= Optional.absent();
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	IC2API() {
 		Class cls;
 		try {

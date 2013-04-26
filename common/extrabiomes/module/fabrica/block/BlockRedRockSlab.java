@@ -39,9 +39,6 @@ public class BlockRedRockSlab extends BlockStep {
 	}
 
 	private static int	singleSlabID	= 0;
-	private Icon sideTexture;
-	private Icon redRockTop;
-	private Icon redRockSide;
 	private Icon[] textures = {null, null, null, null};
 
 	public BlockRedRockSlab(int id, boolean isDouble) {
@@ -96,6 +93,7 @@ public class BlockRedRockSlab extends BlockStep {
 	}
 
 	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int blockID, CreativeTabs tab,
 			List itemList)
