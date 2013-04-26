@@ -16,7 +16,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeExtremeJungle extends ExtrabiomeGenBase {
 
-    public BiomeExtremeJungle() {
+    @SuppressWarnings("unchecked")
+	public BiomeExtremeJungle() {
         super(BiomeSettings.EXTREMEJUNGLE.getID());
         setColor(0x2c4205);
         setBiomeName("Extreme Jungle");

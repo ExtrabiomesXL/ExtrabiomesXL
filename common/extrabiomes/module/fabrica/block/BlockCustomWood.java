@@ -61,6 +61,7 @@ public class BlockCustomWood extends BlockWood {
 	}
 
 	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int blockID,
 			CreativeTabs par2CreativeTabs, List list)

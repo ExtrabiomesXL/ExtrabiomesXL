@@ -52,6 +52,7 @@ public class BlockCustomWall extends BlockWall {
     }
     	
     @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void addCreativeItems(ArrayList itemList) {
         for (final BlockType blockType : BlockType.values())
             itemList.add(new ItemStack(this, 1, blockType.metadata()));
@@ -68,6 +69,7 @@ public class BlockCustomWall extends BlockWall {
     }
 
     @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
         for (final BlockType blockType : BlockType.values())

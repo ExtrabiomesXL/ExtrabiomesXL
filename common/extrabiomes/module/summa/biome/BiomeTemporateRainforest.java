@@ -17,7 +17,8 @@ public class BiomeTemporateRainforest extends ExtrabiomeGenBase {
         this(BiomeSettings.TEMPORATERAINFOREST.getID());
     }
 
-    BiomeTemporateRainforest(int id) {
+    @SuppressWarnings("unchecked")
+	BiomeTemporateRainforest(int id) {
         super(id);
 
         setColor(0x338235);

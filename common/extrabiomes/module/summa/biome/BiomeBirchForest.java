@@ -13,7 +13,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeBirchForest extends ExtrabiomeGenBase {
 
-    public BiomeBirchForest() {
+    @SuppressWarnings("unchecked")
+	public BiomeBirchForest() {
         super(BiomeSettings.BIRCHFOREST.getID());
 
         setColor(0x62BF6C);

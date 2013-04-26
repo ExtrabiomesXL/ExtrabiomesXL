@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.logging.Logger;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -53,7 +54,8 @@ public class CommonProxy {
         LanguageRegistry.addName(object, name);
     }
 
-    public void addRecipe(IRecipe recipe) {
+    @SuppressWarnings("unchecked")
+	public void addRecipe(IRecipe recipe) {
         CraftingManager.getInstance().getRecipeList().add(recipe);
     }
 
@@ -113,14 +115,14 @@ public class CommonProxy {
         return 0;
     }
 
-    public void registerEntity(Class entityClass, String entityName, Object mod, int entityID,
+    public void registerEntity(Class<? extends Entity> entityClass, String entityName, Object mod, int entityID,
             int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
     {
         EntityRegistry.registerModEntity(entityClass, entityName, entityID, mod, trackingRange,
                 updateFrequency, sendsVelocityUpdates);
     }
 
-    public void registerEntityID(Class entityClass, String entityName, int entityID) {
+    public void registerEntityID(Class<? extends Entity> entityClass, String entityName, int entityID) {
         EntityRegistry.registerGlobalEntityID(entityClass, entityName, entityID);
     }
 

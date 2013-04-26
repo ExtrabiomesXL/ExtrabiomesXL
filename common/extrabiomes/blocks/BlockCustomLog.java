@@ -43,7 +43,7 @@ public class BlockCustomLog extends BlockLog {
     
     public BlockCustomLog(int id) {
         super(id);
-        texturesMap = new HashMap();
+        texturesMap = new HashMap<Integer, Icon>();
     }
     
     @Override
@@ -80,7 +80,8 @@ public class BlockCustomLog extends BlockLog {
         return texturesMap.get(index + type);
     }
 
-    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list) {
         for (final BlockType type : BlockType.values())

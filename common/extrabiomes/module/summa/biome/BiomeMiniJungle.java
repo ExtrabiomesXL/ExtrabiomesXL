@@ -16,7 +16,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMiniJungle extends ExtrabiomeGenBase {
 
-    public BiomeMiniJungle() {
+    @SuppressWarnings("unchecked")
+	public BiomeMiniJungle() {
         super(BiomeSettings.MINIJUNGLE.getID());
 
         setColor(0x41D923);

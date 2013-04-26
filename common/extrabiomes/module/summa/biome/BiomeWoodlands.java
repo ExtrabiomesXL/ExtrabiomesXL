@@ -18,7 +18,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeWoodlands extends ExtrabiomeGenBase {
 
-    public BiomeWoodlands() {
+    @SuppressWarnings("unchecked")
+	public BiomeWoodlands() {
         super(BiomeSettings.WOODLANDS.getID());
 
         setColor(0x85B53E);

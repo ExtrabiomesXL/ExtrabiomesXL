@@ -6,7 +6,6 @@
 
 package extrabiomes.localization;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import extrabiomes.Extrabiomes;
 
 public class LocalizationHandler {

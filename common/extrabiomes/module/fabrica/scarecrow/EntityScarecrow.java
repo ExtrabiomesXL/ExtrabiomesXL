@@ -12,7 +12,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +35,7 @@ public class EntityScarecrow extends EntityGolem {
 	private class EntityAIScareClosest extends EntityAIWatchClosest
 	{
 		
-		public EntityAIScareClosest(EntityLiving par1EntityLiving, Class par2Class, float par3) {
+		public EntityAIScareClosest(EntityLiving par1EntityLiving, Class<? extends EntityCreature> par2Class, float par3) {
 			super(par1EntityLiving, par2Class, par3);
 		}
 		

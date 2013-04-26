@@ -15,7 +15,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeAlpine extends ExtrabiomeGenBase {
 
-    public BiomeAlpine() {
+    @SuppressWarnings("unchecked")
+	public BiomeAlpine() {
         super(BiomeSettings.ALPINE.getID());
         topBlock = (byte) Block.stone.blockID;
         fillerBlock = (byte) Block.stone.blockID;

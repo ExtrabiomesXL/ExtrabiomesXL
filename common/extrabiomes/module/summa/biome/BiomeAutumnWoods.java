@@ -19,7 +19,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeAutumnWoods extends ExtrabiomeGenBase {
 
-    public BiomeAutumnWoods() {
+    @SuppressWarnings("unchecked")
+	public BiomeAutumnWoods() {
         super(BiomeSettings.AUTUMNWOODS.getID());
         setColor(0xF29C11);
         setBiomeName("Autumn Woods");

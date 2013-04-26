@@ -19,7 +19,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeForestedHills extends ExtrabiomeGenBase {
 
-    public BiomeForestedHills() {
+    @SuppressWarnings("unchecked")
+	public BiomeForestedHills() {
         super(BiomeSettings.FORESTEDHILLS.getID());
 
         setBiomeName("Forested Hills");

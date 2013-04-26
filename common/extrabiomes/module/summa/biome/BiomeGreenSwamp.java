@@ -15,7 +15,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeGreenSwamp extends ExtrabiomeGenBase {
 
-    public BiomeGreenSwamp() {
+    @SuppressWarnings("unchecked")
+	public BiomeGreenSwamp() {
         super(BiomeSettings.GREENSWAMP.getID());
 
         setColor(0x68C474);

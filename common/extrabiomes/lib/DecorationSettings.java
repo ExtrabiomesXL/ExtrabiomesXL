@@ -8,40 +8,10 @@ package extrabiomes.lib;
 
 import java.util.Map;
 
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.Property;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
 
-import extrabiomes.module.summa.biome.BiomeAlpine;
-import extrabiomes.module.summa.biome.BiomeAutumnWoods;
-import extrabiomes.module.summa.biome.BiomeBirchForest;
-import extrabiomes.module.summa.biome.BiomeExtremeJungle;
-import extrabiomes.module.summa.biome.BiomeForestedHills;
-import extrabiomes.module.summa.biome.BiomeForestedIsland;
-import extrabiomes.module.summa.biome.BiomeGlacier;
-import extrabiomes.module.summa.biome.BiomeGreenHills;
-import extrabiomes.module.summa.biome.BiomeGreenSwamp;
-import extrabiomes.module.summa.biome.BiomeIceWasteland;
-import extrabiomes.module.summa.biome.BiomeMarsh;
-import extrabiomes.module.summa.biome.BiomeMeadow;
-import extrabiomes.module.summa.biome.BiomeMiniJungle;
-import extrabiomes.module.summa.biome.BiomeMountainDesert;
-import extrabiomes.module.summa.biome.BiomeMountainRidge;
-import extrabiomes.module.summa.biome.BiomeMountainTaiga;
-import extrabiomes.module.summa.biome.BiomePineForest;
-import extrabiomes.module.summa.biome.BiomeRainforest;
-import extrabiomes.module.summa.biome.BiomeRedwoodForest;
-import extrabiomes.module.summa.biome.BiomeRedwoodLush;
-import extrabiomes.module.summa.biome.BiomeSavanna;
-import extrabiomes.module.summa.biome.BiomeShrubland;
-import extrabiomes.module.summa.biome.BiomeSnowForest;
-import extrabiomes.module.summa.biome.BiomeSnowRainforest;
-import extrabiomes.module.summa.biome.BiomeTemporateRainforest;
-import extrabiomes.module.summa.biome.BiomeTundra;
-import extrabiomes.module.summa.biome.BiomeWasteland;
-import extrabiomes.module.summa.biome.BiomeWoodlands;
 import extrabiomes.utility.EnhancedConfiguration;
 
 public enum DecorationSettings {

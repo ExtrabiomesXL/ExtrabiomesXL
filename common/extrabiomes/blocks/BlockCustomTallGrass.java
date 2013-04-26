@@ -104,6 +104,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
     }
 
     @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
         if (tab == Extrabiomes.tabsEBXL) for (final BlockType type : BlockType.values())

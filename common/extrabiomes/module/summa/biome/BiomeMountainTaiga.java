@@ -15,7 +15,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMountainTaiga extends ExtrabiomeGenBase {
 
-    public BiomeMountainTaiga() {
+    @SuppressWarnings("unchecked")
+	public BiomeMountainTaiga() {
         super(BiomeSettings.MOUNTAINTAIGA.getID());
 
         setColor(0xB6659);

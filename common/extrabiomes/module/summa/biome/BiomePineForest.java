@@ -19,7 +19,8 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomePineForest extends ExtrabiomeGenBase {
 
-    public BiomePineForest() {
+    @SuppressWarnings("unchecked")
+	public BiomePineForest() {
         super(BiomeSettings.PINEFOREST.getID());
 
         setColor(0x469C7E);

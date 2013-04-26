@@ -38,9 +38,9 @@ public class ForestryPlugin {
     private Object                  carpenterManager;
     private static boolean          enabled            = true;
 
-    private ArrayList               plainFlowers;
-    private ArrayList               leafBlockIds;
-    private ArrayList[]             backpackItems;
+    private ArrayList<ItemStack>               plainFlowers;
+    private ArrayList<Integer>               leafBlockIds;
+    private ArrayList<ItemStack>[]             backpackItems;
 
     /**
      * public void addRecipe(int packagingTime, LiquidStack liquid,
@@ -153,13 +153,14 @@ public class ForestryPlugin {
         return enabled && Extrabiomes.proxy.isModLoaded("Forestry");
     }
 
-    @ForgeSubscribe
+    @SuppressWarnings("unchecked")
+	@ForgeSubscribe
     public void preInit(PluginEvent.Pre event) {
         if (!isEnabled()) return;
         LogHelper
                 .fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT), "Forestry");
         try {
-            Class cls = Class.forName("forestry.api.core.ItemInterface");
+            Class<?> cls = Class.forName("forestry.api.core.ItemInterface");
             getForestryItem = Optional.fromNullable(cls.getMethod("getItem", String.class));
 
             cls = Class.forName("forestry.api.core.BlockInterface");
@@ -173,11 +174,11 @@ public class ForestryPlugin {
 
             cls = Class.forName("forestry.api.apiculture.FlowerManager");
             fld = cls.getField("plainFlowers");
-            plainFlowers = (ArrayList) fld.get(null);
+            plainFlowers = (ArrayList<ItemStack>) fld.get(null);
 
             cls = Class.forName("forestry.api.core.GlobalManager");
             fld = cls.getField("leafBlockIds");
-            leafBlockIds = (ArrayList) fld.get(null);
+            leafBlockIds = (ArrayList<Integer>) fld.get(null);
 
             cls = Class.forName("forestry.api.storage.BackpackManager");
             fld = cls.getField("backpackItems");
