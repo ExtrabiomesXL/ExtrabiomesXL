@@ -98,7 +98,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
     }
 
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getIcon(int side, int metadata) {
         if (metadata > 4) metadata = 4;
         return textures[metadata];
     }

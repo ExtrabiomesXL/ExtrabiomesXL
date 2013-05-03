@@ -74,7 +74,7 @@ public class BlockRedRock extends Block {
     }
 
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getIcon(int side, int metadata) {
         if (metadata > 2) metadata = 2;
         return metadata == RED_ROCK_BRICK.metadata() ? textures[2] : metadata == RED_COBBLE.metadata() ? textures[1]
                 : textures[0];

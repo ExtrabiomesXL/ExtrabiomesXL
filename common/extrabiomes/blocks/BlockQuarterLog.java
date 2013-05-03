@@ -93,6 +93,7 @@ public class BlockQuarterLog extends BlockLog {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
+    	
     	textureArray[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideleft");
     	textureArray[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideright");
     	textureArray[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodtopleft");
@@ -160,8 +161,8 @@ public class BlockQuarterLog extends BlockLog {
     	textures.put(index + 53, textureArray[23]);
     }
 
-    //@Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    @Override
+    public Icon getIcon(int side, int metadata) {
         final int orientation = metadata & 12;
         int type = metadata & 3;
         

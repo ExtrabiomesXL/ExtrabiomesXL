@@ -39,7 +39,7 @@ class WorldGenMarshGrass extends WorldGenerator {
 								y1,
 								z1,
 								Block.grass.blockID,
-								1 << Direction.vineGrowth[Facing.faceToSide[side]], 3);
+								1 << Direction.facingToDirection[Facing.oppositeSide[side]], 3);
 						continue label0;
 					}
 

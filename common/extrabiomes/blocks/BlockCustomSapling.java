@@ -113,7 +113,7 @@ public class BlockCustomSapling extends BlockFlower {
     }
 
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+    public Icon getIcon(int side, int metadata) {
         metadata = unmarkedMetadata(metadata);
         //if (metadata > 6) metadata = 0;
         return textures[metadata];

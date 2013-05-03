@@ -69,7 +69,7 @@ public class BlockRedRockSlab extends BlockStep {
 	}
 
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
+	public Icon getIcon(int side, int metadata)
 	{
 		metadata &= 7;
 		return metadata == BlockType.REDROCK.metadata() ? side < 2 ? textures[3]

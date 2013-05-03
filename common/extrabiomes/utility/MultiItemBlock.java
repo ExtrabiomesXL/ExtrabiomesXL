@@ -35,7 +35,7 @@ public class MultiItemBlock extends ItemBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public Icon getIconFromDamage(int md) {
-		return getBlock().getBlockTextureFromSideAndMetadata(0, md);
+		return getBlock().getIcon(0, md);
 	}
 
 	@Override
