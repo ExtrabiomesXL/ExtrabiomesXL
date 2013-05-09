@@ -15,11 +15,14 @@ import extrabiomes.module.fabrica.scarecrow.ModelScarecrow;
 import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
 
 public class ClientProxy extends CommonProxy {
-
+	@Override
+	public void registerRenderInformation() 
+	{
+		final Extrabiomes.tabsEBXL = new CreativeTab("extrabiomesTab");	
+	}
 	@Override
 	public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
-	{
-		final Extrabiomes.tabsEBXL                 = new CreativeTab("extrabiomesTab");
+	{	
 		final int renderId = RenderingRegistry
 				.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(renderId, handler);
