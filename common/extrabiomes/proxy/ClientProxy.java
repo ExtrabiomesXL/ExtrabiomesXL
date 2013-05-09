@@ -19,6 +19,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
 	{
+		final Extrabiomes.tabsEBXL                 = new CreativeTab("extrabiomesTab");
 		final int renderId = RenderingRegistry
 				.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(renderId, handler);
