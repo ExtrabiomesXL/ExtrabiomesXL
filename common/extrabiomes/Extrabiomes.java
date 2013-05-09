@@ -49,9 +49,7 @@ public class Extrabiomes {
     @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
     public static CommonProxy         proxy;
 
-    public static final CreativeTabs  tabsEBXL                 = new CreativeTab(
-                                                                       CreativeTabs.creativeTabArray.length,
-                                                                       "extrabiomesTab");
+    public static final CreativeTabs  tabsEBXL                 = new CreativeTab("extrabiomesTab");
 
     private static final String       LOG_MESSAGE_INITIALIZING = "log.message.initializing";
     private static final String       LOG_MESSAGE_LOAD_SUCCESS = "log.message.load.success";
