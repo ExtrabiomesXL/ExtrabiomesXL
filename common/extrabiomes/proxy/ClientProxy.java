@@ -13,7 +13,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ModelScarecrow;
 import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
-
+import extrabiomes.utility.CreativeTab;
 public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerRenderInformation() 
