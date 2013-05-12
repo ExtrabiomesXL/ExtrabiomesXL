@@ -8,7 +8,7 @@ echo Copying source
 cp -R common src/minecraft
 echo
 ./recompile.sh
-./reobfuscate.sh
+./reobfuscate_srg.sh
 echo
 echo Adding release assets
 cp *.txt reobf/minecraft/
