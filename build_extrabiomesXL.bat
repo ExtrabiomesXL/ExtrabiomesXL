@@ -7,7 +7,7 @@ echo Copying source
 XCOPY common src\minecraft /E /Q
 echo.
 call recompile.bat
-call reobfuscate.bat
+call reobfuscate_srg.bat
 echo.
 echo Adding release assets
 XCOPY *.txt reobf\minecraft /Q
