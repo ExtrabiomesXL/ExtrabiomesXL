@@ -37,7 +37,6 @@ import extrabiomes.lib.Reference;
 import extrabiomes.localization.LocalizationHandler;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.proxy.CommonProxy;
-import extrabiomes.utility.CreativeTab;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -49,9 +48,7 @@ public class Extrabiomes {
     @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
     public static CommonProxy         proxy;
 
-    public static final CreativeTabs  tabsEBXL                 = new CreativeTab(
-                                                                       CreativeTabs.creativeTabArray.length,
-                                                                       "extrabiomesTab");
+    public static CreativeTabs  tabsEBXL;
 
     private static final String       LOG_MESSAGE_INITIALIZING = "log.message.initializing";
     private static final String       LOG_MESSAGE_LOAD_SUCCESS = "log.message.load.success";

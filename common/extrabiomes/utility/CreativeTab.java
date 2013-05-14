@@ -7,8 +7,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.api.Stuff;
 
 public class CreativeTab extends CreativeTabs {
-	public CreativeTab(int par1, String par2Str) {
-		super(par1, par2Str);
+	public CreativeTab(String par2Str) {
+		super(par2Str);
 	}
 
 	@SideOnly(Side.CLIENT)
