@@ -62,7 +62,7 @@ public abstract class BlockHandler {
         Element.LEAVES_AUTUMN_YELLOW.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.YELLOW
                 .metadata()));
 
-        final ItemStack stack = new ItemStack(block, 1, -1);
+        final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
         ForestryModHelper.registerLeaves(stack);
         ForestryModHelper.addToForesterBackpack(stack);
     }
@@ -155,7 +155,7 @@ public abstract class BlockHandler {
         Element.TOADSTOOL.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.TOADSTOOL
                 .metadata()));
 
-        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, -1));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
 
         ForestryModHelper.registerBasicFlower(Element.HYDRANGEA.get());
         ForestryModHelper.registerBasicFlower(Element.FLOWER_ORANGE.get());
@@ -229,7 +229,7 @@ public abstract class BlockHandler {
         Element.LEAVES_REDWOOD.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.REDWOOD
                 .metadata()));
 
-        final ItemStack stack = new ItemStack(block, 1, -1);
+        final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
         ForestryModHelper.registerLeaves(stack);
         ForestryModHelper.addToForesterBackpack(stack);
     }
@@ -285,7 +285,7 @@ public abstract class BlockHandler {
             final CommonProxy proxy = Extrabiomes.proxy;
             proxy.setBlockHarvestLevel(block, "axe", 0);
             proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
-            proxy.registerOre("logWood", new ItemStack(block, 1, -1));
+            proxy.registerOreInAllSubblocks("logWood", block);
             proxy.registerEventHandler(block);
             proxy.setBurnProperties(block.blockID, 5, 5);
         }
@@ -344,7 +344,7 @@ public abstract class BlockHandler {
         BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.MOUNTAINRIDGE, block.blockID,
                 block.blockID);
 
-        ForestryModHelper.addToDiggerBackpack(new ItemStack(block, 1, -1));
+        ForestryModHelper.addToDiggerBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
         for (final BlockRedRock.BlockType type : BlockRedRock.BlockType.values())
             FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
     }
@@ -378,7 +378,7 @@ public abstract class BlockHandler {
         Element.SAPLING_REDWOOD.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.REDWOOD
                 .metadata()));
 
-        final ItemStack stack = new ItemStack(block, 1, -1);
+        final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
         ForestryModHelper.registerSapling(stack);
         ForestryModHelper.addToForesterBackpack(stack);
 
@@ -407,14 +407,14 @@ public abstract class BlockHandler {
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
         proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
-        proxy.registerOre("logWood", new ItemStack(block, 1, -1));
+        proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
         proxy.setBurnProperties(block.blockID, 5, 5);
 
         Element.LOG_ACACIA.set(new ItemStack(block, 1, BlockCustomLog.BlockType.ACACIA.metadata()));
         Element.LOG_FIR.set(new ItemStack(block, 1, BlockCustomLog.BlockType.FIR.metadata()));
 
-        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, -1));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
         for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType.values())
             FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
     }
