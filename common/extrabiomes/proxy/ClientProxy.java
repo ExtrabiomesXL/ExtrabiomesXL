@@ -16,11 +16,6 @@ import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
 import extrabiomes.utility.CreativeTab;
 public class ClientProxy extends CommonProxy {
 	@Override
-	public void registerRenderInformation() 
-	{
-		final Extrabiomes.tabsEBXL = new CreativeTab("extrabiomesTab");	
-	}
-	@Override
 	public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
 	{	
 		final int renderId = RenderingRegistry
