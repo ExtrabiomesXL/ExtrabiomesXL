@@ -51,11 +51,8 @@ public enum BlockManager {
             for (final BlockCustomWood.BlockType type : BlockCustomWood.BlockType.values())
                 FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
 
-            for(int i = 0; i < 3; i++){
-            	proxy.registerOre("plankWood", new ItemStack(thisBlock, 1, i));
-            }
+            proxy.registerOreInAllSubblocks("plankWood", thisBlock);
             
-
             Extrabiomes.postInitEvent(new PlankActiveEvent(thisBlock));
         }
     },
@@ -107,7 +104,7 @@ public enum BlockManager {
                     extrabiomes.module.fabrica.block.ItemWoodSlab.class);
             proxy.registerBlock(thisBlock, extrabiomes.module.fabrica.block.ItemWoodSlab.class);
 
-            proxy.registerOre("slabWood", new ItemStack(Stuff.slabWood.get(), 1, -1));
+            proxy.registerOreInAllSubblocks("slabWood", Stuff.slabWood.get());
 
             new ItemStack(Stuff.slabWood.get(), 1, BlockCustomWoodSlab.BlockType.FIR.metadata());
             new ItemStack(Stuff.slabWood.get(), 1, BlockCustomWoodSlab.BlockType.REDWOOD.metadata());

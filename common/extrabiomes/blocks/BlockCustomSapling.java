@@ -45,7 +45,7 @@ public class BlockCustomSapling extends BlockFlower {
         }
     }
     
-    private Icon[] textures  = {null, null, null, null, null, null, null, null};
+    private Icon[] textures  = {null, null, null, null, null, null, null};
 
     private static final int METADATA_BITMASK = 0x7;
     private static final int METADATA_MARKBIT = 0x8;
