@@ -9,11 +9,14 @@ package extrabiomes;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.EventBus;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -21,6 +24,7 @@ import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
@@ -64,6 +68,68 @@ public class Extrabiomes {
     {
         proxy.registerRenderInformation();
         Module.postEvent(new ModuleInitEvent());
+        sendTCIMC();
+    }
+    
+    public static void sendTCIMC()
+    {
+        if (Loader.isModLoaded("TreeCapitator"))
+        {
+            NBTTagCompound tpModCfg = new NBTTagCompound();
+            tpModCfg.setString("modID", Reference.MOD_ID);
+            tpModCfg.setString("configPath", "extrabiomes/extrabiomes.cfg");
+            tpModCfg.setString("blockConfigKeys", "block:customlog.id; block:quarterlog0.id; block:quarterlog1.id; block:quarterlog2.id; block:quarterlog3.id; " +
+                    "block:autumnleaves.id; block:greenleaves.id");
+            tpModCfg.setString("itemConfigKeys", "");
+            tpModCfg.setString("axeIDList", "");
+            tpModCfg.setString("shearsIDList", "");
+            tpModCfg.setBoolean("useShiftedItemID", true);
+            
+            NBTTagList treeList = new NBTTagList();
+            
+            // Vanilla Oak additions
+            NBTTagCompound tree = new NBTTagCompound();
+            tree.setString("treeName", "vanilla_oak");
+            tree.setString("logConfigKeys", "<block:quarterlog0.id>,2; <block:quarterlog1.id>,2; <block:quarterlog2.id>,2; <block:quarterlog3.id>,2;");
+            tree.setString("leafConfigKeys", "<block:autumnleaves.id>");
+            treeList.appendTag(tree);
+            
+            // Vanilla Spruce additions
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "vanilla_spruce");
+            tree.setString("logConfigKeys", "");
+            tree.setString("leafConfigKeys", "<block:autumnleaves.id>");
+            treeList.appendTag(tree);
+            
+            // EBXL fir
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "fir");
+            tree.setString("logConfigKeys", "<block:customlog.id>,0; <block:quarterlog0.id>,1; <block:quarterlog1.id>,1; <block:quarterlog2.id>,1; <block:quarterlog3.id>,1");
+            tree.setString("leafConfigKeys", "<block:greenleaves.id>,0; <block:greenleaves.id>,8");
+            tree.setInteger("maxHorLeafBreakDist", 10);
+            tree.setBoolean("requireLeafDecayCheck", false);
+            treeList.appendTag(tree);
+            
+            // EBXL redwood
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "redwood");
+            tree.setString("logConfigKeys", "<block:quarterlog0.id>,0; <block:quarterlog1.id>,0; <block:quarterlog2.id>,0; <block:quarterlog3.id>,0");
+            tree.setString("leafConfigKeys", "<block:greenleaves.id>,1; <block:greenleaves.id>,9");
+            tree.setInteger("maxHorLeafBreakDist", 10);
+            tree.setBoolean("requireLeafDecayCheck", false);
+            treeList.appendTag(tree);
+            
+            // EBXL acacia
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "acacia");
+            tree.setString("logConfigKeys", "<block:customlog.id>,1");
+            tree.setString("leafConfigKeys", "<block:greenleaves.id>,2");
+            treeList.appendTag(tree);
+            
+            tpModCfg.setTag("trees", treeList);
+            
+            FMLInterModComms.sendMessage("TreeCapitator", Reference.MOD_ID, tpModCfg);
+        }
     }
 
     @PostInit
