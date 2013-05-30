@@ -1,6 +1,6 @@
 ### Links of Interest
  - [Official ExtrabiomesXL Wiki](https://github.com/ExtrabiomesXL/ExtrabiomesXL/wiki)
- - [Downloads](http://goo.gl/xLbxg)
+ - [Downloads](http://goo.gl/gxlmm)
  - [Issue Tracking System](https://github.com/ExtrabiomesXL/ExtrabiomesXL/issues)
  
 * * *
