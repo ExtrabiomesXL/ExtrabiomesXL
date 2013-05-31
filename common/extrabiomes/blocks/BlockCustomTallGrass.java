@@ -43,7 +43,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
         }
     }
     
-    private Icon[] textures = {null, null, null, null, null, null, null, null};
+    private Icon[] textures = {null, null, null, null, null};
 
     public BlockCustomTallGrass(int id, int index, Material material) {
         super(id, material);
@@ -99,14 +99,15 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable {
 
     @Override
     public Icon getIcon(int side, int metadata) {
-        if (metadata > 4) metadata = 4;
+    	// Ensure that the metadata stays in proper range and we return a valid texture
+        if (metadata < 0 || metadata > 4) metadata = 0;
         return textures[metadata];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        if (tab == Extrabiomes.tabsEBXL) for (final BlockType type : BlockType.values())
+        for (final BlockType type : BlockType.values())
             itemList.add(new ItemStack(this, 1, type.metadata()));
     }
 

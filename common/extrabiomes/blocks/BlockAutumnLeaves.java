@@ -180,14 +180,16 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     @Override
     public Icon getIcon(int side, int metadata) {
         metadata = unmarkedMetadata(metadata);
-        if (metadata > 4) metadata = 4;
+        
+        // This check should be unneeded as unmarkedMetadata return a value between 0 and 3.
+        if (metadata < 0 || metadata > 4) metadata = 0;
             return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        if (tab == Extrabiomes.tabsEBXL) for (final BlockType blockType : BlockType.values())
+        for (final BlockType blockType : BlockType.values())
             itemList.add(new ItemStack(this, 1, blockType.metadata()));
     }
 

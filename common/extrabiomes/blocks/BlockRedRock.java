@@ -89,7 +89,7 @@ public class BlockRedRock extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        if (tab == Extrabiomes.tabsEBXL) for (final BlockType blockType : BlockType.values())
+        for (final BlockType blockType : BlockType.values())
             itemList.add(new ItemStack(this, 1, blockType.metadata()));
     }
 }
