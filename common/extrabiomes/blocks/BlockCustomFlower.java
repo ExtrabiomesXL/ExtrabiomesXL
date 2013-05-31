@@ -168,7 +168,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        if (tab == Extrabiomes.tabsEBXL) for (final BlockType type : BlockType.values())
+        for (final BlockType type : BlockType.values())
             itemList.add(new ItemStack(this, 1, type.metadata()));
     }
 
