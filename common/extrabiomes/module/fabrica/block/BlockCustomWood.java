@@ -55,16 +55,15 @@ public class BlockCustomWood extends BlockWood {
     }
 
 	@Override
-	public Icon getIcon(int side, int metadata)
-	{
+	public Icon getIcon(int side, int metadata)	{
+		// Ensure that the texture id is in range
+		if (metadata < 0 || metadata > 2) metadata = 0;
 		return textures[metadata];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(int blockID,
-			CreativeTabs par2CreativeTabs, List list)
-	{
+	public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list) {
 		for (final BlockType type : BlockType.values())
 			list.add(new ItemStack(blockID, 1, type.metadata()));
 	}

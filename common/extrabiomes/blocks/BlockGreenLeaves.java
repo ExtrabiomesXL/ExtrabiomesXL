@@ -208,7 +208,9 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     @Override
     public Icon getIcon(int side, int metadata){
         metadata = unmarkedMetadata(metadata);
-        if (metadata > 2) metadata = 0;
+        
+        // unmarkedMetadata has the potential to return a value between 0 and 3, since only 0 to 2 are valid we need to check validity.
+        if (metadata < 0 || metadata > 2) metadata = 0;
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
 
@@ -230,7 +232,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        if (tab == Extrabiomes.tabsEBXL) for (final BlockType blockType : BlockType.values())
+        for (final BlockType blockType : BlockType.values())
             itemList.add(new ItemStack(this, 1, blockType.metadata()));
     }
 

@@ -363,31 +363,35 @@ public abstract class BlockHandler {
         proxy.registerBlock(block, extrabiomes.items.ItemSapling.class);
         proxy.registerOreInAllSubblocks("treeSapling", block);
 
-        Element.SAPLING_ACACIA.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.ACACIA
-                .metadata()));
-        Element.SAPLING_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.BROWN
-                .metadata()));
-        Element.SAPLING_AUTUMN_ORANGE.set(new ItemStack(block, 1,
-                BlockCustomSapling.BlockType.ORANGE.metadata()));
-        Element.SAPLING_AUTUMN_PURPLE.set(new ItemStack(block, 1,
-                BlockCustomSapling.BlockType.PURPLE.metadata()));
-        Element.SAPLING_AUTUMN_YELLOW.set(new ItemStack(block, 1,
-                BlockCustomSapling.BlockType.YELLOW.metadata()));
-        Element.SAPLING_FIR
-                .set(new ItemStack(block, 1, BlockCustomSapling.BlockType.FIR.metadata()));
-        Element.SAPLING_REDWOOD.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.REDWOOD
-                .metadata()));
+        Element.SAPLING_ACACIA.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.ACACIA.metadata()));
+        Element.SAPLING_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.BROWN.metadata()));
+        Element.SAPLING_AUTUMN_ORANGE.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.ORANGE.metadata()));
+        Element.SAPLING_AUTUMN_PURPLE.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.PURPLE.metadata()));
+        Element.SAPLING_AUTUMN_YELLOW.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.YELLOW.metadata()));
+        Element.SAPLING_FIR.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.FIR.metadata()));
+        Element.SAPLING_REDWOOD.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.REDWOOD.metadata()));
 
         final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
-        ForestryModHelper.registerSapling(stack);
+        
+        // Temp fix so that NEI shows the fermenter recipies when you try to view uses of saplings.
+        //ForestryModHelper.registerSapling(stack);       
+        ForestryModHelper.registerSapling(Element.SAPLING_ACACIA.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_AUTUMN_BROWN.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_AUTUMN_ORANGE.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_AUTUMN_PURPLE.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_AUTUMN_YELLOW.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_FIR.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_REDWOOD.get());
         ForestryModHelper.addToForesterBackpack(stack);
 
         // all but redwood
         final Element[] forestrySaplings = { Element.SAPLING_ACACIA, Element.SAPLING_AUTUMN_BROWN,
                 Element.SAPLING_AUTUMN_ORANGE, Element.SAPLING_AUTUMN_PURPLE,
                 Element.SAPLING_AUTUMN_YELLOW, Element.SAPLING_FIR };
-        for (final Element sapling : forestrySaplings)
+        for (final Element sapling : forestrySaplings){
             ForestryModHelper.registerGermling(sapling.get());
+        }
+        
 
         proxy.registerEventHandler(new SaplingBonemealEventHandler(block));
         proxy.registerFuelHandler(new SaplingFuelHandler(block.blockID));

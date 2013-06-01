@@ -115,14 +115,16 @@ public class BlockCustomSapling extends BlockFlower {
     @Override
     public Icon getIcon(int side, int metadata) {
         metadata = unmarkedMetadata(metadata);
-        //if (metadata > 6) metadata = 0;
+        
+        // unmarkedMetadata has the potential to return a value between 0 and 7, since only 0 to 6 are valid we need to check validity.
+        if (metadata < 0 || metadata > 6) metadata = 0;
         return textures[metadata];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        if (tab == Extrabiomes.tabsEBXL) for (final BlockType blockType : BlockType.values())
+    	for (final BlockType blockType : BlockType.values())
             itemList.add(new ItemStack(this, 1, blockType.metadata()));
     }
 
