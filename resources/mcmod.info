@@ -3,7 +3,7 @@
   "modid": "ExtrabiomesXL",
   "name": "ExtrabiomesXL",
   "description": "ExtrabiomesXL adds new aesthetic content that greatly enhances Minecraft's landscapes and exploration.",
-  "version": "3.13.0",
+  "version": "3.13.4",
   "mcversion": "1.5.1",
   "url": "http://www.minecraftforum.net/topic/1090288-",
   "updateUrl": "",
@@ -11,7 +11,8 @@
     "ScottKillen",
     "MisterFiber",
     "ExterminatorJeff",
-    "TDWP_FTP"
+    "TDWP_FTP",
+    "JLBShecky"
   ],
   "credits": "Concept and original mod created by MisterFiber. Some artwork courtesy of: bonemouse and Delocuro. Code contributors: Eloraam, mistaqur, SirSengir, bolte-17, allaryin",
   "logoFile": "/mods/ExtrabiomesXL/textures/logo/eb-logo.png",
