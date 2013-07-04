@@ -4,15 +4,14 @@ echo Backing up src
 XCOPY src src-bak /E /I /Q
 echo.
 echo Copying source 
-XCOPY common src\minecraft /E /Q
+XCOPY ..\..\ExtrabiomesXL\common src\minecraft /E /Q
 echo.
 call recompile.bat
 call reobfuscate_srg.bat
 echo.
 echo Adding release assets
-XCOPY *.txt reobf\minecraft /Q
-XCOPY resources\mods reobf\minecraft /Q
-XCOPY common\extrabiomes\lang\*.xml reobf\minecraft\extrabiomes\lang /E /Q
+XCOPY ..\..\ExtrabiomesXL\resources\* reobf\minecraft /s /q
+XCOPY ..\..\ExtrabiomesXL\common\extrabiomes\lang\*.xml reobf\minecraft\extrabiomes\lang /e /s
 echo.
 echo Restoring src-bak
 RMDIR /S /Q src
