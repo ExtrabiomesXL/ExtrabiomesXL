@@ -88,6 +88,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
     	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownfancy");
+    	//textures[0] = iconRegister.registerIcon("mods/ExtrabiomesXL/textures/blocks/leavesbrownfancy.png");
     	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownfast");
     	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangefancy");
     	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangefast");

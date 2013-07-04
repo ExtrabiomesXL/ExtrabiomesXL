@@ -16,16 +16,13 @@ import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public class EntityScarecrow extends EntityCreature {
+	
 	public EntityScarecrow(World world) {
 		super(world);
-		texture = "/mods/ExtrabiomesXL/textures/models/scarecrow.png";
 		preventEntitySpawning = true;
-		tasks.addTask(7, new EntityAIWatchClosest(this,
-				EntityPlayer.class, 50.0F));
-		tasks.addTask(7, new EntityAIWatchClosest(this,
-				EntityCreature.class, 50.0F));
-		tasks.addTask(7, new EntityAIWatchClosest(this,
-				EntityMob.class, 50.0F));
+		tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 50.0F));
+		tasks.addTask(7, new EntityAIWatchClosest(this, EntityCreature.class, 50.0F));
+		tasks.addTask(7, new EntityAIWatchClosest(this, EntityMob.class, 50.0F));
 		tasks.addTask(7, new EntityAILookIdle(this));
 	}
 
@@ -66,10 +63,10 @@ public class EntityScarecrow extends EntityCreature {
 		return null;
 	}
 
-	@Override
-	public int getMaxHealth() {
-		return 5;
-	}
+	//@Override
+	//public int getMaxHealth() {
+	//	return 5;
+	//}
 
 	@Override
 	protected float getSoundVolume() {

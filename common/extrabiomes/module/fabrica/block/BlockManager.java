@@ -27,6 +27,7 @@ import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.proxy.CommonProxy;
+import extrabiomes.module.fabrica.block.FuelHandlerWoodSlabs;
 
 public enum BlockManager {
     PLANKS {
@@ -139,8 +140,7 @@ public enum BlockManager {
     FIRSTAIRS {
         @Override
         protected void create() {
-            Stuff.stairsFir = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks
-                    .get(), BlockCustomWood.BlockType.FIR.metadata()));
+            Stuff.stairsFir = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.FIR.metadata()));
         }
 
         @Override

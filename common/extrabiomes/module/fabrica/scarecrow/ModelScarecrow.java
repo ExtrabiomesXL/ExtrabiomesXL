@@ -47,18 +47,14 @@ public class ModelScarecrow extends ModelBase {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2,
-			float f3, float f4, float f5)
-	{
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		leg.render(f5);
 		body.render(f5);
 		head.render(f5);
 		arms.render(f5);
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y,
-			float z)
-	{
+	private void setRotation(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;

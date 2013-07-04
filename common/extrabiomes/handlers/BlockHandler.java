@@ -43,24 +43,17 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockAutumnLeaves block = new BlockAutumnLeaves(blockID, 3, Material.leaves, false);
-        block.setUnlocalizedName("extrabiomes.autumnleaves").setTickRandomly(true).setHardness(0.2F)
-                .setLightOpacity(1).setStepSound(Block.soundGrassFootstep)/*.setRequiresSelfNotify()*/
-                /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                .setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.autumnleaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomLeaves.class);
         proxy.registerOreInAllSubblocks("treeLeaves", block);
         proxy.setBurnProperties(block.blockID, 30, 60);
 
-        Element.LEAVES_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.BROWN
-                .metadata()));
-        Element.LEAVES_AUTUMN_ORANGE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.ORANGE
-                .metadata()));
-        Element.LEAVES_AUTUMN_PURPLE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.PURPLE
-                .metadata()));
-        Element.LEAVES_AUTUMN_YELLOW.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.YELLOW
-                .metadata()));
+        Element.LEAVES_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.BROWN.metadata()));
+        Element.LEAVES_AUTUMN_ORANGE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.ORANGE.metadata()));
+        Element.LEAVES_AUTUMN_PURPLE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.PURPLE.metadata()));
+        Element.LEAVES_AUTUMN_YELLOW.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.YELLOW.metadata()));
 
         final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
         ForestryModHelper.registerLeaves(stack);
@@ -85,10 +78,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCatTail block = new BlockCatTail(blockID, 79, Material.plants);
-        block.setUnlocalizedName("extrabiomes.cattail").setHardness(0.0F)
-                .setStepSound(Block.soundGrassFootstep)
-               /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                .setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.cattail").setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCatTail.class);
@@ -104,10 +94,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final GenericTerrainBlock block = new GenericTerrainBlock(blockID, 0, Material.rock);
-        block.setUnlocalizedName("extrabiomes.crackedsand").setHardness(1.2F)
-                .setStepSound(Block.soundStoneFootstep)
-                /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                .setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.crackedsand").setHardness(1.2F).setStepSound(Block.soundStoneFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
         
         block.texturePath = "crackedsand";
 
@@ -131,29 +118,19 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCustomFlower block = new BlockCustomFlower(blockID, 32, Material.plants);
-        block.setUnlocalizedName("extrabiomes.flower").setTickRandomly(true).setHardness(0.0F)
-                .setStepSound(Block.soundGrassFootstep)
-                /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                .setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.flower").setTickRandomly(true).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemFlower.class);
 
-        Element.AUTUMN_SHRUB.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.AUTUMN_SHRUB
-                .metadata()));
-        Element.HYDRANGEA.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.HYDRANGEA
-                .metadata()));
-        Element.FLOWER_ORANGE.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.ORANGE
-                .metadata()));
-        Element.FLOWER_PURPLE.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.PURPLE
-                .metadata()));
-        Element.FLOWER_WHITE.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.WHITE
-                .metadata()));
+        Element.AUTUMN_SHRUB.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.AUTUMN_SHRUB.metadata()));
+        Element.HYDRANGEA.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.HYDRANGEA.metadata()));
+        Element.FLOWER_ORANGE.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.ORANGE.metadata()));
+        Element.FLOWER_PURPLE.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.PURPLE.metadata()));
+        Element.FLOWER_WHITE.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.WHITE.metadata()));
         Element.ROOT.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.ROOT.metadata()));
-        Element.TINY_CACTUS.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.TINY_CACTUS
-                .metadata()));
-        Element.TOADSTOOL.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.TOADSTOOL
-                .metadata()));
+        Element.TINY_CACTUS.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.TINY_CACTUS.metadata()));
+        Element.TOADSTOOL.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.TOADSTOOL.metadata()));
 
         ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
 
@@ -179,33 +156,23 @@ public abstract class BlockHandler {
         proxy.registerBlock(block, extrabiomes.items.ItemGrass.class);
         proxy.setBurnProperties(block.blockID, 60, 100);
 
-        Element.GRASS_BROWN.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.BROWN
-                .metadata()));
-        Element.GRASS_DEAD.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD
-                .metadata()));
-        Element.GRASS_BROWN_SHORT.set(new ItemStack(block, 1,
-                BlockCustomTallGrass.BlockType.SHORT_BROWN.metadata()));
-        Element.GRASS_DEAD_TALL.set(new ItemStack(block, 1,
-                BlockCustomTallGrass.BlockType.DEAD_TALL.metadata()));
-        Element.GRASS_DEAD_YELLOW.set(new ItemStack(block, 1,
-                BlockCustomTallGrass.BlockType.DEAD_YELLOW.metadata()));
+        Element.GRASS_BROWN.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.BROWN.metadata()));
+        Element.GRASS_DEAD.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD.metadata()));
+        Element.GRASS_BROWN_SHORT.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.SHORT_BROWN.metadata()));
+        Element.GRASS_DEAD_TALL.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD_TALL.metadata()));
+        Element.GRASS_DEAD_YELLOW.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD_YELLOW.metadata()));
 
         ItemStack grassStack = Element.GRASS_BROWN.get();
-        BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(),
-                new WorldGenTallGrass(grassStack.itemID, grassStack.getItemDamage()), 100);
+        BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(), new WorldGenTallGrass(grassStack.itemID, grassStack.getItemDamage()), 100);
         grassStack = Element.GRASS_BROWN_SHORT.get();
-        BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(),
-                new WorldGenTallGrass(grassStack.itemID, grassStack.getItemDamage()), 100);
+        BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(), new WorldGenTallGrass(grassStack.itemID, grassStack.getItemDamage()), 100);
 
         grassStack = Element.GRASS_DEAD.get();
-        BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(
-                grassStack.itemID, grassStack.getItemDamage()), 90);
+        BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(grassStack.itemID, grassStack.getItemDamage()), 90);
         grassStack = Element.GRASS_DEAD_YELLOW.get();
-        BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(
-                grassStack.itemID, grassStack.getItemDamage()), 90);
+        BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(grassStack.itemID, grassStack.getItemDamage()), 90);
         grassStack = Element.GRASS_DEAD_TALL.get();
-        BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(
-                grassStack.itemID, grassStack.getItemDamage()), 35);
+        BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(grassStack.itemID, grassStack.getItemDamage()), 35);
     }
 
     private static void createGreenLeaves() {
@@ -213,10 +180,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockGreenLeaves block = new BlockGreenLeaves(blockID, Material.leaves, false);
-        block.setUnlocalizedName("extrabiomes.greenleaves").setTickRandomly(true).setHardness(0.2F)
-                .setLightOpacity(1).setStepSound(Block.soundGrassFootstep)/*.setRequiresSelfNotify()*/
-                /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                .setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.greenleaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomGreenLeaves.class);
@@ -239,10 +203,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockLeafPile block = new BlockLeafPile(blockID, 64, Material.vine);
-        block.setUnlocalizedName("extrabiomes.leafpile").setHardness(0.0F).setTickRandomly(true)
-                .setStepSound(Block.soundGrassFootstep)
-                /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                .setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.leafpile").setHardness(0.0F).setTickRandomly(true).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block);
@@ -266,21 +227,13 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockIDNE <= 0 || blockIDNW <= 0
                 || blockIDSE <= 0 || blockIDSW <= 0) return;
 
-        final BlockQuarterLog blockNW = new BlockQuarterLog(blockIDNW, 144,
-                BlockQuarterLog.BarkOn.NW);
-        final BlockQuarterLog blockNE = new BlockQuarterLog(blockIDNE, 144,
-                BlockQuarterLog.BarkOn.NE);
-        final BlockQuarterLog blockSW = new BlockQuarterLog(blockIDSW, 144,
-                BlockQuarterLog.BarkOn.SW);
-        final BlockQuarterLog blockSE = new BlockQuarterLog(blockIDSE, 144,
-                BlockQuarterLog.BarkOn.SE);
+        final BlockQuarterLog blockNW = new BlockQuarterLog(blockIDNW, 144, BlockQuarterLog.BarkOn.NW);
+        final BlockQuarterLog blockNE = new BlockQuarterLog(blockIDNE, 144, BlockQuarterLog.BarkOn.NE);
+        final BlockQuarterLog blockSW = new BlockQuarterLog(blockIDSW, 144, BlockQuarterLog.BarkOn.SW);
+        final BlockQuarterLog blockSE = new BlockQuarterLog(blockIDSE, 144, BlockQuarterLog.BarkOn.SE);
 
         for (final Block block : new Block[] { blockNW, blockNE, blockSW, blockSE }) {
-            block.setUnlocalizedName("extrabiomes.log.quarter").setStepSound(Block.soundWoodFootstep)
-                    /*.setRequiresSelfNotify()*/.setHardness(2.0F)
-                    .setResistance(Block.wood.getExplosionResistance(null) * 5.0F)
-                    /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                    .setCreativeTab(Extrabiomes.tabsEBXL);
+            block.setUnlocalizedName("extrabiomes.log.quarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
             final CommonProxy proxy = Extrabiomes.proxy;
             proxy.setBlockHarvestLevel(block, "axe", 0);
@@ -290,35 +243,24 @@ public abstract class BlockHandler {
             proxy.setBurnProperties(block.blockID, 5, 5);
         }
 
-        Element.LOG_HUGE_FIR_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.FIR
-                .metadata()));
-        Element.LOG_HUGE_FIR_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.FIR
-                .metadata()));
-        Element.LOG_HUGE_FIR_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.FIR
-                .metadata()));
-        Element.LOG_HUGE_FIR_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.FIR
-                .metadata()));
-        Element.LOG_HUGE_OAK_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.OAK
-                .metadata()));
-        Element.LOG_HUGE_OAK_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.OAK
-                .metadata()));
-        Element.LOG_HUGE_OAK_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.OAK
-                .metadata()));
-        Element.LOG_HUGE_OAK_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.OAK
-                .metadata()));
-        Element.LOG_HUGE_REDWOOD_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.REDWOOD
-                .metadata()));
-        Element.LOG_HUGE_REDWOOD_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.REDWOOD
-                .metadata()));
-        Element.LOG_HUGE_REDWOOD_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.REDWOOD
-                .metadata()));
-        Element.LOG_HUGE_REDWOOD_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.REDWOOD
-                .metadata()));
+        Element.LOG_HUGE_FIR_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.FIR.metadata()));
+        Element.LOG_HUGE_FIR_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.FIR.metadata()));
+        Element.LOG_HUGE_FIR_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.FIR.metadata()));
+        Element.LOG_HUGE_FIR_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.FIR.metadata()));
+        Element.LOG_HUGE_OAK_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.OAK.metadata()));
+        Element.LOG_HUGE_OAK_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.OAK.metadata()));
+        Element.LOG_HUGE_OAK_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.OAK.metadata()));
+        Element.LOG_HUGE_OAK_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.OAK.metadata()));
+        Element.LOG_HUGE_REDWOOD_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.REDWOOD.metadata()));
+        Element.LOG_HUGE_REDWOOD_NE.set(new ItemStack(blockNE, 1, BlockQuarterLog.BlockType.REDWOOD.metadata()));
+        Element.LOG_HUGE_REDWOOD_SW.set(new ItemStack(blockSW, 1, BlockQuarterLog.BlockType.REDWOOD.metadata()));
+        Element.LOG_HUGE_REDWOOD_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.REDWOOD.metadata()));
 
         BlockQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderQuarterLog()));
 
-        for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType.values())
+        for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType.values()) {
             FacadeHelper.addBuildcraftFacade(blockSE.blockID, type.metadata());
+        }
     }
 
     private static void createRedRock() {
@@ -326,27 +268,23 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockRedRock block = new BlockRedRock(blockID, 2, Material.rock);
-        block.setUnlocalizedName("extrabiomes.redrock").setHardness(1.5F).setResistance(2.0F)
-                /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                .setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.redrock").setHardness(1.5F).setResistance(2.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "pickaxe", 0);
         proxy.registerBlock(block, extrabiomes.items.ItemRedRock.class);
 
         Element.RED_ROCK.set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_ROCK.metadata()));
-        Element.RED_COBBLE
-                .set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_COBBLE.metadata()));
-        Element.RED_ROCK_BRICK.set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_ROCK_BRICK
-                .metadata()));
+        Element.RED_COBBLE.set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_COBBLE.metadata()));
+        Element.RED_ROCK_BRICK.set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()));
 
         Extrabiomes.postInitEvent(new RedRockActiveEvent(block));
-        BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.MOUNTAINRIDGE, block.blockID,
-                block.blockID);
+        BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.MOUNTAINRIDGE, block.blockID, block.blockID);
 
         ForestryModHelper.addToDiggerBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
-        for (final BlockRedRock.BlockType type : BlockRedRock.BlockType.values())
+        for (final BlockRedRock.BlockType type : BlockRedRock.BlockType.values()) {
             FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
+        }
     }
 
     private static void createSapling() {
@@ -354,10 +292,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCustomSapling block = new BlockCustomSapling(blockID, 16);
-        block.setUnlocalizedName("extrabiomes.sapling").setHardness(0.0F)
-                .setStepSound(Block.soundGrassFootstep)/*.setRequiresSelfNotify()*/
-                /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                .setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.sapling").setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemSapling.class);
@@ -385,9 +320,7 @@ public abstract class BlockHandler {
         ForestryModHelper.addToForesterBackpack(stack);
 
         // all but redwood
-        final Element[] forestrySaplings = { Element.SAPLING_ACACIA, Element.SAPLING_AUTUMN_BROWN,
-                Element.SAPLING_AUTUMN_ORANGE, Element.SAPLING_AUTUMN_PURPLE,
-                Element.SAPLING_AUTUMN_YELLOW, Element.SAPLING_FIR };
+        final Element[] forestrySaplings = { Element.SAPLING_ACACIA, Element.SAPLING_AUTUMN_BROWN, Element.SAPLING_AUTUMN_ORANGE, Element.SAPLING_AUTUMN_PURPLE, Element.SAPLING_AUTUMN_YELLOW, Element.SAPLING_FIR };
         for (final Element sapling : forestrySaplings){
             ForestryModHelper.registerGermling(sapling.get());
         }
@@ -402,11 +335,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockCustomLog block = new BlockCustomLog(blockID);
-        block.setUnlocalizedName("extrabiomes.log").setStepSound(Block.soundWoodFootstep)
-                /*.setRequiresSelfNotify()*/.setHardness(2.0F)
-                .setResistance(Block.wood.getExplosionResistance(null) * 5.0F)
-                /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                .setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.log").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
@@ -419,8 +348,9 @@ public abstract class BlockHandler {
         Element.LOG_FIR.set(new ItemStack(block, 1, BlockCustomLog.BlockType.FIR.metadata()));
 
         ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
-        for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType.values())
+        for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType.values()) {
             FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
+        }
     }
 
 }

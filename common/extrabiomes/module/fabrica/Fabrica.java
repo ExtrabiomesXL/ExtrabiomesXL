@@ -38,34 +38,23 @@ public class Fabrica {
         BlockManager.init();
 
         if (scarecrowID > 0) {
-            Stuff.scarecrow = Optional.of(new ItemScarecrow(scarecrowID).setUnlocalizedName(
-                    ItemScarecrow.NAME)/*.setIconIndex(96)*/);
-
             final int scarecrowEntityID = Extrabiomes.proxy.findGlobalUniqueEntityId();
-            Extrabiomes.proxy.registerEntityID(EntityScarecrow.class, ItemScarecrow.NAME,
-                    scarecrowEntityID);
-            Extrabiomes.proxy.registerEntity(EntityScarecrow.class, ItemScarecrow.NAME,
-                    Extrabiomes.instance, scarecrowEntityID, 300, 2, true);
+            Extrabiomes.proxy.registerEntityID(EntityScarecrow.class, ItemScarecrow.NAME, scarecrowEntityID);
+            Extrabiomes.proxy.registerEntity(EntityScarecrow.class, ItemScarecrow.NAME, Extrabiomes.instance, scarecrowEntityID, 300, 2, true);
 
-            final IRecipe recipe = new ShapedOreRecipe(Stuff.scarecrow.get(), new String[] { " p ",
-                    "sms", " s " }, 'p', Block.pumpkin, 'm', Block.melon, 's', Item.stick);
+            final IRecipe recipe = new ShapedOreRecipe(Stuff.scarecrow.get(), new String[] { " p ", "sms", " s " }, 'p', Block.pumpkin, 'm', Block.melon, 's', Item.stick);
             Extrabiomes.proxy.addRecipe(recipe);
         }
 
         if (pasteID > 0) {
-            Stuff.paste = Optional.of(new ItemPaste(pasteID).setUnlocalizedName("extrabiomes.paste")
-                    /*.setIconIndex(111)*/.setCreativeTab(Extrabiomes.tabsEBXL));
-
             if (Element.TINY_CACTUS.isPresent()) {
                 IRecipe recipe = new ShapelessOreRecipe(Stuff.paste.get(), Block.cactus);
                 Extrabiomes.proxy.addRecipe(recipe);
 
-                recipe = new ShapelessOreRecipe(Stuff.paste.get(), Element.TINY_CACTUS.get(),
-                        Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get());
+                recipe = new ShapelessOreRecipe(Stuff.paste.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get());
                 Extrabiomes.proxy.addRecipe(recipe);
 
-                Extrabiomes.proxy.addSmelting(Stuff.paste.get().itemID, 0, new ItemStack(
-                        Item.dyePowder, 1, 2), 0.2F);
+                Extrabiomes.proxy.addSmelting(Stuff.paste.get().itemID, 0, new ItemStack(Item.dyePowder, 1, 2), 0.2F);
             }
         }
     }
@@ -76,7 +65,14 @@ public class Fabrica {
         scarecrowID = ItemSettings.SCARECROW.getID();
         pasteID = ItemSettings.PASTE.getID();
 
-        if (scarecrowID > 0) Extrabiomes.proxy.registerScarecrowRendering();
+        if (scarecrowID > 0){
+        	Extrabiomes.proxy.registerScarecrowRendering();
+        	Stuff.scarecrow = Optional.of(new ItemScarecrow(scarecrowID).setUnlocalizedName(ItemScarecrow.NAME));
+        }
+        
+        if (pasteID > 0) {
+            Stuff.paste = Optional.of(new ItemPaste(pasteID).setUnlocalizedName("extrabiomes.paste").setCreativeTab(Extrabiomes.tabsEBXL));
+        }
     }
 
 }

@@ -58,14 +58,12 @@ public class Extrabiomes {
     private static final String       LOG_MESSAGE_INITIALIZING = "log.message.initializing";
     private static final String       LOG_MESSAGE_LOAD_SUCCESS = "log.message.load.success";
     
-    public static final String        TEXTURE_PATH = Reference.MOD_ID + ":";
+    public static final String        TEXTURE_PATH = Reference.MOD_ID.toLowerCase() + ":";
 
     private static Optional<EventBus> initBus                  = Optional.of(new EventBus());
 
-    @Init
-    public static void init(FMLInitializationEvent event) throws InstantiationException,
-            IllegalAccessException
-    {
+    @Mod.EventHandler
+    public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException {
         proxy.registerRenderInformation();
         Module.postEvent(new ModuleInitEvent());
         sendTCIMC();
@@ -132,7 +130,7 @@ public class Extrabiomes {
         }
     }
 
-    @PostInit
+    @Mod.EventHandler
     public static void postInit(FMLPostInitializationEvent event) {
         PluginManager.activatePlugins();
         RecipeHandler.init();
@@ -145,15 +143,14 @@ public class Extrabiomes {
         return initBus.isPresent() ? initBus.get().post(event) : false;
     }
 
-    @PreInit
+    @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event) throws Exception {
         LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_INITIALIZING));
 
         // Load the localization files into the LanguageRegistry
         LocalizationHandler.loadLanguages();
 
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(),
-                "/extrabiomes/extrabiomes.cfg"));
+        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg"));
 
         BiomeHandler.init();
 

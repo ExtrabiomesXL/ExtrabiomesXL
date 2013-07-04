@@ -16,7 +16,8 @@ import net.minecraft.block.BlockPistonBase;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.EntityLivingBase;
+//import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
@@ -54,11 +55,8 @@ public class BlockQuarterLog extends BlockLog {
 
     private static int renderId = 31;
 
-    private static Orientation determineOrientation(World world, int x, int y, int z,
-            EntityLiving entity)
-    {
-        final int direction = BlockPistonBase.determineOrientation(world, x, y, z,
-                (EntityPlayer) entity);
+    private static Orientation determineOrientation(World world, int x, int y, int z, EntityLivingBase entity) {
+        final int direction = BlockPistonBase.determineOrientation(world, x, y, z, entity);
 
         switch (direction) {
             case 0:
@@ -463,7 +461,7 @@ public class BlockQuarterLog extends BlockLog {
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity, ItemStack stack) {
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
 
         final Orientation orientation = determineOrientation(world, x, y, z, entity);

@@ -17,17 +17,14 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
 	{	
-		final int renderId = RenderingRegistry
-				.getNextAvailableRenderId();
+		final int renderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(renderId, handler);
 		return renderId;
 	}
 
 	@Override
 	public void registerScarecrowRendering() {
-		RenderingRegistry.registerEntityRenderingHandler(
-				EntityScarecrow.class, new RenderScarecrow(
-						new ModelScarecrow(), 0.4F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityScarecrow.class, new RenderScarecrow(new ModelScarecrow(), 0.4F));
 	}
 
 }

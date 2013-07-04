@@ -29,22 +29,14 @@ public class FlowerGenerator implements IWorldGenerator {
 	private final WorldGenerator	whiteGen;
 
 	public FlowerGenerator(int flowerID) {
-		autumnShrubGen = new WorldGenMetadataFlowers(flowerID,
-				BlockCustomFlower.BlockType.AUTUMN_SHRUB.metadata());
-		hydrangeaGen = new WorldGenMetadataFlowers(flowerID,
-				BlockCustomFlower.BlockType.HYDRANGEA.metadata());
-		orangeGen = new WorldGenMetadataFlowers(flowerID,
-				BlockCustomFlower.BlockType.ORANGE.metadata());
-		purpleGen = new WorldGenMetadataFlowers(flowerID,
-				BlockCustomFlower.BlockType.PURPLE.metadata());
-		rootGen = new WorldGenRoot(flowerID,
-				BlockCustomFlower.BlockType.ROOT.metadata());
-		tinyCactusGen = new WorldGenTinyCactus(flowerID,
-				BlockCustomFlower.BlockType.TINY_CACTUS.metadata());
-		toadStoolGen = new WorldGenMetadataFlowers(flowerID,
-				BlockCustomFlower.BlockType.TOADSTOOL.metadata());
-		whiteGen = new WorldGenMetadataFlowers(flowerID,
-				BlockCustomFlower.BlockType.WHITE.metadata());
+		autumnShrubGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.AUTUMN_SHRUB.metadata());
+		hydrangeaGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.HYDRANGEA.metadata());
+		orangeGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.ORANGE.metadata());
+		purpleGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.PURPLE.metadata());
+		rootGen = new WorldGenRoot(flowerID, BlockCustomFlower.BlockType.ROOT.metadata());
+		tinyCactusGen = new WorldGenTinyCactus(flowerID, BlockCustomFlower.BlockType.TINY_CACTUS.metadata());
+		toadStoolGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.TOADSTOOL.metadata());
+		whiteGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.WHITE.metadata());
 	}
 
     @Override
