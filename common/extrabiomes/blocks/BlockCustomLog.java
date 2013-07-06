@@ -24,7 +24,7 @@ import extrabiomes.api.UseLogTurnerEvent;
 
 public class BlockCustomLog extends BlockLog {
     public enum BlockType {
-        FIR(0), ACACIA(1);
+        FIR(0), ACACIA(1), CYPRESS(2);
 
         private final int metadata;
 
@@ -37,7 +37,7 @@ public class BlockCustomLog extends BlockLog {
         }
     }
     
-    private Icon[] textures  = {null, null, null, null};
+    private Icon[] textures  = {null, null, null, null, null, null, null, null};
     private HashMap<Integer, Icon> texturesMap;
     private int index = 97;
     
@@ -55,17 +55,22 @@ public class BlockCustomLog extends BlockLog {
     	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciaside");
     	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciatop");
     	
+    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logcypressside");
+    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logcypresstop");
+    	
     	setupTextures(index);
     }
     
     private void setupTextures(int index){
-    	//row 1
+    	//Side textures
     	texturesMap.put(index, textures[0]);
     	texturesMap.put(index + 1, textures[2]);
+    	texturesMap.put(index + 2, textures[4]);
 
-    	//row2
+    	//top/bottom textures
     	texturesMap.put(index + 16, textures[1]);
     	texturesMap.put(index + 17, textures[3]);
+    	texturesMap.put(index + 18, textures[5]);
     	
     }
 
@@ -73,10 +78,11 @@ public class BlockCustomLog extends BlockLog {
     public Icon getIcon(int side, int metadata) {
         final int orientation = metadata & 12;
         int type = metadata & 3;
-        if (type > 1) type = 0;
-        if (orientation == 0 && (side == 1 || side == 0) || orientation == 4
-                && (side == 5 || side == 4) || orientation == 8 && (side == 2 || side == 3))
-            return texturesMap.get(index + 16 + type);
+        if (type > 2) type = 0;
+        if (orientation == 0 && (side == 1 || side == 0) || orientation == 4 && (side == 5 || side == 4) || orientation == 8 && (side == 2 || side == 3)) {
+        	return texturesMap.get(index + 16 + type);
+        }
+        
         return texturesMap.get(index + type);
     }
 

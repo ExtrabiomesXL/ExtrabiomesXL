@@ -58,6 +58,7 @@ public enum Element {
     SAPLING_AUTUMN_YELLOW,
     SAPLING_FIR,
     SAPLING_REDWOOD,
+    SAPLING_CYPRESS,
     TINY_CACTUS,
     TOADSTOOL;
     // @formatter:on

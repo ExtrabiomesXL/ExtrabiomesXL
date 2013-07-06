@@ -32,7 +32,7 @@ import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 public class BlockCustomSapling extends BlockFlower {
 
     public enum BlockType {
-        BROWN(0), ORANGE(1), PURPLE(2), YELLOW(3), FIR(4), REDWOOD(5), ACACIA(6);
+        BROWN(0), ORANGE(1), PURPLE(2), YELLOW(3), FIR(4), REDWOOD(5), ACACIA(6), CYPRESS(7);
 
         private final int metadata;
 
@@ -45,7 +45,7 @@ public class BlockCustomSapling extends BlockFlower {
         }
     }
     
-    private Icon[] textures  = {null, null, null, null, null, null, null};
+    private Icon[] textures  = {null, null, null, null, null, null, null, null};
 
     private static final int METADATA_BITMASK = 0x7;
     private static final int METADATA_MARKBIT = 0x8;
@@ -80,8 +80,7 @@ public class BlockCustomSapling extends BlockFlower {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegistry)
-    {
+    public void registerIcons(IconRegister iconRegistry) {
 	    textures[0] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingbrown");
 	    textures[1] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingorange");
 	    textures[2] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingred");
@@ -89,16 +88,18 @@ public class BlockCustomSapling extends BlockFlower {
 	    textures[4] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingfir");
 	    textures[5] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingredwood");
 	    textures[6] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingacacia");
+	    textures[7] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingcypress");
     }
 
     private void attemptGrowTree(World world, int x, int y, int z, Random rand) {
         if (isEnoughLightToGrow(world, x, y + 1, z) && rand.nextInt(7) == 0) {
             final int metadata = world.getBlockMetadata(x, y, z);
 
-            if (!isMarkedMetadata(metadata))
+            if (!isMarkedMetadata(metadata)) {
                 world.setBlockMetadataWithNotify(x, y, z, markedMetadata(metadata), 3);
-            else
+            } else {
                 growTree(world, x, y, z, rand);
+            }
         }
     }
 
@@ -117,7 +118,7 @@ public class BlockCustomSapling extends BlockFlower {
         metadata = unmarkedMetadata(metadata);
         
         // unmarkedMetadata has the potential to return a value between 0 and 7, since only 0 to 6 are valid we need to check validity.
-        if (metadata < 0 || metadata > 6) metadata = 0;
+        //if (metadata < 0 || metadata > 7) metadata = 0;
         return textures[metadata];
     }
 
@@ -138,34 +139,34 @@ public class BlockCustomSapling extends BlockFlower {
         final boolean isForestryFarmed = world.getBlockId(x, y - 1, z) == forestrySoilID;
 
         if (metadata == BlockType.BROWN.metadata()) {
-            if (rand.nextInt(20) == 0)
+            if (rand.nextInt(20) == 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
-            else
+            } else {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.BROWN);
-        }
-
-        else if (metadata == BlockType.ORANGE.metadata()) {
-            if (rand.nextInt(20) == 0)
+            }
+        } else if (metadata == BlockType.ORANGE.metadata()) {
+            if (rand.nextInt(20) == 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
-            else
+            } else {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.ORANGE);
-        }
-
-        else if (metadata == BlockType.PURPLE.metadata()) {
-            if (rand.nextInt(20) == 0)
+            }
+        } else if (metadata == BlockType.PURPLE.metadata()) {
+            if (rand.nextInt(20) == 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
-            else
+            } else {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.PURPLE);
-        }
-
-        else if (metadata == BlockType.YELLOW.metadata()) {
-            if (rand.nextInt(20) == 0)
+            }
+        } else if (metadata == BlockType.YELLOW.metadata()) {
+            if (rand.nextInt(20) == 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
-            else
+            } else {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.YELLOW);
-        } else if (metadata == BlockType.ACACIA.metadata())
+            }
+        } else if (metadata == BlockType.ACACIA.metadata()) {
             tree = new WorldGenAcacia(true);
-        else {
+        } else if (metadata == BlockType.CYPRESS.metadata()){
+        	return;
+    	}else {
             // Check for 2x2 firs and redwoods
             for (x1 = 0; x1 >= -1; --x1) {
                 for (z1 = 0; z1 >= -1; --z1)

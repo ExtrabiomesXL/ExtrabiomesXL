@@ -18,7 +18,6 @@ public class ItemSapling extends MultiItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
         int metadata = unmarkedMetadata(itemstack.getItemDamage());
-        if (metadata > 6) metadata = 0;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
         return super.getUnlocalizedName(itemstack);
