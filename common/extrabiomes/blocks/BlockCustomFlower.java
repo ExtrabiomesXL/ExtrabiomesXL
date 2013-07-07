@@ -72,29 +72,25 @@ public class BlockCustomFlower extends Block implements IPlantable {
 		autumnShrub = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "autumnshrub");
 		hydrangea = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "hydrangea");
 		orange = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "orangeflowers");
-		purple = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "purpleflowers");
+		purple = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "lavender");
 		tinyCactus  = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "tinycactus");
 		root = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "root");
 		toadstool = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "toadstools");
-		white = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "whiteflowers");
+		white = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "calla");
 	}
 
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
-        return (world.getFullBlockLightValue(x, y, z) >= 8 || world.canBlockSeeTheSky(x, y, z))
-                && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
+        return (world.getFullBlockLightValue(x, y, z) >= 8 || world.canBlockSeeTheSky(x, y, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
     }
 
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-        return super.canPlaceBlockAt(world, x, y, z)
-                && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
+        return super.canPlaceBlockAt(world, x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
     }
 
     private boolean canThisPlantGrowOnThisBlockID(int id) {
-        return id == Block.grass.blockID || id == Block.dirt.blockID
-                || id == Block.tilledField.blockID || id == Block.sand.blockID
-                || (byte) id == BiomeManager.mountainridge.get().topBlock;
+        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID || id == Block.sand.blockID || (byte) id == BiomeManager.mountainridge.get().topBlock;
     }
 
     private void checkFlowerChange(World world, int x, int y, int z) {
@@ -111,18 +107,27 @@ public class BlockCustomFlower extends Block implements IPlantable {
 
     @Override
     public Icon getIcon(int side, int metadata) {
-        if (metadata > 7) metadata = 7;
+        //if (metadata > 7) metadata = 7;
         //return super.getBlockTextureFromSideAndMetadata(side, metadata) + metadata;
         switch(metadata){
-        case 0: return autumnShrub;
-        case 1: return hydrangea;
-        case 2: return orange;
-        case 3: return purple;
-        case 4: return tinyCactus;
-        case 5: return root;
-        case 6: return toadstool;
-        case 7: return white;
-        default: return autumnShrub;
+	        case 0:
+	        	return autumnShrub;
+	        case 1:
+	        	return hydrangea;
+	        case 2:
+	        	return orange;
+	        case 3:
+	        	return purple;
+	        case 4:
+	        	return tinyCactus;
+	        case 5:
+	        	return root;
+	        case 6:
+	        	return toadstool;
+	        case 7:
+	        	return white;
+	        default:
+	        	return autumnShrub;
         }
     }
 
@@ -168,8 +173,9 @@ public class BlockCustomFlower extends Block implements IPlantable {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        for (final BlockType type : BlockType.values())
+        for (final BlockType type : BlockType.values()) {
             itemList.add(new ItemStack(this, 1, type.metadata()));
+        }
     }
 
     @Override

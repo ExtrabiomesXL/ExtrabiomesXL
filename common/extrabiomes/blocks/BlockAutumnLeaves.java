@@ -54,14 +54,21 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
         
 
         private static void loadCustomBlocks() {
-            if (Element.SAPLING_AUTUMN_BROWN.isPresent())
+            if (Element.SAPLING_AUTUMN_BROWN.isPresent()) {
                 BROWN.sapling = Element.SAPLING_AUTUMN_BROWN.get();
-            if (Element.SAPLING_AUTUMN_ORANGE.isPresent())
+            }
+            
+            if (Element.SAPLING_AUTUMN_ORANGE.isPresent()) {
                 ORANGE.sapling = Element.SAPLING_AUTUMN_ORANGE.get();
-            if (Element.SAPLING_AUTUMN_PURPLE.isPresent())
+            }
+            
+            if (Element.SAPLING_AUTUMN_PURPLE.isPresent()) {
                 PURPLE.sapling = Element.SAPLING_AUTUMN_PURPLE.get();
-            if (Element.SAPLING_AUTUMN_YELLOW.isPresent())
+            }
+            
+            if (Element.SAPLING_AUTUMN_YELLOW.isPresent()) {
                 YELLOW.sapling = Element.SAPLING_AUTUMN_YELLOW.get();
+            }
 
             loadedCustomBlocks = true;
         }
@@ -90,14 +97,14 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
-    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownfancy");
-    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownfast");
-    	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangefancy");
-    	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangefast");
-    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredfancy");
-    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredfast");
-    	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowfancy");
-    	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowfast");
+    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfancy");
+    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfast");
+    	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfancy");
+    	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfast");
+    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfancy");
+    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfast");
+    	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfancy");
+    	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfast");
     }
 
     private static final int METADATA_BITMASK       = 0x3;
