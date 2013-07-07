@@ -20,5 +20,6 @@ RMDIR /S /Q src
 REN src-bak src
 cd %olddir%
 echo copying output to jar
-CScript zip.vbs %cd%\..\forge\mcp\reobf\minecraft %cd%\extrabiomes.jar
+CScript zip.vbs %cd%\..\forge\mcp\reobf\minecraft %cd%\extrabiomes.zip
+REN extrabiomes.zip extrabiomes.jar
 PAUSE
