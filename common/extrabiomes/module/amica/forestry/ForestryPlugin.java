@@ -18,7 +18,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.fluids.FluidStack;
+//import net.minecraftforge.liquids.LiquidStack;
 
 import com.google.common.base.Optional;
 
@@ -65,9 +66,7 @@ public class ForestryPlugin {
     private static Optional<Method> getForestryBlock   = Optional.absent();
 
     private static final int        DIGGER             = 1;
-
     private static final int        FORESTER           = 2;
-
     private static final int        BIOMASS_SAPLINGS   = 250;
     
     static ItemStack getBlock(String name) {
@@ -80,46 +79,49 @@ public class ForestryPlugin {
 
     private void addBackPackItems() {
         Collection<ItemStack> items = ForestryModHelper.getForesterBackPackItems();
-        for (final ItemStack item : items)
+        for (final ItemStack item : items) {
             backpackItems[FORESTER].add(item);
+        }
 
         items = ForestryModHelper.getDiggerBackPackItems();
-        for (final ItemStack item : items)
+        for (final ItemStack item : items) {
             backpackItems[DIGGER].add(item);
+        }
 
-        if (Stuff.quickSand.isPresent())
+        if (Stuff.quickSand.isPresent()) {
             backpackItems[DIGGER].add(new ItemStack(Stuff.quickSand.get()));
+        }
     }
 
     private void addBasicFlowers() {
-        for (final ItemStack flower : ForestryModHelper.getBasicFlowers())
-            plainFlowers.add(flower);
+        for (final ItemStack flower : ForestryModHelper.getBasicFlowers()) {
+        	plainFlowers.add(flower);
+        }
     }
 
     private void addFermenterRecipeSapling(ItemStack resource) throws Exception {
-        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.0f,
-                getLiquidStack("liquidBiomass"), new LiquidStack(Block.waterStill.blockID, 1, 0));
-        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f,
-                getLiquidStack("liquidBiomass"), getLiquidStack("liquidJuice"));
-        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f,
-                getLiquidStack("liquidBiomass"), getLiquidStack("liquidHoney"));
+        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.0f, getFluidStack("liquidBiomass"), new FluidStack(Block.waterStill.blockID, 1));
+        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("liquidBiomass"), getFluidStack("liquidJuice"));
+        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("liquidBiomass"), getFluidStack("liquidHoney"));
     }
 
     private void addGlobals() {
         final Collection<ItemStack> items = ForestryModHelper.getLeaves();
-        for (final ItemStack item : items)
+        for (final ItemStack item : items) {
             leafBlockIds.add(item.itemID);
+        }
     }
 
     private void addRecipes() throws Exception {
-        if (fermenterAddRecipe.isPresent() && getForestryItem.isPresent())
-            for (final ItemStack sapling : ForestryModHelper.getSaplings())
+        if (fermenterAddRecipe.isPresent() && getForestryItem.isPresent()) {
+            for (final ItemStack sapling : ForestryModHelper.getSaplings()) {
                 addFermenterRecipeSapling(sapling);
-        if (carpenterAddRecipe.isPresent() && Element.RED_COBBLE.isPresent())
-            carpenterAddRecipe.get().invoke(carpenterManager, 10,
-                    new LiquidStack(Block.waterStill.blockID, 3000, 0), null,
-                    new ItemStack(Item.clay, 4),
-                    new Object[] { "#", Character.valueOf('#'), Element.RED_COBBLE.get() });
+            }
+        }
+        
+        if (carpenterAddRecipe.isPresent() && Element.RED_COBBLE.isPresent()) {
+            carpenterAddRecipe.get().invoke(carpenterManager, 10, new FluidStack(Block.waterStill.blockID, 3000), null, new ItemStack(Item.clay, 4), new Object[] { "#", Character.valueOf('#'), Element.RED_COBBLE.get() });
+        }
     }
 
     private void addSaplings() {
@@ -130,13 +132,14 @@ public class ForestryPlugin {
             BlockCustomSapling.setForestrySoilID(soil.get().itemID);
         }
         
-        for(ItemStack sapling : ForestryModHelper.getSaplings())
+        for(ItemStack sapling : ForestryModHelper.getSaplings()) {
         	FMLInterModComms.sendMessage("Forestry", "add-farmable-sapling", String.format("farmArboreal@%s.%s", sapling.itemID, sapling.getItemDamage()));
+        }
     }
 
-    private LiquidStack getLiquidStack(String name) throws Exception {
+    private FluidStack getFluidStack(String name) throws Exception {
         final ItemStack itemStack = (ItemStack) getForestryItem.get().invoke(null, name);
-        return new LiquidStack(itemStack.itemID, 1, itemStack.getItemDamage());
+        return new FluidStack(itemStack.itemID, 1, itemStack.getTagCompound());
     }
 
     @ForgeSubscribe
@@ -156,8 +159,8 @@ public class ForestryPlugin {
     @ForgeSubscribe
     public void preInit(PluginEvent.Pre event) {
         if (!isEnabled()) return;
-        LogHelper
-                .fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT), "Forestry");
+        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT), "Forestry");
+        
         try {
             Class cls = Class.forName("forestry.api.core.ItemInterface");
             getForestryItem = Optional.fromNullable(cls.getMethod("getItem", String.class));
@@ -184,15 +187,12 @@ public class ForestryPlugin {
             backpackItems = (ArrayList[]) fld.get(null);
 
             cls = Class.forName("forestry.api.recipes.IFermenterManager");
-            fermenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", ItemStack.class,
-                    int.class, float.class, LiquidStack.class, LiquidStack.class));
+            fermenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", ItemStack.class, int.class, float.class, FluidStack.class, FluidStack.class));
             cls = Class.forName("forestry.api.recipes.ICarpenterManager");
-            carpenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", int.class,
-                    LiquidStack.class, ItemStack.class, ItemStack.class, Object[].class));
+            carpenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", int.class, FluidStack.class, ItemStack.class, ItemStack.class, Object[].class));
         } catch (final Exception ex) {
             ex.printStackTrace();
-            LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
-                    "Forestry");
+            LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR), "Forestry");
             enabled = false;
         }
     }
