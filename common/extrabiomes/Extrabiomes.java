@@ -152,10 +152,10 @@ public class Extrabiomes {
 
     @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event) throws Exception {
-        LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_INITIALIZING));
-
         // Load the localization files into the LanguageRegistry
         LocalizationHandler.loadLanguages();
+
+        LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_INITIALIZING));
 
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg"));
 

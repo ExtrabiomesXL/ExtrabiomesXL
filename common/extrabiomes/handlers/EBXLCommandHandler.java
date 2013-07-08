@@ -40,7 +40,7 @@ public class EBXLCommandHandler extends CommandBase {
                 				player.addChatMessage("command then details about that command will be dispalyed.");
                 			} else if(cmds[1].equals("spawntree")) {
                 				player.addChatMessage("\u00A71-ExtrabiomesXl spawntree Command-\u00A7r");
-                				player.addChatMessage("\u00A7o/ebxl spawntree <type> <x> <y> <z> [seed]\u00A7r");
+                				player.addChatMessage("\u00A7o/ebxl spawntree <treetype> <x> <y> <z> [seed]\u00A7r");
                 				player.addChatMessage("Forces a tree of the specified <type> to spawn at");
                 				player.addChatMessage("<x>,<y>,<z> in the world. [command] is optional and if a");
                 				player.addChatMessage("number is provided will force the tree to use the same random");
@@ -53,6 +53,11 @@ public class EBXLCommandHandler extends CommandBase {
                 				player.addChatMessage("\u00A7o/ebxl version\u00A7r");
                 				player.addChatMessage("Displays the change log for the current");
                 				player.addChatMessage("version of ExtrabiomesXL.");
+                			} else if(cmds[1].equals("lastseed")){
+                				player.addChatMessage("\u00A71-ExtrabiomesXl lastseed Command-\u00A7r");
+                				player.addChatMessage("\u00A7o/ebxl lastseed <treetype>\u00A7r");
+                				player.addChatMessage("Displays the last random number that was used to generate");
+                				player.addChatMessage("the specified tree type for use with the spawntree command.");
                 			} else {
                 				helpList(player);
                 			}
@@ -70,9 +75,8 @@ public class EBXLCommandHandler extends CommandBase {
 		// List the available commands
 		player.addChatMessage("\u00A71-ExtrabiomesXl Commands-\u00A7r");
 		player.addChatMessage("/ebxl help [command]");
-		player.addChatMessage("/ebxl spawntree <type> <x> <y> <z> [seed]");
+		player.addChatMessage("/ebxl lastseed <treetype>");
+		player.addChatMessage("/ebxl spawntree <treetype> <x> <y> <z> [seed]");
 		player.addChatMessage("/ebxl version");
-		
 	}
-
 }
