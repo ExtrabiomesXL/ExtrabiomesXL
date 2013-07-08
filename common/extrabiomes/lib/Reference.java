@@ -11,7 +11,7 @@ public abstract class Reference {
     // Mod information
     public static final String MOD_ID = "ExtrabiomesXL";
     public static final String MOD_NAME = MOD_ID;
-    public static final String MOD_VERSION = "3.14.0";
+    public static final String MOD_VERSION = "3.13.6";
     public static final String CLIENT_PROXY = "extrabiomes.proxy.ClientProxy";
     public static final String SERVER_PROXY = "extrabiomes.proxy.CommonProxy";
 
