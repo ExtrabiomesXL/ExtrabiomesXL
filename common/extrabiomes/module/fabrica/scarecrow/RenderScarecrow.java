@@ -16,8 +16,11 @@ import net.minecraft.entity.passive.EntityBat;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 
+@SideOnly(Side.CLIENT)
 public class RenderScarecrow extends RenderLiving {
 	private static final ResourceLocation model_resource = new ResourceLocation(Extrabiomes.TEXTURE_PATH + "textures/models/scarecrow.png");
 	
