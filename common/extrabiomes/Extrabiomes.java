@@ -143,7 +143,7 @@ public class Extrabiomes {
         RecipeHandler.init();
         initBus = Optional.absent();
         Module.releaseStaticResources();
-        LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_LOAD_SUCCESS));
+        LogHelper.info("Successfully Loaded.");
     }
 
     public static boolean postInitEvent(Event event) {
@@ -152,10 +152,10 @@ public class Extrabiomes {
 
     @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event) throws Exception {
+        LogHelper.info("Intializing.");
+
         // Load the localization files into the LanguageRegistry
         LocalizationHandler.loadLanguages();
-
-        LogHelper.info(proxy.getStringLocalization(LOG_MESSAGE_INITIALIZING));
 
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg"));
 

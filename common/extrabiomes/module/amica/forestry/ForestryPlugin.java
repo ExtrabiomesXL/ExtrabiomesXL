@@ -159,7 +159,8 @@ public class ForestryPlugin {
     @ForgeSubscribe
     public void preInit(PluginEvent.Pre event) {
         if (!isEnabled()) return;
-        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT), "Forestry");
+        //LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT), "Forestry");
+        LogHelper.fine("Initializing %s plugin.", "Forestry");
         
         try {
             Class cls = Class.forName("forestry.api.core.ItemInterface");
@@ -192,7 +193,8 @@ public class ForestryPlugin {
             carpenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", int.class, FluidStack.class, ItemStack.class, ItemStack.class, Object[].class));
         } catch (final Exception ex) {
             ex.printStackTrace();
-            LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR), "Forestry");
+            //LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR), "Forestry");
+            LogHelper.fine("Could not communicate with %s. Disabling plugin.", "Forestry");
             enabled = false;
         }
     }
