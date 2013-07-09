@@ -74,10 +74,7 @@ public enum BlockSettings {
         switch (this) {
             case CRACKEDSAND:
             case REDROCK:
-                property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(),
-                        defaultID, String.format(Extrabiomes.proxy
-                                .getStringLocalization("config.block.terraingen.comment"),
-                                toString()));
+                property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(), defaultID, String.format("%s is used in terrain generation. Its id must be less than 256.", toString()));
                 break;
             default:
                 property = configuration.getBlock(idKey(), defaultID);

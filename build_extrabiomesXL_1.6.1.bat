@@ -1,7 +1,7 @@
 @echo off
 echo -------------------------------- Building ExtrabiomesXL -----------------------------------
 set olddir=%cd%
-cd ..\forge\mcp
+cd ..\forge_old\mcp
 echo Backing up src
 XCOPY src src-bak /E /I /Q
 echo.
@@ -21,5 +21,5 @@ REN src-bak src
 cd %olddir%
 echo copying output to jar
 CScript zip.vbs %cd%\..\forge\mcp\reobf\minecraft %cd%\extrabiomes.zip
-REN extrabiomes.zip extrabiomes.jar
+REN extrabiomes.zip extrabiomes_old.jar
 PAUSE

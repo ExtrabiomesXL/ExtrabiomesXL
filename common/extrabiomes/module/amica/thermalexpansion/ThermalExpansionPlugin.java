@@ -69,13 +69,16 @@ public class ThermalExpansionPlugin {
     @ForgeSubscribe
     public void preInit(PluginEvent.Pre event) {
         if (!Extrabiomes.proxy.isModLoaded(MODID)) return;
-        LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT), MOD_NAME);
+        //LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT), MOD_NAME);
+        LogHelper.fine("Initializing %s plugin.", MOD_NAME);
+        
         try {
             api = Optional.of(new ThermalExpansionAPI());
         } catch (final Exception ex) {
             ex.printStackTrace();
-            LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR),
-                    MOD_NAME);
+            //LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR), MOD_NAME);
+            LogHelper.fine("Could not communicate with %s. Disabling plugin.", MOD_NAME);
+            
             api = Optional.absent();
         }
     }

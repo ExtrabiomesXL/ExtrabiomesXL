@@ -18,7 +18,19 @@ public enum ModuleControlSettings {
     private boolean             enabled;
 
     private String commentLangKey() {
-        return "config." + toString() + ".comment";
+    	if(toString() == "amica") {
+    		return "Set amica to true to enable support for other mods.";
+    	} else if(toString() == "cautia") {
+    		return "Set cautia to true to add danger.";
+    	} else if(toString() == "fabrica") {
+    		return "Set fabrica to true to enable craftable items.";
+    	} else if(toString() == "summa") {
+    		return "Set summa to false to disable the mod.";
+    	} else {
+    		return "Oops Unknown Module";
+    	}
+    	
+        //return "config." + toString() + ".comment";
     }
 
     public boolean isEnabled() {
@@ -30,7 +42,8 @@ public enum ModuleControlSettings {
     }
 
     public void load(EnhancedConfiguration configuration) {
-        final Property property = configuration.get(CATEGORY_MODULE_CONTROL, keyEnabled(), true, Extrabiomes.proxy.getStringLocalization(commentLangKey()));
+        //final Property property = configuration.get(CATEGORY_MODULE_CONTROL, keyEnabled(), true, Extrabiomes.proxy.getStringLocalization(commentLangKey()));
+    	final Property property = configuration.get(CATEGORY_MODULE_CONTROL, keyEnabled(), true, commentLangKey());
         enabled = property.getBoolean(false);
     }
 

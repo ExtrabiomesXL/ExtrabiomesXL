@@ -43,9 +43,7 @@ enum Module {
                     break;
             }
 
-            LogHelper.info(Extrabiomes.proxy
-                    .getStringLocalization(module.enabled ? MODULE_STATUS_ENABLED
-                            : MODULE_STATUS_DISABLED), module.toString());
+            LogHelper.info(module.enabled ? "Module %s is enabled." : "Module %s is disabled, skipping.", module.toString());
 
             // skip disabled modules
             if (!module.enabled) continue;
