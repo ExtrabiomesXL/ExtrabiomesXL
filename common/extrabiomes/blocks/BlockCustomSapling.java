@@ -17,9 +17,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
@@ -44,6 +48,8 @@ public class BlockCustomSapling extends BlockFlower {
             return metadata;
         }
     }
+
+	int saplingID = 0;
     
     private Icon[] textures  = {null, null, null, null, null, null, null, null};
 
@@ -76,6 +82,9 @@ public class BlockCustomSapling extends BlockFlower {
         super(id);
         final float var3 = 0.4F;
         setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
+        
+        saplingID = id;
+        MinecraftForge.EVENT_BUS.register(this);
     }
     
     @Override
@@ -232,5 +241,25 @@ public class BlockCustomSapling extends BlockFlower {
             super.updateTick(world, x, y, z, rand);
             attemptGrowTree(world, x, y, z, rand);
         }
+    }
+    
+    @ForgeSubscribe
+    public void itemExpiring(ItemExpireEvent event) {
+    	if(event.entityItem.getEntityItem().itemID == saplingID){
+    		int posX = (int)Math.round(event.entityItem.lastTickPosX);
+    		int posY = (int)Math.round(event.entityItem.lastTickPosY);
+    		int posZ = (int)Math.round(event.entityItem.lastTickPosZ);
+    		
+    		//event.entityItem.worldObj.rand.
+    		
+    		//event.entityItem
+    		if(canThisPlantGrowOnThisBlockID(event.entityItem.worldObj.getBlockId(posX, posY - 1, posZ)) && event.entityItem.worldObj.isAirBlock(posX, posY, posZ)) {
+    			// Determine if the sapling should despawn
+    			if(event.entityItem.worldObj.rand.nextFloat() * 100 <= 5.0f){
+    				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, event.entityItem.getEntityItem().getItemDamage(), 2);
+    			}
+	    		//LogHelper.info("A sapling has despawned.");
+    		}
+    	}
     }
 }
