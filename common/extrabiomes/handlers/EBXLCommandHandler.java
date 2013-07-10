@@ -76,8 +76,8 @@ public class EBXLCommandHandler extends CommandBase {
                 				player.addChatMessage("the specified tree type for use with the spawntree command.");
                 			} else if(cmds[1].equals("saplingdespawntime")){
                 				player.addChatMessage("\u00A72-ExtrabiomesXl saplingdespawntime Command-\u00A7r");
-                				player.addChatMessage("\u00A7o/ebxl saplingdespawntime [seconds]\u00A7r");
-                				player.addChatMessage("Display/set the number of seconds that a sapling will exist");
+                				player.addChatMessage("\u00A7o/ebxl saplingdespawntime [ticks]\u00A7r");
+                				player.addChatMessage("Display/set the number of ticks that a sapling will exist");
                 				player.addChatMessage("on the ground before it despawns.");
                 			} else if(cmds[1].equals("killtree")){
                 				player.addChatMessage("\u00A72-ExtrabiomesXl killtree Command-\u00A7r");
@@ -104,13 +104,13 @@ public class EBXLCommandHandler extends CommandBase {
                 		}
                 	} else if(cmds[0].equals("saplingdespawntime")) {
                 		if(cmds.length == 1){
-                			player.addChatMessage("Sapling despawn time is currently: " + Integer.toString(BlockCustomSapling.getSaplingLifespan()));
+                			player.addChatMessage("Sapling despawn time is currently: " + Integer.toString(BlockCustomSapling.getSaplingLifespan()) + " ticks");
                 		} else if(cmds.length == 2){
                 			int newTime = Integer.parseInt(cmds[1]);
                 			
                 			if(newTime >= 0 && newTime <= 10000){
                 				BlockCustomSapling.setSaplingLifespan(newTime);
-                				player.addChatMessage("Sapling despawn time set to: " + cmds[1]);
+                				player.addChatMessage("Sapling despawn time set to: " + cmds[1] + " ticks");
                 			} else {
                 				player.addChatMessage("Sapling despawn time must be between 0 and 10000.");
                 			}
@@ -297,7 +297,7 @@ public class EBXLCommandHandler extends CommandBase {
 		player.addChatMessage("/ebxl help [command]");
 		player.addChatMessage("/ebxl lastseed <treetype>");
 		player.addChatMessage("/ebxl killtree <x> <y> <z>");
-		player.addChatMessage("/ebxl saplingdespawntime [seconds]");
+		player.addChatMessage("/ebxl saplingdespawntime [ticks]");
 		player.addChatMessage("/ebxl spawntree <treetype> <x> <y> <z> [seed]");
 		player.addChatMessage("/ebxl version");
 	}

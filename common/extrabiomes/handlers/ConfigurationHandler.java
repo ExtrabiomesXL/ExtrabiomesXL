@@ -23,6 +23,7 @@ import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.ItemSettings;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.lib.Reference;
+import extrabiomes.lib.SaplingSettings;
 import extrabiomes.utility.EnhancedConfiguration;
 
 /**
@@ -38,20 +39,30 @@ public abstract class ConfigurationHandler {
             optionalConfig = Optional.of(new EnhancedConfiguration(configFile));
             final EnhancedConfiguration configuration = optionalConfig.get();
 
-            for (final BiomeSettings setting : BiomeSettings.values())
+            for (final BiomeSettings setting : BiomeSettings.values()) {
                 setting.load(configuration);
+            }
             
-            for (final DecorationSettings setting : DecorationSettings.values())
+            for (final DecorationSettings setting : DecorationSettings.values()) {
             	setting.load(configuration);
+            }
 
-            for (final BlockSettings setting : BlockSettings.values())
+            for (final BlockSettings setting : BlockSettings.values()) {
                 setting.load(configuration);
+            }
 
-            for (final ItemSettings setting : ItemSettings.values())
+            for (final ItemSettings setting : ItemSettings.values()) {
                 setting.load(configuration);
+            }
 
-            for (final ModuleControlSettings setting : ModuleControlSettings.values())
+            configuration.addCustomCategoryComment("saplingreplanting", "Settings to configure the chance that saplings will replant themselves up despawning on valid soil.");
+            for (final SaplingSettings setting : SaplingSettings.values()) {
                 setting.load(configuration);
+            }
+
+            for (final ModuleControlSettings setting : ModuleControlSettings.values()) {
+                setting.load(configuration);
+            }
             
             Property bigTreeSaplingDropRateProperty = configuration.get(Configuration.CATEGORY_GENERAL, "Relative sapling drops", false);
             bigTreeSaplingDropRateProperty.comment = "Setting relative sapling drops to true will decrease the amount of saplings dropped by decaying fir and redwood leaf blocks to a more reasonable amount.";

@@ -65,8 +65,7 @@ public enum BlockSettings {
     }
 
     private boolean isQuarterLog() {
-        return this == QUARTERLOG0 || this == QUARTERLOG1 || this == QUARTERLOG2
-                || this == QUARTERLOG3;
+        return this == QUARTERLOG0 || this == QUARTERLOG1 || this == QUARTERLOG2 || this == QUARTERLOG3;
     }
 
     public void load(EnhancedConfiguration configuration) {
@@ -82,48 +81,61 @@ public enum BlockSettings {
 
         blockID = property.getInt(0);
 
-        if (isQuarterLog())
+        if (isQuarterLog()) {
             if (blockID == 0 && !clearedQuarterLogs) {
-                final BlockSettings[] settings = { QUARTERLOG0, QUARTERLOG1, QUARTERLOG2,
-                        QUARTERLOG3 };
+                final BlockSettings[] settings = { QUARTERLOG0, QUARTERLOG1, QUARTERLOG2, QUARTERLOG3 };
 
-                for (final BlockSettings setting : settings)
+                for (final BlockSettings setting : settings) {
                     setting.setToZero(configuration);
+                }
+                
                 clearedQuarterLogs = true;
             }
+        }
 
-        if (this == PLANKS)
+        if (this == PLANKS) {
             if (blockID == 0) {
-                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB, FIRSTAIRS,
-                        REDWOODSTAIRS, ACACIASTAIRS };
+                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB, FIRSTAIRS, REDWOODSTAIRS, ACACIASTAIRS };
 
-                for (final BlockSettings setting : settings)
+                for (final BlockSettings setting : settings) {
                     setting.setToZero(configuration);
+                }
             }
-
-        if (this == REDROCK) if (blockID == 0) {
-            final BlockSettings[] settings = { REDROCKSLAB, WALL };
-
-            for (final BlockSettings setting : settings)
-                setting.setToZero(configuration);
         }
 
-        if (this == WOODSLAB || this == DOUBLEWOODSLAB) if (blockID == 0 && !clearedWoodSlabs) {
-            final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB };
+        if (this == REDROCK) {
+        	if (blockID == 0) {
+                final BlockSettings[] settings = { REDROCKSLAB, WALL };
 
-            for (final BlockSettings setting : settings)
-                setting.setToZero(configuration);
-            clearedWoodSlabs = true;
+                for (final BlockSettings setting : settings) {
+                    setting.setToZero(configuration);
+                }
+            }	
         }
 
-        if (this == REDROCKSLAB || this == DOUBLEREDROCKSLAB)
+        if (this == WOODSLAB || this == DOUBLEWOODSLAB) {
+        	if (blockID == 0 && !clearedWoodSlabs) {
+                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB };
+
+                for (final BlockSettings setting : settings) {
+                    setting.setToZero(configuration);
+                }
+                
+                clearedWoodSlabs = true;
+            }
+        }
+
+        if (this == REDROCKSLAB || this == DOUBLEREDROCKSLAB) {
             if (blockID == 0 && !clearedWoodSlabs) {
                 final BlockSettings[] settings = { REDROCKSLAB, DOUBLEREDROCKSLAB };
 
-                for (final BlockSettings setting : settings)
+                for (final BlockSettings setting : settings) {
                     setting.setToZero(configuration);
+                }
+                
                 clearedWoodSlabs = true;
             }
+        }
     }
 
     private void setToZero(EnhancedConfiguration configuration) {
