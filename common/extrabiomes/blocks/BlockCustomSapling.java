@@ -13,12 +13,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -50,6 +52,7 @@ public class BlockCustomSapling extends BlockFlower {
     }
 
 	int saplingID = 0;
+	static int saplingLifespan = 5000;
     
     private Icon[] textures  = {null, null, null, null, null, null, null, null};
 
@@ -243,22 +246,38 @@ public class BlockCustomSapling extends BlockFlower {
         }
     }
     
+    public static int getSaplingLifespan(){
+    	return saplingLifespan;
+    }
+    
+    public static void setSaplingLifespan(int life){
+    	saplingLifespan = (life > 0) ? life : 0;
+    }
+    
     @ForgeSubscribe
     public void itemExpiring(ItemExpireEvent event) {
     	if(event.entityItem.getEntityItem().itemID == saplingID){
     		int posX = (int)Math.round(event.entityItem.lastTickPosX);
     		int posY = (int)Math.round(event.entityItem.lastTickPosY);
     		int posZ = (int)Math.round(event.entityItem.lastTickPosZ);
-    		
-    		//event.entityItem.worldObj.rand.
-    		
+    		    		
     		//event.entityItem
     		if(canThisPlantGrowOnThisBlockID(event.entityItem.worldObj.getBlockId(posX, posY - 1, posZ)) && event.entityItem.worldObj.isAirBlock(posX, posY, posZ)) {
     			// Determine if the sapling should despawn
-    			if(event.entityItem.worldObj.rand.nextFloat() * 100 <= 5.0f){
+    			if(event.entityItem.worldObj.rand.nextFloat() * 100 <= 90.0f){
     				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, event.entityItem.getEntityItem().getItemDamage(), 2);
     			}
 	    		//LogHelper.info("A sapling has despawned.");
+    		}
+    	}
+    }
+    
+    @ForgeSubscribe
+    public void itemEntering(EntityJoinWorldEvent event) {
+    	if(event.entity instanceof EntityItem && !event.world.isRemote){
+    		if(((EntityItem)event.entity).getEntityItem().itemID == saplingID){
+    			//LogHelper.info("A sapling entered the world.");
+    			((EntityItem)event.entity).lifespan = saplingLifespan;
     		}
     	}
     }

@@ -292,7 +292,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
     private void removeLeaves(World world, int x, int y, int z) {
         dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-        world.setBlock(x, y, z, 0, 0, 0x02);
+        world.setBlockToAir(x, y, z);
     }
 
     @Override

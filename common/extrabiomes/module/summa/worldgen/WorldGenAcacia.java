@@ -46,6 +46,9 @@ public class WorldGenAcacia extends WorldGenerator {
         }
 
     }
+    
+    // Store the last seed that was used to generate a tree
+    private static long lastSeed = 0;
 
     public WorldGenAcacia(final boolean doNotify) {
         super(doNotify);
@@ -53,7 +56,21 @@ public class WorldGenAcacia extends WorldGenerator {
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
-        final int height = rand.nextInt(4) + 6;
+    	// Store the seed
+    	lastSeed = rand.nextLong();
+    	
+        return generateTree(world, rand, x, y, z);
+    }
+    
+    public boolean generate(World world, long seed, int x, int y, int z) {
+    	// Store the seed
+    	lastSeed = seed;
+    	
+        return generateTree(world, new Random(seed), x, y, z);
+    }
+    
+    private boolean generateTree(World world, Random rand, int x, int y, int z){
+    	final int height = rand.nextInt(4) + 6;
         boolean canGrow = true;
 
         if (y < 1 || y + height + 1 > 256) return false;
@@ -65,8 +82,8 @@ public class WorldGenAcacia extends WorldGenerator {
 
             if (y1 >= y + 1 + height - 2) clearance = 2;
 
-            for (int x1 = x - clearance; x1 <= x + clearance && canGrow; x1++)
-                for (int z1 = z - clearance; z1 <= z + clearance && canGrow; z1++)
+            for (int x1 = x - clearance; x1 <= x + clearance && canGrow; x1++) {
+                for (int z1 = z - clearance; z1 <= z + clearance && canGrow; z1++) {
                     if (y1 >= 0 && y1 < 256) {
                         final int id = world.getBlockId(x1, y1, z1);
 
@@ -76,8 +93,11 @@ public class WorldGenAcacia extends WorldGenerator {
                                 && !Block.blocksList[id].isWood(world, x1, y1, z1))
                             canGrow = false;
 
-                    } else
+                    } else {
                         canGrow = false;
+                    }
+                }
+            }
         }
 
         if (!canGrow) return false;
@@ -121,6 +141,10 @@ public class WorldGenAcacia extends WorldGenerator {
 
         }
         return true;
+    }
+    
+    public static long getLastSeed(){ 
+    	return lastSeed;
     }
 
 }

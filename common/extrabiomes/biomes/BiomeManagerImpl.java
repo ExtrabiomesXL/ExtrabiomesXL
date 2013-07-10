@@ -125,8 +125,7 @@ public class BiomeManagerImpl extends BiomeManager {
         addWeightedTreeGenForBiome(biome.get(), new WorldGenerator() {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z) {
-                final WorldGenerator worldGen = new WorldGenHugeTrees(false, 10 + rand.nextInt(20),
-                        3, 3);
+                final WorldGenerator worldGen = new WorldGenHugeTrees(false, 10 + rand.nextInt(20), 3, 3);
                 return worldGen.generate(world, rand, x, y, z);
             }
 
@@ -135,8 +134,7 @@ public class BiomeManagerImpl extends BiomeManager {
 
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z) {
-                final WorldGenerator worldGen = new WorldGenTrees(false, 4 + rand.nextInt(7), 3, 3,
-                        true);
+                final WorldGenerator worldGen = new WorldGenTrees(false, 4 + rand.nextInt(7), 3, 3, true);
                 return worldGen.generate(world, rand, x, y, z);
             }
 
@@ -328,9 +326,7 @@ public class BiomeManagerImpl extends BiomeManager {
     }
 
     @Override
-    protected void addBiomeGen(GenType genType, BiomeGenBase biome, WorldGenerator treeGen,
-            int weight)
-    {
+    protected void addBiomeGen(GenType genType, BiomeGenBase biome, WorldGenerator treeGen, int weight) {
         final Multimap<BiomeGenBase, WeightedWorldGenerator> choices = weightedChoices.get(genType);
         choices.put(biome, new WeightedWorldGenerator(treeGen, weight));
     }
@@ -341,16 +337,11 @@ public class BiomeManagerImpl extends BiomeManager {
     }
 
     @Override
-    protected Optional<? extends WorldGenerator> chooseBiomeRandomGen(GenType genType, Random rand,
-            BiomeGenBase biome)
-    {
-        final Optional<Multimap<BiomeGenBase, WeightedWorldGenerator>> choicesForGenType = Optional
-                .fromNullable(weightedChoices.get(genType));
+    protected Optional<? extends WorldGenerator> chooseBiomeRandomGen(GenType genType, Random rand, BiomeGenBase biome) {
+        final Optional<Multimap<BiomeGenBase, WeightedWorldGenerator>> choicesForGenType = Optional.fromNullable(weightedChoices.get(genType));
         if (choicesForGenType.isPresent()) {
-            final Collection<WeightedWorldGenerator> choicesForBiome = choicesForGenType.get().get(
-                    biome);
-            final Optional<WeightedWorldGenerator> randomItem = WeightedRandomChooser
-                    .getRandomItem(rand, choicesForBiome);
+            final Collection<WeightedWorldGenerator> choicesForBiome = choicesForGenType.get().get(biome);
+            final Optional<WeightedWorldGenerator> randomItem = WeightedRandomChooser.getRandomItem(rand, choicesForBiome);
             if (randomItem.isPresent()) return Optional.of(randomItem.get().getWorldGen());
         }
         return Optional.absent();
