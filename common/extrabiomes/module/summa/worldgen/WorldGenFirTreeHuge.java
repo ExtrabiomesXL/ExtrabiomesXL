@@ -28,16 +28,25 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 		private static boolean loadedCustomBlocks = false;
 
 		private static void loadCustomBlocks() {
-			if (Element.LEAVES_FIR.isPresent())
+			if (Element.LEAVES_FIR.isPresent()) {
 				LEAVES.stack = Element.LEAVES_FIR.get();
-			if (Element.LOG_HUGE_FIR_NE.isPresent())
+			}
+			
+			if (Element.LOG_HUGE_FIR_NE.isPresent()) {
 				TRUNK_NE.stack = Element.LOG_HUGE_FIR_NE.get();
-			if (Element.LOG_HUGE_FIR_NW.isPresent())
+			}
+			
+			if (Element.LOG_HUGE_FIR_NW.isPresent()) {
 				TRUNK_NW.stack = Element.LOG_HUGE_FIR_NW.get();
-			if (Element.LOG_HUGE_FIR_SE.isPresent())
+			}
+			
+			if (Element.LOG_HUGE_FIR_SE.isPresent()) {
 				TRUNK_SE.stack = Element.LOG_HUGE_FIR_SE.get();
-			if (Element.LOG_HUGE_FIR_SW.isPresent())
+			}
+			
+			if (Element.LOG_HUGE_FIR_SW.isPresent()) {
 				TRUNK_SW.stack = Element.LOG_HUGE_FIR_SW.get();
+			}
 
 			loadedCustomBlocks = true;
 		}
@@ -75,45 +84,57 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 		super(doNotify);
 	}
 
-	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z) {
+	// Store the last seed that was used to generate a tree
+    private static long lastSeed = 0;
+
+    @Override
+    public boolean generate(World world, Random rand, int x, int y, int z) {
+    	// Store the seed
+    	lastSeed = rand.nextLong();
+    	
+        return generateTree(world, new Random(lastSeed), x, y, z);
+    }
+    
+    public boolean generate(World world, long seed, int x, int y, int z) {
+    	// Store the seed
+    	lastSeed = seed;
+    	
+        return generateTree(world, new Random(seed), x, y, z);
+    }
+    
+    private boolean generateTree(World world, Random rand, int x, int y, int z) {
 		final int height = rand.nextInt(16) + 32;
 		final int j = 1 + rand.nextInt(12);
 		final int k = height - j;
 		final int l = 2 + rand.nextInt(9);
 
-		if (y < 1 || y + height + 1 > 256)
-			return false;
+		if (y < 1 || y + height + 1 > 256) return false;
 
 		for (int y1 = y; y1 <= y + 1 + height; y1++) {
 
-			if (y1 < 0 && y1 >= 256)
-				return false;
+			if (y1 < 0 && y1 >= 256) return false;
 
 			int k1 = 1;
 
-			if (y1 - y < j)
+			if (y1 - y < j) {
 				k1 = 0;
-			else
+			} else {
 				k1 = l;
+			}
 
-			for (int x1 = x - k1; x1 <= x + k1; x1++)
+			for (int x1 = x - k1; x1 <= x + k1; x1++) {
 				for (int z1 = z - k1; z1 <= z + k1; z1++) {
 
-					if (!world.getChunkProvider().chunkExists(x1 >> 4, z1 >> 4))
-						return false;
+					if (!world.getChunkProvider().chunkExists(x1 >> 4, z1 >> 4)) return false;
 
 					final int id = world.getBlockId(x1, y1, z1);
 
-					if (Block.blocksList[id] != null
-							&& !Block.blocksList[id].isLeaves(null, x1, y1, z1))
-						return false;
+					if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(null, x1, y1, z1)) return false;
 				}
+			}
 		}
 
-		if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z))
-				|| y >= 256 - height - 1)
-			return false;
+		if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1) return false;
 
 		world.setBlock(x, y - 1, z, Block.dirt.blockID);
 		world.setBlock(x - 1, y - 1, z, Block.dirt.blockID);
@@ -133,40 +154,24 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 					final int i5 = l4 - z;
 					if (Math.abs(k4) != l1 || Math.abs(i5) != l1 || l1 <= 0) {
 						int blockID = world.getBlockId(i4, k3, l4);
-						if (blockID == 0
-								|| Block.blocksList[blockID]
-										.canBeReplacedByLeaves(world, i4, k3,
-												l4))
-							setBlockandMetadataIfChunkExists(world, i4, k3, l4,
-									TreeBlock.LEAVES.getID(),
-									TreeBlock.LEAVES.getMetadata());
+						if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4, k3, l4)) {
+							setBlockandMetadataIfChunkExists(world, i4, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+						}
 
 						blockID = world.getBlockId(i4 - 1, k3, l4);
-						if (blockID == 0
-								|| Block.blocksList[blockID]
-										.canBeReplacedByLeaves(world, i4 - 1,
-												k3, l4))
-							setBlockandMetadataIfChunkExists(world, i4 - 1, k3,
-									l4, TreeBlock.LEAVES.getID(),
-									TreeBlock.LEAVES.getMetadata());
+						if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4 - 1, k3, l4)) {
+							setBlockandMetadataIfChunkExists(world, i4 - 1, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+						}
 
 						blockID = world.getBlockId(i4, k3, l4 - 1);
-						if (blockID == 0
-								|| Block.blocksList[blockID]
-										.canBeReplacedByLeaves(world, i4, k3,
-												l4 - 1))
-							setBlockandMetadataIfChunkExists(world, i4, k3,
-									l4 - 1, TreeBlock.LEAVES.getID(),
-									TreeBlock.LEAVES.getMetadata());
+						if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4, k3, l4 - 1)){
+							setBlockandMetadataIfChunkExists(world, i4, k3, l4 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+						}
 
 						blockID = world.getBlockId(i4 - 1, k3, l4 - 1);
-						if (blockID == 0
-								|| Block.blocksList[blockID]
-										.canBeReplacedByLeaves(world, i4 - 1,
-												k3, l4 - 1))
-							setBlockandMetadataIfChunkExists(world, i4 - 1, k3,
-									l4 - 1, TreeBlock.LEAVES.getID(),
-									TreeBlock.LEAVES.getMetadata());
+						if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4 - 1, k3, l4 - 1)) {
+							setBlockandMetadataIfChunkExists(world, i4 - 1, k3, l4 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+						}
 					}
 				}
 			}
@@ -175,10 +180,12 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 				l1 = flag1 ? 1 : 0;
 				flag1 = true;
 
-				if (++j2 > l)
+				if (++j2 > l) {
 					j2 = l;
-			} else
+				}
+			} else {
 				l1++;
+			}
 		}
 
 		final int j3 = rand.nextInt(3);
@@ -186,23 +193,18 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 		for (int l3 = 0; l3 < height - j3; l3++) {
 			final int id = world.getBlockId(x, y + l3, z);
 
-			if (Block.blocksList[id] == null
-					|| Block.blocksList[id].isLeaves(world, x, y + l3, z)) {
-				setBlockAndMetadata(world, x, y + l3, z,
-						TreeBlock.TRUNK_SE.getID(),
-						TreeBlock.TRUNK_SE.getMetadata());
-				setBlockAndMetadata(world, x - 1, y + l3, z,
-						TreeBlock.TRUNK_SW.getID(),
-						TreeBlock.TRUNK_SW.getMetadata());
-				setBlockAndMetadata(world, x, y + l3, z - 1,
-						TreeBlock.TRUNK_NE.getID(),
-						TreeBlock.TRUNK_NE.getMetadata());
-				setBlockAndMetadata(world, x - 1, y + l3, z - 1,
-						TreeBlock.TRUNK_NW.getID(),
-						TreeBlock.TRUNK_NW.getMetadata());
+			if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + l3, z)) {
+				setBlockAndMetadata(world, x, y + l3, z, TreeBlock.TRUNK_SE.getID(), TreeBlock.TRUNK_SE.getMetadata());
+				setBlockAndMetadata(world, x - 1, y + l3, z, TreeBlock.TRUNK_SW.getID(), TreeBlock.TRUNK_SW.getMetadata());
+				setBlockAndMetadata(world, x, y + l3, z - 1, TreeBlock.TRUNK_NE.getID(), TreeBlock.TRUNK_NE.getMetadata());
+				setBlockAndMetadata(world, x - 1, y + l3, z - 1, TreeBlock.TRUNK_NW.getID(), TreeBlock.TRUNK_NW.getMetadata());
 			}
 		}
 
 		return true;
 	}
+    
+    public static long getLastSeed(){ 
+    	return lastSeed;
+    }
 }

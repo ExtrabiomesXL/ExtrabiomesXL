@@ -134,6 +134,16 @@ public class BlockCustomSapling extends BlockFlower {
         return textures[metadata];
     }
 
+    public void markOrGrowMarked(World world, int x, int y, int z, Random rand) {
+        int marked = world.getBlockMetadata(x, y, z);
+
+        if ((marked & 8) == 0) {
+        	world.setBlockMetadataWithNotify(x, y, z, marked | 8, 4);
+        } else {
+            this.growTree(world, x, y, z, rand);
+        }
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
@@ -234,8 +244,7 @@ public class BlockCustomSapling extends BlockFlower {
     }
 
     public boolean isSameSapling(World world, int x, int y, int z, int metadata) {
-        return world.getBlockId(x, y, z) == blockID
-                && unmarkedMetadata(world.getBlockMetadata(x, y, z)) == metadata;
+        return world.getBlockId(x, y, z) == blockID && unmarkedMetadata(world.getBlockMetadata(x, y, z)) == metadata;
     }
 
     @Override

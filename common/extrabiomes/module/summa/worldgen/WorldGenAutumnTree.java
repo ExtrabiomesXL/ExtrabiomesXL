@@ -61,16 +61,12 @@ public class WorldGenAutumnTree extends WorldGenerator {
 
 	private static final int	MAX_VARIANCE_HEIGHT			= 2;
 
-	private static boolean isBlockSuitableForGrowing(final World world,
-			final int x, final int y, final int z)
-	{
+	private static boolean isBlockSuitableForGrowing(final World world, final int x, final int y, final int z) {
 		final int id = world.getBlockId(x, y, z);
 		return TreeSoilRegistry.isValidSoil(id);
 	}
 
-	private static boolean isRoomToGrow(final World world, final int x,
-			final int y, final int z, final int height)
-	{
+	private static boolean isRoomToGrow(final World world, final int x, final int y, final int z, final int height) {
 		for (int i = y; i <= y + 1 + height; ++i) {
 
 			if (i < 0 || i >= 256) return false;
@@ -81,18 +77,15 @@ public class WorldGenAutumnTree extends WorldGenerator {
 
 			if (i >= y + 1 + height - 2) radius = 2;
 
-			for (int x1 = x - radius; x1 <= x + radius; ++x1)
+			for (int x1 = x - radius; x1 <= x + radius; ++x1) {
 				for (int z1 = z - radius; z1 <= z + radius; ++z1) {
 					final int id = world.getBlockId(x1, i, z1);
 
-					if (Block.blocksList[id] != null
-							&& !Block.blocksList[id].isLeaves(world,
-									x1, i, z1)
-							&& id != Block.grass.blockID
-							&& !Block.blocksList[id].isWood(world, x1,
-									i, z1)) return false;
+					if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x1, i, z1) && id != Block.grass.blockID && !Block.blocksList[id].isWood(world, x1, i, z1)) return false;
 				}
+			}
 		}
+		
 		return true;
 	}
 
@@ -103,19 +96,32 @@ public class WorldGenAutumnTree extends WorldGenerator {
 
 	protected final AutumnTreeType	type;
 
-	public WorldGenAutumnTree(boolean doBlockNotify, AutumnTreeType type)
-	{
+	public WorldGenAutumnTree(boolean doBlockNotify, AutumnTreeType type) {
 		super(doBlockNotify);
 
 		this.type = type;
 	}
 	
-	@Override
-	public boolean generate(final World world, final Random rand,
-			final int x, final int y, final int z)
-	{
-		final int height = rand.nextInt(MAX_VARIANCE_HEIGHT + 1)
-				+ BASE_HEIGHT;
+	// Store the last seed that was used to generate a tree
+    private static long lastSeed = 0;
+
+    @Override
+    public boolean generate(World world, Random rand, int x, int y, int z) {
+    	// Store the seed
+    	lastSeed = rand.nextLong();
+    	
+        return generateTree(world, new Random(lastSeed), x, y, z);
+    }
+    
+    public boolean generate(World world, long seed, int x, int y, int z) {
+    	// Store the seed
+    	lastSeed = seed;
+    	
+        return generateTree(world, new Random(seed), x, y, z);
+    }
+    
+    private boolean generateTree(World world, Random rand, int x, int y, int z) {
+		final int height = rand.nextInt(MAX_VARIANCE_HEIGHT + 1) + BASE_HEIGHT;
 
 		if (y < 1 || y + height + 1 > 256) return false;
 
@@ -125,18 +131,13 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		if (!isRoomToGrow(world, x, y, z, height)) return false;
 
 		world.setBlock(x, y - 1, z, Block.dirt.blockID);
-		growLeaves(world, rand, x, y, z, height, type.getID(),
-				type.getMetadata());
-		growTrunk(world, x, y, z, height, trunkBlock.blockID,
-				trunkMetadata);
+		growLeaves(world, rand, x, y, z, height, type.getID(), type.getMetadata());
+		growTrunk(world, x, y, z, height, trunkBlock.blockID, trunkMetadata);
 
 		return true;
 	}
 
-	private void growLeaves(final World world, final Random rand,
-			final int x, final int y, final int z, final int height,
-			int leafID, int leafMeta)
-	{
+	private void growLeaves(final World world, final Random rand, final int x, final int y, final int z, final int height, int leafID, int leafMeta) {
 		for (int y1 = y - CANOPY_HEIGHT + height; y1 <= y + height; ++y1)
 		{
 			final int canopyRow = y1 - (y + height);
@@ -165,9 +166,7 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		}
 	}
 
-	private void growTrunk(final World world, final int x, final int y,
-			final int z, final int height, int woodID, int woodMeta)
-	{
+	private void growTrunk(final World world, final int x, final int y, final int z, final int height, int woodID, int woodMeta) {
 		for (int y1 = 0; y1 < height; ++y1) {
 			final int id = world.getBlockId(x, y + y1, z);
 
@@ -178,4 +177,8 @@ public class WorldGenAutumnTree extends WorldGenerator {
 						woodMeta);
 		}
 	}
+    
+    public static long getLastSeed(){ 
+    	return lastSeed;
+    }
 }

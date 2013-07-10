@@ -46,20 +46,20 @@ public class WorldGenAcacia extends WorldGenerator {
         }
 
     }
-    
-    // Store the last seed that was used to generate a tree
-    private static long lastSeed = 0;
 
     public WorldGenAcacia(final boolean doNotify) {
         super(doNotify);
     }
+
+    // Store the last seed that was used to generate a tree
+    private static long lastSeed = 0;
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
     	// Store the seed
     	lastSeed = rand.nextLong();
     	
-        return generateTree(world, rand, x, y, z);
+        return generateTree(world, new Random(lastSeed), x, y, z);
     }
     
     public boolean generate(World world, long seed, int x, int y, int z) {
@@ -146,5 +146,4 @@ public class WorldGenAcacia extends WorldGenerator {
     public static long getLastSeed(){ 
     	return lastSeed;
     }
-
 }
