@@ -10,9 +10,13 @@ package extrabiomes.proxy;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ModelScarecrow;
 import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
+
+@SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
 	@Override
 	public int registerBlockHandler(ISimpleBlockRenderingHandler handler)

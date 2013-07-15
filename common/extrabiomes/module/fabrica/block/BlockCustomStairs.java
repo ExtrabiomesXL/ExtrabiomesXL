@@ -12,9 +12,7 @@ import extrabiomes.Extrabiomes;
 
 public class BlockCustomStairs extends BlockStairs {
 
-	public BlockCustomStairs(int blockID, Block modelBlock,
-			int modelMetadata)
-	{
+	public BlockCustomStairs(int blockID, Block modelBlock, int modelMetadata) {
 		super(blockID, modelBlock, modelMetadata);
 		//setRequiresSelfNotify();
 		//setTextureFile("/extrabiomes/extrabiomes.png");

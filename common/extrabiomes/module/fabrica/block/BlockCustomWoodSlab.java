@@ -20,7 +20,7 @@ import extrabiomes.Extrabiomes;
 
 public class BlockCustomWoodSlab extends BlockWoodSlab {
 	public enum BlockType {
-		REDWOOD(0), FIR(1), ACACIA(2);
+		REDWOOD(0), FIR(1), ACACIA(2), CYPRESS(3), JAPANESE_MAPLE(4), RAINBOW_EUCALYPTUS(5), AUTUMN(6);
 
 		private final int	metadata;
 
@@ -60,6 +60,10 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
     	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksredwood");
     	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksfir");
     	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksacacia");
+    	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "plankscypress");
+    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksjapanesemaple");
+    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksrainboweucalyptus");
+    	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksautumn");
     }
 
 	@Override
@@ -83,6 +87,18 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
 			case 2:
 				woodType = BlockType.ACACIA.toString();
 				break;
+			case 3:
+				woodType = BlockType.CYPRESS.toString();
+				break;
+			case 4:
+				woodType = BlockType.JAPANESE_MAPLE.toString();
+				break;
+			case 5:
+				woodType = BlockType.RAINBOW_EUCALYPTUS.toString();
+				break;
+			case 6:
+				woodType = BlockType.AUTUMN.toString();
+				break;
 			default:
 				woodType = BlockType.REDWOOD.toString();
 		}
@@ -92,12 +108,12 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(int blockID, CreativeTabs tab,
-			List itemList)
-	{
-		if (blockID == singleSlabID)
-			for (final BlockType type : BlockType.values())
+	public void getSubBlocks(int blockID, CreativeTabs tab, List itemList) {
+		if (blockID == singleSlabID) {
+			for (final BlockType type : BlockType.values()) {
 				itemList.add(new ItemStack(blockID, 1, type.metadata()));
+			}
+		}
 	}
 
 	@Override

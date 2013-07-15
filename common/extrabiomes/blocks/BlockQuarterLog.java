@@ -646,9 +646,6 @@ public class BlockQuarterLog extends BlockLog {
                     wood.stepSound.getPitch() * 1.55F);
 
             if (!event.world.isRemote) {
-
-                LogHelper.info(Integer.toString(turnerCnt));	
-            	
                 final int metadata = event.world.getBlockMetadata(event.x, event.y, event.z);
                 int orientation = metadata & 12;
                 final int type = metadata & 3;
@@ -657,8 +654,6 @@ public class BlockQuarterLog extends BlockLog {
 
                 if (orientation == 0) id = getNextBlockID();
                 event.world.setBlock(event.x, event.y, event.z, id, type | orientation, 3);
-
-                //unturned = false;
             }
             event.setHandled();
             

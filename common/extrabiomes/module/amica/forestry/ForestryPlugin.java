@@ -21,14 +21,15 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.fluids.FluidStack;
 //import net.minecraftforge.liquids.LiquidStack;
 
+
 import com.google.common.base.Optional;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
-
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockCustomSapling;
+import extrabiomes.blocks.BlockNewSapling;
 import extrabiomes.helpers.ForestryModHelper;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Element;
@@ -130,6 +131,7 @@ public class ForestryPlugin {
         if (soil.isPresent()) {
             TreeSoilRegistry.addValidSoil(Block.blocksList[soil.get().itemID]);
             BlockCustomSapling.setForestrySoilID(soil.get().itemID);
+            BlockNewSapling.setForestrySoilID(soil.get().itemID);
         }
         
         for(ItemStack sapling : ForestryModHelper.getSaplings()) {

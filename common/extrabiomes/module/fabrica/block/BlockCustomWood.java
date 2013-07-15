@@ -19,7 +19,7 @@ import extrabiomes.Extrabiomes;
 
 public class BlockCustomWood extends BlockWood {
 	public enum BlockType {
-		REDWOOD(0), FIR(1), ACACIA(2);
+		REDWOOD(0), FIR(1), ACACIA(2), CYPRESS(3), JAPANESE_MAPLE(4), RAINBOW_EUCALYPTUS(5), AUTUMN(6);
 
 		private final int	metadata;
 
@@ -52,19 +52,24 @@ public class BlockCustomWood extends BlockWood {
     	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksredwood");
     	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksfir");
     	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksacacia");
+    	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "plankscypress");
+    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksjapanesemaple");
+    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksrainboweucalyptus");
+    	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksautumn");
     }
 
 	@Override
 	public Icon getIcon(int side, int metadata)	{
 		// Ensure that the texture id is in range
-		if (metadata < 0 || metadata > 2) metadata = 0;
+		if (metadata < 0 || metadata > 6) metadata = 0;
 		return textures[metadata];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list) {
-		for (final BlockType type : BlockType.values())
+		for (final BlockType type : BlockType.values()) {
 			list.add(new ItemStack(blockID, 1, type.metadata()));
+		}
 	}
 }

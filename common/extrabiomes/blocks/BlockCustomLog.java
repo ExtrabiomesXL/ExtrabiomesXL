@@ -24,7 +24,7 @@ import extrabiomes.api.UseLogTurnerEvent;
 
 public class BlockCustomLog extends BlockLog {
     public enum BlockType {
-        FIR(0), ACACIA(1), CYPRESS(2);
+        FIR(0), ACACIA(1), CYPRESS(2), JAPANESE_MAPLE(3);
 
         private final int metadata;
 
@@ -58,6 +58,9 @@ public class BlockCustomLog extends BlockLog {
     	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logcypressside");
     	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logcypresstop");
     	
+    	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logjapanesemapleside");
+    	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logjapanesemapletop");
+    	
     	setupTextures(index);
     }
     
@@ -66,11 +69,13 @@ public class BlockCustomLog extends BlockLog {
     	texturesMap.put(index, textures[0]);
     	texturesMap.put(index + 1, textures[2]);
     	texturesMap.put(index + 2, textures[4]);
+    	texturesMap.put(index + 3, textures[6]);
 
     	//top/bottom textures
     	texturesMap.put(index + 16, textures[1]);
     	texturesMap.put(index + 17, textures[3]);
     	texturesMap.put(index + 18, textures[5]);
+    	texturesMap.put(index + 19, textures[7]);
     	
     }
 
@@ -78,7 +83,7 @@ public class BlockCustomLog extends BlockLog {
     public Icon getIcon(int side, int metadata) {
         final int orientation = metadata & 12;
         int type = metadata & 3;
-        if (type > 2) type = 0;
+        if (type > 3) type = 0;
         if (orientation == 0 && (side == 1 || side == 0) || orientation == 4 && (side == 5 || side == 4) || orientation == 8 && (side == 2 || side == 3)) {
         	return texturesMap.get(index + 16 + type);
         }

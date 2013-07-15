@@ -141,7 +141,7 @@ public class BlockCustomSapling extends BlockFlower {
         if ((marked & 8) == 0) {
         	world.setBlockMetadataWithNotify(x, y, z, marked | 8, 4);
         } else {
-            this.growTree(world, x, y, z, rand);
+            //this.growTree(world, x, y, z, rand);
         }
     }
 
@@ -153,6 +153,8 @@ public class BlockCustomSapling extends BlockFlower {
     }
 
     public void growTree(World world, int x, int y, int z, Random rand) {
+    	return;
+    	/*
         final int metadata = unmarkedMetadata(world.getBlockMetadata(x, y, z));
         WorldGenerator tree = null;
         int x1 = 0;
@@ -242,6 +244,7 @@ public class BlockCustomSapling extends BlockFlower {
             } else
                 world.setBlock(x, y - 1, z, Block.sand.blockID);
         }
+        */
     }
 
     public boolean isSameSapling(World world, int x, int y, int z, int metadata) {

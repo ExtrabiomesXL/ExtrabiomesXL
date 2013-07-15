@@ -29,8 +29,7 @@ import extrabiomes.proxy.CommonProxy;
 public class BlockCustomFlower extends Block implements IPlantable {
 
     public enum BlockType {
-        AUTUMN_SHRUB(0), HYDRANGEA(1), ORANGE(2), PURPLE(3), TINY_CACTUS(4), ROOT(5), TOADSTOOL(6), WHITE(
-                7);
+        AUTUMN_SHRUB(0), HYDRANGEA(1), ORANGE(2), PURPLE(3), TINY_CACTUS(4), ROOT(5), TOADSTOOL(6), WHITE(7);
 
         private final int metadata;
 
@@ -71,7 +70,7 @@ public class BlockCustomFlower extends Block implements IPlantable {
 	public void registerIcons(IconRegister iconRegister){
 		autumnShrub = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "autumnshrub");
 		hydrangea = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "hydrangea");
-		orange = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "orangeflowers");
+		orange = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "buttercup");
 		purple = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "lavender");
 		tinyCactus  = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "tinycactus");
 		root = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "root");

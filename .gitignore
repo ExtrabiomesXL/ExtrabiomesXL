@@ -3,3 +3,5 @@
 
 #Windows thumbnail cache trash
 Thumbs.db
+*.jar
+desktop.ini

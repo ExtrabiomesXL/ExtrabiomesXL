@@ -7,6 +7,7 @@
 package extrabiomes.handlers;
 
 import extrabiomes.blocks.BlockCustomSapling;
+import extrabiomes.blocks.BlockNewSapling;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraftforge.event.Event.Result;

@@ -63,8 +63,7 @@ public class BlockRedRock extends Block {
 
     @Override
     public int damageDropped(int metadata) {
-        return metadata == RED_ROCK_BRICK.metadata() ? RED_ROCK_BRICK.metadata() : RED_COBBLE
-                .metadata();
+        return metadata == RED_ROCK_BRICK.metadata() ? RED_ROCK_BRICK.metadata() : RED_COBBLE.metadata();
     }
 
     @Override
