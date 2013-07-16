@@ -6,7 +6,9 @@
 
 package extrabiomes.module.summa.biome;
 
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -21,6 +23,8 @@ public class BiomeShrubland extends ExtrabiomeGenBase {
         rainfall = 0.6F;
         minHeight = 0.1F;
         maxHeight = 0.3F;
+
+        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 10, 1, 5));
     }
 
     @Override

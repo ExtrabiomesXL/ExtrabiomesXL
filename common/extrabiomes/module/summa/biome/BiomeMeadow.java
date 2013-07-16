@@ -6,9 +6,11 @@
 
 package extrabiomes.module.summa.biome;
 
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.biome.SpawnListEntry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
@@ -21,6 +23,8 @@ public class BiomeMeadow extends ExtrabiomeGenBase {
         minHeight = 0.0F;
         maxHeight = 0.0F;
         setBiomeName("Meadow");
+
+        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 10, 2, 6));
     }
 
     @Override
