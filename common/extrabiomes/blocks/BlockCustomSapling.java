@@ -26,6 +26,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.Element;
 import extrabiomes.lib.SaplingSettings;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
@@ -153,9 +154,7 @@ public class BlockCustomSapling extends BlockFlower {
     }
 
     public void growTree(World world, int x, int y, int z, Random rand) {
-    	return;
-    	/*
-        final int metadata = unmarkedMetadata(world.getBlockMetadata(x, y, z));
+    	final int metadata = unmarkedMetadata(world.getBlockMetadata(x, y, z));
         WorldGenerator tree = null;
         int x1 = 0;
         int z1 = 0;
@@ -164,28 +163,45 @@ public class BlockCustomSapling extends BlockFlower {
         final boolean isForestryFarmed = world.getBlockId(x, y - 1, z) == forestrySoilID;
 
         if (metadata == BlockType.BROWN.metadata()) {
-            if (rand.nextInt(20) == 0) {
+            if (rand.nextInt(5) == 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
+                
+                ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             } else {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.BROWN);
+                Block b = new Block(Element.LOG_AUTUMN.get().itemID, blockMaterial);
+                
+                ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
         } else if (metadata == BlockType.ORANGE.metadata()) {
-            if (rand.nextInt(20) == 0) {
+            if (rand.nextInt(5) == 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
+                
+                ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             } else {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.ORANGE);
+                
+                ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
         } else if (metadata == BlockType.PURPLE.metadata()) {
-            if (rand.nextInt(20) == 0) {
+            if (rand.nextInt(5) == 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
+                
+                ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             } else {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.PURPLE);
+                
+                ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
         } else if (metadata == BlockType.YELLOW.metadata()) {
-            if (rand.nextInt(20) == 0) {
+            if (rand.nextInt(5) == 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
+                
+                ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             } else {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.YELLOW);
+                
+                ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
         } else if (metadata == BlockType.ACACIA.metadata()) {
             tree = new WorldGenAcacia(true);
@@ -195,11 +211,7 @@ public class BlockCustomSapling extends BlockFlower {
             // Check for 2x2 firs and redwoods
             for (x1 = 0; x1 >= -1; --x1) {
                 for (z1 = 0; z1 >= -1; --z1)
-                    if (isSameSapling(world, x + x1, y, z + z1, metadata)
-                            && isSameSapling(world, x + x1 + 1, y, z + z1, metadata)
-                            && isSameSapling(world, x + x1, y, z + z1 + 1, metadata)
-                            && isSameSapling(world, x + x1 + 1, y, z + z1 + 1, metadata))
-                    {
+                    if (isSameSapling(world, x + x1, y, z + z1, metadata) && isSameSapling(world, x + x1 + 1, y, z + z1, metadata) && isSameSapling(world, x + x1, y, z + z1 + 1, metadata) && isSameSapling(world, x + x1 + 1, y, z + z1 + 1, metadata))                     {
                         if (metadata == BlockType.FIR.metadata())
                             tree = new WorldGenFirTreeHuge(true);
                         else
@@ -244,7 +256,6 @@ public class BlockCustomSapling extends BlockFlower {
             } else
                 world.setBlock(x, y - 1, z, Block.sand.blockID);
         }
-        */
     }
 
     public boolean isSameSapling(World world, int x, int y, int z, int metadata) {

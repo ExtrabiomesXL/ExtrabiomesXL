@@ -16,7 +16,7 @@ import extrabiomes.lib.Element;
 import extrabiomes.module.summa.TreeSoilRegistry;
 
 public class WorldGenAutumnTree extends WorldGenerator {
-
+	
 	public enum AutumnTreeType {
 		BROWN, ORANGE, PURPLE, YELLOW;
 		
@@ -45,7 +45,7 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		
 	}
 
-	private static Block		trunkBlock					= Block.wood;
+	private static int		trunkBlock					= Block.wood.blockID;
 	private static int			trunkMetadata				= 1;
 	private static ItemStack			brownLeaves			= new ItemStack(Block.leaves);
 	private static ItemStack			orangeLeaves		= brownLeaves;
@@ -57,9 +57,11 @@ public class WorldGenAutumnTree extends WorldGenerator {
 
 	private static final int	CANOPY_HEIGHT				= 3;
 
-	private static final int	CANOPY_RADIUS_EXTRA_RADIUS	= 0;
+	private static final int	CANOPY_RADIUS_EXTRA_RADIUS	= 2;
 
-	private static final int	MAX_VARIANCE_HEIGHT			= 2;
+	private static final int	MAX_VARIANCE_HEIGHT			= 4;
+	
+	
 
 	private static boolean isBlockSuitableForGrowing(final World world, final int x, final int y, final int z) {
 		final int id = world.getBlockId(x, y, z);
@@ -90,7 +92,12 @@ public class WorldGenAutumnTree extends WorldGenerator {
 	}
 
 	public static void setTrunkBlock(Block block, int metadata) {
-		WorldGenAutumnTree.trunkBlock = block;
+		WorldGenAutumnTree.trunkBlock = block.blockID;
+		WorldGenAutumnTree.trunkMetadata = metadata;
+	}
+	
+	public static void setTrunkBlock(int blockId, int metadata) {
+		WorldGenAutumnTree.trunkBlock = blockId;
 		WorldGenAutumnTree.trunkMetadata = metadata;
 	}
 
@@ -132,14 +139,13 @@ public class WorldGenAutumnTree extends WorldGenerator {
 
 		world.setBlock(x, y - 1, z, Block.dirt.blockID);
 		growLeaves(world, rand, x, y, z, height, type.getID(), type.getMetadata());
-		growTrunk(world, x, y, z, height, trunkBlock.blockID, trunkMetadata);
+		growTrunk(world, x, y, z, height, trunkBlock, trunkMetadata);
 
 		return true;
 	}
 
 	private void growLeaves(final World world, final Random rand, final int x, final int y, final int z, final int height, int leafID, int leafMeta) {
-		for (int y1 = y - CANOPY_HEIGHT + height; y1 <= y + height; ++y1)
-		{
+		for (int y1 = y - CANOPY_HEIGHT + height; y1 <= y + height; ++y1) {
 			final int canopyRow = y1 - (y + height);
 			final int radius = CANOPY_RADIUS_EXTRA_RADIUS + 1
 					- canopyRow / 2;
@@ -153,14 +159,9 @@ public class WorldGenAutumnTree extends WorldGenerator {
 					final Block block = Block.blocksList[world
 							.getBlockId(x1, y1, z1)];
 
-					if ((Math.abs(xDistanceFromTrunk) != radius
-							|| Math.abs(zDistanceFromTrunk) != radius || rand
-							.nextInt(2) != 0 && canopyRow != 0)
-							&& (block == null || block
-									.canBeReplacedByLeaves(world, x1,
-											y1, z1)))
-						setBlockAndMetadata(world, x1, y1, z1, leafID,
-								leafMeta);
+					if ((Math.abs(xDistanceFromTrunk) != radius || Math.abs(zDistanceFromTrunk) != radius || rand.nextInt(2) != 0 && canopyRow != 0) && (block == null || block.canBeReplacedByLeaves(world, x1, y1, z1))) {
+						setBlockAndMetadata(world, x1, y1, z1, leafID,leafMeta);
+					}
 				}
 			}
 		}
@@ -170,11 +171,9 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		for (int y1 = 0; y1 < height; ++y1) {
 			final int id = world.getBlockId(x, y + y1, z);
 
-			if (Block.blocksList[id] == null
-					|| Block.blocksList[id].isLeaves(world, x, y + y1,
-							z))
-				setBlockAndMetadata(world, x, y + y1, z, woodID,
-						woodMeta);
+			if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + y1, z)) {
+				setBlockAndMetadata(world, x, y + y1, z, woodID, woodMeta);
+			}
 		}
 	}
     

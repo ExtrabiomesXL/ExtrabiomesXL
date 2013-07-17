@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import extrabiomes.blocks.BlockCustomSapling;
+import extrabiomes.lib.Element;
 import extrabiomes.lib.Vector3;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
@@ -177,21 +178,37 @@ public class EBXLCommandHandler extends CommandBase {
                     			} else if(cmds[1].equals("largeFir")) {
                     				(new WorldGenFirTreeHuge(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else if(cmds[1].equals("brown")) {
-                    				(new WorldGenAutumnTree(true, AutumnTreeType.BROWN)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.BROWN);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else if(cmds[1].equals("orange")) {
-                    				(new WorldGenAutumnTree(true, AutumnTreeType.ORANGE)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.ORANGE);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else if(cmds[1].equals("purple")) {
-                    				(new WorldGenAutumnTree(true, AutumnTreeType.PURPLE)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.PURPLE);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else if(cmds[1].equals("yellow")) {
-                    				(new WorldGenAutumnTree(true, AutumnTreeType.YELLOW)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.YELLOW);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else if(cmds[1].equals("largeBrown")) {
-                    				(new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else if(cmds[1].equals("largeOrange")) {
-                    				(new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else if(cmds[1].equals("largePurple")) {
-                    				(new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else if(cmds[1].equals("largeYellow")) {
-                    				(new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else {
                     				player.addChatMessage("Only the following tree names are supported:");
                     				player.addChatMessage("acacia, cypress, fir, redwood, largeFir,");
@@ -220,21 +237,37 @@ public class EBXLCommandHandler extends CommandBase {
                     			} else if(cmds[1].equals("largeFir")) {
                     				(new WorldGenFirTreeHuge(true)).generate(player.worldObj, seed, x, y, z);
                     			} else if(cmds[1].equals("brown")) {
-                    				(new WorldGenAutumnTree(true, AutumnTreeType.BROWN)).generate(player.worldObj, seed, x, y, z);
+                    				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.BROWN);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, seed, x, y, z);
                     			} else if(cmds[1].equals("orange")) {
-                    				(new WorldGenAutumnTree(true, AutumnTreeType.ORANGE)).generate(player.worldObj, seed, x, y, z);
+                    				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.ORANGE);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, seed, x, y, z);
                     			} else if(cmds[1].equals("purple")) {
-                    				(new WorldGenAutumnTree(true, AutumnTreeType.PURPLE)).generate(player.worldObj, seed, x, y, z);
+                    				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.PURPLE);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, seed, x, y, z);
                     			} else if(cmds[1].equals("yellow")) {
-                    				(new WorldGenAutumnTree(true, AutumnTreeType.YELLOW)).generate(player.worldObj, seed, x, y, z);
+                    				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.YELLOW);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, seed, x, y, z);
                     			} else if(cmds[1].equals("largeBrown")) {
-                    				(new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN)).generate(player.worldObj, seed, x, y, z);
+                    				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, seed, x, y, z);
                     			} else if(cmds[1].equals("largeOrange")) {
-                    				(new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE)).generate(player.worldObj, seed, x, y, z);
+                    				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, seed, x, y, z);
                     			} else if(cmds[1].equals("largePurple")) {
-                    				(new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE)).generate(player.worldObj, seed, x, y, z);
+                    				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, seed, x, y, z);
                     			} else if(cmds[1].equals("largeYellow")) {
-                    				(new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW)).generate(player.worldObj, seed, x, y, z);
+                    				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
+                    				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                    				tree.generate(player.worldObj, seed, x, y, z);
                     			} else {
                     				player.addChatMessage("Only the following tree names are supported:");
                     				player.addChatMessage("acacia, cypress, fir, redwood, largeFir,");

@@ -14,13 +14,18 @@ import net.minecraft.world.World;
 
 public class WorldGenBigAutumnTree extends WorldGenAutumnTree {
 
-    private static Block        trunkBlock      = Block.wood;
+    private static int        trunkBlock      = Block.wood.blockID;
     private static int          trunkMetadata   = 0;
 
     private static final byte[] otherCoordPairs = new byte[] { (byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };
 
     public static void setTrunkBlock(Block block, int metadata) {
-        WorldGenBigAutumnTree.trunkBlock = block;
+        WorldGenBigAutumnTree.trunkBlock = block.blockID;
+        WorldGenBigAutumnTree.trunkMetadata = metadata;
+    }
+    
+    public static void setTrunkBlock(int blockID, int metadata) {
+        WorldGenBigAutumnTree.trunkBlock = blockID;
         WorldGenBigAutumnTree.trunkMetadata = metadata;
     }
 
@@ -31,7 +36,7 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree {
     private int          height;
     private final double heightAttenuation = 0.618D;
     private final double branchSlope       = 0.381D;
-    private double       scaleWidth        = 1.0D;
+    private double       scaleWidth        = 1.1D;
     private double       leafDensity       = 1.0D;
     private int          heightLimitLimit  = 12;
     private int          leafDistanceLimit = 4;
@@ -104,6 +109,7 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree {
     }
     
     private boolean generateTree(World world, Random rand, int x, int y, int z) {
+    	this.world = world;
         final long var6 = rand.nextLong();
         rand.setSeed(var6);
         basePos[0] = x;
@@ -116,8 +122,8 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree {
 
         generateLeafNodeList();
         generateLeaves(type.getID(), type.getMetadata());
-        generateTrunk(trunkBlock.blockID, trunkMetadata);
-        generateLeafNodeBases(trunkBlock.blockID, trunkMetadata);
+        generateTrunk(trunkBlock, trunkMetadata);
+        generateLeafNodeBases(trunkBlock, trunkMetadata);
         return true;
     }
 
