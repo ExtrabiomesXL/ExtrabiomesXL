@@ -163,7 +163,7 @@ public class BlockCustomSapling extends BlockFlower {
         final boolean isForestryFarmed = world.getBlockId(x, y - 1, z) == forestrySoilID;
 
         if (metadata == BlockType.BROWN.metadata()) {
-            if (rand.nextInt(5) == 0) {
+            if (rand.nextInt(3) != 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
                 
                 ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
@@ -174,7 +174,7 @@ public class BlockCustomSapling extends BlockFlower {
                 ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
         } else if (metadata == BlockType.ORANGE.metadata()) {
-            if (rand.nextInt(5) == 0) {
+            if (rand.nextInt(3) != 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
                 
                 ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
@@ -184,7 +184,7 @@ public class BlockCustomSapling extends BlockFlower {
                 ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
         } else if (metadata == BlockType.PURPLE.metadata()) {
-            if (rand.nextInt(5) == 0) {
+            if (rand.nextInt(3) != 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
                 
                 ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
@@ -194,7 +194,7 @@ public class BlockCustomSapling extends BlockFlower {
                 ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
         } else if (metadata == BlockType.YELLOW.metadata()) {
-            if (rand.nextInt(5) == 0) {
+            if (rand.nextInt(3) != 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
                 
                 ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
