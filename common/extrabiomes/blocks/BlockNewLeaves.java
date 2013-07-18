@@ -176,9 +176,11 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
     public int colorMultiplier(IBlockAccess iBlockAccess, int x, int y, int z) {
         final int metadata = unmarkedMetadata(iBlockAccess.getBlockMetadata(x, y, z));
 
-        //if (metadata != BlockType.REDWOOD.metadata()) return getRenderColor(metadata);
-
-        return calcSmoothedBiomeFoliageColor(iBlockAccess, x, z);
+        if(metadata == BlockType.JAPANESE_MAPLE.metadata()) {
+        	return getRenderColor(metadata);
+        } else { 
+        	return calcSmoothedBiomeFoliageColor(iBlockAccess, x, z);
+        }
     }
 
     @Override
@@ -229,8 +231,24 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
     @Override
     public int getRenderColor(int metadata) {
         metadata = unmarkedMetadata(metadata);
-
-        return metadata == 0 ? ColorizerFoliage.getFoliageColorPine() : metadata == 1 ? ColorizerFoliage.getFoliageColorBasic() : ColorizerFoliage.getFoliageColor(0.9F, 0.1F);
+        
+        return ColorizerFoliage.getFoliageColor(1.0F, 0.0F);
+        
+        /*
+        switch(metadata){
+	        case 0:
+	        	return 0;
+	        case 1:
+	        	return 0;
+	        case 2:
+	        	return 0;
+	        default:
+	        	return 0;
+        	//
+        }
+        */
+    
+        //return metadata == 0 ? ColorizerFoliage.getFoliageColorPine() : metadata == 1 ? ColorizerFoliage.getFoliageColorBasic() : ColorizerFoliage.getFoliageColor(0.9F, 0.1F);
     }
 
     @Override

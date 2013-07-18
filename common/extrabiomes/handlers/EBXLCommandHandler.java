@@ -121,9 +121,9 @@ public class EBXLCommandHandler extends CommandBase {
                 	} else if(cmds[0].equals("lastseed")) {
                 		if(cmds.length == 1){
                 			player.addChatMessage("The following tree names are supported:");
-            				player.addChatMessage("acacia, cypress, fir, redwood, largeFir,");
-            				player.addChatMessage("brown, orange, purple, yellow, largeBrown,");
-            				player.addChatMessage("largeOrange, largePurple, largeYellow");
+            				player.addChatMessage("acacia, cypress, fir, redwood, largefir,");
+            				player.addChatMessage("brown, orange, red, yellow, largebrown,");
+            				player.addChatMessage("largeorange, largered, largeyellow");
                 		} else {
                 			if(cmds[1].equals("acacia")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenAcacia.getLastSeed()));
@@ -134,29 +134,29 @@ public class EBXLCommandHandler extends CommandBase {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenFirTree.getLastSeed()));
                 			} else if(cmds[1].equals("redwood")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenRedwood.getLastSeed()));
-                			} else if(cmds[1].equals("largeFir")) {
+                			} else if(cmds[1].equals("largefir")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenFirTreeHuge.getLastSeed()));
                 			} else if(cmds[1].equals("brown")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenAutumnTree.getLastSeed()));
                 			} else if(cmds[1].equals("orange")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenAutumnTree.getLastSeed()));
-                			} else if(cmds[1].equals("purple")) {
+                			} else if(cmds[1].equals("red")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenAutumnTree.getLastSeed()));
                 			} else if(cmds[1].equals("yellow")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenAutumnTree.getLastSeed()));
-                			} else if(cmds[1].equals("largeBrown")) {
+                			} else if(cmds[1].equals("largebrown")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenBigAutumnTree.getLastSeed()));
-                			} else if(cmds[1].equals("largeOrange")) {
+                			} else if(cmds[1].equals("largeorange")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenBigAutumnTree.getLastSeed()));
-                			} else if(cmds[1].equals("largePurple")) {
+                			} else if(cmds[1].equals("largered")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenBigAutumnTree.getLastSeed()));
-                			} else if(cmds[1].equals("largeYellow")) {
+                			} else if(cmds[1].equals("largeyellow")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenBigAutumnTree.getLastSeed()));
                 			} else {
                 				player.addChatMessage("Only the following tree names are supported:");
                 				player.addChatMessage("acacia, cypress, fir, redwood, largeFir,");
-                				player.addChatMessage("brown, orange, purple, yellow, largeBrown,");
-                				player.addChatMessage("largeOrange, largePurple, largeYellow");
+                				player.addChatMessage("brown, orange, red, yellow, largebrown,");
+                				player.addChatMessage("largeorange, largered, largeyellow");
                 			}
                 		}
                 	} else if(cmds[0].equals("spawntree")) {
@@ -185,7 +185,7 @@ public class EBXLCommandHandler extends CommandBase {
                     				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.ORANGE);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
-                    			} else if(cmds[1].equals("purple")) {
+                    			} else if(cmds[1].equals("red")) {
                     				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.PURPLE);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
@@ -193,27 +193,27 @@ public class EBXLCommandHandler extends CommandBase {
                     				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.YELLOW);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
-                    			} else if(cmds[1].equals("largeBrown")) {
+                    			} else if(cmds[1].equals("largebrown")) {
                     				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
-                    			} else if(cmds[1].equals("largeOrange")) {
+                    			} else if(cmds[1].equals("largeorange")) {
                     				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
-                    			} else if(cmds[1].equals("largePurple")) {
+                    			} else if(cmds[1].equals("largered")) {
                     				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
-                    			} else if(cmds[1].equals("largeYellow")) {
+                    			} else if(cmds[1].equals("largeyellow")) {
                     				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else {
                     				player.addChatMessage("Only the following tree names are supported:");
                     				player.addChatMessage("acacia, cypress, fir, redwood, largeFir,");
-                    				player.addChatMessage("brown, orange, purple, yellow, largeBrown,");
-                    				player.addChatMessage("largeOrange, largePurple, largeYellow");
+                    				player.addChatMessage("brown, orange, red, yellow, largebrown,");
+                    				player.addChatMessage("largeorange, largered, largeyellow");
                     			}
                 			} catch(Exception e){
                 				player.addChatMessage("X, Y and Z must be valid numbers.");
@@ -244,7 +244,7 @@ public class EBXLCommandHandler extends CommandBase {
                     				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.ORANGE);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, seed, x, y, z);
-                    			} else if(cmds[1].equals("purple")) {
+                    			} else if(cmds[1].equals("red")) {
                     				WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.PURPLE);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, seed, x, y, z);
@@ -256,23 +256,23 @@ public class EBXLCommandHandler extends CommandBase {
                     				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, seed, x, y, z);
-                    			} else if(cmds[1].equals("largeOrange")) {
+                    			} else if(cmds[1].equals("largeorange")) {
                     				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, seed, x, y, z);
-                    			} else if(cmds[1].equals("largePurple")) {
+                    			} else if(cmds[1].equals("largered")) {
                     				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, seed, x, y, z);
-                    			} else if(cmds[1].equals("largeYellow")) {
+                    			} else if(cmds[1].equals("largeyellow")) {
                     				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, seed, x, y, z);
                     			} else {
                     				player.addChatMessage("Only the following tree names are supported:");
                     				player.addChatMessage("acacia, cypress, fir, redwood, largeFir,");
-                    				player.addChatMessage("brown, orange, purple, yellow, largeBrown,");
-                    				player.addChatMessage("largeOrange, largePurple, largeYellow");
+                    				player.addChatMessage("brown, orange, red, yellow, largebrown,");
+                    				player.addChatMessage("largeorange, largered, largeyellow");
                     			}
                 			} catch(Exception e){
                 				player.addChatMessage("X, Y, Z and seed must be valid numbers.");

@@ -18,7 +18,7 @@
   <entry key="module.status.disabled">Module %s is disabled, skipping.</entry>
   <entry key="tile.extrabiomes.autumnleaves.0.name">Brown Autumn Leaves</entry>
   <entry key="tile.extrabiomes.autumnleaves.1.name">Orange Autumn Leaves</entry>
-  <entry key="tile.extrabiomes.autumnleaves.2.name">Purple Autumn Leaves</entry>
+  <entry key="tile.extrabiomes.autumnleaves.2.name">Red Autumn Leaves</entry>
   <entry key="tile.extrabiomes.autumnleaves.3.name">Yellow Autumn Leaves</entry>
   <entry key="tile.extrabiomes.cattail.name">Cattail</entry>
   <entry key="tile.extrabiomes.crackedsand.name">Cracked Sand</entry>
@@ -37,14 +37,14 @@
   <entry key="tile.extrabiomes.newleaves.0.name">Bald Cypress Leaves</entry>
   <entry key="tile.extrabiomes.newleaves.1.name">Japanese Maple Leaves</entry>
   <entry key="tile.extrabiomes.newleaves.2.name">Japanese Maple Shrub Leaves</entry>
-  <entry key="tile.extrabiomes.newleaves.3.name">Rainbow Eucalyptuss Leaves</entry>
+  <entry key="tile.extrabiomes.newleaves.3.name">Rainbow Eucalyptus Leaves</entry>
   <entry key="tile.extrabiomes.leafpile.name">Leaf Pile</entry>
   <entry key="tile.extrabiomes.log.0.name">Fir Log</entry>
   <entry key="tile.extrabiomes.log.1.name">Acacia Log</entry>
   <entry key="tile.extrabiomes.log.2.name">Cypress Log</entry>
   <entry key="tile.extrabiomes.log.3.name">Japanese Maple Log</entry>
   <entry key="tile.extrabiomes.cypresskneelog.0.name">Bald Cypress Elbow Log</entry>
-  <entry key="tile.extrabiomes.rainbowkneelog.0.name">Rainbow Eucalyptuss Elbow Log</entry>
+  <entry key="tile.extrabiomes.rainbowkneelog.0.name">Rainbow Eucalyptus Elbow Log</entry>
   <entry key="tile.extrabiomes.newlog.0.name">Rainbow Eucalyptus Log</entry>
   <entry key="tile.extrabiomes.newlog.1.name">Autumn Log</entry>
   <entry key="tile.extrabiomes.log.quarter.0.name">Redwood Log</entry>
@@ -68,7 +68,7 @@
   <entry key="tile.extrabiomes.redrockslab.redrockbrick.name">Red Rock Brick Slab</entry>
   <entry key="tile.extrabiomes.sapling.0.name">Brown Autumn Sapling</entry>
   <entry key="tile.extrabiomes.sapling.1.name">Orange Autumn Sapling</entry>
-  <entry key="tile.extrabiomes.sapling.2.name">Purple Autumn Sapling</entry>
+  <entry key="tile.extrabiomes.sapling.2.name">Red Autumn Sapling</entry>
   <entry key="tile.extrabiomes.sapling.3.name">Yellow Autumn Sapling</entry>
   <entry key="tile.extrabiomes.sapling.4.name">Fir Sapling</entry>
   <entry key="tile.extrabiomes.sapling.5.name">Redwood Sapling</entry>
@@ -77,7 +77,7 @@
   <entry key="tile.extrabiomes.newsapling.0.name">Bald Cypress Sapling</entry>
   <entry key="tile.extrabiomes.newsapling.1.name">Japanese Maple Sapling</entry>
   <entry key="tile.extrabiomes.newsapling.2.name">Japanese Maple Shrub Sapling</entry>
-  <entry key="tile.extrabiomes.newsapling.3.name">Rainbow Eucalyptuss Sapling</entry>
+  <entry key="tile.extrabiomes.newsapling.3.name">Rainbow Eucalyptus Sapling</entry>
   <entry key="tile.extrabiomes.sapling.4.name">Fir Sapling</entry>
   <entry key="tile.extrabiomes.sapling.5.name">Redwood Sapling</entry>
   <entry key="tile.extrabiomes.sapling.6.name">Acacia Sapling</entry>
