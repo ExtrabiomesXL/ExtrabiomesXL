@@ -45,6 +45,7 @@ import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenCustomSwamp;
+import extrabiomes.module.summa.worldgen.WorldGenCypressTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
@@ -52,39 +53,25 @@ import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 @SuppressWarnings("deprecation")
 public class BiomeManagerImpl extends BiomeManager {
 
-    private static final WorldGenerator                                               ACACIA_TREE_GEN           = new WorldGenAcacia(
-                                                                                                                        false);
-    private static final WorldGenerator                                               ALT_TAIGA_GEN             = new WorldGenTaiga2(
-                                                                                                                        false);
-    private static final WorldGenerator                                               BIG_FIR_TREE_GEN          = new WorldGenFirTreeHuge(
-                                                                                                                        false);
-    private static final WorldGenerator                                               BIG_OAK_TREE_GEN          = new WorldGenBigTree(
-                                                                                                                        false);
-    private static final WorldGenerator                                               BIRCH_TREE_GEN            = new WorldGenForest(
-                                                                                                                        false);
+    private static final WorldGenerator                                               CYPRESS_TREE_GEN			= new WorldGenCypressTree(false);
+    private static final WorldGenerator                                               ACACIA_TREE_GEN           = new WorldGenAcacia(false);
+    private static final WorldGenerator                                               ALT_TAIGA_GEN             = new WorldGenTaiga2(false);
+    private static final WorldGenerator                                               BIG_FIR_TREE_GEN          = new WorldGenFirTreeHuge(false);
+    private static final WorldGenerator                                               BIG_OAK_TREE_GEN          = new WorldGenBigTree(false);
+    private static final WorldGenerator                                               BIRCH_TREE_GEN            = new WorldGenForest(false);
     private static final WorldGenerator                                               CUSTOM_SWAMP_TREE_GEN     = new WorldGenCustomSwamp();
-    private static final WorldGenerator                                               FERN_GEN                  = new WorldGenTallGrass(
-                                                                                                                        Block.tallGrass.blockID,
-                                                                                                                        2);
-    private static final WorldGenerator                                               FIR_TREE_GEN              = new WorldGenFirTree(
-                                                                                                                        false);
-    private static final WorldGenerator                                               GRASS_GEN                 = new WorldGenTallGrass(
-                                                                                                                        Block.tallGrass.blockID,
-                                                                                                                        1);
-    private static final WorldGenerator                                               OAK_TREE_GEN              = new WorldGenTrees(
-                                                                                                                        false);
-    private static final WorldGenerator                                               REDWOOD_TREE_GEN          = new WorldGenRedwood(
-                                                                                                                        false);
-    private static final WorldGenerator                                               SHRUB_GEN                 = new WorldGenShrub(
-                                                                                                                        3,
-                                                                                                                        0);
+    private static final WorldGenerator                                               FERN_GEN                  = new WorldGenTallGrass(Block.tallGrass.blockID, 2);
+    private static final WorldGenerator                                               FIR_TREE_GEN              = new WorldGenFirTree(false);
+    private static final WorldGenerator                                               GRASS_GEN                 = new WorldGenTallGrass(Block.tallGrass.blockID, 1);
+    private static final WorldGenerator                                               OAK_TREE_GEN              = new WorldGenTrees(false);
+    private static final WorldGenerator                                               REDWOOD_TREE_GEN          = new WorldGenRedwood(false);
+    private static final WorldGenerator                                               SHRUB_GEN                 = new WorldGenShrub(3, 0);
     private static final WorldGenerator                                               SWAMP_TREE_GEN            = new WorldGenSwamp();
     private static final WorldGenerator                                               TAIGA_GEN                 = new WorldGenTaiga1();
 
     private static final Collection<BiomeGenBase>                                     disableDefaultGrassBiomes = new ArrayList();
 
-    private final static Map<GenType, Multimap<BiomeGenBase, WeightedWorldGenerator>> weightedChoices           = new EnumMap(
-                                                                                                                        GenType.class);
+    private final static Map<GenType, Multimap<BiomeGenBase, WeightedWorldGenerator>> weightedChoices           = new EnumMap(GenType.class);
 
     private static void addAlpineTrees(Optional<? extends BiomeGenBase> biome) {
         if (!biome.isPresent()) return;

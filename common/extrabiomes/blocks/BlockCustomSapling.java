@@ -33,6 +33,7 @@ import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType;
 import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
+import extrabiomes.module.summa.worldgen.WorldGenCypressTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
@@ -142,7 +143,7 @@ public class BlockCustomSapling extends BlockFlower {
         if ((marked & 8) == 0) {
         	world.setBlockMetadataWithNotify(x, y, z, marked | 8, 4);
         } else {
-            //this.growTree(world, x, y, z, rand);
+            this.growTree(world, x, y, z, rand);
         }
     }
 
@@ -206,7 +207,7 @@ public class BlockCustomSapling extends BlockFlower {
         } else if (metadata == BlockType.ACACIA.metadata()) {
             tree = new WorldGenAcacia(true);
         } else if (metadata == BlockType.CYPRESS.metadata()){
-        	return;
+        	tree = new WorldGenCypressTree(true);
     	}else {
             // Check for 2x2 firs and redwoods
             for (x1 = 0; x1 >= -1; --x1) {

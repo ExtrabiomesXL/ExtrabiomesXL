@@ -9,6 +9,7 @@ import extrabiomes.lib.Vector3;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
+import extrabiomes.module.summa.worldgen.WorldGenCypressTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
@@ -89,6 +90,10 @@ public class EBXLCommandHandler extends CommandBase {
                 				helpList(player);
                 			}
                 		}
+                	} else if(cmds[0].equals("kill")) {
+                		killTree(player, 96, 64, 230);
+                	} else if(cmds[0].equals("spawn")) {
+                		(new WorldGenCypressTree(true)).generate(player.worldObj, player.worldObj.rand, 96, 64, 230);
                 	} else if(cmds[0].equals("killtree")) {
                 		if(cmds.length == 4){
                 			try {
@@ -130,7 +135,8 @@ public class EBXLCommandHandler extends CommandBase {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenAcacia.getLastSeed()));
                 			} else if(cmds[1].equals("cypress")) {
                 				//player.addChatMessage("The last seed used was: " + Long.toString(WorldGenCypressTree.getLastSeed()));
-                				player.addChatMessage("There is no worldgen for the cypress tree at this time.");
+                				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenCypressTree.getLastSeed()));
+                				//player.addChatMessage("There is no worldgen for the cypress tree at this time.");
                 			} else if(cmds[1].equals("fir")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenFirTree.getLastSeed()));
                 			} else if(cmds[1].equals("redwood")) {
@@ -170,8 +176,8 @@ public class EBXLCommandHandler extends CommandBase {
                 				if(cmds[1].equals("acacia")) {
                     				(new WorldGenAcacia(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else if(cmds[1].equals("cypress")) {
-                    				//new WorldGenAcacia(true).generate(player.worldObj, player.worldObj.rand, x, y, z);
-                    				player.addChatMessage("There is no worldgen for the cypress tree at this time.");
+                    				(new WorldGenCypressTree(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    				//player.addChatMessage("There is no worldgen for the cypress tree at this time.");
                     			} else if(cmds[1].equals("fir")) {
                     				(new WorldGenFirTree(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else if(cmds[1].equals("redwood")) {
@@ -229,8 +235,8 @@ public class EBXLCommandHandler extends CommandBase {
                 				if(cmds[1].equals("acacia")) {
                     				(new WorldGenAcacia(true)).generate(player.worldObj, seed, x, y, z);
                     			} else if(cmds[1].equals("cypress")) {
-                    				//new WorldGenAcacia(true).generate(player.worldObj, player.worldObj.rand, x, y, z);
-                    				player.addChatMessage("There is no worldgen for the cypress tree at this time.");
+                    				(new WorldGenCypressTree(true)).generate(player.worldObj, seed, x, y, z);
+                    				//player.addChatMessage("There is no worldgen for the cypress tree at this time.");
                     			} else if(cmds[1].equals("fir")) {
                     				(new WorldGenFirTree(true)).generate(player.worldObj, seed, x, y, z);
                     			} else if(cmds[1].equals("redwood")) {

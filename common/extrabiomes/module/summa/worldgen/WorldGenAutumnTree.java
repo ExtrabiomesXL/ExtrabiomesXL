@@ -54,11 +54,8 @@ public class WorldGenAutumnTree extends WorldGenerator {
 	private static ItemStack yellowLeaves		= brownLeaves;
 
 	private static final int	BASE_HEIGHT					= 4;
-
 	private static final int	CANOPY_HEIGHT				= 3;
-
 	private static final int	CANOPY_RADIUS_EXTRA_RADIUS	= 0;
-
 	private static final int	MAX_VARIANCE_HEIGHT			= 2;
 	
 	
