@@ -213,10 +213,11 @@ public class BlockCustomSapling extends BlockFlower {
             for (x1 = 0; x1 >= -1; --x1) {
                 for (z1 = 0; z1 >= -1; --z1)
                     if (isSameSapling(world, x + x1, y, z + z1, metadata) && isSameSapling(world, x + x1 + 1, y, z + z1, metadata) && isSameSapling(world, x + x1, y, z + z1 + 1, metadata) && isSameSapling(world, x + x1 + 1, y, z + z1 + 1, metadata))                     {
-                        if (metadata == BlockType.FIR.metadata())
+                        if (metadata == BlockType.FIR.metadata()) {
                             tree = new WorldGenFirTreeHuge(true);
-                        else
+                        } else {
                             tree = new WorldGenRedwood(true);
+                        }
                         isHuge = true;
                         break;
                     }

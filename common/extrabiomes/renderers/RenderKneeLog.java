@@ -102,8 +102,10 @@ public class RenderKneeLog implements ISimpleBlockRenderingHandler {
 				break;
 			case 7:
 				renderer.uvRotateBottom = 1;
+				renderer.uvRotateEast = 2;
 				break;
 			case 8:
+				renderer.uvRotateWest = 2;
 				break;
 			case 9:
 				break;

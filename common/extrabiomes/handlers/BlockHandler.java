@@ -459,7 +459,7 @@ public abstract class BlockHandler {
         }
         
 
-        //proxy.registerEventHandler(new SaplingBonemealEventHandler(block));
+        proxy.registerEventHandler(new SaplingBonemealNewEventHandler(block));
         proxy.registerFuelHandler(new SaplingFuelHandler(block.blockID));
     }
 

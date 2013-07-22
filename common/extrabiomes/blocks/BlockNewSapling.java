@@ -31,6 +31,7 @@ import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType;
+import extrabiomes.module.summa.worldgen.WorldGenBaldCypressTree;
 import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
@@ -159,14 +160,20 @@ public class BlockNewSapling extends BlockFlower {
 
         final boolean isForestryFarmed = world.getBlockId(x, y - 1, z) == forestrySoilID;
 
-        /*
+        
         if (metadata == BlockType.BALD_CYPRESS.metadata()) {
-            if (rand.nextInt(20) == 0) {
-                tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
-            } else {
-                tree = new WorldGenAutumnTree(true, AutumnTreeType.BROWN);
+        	for (x1 = 0; x1 >= -1; --x1) {
+                for (z1 = 0; z1 >= -1; --z1)
+                    if (isSameSapling(world, x + x1, y, z + z1, metadata) && isSameSapling(world, x + x1 + 1, y, z + z1, metadata) && isSameSapling(world, x + x1, y, z + z1 + 1, metadata) && isSameSapling(world, x + x1 + 1, y, z + z1 + 1, metadata)) {
+                        tree = new WorldGenBaldCypressTree(true);
+                        isHuge = true;
+                        break;
+                    }
+                if (tree != null) break;
             }
-        } else {
+        }
+        
+        /* else {
             // Check for 2x2 firs and redwoods
         	/*
             for (x1 = 0; x1 >= -1; --x1) {
@@ -193,7 +200,7 @@ public class BlockNewSapling extends BlockFlower {
             } 
         }//*/
 
-        /*
+        
         if (tree != null) {
         	if (isHuge) {
                 world.setBlock(x + x1, y, z + z1, 0);
@@ -204,7 +211,7 @@ public class BlockNewSapling extends BlockFlower {
                 world.setBlock(x, y, z, 0);
             }
 
-            final int offset = isHuge ? 1 : 0;
+            final int offset = 0;
 
             if (!tree.generate(world, rand, x + x1 + offset, y, z + z1 + offset)) {
                 if (isHuge) {

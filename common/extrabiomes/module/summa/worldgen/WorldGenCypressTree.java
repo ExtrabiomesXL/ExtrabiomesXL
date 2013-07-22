@@ -68,12 +68,12 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase {
     }
     
     //Variables to control the generation
-	private static final int	BASE_HEIGHT					= 8;
-	private static final int	BASE_HEIGHT_VARIANCE		= 4;
-	private static final int	CANOPY_START_HEIGHT			= 1;
+	private static final int	BASE_HEIGHT					= 12;
+	private static final int	BASE_HEIGHT_VARIANCE		= 6;
+	private static final int	CANOPY_START_HEIGHT			= 0;
 	private static final int	CANOPY_START_VARIANCE		= 4;
-	private static final double	CANOPY_RADIUS				= 2.0D;
-	private static final double	CANOPY_RADIUS_VARIANCE		= 1.5D;
+	private static final double	CANOPY_RADIUS				= 1.5D;
+	private static final double	CANOPY_RADIUS_VARIANCE		= 1.0D;
     
     private boolean generateTree(World world, Random rand, int x, int y, int z) {
         final int below = world.getBlockId(x, y - 1, z);
