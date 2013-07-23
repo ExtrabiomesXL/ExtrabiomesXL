@@ -51,9 +51,26 @@ public class WorldGenAcacia extends WorldGenerator {
         super(doNotify);
     }
 
+    // Store the last seed that was used to generate a tree
+    private static long lastSeed = 0;
+
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
-        final int height = rand.nextInt(4) + 6;
+    	// Store the seed
+    	lastSeed = rand.nextLong();
+    	
+        return generateTree(world, new Random(lastSeed), x, y, z);
+    }
+    
+    public boolean generate(World world, long seed, int x, int y, int z) {
+    	// Store the seed
+    	lastSeed = seed;
+    	
+        return generateTree(world, new Random(seed), x, y, z);
+    }
+    
+    private boolean generateTree(World world, Random rand, int x, int y, int z){
+    	final int height = rand.nextInt(4) + 6;
         boolean canGrow = true;
 
         if (y < 1 || y + height + 1 > 256) return false;
@@ -65,8 +82,8 @@ public class WorldGenAcacia extends WorldGenerator {
 
             if (y1 >= y + 1 + height - 2) clearance = 2;
 
-            for (int x1 = x - clearance; x1 <= x + clearance && canGrow; x1++)
-                for (int z1 = z - clearance; z1 <= z + clearance && canGrow; z1++)
+            for (int x1 = x - clearance; x1 <= x + clearance && canGrow; x1++) {
+                for (int z1 = z - clearance; z1 <= z + clearance && canGrow; z1++) {
                     if (y1 >= 0 && y1 < 256) {
                         final int id = world.getBlockId(x1, y1, z1);
 
@@ -76,14 +93,16 @@ public class WorldGenAcacia extends WorldGenerator {
                                 && !Block.blocksList[id].isWood(world, x1, y1, z1))
                             canGrow = false;
 
-                    } else
+                    } else {
                         canGrow = false;
+                    }
+                }
+            }
         }
 
         if (!canGrow) return false;
 
-        if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1)
-            return false;
+        if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1) return false;
 
         world.setBlock(x, y - 1, z, Block.dirt.blockID);
         final byte canopyHeight = 3;
@@ -101,11 +120,9 @@ public class WorldGenAcacia extends WorldGenerator {
 
                     final Block block = Block.blocksList[world.getBlockId(x1, y1, z1)];
 
-                    if ((Math.abs(xOnRadius) != canopyRadius || Math.abs(zOnRadius) != canopyRadius || rand
-                            .nextInt(2) != 0 && distanceFromTop != 0)
-                            && (block == null || block.canBeReplacedByLeaves(world, x1, y1, z1)))
-                        setBlockAndMetadata(world, x1, y1, z1, TreeBlock.LEAVES.getID(),
-                                TreeBlock.LEAVES.getMetadata());
+                    if ((Math.abs(xOnRadius) != canopyRadius || Math.abs(zOnRadius) != canopyRadius || rand.nextInt(2) != 0 && distanceFromTop != 0) && (block == null || block.canBeReplacedByLeaves(world, x1, y1, z1))) {
+                        setBlockAndMetadata(world, x1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                    }
                 }
             }
         }
@@ -113,14 +130,18 @@ public class WorldGenAcacia extends WorldGenerator {
         for (int y1 = 0; y1 < height; y1++) {
             final int id = world.getBlockId(x, y + y1, z);
 
-            if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x, y + y1, z))
+            if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x, y + y1, z)) {
                 continue;
+            }
 
-            setBlockAndMetadata(world, x, y + y1, z, TreeBlock.TRUNK.getID(),
-                    TreeBlock.TRUNK.getMetadata());
+            setBlockAndMetadata(world, x, y + y1, z, TreeBlock.TRUNK.getID(), TreeBlock.TRUNK.getMetadata());
 
         }
+        
         return true;
     }
-
+    
+    public static long getLastSeed(){ 
+    	return lastSeed;
+    }
 }

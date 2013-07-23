@@ -16,18 +16,12 @@ import com.google.common.base.Optional;
 public enum WeightedRandomChooser {
 	INSTANCE;
 
-	public static <T extends WeightedRandomItem> Optional<T> getRandomItem(
-			Random rand, Collection<T> collection)
-	{
-		return getRandomItem(rand, collection,
-				getTotalWeight(collection));
+	public static <T extends WeightedRandomItem> Optional<T> getRandomItem(Random rand, Collection<T> collection) {
+		return getRandomItem(rand, collection, getTotalWeight(collection));
 	}
 
-	static <T extends WeightedRandomItem> Optional<T> getRandomItem(
-			Random rand, Collection<T> collection, int limit)
-	{
+	static <T extends WeightedRandomItem> Optional<T> getRandomItem(Random rand, Collection<T> collection, int limit) {
 		if (limit > 0) {
-
 			int choice = rand.nextInt(limit);
 
 			for (final T item : collection) {
@@ -35,16 +29,16 @@ public enum WeightedRandomChooser {
 				if (choice < 0) return Optional.of(item);
 			}
 		}
+		
 		return Optional.absent();
 	}
 
-	public static int getTotalWeight(
-			Collection<? extends WeightedRandomItem> collection)
-	{
+	public static int getTotalWeight(Collection<? extends WeightedRandomItem> collection) {
 		int totalWeight = 0;
 
-		for (final WeightedRandomItem item : collection)
+		for (final WeightedRandomItem item : collection) {
 			totalWeight += item.itemWeight;
+		}
 
 		return totalWeight;
 	}

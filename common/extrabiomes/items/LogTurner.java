@@ -41,9 +41,7 @@ public class LogTurner extends ItemTool {
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemUsed, EntityPlayer player, World world, int x, int y,
-            int z, int side, float xOffset, float yOffset, float zOffset)
-    {
+    public boolean onItemUse(ItemStack itemUsed, EntityPlayer player, World world, int x, int y, int z, int side, float xOffset, float yOffset, float zOffset) {
         if (!player.canPlayerEdit(x, y, z, side, itemUsed)) return false;
 
         final UseLogTurnerEvent event = new UseLogTurnerEvent(player, itemUsed, world, x, y, z);
@@ -54,8 +52,7 @@ public class LogTurner extends ItemTool {
 
         if (blockID != Block.wood.blockID) return false;
         final Block wood = Block.wood;
-        world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, wood.stepSound.getStepSound(),
-                (wood.stepSound.getVolume() + 1.0F) / 2.0F, wood.stepSound.getPitch() * 1.55F);
+        world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F, wood.stepSound.getPitch() * 1.55F);
 
         if (!world.isRemote) {
             final int metadata = world.getBlockMetadata(x, y, z);

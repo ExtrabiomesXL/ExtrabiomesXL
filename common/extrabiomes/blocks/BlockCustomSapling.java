@@ -13,18 +13,28 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.Element;
+import extrabiomes.lib.GeneralSettings;
+import extrabiomes.lib.SaplingSettings;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType;
 import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
+import extrabiomes.module.summa.worldgen.WorldGenCypressTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
@@ -44,6 +54,9 @@ public class BlockCustomSapling extends BlockFlower {
             return metadata;
         }
     }
+
+	int saplingID = 0;
+	static int saplingLifespan = 5000;
     
     private Icon[] textures  = {null, null, null, null, null, null, null};
 
@@ -76,6 +89,9 @@ public class BlockCustomSapling extends BlockFlower {
         super(id);
         final float var3 = 0.4F;
         setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
+        
+        saplingID = id;
+        MinecraftForge.EVENT_BUS.register(this);
     }
     
     @Override
@@ -121,6 +137,16 @@ public class BlockCustomSapling extends BlockFlower {
         return textures[metadata];
     }
 
+    public void markOrGrowMarked(World world, int x, int y, int z, Random rand) {
+        int marked = world.getBlockMetadata(x, y, z);
+
+        if ((marked & 8) == 0) {
+        	world.setBlockMetadataWithNotify(x, y, z, marked | 8, 4);
+        } else {
+            this.growTree(world, x, y, z, rand);
+        }
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
@@ -129,7 +155,7 @@ public class BlockCustomSapling extends BlockFlower {
     }
 
     public void growTree(World world, int x, int y, int z, Random rand) {
-        final int metadata = unmarkedMetadata(world.getBlockMetadata(x, y, z));
+    	final int metadata = unmarkedMetadata(world.getBlockMetadata(x, y, z));
         WorldGenerator tree = null;
         int x1 = 0;
         int z1 = 0;
@@ -138,6 +164,7 @@ public class BlockCustomSapling extends BlockFlower {
         final boolean isForestryFarmed = world.getBlockId(x, y - 1, z) == forestrySoilID;
 
         if (metadata == BlockType.BROWN.metadata()) {
+<<<<<<< HEAD
             if (rand.nextInt(20) == 0)
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
             else
@@ -166,18 +193,62 @@ public class BlockCustomSapling extends BlockFlower {
         } else if (metadata == BlockType.ACACIA.metadata())
             tree = new WorldGenAcacia(true);
         else {
+=======
+            if (rand.nextInt(3) != 0) {
+                tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
+                
+                ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+            } else {
+                tree = new WorldGenAutumnTree(true, AutumnTreeType.BROWN);
+                Block b = new Block(Element.LOG_AUTUMN.get().itemID, blockMaterial);
+                
+                ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+            }
+        } else if (metadata == BlockType.ORANGE.metadata()) {
+            if (rand.nextInt(3) != 0) {
+                tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
+                
+                ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+            } else {
+                tree = new WorldGenAutumnTree(true, AutumnTreeType.ORANGE);
+                
+                ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+            }
+        } else if (metadata == BlockType.PURPLE.metadata()) {
+            if (rand.nextInt(3) != 0) {
+                tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
+                
+                ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+            } else {
+                tree = new WorldGenAutumnTree(true, AutumnTreeType.PURPLE);
+                
+                ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+            }
+        } else if (metadata == BlockType.YELLOW.metadata()) {
+            if (rand.nextInt(3) != 0) {
+                tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
+                
+                ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+            } else {
+                tree = new WorldGenAutumnTree(true, AutumnTreeType.YELLOW);
+                
+                ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+            }
+        } else if (metadata == BlockType.ACACIA.metadata()) {
+            tree = new WorldGenAcacia(true);
+        } else if (metadata == BlockType.CYPRESS.metadata()){
+        	tree = new WorldGenCypressTree(true);
+    	}else {
+>>>>>>> origin/3.14.0
             // Check for 2x2 firs and redwoods
             for (x1 = 0; x1 >= -1; --x1) {
                 for (z1 = 0; z1 >= -1; --z1)
-                    if (isSameSapling(world, x + x1, y, z + z1, metadata)
-                            && isSameSapling(world, x + x1 + 1, y, z + z1, metadata)
-                            && isSameSapling(world, x + x1, y, z + z1 + 1, metadata)
-                            && isSameSapling(world, x + x1 + 1, y, z + z1 + 1, metadata))
-                    {
-                        if (metadata == BlockType.FIR.metadata())
+                    if (isSameSapling(world, x + x1, y, z + z1, metadata) && isSameSapling(world, x + x1 + 1, y, z + z1, metadata) && isSameSapling(world, x + x1, y, z + z1 + 1, metadata) && isSameSapling(world, x + x1 + 1, y, z + z1 + 1, metadata))                     {
+                        if (metadata == BlockType.FIR.metadata()) {
                             tree = new WorldGenFirTreeHuge(true);
-                        else
+                        } else {
                             tree = new WorldGenRedwood(true);
+                        }
                         isHuge = true;
                         break;
                     }
@@ -221,8 +292,7 @@ public class BlockCustomSapling extends BlockFlower {
     }
 
     public boolean isSameSapling(World world, int x, int y, int z, int metadata) {
-        return world.getBlockId(x, y, z) == blockID
-                && unmarkedMetadata(world.getBlockMetadata(x, y, z)) == metadata;
+        return world.getBlockId(x, y, z) == blockID && unmarkedMetadata(world.getBlockMetadata(x, y, z)) == metadata;
     }
 
     @Override
@@ -231,5 +301,65 @@ public class BlockCustomSapling extends BlockFlower {
             super.updateTick(world, x, y, z, rand);
             attemptGrowTree(world, x, y, z, rand);
         }
+    }
+    
+    public static int getSaplingLifespan(){
+    	return saplingLifespan;
+    }
+    
+    public static void setSaplingLifespan(int life){
+    	saplingLifespan = (life > 0) ? life : 0;
+    }
+    
+    @ForgeSubscribe
+    public void itemExpiring(ItemExpireEvent event) {
+    	if(event.entityItem.getEntityItem().itemID == saplingID){
+    		int metadata = unmarkedMetadata(event.entityItem.getEntityItem().getItemDamage());
+    		int posX = (int)Math.floor(event.entityItem.lastTickPosX);
+    		int posY = (int)Math.floor(event.entityItem.lastTickPosY);
+    		int posZ = (int)Math.floor(event.entityItem.lastTickPosZ);
+    		double chance = event.entityItem.worldObj.rand.nextDouble() * 100;
+    		boolean replant = false;
+    		    		
+    		
+    		
+    		//event.entityItem
+    		if(canThisPlantGrowOnThisBlockID(event.entityItem.worldObj.getBlockId(posX, posY - 1, posZ)) && event.entityItem.worldObj.isAirBlock(posX, posY, posZ)) {
+    			double ratio = ((!GeneralSettings.bigTreeSaplingDropModifier) ? 1.0D : 4.0D);
+    			
+    			// Determine if the sapling should despawn
+    			if(metadata == BlockType.ACACIA.metadata() && chance <= SaplingSettings.ACACIA.chance()){
+    				replant = true;
+    			} else if(metadata == BlockType.BROWN.metadata() && chance <= SaplingSettings.BROWN.chance()){
+    				replant = true;
+    			} else if(metadata == BlockType.CYPRESS.metadata() && chance <= SaplingSettings.CYPRESS.chance()){
+    				replant = true;
+    			} else if(metadata == BlockType.FIR.metadata() && chance <= SaplingSettings.FIR.chance() * ratio){
+    				replant = true;
+    			} else if(metadata == BlockType.ORANGE.metadata() && chance <= SaplingSettings.ORANGE.chance()){
+    				replant = true;
+    			} else if(metadata == BlockType.PURPLE.metadata() && chance <= SaplingSettings.PURPLE.chance()){
+    				replant = true;
+    			} else if(metadata == BlockType.REDWOOD.metadata() && chance <= SaplingSettings.REDWOOD.chance() * ratio){
+    				replant = true;
+    			} else if(metadata == BlockType.YELLOW.metadata() && chance <= SaplingSettings.YELLOW.chance()){
+    				replant = true;
+    			} 			
+    			
+    			if(replant) {
+    				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+    			}
+    		}
+    	}
+    }
+    
+    @ForgeSubscribe
+    public void itemEntering(EntityJoinWorldEvent event) {
+    	if(event.entity instanceof EntityItem && !event.world.isRemote){
+    		if(((EntityItem)event.entity).getEntityItem().itemID == saplingID){
+    			//LogHelper.info("A sapling entered the world.");
+    			((EntityItem)event.entity).lifespan = saplingLifespan;
+    		}
+    	}
     }
 }

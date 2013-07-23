@@ -16,12 +16,18 @@ import net.minecraftforge.event.EventBus;
 
 import com.google.common.base.Optional;
 
-import cpw.mods.fml.common.Loader;
+//import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
+//import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
+<<<<<<< HEAD
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+=======
+//import cpw.mods.fml.common.Mod.PostInit;
+//import cpw.mods.fml.common.Mod.PreInit;
+//import cpw.mods.fml.common.Mod.ServerStarting;
+>>>>>>> origin/3.14.0
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -66,9 +72,10 @@ public class Extrabiomes {
     public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException {
         proxy.registerRenderInformation();
         Module.postEvent(new ModuleInitEvent());
-        sendTCIMC();
+        //sendTCIMC();
     }
     
+    /*
     public static void sendTCIMC()
     {
         if (Loader.isModLoaded("TreeCapitator"))
@@ -128,7 +135,7 @@ public class Extrabiomes {
             
             FMLInterModComms.sendMessage("TreeCapitator", Reference.MOD_ID, tpModCfg);
         }
-    }
+    }//*/
 
     @Mod.EventHandler
     public static void postInit(FMLPostInitializationEvent event) {

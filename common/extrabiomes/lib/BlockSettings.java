@@ -13,32 +13,43 @@ import extrabiomes.utility.EnhancedConfiguration;
 
 public enum BlockSettings {
     // @formatter:off
-    AUTUMNLEAVES        (2200),
-    CATTAIL             (2201),
-    CRACKEDSAND         (255),
-    FLOWER              (2202),
-    GRASS               (2203),
-    GREENLEAVES         (2204),
-    LEAFPILE            (2205),
-    REDROCK             (254),
-    SAPLING             (2207),
-    CUSTOMLOG           (2208),
-    QUARTERLOG0         (2209),
-    QUARTERLOG1         (2211),
-    QUARTERLOG2         (2212),
-    QUARTERLOG3         (2213),
-    QUICKSAND           (2214),
-    PLANKS              (2215),
-    WOODSLAB            (2216),
-    DOUBLEWOODSLAB      (2217),
-    REDWOODSTAIRS       (2218),
-    FIRSTAIRS           (2219),
-    ACACIASTAIRS        (2220),
-    REDROCKSLAB         (2206),
-    DOUBLEREDROCKSLAB   (2222),
-    REDCOBBLESTAIRS     (2223),
-    REDROCKBRICKSTAIRS  (2221),
-    WALL                (2210);
+    AUTUMNLEAVES        	(2200),
+    CATTAIL             	(2201),
+    CRACKEDSAND         	(255),
+    FLOWER              	(2202),
+    GRASS               	(2203),
+    GREENLEAVES         	(2204),
+    LEAFPILE            	(2205),
+    REDROCK             	(254),
+    SAPLING             	(2207),
+    CUSTOMLOG           	(2208),
+    QUARTERLOG0         	(2209),
+    QUARTERLOG1         	(2211),
+    QUARTERLOG2         	(2212),
+    QUARTERLOG3         	(2213),
+    QUICKSAND           	(2214),
+    PLANKS              	(2215),
+    WOODSLAB            	(2216),
+    DOUBLEWOODSLAB      	(2217),
+    REDWOODSTAIRS       	(2218),
+    FIRSTAIRS           	(2219),
+    ACACIASTAIRS        	(2220),
+    REDROCKSLAB         	(2206),
+    DOUBLEREDROCKSLAB   	(2222),
+    REDCOBBLESTAIRS     	(2223),
+    REDROCKBRICKSTAIRS  	(2221),
+    WALL                	(2210),
+    NEWSAPLING          	(2224),
+    NEWQUARTERLOG       	(2225),
+    NEWLEAVES		    	(2226),
+    KNEELOG		        	(2227),
+    RAINBOWKNEELOG      	(2228),
+    RAINBOWQUARTERLOG   	(2229),
+    NEWLOG					(2231),
+    CYPRESSSTAIRS			(2232),
+    JAPANESEMAPLESTAIRS 	(2233),
+    RAINBOWEUCALYPTUSSTAIRS	(2234),
+    AUTUMNSTAIRS			(2235);
     // Next block IDs 253 (decending) and 2224 (ascending)
 
     // @formatter:on
@@ -65,8 +76,7 @@ public enum BlockSettings {
     }
 
     private boolean isQuarterLog() {
-        return this == QUARTERLOG0 || this == QUARTERLOG1 || this == QUARTERLOG2
-                || this == QUARTERLOG3;
+        return this == QUARTERLOG0 || this == QUARTERLOG1 || this == QUARTERLOG2 || this == QUARTERLOG3;
     }
 
     public void load(EnhancedConfiguration configuration) {
@@ -82,48 +92,61 @@ public enum BlockSettings {
 
         blockID = property.getInt(0);
 
-        if (isQuarterLog())
+        if (isQuarterLog()) {
             if (blockID == 0 && !clearedQuarterLogs) {
-                final BlockSettings[] settings = { QUARTERLOG0, QUARTERLOG1, QUARTERLOG2,
-                        QUARTERLOG3 };
+                final BlockSettings[] settings = { QUARTERLOG0, QUARTERLOG1, QUARTERLOG2, QUARTERLOG3 };
 
-                for (final BlockSettings setting : settings)
+                for (final BlockSettings setting : settings) {
                     setting.setToZero(configuration);
+                }
+                
                 clearedQuarterLogs = true;
             }
+        }
 
-        if (this == PLANKS)
+        if (this == PLANKS) {
             if (blockID == 0) {
-                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB, FIRSTAIRS,
-                        REDWOODSTAIRS, ACACIASTAIRS };
+                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB, FIRSTAIRS, REDWOODSTAIRS, ACACIASTAIRS };
 
-                for (final BlockSettings setting : settings)
+                for (final BlockSettings setting : settings) {
                     setting.setToZero(configuration);
+                }
             }
-
-        if (this == REDROCK) if (blockID == 0) {
-            final BlockSettings[] settings = { REDROCKSLAB, WALL };
-
-            for (final BlockSettings setting : settings)
-                setting.setToZero(configuration);
         }
 
-        if (this == WOODSLAB || this == DOUBLEWOODSLAB) if (blockID == 0 && !clearedWoodSlabs) {
-            final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB };
+        if (this == REDROCK) {
+        	if (blockID == 0) {
+                final BlockSettings[] settings = { REDROCKSLAB, WALL };
 
-            for (final BlockSettings setting : settings)
-                setting.setToZero(configuration);
-            clearedWoodSlabs = true;
+                for (final BlockSettings setting : settings) {
+                    setting.setToZero(configuration);
+                }
+            }	
         }
 
-        if (this == REDROCKSLAB || this == DOUBLEREDROCKSLAB)
+        if (this == WOODSLAB || this == DOUBLEWOODSLAB) {
+        	if (blockID == 0 && !clearedWoodSlabs) {
+                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB };
+
+                for (final BlockSettings setting : settings) {
+                    setting.setToZero(configuration);
+                }
+                
+                clearedWoodSlabs = true;
+            }
+        }
+
+        if (this == REDROCKSLAB || this == DOUBLEREDROCKSLAB) {
             if (blockID == 0 && !clearedWoodSlabs) {
                 final BlockSettings[] settings = { REDROCKSLAB, DOUBLEREDROCKSLAB };
 
-                for (final BlockSettings setting : settings)
+                for (final BlockSettings setting : settings) {
                     setting.setToZero(configuration);
+                }
+                
                 clearedWoodSlabs = true;
             }
+        }
     }
 
     private void setToZero(EnhancedConfiguration configuration) {

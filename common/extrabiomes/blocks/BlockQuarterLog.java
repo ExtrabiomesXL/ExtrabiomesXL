@@ -27,6 +27,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
+import extrabiomes.helpers.LogHelper;
 
 public class BlockQuarterLog extends BlockLog {
     public enum BarkOn {
@@ -54,6 +55,8 @@ public class BlockQuarterLog extends BlockLog {
     }
 
     private static int renderId = 31;
+    private static int turnerCnt = 0;
+    private static boolean unturned = true;
 
     private static Orientation determineOrientation(World world, int x, int y, int z, EntityLivingBase entity) {
         final int direction = BlockPistonBase.determineOrientation(world, x, y, z, entity);
@@ -244,6 +247,7 @@ public class BlockQuarterLog extends BlockLog {
     }
 
     private int getNextBlockID() {
+    	//LogHelper.info(Integer.toString(blockID));
         if (blockID == BarkOn.SW.blockID) return BarkOn.NE.blockID;
         if (blockID == BarkOn.NE.blockID) return BarkOn.NW.blockID;
         if (blockID == BarkOn.NW.blockID) return BarkOn.SE.blockID;
@@ -634,6 +638,8 @@ public class BlockQuarterLog extends BlockLog {
         int id = event.world.getBlockId(event.x, event.y, event.z);
 
         if (id == blockID) {
+        	
+        	
             final Block wood = Block.wood;
             event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F,
                     wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F,
@@ -650,6 +656,9 @@ public class BlockQuarterLog extends BlockLog {
                 event.world.setBlock(event.x, event.y, event.z, id, type | orientation, 3);
             }
             event.setHandled();
+            
+            // Patch for skipping over block ids that are out of order
+            event.setCanceled(true);
         }
     }
 

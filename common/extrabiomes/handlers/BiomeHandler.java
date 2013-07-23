@@ -40,10 +40,11 @@ public enum BiomeHandler {
         for (final BiomeSettings setting : BiomeSettings.values()) {
             final Optional<? extends BiomeGenBase> biome = setting.getBiome();
             if (!setting.isVanilla()) {
-                if (setting.isEnabled() && biome.isPresent())
+                if (setting.isEnabled() && biome.isPresent()) {
                     BiomeHelper.enableBiome(worldTypes, biome.get());
-                else
+                } else {
                     LogHelper.fine("Custom biome %s disabled.", setting.toString());
+                }
             } else if (!setting.isEnabled()) {
                 Extrabiomes.proxy.removeBiome(BiomeHelper.settingToBiomeGenBase(setting));
                 LogHelper.fine("Vanilla biome %s disabled.", biome.toString());
@@ -58,21 +59,27 @@ public enum BiomeHandler {
     }
 
     public static void init() throws Exception {
-        for (final BiomeSettings biome : BiomeSettings.values())
-            if (biome.getID() > 0) BiomeHelper.createBiome(biome);
+        for (final BiomeSettings biome : BiomeSettings.values()) {
+            if (biome.getID() > 0) {
+            	BiomeHelper.createBiome(biome);
+            }
+        }
 
         Api.getExtrabiomesXLEventBus().register(INSTANCE);
     }
 
     public static void registerWorldGenerators() {
-        if (BiomeSettings.MARSH.getBiome().isPresent())
+        if (BiomeSettings.MARSH.getBiome().isPresent()) {
             Extrabiomes.proxy.registerWorldGenerator(new MarshGenerator());
+        }
 
-        if (BiomeSettings.MOUNTAINDESERT.getBiome().isPresent())
+        if (BiomeSettings.MOUNTAINDESERT.getBiome().isPresent()) {
             Extrabiomes.proxy.registerWorldGenerator(new MountainDesertGenerator());
+        }
 
-        if (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent())
+        if (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent()) {
             Extrabiomes.proxy.registerWorldGenerator(new MountainRidgeGenerator());
+        }
 
         Extrabiomes.proxy.registerWorldGenerator(new VanillaFloraGenerator());
         Extrabiomes.proxy.registerWorldGenerator(new LegendOakGenerator());
@@ -80,8 +87,9 @@ public enum BiomeHandler {
 
     @ForgeSubscribe
     public void handleBiomeIDRequestsFromAPI(GetBiomeIDEvent event) {
-        final Optional<BiomeSettings> settings = Optional.fromNullable(BiomeSettings
-                .valueOf(event.targetBiome.toUpperCase()));
-        if (settings.isPresent()) event.biomeID = settings.get().getID();
+        final Optional<BiomeSettings> settings = Optional.fromNullable(BiomeSettings.valueOf(event.targetBiome.toUpperCase()));
+        if (settings.isPresent()) {
+        	event.biomeID = settings.get().getID();
+        }
     }
 }

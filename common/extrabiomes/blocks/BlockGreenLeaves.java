@@ -120,7 +120,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
     int[] adjacentTreeBlocks;
     
-    private Icon[] textures  = {null, null, null, null, null, null, null, null};
+    private Icon[] textures  = {null, null, null, null, null, null, null, null, null, null, null, null};
 
     public BlockGreenLeaves(int id, Material material, boolean useFastGraphics) {
         super(id, material, useFastGraphics);
@@ -135,6 +135,15 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfast");
     	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafancy");
     	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafast");
+<<<<<<< HEAD
+=======
+    	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfancy");
+    	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfast");
+    	textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesfir");
+    	textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredwood");
+    	textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesacacia");
+    	textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavescypress");
+>>>>>>> origin/3.14.0
     }
 
     @Override
@@ -189,11 +198,15 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
     private void leafTypeDropper(IBlockAccess iBlockAccess, World world, int x, int y, int z, int metadata, int par7) {
         final int damageValue = unmarkedMetadata(iBlockAccess.getBlockMetadata(x, y, z));
-        if (world.isRemote)
-            return;
+        if (world.isRemote) return;
 
+<<<<<<< HEAD
         if (damageValue != BlockType.ACACIA.metadata || !GeneralSettings.bigTreeSaplingDropModifier)
             if (world.rand.nextInt(20) == 0)
+=======
+        if (damageValue == BlockType.ACACIA.metadata || damageValue == BlockType.CYPRESS.metadata || !GeneralSettings.bigTreeSaplingDropModifier) {
+            if (world.rand.nextInt(20) == 0) {
+>>>>>>> origin/3.14.0
                 doSaplingDrop(world, x, y, z, metadata, par7);
         else
             if (world.rand.nextInt(90) == 0)
@@ -206,13 +219,30 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     }
 
     @Override
+<<<<<<< HEAD
     public Icon getIcon(int side, int metadata){
         metadata = unmarkedMetadata(metadata);
         
         // unmarkedMetadata has the potential to return a value between 0 and 3, since only 0 to 2 are valid we need to check validity.
         if (metadata < 0 || metadata > 2) metadata = 0;
+=======
+    public Icon getIcon(int side, int metadata) {
+>>>>>>> origin/3.14.0
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
+    
+    // Return your Better Leaves icon
+    public Icon getIconBetterLeaves(int metadata, float randomIndex) {
+		return textures[8 + unmarkedMetadata(metadata)];
+	}
+    
+    public Icon getIconFallingLeaves(int metadata) {
+		return textures[(unmarkedMetadata(metadata) * 2) + 1];
+    }
+ 
+	public float getSpawnChanceFallingLeaves(int metadata) {
+		return 0.1F;
+	}
 
     @SideOnly(Side.CLIENT)
     @Override
@@ -223,10 +253,24 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     @Override
     public int getRenderColor(int metadata) {
         metadata = unmarkedMetadata(metadata);
+<<<<<<< HEAD
 
         return metadata == 0 ? ColorizerFoliage.getFoliageColorPine()
                 : metadata == 1 ? ColorizerFoliage.getFoliageColorBasic() : ColorizerFoliage
                         .getFoliageColor(0.9F, 0.1F);
+=======
+        
+        switch(metadata) {
+        case 0:
+        	return ColorizerFoliage.getFoliageColorPine();
+        case 1:
+        	return ColorizerFoliage.getFoliageColorBasic();
+        case 2:
+        	return ColorizerFoliage.getFoliageColor(0.9F, 0.1F);
+        default:
+        	return 0xe5fff3;
+        }
+>>>>>>> origin/3.14.0
     }
 
     @Override
@@ -285,7 +329,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
     private void removeLeaves(World world, int x, int y, int z) {
         dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-        world.setBlock(x, y, z, 0, 0, 0x02);
+        world.setBlockToAir(x, y, z);
     }
 
     @Override

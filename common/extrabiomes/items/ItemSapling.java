@@ -23,5 +23,4 @@ public class ItemSapling extends MultiItemBlock {
         itemstack.setItemDamage(metadata);
         return super.getUnlocalizedName(itemstack);
     }
-
 }

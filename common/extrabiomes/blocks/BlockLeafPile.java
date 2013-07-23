@@ -53,8 +53,7 @@ public class BlockLeafPile extends Block {
 
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-        return super.canPlaceBlockAt(world, x, y, z)
-                && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
+        return super.canPlaceBlockAt(world, x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
     }
 
     private void checkFlowerChange(World world, int x, int y, int z) {

@@ -23,9 +23,7 @@ public class RenderQuarterLog implements ISimpleBlockRenderingHandler {
 	}
 
 	@Override
-	public void renderInventoryBlock(Block block, int metadata,
-			int modelID, RenderBlocks renderer)
-	{
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 		final Tessellator var4 = Tessellator.instance;
 
 		if (renderer.useInventoryTint) {
@@ -41,47 +39,39 @@ public class RenderQuarterLog implements ISimpleBlockRenderingHandler {
 		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 		var4.startDrawingQuads();
 		var4.setNormal(0.0F, -1.0F, 0.0F);
-		renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D,//bottom
-				block.getIcon(0, metadata));
+		renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, metadata));
 		var4.draw();
 
 		var4.startDrawingQuads();
 		var4.setNormal(0.0F, 1.0F, 0.0F);
-		renderer.renderFaceYPos(block, 0.0D, 0.0D, 0.0D,//top
-				block.getIcon(1, metadata));
+		renderer.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(1, metadata));
 		var4.draw();
 
 		var4.startDrawingQuads();
 		var4.setNormal(0.0F, 0.0F, -1.0F);
-		renderer.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D,//east
-				block.getIcon(2, metadata));
+		renderer.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(2, metadata));
 		var4.draw();
 
 		var4.startDrawingQuads();
 		var4.setNormal(0.0F, 0.0F, 1.0F);
-		renderer.renderFaceZPos(block, 0.0D, 0.0D, 0.0D,//west
-				block.getIcon(3, metadata));
+		renderer.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(3, metadata));
 		var4.draw();
 
 		var4.startDrawingQuads();
 		var4.setNormal(-1.0F, 0.0F, 0.0F);
-		renderer.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D,//north
-				block.getIcon(4, metadata));
+		renderer.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(4, metadata));
 		var4.draw();
 
 		var4.startDrawingQuads();
 		var4.setNormal(1.0F, 0.0F, 0.0F);
-		renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D,//south
-				block.getIcon(5, metadata));
+		renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(5, metadata));
 		var4.draw();
 
 		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y,
-			int z, Block block, int modelId, RenderBlocks renderer)
-	{
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		final int metadata = world.getBlockMetadata(x, y, z);
 		final int orientation = metadata & 12;
 
@@ -95,8 +85,7 @@ public class RenderQuarterLog implements ISimpleBlockRenderingHandler {
 			renderer.uvRotateNorth = 2;
 		}
 
-		final boolean didRender = renderer.renderStandardBlock(block,
-				x, y, z);
+		final boolean didRender = renderer.renderStandardBlock(block, x, y, z);
 		renderer.uvRotateSouth = 0;
 		renderer.uvRotateEast = 0;
 		renderer.uvRotateWest = 0;

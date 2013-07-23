@@ -47,7 +47,7 @@ public enum BiomeSettings {
             BiomeExtremeJungle.class), FORESTEDHILLS(36, BiomeForestedHills.class), FORESTEDISLAND(
             37, BiomeForestedIsland.class), GLACIER(38, BiomeGlacier.class), GREENHILLS(39,
             BiomeGreenHills.class), GREENSWAMP(40, BiomeGreenSwamp.class), ICEWASTELAND(41,
-            BiomeIceWasteland.class), MARSH(42, BiomeMarsh.class), MEADOW(43, BiomeMeadow.class), MINIJUNGLE(
+            BiomeIceWasteland.class), MARSH(42, BiomeMarsh.class, false), MEADOW(43, BiomeMeadow.class), MINIJUNGLE(
             44, BiomeMiniJungle.class), MOUNTAINDESERT(45, BiomeMountainDesert.class), MOUNTAINRIDGE(
             46, BiomeMountainRidge.class), MOUNTAINTAIGA(47, BiomeMountainTaiga.class), PINEFOREST(
             48, BiomePineForest.class), RAINFOREST(49, BiomeRainforest.class), REDWOODFOREST(50,
@@ -75,14 +75,22 @@ public enum BiomeSettings {
         biomeID = this.defaultID;
         this.biomeClass = Optional.fromNullable(biomeClass);
     }
+    
+    private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass, boolean defaultGen) {
+        this.defaultID = defaultID;
+        biomeID = this.defaultID;
+        this.biomeClass = Optional.fromNullable(biomeClass);
+        this.enabled = defaultGen;
+    }
 
     public boolean allowVillages() {
         return allowVillages;
     }
 
     public void createBiome() throws Exception {
-        if (biomeClass.isPresent() && !biome.isPresent())
+        if (biomeClass.isPresent() && !biome.isPresent()) {
             biome = Optional.of(biomeClass.get().newInstance());
+        }
     }
 
     public Optional<? extends BiomeGenBase> getBiome() {
@@ -123,14 +131,13 @@ public enum BiomeSettings {
         if (!isVanilla()) {
             property = configuration.getBiome(keyID(), defaultID);
             biomeID = property.getInt(0);
-        }
+        } 
 
-        property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyEnabled(), true);
+        property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyEnabled(), enabled);
         if (!isVanilla() && biomeID == 0) property.set(Boolean.toString(false));
         enabled = property.getBoolean(false);
 
-        property = configuration
-                .get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), true);
+        property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), true);
         if (!isVanilla() && biomeID == 0) property.set(Boolean.toString(false));
         allowVillages = property.getBoolean(false);
 

@@ -16,7 +16,7 @@ import extrabiomes.lib.Element;
 import extrabiomes.module.summa.TreeSoilRegistry;
 
 public class WorldGenAutumnTree extends WorldGenerator {
-
+	
 	public enum AutumnTreeType {
 		BROWN, ORANGE, PURPLE, YELLOW;
 		
@@ -45,7 +45,7 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		
 	}
 
-	private static Block		trunkBlock					= Block.wood;
+	private static int		trunkBlock					= Block.wood.blockID;
 	private static int			trunkMetadata				= 1;
 	private static ItemStack			brownLeaves			= new ItemStack(Block.leaves);
 	private static ItemStack			orangeLeaves		= brownLeaves;
@@ -54,23 +54,18 @@ public class WorldGenAutumnTree extends WorldGenerator {
 	private static ItemStack yellowLeaves		= brownLeaves;
 
 	private static final int	BASE_HEIGHT					= 4;
-
 	private static final int	CANOPY_HEIGHT				= 3;
-
 	private static final int	CANOPY_RADIUS_EXTRA_RADIUS	= 0;
-
 	private static final int	MAX_VARIANCE_HEIGHT			= 2;
+	
+	
 
-	private static boolean isBlockSuitableForGrowing(final World world,
-			final int x, final int y, final int z)
-	{
+	private static boolean isBlockSuitableForGrowing(final World world, final int x, final int y, final int z) {
 		final int id = world.getBlockId(x, y, z);
 		return TreeSoilRegistry.isValidSoil(id);
 	}
 
-	private static boolean isRoomToGrow(final World world, final int x,
-			final int y, final int z, final int height)
-	{
+	private static boolean isRoomToGrow(final World world, final int x, final int y, final int z, final int height) {
 		for (int i = y; i <= y + 1 + height; ++i) {
 
 			if (i < 0 || i >= 256) return false;
@@ -81,41 +76,56 @@ public class WorldGenAutumnTree extends WorldGenerator {
 
 			if (i >= y + 1 + height - 2) radius = 2;
 
-			for (int x1 = x - radius; x1 <= x + radius; ++x1)
+			for (int x1 = x - radius; x1 <= x + radius; ++x1) {
 				for (int z1 = z - radius; z1 <= z + radius; ++z1) {
 					final int id = world.getBlockId(x1, i, z1);
 
-					if (Block.blocksList[id] != null
-							&& !Block.blocksList[id].isLeaves(world,
-									x1, i, z1)
-							&& id != Block.grass.blockID
-							&& !Block.blocksList[id].isWood(world, x1,
-									i, z1)) return false;
+					if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x1, i, z1) && id != Block.grass.blockID && !Block.blocksList[id].isWood(world, x1, i, z1)) return false;
 				}
+			}
 		}
+		
 		return true;
 	}
 
 	public static void setTrunkBlock(Block block, int metadata) {
-		WorldGenAutumnTree.trunkBlock = block;
+		WorldGenAutumnTree.trunkBlock = block.blockID;
+		WorldGenAutumnTree.trunkMetadata = metadata;
+	}
+	
+	public static void setTrunkBlock(int blockId, int metadata) {
+		WorldGenAutumnTree.trunkBlock = blockId;
 		WorldGenAutumnTree.trunkMetadata = metadata;
 	}
 
 	protected final AutumnTreeType	type;
 
-	public WorldGenAutumnTree(boolean doBlockNotify, AutumnTreeType type)
-	{
+	public WorldGenAutumnTree(boolean doBlockNotify, AutumnTreeType type) {
 		super(doBlockNotify);
 
 		this.type = type;
 	}
 	
-	@Override
-	public boolean generate(final World world, final Random rand,
-			final int x, final int y, final int z)
-	{
-		final int height = rand.nextInt(MAX_VARIANCE_HEIGHT + 1)
-				+ BASE_HEIGHT;
+	// Store the last seed that was used to generate a tree
+    private static long lastSeed = 0;
+
+    @Override
+    public boolean generate(World world, Random rand, int x, int y, int z) {
+    	// Store the seed
+    	lastSeed = rand.nextLong();
+    	
+        return generateTree(world, new Random(lastSeed), x, y, z);
+    }
+    
+    public boolean generate(World world, long seed, int x, int y, int z) {
+    	// Store the seed
+    	lastSeed = seed;
+    	
+        return generateTree(world, new Random(seed), x, y, z);
+    }
+    
+    private boolean generateTree(World world, Random rand, int x, int y, int z) {
+		final int height = rand.nextInt(MAX_VARIANCE_HEIGHT + 1) + BASE_HEIGHT;
 
 		if (y < 1 || y + height + 1 > 256) return false;
 
@@ -125,20 +135,14 @@ public class WorldGenAutumnTree extends WorldGenerator {
 		if (!isRoomToGrow(world, x, y, z, height)) return false;
 
 		world.setBlock(x, y - 1, z, Block.dirt.blockID);
-		growLeaves(world, rand, x, y, z, height, type.getID(),
-				type.getMetadata());
-		growTrunk(world, x, y, z, height, trunkBlock.blockID,
-				trunkMetadata);
+		growLeaves(world, rand, x, y, z, height, type.getID(), type.getMetadata());
+		growTrunk(world, x, y, z, height, trunkBlock, trunkMetadata);
 
 		return true;
 	}
 
-	private void growLeaves(final World world, final Random rand,
-			final int x, final int y, final int z, final int height,
-			int leafID, int leafMeta)
-	{
-		for (int y1 = y - CANOPY_HEIGHT + height; y1 <= y + height; ++y1)
-		{
+	private void growLeaves(final World world, final Random rand, final int x, final int y, final int z, final int height, int leafID, int leafMeta) {
+		for (int y1 = y - CANOPY_HEIGHT + height; y1 <= y + height; ++y1) {
 			final int canopyRow = y1 - (y + height);
 			final int radius = CANOPY_RADIUS_EXTRA_RADIUS + 1
 					- canopyRow / 2;
@@ -152,30 +156,25 @@ public class WorldGenAutumnTree extends WorldGenerator {
 					final Block block = Block.blocksList[world
 							.getBlockId(x1, y1, z1)];
 
-					if ((Math.abs(xDistanceFromTrunk) != radius
-							|| Math.abs(zDistanceFromTrunk) != radius || rand
-							.nextInt(2) != 0 && canopyRow != 0)
-							&& (block == null || block
-									.canBeReplacedByLeaves(world, x1,
-											y1, z1)))
-						setBlockAndMetadata(world, x1, y1, z1, leafID,
-								leafMeta);
+					if ((Math.abs(xDistanceFromTrunk) != radius || Math.abs(zDistanceFromTrunk) != radius || rand.nextInt(2) != 0 && canopyRow != 0) && (block == null || block.canBeReplacedByLeaves(world, x1, y1, z1))) {
+						setBlockAndMetadata(world, x1, y1, z1, leafID,leafMeta);
+					}
 				}
 			}
 		}
 	}
 
-	private void growTrunk(final World world, final int x, final int y,
-			final int z, final int height, int woodID, int woodMeta)
-	{
+	private void growTrunk(final World world, final int x, final int y, final int z, final int height, int woodID, int woodMeta) {
 		for (int y1 = 0; y1 < height; ++y1) {
 			final int id = world.getBlockId(x, y + y1, z);
 
-			if (Block.blocksList[id] == null
-					|| Block.blocksList[id].isLeaves(world, x, y + y1,
-							z))
-				setBlockAndMetadata(world, x, y + y1, z, woodID,
-						woodMeta);
+			if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + y1, z)) {
+				setBlockAndMetadata(world, x, y + y1, z, woodID, woodMeta);
+			}
 		}
 	}
+    
+    public static long getLastSeed(){ 
+    	return lastSeed;
+    }
 }
