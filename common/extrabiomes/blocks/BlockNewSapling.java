@@ -26,6 +26,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.SaplingSettings;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
@@ -35,6 +36,7 @@ import extrabiomes.module.summa.worldgen.WorldGenBaldCypressTree;
 import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
+import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleShrub;
 import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleTree;
 import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
@@ -179,6 +181,8 @@ public class BlockNewSapling extends BlockFlower {
             }
         } else if(metadata == BlockType.JAPANESE_MAPLE.metadata()) {
         	tree = new WorldGenJapaneseMapleTree(true);
+        } else {
+        	tree = new WorldGenJapaneseMapleShrub(true);
         }
         
         /* else {
@@ -273,9 +277,17 @@ public class BlockNewSapling extends BlockFlower {
     		//event.entityItem
     		if(canThisPlantGrowOnThisBlockID(event.entityItem.worldObj.getBlockId(posX, posY - 1, posZ)) && event.entityItem.worldObj.isAirBlock(posX, posY, posZ)) {
     			// Determine if the sapling should despawn
-    			if(metadata == BlockType.BALD_CYPRESS.metadata() && chance <= SaplingSettings.BALD_CYPRESS.chance()){
+    			double ratio = ((!GeneralSettings.bigTreeSaplingDropModifier) ? 1.0D : 4.0D);
+    			
+    			if(metadata == BlockType.BALD_CYPRESS.metadata() && chance <= SaplingSettings.BALD_CYPRESS.chance() * ratio){
     				replant = true;
-    			}  			
+    			} else if(metadata == BlockType.RAINBOW_EUCALYPTUS.metadata() && chance <= SaplingSettings.RAINBOW_EUCALYPTUS.chance() * ratio){
+    				replant = true;
+    			} else if(metadata == BlockType.JAPANESE_MAPLE.metadata() && chance <= SaplingSettings.JAPANESE_MAPLE.chance()){
+    				replant = true;
+    			} else if(metadata == BlockType.JAPANESE_MAPLE_SHRUB.metadata() && chance <= SaplingSettings.JAPANESE_MAPLE_SHRUB.chance()){
+    				replant = true;
+    			} 		
     			
     			if(replant) {
     				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);

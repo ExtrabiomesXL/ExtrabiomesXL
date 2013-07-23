@@ -12,7 +12,7 @@ import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Element;
 import extrabiomes.module.summa.TreeSoilRegistry;
 
-public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase {
+public class WorldGenJapaneseMapleShrub extends WorldGenNewTreeBase {
 	
 	private enum TreeBlock {
         LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK(new ItemStack(Block.wood, 1, 1));
@@ -21,7 +21,7 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase {
         private static boolean loadedCustomBlocks = false;
 
         private static void loadCustomBlocks() {
-            if (Element.LEAVES_JAPANESE_MAPLE.isPresent()) LEAVES.stack = Element.LEAVES_JAPANESE_MAPLE.get();
+            if (Element.LEAVES_JAPANESE_MAPLE_SHRUB.isPresent()) LEAVES.stack = Element.LEAVES_JAPANESE_MAPLE_SHRUB.get();
             if (Element.LOG_JAPANESE_MAPLE.isPresent()) TRUNK.stack = Element.LOG_JAPANESE_MAPLE.get();
 
             loadedCustomBlocks = true;
@@ -48,12 +48,12 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase {
 
     }
 
-	public WorldGenJapaneseMapleTree(boolean par1) {
+	public WorldGenJapaneseMapleShrub(boolean par1) {
 		super(par1);
 	}
 	
 	// Store the last seed that was used to generate a tree
-    private static long lastSeed = 1234;
+    private static long lastSeed = 0;
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
@@ -71,13 +71,13 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase {
     }
     
     //Variables to control the generation
-	private static final int	BASE_HEIGHT					= 8;		// The base height for trees
+    private static final int	BASE_HEIGHT					= 5;		// The base height for trees
 	private static final int	BASE_HEIGHT_VARIANCE		= 4;		// The Max extra branches that a tree can have
-	private static final double	TRUNK_HEIGHT_PERCENT		= 0.30D;	// What percent of the total height the main trunk extends
-	private static final int	BRANCHES_BASE_NUMBER		= 2;		// The total number of branches on the tree
-	private static final int	BRANCHES_EXTRA				= 4;		// The how many extra branches can occur on the tree
-	private static final int	CANOPY_WIDTH				= 8;		// How many blocks will this tree cover
-	private static final int	CANOPY_WIDTH_VARIANCE		= 6;		// How many extra blocks may this tree cover
+	private static final double	TRUNK_HEIGHT_PERCENT		= 0.20D;	// What percent of the total height the main trunk extends
+	private static final int	BRANCHES_BASE_NUMBER		= 3;		// The total number of branches on the tree
+	private static final int	BRANCHES_EXTRA				= 1;		// The how many extra branches can occur on the tree
+	private static final int	CANOPY_WIDTH				= 4;		// How many blocks will this tree cover
+	private static final int	CANOPY_WIDTH_VARIANCE		= 3;		// How many extra blocks may this tree cover
 	
 	static int last = 0;
     
@@ -103,7 +103,7 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase {
         if(place1x1Trunk(x, y, z, (int)(height * TRUNK_HEIGHT_PERCENT), TreeBlock.TRUNK.get(), world)) {
 	        // Generate the branches
 	        generateBranches(world, rand, x, y + (int)(height * TRUNK_HEIGHT_PERCENT), z, height - (int)(height * TRUNK_HEIGHT_PERCENT) - 2, radius);
-	        
+	        	        
 	        return true;
         }
 
@@ -150,7 +150,7 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase {
     	Iterator<int[]> itt = branches.iterator();
     	while (itt.hasNext()) {
     	   int[] cluster = itt.next();
-    	   generateLeafCluster(world, rand, cluster[0], cluster[1], cluster[2], 2, 1, TreeBlock.LEAVES.get());
+    	   generateLeafCluster(world, rand, cluster[0], cluster[1], cluster[2], 1, 1, TreeBlock.LEAVES.get());
     	}
 
     	// Calculate the center position
@@ -164,29 +164,30 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase {
     }
     
     public void generateCanopy(World world, Random rand, double x, double y, double z, double radius, int height, ItemStack leaves) {
-    	int layers = height + 2;
+    	int layers = height;
     	for(int y1 = (int)y, layer = 0; layer < layers; layer++, y1 ++) {
-    		if(layer < 2) {
-    			generateCanopyLayer(world, rand, x, y1, z, radius * Math.cos((layer) / (height / 1.3)), 2 + (layer * 5), leaves);
+    		double radiusOuter = radius * Math.cos((layer) / (height / 1.3));
+    		double radiusInner = (radiusOuter - 1 > 0) ? radiusOuter -1: -1; 
+    		
+    		if(layer + 1 == layers) {
+    			generateCanopyLayer(world, rand, x, y1, z, radiusOuter, 0, leaves);
     		} else {
-    			generateCanopyLayer(world, rand, x, y1, z, radius * Math.cos((layer) / (height / 1.3)), 1000, leaves);
+    			generateCanopyLayer(world, rand, x, y1, z, radiusOuter, (radiusOuter - 1), leaves);
     		}
     	}
     }
     
-    public void generateCanopyLayer(World world, Random rand, double x, double y, double z, double radius, int skipChance, ItemStack leaves) {
-    	double minDist = (radius - 2 > 0) ? ((radius - 2) * (radius - 2)) : -1;
-    	double maxDist = radius * radius;
+    public void generateCanopyLayer(World world, Random rand, double x, double y, double z, double radiusOuter, double radiusInner, ItemStack leaves) {
+    	double minDist = (radiusInner > 0) ? (radiusInner * radiusInner) : radiusInner;
+    	double maxDist = radiusOuter * radiusOuter;
     	    	
-    	for(int z1 = (int)-radius; z1 < (radius + 1); z1++) {
-    		for(int x1 = (int)-radius; x1 < (radius + 1); x1++) {
+    	for(int z1 = (int)-radiusOuter; z1 < (radiusOuter + 1); z1++) {
+    		for(int x1 = (int)-radiusOuter; x1 < (radiusOuter + 1); x1++) {
     			final Block block = Block.blocksList[world.getBlockId((int)(x1 + x), (int)y, (int)(z1 + z))];
     			
         		if((((x1*x1) + (z1*z1)) <= maxDist) && (((x1*x1) + (z1*z1)) >= minDist)) {
         			if(block == null || block.canBeReplacedByLeaves(world, (int)(x1 + x), (int)y, (int)(z1 + z))) {
-        				if(rand.nextInt(skipChance) != 0) {
-        					setLeafBlock(world, (int)(x1 + x), (int)y, (int)(z1 + z), leaves);
-        				}		
+        				setLeafBlock(world, (int)(x1 + x), (int)y, (int)(z1 + z), leaves);		
         			}
         		}
         	}

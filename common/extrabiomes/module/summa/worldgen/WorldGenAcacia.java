@@ -102,8 +102,7 @@ public class WorldGenAcacia extends WorldGenerator {
 
         if (!canGrow) return false;
 
-        if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1)
-            return false;
+        if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1) return false;
 
         world.setBlock(x, y - 1, z, Block.dirt.blockID);
         final byte canopyHeight = 3;
@@ -121,11 +120,9 @@ public class WorldGenAcacia extends WorldGenerator {
 
                     final Block block = Block.blocksList[world.getBlockId(x1, y1, z1)];
 
-                    if ((Math.abs(xOnRadius) != canopyRadius || Math.abs(zOnRadius) != canopyRadius || rand
-                            .nextInt(2) != 0 && distanceFromTop != 0)
-                            && (block == null || block.canBeReplacedByLeaves(world, x1, y1, z1)))
-                        setBlockAndMetadata(world, x1, y1, z1, TreeBlock.LEAVES.getID(),
-                                TreeBlock.LEAVES.getMetadata());
+                    if ((Math.abs(xOnRadius) != canopyRadius || Math.abs(zOnRadius) != canopyRadius || rand.nextInt(2) != 0 && distanceFromTop != 0) && (block == null || block.canBeReplacedByLeaves(world, x1, y1, z1))) {
+                        setBlockAndMetadata(world, x1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                    }
                 }
             }
         }
@@ -133,13 +130,14 @@ public class WorldGenAcacia extends WorldGenerator {
         for (int y1 = 0; y1 < height; y1++) {
             final int id = world.getBlockId(x, y + y1, z);
 
-            if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x, y + y1, z))
+            if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x, y + y1, z)) {
                 continue;
+            }
 
-            setBlockAndMetadata(world, x, y + y1, z, TreeBlock.TRUNK.getID(),
-                    TreeBlock.TRUNK.getMetadata());
+            setBlockAndMetadata(world, x, y + y1, z, TreeBlock.TRUNK.getID(), TreeBlock.TRUNK.getMetadata());
 
         }
+        
         return true;
     }
     

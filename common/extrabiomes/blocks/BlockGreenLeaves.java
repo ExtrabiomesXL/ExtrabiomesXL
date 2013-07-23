@@ -200,10 +200,9 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
     private void leafTypeDropper(IBlockAccess iBlockAccess, World world, int x, int y, int z, int metadata, int par7) {
         final int damageValue = unmarkedMetadata(iBlockAccess.getBlockMetadata(x, y, z));
-        if (world.isRemote)
-            return;
+        if (world.isRemote) return;
 
-        if (damageValue != BlockType.ACACIA.metadata || !GeneralSettings.bigTreeSaplingDropModifier) {
+        if (damageValue == BlockType.ACACIA.metadata || damageValue == BlockType.CYPRESS.metadata || !GeneralSettings.bigTreeSaplingDropModifier) {
             if (world.rand.nextInt(20) == 0) {
                 doSaplingDrop(world, x, y, z, metadata, par7);
             }

@@ -92,6 +92,8 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
     private boolean generateTree(World world, Random rand, int x, int y, int z) {
         final int below = world.getBlockId(x, y - 1, z);
         final int height = rand.nextInt(BASE_HEIGHT_VARIANCE) + BASE_HEIGHT;
+    	int width = CANOPY_WIDTH + rand.nextInt(CANOPY_WIDTH_VARIANCE);
+        final int chunkCheck = width + 1;
 
         // Make sure that a tree can grow on the soil
         if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x+1, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x, y - 1, z + 1))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x + 1, y - 1, z + 1)))) return false;
@@ -102,13 +104,16 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
         // Make sure that the tree can fit in the world
         if (y < 1 || y + height + 4 > 256) return false;
         
+        // Make sure the cunks are loaded
+        if (!world.checkChunksExist(x - chunkCheck, y - chunkCheck, z - chunkCheck, x + chunkCheck, y + chunkCheck, z + chunkCheck)) return false;
+        
         // Draw the main trunk
         if(place2x2Trunk(x, y, z, (int)(height * TRUNK_HEIGHT_PERCENT), TreeBlock.TRUNK.get(), world)) {
 	        // Draw the knees
 	        generateKnees(world, rand, x, y, z);
 	        
 	        // Generate the branches
-	        generateBranches(world, rand, x, y, z, height);
+	        generateBranches(world, rand, x, y, z, height, width);
 	        
 	        // Place the topper leaves
 	        generateLeafCluster(world, rand, x, (int)(height * TRUNK_HEIGHT_PERCENT) + y, z, 4 + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), 4 + rand.nextInt(CLUSTER_DIAMATER_VARIANCE), TreeBlock.LEAVES.get());
@@ -120,9 +125,8 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
         return false;
     }
     
-    public void generateBranches(World world, Random rand, int x, int y, int z, int height) {
+    public void generateBranches(World world, Random rand, int x, int y, int z, int height, int width) {
     	int branchCount = BRANCHES_BASE_NUMBER + rand.nextInt(BRANCHES_EXTRA);
-    	int width = CANOPY_WIDTH + rand.nextInt(CANOPY_WIDTH_VARIANCE);
     	
     	// Make sure that the width is even
     	width = (width % 2 == 1) ? width + 1: width;

@@ -69,8 +69,7 @@ public class WorldGenFirTreeHuge extends WorldGenerator {
 
 	}
 
-	private static void setBlockandMetadataIfChunkExists(World world, int x,
-			int y, int z, int blockId, int metadata) {
+	private static void setBlockandMetadataIfChunkExists(World world, int x, int y, int z, int blockId, int metadata) {
 		if (world.getChunkProvider().chunkExists(x >> 4, z >> 4)){
 			try{
 				world.setBlock(x, y, z, blockId, metadata, 3);

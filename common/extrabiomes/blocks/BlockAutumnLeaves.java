@@ -171,7 +171,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 
     private void doSaplingDrop(World world, int x, int y, int z, int metadata, int par7) {
         final int idDropped = idDropped(metadata, world.rand, par7);
-        if (idDropped > 0){
+        if (idDropped > 0) {
             dropBlockAsItem_do(world, x, y, z, new ItemStack(idDropped(metadata, world.rand, par7), 1, damageDropped(metadata)));
         }
     }

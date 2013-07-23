@@ -124,6 +124,7 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree {
         generateLeaves(type.getID(), type.getMetadata());
         generateTrunk(trunkBlock, trunkMetadata);
         generateLeafNodeBases(trunkBlock, trunkMetadata);
+        
         return true;
     }
 

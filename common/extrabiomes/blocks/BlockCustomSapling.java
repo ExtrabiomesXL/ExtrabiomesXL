@@ -27,6 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Element;
+import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.SaplingSettings;
 import extrabiomes.module.summa.TreeSoilRegistry;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
@@ -294,24 +295,26 @@ public class BlockCustomSapling extends BlockFlower {
     		
     		//event.entityItem
     		if(canThisPlantGrowOnThisBlockID(event.entityItem.worldObj.getBlockId(posX, posY - 1, posZ)) && event.entityItem.worldObj.isAirBlock(posX, posY, posZ)) {
+    			double ratio = ((!GeneralSettings.bigTreeSaplingDropModifier) ? 1.0D : 4.0D);
+    			
     			// Determine if the sapling should despawn
     			if(metadata == BlockType.ACACIA.metadata() && chance <= SaplingSettings.ACACIA.chance()){
     				replant = true;
     			} else if(metadata == BlockType.BROWN.metadata() && chance <= SaplingSettings.BROWN.chance()){
     				replant = true;
-    			}  else if(metadata == BlockType.CYPRESS.metadata() && chance <= SaplingSettings.CYPRESS.chance()){
+    			} else if(metadata == BlockType.CYPRESS.metadata() && chance <= SaplingSettings.CYPRESS.chance()){
     				replant = true;
-    			}  else if(metadata == BlockType.FIR.metadata() && chance <= SaplingSettings.FIR.chance()){
+    			} else if(metadata == BlockType.FIR.metadata() && chance <= SaplingSettings.FIR.chance() * ratio){
     				replant = true;
-    			}  else if(metadata == BlockType.ORANGE.metadata() && chance <= SaplingSettings.ORANGE.chance()){
+    			} else if(metadata == BlockType.ORANGE.metadata() && chance <= SaplingSettings.ORANGE.chance()){
     				replant = true;
-    			}  else if(metadata == BlockType.PURPLE.metadata() && chance <= SaplingSettings.PURPLE.chance()){
+    			} else if(metadata == BlockType.PURPLE.metadata() && chance <= SaplingSettings.PURPLE.chance()){
     				replant = true;
-    			}  else if(metadata == BlockType.REDWOOD.metadata() && chance <= SaplingSettings.REDWOOD.chance()){
+    			} else if(metadata == BlockType.REDWOOD.metadata() && chance <= SaplingSettings.REDWOOD.chance() * ratio){
     				replant = true;
-    			}  else if(metadata == BlockType.YELLOW.metadata() && chance <= SaplingSettings.YELLOW.chance()){
+    			} else if(metadata == BlockType.YELLOW.metadata() && chance <= SaplingSettings.YELLOW.chance()){
     				replant = true;
-    			}    			
+    			} 			
     			
     			if(replant) {
     				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);

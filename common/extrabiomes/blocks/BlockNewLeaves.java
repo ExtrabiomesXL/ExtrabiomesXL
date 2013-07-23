@@ -29,6 +29,7 @@ import com.google.common.base.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import extrabiomes.blocks.BlockGreenLeaves.BlockType;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.GeneralSettings;
 
@@ -202,8 +203,17 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
 
     private void leafTypeDropper(IBlockAccess iBlockAccess, World world, int x, int y, int z, int metadata, int par7) {
         final int damageValue = unmarkedMetadata(iBlockAccess.getBlockMetadata(x, y, z));
-        if (world.isRemote)
-            return;
+        if (world.isRemote) return;
+        
+        if (damageValue == BlockType.JAPANESE_MAPLE.metadata || damageValue == BlockType.JAPANESE_MAPLE_SHRUB.metadata ||  !GeneralSettings.bigTreeSaplingDropModifier) {
+            if (world.rand.nextInt(20) == 0) {
+                doSaplingDrop(world, x, y, z, metadata, par7);
+            }
+        } else {
+            if (world.rand.nextInt(90) == 0) {
+                doSaplingDrop(world, x, y, z, metadata, par7);
+            }
+        }
         
 	    if (world.rand.nextInt(90) == 0) {
 	        doSaplingDrop(world, x, y, z, metadata, par7);
