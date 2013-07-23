@@ -35,6 +35,8 @@ import extrabiomes.module.summa.worldgen.WorldGenBaldCypressTree;
 import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
+import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleTree;
+import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 
 public class BlockNewSapling extends BlockFlower {
@@ -161,16 +163,22 @@ public class BlockNewSapling extends BlockFlower {
         final boolean isForestryFarmed = world.getBlockId(x, y - 1, z) == forestrySoilID;
 
         
-        if (metadata == BlockType.BALD_CYPRESS.metadata()) {
+        if (metadata == BlockType.BALD_CYPRESS.metadata() || metadata == BlockType.RAINBOW_EUCALYPTUS.metadata()) {
         	for (x1 = 0; x1 >= -1; --x1) {
                 for (z1 = 0; z1 >= -1; --z1)
                     if (isSameSapling(world, x + x1, y, z + z1, metadata) && isSameSapling(world, x + x1 + 1, y, z + z1, metadata) && isSameSapling(world, x + x1, y, z + z1 + 1, metadata) && isSameSapling(world, x + x1 + 1, y, z + z1 + 1, metadata)) {
-                        tree = new WorldGenBaldCypressTree(true);
+                    	if(metadata == BlockType.BALD_CYPRESS.metadata()){
+                    		tree = new WorldGenBaldCypressTree(true);
+                    	} else {
+                    		tree = new WorldGenRainbowEucalyptusTree(true);
+                    	}
                         isHuge = true;
                         break;
                     }
                 if (tree != null) break;
             }
+        } else if(metadata == BlockType.JAPANESE_MAPLE.metadata()) {
+        	tree = new WorldGenJapaneseMapleTree(true);
         }
         
         /* else {
@@ -211,9 +219,7 @@ public class BlockNewSapling extends BlockFlower {
                 world.setBlock(x, y, z, 0);
             }
 
-            final int offset = 0;
-
-            if (!tree.generate(world, rand, x + x1 + offset, y, z + z1 + offset)) {
+            if (!tree.generate(world, rand, x + x1, y, z + z1)) {
                 if (isHuge) {
                     world.setBlock(x + x1, y, z + z1, blockID, metadata, 3);
                     world.setBlock(x + x1 + 1, y, z + z1, blockID, metadata, 3);

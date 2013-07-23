@@ -15,6 +15,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public abstract class WorldGenNewTreeBase extends WorldGenerator {
+	
+	int leafCount = 0;
 
     public WorldGenNewTreeBase(boolean par1) {
         super(par1);
@@ -74,8 +76,12 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator {
     			break;
     	}
     	
-    	for(int y1 = y; y1 < y + height; y1++){
-			//if(Block.blocksList[world.getBlockId(x, y1, z)] != null) return false;
+    	for(int y1 = y-1; y1 > 1; y1--){
+    		Block block = Block.blocksList[world.getBlockId(x, y1, z)];
+			if(block != null && !block.canBeReplacedByLeaves(world, x, y1, z)) break;
+			
+			// If there is an air block here place a root log
+			setBlockAndMetadata(world, x, y1, z, logs.itemID, logs.getItemDamage());
 		}
 		
 		for(int y1 = y; y1 < y + height - 1; y1++){
@@ -168,9 +174,20 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator {
 				final Block block = Block.blocksList[world.getBlockId(x2, y, z2)];
 				
 				if((((x1*x1) + (z1*z1)) <= dist) && (block == null || block.canBeReplacedByLeaves(world, x2, y, z2))){
-					setBlockAndMetadata(world, x2, y, z2, leaves.itemID, leaves.getItemDamage());
+					setLeafBlock(world, x2, y, z2, leaves);
 				}
 			}
 		}
 	}
+	
+	public void setLeafBlock(World world, int x, int y, int z, ItemStack leaves) {
+		leafCount++;
+		setBlockAndMetadata(world, x, y, z, leaves.itemID, leaves.getItemDamage());
+	}
+	
+	public void generateLeafCluster(World world, Random rand, int x, int y, int z, int height, int radius, ItemStack leaves) {
+    	for(int layer = -height; layer <= height; layer++) {
+    		placeLeavesCircle(x, y+layer, z, radius * Math.cos(layer / (height/1.3)), leaves, world);
+    	}
+    }
 }

@@ -12,7 +12,7 @@ import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Element;
 import extrabiomes.module.summa.TreeSoilRegistry;
 
-public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
+public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase {
 	
 	private enum TreeBlock {
         LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK(new ItemStack(Block.wood, 1, 1)), KNEE_LOG(new ItemStack(Block.wood, 1, 1)), KNEE(new ItemStack(Block.wood, 1, 1));
@@ -21,10 +21,10 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
         private static boolean loadedCustomBlocks = false;
 
         private static void loadCustomBlocks() {
-            if (Element.LEAVES_BALD_CYPRESS.isPresent()) LEAVES.stack = Element.LEAVES_BALD_CYPRESS.get();
-            if (Element.LOG_QUARTER_BALD_CYPRESS.isPresent()) TRUNK.stack = Element.LOG_QUARTER_BALD_CYPRESS.get();
-            if (Element.LOG_KNEE_BALD_CYPRESS.isPresent()) KNEE.stack = Element.LOG_KNEE_BALD_CYPRESS.get();
-            if (Element.LOG_CYPRESS.isPresent()) KNEE_LOG.stack = Element.LOG_CYPRESS.get();
+            if (Element.LEAVES_RAINBOW_EUCALYPTUS.isPresent()) LEAVES.stack = Element.LEAVES_RAINBOW_EUCALYPTUS.get();
+            if (Element.LOG_QUARTER_RAINBOW_EUCALYPTUS.isPresent()) TRUNK.stack = Element.LOG_QUARTER_RAINBOW_EUCALYPTUS.get();
+            if (Element.LOG_KNEE_RAINBOW_EUCALYPTUS.isPresent()) KNEE.stack = Element.LOG_KNEE_RAINBOW_EUCALYPTUS.get();
+            if (Element.LOG_RAINBOW_EUCALYPTUS.isPresent()) KNEE_LOG.stack = Element.LOG_RAINBOW_EUCALYPTUS.get();
 
             loadedCustomBlocks = true;
         }
@@ -50,7 +50,7 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
 
     }
 
-	public WorldGenBaldCypressTree(boolean par1) {
+	public WorldGenRainbowEucalyptusTree(boolean par1) {
 		super(par1);
 	}
 	
@@ -73,19 +73,18 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
     }
     
     //Variables to control the generation
-	private static final int	BASE_HEIGHT					= 24;		// The base height for trees
-	private static final int	BASE_HEIGHT_VARIANCE		= 10;		// The Max extra branches that a tree can have
-	private static final double	TRUNK_HEIGHT_PERCENT		= 0.75D;	// What percent of the total height the main trunk extends
-	private static final double	TRUNK_BRANCHES_START		= 0.25D;	// How far up the tree the trunk branches start
-	private static final int	BRANCHES_BASE_NUMBER		= 15;		// The total number of branches on the tree
+	private static final int	BASE_HEIGHT					= 19;		// The base height for trees
+	private static final int	BASE_HEIGHT_VARIANCE		= 8;		// The Max extra branches that a tree can have
+	private static final double	TRUNK_HEIGHT_PERCENT		= 0.50D;	// What percent of the total height the main trunk extends
+	private static final double	TRUNK_BRANCHES_START		= 0.18D;	// How far up the tree the trunk branches start
+	private static final int	BRANCHES_BASE_NUMBER		= 10;		// The total number of branches on the tree
 	private static final int	BRANCHES_EXTRA				= 10;		// The how many extra branches can occur on the tree
-	private static final double	TRUNCK_BRANCHES_PERCENT		= 0.3D;		// What percentage of the branches will grow to the side of the trunk
-	private static final int	CANOPY_WIDTH				= 15;		// How many blocks will this tree cover
-	private static final int	CANOPY_WIDTH_VARIANCE		= 5;		// How many extra blocks may this tree cover
-	private static final int	CLUSTER_DIAMATER			= 3;		// How wide should the leaf cluster be generated
-	private static final int	CLUSTER_DIAMATER_VARIANCE	= 3;		// How many extra blocks can be added to the leaf cluster.
-	private static final int	CLUSTER_HEIGHT				= 1;		// How tall should the leaf cluster be generated
-	private static final int	CLUSTER_HEIGHT_VARIANCE		= 3;		// How many extra layers can be added to the leaf cluster.
+	private static final int	CANOPY_WIDTH				= 12;		// How many blocks will this tree cover
+	private static final int	CANOPY_WIDTH_VARIANCE		= 3;		// How many extra blocks may this tree cover
+	private static final int	CLUSTER_DIAMATER			= 2;		// How wide should the leaf cluster be generated
+	private static final int	CLUSTER_DIAMATER_VARIANCE	= 4;		// How many extra blocks can be added to the leaf cluster.
+	private static final int	CLUSTER_HEIGHT				= 2;		// How tall should the leaf cluster be generated
+	private static final int	CLUSTER_HEIGHT_VARIANCE		= 1;		// How many extra layers can be added to the leaf cluster.
 	
 	static int last = 0;
     
@@ -111,9 +110,10 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
 	        generateBranches(world, rand, x, y, z, height);
 	        
 	        // Place the topper leaves
-	        generateLeafCluster(world, rand, x, (int)(height * TRUNK_HEIGHT_PERCENT) + y, z, 4 + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), 4 + rand.nextInt(CLUSTER_DIAMATER_VARIANCE), TreeBlock.LEAVES.get());
+	        generateLeafCluster(world, rand, x, (int)(height * TRUNK_HEIGHT_PERCENT) + y, z, 4 + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), 4 + rand.nextInt(CLUSTER_DIAMATER_VARIANCE));
 	        
 	        // We generated a tree
+	        LogHelper.info("Total Leaves: %d", leafCount);
 	        return true;
         }
 
@@ -133,23 +133,17 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
     	// The max distance for branches to generate
     	int branchStart = (int)(height * TRUNK_BRANCHES_START);
     	int maxBranchHeight = height - ((int)(height * TRUNK_BRANCHES_START)) - 3;
-    	int trunkStart = (int)(height * TRUNK_HEIGHT_PERCENT);
-    	int trunkRange = height - trunkStart;
+    	int trunkEnd = (int)(height * TRUNK_HEIGHT_PERCENT);
+    	int trunkRange = height - trunkEnd;
     	int[] start = {0,0,0};
     	int[] end = {0,0,0};
     	Queue<int[]> branches = new LinkedList<int[]>();
     	
-    	//generate the corner markers
-    	//setBlockAndMetadata(world, x-width, y + 10, z-width, TreeBlock.TRUNK.getID(), 0);
-    	//setBlockAndMetadata(world, x-width, y + 10, z+width, TreeBlock.TRUNK.getID(), 0);
-    	//setBlockAndMetadata(world, x+width, y + 10, z-width, TreeBlock.TRUNK.getID(), 0);
-    	//setBlockAndMetadata(world, x+width, y + 10, z+width, TreeBlock.TRUNK.getID(), 0);
-
     	// Generate some test branches
     	for(int branch = 0; branch < branchCount; branch++) {
     		// The end position
     		end[0] = rand.nextInt(width+1) - offset + x;
-    		end[1] = rand.nextInt(maxBranchHeight) + branchStart + y;
+    		end[1] = rand.nextInt(maxBranchHeight) + trunkEnd + y;
     		end[2] = rand.nextInt(width+1) - offset + z;
     		
     		// Max of tree height
@@ -183,7 +177,7 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
     	Iterator<int[]> itt = branches.iterator();
     	while (itt.hasNext()) {
     	   int[] cluster = itt.next();
-    	   generateLeafCluster(world, rand, cluster[0], cluster[1], cluster[2], CLUSTER_HEIGHT + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), CLUSTER_DIAMATER + rand.nextInt(CLUSTER_DIAMATER_VARIANCE), TreeBlock.LEAVES.get());
+    	   generateLeafCluster(world, rand, cluster[0], cluster[1], cluster[2], CLUSTER_HEIGHT + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), CLUSTER_DIAMATER + rand.nextInt(CLUSTER_DIAMATER_VARIANCE));
     	}
     }
     
@@ -271,6 +265,12 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
 	        default:
 	        	break;	        	
 	    }
+    }
+    
+    public void generateLeafCluster(World world, Random rand, int x, int y, int z, int height, int radius) {
+    	for(int layer = -height; layer <= height; layer++) {
+    		this.placeLeavesCircle(x, y+layer, z, radius * Math.cos(layer / (height/1.3)), TreeBlock.LEAVES.get(), world);
+    	}
     }
     
     public static long getLastSeed(){ 
