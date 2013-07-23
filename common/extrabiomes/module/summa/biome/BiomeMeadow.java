@@ -24,7 +24,7 @@ public class BiomeMeadow extends ExtrabiomeGenBase {
         maxHeight = 0.0F;
         setBiomeName("Meadow");
 
-        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 10, 2, 6));
+        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 6, 2, 6));
     }
 
     @Override

@@ -47,7 +47,7 @@ import extrabiomes.utility.EnhancedConfiguration;
 public enum DecorationSettings {
 					//   lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm
 	ALPINE				(null, 7,    0,    0,    null, null, null, null, null, null, null, null),
-	AUTUMNWOODS			(null, 9,    null, 6,    null, 3,    null, null, null, null, null, null),
+	AUTUMNWOODS			(null, 6,    null, 6,    null, 3,    null, null, null, null, null, null),
 	BIRCHFOREST			(null, 7,    null, 1,    null, null, null, null, null, null, null, null),
 	EXTREMEJUNGLE		(null, 50,   4,    25,   null, null, null, null, null, null, null, null),
 	FORESTEDHILLS		(null, 7,    1,    5,    null, null, null, null, null, null, null, null),

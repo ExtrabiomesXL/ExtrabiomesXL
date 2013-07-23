@@ -26,7 +26,7 @@ public class BiomeMountainRidge extends ExtrabiomeGenBase {
         maxHeight = 1.7F;
         setDisableRain();
         spawnableCreatureList.clear();
-        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 1, 3));
+        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 1, 3));
     }
 
     @Override

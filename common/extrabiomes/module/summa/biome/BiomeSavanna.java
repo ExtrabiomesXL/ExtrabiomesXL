@@ -24,7 +24,7 @@ public class BiomeSavanna extends ExtrabiomeGenBase {
         minHeight = 0.0F;
         maxHeight = 0.1F;
 
-        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 4));
+        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 2, 4));
     }
 
     @Override

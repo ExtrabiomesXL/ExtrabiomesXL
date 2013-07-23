@@ -83,16 +83,12 @@ public abstract class BiomeManager {
 	 *            function should be applied to the current total weight
 	 *            for a biome.
 	 */
-	public static void addWeightedGrassGenForBiome(BiomeGenBase biome,
-			WorldGenerator grassGen, int weight)
-	{
-		checkArgument(instance.isPresent(),
-				"Cannot add weighted grass gens until after API is initialized.");
+	public static void addWeightedGrassGenForBiome(BiomeGenBase biome, WorldGenerator grassGen, int weight) {
+		checkArgument(instance.isPresent(), "Cannot add weighted grass gens until after API is initialized.");
 		checkNotNull(biome, "Biome is required.");
 		checkNotNull(grassGen, "Grass generator is required.");
 		checkArgument(weight > 0, "Weight must be greater than zero.");
-		instance.get().addBiomeGen(GenType.GRASS, biome, grassGen,
-				weight);
+		instance.get().addBiomeGen(GenType.GRASS, biome, grassGen, weight);
 	}
 
 	/**
@@ -109,16 +105,12 @@ public abstract class BiomeManager {
 	 *            function should be applied to the current total weight
 	 *            for a biome.
 	 */
-	public static void addWeightedTreeGenForBiome(BiomeGenBase biome,
-			WorldGenerator treeGen, int weight)
-	{
-		checkArgument(instance.isPresent(),
-				"Cannot add weighted tree gens until after API is initialized.");
+	public static void addWeightedTreeGenForBiome(BiomeGenBase biome, WorldGenerator treeGen, int weight) {
+		checkArgument(instance.isPresent(), "Cannot add weighted tree gens until after API is initialized.");
 		checkNotNull(biome, "Biome is required.");
 		checkNotNull(treeGen, "Tree Generator is required.");
 		checkArgument(weight > 0, "Weight must be greater than zero.");
-		instance.get()
-				.addBiomeGen(GenType.TREE, biome, treeGen, weight);
+		instance.get().addBiomeGen(GenType.TREE, biome, treeGen, weight);
 	}
 
 	/**
@@ -129,9 +121,7 @@ public abstract class BiomeManager {
 	 *            The biome for which to select a grass gen
 	 * @return the selected grass generator.
 	 */
-	public static Optional<? extends WorldGenerator> chooseRandomGrassGenforBiome(
-			Random rand, BiomeGenBase biome)
-	{
+	public static Optional<? extends WorldGenerator> chooseRandomGrassGenforBiome(Random rand, BiomeGenBase biome) {
 		return instance.get().chooseBiomeRandomGen(GenType.GRASS, rand,
 				biome);
 	}
@@ -143,19 +133,15 @@ public abstract class BiomeManager {
 	 *            The biome for which to select a tree gen
 	 * @return the selected tree generator.
 	 */
-	public static Optional<? extends WorldGenerator> chooseRandomTreeGenforBiome(
-			Random rand, BiomeGenBase biome)
-	{
-		return instance.get().chooseBiomeRandomGen(GenType.TREE, rand,
-				biome);
+	public static Optional<? extends WorldGenerator> chooseRandomTreeGenforBiome(Random rand, BiomeGenBase biome) {
+		return instance.get().chooseBiomeRandomGen(GenType.TREE, rand, biome);
 	}
 
 	/**
 	 * @return An immutable collection of this mod's biomes.
 	 */
 	public static Collection<BiomeGenBase> getBiomes() {
-		checkArgument(instance.isPresent(),
-				"Biome list not available until after API is initialized.");
+		checkArgument(instance.isPresent(), "Biome list not available until after API is initialized.");
 		return instance.get().getBiomeCollection();
 	}
 
@@ -184,14 +170,11 @@ public abstract class BiomeManager {
 		return instance.isPresent();
 	}
 
-	protected abstract void addBiomeGen(GenType genType,
-			BiomeGenBase biome, WorldGenerator treeGen, int weight);
+	protected abstract void addBiomeGen(GenType genType, BiomeGenBase biome, WorldGenerator treeGen, int weight);
 
-	protected abstract Optional<? extends WorldGenerator> chooseBiomeRandomGen(
-			GenType genType, Random rand, BiomeGenBase biome);
+	protected abstract Optional<? extends WorldGenerator> chooseBiomeRandomGen(GenType genType, Random rand, BiomeGenBase biome);
 
 	protected abstract Collection<BiomeGenBase> getBiomeCollection();
 
-	protected abstract int getBiomeTotalWeight(GenType genType,
-			BiomeGenBase biome);
+	protected abstract int getBiomeTotalWeight(GenType genType, BiomeGenBase biome);
 }

@@ -24,7 +24,7 @@ public class BiomeShrubland extends ExtrabiomeGenBase {
         minHeight = 0.1F;
         maxHeight = 0.3F;
 
-        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 10, 1, 5));
+        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 6, 1, 5));
     }
 
     @Override

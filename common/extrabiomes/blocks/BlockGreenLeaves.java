@@ -258,11 +258,8 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
         case 2:
         	return ColorizerFoliage.getFoliageColor(0.9F, 0.1F);
         default:
-        	//return ColorizerFoliage.getFoliageColor(0.8F, 0.8F);
         	return 0xe5fff3;
         }
-
-        //return metadata == 0 ? ColorizerFoliage.getFoliageColorPine() : metadata == 1 ? ColorizerFoliage.getFoliageColorBasic() : ColorizerFoliage.getFoliageColor(0.9F, 0.1F);
     }
 
     @Override

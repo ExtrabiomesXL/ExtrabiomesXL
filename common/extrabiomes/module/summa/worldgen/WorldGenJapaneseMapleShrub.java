@@ -71,9 +71,9 @@ public class WorldGenJapaneseMapleShrub extends WorldGenNewTreeBase {
     }
     
     //Variables to control the generation
-    private static final int	BASE_HEIGHT					= 5;		// The base height for trees
+    private static final int	BASE_HEIGHT					= 3;		// The base height for trees
 	private static final int	BASE_HEIGHT_VARIANCE		= 4;		// The Max extra branches that a tree can have
-	private static final double	TRUNK_HEIGHT_PERCENT		= 0.20D;	// What percent of the total height the main trunk extends
+	private static final double	TRUNK_HEIGHT_PERCENT		= 0.10D;	// What percent of the total height the main trunk extends
 	private static final int	BRANCHES_BASE_NUMBER		= 3;		// The total number of branches on the tree
 	private static final int	BRANCHES_EXTRA				= 1;		// The how many extra branches can occur on the tree
 	private static final int	CANOPY_WIDTH				= 4;		// How many blocks will this tree cover

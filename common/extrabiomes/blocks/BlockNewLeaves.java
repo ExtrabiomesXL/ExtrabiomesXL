@@ -257,21 +257,22 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
     public int getRenderColor(int metadata) {
         metadata = unmarkedMetadata(metadata);
         
-        return ColorizerFoliage.getFoliageColor(1.0F, 0.0F);
+        //return ColorizerFoliage.getFoliageColor(1.0F, 0.5F);
         
-        /*
+        
         switch(metadata){
 	        case 0:
-	        	return 0;
+	        	return ColorizerFoliage.getFoliageColor(1.0F, 0.5F);
 	        case 1:
-	        	return 0;
+	        	return 0xffffff;
+	        	//return ColorizerFoliage.getFoliageColor(1.0F, 0.2F);
 	        case 2:
-	        	return 0;
+	        	return ColorizerFoliage.getFoliageColor(1.0F, 0.5F);
 	        default:
-	        	return 0;
+	        	return ColorizerFoliage.getFoliageColor(1.0F, 0.0F);
         	//
         }
-        */
+        
     
         //return metadata == 0 ? ColorizerFoliage.getFoliageColorPine() : metadata == 1 ? ColorizerFoliage.getFoliageColorBasic() : ColorizerFoliage.getFoliageColor(0.9F, 0.1F);
     }

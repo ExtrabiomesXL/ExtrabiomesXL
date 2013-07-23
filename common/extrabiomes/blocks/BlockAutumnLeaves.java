@@ -105,10 +105,10 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfast");
     	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfancy");
     	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfast");
-    	textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbrown");
-    	textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesorange");
-    	textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesred");
-    	textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesyellow");
+    	textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbrownautumn");
+    	textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesorangeautumn");
+    	textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredautumn");
+    	textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesyellowautumn");
     }
 
     private static final int METADATA_BITMASK       = 0x3;
