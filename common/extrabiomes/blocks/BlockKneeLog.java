@@ -12,6 +12,7 @@ import extrabiomes.blocks.BlockQuarterLog.BarkOn;
 import extrabiomes.helpers.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockPistonBase;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -108,9 +109,9 @@ public class BlockKneeLog extends BlockLog {
 	    	case 7:
 	    		return 6;
 	    	case 8:
-	    		return 5;
-	    	case 9:
 	    		return 4;
+	    	case 9:
+	    		return 5;
 	    	case 10:
 	    		return 6;
 	    	case 11:
@@ -135,9 +136,9 @@ public class BlockKneeLog extends BlockLog {
 	    	case 5:
 	    		return 7;
 	    	case 6:
-	    		return 5;
-	    	case 7:
 	    		return 4;
+	    	case 7:
+	    		return 5;
 	    	case 8:
 	    		return 6;
 	    	case 9:
@@ -165,9 +166,9 @@ public class BlockKneeLog extends BlockLog {
 			case 4:
 				return 7;
 			case 5:
-				return 5;
-			case 6:
 				return 4;
+			case 6:
+				return 5;
 			case 7:
 				return 6;
 	    	case 8:
@@ -266,9 +267,9 @@ public class BlockKneeLog extends BlockLog {
 			case 8:
 				return 6;
 			case 9:
-				return 5;
-			case 10:
 				return 4;
+			case 10:
+				return 5;
 			case 11:
 				return 7;
 	    	default:
@@ -309,9 +310,16 @@ public class BlockKneeLog extends BlockLog {
             if (!event.world.isRemote) {
 
                 int metadata = event.world.getBlockMetadata(event.x, event.y, event.z);
+                LogHelper.info("Orientation: %d", BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving));
                 
                 // Increment the orentation
-                metadata = (++metadata > 11) ? 0: metadata;
+                if(BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving) % 2 == 0) {
+                	LogHelper.info("Go Plus.");
+                	metadata = (++metadata > 11) ? 0: metadata;
+                } else {
+                	LogHelper.info("Go Minus.");
+                	metadata = (--metadata < 0) ? 11: metadata;
+                }
 
                 event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);
 

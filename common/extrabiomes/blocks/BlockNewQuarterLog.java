@@ -311,9 +311,16 @@ public class BlockNewQuarterLog extends BlockLog {
             if (!event.world.isRemote) {
 
                 int metadata = event.world.getBlockMetadata(event.x, event.y, event.z);
+                LogHelper.info("Orientation: %d", BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving));
                 
                 // Increment the orentation
-                metadata = (++metadata > 11) ? 0: metadata;
+                if(BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving) % 2 == 1) {
+                	LogHelper.info("Go Plus.");
+                	metadata = (++metadata > 11) ? 0: metadata;
+                } else {
+                	LogHelper.info("Go Minus.");
+                	metadata = (--metadata < 0) ? 11: metadata;
+                }
 
                 event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);
 
