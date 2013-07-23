@@ -92,7 +92,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
         }
     }
 
-    private Icon[] textures = {null, null, null, null, null, null, null, null};
+    private Icon[] textures = {null, null, null, null, null, null, null, null, null, null, null, null};
     
     @Override
     @SideOnly(Side.CLIENT)
@@ -105,6 +105,10 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfast");
     	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfancy");
     	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfast");
+    	textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbrown");
+    	textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesorange");
+    	textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesred");
+    	textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesyellow");
     }
 
     private static final int METADATA_BITMASK       = 0x3;
@@ -191,19 +195,28 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 
     @Override
     public Icon getIcon(int side, int metadata) {
-        metadata = unmarkedMetadata(metadata);
-        
-        // This check should be unneeded as unmarkedMetadata return a value between 0 and 3.
-        if (metadata < 0 || metadata > 4) metadata = 0;
-        
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
+    
+    // Return your Better Leaves icon
+    public Icon getIconBetterLeaves(int metadata, float randomIndex) {
+		return textures[8 + unmarkedMetadata(metadata)];
+	}
+    
+    public Icon getIconFallingLeaves(int metadata) {
+		return textures[(unmarkedMetadata(metadata) * 2) + 1];
+    }
+ 
+	public float getSpawnChanceFallingLeaves(int metadata) {
+		return 0.1F;
+	}
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
-        for (final BlockType blockType : BlockType.values())
+        for (final BlockType blockType : BlockType.values()) {
             itemList.add(new ItemStack(this, 1, blockType.metadata()));
+        }
     }
 
     @Override

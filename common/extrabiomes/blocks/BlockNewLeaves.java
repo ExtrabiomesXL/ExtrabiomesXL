@@ -129,7 +129,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
 
     int[] adjacentTreeBlocks;
     
-    private Icon[] textures  = {null, null, null, null, null, null, null, null};
+    private Icon[] textures  = {null, null, null, null, null, null, null, null, null, null, null, null};
 
     public BlockNewLeaves(int id, Material material, boolean useFastGraphics) {
         super(id, material, useFastGraphics);
@@ -146,6 +146,10 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
     	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemapleshrubfast");
     	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesrainboweucalyptusfancy");
     	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesrainboweucalyptusfast");
+    	textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbaldcypress");
+    	textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesjapanesemaple");
+    	textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesjapanesemapleshrub");
+    	textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesrainboweucalyptus");
     }
 
     @Override
@@ -226,11 +230,22 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
     }
 
     @Override
-    public Icon getIcon(int side, int metadata){
-        metadata = unmarkedMetadata(metadata);
-        
+    public Icon getIcon(int side, int metadata) {
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
+    
+    // Return your Better Leaves icon
+    public Icon getIconBetterLeaves(int metadata, float randomIndex) {
+		return textures[8 + unmarkedMetadata(metadata)];
+	}
+    
+    public Icon getIconFallingLeaves(int metadata) {
+		return textures[(unmarkedMetadata(metadata) * 2) + 1];
+    }
+ 
+	public float getSpawnChanceFallingLeaves(int metadata) {
+		return 0.1F;
+	}
 
     @SideOnly(Side.CLIENT)
     @Override

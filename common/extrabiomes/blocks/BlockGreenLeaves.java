@@ -128,7 +128,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
 
     int[] adjacentTreeBlocks;
     
-    private Icon[] textures  = {null, null, null, null, null, null, null, null};
+    private Icon[] textures  = {null, null, null, null, null, null, null, null, null, null, null, null};
 
     public BlockGreenLeaves(int id, Material material, boolean useFastGraphics) {
         super(id, material, useFastGraphics);
@@ -145,6 +145,10 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafast");
     	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfancy");
     	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfast");
+    	textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesfir");
+    	textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredwood");
+    	textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesacacia");
+    	textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavescypress");
     }
 
     @Override
@@ -219,11 +223,22 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     }
 
     @Override
-    public Icon getIcon(int side, int metadata){
-        metadata = unmarkedMetadata(metadata);
-        
+    public Icon getIcon(int side, int metadata) {
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
+    
+    // Return your Better Leaves icon
+    public Icon getIconBetterLeaves(int metadata, float randomIndex) {
+		return textures[8 + unmarkedMetadata(metadata)];
+	}
+    
+    public Icon getIconFallingLeaves(int metadata) {
+		return textures[(unmarkedMetadata(metadata) * 2) + 1];
+    }
+ 
+	public float getSpawnChanceFallingLeaves(int metadata) {
+		return 0.1F;
+	}
 
     @SideOnly(Side.CLIENT)
     @Override
