@@ -218,18 +218,11 @@ public abstract class BlockHandler {
         proxy.registerOreInAllSubblocks("treeLeaves", block);
         proxy.setBurnProperties(block.blockID, 30, 60);
 
-        Element.LEAVES_ACACIA.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.ACACIA
-                .metadata()));
+        Element.LEAVES_ACACIA.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.ACACIA.metadata()));
         Element.LEAVES_FIR.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.FIR.metadata()));
-<<<<<<< HEAD
-        Element.LEAVES_REDWOOD.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.REDWOOD
-                .metadata()));
-
-=======
         Element.LEAVES_REDWOOD.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.REDWOOD.metadata()));
         Element.LEAVES_CYPRESS.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.CYPRESS.metadata()));
         
->>>>>>> origin/3.14.0
         final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
         ForestryModHelper.registerLeaves(stack);
         ForestryModHelper.addToForesterBackpack(stack);
@@ -406,6 +399,7 @@ public abstract class BlockHandler {
         Element.SAPLING_AUTUMN_YELLOW.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.YELLOW.metadata()));
         Element.SAPLING_FIR.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.FIR.metadata()));
         Element.SAPLING_REDWOOD.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.REDWOOD.metadata()));
+        Element.SAPLING_CYPRESS.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.CYPRESS.metadata()));
 
         final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
         
@@ -418,10 +412,11 @@ public abstract class BlockHandler {
         ForestryModHelper.registerSapling(Element.SAPLING_AUTUMN_YELLOW.get());
         ForestryModHelper.registerSapling(Element.SAPLING_FIR.get());
         ForestryModHelper.registerSapling(Element.SAPLING_REDWOOD.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_CYPRESS.get());
         ForestryModHelper.addToForesterBackpack(stack);
 
         // all but redwood
-        final Element[] forestrySaplings = { Element.SAPLING_ACACIA, Element.SAPLING_AUTUMN_BROWN, Element.SAPLING_AUTUMN_ORANGE, Element.SAPLING_AUTUMN_PURPLE, Element.SAPLING_AUTUMN_YELLOW, Element.SAPLING_FIR };
+        final Element[] forestrySaplings = { Element.SAPLING_ACACIA, Element.SAPLING_AUTUMN_BROWN, Element.SAPLING_AUTUMN_ORANGE, Element.SAPLING_AUTUMN_PURPLE, Element.SAPLING_AUTUMN_YELLOW, Element.SAPLING_FIR, Element.SAPLING_CYPRESS };
         for (final Element sapling : forestrySaplings){
             ForestryModHelper.registerGermling(sapling.get());
         }

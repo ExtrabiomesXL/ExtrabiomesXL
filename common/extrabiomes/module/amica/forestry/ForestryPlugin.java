@@ -20,10 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.fluids.FluidStack;
 //import net.minecraftforge.liquids.LiquidStack;
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/3.14.0
 
 import com.google.common.base.Optional;
 

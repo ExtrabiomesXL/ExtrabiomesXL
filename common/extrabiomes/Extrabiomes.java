@@ -8,9 +8,12 @@ package extrabiomes;
 
 import java.io.File;
 
+import net.minecraft.command.ICommandManager;
+import net.minecraft.command.ServerCommandManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.EventBus;
 
@@ -20,25 +23,22 @@ import com.google.common.base.Optional;
 import cpw.mods.fml.common.Mod;
 //import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
-<<<<<<< HEAD
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
-=======
 //import cpw.mods.fml.common.Mod.PostInit;
 //import cpw.mods.fml.common.Mod.PreInit;
 //import cpw.mods.fml.common.Mod.ServerStarting;
->>>>>>> origin/3.14.0
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.handlers.BiomeHandler;
 import extrabiomes.handlers.BlockHandler;
+import extrabiomes.handlers.EBXLCommandHandler;
 import extrabiomes.handlers.ConfigurationHandler;
 import extrabiomes.handlers.ItemHandler;
 import extrabiomes.handlers.RecipeHandler;
@@ -179,6 +179,15 @@ public class Extrabiomes {
         Module.postEvent(new ModulePreInitEvent());
         proxy.addStringLocalization("itemGroup.extrabiomesTab", "en_US", Reference.MOD_ID);
 
+    }
+    
+    @Mod.EventHandler
+    public void serverStart(FMLServerStartingEvent event) {
+    	MinecraftServer server = MinecraftServer.getServer(); //Gets current server
+    	ICommandManager command = server.getCommandManager(); //Gets the command manager to use for server
+    	ServerCommandManager serverCommand = ((ServerCommandManager) command); //Turns it into another form to use
+    	
+    	serverCommand.registerCommand(new EBXLCommandHandler());
     }
 
     public static void registerInitEventHandler(Object target) {
