@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -309,17 +311,36 @@ public class BlockNewQuarterLog extends BlockLog {
             event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F, wood.stepSound.getPitch() * 1.55F);
 
             if (!event.world.isRemote) {
-
                 int metadata = event.world.getBlockMetadata(event.x, event.y, event.z);
-                LogHelper.info("Orientation: %d", BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving));
                 
-                // Increment the orentation
-                if(BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving) % 2 == 1) {
-                	LogHelper.info("Go Plus.");
-                	metadata = (++metadata > 11) ? 0: metadata;
+                if (event.entityPlayer.isSneaking() == true) {
+                	switch(BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving)) {
+	                	case 0:
+	                		metadata = (++metadata > 3) ? 0: metadata;
+	                		break;
+	                	case 1:
+	                		metadata = (--metadata < 0 || metadata > 3) ? 3: metadata;
+	                		break;
+	                	case 2:
+	                		metadata = (++metadata > 7 || metadata < 4) ? 4: metadata;
+	                		break;
+	                	case 3:
+	                		metadata = (--metadata < 4 || metadata > 7) ? 7: metadata;
+	                		break;
+	                	case 4:
+	                		metadata = (++metadata > 11 || metadata < 8) ? 8: metadata;
+	                		break;
+	                	default:
+	                		metadata = (--metadata < 8) ? 11: metadata;
+	                		break;
+	            	}
                 } else {
-                	LogHelper.info("Go Minus.");
-                	metadata = (--metadata < 0) ? 11: metadata;
+	                // Increment the orentation
+	                if(BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving) % 2 == 0) {
+	                	metadata = (++metadata > 11) ? 0: metadata;
+	                } else {
+	                	metadata = (--metadata < 0) ? 11: metadata;
+	                }
                 }
 
                 event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);
@@ -338,7 +359,7 @@ public class BlockNewQuarterLog extends BlockLog {
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
         
                 
-        world.setBlock(x, y, z, blockID, 0, 3);
+        world.setBlock(x, y, z, blockID, 3, 3);
 	}
 	
 }

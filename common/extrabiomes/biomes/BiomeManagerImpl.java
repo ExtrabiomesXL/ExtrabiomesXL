@@ -232,7 +232,7 @@ public class BiomeManagerImpl extends BiomeManager {
         if (!biome.isPresent()) return;
         addWeightedTreeGenForBiome(biome.get(), SWAMP_TREE_GEN, 15);
         addWeightedTreeGenForBiome(biome.get(), CUSTOM_SWAMP_TREE_GEN, 75);
-        addWeightedTreeGenForBiome(biome.get(), BALD_CYPRESS_GEN, 10);
+        addWeightedTreeGenForBiome(biome.get(), BALD_CYPRESS_GEN, 25);
     }
 
     private static void addMiniJungleTrees(Optional<? extends BiomeGenBase> biome) {
@@ -275,8 +275,8 @@ public class BiomeManagerImpl extends BiomeManager {
                 final WorldGenerator worldGen = new WorldGenShrub(3, rand.nextInt(3));
                 return worldGen.generate(world, rand, x, y, z);
             }
-        }, 90);
-        addWeightedTreeGenForBiome(biome.get(), JAPANESE_MAPLE_SHRUB_GEN, 10);
+        }, 50);
+        addWeightedTreeGenForBiome(biome.get(), JAPANESE_MAPLE_SHRUB_GEN, 50);
     }
 
     private static void addTaigaTrees(Optional<? extends BiomeGenBase> biome) {
@@ -295,7 +295,7 @@ public class BiomeManagerImpl extends BiomeManager {
         if (!biome.isPresent()) return;
         addWeightedTreeGenForBiome(biome.get(), OAK_TREE_GEN, 84);
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 4);
-        addWeightedTreeGenForBiome(biome.get(), CYPRESS_GEN, 12);
+        addWeightedTreeGenForBiome(biome.get(), CYPRESS_GEN, 6);
         addWeightedTreeGenForBiome(biome.get(), JAPANESE_MAPLE_SHRUB_GEN, 4);
         addWeightedTreeGenForBiome(biome.get(), JAPANESE_MAPLE_GEN, 6);
     }

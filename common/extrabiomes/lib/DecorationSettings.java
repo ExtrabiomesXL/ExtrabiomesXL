@@ -71,7 +71,7 @@ public enum DecorationSettings {
 	REDWOODLUSH			(null, 17,   null, null, null, null, null, null, null, null, null, null),
 					//   lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm
 	SAVANNA				(null, 0,    1,    17,   null, null, null, null, null, null, null, null), 
-	SHRUBLAND			(null, 0,    3,    1,    null, null, null, null, null, null, null, null),
+	SHRUBLAND			(null, 1,    3,    1,    null, null, null, null, null, null, null, null),
 	SNOWYFOREST			(null, 8,    1,    4,    null, null, null, null, null, null, null, null),
 	SNOWYRAINFOREST		(null, 17,   null, 16,   null, 2,    null, null, null, null, null, null),
 	TEMPORATERAINFOREST	(null, 17,   null, 16,   null, 2,    null, null, null, null, null, null),
