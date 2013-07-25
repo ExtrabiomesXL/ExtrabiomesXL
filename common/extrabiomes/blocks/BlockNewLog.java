@@ -24,7 +24,7 @@ import extrabiomes.api.UseLogTurnerEvent;
 
 public class BlockNewLog extends BlockLog {
     public enum BlockType {
-        RAINBOW_EUCALYPTUS(0), AUTUMN(1);
+        RAINBOW_EUCALYPTUS(0), AUTUMN(1), BALD_CYPRESS(2);
 
         private final int metadata;
 
@@ -54,13 +54,16 @@ public class BlockNewLog extends BlockLog {
     	
     	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logautumnside");
     	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logautumntop");
+        
+    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logbaldcypressside");
+    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logbaldcypresstop");
     }
 
     @Override
     public Icon getIcon(int side, int metadata) {
         final int orientation = metadata & 12;
         int type = metadata & 3;
-        if (type > 1) type = 0;
+        if (type > 2) type = 0;
         if (orientation == 0 && (side == 1 || side == 0) || orientation == 4 && (side == 5 || side == 4) || orientation == 8 && (side == 2 || side == 3)) {
         	//return texturesMap.get(index + 16 + type);
         	return textures[(type * 2) + 1];
@@ -73,8 +76,9 @@ public class BlockNewLog extends BlockLog {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list) {
-        for (final BlockType type : BlockType.values())
+        for (final BlockType type : BlockType.values()) {
             list.add(new ItemStack(blockID, 1, type.metadata()));
+        }
     }
 
     @Override
@@ -88,9 +92,7 @@ public class BlockNewLog extends BlockLog {
 
         if (id == blockID) {
             final Block wood = Block.wood;
-            event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F,
-                    wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F,
-                    wood.stepSound.getPitch() * 1.55F);
+            event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F, wood.stepSound.getPitch() * 1.55F);
 
             if (!event.world.isRemote) {
                 final int metadata = event.world.getBlockMetadata(event.x, event.y, event.z);
@@ -98,8 +100,7 @@ public class BlockNewLog extends BlockLog {
                 final int type = metadata & 3;
 
                 orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
-                event.world.setBlock(event.x, event.y, event.z, blockID, type
-                        | orientation, 3);
+                event.world.setBlock(event.x, event.y, event.z, blockID, type | orientation, 3);
             }
             event.setHandled();
         }
