@@ -95,7 +95,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase {
         // Make sure that the tree can fit in the world
         if (y < 1 || y + height + 4 > 256) return false;
         
-        // Make sure the cunks are loaded
+        // Make sure the chunks are loaded
         if (!world.checkChunksExist(x - chunkCheck, y - chunkCheck, z - chunkCheck, x + chunkCheck, y + chunkCheck, z + chunkCheck)) return false;
         
         // See if we can generate the tree
@@ -106,7 +106,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase {
         	double offset = factor * layer;
         	double offset2 = offset * offset;
         	double offset3 = offset2 * offset;
-        	double r1 = radius * ((0.0014 * offset3) - (0.0517 * offset2) + (0.5085 * offset) - 0.4611);
+        	double r1 = radius * ((0.00142 * offset3) - (0.0517 * offset2) + (0.5085 * offset) - 0.4611);
         	if(!checkLeavesCircle(x, layer + start + y, z, r1, world)) return false;
         }
         
@@ -137,7 +137,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase {
 	        	double offset = factor * layer;
 	        	double offset2 = offset * offset;
 	        	double offset3 = offset2 * offset;
-	        	double r1 = radius * ((0.0014 * offset3) - (0.0517 * offset2) + (0.5085 * offset) - 0.4611);
+	        	double r1 = radius * ((0.00142 * offset3) - (0.0517 * offset2) + (0.5085 * offset) - 0.4611);
 	        	placeLeavesCircle(x, layer + start + y, z, r1, TreeBlock.LEAVES.get(), world);
 	        }
 

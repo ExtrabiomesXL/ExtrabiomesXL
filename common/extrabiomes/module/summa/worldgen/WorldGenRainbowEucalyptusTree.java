@@ -61,6 +61,9 @@ public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase {
     public boolean generate(World world, Random rand, int x, int y, int z) {
     	// Store the seed
     	lastSeed = rand.nextLong();
+
+    	// Make sure that we can generate the tree
+    	if(!checkTree(world, new Random(lastSeed), x, y, z)) return false;
     	
         return generateTree(world, new Random(lastSeed), x, y, z);
     }
@@ -68,8 +71,11 @@ public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase {
     public boolean generate(World world, long seed, int x, int y, int z) {
     	// Store the seed
     	lastSeed = seed;
+
+    	// Make sure that we can generate the tree
+    	if(!checkTree(world, new Random(lastSeed), x, y, z)) return false;
     	
-        return generateTree(world, new Random(seed), x, y, z);
+        return generateTree(world, new Random(lastSeed), x, y, z);
     }
     
     //Variables to control the generation
@@ -87,6 +93,36 @@ public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase {
 	private static final int	CLUSTER_HEIGHT_VARIANCE		= 1;		// How many extra layers can be added to the leaf cluster.
 	
 	static int last = 0;
+	
+	private boolean checkTree(World world, Random rand, int x, int y, int z) {
+        final int below = world.getBlockId(x, y - 1, z);
+        final int height = rand.nextInt(BASE_HEIGHT_VARIANCE) + BASE_HEIGHT;
+    	final int width = CANOPY_WIDTH + rand.nextInt(CANOPY_WIDTH_VARIANCE);
+        final int chunkCheck = width + 1;
+
+        // Make sure that a tree can grow on the soil
+        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x+1, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x, y - 1, z + 1))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x + 1, y - 1, z + 1)))) return false;
+        
+        // make sure that we have room to grow the tree
+        if(y >= 256 - height - 4) return false;
+
+        // Make sure that the tree can fit in the world
+        if (y < 1 || y + height + 4 > 256) return false;
+        
+        // Make sure the cunks are loaded
+        if (!world.checkChunksExist(x - chunkCheck, y - chunkCheck, z - chunkCheck, x + chunkCheck, y + chunkCheck, z + chunkCheck)) return false;
+        
+        // Draw the main trunk
+        if(!check2x2Trunk(x, y, z, (int)(height * TRUNK_HEIGHT_PERCENT), TreeBlock.TRUNK.get(), world)) return false;
+	    
+        // Generate the branches
+        if(!checkBranches(world, rand, x, y, z, height, width)) return false;
+        
+        // Place the topper leaves
+        if(!checkLeafCluster(world, x, (int)(height * TRUNK_HEIGHT_PERCENT) + y, z, 4 + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), 4 + rand.nextInt(CLUSTER_DIAMATER_VARIANCE))) return false;
+
+        return true;
+    }
     
     private boolean generateTree(World world, Random rand, int x, int y, int z) {
         final int below = world.getBlockId(x, y - 1, z);
@@ -121,6 +157,68 @@ public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase {
         }
 
         return false;
+    }
+    
+    public boolean checkBranches(World world, Random rand, int x, int y, int z, int height, int width) {
+    	int branchCount = BRANCHES_BASE_NUMBER + rand.nextInt(BRANCHES_EXTRA);
+    	
+    	// Make sure that the width is even
+    	width = (width % 2 == 1) ? width + 1: width;
+    	
+    	// Cache the offset
+    	int offset = width / 2;
+    	
+    	// The max distance for branches to generate
+    	int branchStart = (int)(height * TRUNK_BRANCHES_START);
+    	int maxBranchHeight = height - ((int)(height * TRUNK_BRANCHES_START)) - 3;
+    	int trunkEnd = (int)(height * TRUNK_HEIGHT_PERCENT);
+    	int trunkRange = height - trunkEnd;
+    	int[] start = {0,0,0};
+    	int[] end = {0,0,0};
+    	Queue<int[]> branches = new LinkedList<int[]>();
+    	
+    	// Generate some test branches
+    	for(int branch = 0; branch < branchCount; branch++) {
+    		// The end position
+    		end[0] = rand.nextInt(width+1) - offset + x;
+    		end[1] = rand.nextInt(maxBranchHeight) + trunkEnd + y;
+    		end[2] = rand.nextInt(width+1) - offset + z;
+    		
+    		// Max of tree height
+    		// Min of branch start
+    		start[1] = Math.max(branchStart + y, Math.min(height, rand.nextInt(Math.max(end[1] - branchStart - y, 1)) + y));
+    		    		
+    		if(end[0] > x && end[2] > z) {
+    			start[0] = x+1;
+    			start[2] = z+1;
+    		} else if(end[0] > x) {
+    			start[0] = x+1;
+    			start[2] = z;
+    		} else if(end[2] > z) {
+    			start[0] = x;
+    			start[2] = z+1;
+    		} else {
+    			start[0] = x;
+    			start[2] = z;
+    		}
+    		
+    		// Place the branch
+    		if(!checkBlockLine(start, end, TreeBlock.KNEE_LOG.get(), world)) return false;
+    		
+    		int[] node = new int[] {end[0], end[1], end[2]};
+    		
+    		// Add the branch end for leaf generation
+    		branches.add(node);
+    	}
+    	
+    	// Generate the leaf clusters
+    	Iterator<int[]> itt = branches.iterator();
+    	while (itt.hasNext()) {
+    	   int[] cluster = itt.next();
+    	   if(!checkLeafCluster(world, cluster[0], cluster[1], cluster[2], CLUSTER_HEIGHT + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), CLUSTER_DIAMATER + rand.nextInt(CLUSTER_DIAMATER_VARIANCE))) return false;
+    	}
+    	
+    	return true;
     }
     
     public void generateBranches(World world, Random rand, int x, int y, int z, int height, int width) {

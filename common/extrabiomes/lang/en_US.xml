@@ -47,9 +47,9 @@
   <entry key="tile.extrabiomes.rainbowkneelog.0.name">Rainbow Eucalyptus Elbow Log</entry>
   <entry key="tile.extrabiomes.newlog.0.name">Rainbow Eucalyptus Log</entry>
   <entry key="tile.extrabiomes.newlog.1.name">Autumn Log</entry>
-  <entry key="tile.extrabiomes.log.quarter.0.name">Redwood Log</entry>
-  <entry key="tile.extrabiomes.log.quarter.1.name">Fir Log</entry>
-  <entry key="tile.extrabiomes.log.quarter.2.name">Oak Log</entry>
+  <entry key="tile.extrabiomes.log.quarter.0.name">Redwood Quarter Log</entry>
+  <entry key="tile.extrabiomes.log.quarter.1.name">Fir Quarter Log</entry>
+  <entry key="tile.extrabiomes.log.quarter.2.name">Oak Quarter Log</entry>
   <entry key="tile.extrabiomes.rainboweucalyptusquarter.0.name">Rainbow Eucalyptus Quarter Log</entry>
   <entry key="tile.extrabiomes.baldcypressquarter.0.name">Bald Cypress Quarter Log</entry>
   <entry key="tile.extrabiomes.planks.0.name">Redwood Planks</entry>

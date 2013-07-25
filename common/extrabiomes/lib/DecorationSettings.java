@@ -66,7 +66,7 @@ public enum DecorationSettings {
 					//   lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm
 	MOUNTAINTAIGA		(null, 10,   null, 1,    null, null, null, null, null, null, null, null),
 	PINEFOREST			(null, 10,   null, 1,    null, null, null, null, null, null, null, null), 
-	RAINFOREST			(null, 7,    2,    4,    null, null, null, null, null, null, null, null),
+	RAINFOREST			(null, 22,    2,    4,    null, null, null, null, null, null, null, null),
 	REDWOODFOREST		(null, 17,   null, null, null, null, null, null, null, null, null, null),
 	REDWOODLUSH			(null, 17,   null, null, null, null, null, null, null, null, null, null),
 					//   lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm

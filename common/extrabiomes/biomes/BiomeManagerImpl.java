@@ -196,7 +196,7 @@ public class BiomeManagerImpl extends BiomeManager {
         if (!biome.isPresent()) return;
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 4);
         addWeightedTreeGenForBiome(biome.get(), SHRUB_GEN, 18);
-        addWeightedTreeGenForBiome(biome.get(), RAINBOW_EUCALYPTUS_GEN, 5);
+        addWeightedTreeGenForBiome(biome.get(), RAINBOW_EUCALYPTUS_GEN, 20);
         addWeightedTreeGenForBiome(biome.get(), new WorldGenerator() {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z) {
@@ -232,7 +232,7 @@ public class BiomeManagerImpl extends BiomeManager {
         if (!biome.isPresent()) return;
         addWeightedTreeGenForBiome(biome.get(), SWAMP_TREE_GEN, 15);
         addWeightedTreeGenForBiome(biome.get(), CUSTOM_SWAMP_TREE_GEN, 75);
-        addWeightedTreeGenForBiome(biome.get(), BALD_CYPRESS_GEN, 25);
+        addWeightedTreeGenForBiome(biome.get(), BALD_CYPRESS_GEN, 150);
     }
 
     private static void addMiniJungleTrees(Optional<? extends BiomeGenBase> biome) {
@@ -240,7 +240,7 @@ public class BiomeManagerImpl extends BiomeManager {
         addWeightedTreeGenForBiome(biome.get(), SWAMP_TREE_GEN, 100);
         addWeightedTreeGenForBiome(biome.get(), OAK_TREE_GEN, 1);
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 99);
-        addWeightedTreeGenForBiome(biome.get(), RAINBOW_EUCALYPTUS_GEN, 10);
+        addWeightedTreeGenForBiome(biome.get(), RAINBOW_EUCALYPTUS_GEN, 20);
     }
 
     private static void addRainforestTrees(Optional<? extends BiomeGenBase> biome) {
@@ -248,7 +248,7 @@ public class BiomeManagerImpl extends BiomeManager {
         addWeightedTreeGenForBiome(biome.get(), SWAMP_TREE_GEN, 9);
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 60);
         addWeightedTreeGenForBiome(biome.get(), OAK_TREE_GEN, 19);
-        addWeightedTreeGenForBiome(biome.get(), RAINBOW_EUCALYPTUS_GEN, 12);
+        addWeightedTreeGenForBiome(biome.get(), RAINBOW_EUCALYPTUS_GEN, 32);
     }
 
     private static void addRedwoodForestTrees(Optional<? extends BiomeGenBase> biome) {

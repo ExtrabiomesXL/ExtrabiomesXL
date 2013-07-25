@@ -78,7 +78,7 @@ public class WorldGenJapaneseMapleShrub extends WorldGenNewTreeBase {
     
     //Variables to control the generation
     private static final int	BASE_HEIGHT					= 3;		// The base height for trees
-	private static final int	BASE_HEIGHT_VARIANCE		= 4;		// The Max extra branches that a tree can have
+	private static final int	BASE_HEIGHT_VARIANCE		= 2;		// The Max extra branches that a tree can have
 	private static final double	TRUNK_HEIGHT_PERCENT		= 0.10D;	// What percent of the total height the main trunk extends
 	private static final int	BRANCHES_BASE_NUMBER		= 3;		// The total number of branches on the tree
 	private static final int	BRANCHES_EXTRA				= 1;		// The how many extra branches can occur on the tree
@@ -182,7 +182,7 @@ static int last = 0;
     	Iterator<int[]> itt = branches.iterator();
     	while (itt.hasNext()) {
     	   int[] cluster = itt.next();
-    	   if(!checkLeafCluster(world, cluster[0], cluster[1], cluster[2], 2, 1)) return false;
+    	   if(!checkLeafCluster(world, cluster[0], cluster[1], cluster[2], 1, 2)) return false;
     	}
 
     	// Calculate the center position
@@ -237,7 +237,7 @@ static int last = 0;
     	Iterator<int[]> itt = branches.iterator();
     	while (itt.hasNext()) {
     	   int[] cluster = itt.next();
-    	   generateLeafCluster(world, cluster[0], cluster[1], cluster[2], 2, 1, TreeBlock.LEAVES.get());
+    	   generateLeafCluster(world, cluster[0], cluster[1], cluster[2], 1 + rand.nextInt(2), 2, TreeBlock.LEAVES.get());
     	}
 
     	// Calculate the center position

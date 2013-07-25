@@ -234,7 +234,7 @@ public class BlockKneeLog extends BlockLog {
 	    	case 6:
 	    		return 2;
 	    	case 7:
-	    		return 3;
+	    		return 1;
 			case 8:
 				return 4;
 			case 9:
@@ -340,6 +340,7 @@ public class BlockKneeLog extends BlockLog {
 	                } else {
 	                	metadata = (--metadata < 0) ? 11: metadata;
 	                }
+                	LogHelper.info("%d",metadata);
                 }
 
                 event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);

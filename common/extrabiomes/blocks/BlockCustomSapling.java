@@ -97,10 +97,10 @@ public class BlockCustomSapling extends BlockFlower {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegistry) {
-	    textures[0] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingbrown");
-	    textures[1] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingorange");
-	    textures[2] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingred");
-	    textures[3] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingyellow");
+	    textures[0] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingbrownautumn");
+	    textures[1] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingorangeautumn");
+	    textures[2] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingredautumn");
+	    textures[3] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingyellowautumn");
 	    textures[4] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingfir");
 	    textures[5] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingredwood");
 	    textures[6] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingacacia");
