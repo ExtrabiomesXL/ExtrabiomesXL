@@ -361,5 +361,11 @@ public class BlockNewQuarterLog extends BlockLog {
                 
         world.setBlock(x, y, z, blockID, 3, 3);
 	}
+    
+    @Override
+    public boolean canSustainLeaves(World world, int x, int y, int z)
+    {
+        return true;
+    }
 	
 }

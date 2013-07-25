@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeSubscribe;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -104,5 +105,11 @@ public class BlockNewLog extends BlockLog {
             }
             event.setHandled();
         }
+    }
+
+    @Override
+    public boolean canSustainLeaves(World world, int x, int y, int z)
+    {
+        return true;
     }
 }

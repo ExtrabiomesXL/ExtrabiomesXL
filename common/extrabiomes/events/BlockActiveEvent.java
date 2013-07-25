@@ -11,6 +11,12 @@ import net.minecraftforge.event.Event;
 
 public abstract class BlockActiveEvent extends Event {
 
+	public static class BaldCypressStairsActiveEvent extends BlockActiveEvent {
+		public BaldCypressStairsActiveEvent(Block block) {
+			super(block);
+		}
+	}
+
 	public static class AutumnStairsActiveEvent extends BlockActiveEvent {
 		public AutumnStairsActiveEvent(Block block) {
 			super(block);

@@ -23,6 +23,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockRedRock;
 import extrabiomes.events.BlockActiveEvent.AcaciaStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.AutumnStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.BaldCypressStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.CypressStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FirStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.JapaneseMapleStairsActiveEvent;
@@ -48,6 +49,7 @@ public class RecipeManager {
     private Optional<ItemStack>   plankFirItem     = Optional.absent();
     private Optional<ItemStack>   plankRedwoodItem = Optional.absent();
     private Optional<ItemStack>   plankCypressItem = Optional.absent();
+    private Optional<ItemStack>   plankBaldCypressItem = Optional.absent();
     private Optional<ItemStack>   plankJapaneseMapleItem = Optional.absent();
     private Optional<ItemStack>   plankRainbowEucalyptusItem = Optional.absent();
     private Optional<ItemStack>   plankAutumnItem	= Optional.absent();
@@ -62,6 +64,7 @@ public class RecipeManager {
     private final List<ItemStack> oakLogs         	= new ArrayList<ItemStack>();
     private final List<ItemStack> redwoodLogs     	= new ArrayList<ItemStack>();
     private final List<ItemStack> cypressLogs     	= new ArrayList<ItemStack>();
+    private final List<ItemStack> baldCypressLogs	= new ArrayList<ItemStack>();
     private final List<ItemStack> autumnLogs     	= new ArrayList<ItemStack>();
     private final List<ItemStack> japanesemapleLogs = new ArrayList<ItemStack>();
     private final List<ItemStack> rainboweucalyptusLogs = new ArrayList<ItemStack>();
@@ -84,6 +87,11 @@ public class RecipeManager {
     @ForgeSubscribe
     public void cypressStairsRecipeHandler(CypressStairsActiveEvent event) {
         if (plankCypressItem.isPresent()) addStairsRecipe(plankCypressItem.get(), event.block);
+    }
+    
+    @ForgeSubscribe
+    public void baldCypressStairsRecipeHandler(BaldCypressStairsActiveEvent event) {
+        if (plankBaldCypressItem.isPresent()) addStairsRecipe(plankBaldCypressItem.get(), event.block);
     }
     
     @ForgeSubscribe
@@ -140,6 +148,14 @@ public class RecipeManager {
         }
 
         plankCypressItem = Optional.of(new ItemStack(event.block, 1, BlockCustomWood.BlockType.CYPRESS.metadata()));
+
+        planks = new ItemStack(event.block, 4, BlockCustomWood.BlockType.BALD_CYPRESS.metadata());
+        for (final ItemStack itemstack : baldCypressLogs) {
+            final IRecipe recipe = new ShapelessOreRecipe(planks, itemstack);
+            Extrabiomes.proxy.addRecipe(recipe);
+        }
+
+        plankBaldCypressItem = Optional.of(new ItemStack(event.block, 1, BlockCustomWood.BlockType.BALD_CYPRESS.metadata()));
 
         planks = new ItemStack(event.block, 4, BlockCustomWood.BlockType.AUTUMN.metadata());
         for (final ItemStack itemstack : autumnLogs) {
@@ -245,6 +261,11 @@ public class RecipeManager {
 
         if (plankRedwoodItem.isPresent()) {
             final IRecipe recipe = new ShapedOreRecipe(new ItemStack(event.block, 6, BlockCustomWoodSlab.BlockType.REDWOOD.metadata()), new String[] { "ppp" }, 'p', plankRedwoodItem.get());
+            Extrabiomes.proxy.addRecipe(recipe);
+        }
+        
+        if (plankBaldCypressItem.isPresent()) {
+            final IRecipe recipe = new ShapedOreRecipe(new ItemStack(event.block, 6, BlockCustomWoodSlab.BlockType.BALD_CYPRESS.metadata()), new String[] { "ppp" }, 'p', plankBaldCypressItem.get());
             Extrabiomes.proxy.addRecipe(recipe);
         }
 

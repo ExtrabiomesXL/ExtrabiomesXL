@@ -11,7 +11,6 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
 import extrabiomes.blocks.BlockCustomLog.BlockType;
 import extrabiomes.blocks.BlockQuarterLog.BarkOn;
-import extrabiomes.helpers.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPistonBase;
@@ -315,22 +314,118 @@ public class BlockKneeLog extends BlockLog {
                 if (event.entityPlayer.isSneaking() == true) {
                 	switch(BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving)) {
 	                	case 0:
-	                		metadata = (++metadata > 3) ? 0: metadata;
+	                		switch(metadata) {
+		                		case 9:
+	                				metadata = 4;
+	                				break;
+		                		case 4:
+	                				metadata = 8;
+	                				break;
+		                		case 8:
+	                				metadata = 5;
+	                				break;
+		                		case 5:
+	                				metadata = 9;
+	                				break;
+	                			default:
+	                				metadata = 9;
+	                				break;
+	                		}
 	                		break;
 	                	case 1:
-	                		metadata = (--metadata < 0 || metadata > 3) ? 3: metadata;
+	                		switch(metadata) {
+		                		case 6:
+	                				metadata = 11;
+	                				break;
+		                		case 7:
+	                				metadata = 10;
+	                				break;
+		                		case 10:
+	                				metadata = 6;
+	                				break;
+		                		case 11:
+	                				metadata = 7;
+	                				break;
+	                			default:
+	                				metadata = 10;
+	                				break;
+	                		}
 	                		break;
 	                	case 2:
-	                		metadata = (++metadata > 7 || metadata < 4) ? 4: metadata;
+	                		switch(metadata) {
+		                		case 3:
+	                				metadata = 10;
+	                				break;
+		                		case 10:
+	                				metadata = 2;
+	                				break;
+		                		case 2:
+	                				metadata = 9;
+	                				break;
+		                		case 9:
+	                				metadata = 3;
+	                				break;
+	                			default:
+	                				metadata = 3;
+	                				break;
+	                		}
 	                		break;
 	                	case 3:
-	                		metadata = (--metadata < 4 || metadata > 7) ? 7: metadata;
+	                		switch(metadata) {
+		                		case 1:
+	                				metadata = 11;
+	                				break;
+		                		case 11:
+	                				metadata = 0;
+	                				break;
+		                		case 0:
+	                				metadata = 8;
+	                				break;
+		                		case 8:
+	                				metadata = 1;
+	                				break;
+	                			default:
+	                				metadata = 1;
+	                				break;
+	                		}
 	                		break;
 	                	case 4:
-	                		metadata = (++metadata > 11 || metadata < 8) ? 8: metadata;
+	                		switch(metadata) {
+		                		case 2:
+	                				metadata = 7;
+	                				break;
+		                		case 7:
+	                				metadata = 1;
+	                				break;
+		                		case 1:
+	                				metadata = 4;
+	                				break;
+		                		case 4:
+	                				metadata = 2;
+	                				break;
+	                			default:
+	                				metadata = 2;
+	                				break;
+	                		}
 	                		break;
 	                	default:
-	                		metadata = (--metadata < 8) ? 11: metadata;
+	                		switch(metadata) {
+		                		case 0:
+	                				metadata = 6;
+	                				break;
+		                		case 6:
+	                				metadata = 3;
+	                				break;
+		                		case 3:
+	                				metadata = 5;
+	                				break;
+		                		case 5:
+	                				metadata = 0;
+	                				break;
+	                			default:
+	                				metadata = 0;
+	                				break;
+	                		}
 	                		break;
 	            	}
                 } else {
@@ -340,7 +435,6 @@ public class BlockKneeLog extends BlockLog {
 	                } else {
 	                	metadata = (--metadata < 0) ? 11: metadata;
 	                }
-                	LogHelper.info("%d",metadata);
                 }
 
                 event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);
@@ -361,4 +455,10 @@ public class BlockKneeLog extends BlockLog {
                 
         world.setBlock(x, y, z, blockID, 3, 3);
 	}
+
+    @Override
+    public boolean canSustainLeaves(World world, int x, int y, int z)
+    {
+        return true;
+    }
 }

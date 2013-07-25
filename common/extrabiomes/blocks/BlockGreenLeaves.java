@@ -29,6 +29,7 @@ import com.google.common.base.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import extrabiomes.blocks.BlockNewLeaves.BlockType;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.GeneralSettings;
 
@@ -338,6 +339,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
         final byte var9 = 32;
         final int var10 = var9 * var9;
         final int var11 = var9 / 2;
+        final int leafRange = (unmarkedMetadata(metadata) == BlockType.FIR.metadata || unmarkedMetadata(metadata) == BlockType.REDWOOD.metadata) ? 12 : 4;
 
         if (adjacentTreeBlocks == null) adjacentTreeBlocks = new int[var9 * var9 * var9];
 

@@ -20,7 +20,7 @@ import extrabiomes.Extrabiomes;
 
 public class BlockCustomWoodSlab extends BlockWoodSlab {
 	public enum BlockType {
-		REDWOOD(0), FIR(1), ACACIA(2), CYPRESS(3), JAPANESE_MAPLE(4), RAINBOW_EUCALYPTUS(5), AUTUMN(6);
+		REDWOOD(0), FIR(1), ACACIA(2), CYPRESS(3), JAPANESE_MAPLE(4), RAINBOW_EUCALYPTUS(5), AUTUMN(6), BALD_CYPRESS(7);
 
 		private final int	metadata;
 
@@ -64,6 +64,7 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
     	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksjapanesemaple");
     	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksrainboweucalyptus");
     	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksautumn");
+    	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksbaldcypress");
     }
 
 	@Override
@@ -98,6 +99,9 @@ public class BlockCustomWoodSlab extends BlockWoodSlab {
 				break;
 			case 6:
 				woodType = BlockType.AUTUMN.toString();
+				break;
+			case 7:
+				woodType = BlockType.BALD_CYPRESS.toString();
 				break;
 			default:
 				woodType = BlockType.REDWOOD.toString();

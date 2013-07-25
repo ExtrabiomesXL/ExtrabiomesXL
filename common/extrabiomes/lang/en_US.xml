@@ -47,6 +47,7 @@
   <entry key="tile.extrabiomes.rainbowkneelog.0.name">Rainbow Eucalyptus Elbow Log</entry>
   <entry key="tile.extrabiomes.newlog.0.name">Rainbow Eucalyptus Log</entry>
   <entry key="tile.extrabiomes.newlog.1.name">Autumn Log</entry>
+  <entry key="tile.extrabiomes.newlog.1.name">Bald Cypress Log</entry>
   <entry key="tile.extrabiomes.log.quarter.0.name">Redwood Quarter Log</entry>
   <entry key="tile.extrabiomes.log.quarter.1.name">Fir Quarter Log</entry>
   <entry key="tile.extrabiomes.log.quarter.2.name">Oak Quarter Log</entry>
@@ -59,6 +60,7 @@
   <entry key="tile.extrabiomes.planks.4.name">Japanese Maple Wood Planks</entry>
   <entry key="tile.extrabiomes.planks.5.name">Rainbow Eucalyptus Wood Planks</entry>
   <entry key="tile.extrabiomes.planks.6.name">Autumn Wood Planks</entry>
+  <entry key="tile.extrabiomes.planks.7.name">Bald Cypress Wood Planks</entry>
   <entry key="tile.extrabiomes.quicksand.name">Quicksand</entry>
   <entry key="tile.extrabiomes.redrock.0.name">Red Rock</entry>
   <entry key="tile.extrabiomes.redrock.1.name">Red Cobblestone</entry>
@@ -104,4 +106,5 @@
   <entry key="tile.extrabiomes.woodslab.cypress.name">Cypress Slab</entry>
   <entry key="tile.extrabiomes.woodslab.rainbow_eucalyptus.name">Rainbow Eucalyptus Slab</entry>
   <entry key="tile.extrabiomes.woodslab.autumn.name">Autumn Slab</entry>
+  <entry key="tile.extrabiomes.woodslab.baldcypress.name">Bald Cypress Slab</entry>
 </properties>

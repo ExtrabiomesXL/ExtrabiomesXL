@@ -30,6 +30,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockGreenLeaves.BlockType;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.GeneralSettings;
 
@@ -154,7 +155,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
 
     @Override
     public void beginLeavesDecay(World world, int x, int y, int z) {
-        world.setBlockMetadataWithNotify(x, y, z, setDecayOnMetadata(world.getBlockMetadata(x, y, z)), 3);
+    	world.setBlockMetadataWithNotify(x, y, z, setDecayOnMetadata(world.getBlockMetadata(x, y, z)), 3);
     }
 
     @Override
@@ -348,13 +349,16 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
 
         if (isUserPlaced(metadata) || !isDecaying(metadata)) return;
 
-        final int rangeWood = 6;
+        final int rangeWood = (unmarkedMetadata(metadata) == BlockType.JAPANESE_MAPLE.metadata) ? 8 : 6;
         final int rangeCheckChunk = rangeWood + 1;
         final byte var9 = 32;
         final int var10 = var9 * var9;
         final int var11 = var9 / 2;
-
-        if (adjacentTreeBlocks == null) adjacentTreeBlocks = new int[var9 * var9 * var9];
+        final int leafRange = (unmarkedMetadata(metadata) == BlockType.JAPANESE_MAPLE.metadata) ? 10 : 4;
+        
+        if (adjacentTreeBlocks == null) {
+        	adjacentTreeBlocks = new int[var9 * var9 * var9];
+        }
 
         if (world.checkChunksExist(x - rangeCheckChunk, y - rangeCheckChunk, z - rangeCheckChunk, x + rangeCheckChunk, y + rangeCheckChunk, z + rangeCheckChunk)) {
 
@@ -376,7 +380,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
                 }
             }
 
-            for (int var12 = 1; var12 <= 4; ++var12) {
+            for (int var12 = 1; var12 <= leafRange; ++var12) {
                 for (int var13 = -rangeWood; var13 <= rangeWood; ++var13) {
                     for (int var14 = -rangeWood; var14 <= rangeWood; ++var14) {
                         for (int var15 = -rangeWood; var15 <= rangeWood; ++var15) {
@@ -411,10 +415,15 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
             }
         }
 
-       if (adjacentTreeBlocks[var11 * var10 + var11 * var9 + var11] >= 0)
-           world.setBlockMetadataWithNotify(x, y, z, clearDecayOnMetadata(metadata), 3);
-       else
+		if(metadata == BlockType.JAPANESE_MAPLE.metadata) {
+		   LogHelper.info("Decay Maple");
+		}
+        
+       if (adjacentTreeBlocks[var11 * var10 + var11 * var9 + var11] >= 0) {
+    	   world.setBlockMetadataWithNotify(x, y, z, clearDecayOnMetadata(metadata), 3);
+       } else {
     	   removeLeaves(world, x, y, z);
+       }
     }
 
 }

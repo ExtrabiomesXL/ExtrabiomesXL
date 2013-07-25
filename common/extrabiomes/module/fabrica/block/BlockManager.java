@@ -27,11 +27,12 @@ import extrabiomes.events.BlockActiveEvent.CypressStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.JapaneseMapleStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RainbowEucalyptusStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.AutumnStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.BaldCypressStairsActiveEvent;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
-import extrabiomes.proxy.CommonProxy;
 import extrabiomes.module.fabrica.block.FuelHandlerWoodSlabs;
+import extrabiomes.proxy.CommonProxy;
 
 public enum BlockManager {
     PLANKS {
@@ -232,6 +233,30 @@ public enum BlockManager {
 
             proxy.registerOre("stairWood", thisBlock);
             Extrabiomes.postInitEvent(new CypressStairsActiveEvent(thisBlock));
+        }
+    },
+    BALDCYPRESSSTAIRS {
+        @Override
+        protected void create() {
+            Stuff.stairsBaldCypress = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.BALD_CYPRESS.metadata()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.BALDCYPRESSSTAIRS;
+        }
+
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.stairsBaldCypress.get();
+
+            thisBlock.setUnlocalizedName("extrabiomes.stairs.baldcypress");
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock);
+
+            proxy.registerOre("stairWood", thisBlock);
+            Extrabiomes.postInitEvent(new BaldCypressStairsActiveEvent(thisBlock));
         }
     },
     JAPANESEMAPLESTAIRS {

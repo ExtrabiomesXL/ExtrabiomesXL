@@ -24,7 +24,7 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase {
             if (Element.LEAVES_BALD_CYPRESS.isPresent()) LEAVES.stack = Element.LEAVES_BALD_CYPRESS.get();
             if (Element.LOG_QUARTER_BALD_CYPRESS.isPresent()) TRUNK.stack = Element.LOG_QUARTER_BALD_CYPRESS.get();
             if (Element.LOG_KNEE_BALD_CYPRESS.isPresent()) KNEE.stack = Element.LOG_KNEE_BALD_CYPRESS.get();
-            if (Element.LOG_CYPRESS.isPresent()) KNEE_LOG.stack = Element.LOG_CYPRESS.get();
+            if (Element.LOG_BALD_CYPRESS.isPresent()) KNEE_LOG.stack = Element.LOG_BALD_CYPRESS.get();
 
             loadedCustomBlocks = true;
         }

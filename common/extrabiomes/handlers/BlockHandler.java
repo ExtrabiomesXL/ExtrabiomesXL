@@ -252,7 +252,7 @@ public abstract class BlockHandler {
     }
     
     private static void createKneeLogs(){
-    	final BlockKneeLog block = new BlockKneeLog(BlockSettings.KNEELOG.getID(), "cypress");
+    	final BlockKneeLog block = new BlockKneeLog(BlockSettings.KNEELOG.getID(), "baldcypress");
     	if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.KNEELOG.getID() <= 0) return;
     	
     	block.setUnlocalizedName("extrabiomes.cypresskneelog").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
@@ -502,7 +502,7 @@ public abstract class BlockHandler {
 
         Element.LOG_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, BlockNewLog.BlockType.RAINBOW_EUCALYPTUS.metadata()));
         Element.LOG_AUTUMN.set(new ItemStack(block2, 1, BlockNewLog.BlockType.AUTUMN.metadata()));
-        Element.BALD_CYPRESS.set(new ItemStack(block2, 1, BlockNewLog.BlockType.BALD_CYPRESS.metadata()));
+        Element.LOG_BALD_CYPRESS.set(new ItemStack(block2, 1, BlockNewLog.BlockType.BALD_CYPRESS.metadata()));
     }
 
 }

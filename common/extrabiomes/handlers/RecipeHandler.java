@@ -131,7 +131,7 @@ public abstract class RecipeHandler {
             proxy.addSmelting(logAutumn, charcoal, 0.15F);
         }
 
-        for (final Element logCypress : new Element[] { Element.LOG_CYPRESS, Element.LOG_QUARTER_BALD_CYPRESS, Element.LOG_KNEE_BALD_CYPRESS }) {
+        for (final Element logCypress : new Element[] { Element.LOG_CYPRESS }) {
 	        if (logCypress.isPresent()) {
 	            final ItemStack cypressPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.CYPRESS.metadata());
 	
@@ -141,6 +141,19 @@ public abstract class RecipeHandler {
 	
 	            // cypressLog ==> charcoal
 	            proxy.addSmelting(logCypress.get(), charcoal, 0.15F);
+	        }
+        }
+        
+        for (final Element logBaldCypress : new Element[] { Element.LOG_BALD_CYPRESS, Element.LOG_QUARTER_BALD_CYPRESS, Element.LOG_KNEE_BALD_CYPRESS }) {
+	        if (logBaldCypress.isPresent()) {
+	            final ItemStack cypressPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.BALD_CYPRESS.metadata());
+	
+	            // cypressLog  = cypressPlanks
+	            final IRecipe recipe = new ShapelessOreRecipe(cypressPlanks, logBaldCypress.get());
+	            proxy.addRecipe(recipe);
+	
+	            // cypressLog ==> charcoal
+	            proxy.addSmelting(logBaldCypress.get(), charcoal, 0.15F);
 	        }
         }
 

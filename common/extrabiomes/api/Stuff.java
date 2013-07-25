@@ -34,6 +34,7 @@ public enum Stuff {
 	public static Optional<? extends Block>	stairsRedwood			= Optional.absent();
 	public static Optional<? extends Block>	wall					= Optional.absent();
 	public static Optional<? extends Block> stairsCypress 			= Optional.absent();
+	public static Optional<? extends Block> stairsBaldCypress		= Optional.absent();
 	public static Optional<? extends Block> stairsJapaneseMaple		= Optional.absent();
 	public static Optional<? extends Block> stairsRainbowEucalyptus	= Optional.absent();
 	public static Optional<? extends Block> stairsAutumn			= Optional.absent();
