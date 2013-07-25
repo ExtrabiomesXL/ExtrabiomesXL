@@ -77,7 +77,8 @@ public enum Element {
     LOG_CYPRESS,
     LOG_JAPANESE_MAPLE,
     LOG_RAINBOW_EUCALYPTUS,
-    LOG_AUTUMN;
+    LOG_AUTUMN,
+    BALD_CYPRESS;
     // @formatter:on
 
     private Optional<ItemStack> stack = Optional.absent();
