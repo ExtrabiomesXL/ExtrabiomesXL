@@ -49,8 +49,8 @@ public class BlockCustomLog extends BlockLog {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
-    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodside");
-    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodtop");
+    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirside");
+    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirtop");
 
     	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciaside");
     	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciatop");
