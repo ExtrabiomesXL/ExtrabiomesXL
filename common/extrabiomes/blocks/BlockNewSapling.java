@@ -185,34 +185,6 @@ public class BlockNewSapling extends BlockFlower {
         	tree = new WorldGenJapaneseMapleShrub(true);
         }
         
-        /* else {
-            // Check for 2x2 firs and redwoods
-        	/*
-            for (x1 = 0; x1 >= -1; --x1) {
-                for (z1 = 0; z1 >= -1; --z1)
-                    if (isSameSapling(world, x + x1, y, z + z1, metadata)
-                            && isSameSapling(world, x + x1 + 1, y, z + z1, metadata)
-                            && isSameSapling(world, x + x1, y, z + z1 + 1, metadata)
-                            && isSameSapling(world, x + x1 + 1, y, z + z1 + 1, metadata))
-                    {
-                        if (metadata == BlockType.FIR.metadata())
-                            tree = new WorldGenFirTreeHuge(true);
-                        else
-                            tree = new WorldGenRedwood(true);
-                        isHuge = true;
-                        break;
-                    }
-                if (tree != null) break;
-            }
-            if (tree == null && metadata == BlockType.FIR.metadata()) {
-                // Single fir sapling generates 1x1 tree
-                z1 = 0;
-                x1 = 0;
-                tree = new WorldGenFirTree(true);
-            } 
-        }//*/
-
-        
         if (tree != null) {
         	if (isHuge) {
                 world.setBlock(x + x1, y, z + z1, 0);

@@ -31,10 +31,10 @@ import extrabiomes.utility.EnhancedConfiguration;
  * 
  */
 public abstract class ConfigurationHandler {
-
+	
     public static void init(File configFile) {
         Optional<EnhancedConfiguration> optionalConfig = Optional.absent();
-
+        
         try {
             optionalConfig = Optional.of(new EnhancedConfiguration(configFile));
             final EnhancedConfiguration configuration = optionalConfig.get();
@@ -67,6 +67,12 @@ public abstract class ConfigurationHandler {
             Property bigTreeSaplingDropRateProperty = configuration.get(Configuration.CATEGORY_GENERAL, "Relative sapling drops", false);
             bigTreeSaplingDropRateProperty.comment = "Setting relative sapling drops to true will decrease the amount of saplings dropped by decaying fir and redwood leaf blocks to a more reasonable amount.";
             GeneralSettings.bigTreeSaplingDropModifier = bigTreeSaplingDropRateProperty.getBoolean(false);
+            
+            
+            //
+            Property consoleCommandsDisabled = configuration.get(Configuration.CATEGORY_GENERAL, "DisableConsoleCommands", true);
+            consoleCommandsDisabled.comment = "Set to false to enable console commands.";
+            GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
             
         } catch (final Exception e) {
             LogHelper.log(Level.SEVERE, e, "%s had had a problem loading its configuration",

@@ -171,7 +171,6 @@ public class BlockCustomSapling extends BlockFlower {
                 ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             } else {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.BROWN);
-                Block b = new Block(Element.LOG_AUTUMN.get().itemID, blockMaterial);
                 
                 ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
@@ -297,20 +296,22 @@ public class BlockCustomSapling extends BlockFlower {
     		if(canThisPlantGrowOnThisBlockID(event.entityItem.worldObj.getBlockId(posX, posY - 1, posZ)) && event.entityItem.worldObj.isAirBlock(posX, posY, posZ)) {
     			double ratio = ((!GeneralSettings.bigTreeSaplingDropModifier) ? 1.0D : 4.0D);
     			
+    			LogHelper.info("Replant chance: %f", chance);
+    			
     			// Determine if the sapling should despawn
-    			if(metadata == BlockType.ACACIA.metadata() && chance <= SaplingSettings.ACACIA.chance()){
+    			if(metadata == BlockType.ACACIA.metadata() && chance <= SaplingSettings.ACACIA.chance()) {
     				replant = true;
-    			} else if(metadata == BlockType.BROWN.metadata() && chance <= SaplingSettings.BROWN.chance()){
+    			} else if(metadata == BlockType.BROWN.metadata() && chance <= SaplingSettings.BROWN.chance()) {
     				replant = true;
-    			} else if(metadata == BlockType.CYPRESS.metadata() && chance <= SaplingSettings.CYPRESS.chance()){
+    			} else if(metadata == BlockType.CYPRESS.metadata() && chance <= SaplingSettings.CYPRESS.chance()) {
     				replant = true;
-    			} else if(metadata == BlockType.FIR.metadata() && chance <= SaplingSettings.FIR.chance() * ratio){
+    			} else if(metadata == BlockType.FIR.metadata() && chance <= SaplingSettings.FIR.chance() * ratio) {
     				replant = true;
-    			} else if(metadata == BlockType.ORANGE.metadata() && chance <= SaplingSettings.ORANGE.chance()){
+    			} else if(metadata == BlockType.ORANGE.metadata() && chance <= SaplingSettings.ORANGE.chance()) {
     				replant = true;
-    			} else if(metadata == BlockType.PURPLE.metadata() && chance <= SaplingSettings.PURPLE.chance()){
+    			} else if(metadata == BlockType.PURPLE.metadata() && chance <= SaplingSettings.PURPLE.chance()) {
     				replant = true;
-    			} else if(metadata == BlockType.REDWOOD.metadata() && chance <= SaplingSettings.REDWOOD.chance() * ratio){
+    			} else if(metadata == BlockType.REDWOOD.metadata() && chance <= SaplingSettings.REDWOOD.chance() * ratio) {
     				replant = true;
     			} else if(metadata == BlockType.YELLOW.metadata() && chance <= SaplingSettings.YELLOW.chance()){
     				replant = true;
@@ -325,9 +326,8 @@ public class BlockCustomSapling extends BlockFlower {
     
     @ForgeSubscribe
     public void itemEntering(EntityJoinWorldEvent event) {
-    	if(event.entity instanceof EntityItem && !event.world.isRemote){
-    		if(((EntityItem)event.entity).getEntityItem().itemID == saplingID){
-    			//LogHelper.info("A sapling entered the world.");
+    	if(event.entity instanceof EntityItem && !event.world.isRemote) {
+    		if(((EntityItem)event.entity).getEntityItem().itemID == saplingID) {
     			((EntityItem)event.entity).lifespan = saplingLifespan;
     		}
     	}
