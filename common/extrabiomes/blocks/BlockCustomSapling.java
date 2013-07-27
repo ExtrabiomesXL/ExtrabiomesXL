@@ -295,9 +295,7 @@ public class BlockCustomSapling extends BlockFlower {
     		//event.entityItem
     		if(canThisPlantGrowOnThisBlockID(event.entityItem.worldObj.getBlockId(posX, posY - 1, posZ)) && event.entityItem.worldObj.isAirBlock(posX, posY, posZ)) {
     			double ratio = ((!GeneralSettings.bigTreeSaplingDropModifier) ? 1.0D : 4.0D);
-    			
-    			LogHelper.info("Replant chance: %f", chance);
-    			
+    			    			
     			// Determine if the sapling should despawn
     			if(metadata == BlockType.ACACIA.metadata() && chance <= SaplingSettings.ACACIA.chance()) {
     				replant = true;
