@@ -6,6 +6,7 @@
 
 package extrabiomes.module.fabrica.block;
 
+import extrabiomes.module.fabrica.block.FuelHandlerWoodSlabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHalfSlab;
 import net.minecraft.item.ItemStack;
@@ -31,7 +32,6 @@ import extrabiomes.events.BlockActiveEvent.BaldCypressStairsActiveEvent;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
-import extrabiomes.module.fabrica.block.FuelHandlerWoodSlabs;
 import extrabiomes.proxy.CommonProxy;
 
 public enum BlockManager {

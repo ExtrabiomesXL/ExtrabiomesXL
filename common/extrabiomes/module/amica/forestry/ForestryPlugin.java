@@ -106,7 +106,7 @@ public class ForestryPlugin {
 
     private void addFermenterRecipeSapling(ItemStack resource) throws Exception {
     	// Make sure that all the fluids that we need exist
-    	for(final String type : new String[] { "water", "forestry.biomass", "honey", "juice" }) {
+    	for(final String type : new String[] { "water", "biomass", "honey", "juice" }) {
     		if(!FluidRegistry.isFluidRegistered(type)) {
 	    		LogHelper.warning("Unable to find fluid named '%s' when adding Forestry fermenter recipes.", type);
 	    		return;
@@ -115,9 +115,9 @@ public class ForestryPlugin {
     	
     	
     	try {
-	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.0f, getFluidStack("forestry.biomass"), getFluidStack("water"));
-	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("forestry.biomass"), getFluidStack("juice"));
-	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("forestry.biomass"), getFluidStack("honey"));
+	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.0f, getFluidStack("biomass"), getFluidStack("water"));
+	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("biomass"), getFluidStack("juice"));
+	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("biomass"), getFluidStack("honey"));
     	} catch (Exception e) {
     		LogHelper.severe("The forestry API changed in reguards to fluids/liquids.");
     	}
