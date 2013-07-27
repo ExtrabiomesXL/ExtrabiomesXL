@@ -18,8 +18,11 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 //import net.minecraftforge.liquids.LiquidStack;
+
+
 
 
 import com.google.common.base.Optional;
@@ -33,6 +36,7 @@ import extrabiomes.blocks.BlockNewSapling;
 import extrabiomes.helpers.ForestryModHelper;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Element;
+import extrabiomes.module.fabrica.block.BlockCustomWoodSlab.BlockType;
 import extrabiomes.module.summa.TreeSoilRegistry;
 
 public class ForestryPlugin {
@@ -101,9 +105,22 @@ public class ForestryPlugin {
     }
 
     private void addFermenterRecipeSapling(ItemStack resource) throws Exception {
-        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.0f, getFluidStack("liquidBiomass"), new FluidStack(Block.waterStill.blockID, 1));
-        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("liquidBiomass"), getFluidStack("liquidJuice"));
-        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("liquidBiomass"), getFluidStack("liquidHoney"));
+    	// Make sure that all the fluids that we need exist
+    	for(final String type : new String[] { "water", "forestry.biomass", "honey", "juice" }) {
+    		if(!FluidRegistry.isFluidRegistered(type)) {
+	    		LogHelper.warning("Unable to find fluid named '%s' when adding Forestry fermenter recipes.", type);
+	    		return;
+    		}
+		}
+    	
+    	
+    	try {
+	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.0f, getFluidStack("forestry.biomass"), getFluidStack("water"));
+	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("forestry.biomass"), getFluidStack("juice"));
+	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("forestry.biomass"), getFluidStack("honey"));
+    	} catch (Exception e) {
+    		LogHelper.severe("The forestry API changed in reguards to fluids/liquids.");
+    	}
     }
 
     private void addGlobals() {
@@ -140,8 +157,10 @@ public class ForestryPlugin {
     }
 
     private FluidStack getFluidStack(String name) throws Exception {
-        final ItemStack itemStack = (ItemStack) getForestryItem.get().invoke(null, name);
-        return new FluidStack(itemStack.itemID, 1, itemStack.getTagCompound());
+    	return FluidRegistry.getFluidStack(name, 1);
+    	//return FluidRegistry.getFluid(name);
+        //final ItemStack itemStack = (ItemStack) getForestryItem.get().invoke(null, name);
+        //return new FluidStack(itemStack.itemID, 1, itemStack.getTagCompound());
     }
 
     @ForgeSubscribe
