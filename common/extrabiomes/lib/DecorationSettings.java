@@ -14,6 +14,7 @@ import net.minecraftforge.common.Property;
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
 
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.module.summa.biome.BiomeAlpine;
 import extrabiomes.module.summa.biome.BiomeAutumnWoods;
 import extrabiomes.module.summa.biome.BiomeBirchForest;
@@ -150,11 +151,12 @@ public enum DecorationSettings {
     	// only handle non-defaults
     	if(!settings.containsKey(decoration)) return;
     	
-    	Property property = configuration.get(EnhancedConfiguration.CATEGORY_DECORATION, toString() + decoration.key, settings.get(decoration) );
+    	Property property = configuration.get(EnhancedConfiguration.CATEGORY_DECORATION, toString() + decoration.key, settings.get(decoration));
+    	settings.put(decoration, property.getInt());
     }
     
     public int getValue(Decoration decoration) {
-    	if(settings.containsKey(decoration)) {
+    	if(!settings.containsKey(decoration)) {
     		return settings.get(decoration).intValue();
     	} else {
     		return decoration.def;

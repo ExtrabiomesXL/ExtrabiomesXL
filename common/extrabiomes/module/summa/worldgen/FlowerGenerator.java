@@ -15,6 +15,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.blocks.BlockCustomFlower;
+import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.DecorationSettings;
 
 @SuppressWarnings("deprecation")
 public class FlowerGenerator implements IWorldGenerator {
@@ -64,7 +66,9 @@ public class FlowerGenerator implements IWorldGenerator {
 		}
 
 		if (BiomeManager.greenhills.isPresent() && biome == BiomeManager.greenhills.get()) {
-			for (int i = 0; i < 3; i++) {
+			//LogHelper.info("Green Hills flower generation. Chunk X: %d, Chunk Z: %d, Flowers: %d", chunkX, chunkZ, DecorationSettings.GREENHILLS.getValue(DecorationSettings.Decoration.FLOWERS));
+			
+			for (int i = 0; i < DecorationSettings.GREENHILLS.getValue(DecorationSettings.Decoration.FLOWERS); i++) {
 				int x = chunkX + rand.nextInt(16) + 8;
 				int y = rand.nextInt(128);
 				int z = chunkZ + rand.nextInt(16) + 8;

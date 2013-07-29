@@ -22,17 +22,13 @@ class WorldGenMetadataFlowers extends WorldGenerator {
 	}
 
 	@Override
-	public boolean generate(World world, Random rand, int x, int y,
-			int z)
-	{
+	public boolean generate(World world, Random rand, int x, int y, int z) {
 		for (int var6 = 0; var6 < 64; ++var6) {
 			final int x1 = x + rand.nextInt(8) - rand.nextInt(8);
 			final int y1 = y + rand.nextInt(4) - rand.nextInt(4);
 			final int z1 = z + rand.nextInt(8) - rand.nextInt(8);
 
-			if (world.isAirBlock(x1, y1, z1)
-					&& Block.blocksList[blockId].canBlockStay(world,
-							x1, y1, z1))
+			if (world.isAirBlock(x1, y1, z1) && Block.blocksList[blockId].canBlockStay(world, x1, y1, z1))
 				world.setBlock(x1, y1, z1, blockId, metadata, 2);
 		}
 

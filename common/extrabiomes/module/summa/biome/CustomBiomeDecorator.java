@@ -43,28 +43,39 @@ class CustomBiomeDecorator extends BiomeDecorator {
 		Builder loadSettings(DecorationSettings dec) {
 			Map<Decoration,Integer> settings = dec.getSettings();
 			
-			if( settings.containsKey(Decoration.BIGMUSHROOMS) )
+			if(settings.containsKey(Decoration.BIGMUSHROOMS)) {
 				bigMushroomsPerChunk(settings.get(Decoration.BIGMUSHROOMS));
-			if( settings.containsKey(Decoration.CACTI) )
+			}
+			if(settings.containsKey(Decoration.CACTI)) {
 				cactiPerChunk(settings.get(Decoration.CACTI));
-			if( settings.containsKey(Decoration.CLAY) )
+			}
+			if(settings.containsKey(Decoration.CLAY)) {
 				clayPerChunk(settings.get(Decoration.CLAY));
-			if( settings.containsKey(Decoration.DEADBUSH) )
+			}
+			if(settings.containsKey(Decoration.DEADBUSH)) {
 				deadBushPerChunk(settings.get(Decoration.DEADBUSH));
-			if( settings.containsKey(Decoration.FLOWERS) )
+			}
+			if(settings.containsKey(Decoration.FLOWERS)) {
 				flowersPerChunk(settings.get(Decoration.FLOWERS));
-			if( settings.containsKey(Decoration.GRASS) )
+			}
+			if(settings.containsKey(Decoration.GRASS)) {
 				grassPerChunk(settings.get(Decoration.GRASS));
-			if( settings.containsKey(Decoration.MUSHROOMS) )
+			}
+			if(settings.containsKey(Decoration.MUSHROOMS)) {
 				mushroomsPerChunk(settings.get(Decoration.MUSHROOMS));
-			if( settings.containsKey(Decoration.REEDS) )
+			}
+			if(settings.containsKey(Decoration.REEDS)) {
 				reedsPerChunk(settings.get(Decoration.REEDS));
-			if( settings.containsKey(Decoration.SAND) && settings.containsKey(Decoration.SAND2) )
-				sandPerChunk(settings.get(Decoration.SAND), settings.get(Decoration.SAND2));			
-			if( settings.containsKey(Decoration.TREES) )
+			}
+			if(settings.containsKey(Decoration.SAND) && settings.containsKey(Decoration.SAND2)) {
+				sandPerChunk(settings.get(Decoration.SAND), settings.get(Decoration.SAND2));
+			}
+			if(settings.containsKey(Decoration.TREES)) {
 				treesPerChunk(settings.get(Decoration.TREES));
-			if( settings.containsKey(Decoration.WATERLILY) )
+			}
+			if(settings.containsKey(Decoration.WATERLILY)) {
 				waterlilyPerChunk(settings.get(Decoration.WATERLILY));
+			}
 			
 			return this;
 		}
