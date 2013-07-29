@@ -75,8 +75,7 @@ public abstract class ConfigurationHandler {
             GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
             
         } catch (final Exception e) {
-            LogHelper.log(Level.SEVERE, e, "%s had had a problem loading its configuration",
-                    Reference.MOD_NAME);
+            LogHelper.log(Level.SEVERE, e, "%s had had a problem loading its configuration", Reference.MOD_NAME);
         } finally {
             if (optionalConfig.isPresent()) optionalConfig.get().save();
         }

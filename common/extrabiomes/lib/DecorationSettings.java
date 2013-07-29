@@ -148,18 +148,17 @@ public enum DecorationSettings {
     
     private void parseProperty(EnhancedConfiguration configuration, Decoration decoration) {
     	// only handle non-defaults
-    	if( !settings.containsKey(decoration) )
-    		return;
+    	if(!settings.containsKey(decoration)) return;
     	
-    	Property property = configuration.get(EnhancedConfiguration.CATEGORY_DECORATION, toString() + decoration.key, decoration.def );
-    	property.set(settings.get(decoration).toString());
+    	Property property = configuration.get(EnhancedConfiguration.CATEGORY_DECORATION, toString() + decoration.key, settings.get(decoration) );
     }
     
-    public int getValue( Decoration decoration ) {
-    	if( settings.containsKey(decoration) )
+    public int getValue(Decoration decoration) {
+    	if(settings.containsKey(decoration)) {
     		return settings.get(decoration).intValue();
-    	else
+    	} else {
     		return decoration.def;
+    	}
     }
     
     public Map<Decoration,Integer> getSettings() {
