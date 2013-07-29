@@ -5,6 +5,8 @@ import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 
+import com.google.common.base.Optional;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -300,6 +302,11 @@ public class BlockNewQuarterLog extends BlockLog {
     @Override
     public int idDropped(int metadata, Random rand, int unused) {
         return blockID;
+    }
+    
+    @Override
+    public int damageDropped(int metadata) {
+        return 0;
     }
     
     @ForgeSubscribe

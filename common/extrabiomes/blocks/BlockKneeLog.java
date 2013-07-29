@@ -47,8 +47,7 @@ public class BlockKneeLog extends BlockLog {
         super(id);
         
         this.treeType = treeType;
-    }
-	
+    }	
 	
 	@Override
     @SideOnly(Side.CLIENT)
@@ -298,6 +297,11 @@ public class BlockKneeLog extends BlockLog {
     @Override
     public int idDropped(int metadata, Random rand, int unused) {
         return blockID;
+    }
+    
+    @Override
+    public int damageDropped(int metadata) {
+        return 0;
     }
     
     @ForgeSubscribe

@@ -275,8 +275,8 @@ public abstract class BlockHandler {
         proxy.registerEventHandler(block2);
         proxy.setBurnProperties(block2.blockID, 5, 5);
         
-        Element.LOG_KNEE_BALD_CYPRESS.set(new ItemStack(block, 1));
-        Element.LOG_KNEE_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1));
+        Element.LOG_KNEE_BALD_CYPRESS.set(new ItemStack(block, 1, Short.MAX_VALUE));
+        Element.LOG_KNEE_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, Short.MAX_VALUE));
         
         BlockKneeLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderKneeLog()));
         
@@ -307,8 +307,8 @@ public abstract class BlockHandler {
         proxy.registerEventHandler(block2);
         proxy.setBurnProperties(block2.blockID, 5, 5);
         
-        Element.LOG_QUARTER_BALD_CYPRESS.set(new ItemStack(block, 1));
-        Element.LOG_QUARTER_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1));
+        Element.LOG_QUARTER_BALD_CYPRESS.set(new ItemStack(block, 1, Short.MAX_VALUE));
+        Element.LOG_QUARTER_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, Short.MAX_VALUE));
         
         BlockNewQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderNewQuarterLog()));
         
