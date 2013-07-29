@@ -109,10 +109,7 @@ public enum DecorationSettings {
         this(null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
-    private DecorationSettings(Integer waterlily, Integer trees, Integer flowers, 
-    		Integer grass, Integer deadBush, Integer mushrooms, Integer reeds,
-    		Integer cacti, Integer sand, Integer sand2, Integer clay,
-    		Integer bigMushrooms) {
+    private DecorationSettings(Integer waterlily, Integer trees, Integer flowers, Integer grass, Integer deadBush, Integer mushrooms, Integer reeds, Integer cacti, Integer sand, Integer sand2, Integer clay, Integer bigMushrooms) {
     	initSetting( Decoration.WATERLILY, waterlily );
 		initSetting( Decoration.TREES, trees );
 		initSetting( Decoration.FLOWERS, flowers );

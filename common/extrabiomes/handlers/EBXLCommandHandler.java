@@ -110,6 +110,8 @@ public class EBXLCommandHandler extends CommandBase {
                 				player.addChatMessage("X, Y and Z must be valid numbers.");
                 			}
 
+                		} else if(cmds.length == 2 && cmds[1].equals("here")) {
+                			killTree(player, (int)player.posX, (int)player.posY - 1, (int)player.posZ);
                 		} else {
                 			player.addChatMessage("Incorrect format. /ebxl killtree <x> <y> <z>");
                 		}
