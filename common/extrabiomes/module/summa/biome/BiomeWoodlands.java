@@ -21,6 +21,7 @@ public class BiomeWoodlands extends ExtrabiomeGenBase {
     public BiomeWoodlands() {
         super(BiomeSettings.WOODLANDS.getID());
 
+        //setColor(0x056621);
         setColor(0x85B53E);
         setBiomeName("Woodlands");
         temperature = BiomeGenBase.forest.temperature;
@@ -39,13 +40,13 @@ public class BiomeWoodlands extends ExtrabiomeGenBase {
     @Override
     @SideOnly(Side.CLIENT)
     public int getBiomeFoliageColor() {
-        return ColorizerFoliage.getFoliageColor(1.0F, 0.2F);
+        return ColorizerFoliage.getFoliageColor(1.0F, 1.0F);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public int getBiomeGrassColor() {
-        return ColorizerGrass.getGrassColor(1.0F, 0.2F);
+        return ColorizerGrass.getGrassColor(1.0F, 1.0F);
     }
 
 }
