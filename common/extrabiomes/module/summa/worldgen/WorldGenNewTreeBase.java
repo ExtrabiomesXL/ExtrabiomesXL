@@ -41,13 +41,6 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator {
     }
     
     public boolean place2x2Trunk(int x, int y, int z, int height, ItemStack logs, World world) {
-    	for(int y1 = y+1; y1 < y + height; y1++) {
-    		if(Block.blocksList[world.getBlockId(x, y1, z)] != null) return false;
-    		if(Block.blocksList[world.getBlockId(x+1, y1, z)] != null) return false;
-    		if(Block.blocksList[world.getBlockId(x, y1, z+1)] != null) return false;
-    		if(Block.blocksList[world.getBlockId(x+1, y1, z+1)] != null) return false;
-    	}
-    	
     	for(int y1 = y; y1 < y + height; y1++) {
     		setBlockAndMetadata(world, x, y1, z, logs.itemID, 0);
     		setBlockAndMetadata(world, x+1, y1, z, logs.itemID, 1);
@@ -58,16 +51,25 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator {
     	return true;
     }
 
-    public boolean check2x2Trunk(int x, int y, int z, int height, ItemStack logs, World world){
-    	for(int y1 = y+1; y1 < y + height; y1++) {
-    		int b00 = world.getBlockId(x, y1, z);
-    		int b10 = world.getBlockId(x+1, y1, z);
-    		int b01 = world.getBlockId(x, y1, z+1);
-    		int b11 = world.getBlockId(x+1, y1, z+1);
-    		if(Block.blocksList[b00] != null && b00 != Block.waterStill.blockID && b00 != Block.waterStill.blockID) return false;
-    		if(Block.blocksList[b10] != null && b10 != Block.waterStill.blockID && b10 != Block.waterStill.blockID) return false;
-    		if(Block.blocksList[b01] != null && b01 != Block.waterStill.blockID && b01 != Block.waterStill.blockID) return false;
-    		if(Block.blocksList[b11] != null && b11 != Block.waterStill.blockID && b11 != Block.waterStill.blockID) return false;
+    public boolean check2x2Trunk(int x, int y, int z, int height, ItemStack logs, World world, boolean inWater) {
+    	if(inWater){
+    		for(int y1 = y+1; y1 < y + height; y1++) {
+        		int b00 = world.getBlockId(x, y1, z);
+        		int b10 = world.getBlockId(x+1, y1, z);
+        		int b01 = world.getBlockId(x, y1, z+1);
+        		int b11 = world.getBlockId(x+1, y1, z+1);
+        		if(Block.blocksList[b00] != null && b00 != Block.waterStill.blockID && b00 != Block.waterStill.blockID) return false;
+        		if(Block.blocksList[b10] != null && b10 != Block.waterStill.blockID && b10 != Block.waterStill.blockID) return false;
+        		if(Block.blocksList[b01] != null && b01 != Block.waterStill.blockID && b01 != Block.waterStill.blockID) return false;
+        		if(Block.blocksList[b11] != null && b11 != Block.waterStill.blockID && b11 != Block.waterStill.blockID) return false;
+        	}
+    	} else {
+    		for(int y1 = y+1; y1 < y + height; y1++) {
+        		if(Block.blocksList[world.getBlockId(x, y1, z)] != null) return false;
+        		if(Block.blocksList[world.getBlockId(x+1, y1, z)] != null) return false;
+        		if(Block.blocksList[world.getBlockId(x, y1, z+1)] != null) return false;
+        		if(Block.blocksList[world.getBlockId(x+1, y1, z+1)] != null) return false;
+        	}
     	}
     	
     	return true;

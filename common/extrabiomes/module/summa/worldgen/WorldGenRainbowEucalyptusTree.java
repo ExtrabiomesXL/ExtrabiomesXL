@@ -113,7 +113,7 @@ public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase {
         if (!world.checkChunksExist(x - chunkCheck, y - chunkCheck, z - chunkCheck, x + chunkCheck, y + chunkCheck, z + chunkCheck)) return false;
         
         // Draw the main trunk
-        if(!check2x2Trunk(x, y, z, (int)(height * TRUNK_HEIGHT_PERCENT), TreeBlock.TRUNK.get(), world)) return false;
+        if(!check2x2Trunk(x, y, z, (int)(height * TRUNK_HEIGHT_PERCENT), TreeBlock.TRUNK.get(), world,false)) return false;
 	    
         // Generate the branches
         if(!checkBranches(world, rand, x, y, z, height, width)) return false;
