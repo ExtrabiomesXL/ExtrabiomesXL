@@ -23,22 +23,22 @@ public class FlowerGenerator implements IWorldGenerator {
 
 	private final WorldGenerator	autumnShrubGen;
 	private final WorldGenerator	hydrangeaGen;
-	private final WorldGenerator	orangeGen;
-	private final WorldGenerator	purpleGen;
+	private final WorldGenerator	buttercupGen;
+	private final WorldGenerator	lavenderGen;
 	private final WorldGenerator	rootGen;
 	private final WorldGenerator	tinyCactusGen;
 	private final WorldGenerator	toadStoolGen;
-	private final WorldGenerator	whiteGen;
+	private final WorldGenerator	callaGen;
 
 	public FlowerGenerator(int flowerID) {
 		autumnShrubGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.AUTUMN_SHRUB.metadata());
 		hydrangeaGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.HYDRANGEA.metadata());
-		orangeGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.ORANGE.metadata());
-		purpleGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.PURPLE.metadata());
+		buttercupGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.ORANGE.metadata());
+		lavenderGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.PURPLE.metadata());
 		rootGen = new WorldGenRoot(flowerID, BlockCustomFlower.BlockType.ROOT.metadata());
 		tinyCactusGen = new WorldGenTinyCactus(flowerID, BlockCustomFlower.BlockType.TINY_CACTUS.metadata());
 		toadStoolGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.TOADSTOOL.metadata());
-		whiteGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.WHITE.metadata());
+		callaGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.WHITE.metadata());
 	}
 
     @Override
@@ -46,13 +46,65 @@ public class FlowerGenerator implements IWorldGenerator {
 		chunkX = chunkX << 4;
 		chunkZ = chunkZ << 4;
 		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkZ);
+		
+		if (BiomeManager.birchforest.isPresent() && biome == BiomeManager.birchforest.get()) {
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				hydrangeaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
+			}
+		}
+		
+		if (BiomeManager.forestedhills.isPresent() && biome == BiomeManager.forestedhills.get()) {
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				hydrangeaGen.generate(world, rand, x, y, z);
+			}
+		}
+		
+		if (BiomeManager.forestedisland.isPresent() && biome == BiomeManager.forestedisland.get()) {
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				hydrangeaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
+			}
+		}
 
 		if (BiomeManager.autumnwoods.isPresent() && biome == BiomeManager.autumnwoods.get()) {
 			for (int i = 0; i < 2; i++) {
-				final int x = chunkX + rand.nextInt(16) + 8;
-				final int y = rand.nextInt(128);
-				final int z = chunkZ + rand.nextInt(16) + 8;
-				autumnShrubGen.generate(world, rand, x, y, z);
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
 			}
 		}
 
@@ -66,29 +118,22 @@ public class FlowerGenerator implements IWorldGenerator {
 		}
 
 		if (BiomeManager.greenhills.isPresent() && biome == BiomeManager.greenhills.get()) {
-			//LogHelper.info("Green Hills flower generation. Chunk X: %d, Chunk Z: %d, Flowers: %d", chunkX, chunkZ, DecorationSettings.GREENHILLS.getValue(DecorationSettings.Decoration.FLOWERS));
-			
-			for (int i = 0; i < DecorationSettings.GREENHILLS.getValue(DecorationSettings.Decoration.FLOWERS); i++) {
+			for (int i = 0; i < 2; i++) {
 				int x = chunkX + rand.nextInt(16) + 8;
 				int y = rand.nextInt(128);
 				int z = chunkZ + rand.nextInt(16) + 8;
-				orangeGen.generate(world, rand, x, y, z);
-
-				x = chunkX + rand.nextInt(16) + 8;
-				y = rand.nextInt(128);
-				z = chunkZ + rand.nextInt(16) + 8;
-				whiteGen.generate(world, rand, x, y, z);
+				hydrangeaGen.generate(world, rand, x, y, z);
 			}
 		}
 
 		if (BiomeManager.greenswamp.isPresent() && biome == BiomeManager.greenswamp.get()) {
-			final int x = chunkX + rand.nextInt(16) + 8;
-			final int y = rand.nextInt(128);
-			final int z = chunkZ + rand.nextInt(16) + 8;
-			hydrangeaGen.generate(world, rand, x, y, z);
-		}
-
-		if (BiomeManager.greenswamp.isPresent() && biome == BiomeManager.greenswamp.get() || BiomeManager.redwoodlush.isPresent() && biome == BiomeManager.redwoodlush.get()) { 
+			for (int i = 0; i < 2; i++) {
+				final int x = chunkX + rand.nextInt(16) + 8;
+				final int y = rand.nextInt(128);
+				final int z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
+			}
+			
 			for (int i = 0; i < 5; i++) {
 				final int x = chunkX + rand.nextInt(16) + 8;
 				final int y = rand.nextInt(128);
@@ -96,29 +141,172 @@ public class FlowerGenerator implements IWorldGenerator {
 				rootGen.generate(world, rand, x, y, z);
 			}
 		}
-
-		if (BiomeManager.mountainridge.isPresent() && biome == BiomeManager.mountainridge.get()) {
-			for (int i = 0; i < 50; i++) {
-				final int x = chunkX + rand.nextInt(16) + 8;
-				final int y = rand.nextInt(128);
-				final int z = chunkZ + rand.nextInt(16) + 8;
-				tinyCactusGen.generate(world, rand, x, y, z);
+		
+		if (BiomeManager.minijungle.isPresent() && biome == BiomeManager.minijungle.get()) {
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
 			}
+		}
 
-			for (int i = 0; i < 12; i++) {
+		if (BiomeManager.mountaindesert.isPresent() && biome == BiomeManager.mountaindesert.get()) {
+			for (int i = 0; i < 70; i++) {
 				final int x = chunkX + rand.nextInt(16) + 8;
 				final int y = rand.nextInt(128);
 				final int z = chunkZ + rand.nextInt(16) + 8;
 				tinyCactusGen.generate(world, rand, x, y, z);
 			}
 		}
-
-		if (BiomeManager.savanna.isPresent() && biome == BiomeManager.savanna.get()) {
-			for (int i = 0; i < 15; i++) {
+		
+		if (BiomeManager.mountainridge.isPresent() && biome == BiomeManager.mountainridge.get()) {
+			for (int i = 0; i < 62; i++) {
 				final int x = chunkX + rand.nextInt(16) + 8;
 				final int y = rand.nextInt(128);
 				final int z = chunkZ + rand.nextInt(16) + 8;
-				purpleGen.generate(world, rand, x, y, z);
+				tinyCactusGen.generate(world, rand, x, y, z);
+			}
+		}
+		
+		if (BiomeManager.pineforest.isPresent() && biome == BiomeManager.pineforest.get()) {
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				hydrangeaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
+			}
+		}
+		
+		if (BiomeManager.rainforest.isPresent() && biome == BiomeManager.rainforest.get()) {
+			for (int i = 0; i < 4; i++) {
+				final int x = chunkX + rand.nextInt(16) + 8;
+				final int y = rand.nextInt(128);
+				final int z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
+			}
+		}
+		
+		if (BiomeManager.redwoodforest.isPresent() && biome == BiomeManager.redwoodforest.get()) {
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				hydrangeaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
+			}
+		}
+
+		if (BiomeManager.redwoodlush.isPresent() && biome == BiomeManager.redwoodlush.get()) { 
+			for (int i = 0; i < 5; i++) {
+				final int x = chunkX + rand.nextInt(16) + 8;
+				final int y = rand.nextInt(128);
+				final int z = chunkZ + rand.nextInt(16) + 8;
+				rootGen.generate(world, rand, x, y, z);
+			}
+			
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				hydrangeaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
+			}
+		}
+
+		if (BiomeManager.savanna.isPresent() && biome == BiomeManager.savanna.get()) {
+			for (int i = 0; i < 6; i++) {
+				final int x = chunkX + rand.nextInt(16) + 8;
+				final int y = rand.nextInt(128);
+				final int z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
+			}
+			
+			for (int i = 0; i < 8; i++) {
+				final int x = chunkX + rand.nextInt(16) + 8;
+				final int y = rand.nextInt(128);
+				final int z = chunkZ + rand.nextInt(16) + 8;
+				lavenderGen.generate(world, rand, x, y, z);
+			}
+		}
+
+		if (BiomeManager.shrubland.isPresent() && biome == BiomeManager.shrubland.get()) {
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				lavenderGen.generate(world, rand, x, y, z);
+			}
+		}
+		
+		if (BiomeManager.temperaterainforest.isPresent() && biome == BiomeManager.temperaterainforest.get()) {
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				hydrangeaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
+			}
+		}
+		
+		if (BiomeManager.woodlands.isPresent() && biome == BiomeManager.woodlands.get()) {
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				hydrangeaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
 			}
 		}
 	}
