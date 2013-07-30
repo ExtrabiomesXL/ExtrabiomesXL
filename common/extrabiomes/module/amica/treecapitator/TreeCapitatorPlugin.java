@@ -24,8 +24,7 @@ public class TreeCapitatorPlugin {
             NBTTagCompound tpModCfg = new NBTTagCompound();
             tpModCfg.setString("modID", Reference.MOD_ID);
             tpModCfg.setString("configPath", "extrabiomes/extrabiomes.cfg");
-            tpModCfg.setString("blockConfigKeys", "block:customlog.id; block:quarterlog0.id; block:quarterlog1.id; block:quarterlog2.id; block:quarterlog3.id; " +
-                    "block:autumnleaves.id; block:greenleaves.id");
+            tpModCfg.setString("blockConfigKeys", "block:customlog.id; block:quarterlog0.id; block:quarterlog1.id; block:quarterlog2.id; block:quarterlog3.id;block:autumnleaves.id; block:greenleaves.id; block:newleaves.id, block:newlog.id; block:newquarterlog.id; block:kneelog.id; block:rainbowkneelog.id; block:rainbowquarterlog.id");
             tpModCfg.setString("itemConfigKeys", "");
             tpModCfg.setString("axeIDList", "");
             tpModCfg.setString("shearsIDList", "");
@@ -71,6 +70,14 @@ public class TreeCapitatorPlugin {
             tree.setString("logConfigKeys", "<block:customlog.id>,1");
             tree.setString("leafConfigKeys", "<block:greenleaves.id>,2");
             treeList.appendTag(tree);
+            
+            // EBXL new cypress
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "cypress");
+            tree.setString("logConfigKeys", "<block:customlog.id>,2");
+            tree.setString("leafConfigKeys", "<block:greenleaves.id>,3");
+            treeList.appendTag(tree);
+            
             
             tpModCfg.setTag("trees", treeList);
             
