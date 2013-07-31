@@ -6,52 +6,41 @@
 
 package extrabiomes.module.amica.treecapitator;
 
-import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_ERROR;
-import static extrabiomes.module.amica.Amica.LOG_MESSAGE_PLUGIN_INIT;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import extrabiomes.api.PluginEvent;
-import extrabiomes.lib.Reference;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.BlockSettings;
+import extrabiomes.lib.Reference;
 
-public class TreeCapitatorPlugin {
-	
-	@ForgeSubscribe
-    public void init(PluginEvent.Init event) throws Exception {
-		if (Loader.isModLoaded("TreeCapitator")) {
+public class TreeCapitatorPlugin
+{
+    public static void init()
+    {
+        if (Loader.isModLoaded("TreeCapitator"))
+        {
+            LogHelper.info("Initializing TreeCapitator support...");
             NBTTagCompound tpModCfg = new NBTTagCompound();
             tpModCfg.setString("modID", Reference.MOD_ID);
-            tpModCfg.setString("configPath", "extrabiomes/extrabiomes.cfg");
-            tpModCfg.setString("blockConfigKeys", "block:customlog.id; block:quarterlog0.id; block:quarterlog1.id; block:quarterlog2.id; block:quarterlog3.id; " +
-                    "block:autumnleaves.id; block:greenleaves.id");
-            tpModCfg.setString("itemConfigKeys", "");
-            tpModCfg.setString("axeIDList", "");
-            tpModCfg.setString("shearsIDList", "");
-            tpModCfg.setBoolean("useShiftedItemID", true);
             
             NBTTagList treeList = new NBTTagList();
+            
+            // local var to keep code concise
+            int[] q = { BlockSettings.QUARTERLOG0.getID(), BlockSettings.QUARTERLOG1.getID(), BlockSettings.QUARTERLOG2.getID(), BlockSettings.QUARTERLOG3.getID(), BlockSettings.NEWQUARTERLOG.getID() };
             
             // Vanilla Oak additions
             NBTTagCompound tree = new NBTTagCompound();
             tree.setString("treeName", "vanilla_oak");
-            tree.setString("logConfigKeys", "<block:quarterlog0.id>,2; <block:quarterlog1.id>,2; <block:quarterlog2.id>,2; <block:quarterlog3.id>,2;");
-            tree.setString("leafConfigKeys", "<block:autumnleaves.id>");
-            treeList.appendTag(tree);
-            
-            // Vanilla Spruce additions
-            tree = new NBTTagCompound();
-            tree.setString("treeName", "vanilla_spruce");
-            tree.setString("logConfigKeys", "");
-            tree.setString("leafConfigKeys", "<block:autumnleaves.id>");
+            tree.setString("logs", String.format("%d,2; %d,2; %d,2; %d,2;", q[0], q[1], q[2], q[3]));
+            tree.setString("leaves", "");
             treeList.appendTag(tree);
             
             // EBXL fir
             tree = new NBTTagCompound();
             tree.setString("treeName", "fir");
-            tree.setString("logConfigKeys", "<block:customlog.id>,0; <block:quarterlog0.id>,1; <block:quarterlog1.id>,1; <block:quarterlog2.id>,1; <block:quarterlog3.id>,1");
-            tree.setString("leafConfigKeys", "<block:greenleaves.id>,0; <block:greenleaves.id>,8");
+            tree.setString("logs", String.format("%d,0; %d,1; %d,1; %d,1; %d,1;", BlockSettings.CUSTOMLOG.getID(), q[0], q[1], q[2], q[3]));
+            tree.setString("leaves", String.format("%d,0; %d,8", BlockSettings.GREENLEAVES.getID(), BlockSettings.GREENLEAVES.getID()));
             tree.setInteger("maxHorLeafBreakDist", 10);
             tree.setBoolean("requireLeafDecayCheck", false);
             treeList.appendTag(tree);
@@ -59,8 +48,8 @@ public class TreeCapitatorPlugin {
             // EBXL redwood
             tree = new NBTTagCompound();
             tree.setString("treeName", "redwood");
-            tree.setString("logConfigKeys", "<block:quarterlog0.id>,0; <block:quarterlog1.id>,0; <block:quarterlog2.id>,0; <block:quarterlog3.id>,0");
-            tree.setString("leafConfigKeys", "<block:greenleaves.id>,1; <block:greenleaves.id>,9");
+            tree.setString("logs", String.format("%d,0; %d,0; %d,0; %d,0;", q[0], q[1], q[2], q[3]));
+            tree.setString("leaves", String.format("%d,1; %d,9", BlockSettings.GREENLEAVES.getID(), BlockSettings.GREENLEAVES.getID()));
             tree.setInteger("maxHorLeafBreakDist", 10);
             tree.setBoolean("requireLeafDecayCheck", false);
             treeList.appendTag(tree);
@@ -68,13 +57,56 @@ public class TreeCapitatorPlugin {
             // EBXL acacia
             tree = new NBTTagCompound();
             tree.setString("treeName", "acacia");
-            tree.setString("logConfigKeys", "<block:customlog.id>,1");
-            tree.setString("leafConfigKeys", "<block:greenleaves.id>,2");
+            tree.setString("logs", String.format("%d,1; %d,5; %d,9", BlockSettings.CUSTOMLOG.getID(), BlockSettings.CUSTOMLOG.getID(), BlockSettings.CUSTOMLOG.getID()));
+            tree.setString("leaves", String.format("%d,2; %d,10", BlockSettings.GREENLEAVES.getID(), BlockSettings.GREENLEAVES.getID()));
+            treeList.appendTag(tree);
+            
+            // EBXL cypress
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "cypress");
+            tree.setString("logs", String.format("%d,2; %d,6; %d,10", BlockSettings.CUSTOMLOG.getID(), BlockSettings.CUSTOMLOG.getID(), BlockSettings.CUSTOMLOG.getID()));
+            tree.setString("leaves", String.format("%d,3; %d,11", BlockSettings.GREENLEAVES.getID(), BlockSettings.GREENLEAVES.getID()));
+            treeList.appendTag(tree);
+            
+            // EBXL Japanese maple
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "japanesemaple");
+            tree.setString("logs", String.format("%d,3; %d,7; %d,11", BlockSettings.CUSTOMLOG.getID(), BlockSettings.CUSTOMLOG.getID(), BlockSettings.CUSTOMLOG.getID()));
+            tree.setString("leaves", String.format("%d,1; %d,9; %d,2; %d,10", BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID()));
+            tree.setInteger("maxHorLeafBreakDist", 6);
+            treeList.appendTag(tree);
+            
+            // EBXL autumn trees
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "autumntree");
+            tree.setString("logs", String.format("%d,1; %d,5; %d,9", BlockSettings.NEWLOG.getID(), BlockSettings.NEWLOG.getID(), BlockSettings.NEWLOG.getID()));
+            tree.setString("leaves", String.format("%d,0; %d,1; %d,2; %d,3; %d,8; %d,9; %d,10; %d,11", BlockSettings.AUTUMNLEAVES.getID(), BlockSettings.AUTUMNLEAVES.getID(),
+                    BlockSettings.AUTUMNLEAVES.getID(), BlockSettings.AUTUMNLEAVES.getID(), BlockSettings.AUTUMNLEAVES.getID(), BlockSettings.AUTUMNLEAVES.getID(),
+                    BlockSettings.AUTUMNLEAVES.getID(), BlockSettings.AUTUMNLEAVES.getID()));
+            treeList.appendTag(tree);
+            
+            // EBXL rainbow eucalyptus
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "rainboweucalyptus");
+            tree.setString("logs", String.format("%d; %d; %d,0; %d,4; %d,8", BlockSettings.RAINBOWQUARTERLOG.getID(), BlockSettings.RAINBOWKNEELOG.getID(), BlockSettings.NEWLOG.getID(),
+                    BlockSettings.NEWLOG.getID(), BlockSettings.NEWLOG.getID()));
+            tree.setString("leaves", String.format("%d,3; %d,11", BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID()));
+            tree.setInteger("maxHorLeafBreakDist", 6);
+            treeList.appendTag(tree);
+            
+            // EBXL bald cypress
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "baldcypress");
+            tree.setString("logs", String.format("%d; %d; %d,2; %d,6; %d,10", BlockSettings.NEWQUARTERLOG.getID(), BlockSettings.KNEELOG.getID(), BlockSettings.NEWLOG.getID(),
+                    BlockSettings.NEWLOG.getID(), BlockSettings.NEWLOG.getID()));
+            tree.setString("leaves", String.format("%d,0; %d,8", BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID()));
+            tree.setInteger("maxHorLeafBreakDist", 6);
             treeList.appendTag(tree);
             
             tpModCfg.setTag("trees", treeList);
             
-            FMLInterModComms.sendMessage("TreeCapitator", Reference.MOD_ID, tpModCfg);
+            FMLInterModComms.sendMessage("TreeCapitator", "ThirdPartyModConfig", tpModCfg);
+            LogHelper.info("TreeCapitator IMC message sent.");
         }
     }
 }
