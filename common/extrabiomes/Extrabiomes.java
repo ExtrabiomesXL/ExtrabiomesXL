@@ -47,6 +47,7 @@ import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.Reference;
 import extrabiomes.localization.LocalizationHandler;
+import extrabiomes.module.amica.treecapitator.TreeCapitatorPlugin;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
@@ -74,7 +75,7 @@ public class Extrabiomes {
     public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException {
         proxy.registerRenderInformation();
         Module.postEvent(new ModuleInitEvent());
-        //sendTCIMC();
+        TreeCapitatorPlugin.init();
     }
     
     @Mod.EventHandler
