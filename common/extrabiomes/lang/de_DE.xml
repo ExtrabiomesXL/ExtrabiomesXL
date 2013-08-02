@@ -16,10 +16,10 @@
   <entry key="log.message.plugin.error">Konnte mit %s nicht interagieren. Plug-In wird deaktiviert.</entry>
   <entry key="module.status.enabled">Modul %s ist aktiviert.</entry>
   <entry key="module.status.disabled">Modul %s is dekativiert, wird übersprungen.</entry>
-  <entry key="tile.extrabiomes.autumnleaves.0.name">Braune Herbstblätter</entry>
-  <entry key="tile.extrabiomes.autumnleaves.1.name">Orange Herbstblätter</entry>
+  <entry key="tile.extrabiomes.autumnleaves.0.name">Umbrabraune Herbstblätter</entry>
+  <entry key="tile.extrabiomes.autumnleaves.1.name">Flammend-Orange Herbstblätter</entry>
   <entry key="tile.extrabiomes.autumnleaves.2.name">Violette Herbstblätter</entry>
-  <entry key="tile.extrabiomes.autumnleaves.3.name">Gelber Herbstblätter</entry>
+  <entry key="tile.extrabiomes.autumnleaves.3.name">Zitrine Herbstblätter</entry>
   <entry key="tile.extrabiomes.cattail.name">Rohrkolben</entry>
   <entry key="tile.extrabiomes.crackedsand.name">Rissiger Sand</entry>
   <entry key="tile.extrabiomes.flower.0.name">Herbststrauch</entry>
@@ -112,10 +112,10 @@
   <entry key="tile.extrabiomes.redrockslab.redcobble.name">Rote Pflastersteinhalbstufe</entry>
   <entry key="tile.extrabiomes.redrockslab.redrock.name">Rote Steinhalbstufe</entry>
   <entry key="tile.extrabiomes.redrockslab.redrockbrick.name">Rote Steinziegelhalbstufe</entry>
-  <entry key="tile.extrabiomes.sapling.0.name">Brauner Herbstsetzling</entry>
-  <entry key="tile.extrabiomes.sapling.1.name">Oranger Herbstsetzling</entry>
+  <entry key="tile.extrabiomes.sapling.0.name">Umbrabrauner Herbstsetzling</entry>
+  <entry key="tile.extrabiomes.sapling.1.name">Flammend-Oranger Herbstsetzling</entry>
   <entry key="tile.extrabiomes.sapling.2.name">Violetter Herbstsetzling</entry>
-  <entry key="tile.extrabiomes.sapling.3.name">Gelber Herbstsetzling</entry>
+  <entry key="tile.extrabiomes.sapling.3.name">Zitriner Herbstsetzling</entry>
   <entry key="tile.extrabiomes.sapling.4.name">Tannensetzling</entry>
   <entry key="tile.extrabiomes.sapling.5.name">Mammutbaumsetzling</entry>
   <entry key="tile.extrabiomes.sapling.6.name">Akaziensetzling</entry>
