@@ -16,7 +16,7 @@
   <entry key="log.message.plugin.error">Konnte mit %s nicht interagieren. Plug-In wird deaktiviert.</entry>
   <entry key="module.status.enabled">Modul %s ist aktiviert.</entry>
   <entry key="module.status.disabled">Modul %s is dekativiert, wird übersprungen.</entry>
-  <entry key="tile.extrabiomes.autumnleaves.0.name">Umbrabraune Herbstblätter</entry>
+  <entry key="tile.extrabiomes.autumnleaves.0.name">Umbrafarbene Herbstblätter</entry>
   <entry key="tile.extrabiomes.autumnleaves.1.name">Flammend-Orange Herbstblätter</entry>
   <entry key="tile.extrabiomes.autumnleaves.2.name">Violette Herbstblätter</entry>
   <entry key="tile.extrabiomes.autumnleaves.3.name">Zitrine Herbstblätter</entry>
@@ -112,7 +112,7 @@
   <entry key="tile.extrabiomes.redrockslab.redcobble.name">Rote Pflastersteinhalbstufe</entry>
   <entry key="tile.extrabiomes.redrockslab.redrock.name">Rote Steinhalbstufe</entry>
   <entry key="tile.extrabiomes.redrockslab.redrockbrick.name">Rote Steinziegelhalbstufe</entry>
-  <entry key="tile.extrabiomes.sapling.0.name">Umbrabrauner Herbstsetzling</entry>
+  <entry key="tile.extrabiomes.sapling.0.name">Umbrafarbener Herbstsetzling</entry>
   <entry key="tile.extrabiomes.sapling.1.name">Flammend-Oranger Herbstsetzling</entry>
   <entry key="tile.extrabiomes.sapling.2.name">Violetter Herbstsetzling</entry>
   <entry key="tile.extrabiomes.sapling.3.name">Zitriner Herbstsetzling</entry>
