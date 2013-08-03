@@ -1,12 +1,12 @@
 package extrabiomes.items;
 
+import extrabiomes.blocks.BlockNewSapling;
 import net.minecraft.item.ItemStack;
 import extrabiomes.utility.MultiItemBlock;
-import extrabiomes.blocks.BlockCustomSapling;
 
-public class ItemSapling extends MultiItemBlock {
+public class ItemNewSapling extends MultiItemBlock {
 
-    public ItemSapling(int id) {
+	public ItemNewSapling(int id) {
         super(id);
     }
 
@@ -21,7 +21,7 @@ public class ItemSapling extends MultiItemBlock {
         int metadata = unmarkedMetadata(itemstack.getItemDamage());
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
-        return super.getUnlocalizedName() + "." + BlockCustomSapling.BlockType.values()[metadata].toString().toLowerCase();
-        //return super.getUnlocalizedName(itemstack);
+        return super.getUnlocalizedName() + "." + BlockNewSapling.BlockType.values()[metadata].toString().toLowerCase();
     }
+
 }

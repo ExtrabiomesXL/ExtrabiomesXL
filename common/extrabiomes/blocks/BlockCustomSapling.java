@@ -42,7 +42,7 @@ import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 public class BlockCustomSapling extends BlockFlower {
 
     public enum BlockType {
-        BROWN(0), ORANGE(1), PURPLE(2), YELLOW(3), FIR(4), REDWOOD(5), ACACIA(6), CYPRESS(7);
+    	UMBER(0), GOLDENROD(1), VERMILLION(2), CITRINE(3), FIR(4), REDWOOD(5), ACACIA(6), CYPRESS(7);
 
         private final int metadata;
 
@@ -164,7 +164,7 @@ public class BlockCustomSapling extends BlockFlower {
 
         final boolean isForestryFarmed = world.getBlockId(x, y - 1, z) == forestrySoilID;
 
-        if (metadata == BlockType.BROWN.metadata()) {
+        if (metadata == BlockType.UMBER.metadata()) {
             if (rand.nextInt(3) != 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
                 
@@ -174,7 +174,7 @@ public class BlockCustomSapling extends BlockFlower {
                 
                 ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
-        } else if (metadata == BlockType.ORANGE.metadata()) {
+        } else if (metadata == BlockType.GOLDENROD.metadata()) {
             if (rand.nextInt(3) != 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
                 
@@ -184,7 +184,7 @@ public class BlockCustomSapling extends BlockFlower {
                 
                 ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
-        } else if (metadata == BlockType.PURPLE.metadata()) {
+        } else if (metadata == BlockType.VERMILLION.metadata()) {
             if (rand.nextInt(3) != 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
                 
@@ -194,7 +194,7 @@ public class BlockCustomSapling extends BlockFlower {
                 
                 ((WorldGenAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
             }
-        } else if (metadata == BlockType.YELLOW.metadata()) {
+        } else if (metadata == BlockType.CITRINE.metadata()) {
             if (rand.nextInt(3) != 0) {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
                 
@@ -299,19 +299,19 @@ public class BlockCustomSapling extends BlockFlower {
     			// Determine if the sapling should despawn
     			if(metadata == BlockType.ACACIA.metadata() && chance <= SaplingSettings.ACACIA.chance()) {
     				replant = true;
-    			} else if(metadata == BlockType.BROWN.metadata() && chance <= SaplingSettings.BROWN.chance()) {
+    			} else if(metadata == BlockType.UMBER.metadata() && chance <= SaplingSettings.BROWN.chance()) {
     				replant = true;
     			} else if(metadata == BlockType.CYPRESS.metadata() && chance <= SaplingSettings.CYPRESS.chance()) {
     				replant = true;
     			} else if(metadata == BlockType.FIR.metadata() && chance <= SaplingSettings.FIR.chance() * ratio) {
     				replant = true;
-    			} else if(metadata == BlockType.ORANGE.metadata() && chance <= SaplingSettings.ORANGE.chance()) {
+    			} else if(metadata == BlockType.GOLDENROD.metadata() && chance <= SaplingSettings.ORANGE.chance()) {
     				replant = true;
-    			} else if(metadata == BlockType.PURPLE.metadata() && chance <= SaplingSettings.PURPLE.chance()) {
+    			} else if(metadata == BlockType.VERMILLION.metadata() && chance <= SaplingSettings.PURPLE.chance()) {
     				replant = true;
     			} else if(metadata == BlockType.REDWOOD.metadata() && chance <= SaplingSettings.REDWOOD.chance() * ratio) {
     				replant = true;
-    			} else if(metadata == BlockType.YELLOW.metadata() && chance <= SaplingSettings.YELLOW.chance()){
+    			} else if(metadata == BlockType.CITRINE.metadata() && chance <= SaplingSettings.YELLOW.chance()){
     				replant = true;
     			} 			
     			

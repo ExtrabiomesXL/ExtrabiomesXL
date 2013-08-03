@@ -34,7 +34,7 @@ import extrabiomes.lib.Element;
 
 public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
     public enum BlockType {
-        BROWN(0), ORANGE(1), PURPLE(2), YELLOW(3);
+    	UMBER(0), GOLDENROD(1), VERMILLION(2), CITRINE(3);
 
         private final int      metadata;
         private ItemStack      sapling            = new ItemStack(Block.sapling);
@@ -55,19 +55,19 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable {
 
         private static void loadCustomBlocks() {
             if (Element.SAPLING_AUTUMN_BROWN.isPresent()) {
-                BROWN.sapling = Element.SAPLING_AUTUMN_BROWN.get();
+            	UMBER.sapling = Element.SAPLING_AUTUMN_BROWN.get();
             }
             
             if (Element.SAPLING_AUTUMN_ORANGE.isPresent()) {
-                ORANGE.sapling = Element.SAPLING_AUTUMN_ORANGE.get();
+            	GOLDENROD.sapling = Element.SAPLING_AUTUMN_ORANGE.get();
             }
             
             if (Element.SAPLING_AUTUMN_PURPLE.isPresent()) {
-                PURPLE.sapling = Element.SAPLING_AUTUMN_PURPLE.get();
+            	VERMILLION.sapling = Element.SAPLING_AUTUMN_PURPLE.get();
             }
             
             if (Element.SAPLING_AUTUMN_YELLOW.isPresent()) {
-                YELLOW.sapling = Element.SAPLING_AUTUMN_YELLOW.get();
+            	CITRINE.sapling = Element.SAPLING_AUTUMN_YELLOW.get();
             }
 
             loadedCustomBlocks = true;

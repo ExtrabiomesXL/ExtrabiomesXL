@@ -50,17 +50,17 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockAutumnLeaves block = new BlockAutumnLeaves(blockID, 3, Material.leaves, false);
-        block.setUnlocalizedName("extrabiomes.autumnleaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomLeaves.class);
         proxy.registerOreInAllSubblocks("treeLeaves", block);
         proxy.setBurnProperties(block.blockID, 30, 60);
 
-        Element.LEAVES_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.BROWN.metadata()));
-        Element.LEAVES_AUTUMN_ORANGE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.ORANGE.metadata()));
-        Element.LEAVES_AUTUMN_PURPLE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.PURPLE.metadata()));
-        Element.LEAVES_AUTUMN_YELLOW.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.YELLOW.metadata()));
+        Element.LEAVES_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.UMBER.metadata()));
+        Element.LEAVES_AUTUMN_ORANGE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.GOLDENROD.metadata()));
+        Element.LEAVES_AUTUMN_PURPLE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.VERMILLION.metadata()));
+        Element.LEAVES_AUTUMN_YELLOW.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.CITRINE.metadata()));
 
         final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
         ForestryModHelper.registerLeaves(stack);
@@ -189,10 +189,10 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockNewLeaves block = new BlockNewLeaves(blockID, Material.leaves, false);
-        block.setUnlocalizedName("extrabiomes.newleaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemCustomGreenLeaves.class);
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomNewLeaves.class);
         proxy.registerOreInAllSubblocks("treeLeaves", block);
         proxy.setBurnProperties(block.blockID, 30, 60);
 
@@ -211,7 +211,7 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockGreenLeaves block = new BlockGreenLeaves(blockID, Material.leaves, false);
-        block.setUnlocalizedName("extrabiomes.greenleaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomGreenLeaves.class);
@@ -259,7 +259,8 @@ public abstract class BlockHandler {
     	
     	final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
-        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+        //proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+        proxy.registerBlock(block, net.minecraft.item.ItemBlock.class);
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
         proxy.setBurnProperties(block.blockID, 5, 5);
@@ -270,7 +271,8 @@ public abstract class BlockHandler {
     	block2.setUnlocalizedName("extrabiomes.rainbowkneelog").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
     	
         proxy.setBlockHarvestLevel(block2, "axe", 0);
-        proxy.registerBlock(block2, extrabiomes.utility.MultiItemBlock.class);
+        //proxy.registerBlock(block2, extrabiomes.utility.MultiItemBlock.class);
+        proxy.registerBlock(block2, net.minecraft.item.ItemBlock.class);
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block2);
         proxy.setBurnProperties(block2.blockID, 5, 5);
@@ -290,7 +292,8 @@ public abstract class BlockHandler {
     	
     	final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
-        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
+        
+        proxy.registerBlock(block, net.minecraft.item.ItemBlock.class);
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
         proxy.setBurnProperties(block.blockID, 5, 5);
@@ -302,7 +305,7 @@ public abstract class BlockHandler {
     	block2.setUnlocalizedName("extrabiomes.rainboweucalyptusquarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
     	
         proxy.setBlockHarvestLevel(block2, "axe", 0);
-        proxy.registerBlock(block2, extrabiomes.utility.MultiItemBlock.class);
+        proxy.registerBlock(block2, net.minecraft.item.ItemBlock.class);
         proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
         proxy.setBurnProperties(block2.blockID, 5, 5);
@@ -393,10 +396,10 @@ public abstract class BlockHandler {
         proxy.registerOreInAllSubblocks("treeSapling", block);
 
         Element.SAPLING_ACACIA.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.ACACIA.metadata()));
-        Element.SAPLING_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.BROWN.metadata()));
-        Element.SAPLING_AUTUMN_ORANGE.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.ORANGE.metadata()));
-        Element.SAPLING_AUTUMN_PURPLE.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.PURPLE.metadata()));
-        Element.SAPLING_AUTUMN_YELLOW.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.YELLOW.metadata()));
+        Element.SAPLING_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.UMBER.metadata()));
+        Element.SAPLING_AUTUMN_ORANGE.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.GOLDENROD.metadata()));
+        Element.SAPLING_AUTUMN_PURPLE.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.VERMILLION.metadata()));
+        Element.SAPLING_AUTUMN_YELLOW.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.CITRINE.metadata()));
         Element.SAPLING_FIR.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.FIR.metadata()));
         Element.SAPLING_REDWOOD.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.REDWOOD.metadata()));
         Element.SAPLING_CYPRESS.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.CYPRESS.metadata()));
@@ -431,10 +434,10 @@ public abstract class BlockHandler {
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
 
         final BlockNewSapling block = new BlockNewSapling(blockID);
-        block.setUnlocalizedName("extrabiomes.newsapling").setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.sapling").setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemSapling.class);
+        proxy.registerBlock(block, extrabiomes.items.ItemNewSapling.class);
         proxy.registerOreInAllSubblocks("treeSapling", block);
 
         Element.SAPLING_BALD_CYPRESS.set(new ItemStack(block, 1, BlockNewSapling.BlockType.BALD_CYPRESS.metadata()));

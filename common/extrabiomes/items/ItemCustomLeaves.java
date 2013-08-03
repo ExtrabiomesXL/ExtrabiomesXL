@@ -7,6 +7,7 @@
 package extrabiomes.items;
 
 import net.minecraft.item.ItemStack;
+import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.utility.MultiItemBlock;
 
 public class ItemCustomLeaves extends MultiItemBlock {
@@ -22,7 +23,7 @@ public class ItemCustomLeaves extends MultiItemBlock {
         if (metadata > 3) metadata = 3;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
-        return super.getUnlocalizedName(itemstack);
+        return super.getUnlocalizedName() + "." + BlockAutumnLeaves.BlockType.values()[metadata].toString().toLowerCase();
     }
 
     private static final int METADATA_USERPLACEDBIT = 0x4;
