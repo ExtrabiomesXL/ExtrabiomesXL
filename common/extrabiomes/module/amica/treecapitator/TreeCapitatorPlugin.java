@@ -72,8 +72,9 @@ public class TreeCapitatorPlugin
             tree = new NBTTagCompound();
             tree.setString("treeName", "japanesemaple");
             tree.setString("logs", String.format("%d,3; %d,7; %d,11", BlockSettings.CUSTOMLOG.getID(), BlockSettings.CUSTOMLOG.getID(), BlockSettings.CUSTOMLOG.getID()));
-            tree.setString("leaves", String.format("%d,1; %d,9; %d,2; %d,10", BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID()));
+            tree.setString("leaves", String.format("%d,1; %d,9; %d,2; %d,10; %d,5; %d,13", BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID()));
             tree.setInteger("maxHorLeafBreakDist", 6);
+            tree.setBoolean("requireLeafDecayCheck", false);
             treeList.appendTag(tree);
             
             // EBXL autumn trees

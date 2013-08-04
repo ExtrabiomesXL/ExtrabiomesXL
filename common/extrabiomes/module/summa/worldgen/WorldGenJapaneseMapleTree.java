@@ -247,6 +247,9 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase {
     	
     	// Generate the canopy
     	generateCanopy(world, rand, average[0] + x, y, average[2] + z, radius, height, TreeBlock.LEAVES.get());
+    	
+    	// Generate the center cone
+    	generateVerticalCone(world, x, y, z, height-1, .75, 2, TreeBlock.LEAVES.get());
 
     }
     
@@ -267,6 +270,14 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase {
     		} else {
     			generateCanopyLayer(world, rand, x, y1, z, radius * Math.cos((layer) / (height / 1.3)), 1000, leaves);
     		}
+    	}
+    }
+    
+    public void generateVerticalCone(World world, int x, int y, int z, int height, double r1, double r2, ItemStack leaves){
+    	double ratio = (r2 - r1) / (height - 1);
+    	
+    	for(int offset = 0; offset < height; offset++) {
+    		placeLeavesCircle(x, y + offset, z, (ratio * offset) + r1, leaves, world);
     	}
     }
     
