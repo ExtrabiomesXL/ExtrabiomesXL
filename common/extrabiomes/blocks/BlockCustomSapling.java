@@ -288,38 +288,121 @@ public class BlockCustomSapling extends BlockFlower {
     		int posY = (int)Math.floor(event.entityItem.lastTickPosY);
     		int posZ = (int)Math.floor(event.entityItem.lastTickPosZ);
     		double chance = event.entityItem.worldObj.rand.nextDouble() * 100;
-    		boolean replant = false;
-    		    		
-    		
     		
     		//event.entityItem
-    		if(canThisPlantGrowOnThisBlockID(event.entityItem.worldObj.getBlockId(posX, posY - 1, posZ)) && event.entityItem.worldObj.isAirBlock(posX, posY, posZ)) {
+    		if(canThisPlantGrowOnThisBlockID(event.entityItem.worldObj.getBlockId(posX, posY - 1, posZ))) {
     			double ratio = ((!GeneralSettings.bigTreeSaplingDropModifier) ? 1.0D : 4.0D);
     			    			
     			// Determine if the sapling should despawn
-    			if(metadata == BlockType.ACACIA.metadata() && chance <= SaplingSettings.ACACIA.chance()) {
-    				replant = true;
-    			} else if(metadata == BlockType.UMBER.metadata() && chance <= SaplingSettings.BROWN.chance()) {
-    				replant = true;
-    			} else if(metadata == BlockType.CYPRESS.metadata() && chance <= SaplingSettings.CYPRESS.chance()) {
-    				replant = true;
+    			if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.ACACIA.metadata() && chance <= SaplingSettings.ACACIA.chance()) {
+    				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.UMBER.metadata() && chance <= SaplingSettings.BROWN.chance()) {
+    				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.CYPRESS.metadata() && chance <= SaplingSettings.CYPRESS.chance()) {
+    				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
     			} else if(metadata == BlockType.FIR.metadata() && chance <= SaplingSettings.FIR.chance() * ratio) {
-    				replant = true;
-    			} else if(metadata == BlockType.GOLDENROD.metadata() && chance <= SaplingSettings.ORANGE.chance()) {
-    				replant = true;
-    			} else if(metadata == BlockType.VERMILLION.metadata() && chance <= SaplingSettings.PURPLE.chance()) {
-    				replant = true;
+    				plant2x2Sapling(posX, posY, posZ, event.entityItem.worldObj, event.entityItem.getEntityItem());
+    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.GOLDENROD.metadata() && chance <= SaplingSettings.ORANGE.chance()) {
+    				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.VERMILLION.metadata() && chance <= SaplingSettings.PURPLE.chance()) {
+    				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
     			} else if(metadata == BlockType.REDWOOD.metadata() && chance <= SaplingSettings.REDWOOD.chance() * ratio) {
-    				replant = true;
-    			} else if(metadata == BlockType.CITRINE.metadata() && chance <= SaplingSettings.YELLOW.chance()){
-    				replant = true;
-    			} 			
-    			
-    			if(replant) {
+    				plant2x2Sapling(posX, posY, posZ, event.entityItem.worldObj, event.entityItem.getEntityItem());
+    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.CITRINE.metadata() && chance <= SaplingSettings.YELLOW.chance()){
     				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
     			}
     		}
     	}
+    }
+    
+    private void plant2x2Sapling(int x, int y, int z, World world, ItemStack sapling) {
+    	int metadata = sapling.getItemDamage();
+    	
+    	// check station one blocks for validity
+    	if((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x+1, y, z) || isSameSaplingBlock(x+1, y, z, world, sapling)) && (world.isAirBlock(x+1, y, z+1) || isSameSaplingBlock(x+1, y, z+1, world, sapling)) && (world.isAirBlock(x, y, z+1) || isSameSaplingBlock(x, y, z+1, world, sapling))) {
+    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z))) {
+    			world.setBlock(x, y, z, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x+1, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z))) {
+    			world.setBlock(x+1, y, z, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x+1, y, z+1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z+1))) {
+    			world.setBlock(x+1, y, z+1, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x, y, z+1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z+1))) {
+    			world.setBlock(x, y, z+1, saplingID, metadata, 2);
+    			return;
+    		}
+    	}
+
+    	// check station 2
+    	if((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x, y, z+1) || isSameSaplingBlock(x, y, z+1, world, sapling)) && (world.isAirBlock(x-1, y, z+1) || isSameSaplingBlock(x-1, y, z+1, world, sapling)) && (world.isAirBlock(x-1, y, z) || isSameSaplingBlock(x-1, y, z, world, sapling))) {
+    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z))) {
+    			world.setBlock(x, y, z, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x, y, z+1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z+1))) {
+    			world.setBlock(x, y, z+1, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x-1, y, z+1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z+1))) {
+    			world.setBlock(x-1, y, z+1, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x-1, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z))) {
+    			world.setBlock(x-1, y, z, saplingID, metadata, 2);
+    			return;
+    		}
+    	}
+    	
+    	// Check station 3
+    	if((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x-1, y, z) || isSameSaplingBlock(x-1, y, z, world, sapling)) && (world.isAirBlock(x-1, y, z-1) || isSameSaplingBlock(x-1, y, z-1, world, sapling)) && (world.isAirBlock(x, y, z-1) || isSameSaplingBlock(x, y, z-1, world, sapling))) {
+    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z))) {
+    			world.setBlock(x, y, z, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x-1, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z))) {
+    			world.setBlock(x-1, y, z, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x-1, y, z-1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z-1))) {
+    			world.setBlock(x-1, y, z-1, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x, y, z-1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z-1))) {
+    			world.setBlock(x, y, z-1, saplingID, metadata, 2);
+    			return;
+    		}
+    	}
+    	
+    	// Check station 4
+    	if((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x, y, z-1) || isSameSaplingBlock(x, y, z-1, world, sapling)) && (world.isAirBlock(x+1, y, z-1) || isSameSaplingBlock(x+1, y, z-1, world, sapling)) && (world.isAirBlock(x+1, y, z) || isSameSaplingBlock(x+1, y, z, world, sapling))) {
+    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z))) {
+    			world.setBlock(x, y, z, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x, y, z-1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z-1))) {
+    			world.setBlock(x, y, z-1, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x+1, y, z-1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z-1))) {
+    			world.setBlock(x+1, y, z-1, saplingID, metadata, 2);
+    			return;
+    		}
+    		if(world.isAirBlock(x+1, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z))) {
+    			world.setBlock(x+1, y, z, saplingID, metadata, 2);
+    			return;
+    		}
+    	}
+    }
+    
+    private boolean isSameSaplingBlock(int x, int y, int z, World world, ItemStack sapling){
+    	int id = world.getBlockId(x, y, z);
+    	int metadata = world.getBlockMetadata(x, y, z);
+        return id != 0 && Block.blocksList[id] != null && sapling.itemID == id && sapling.getItemDamage() == metadata;
     }
     
     @ForgeSubscribe

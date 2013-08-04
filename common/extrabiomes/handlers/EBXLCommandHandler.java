@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import extrabiomes.blocks.BlockCustomSapling;
+import extrabiomes.blocks.BlockNewSapling;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.Vector3;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
@@ -123,6 +124,7 @@ public class EBXLCommandHandler extends CommandBase {
                 			
                 			if(newTime >= 0 && newTime <= 10000){
                 				BlockCustomSapling.setSaplingLifespan(newTime);
+                				BlockNewSapling.setSaplingLifespan(newTime);
                 				player.addChatMessage("Sapling despawn time set to: " + cmds[1] + " ticks");
                 			} else {
                 				player.addChatMessage("Sapling despawn time must be between 0 and 10000.");
