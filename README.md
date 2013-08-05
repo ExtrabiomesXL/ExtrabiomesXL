@@ -7,15 +7,19 @@
 
 #### How to install and use the source code ####
 
-1. Properly install MCP and Forge source code into a folder.
-- Successfully build using the forge setup script.
-- Clone this git into the folder.
-- Use the eclipse folder in your MCP setup as your workspace.
-- Add "common" and "resources" as linked folders and set both as source folders
+1. Download the latest recommended MinecraftForge src distribution.
+2. Extract the Forge src zip file and run install.bat/.sh in the forge folder.
+3. Clone this git repo to whatever location you like.
+4. Use the eclipse folder in your Forge/MCP setup as your Eclipse workspace.
+5. Under the Minecraft project, add the "common" and "resources" folders in the git repo as linked folders and set both as source folders.
 
-- To manually build the mod, execute build_extrabiomesXL.bat -or - build_extrabiomesXL.sh from within the MCP folder.
-- Zip the files found in reobf/minecraft.
-- Install the resulting mod archive by dropping it in the mods folder on the client or server. The mod is universal and works on both the client and the server.
+#### How to build from the source code ####
+
+1. Download and install Apache Ant on your system. Make sure it is available on the path environment variable.
+2. In the EBXL repo folder, make a copy of build.properties_example and name it build.properties.
+3. Edit the values in build.properties to contain valid paths on your system for the 3 properties. Details can be found in build.properties_example.
+4. From a console window run "ant" from the ExtrabiomesXL repo folder. The build will create its output in the bin folder.
+5. Install the resulting mod archive by copying it to the mods folder on the client or server. The mod is universal and works on both the client and the server.
 
 * * *
 
