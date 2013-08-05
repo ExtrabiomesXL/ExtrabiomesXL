@@ -273,19 +273,10 @@ public class BlockNewSapling extends BlockFlower {
     	
     	// check station one blocks for validity
     	if((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x+1, y, z) || isSameSaplingBlock(x+1, y, z, world, sapling)) && (world.isAirBlock(x+1, y, z+1) || isSameSaplingBlock(x+1, y, z+1, world, sapling)) && (world.isAirBlock(x, y, z+1) || isSameSaplingBlock(x, y, z+1, world, sapling))) {
-    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z))) {
+    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z+1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z+1))) {
     			world.setBlock(x, y, z, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x+1, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z))) {
     			world.setBlock(x+1, y, z, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x+1, y, z+1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z+1))) {
     			world.setBlock(x+1, y, z+1, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x, y, z+1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z+1))) {
     			world.setBlock(x, y, z+1, saplingID, metadata, 2);
     			return;
     		}
@@ -293,19 +284,10 @@ public class BlockNewSapling extends BlockFlower {
 
     	// check station 2
     	if((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x, y, z+1) || isSameSaplingBlock(x, y, z+1, world, sapling)) && (world.isAirBlock(x-1, y, z+1) || isSameSaplingBlock(x-1, y, z+1, world, sapling)) && (world.isAirBlock(x-1, y, z) || isSameSaplingBlock(x-1, y, z, world, sapling))) {
-    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z))) {
+    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z+1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z+1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z))) {
     			world.setBlock(x, y, z, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x, y, z+1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z+1))) {
     			world.setBlock(x, y, z+1, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x-1, y, z+1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z+1))) {
     			world.setBlock(x-1, y, z+1, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x-1, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z))) {
     			world.setBlock(x-1, y, z, saplingID, metadata, 2);
     			return;
     		}
@@ -313,19 +295,10 @@ public class BlockNewSapling extends BlockFlower {
     	
     	// Check station 3
     	if((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x-1, y, z) || isSameSaplingBlock(x-1, y, z, world, sapling)) && (world.isAirBlock(x-1, y, z-1) || isSameSaplingBlock(x-1, y, z-1, world, sapling)) && (world.isAirBlock(x, y, z-1) || isSameSaplingBlock(x, y, z-1, world, sapling))) {
-    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z))) {
+    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z-1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z-1))) {
     			world.setBlock(x, y, z, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x-1, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z))) {
     			world.setBlock(x-1, y, z, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x-1, y, z-1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x-1, y-1, z-1))) {
     			world.setBlock(x-1, y, z-1, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x, y, z-1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z-1))) {
     			world.setBlock(x, y, z-1, saplingID, metadata, 2);
     			return;
     		}
@@ -333,19 +306,10 @@ public class BlockNewSapling extends BlockFlower {
     	
     	// Check station 4
     	if((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x, y, z-1) || isSameSaplingBlock(x, y, z-1, world, sapling)) && (world.isAirBlock(x+1, y, z-1) || isSameSaplingBlock(x+1, y, z-1, world, sapling)) && (world.isAirBlock(x+1, y, z) || isSameSaplingBlock(x+1, y, z, world, sapling))) {
-    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z))) {
+    		if(world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z-1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z-1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z))) {
     			world.setBlock(x, y, z, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x, y, z-1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y-1, z-1))) {
     			world.setBlock(x, y, z-1, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x+1, y, z-1) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z-1))) {
     			world.setBlock(x+1, y, z-1, saplingID, metadata, 2);
-    			return;
-    		}
-    		if(world.isAirBlock(x+1, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x+1, y-1, z))) {
     			world.setBlock(x+1, y, z, saplingID, metadata, 2);
     			return;
     		}

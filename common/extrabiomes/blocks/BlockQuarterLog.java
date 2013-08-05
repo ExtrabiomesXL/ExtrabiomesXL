@@ -638,9 +638,7 @@ public class BlockQuarterLog extends BlockLog {
         int id = event.world.getBlockId(event.x, event.y, event.z);
 
         if (id == blockID) {
-        	
-        	
-            final Block wood = Block.wood;
+        	final Block wood = Block.wood;
             event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F,
                     wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F,
                     wood.stepSound.getPitch() * 1.55F);
@@ -653,7 +651,7 @@ public class BlockQuarterLog extends BlockLog {
                 orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
 
                 if (orientation == 0) id = getNextBlockID();
-                event.world.setBlock(event.x, event.y, event.z, id, type | orientation, 3);
+                event.world.setBlock(event.x, event.y, event.z, id, type | orientation, 3);                
             }
             event.setHandled();
             
