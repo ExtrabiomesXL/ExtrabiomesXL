@@ -93,6 +93,7 @@ public class TreeCapitatorPlugin
                     BlockSettings.NEWLOG.getID(), BlockSettings.NEWLOG.getID()));
             tree.setString("leaves", String.format("%d,3; %d,11", BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID()));
             tree.setInteger("maxHorLeafBreakDist", 6);
+            tree.setBoolean("requireLeafDecayCheck", false);
             treeList.appendTag(tree);
             
             // EBXL bald cypress
@@ -102,6 +103,7 @@ public class TreeCapitatorPlugin
                     BlockSettings.NEWLOG.getID(), BlockSettings.NEWLOG.getID()));
             tree.setString("leaves", String.format("%d,0; %d,8", BlockSettings.NEWLEAVES.getID(), BlockSettings.NEWLEAVES.getID()));
             tree.setInteger("maxHorLeafBreakDist", 6);
+            tree.setBoolean("requireLeafDecayCheck", false);
             treeList.appendTag(tree);
             
             tpModCfg.setTag("trees", treeList);
