@@ -333,5 +333,29 @@ public class FlowerGenerator implements IWorldGenerator {
 				callaGen.generate(world, rand, x, y, z);
 			}
 		}
+
+		if (BiomeManager.meadow.isPresent() && biome == BiomeManager.meadow.get()) {
+			for (int i = 0; i < 2; i++) {
+				int x = chunkX + rand.nextInt(16) + 8;
+				int y = rand.nextInt(128);
+				int z = chunkZ + rand.nextInt(16) + 8;
+				buttercupGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				hydrangeaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				callaGen.generate(world, rand, x, y, z);
+
+				x = chunkX + rand.nextInt(16) + 8;
+				y = rand.nextInt(128);
+				z = chunkZ + rand.nextInt(16) + 8;
+				lavenderGen.generate(world, rand, x, y, z);
+			}
+		}		
 	}
 }
