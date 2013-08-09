@@ -238,7 +238,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable {
     }
  
 	public float getSpawnChanceFallingLeaves(int metadata) {
-		return 0.08F;
+		return 0.05F;
 	}
 
     @SideOnly(Side.CLIENT)

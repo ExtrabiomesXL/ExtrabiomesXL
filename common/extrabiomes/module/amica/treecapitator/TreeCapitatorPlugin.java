@@ -77,6 +77,15 @@ public class TreeCapitatorPlugin
             tree.setBoolean("requireLeafDecayCheck", false);
             treeList.appendTag(tree);
             
+            // EBXL Sakura Blossom 
+            tree = new NBTTagCompound();
+            tree.setString("treeName", "sakurablossom");
+            tree.setString("logs", String.format("%d,0; %d,4; %d,8", BlockSettings.MINILOG.getID(), BlockSettings.MINILOG.getID(), BlockSettings.MINILOG.getID()));
+            tree.setString("leaves", String.format("%d,0; %d,8", BlockSettings.MORELEAVES.getID(), BlockSettings.MORELEAVES.getID()));
+            tree.setInteger("maxHorLeafBreakDist", 6);
+            tree.setBoolean("requireLeafDecayCheck", false);
+            treeList.appendTag(tree);
+            
             // EBXL autumn trees
             tree = new NBTTagCompound();
             tree.setString("treeName", "autumntree");

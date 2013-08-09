@@ -173,8 +173,8 @@ public class BiomeManagerImpl extends BiomeManager {
         
         addWeightedTreeGenForBiome(biome.get(), OAK_TREE_GEN, 99);
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 1);
-        addWeightedTreeGenForBiome(biome.get(), BIRCH_TREE_GEN, 9400);
-        addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 500);
+        addWeightedTreeGenForBiome(biome.get(), BIRCH_TREE_GEN, 9650);
+        addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 250);
     }
 
     private static void addDefaultTrees(Optional<? extends BiomeGenBase> biome) {

@@ -237,7 +237,7 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase {
     	Iterator<int[]> itt = branches.iterator();
     	while (itt.hasNext()) {
     	   int[] cluster = itt.next();
-    	   generateLeafCluster(world, cluster[0], cluster[1], cluster[2], 2, 1, TreeBlock.LEAVES.get());
+    	   generateLeafCluster(world, cluster[0], cluster[1], cluster[2], 2, 2, TreeBlock.LEAVES.get());
     	}
 
     	// Calculate the center position
