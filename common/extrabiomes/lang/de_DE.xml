@@ -38,11 +38,13 @@
   <entry key="tile.extrabiomes.leaves.japanese_maple.name">Fächer-Ahornblätter</entry>
   <entry key="tile.extrabiomes.leaves.japanese_maple_shrub.name">Fächer-Ahornstrauchblätter</entry>
   <entry key="tile.extrabiomes.leaves.rainbow_eucalyptus.name">Regenbogen-Eukalyptusblätter</entry>
+  <entry key="tile.extrabiomes.leaves.sakura_blossom.name">Japanische Blütenkirschblätter</entry>
   <entry key="tile.extrabiomes.leafpile.name">Blatthaufen</entry>
   <entry key="tile.extrabiomes.log.0.name">Tannenstamm</entry>
   <entry key="tile.extrabiomes.log.1.name">Akazienstamm</entry>
   <entry key="tile.extrabiomes.log.2.name">Zypressenstamm</entry>
   <entry key="tile.extrabiomes.log.3.name">Fächer-Ahornstamm</entry>
+  <entry key="tile.extrabiomes.log.sakura_blossom.name">Japanischer Blütenkirschstamm</entry>
   <entry key="tile.extrabiomes.cypresskneelog.name">Sumpfzypressen-Biegungsstamm</entry>
   <entry key="tile.extrabiomes.rainbowkneelog.name">Regenbogen-Eukalyptus-Biegungsstamm</entry>
   <entry key="tile.extrabiomes.newlog.0.name">Regenbogen-Eukalyptusstamm</entry>
@@ -59,8 +61,9 @@
   <entry key="tile.extrabiomes.planks.3.name">Zypressenholzplanken</entry>
   <entry key="tile.extrabiomes.planks.4.name">Fächer-Ahornholzplanken</entry>
   <entry key="tile.extrabiomes.planks.5.name">Regenbogen-Eukalyptus-Holzplanken</entry>
-  <entry key="tile.extrabiomes.planks.6.name">Herbst-Holzplanken</entry>
+  <entry key="tile.extrabiomes.planks.6.name">Herbstholzplanken</entry>
   <entry key="tile.extrabiomes.planks.7.name">Sumpfzypressenholzplanken</entry>
+  <entry key="tile.extrabiomes.planks.8.name">Japanische Blütenkirschholzplanken</entry>
   <entry key="tile.extrabiomes.quicksand.name">Treibsand</entry>
   <entry key="tile.extrabiomes.redrock.0.name">Roter Stein</entry>
   <entry key="tile.extrabiomes.redrock.1.name">Roter Pflasterstein</entry>
@@ -80,6 +83,7 @@
   <entry key="tile.extrabiomes.sapling.japanese_maple.name">Fächer-Ahornsetzling</entry>
   <entry key="tile.extrabiomes.sapling.japanese_maple_shrub.name">Fächer-Ahornstrauchsetzling</entry>
   <entry key="tile.extrabiomes.sapling.rainbow_eucalyptus.name">Regenbogen-Eukalyptus-Setzling</entry>
+  <entry key="tile.extrabiomes.sapling.sakura_blossom.name">Japanischer Blütenkirschsetzling</entry>
   <entry key="tile.extrabiomes.stairs.acacia.name">Akazienholztreppe</entry>
   <entry key="tile.extrabiomes.stairs.fir.name">Tannenholztreppe</entry>
   <entry key="tile.extrabiomes.stairs.redcobble.name">Rote Pflastersteintreppe</entry>
@@ -88,8 +92,9 @@
   <entry key="tile.extrabiomes.stairs.japanesemaple.name">Fächer-Ahrontreppe</entry>
   <entry key="tile.extrabiomes.stairs.cypress.name">Zypressentreppe</entry>
   <entry key="tile.extrabiomes.stairs.baldcypress.name">Sumpfzypressentreppe</entry>
-  <entry key="tile.extrabiomes.stairs.autumn.name">Herbsttreppe</entry>
+  <entry key="tile.extrabiomes.stairs.autumn.name">Herbstholztreppe</entry>
   <entry key="tile.extrabiomes.stairs.rainboweucalyptus.name">Regenbogen-Eukalyptus-Treppe</entry>
+  <entry key="tile.extrabiomes.stairs.sakurablossom.name">Japanische Blütenkirschholztreppe</entry>
   <entry key="tile.extrabiomes.tallgrass.0.name">Braunes Gras</entry>
   <entry key="tile.extrabiomes.tallgrass.1.name">Kurzes Braunes Gras</entry>
   <entry key="tile.extrabiomes.tallgrass.2.name">Totes Gras</entry>
@@ -102,6 +107,7 @@
   <entry key="tile.extrabiomes.woodslab.japanese_maple.name">Fächer-Ahornstufe</entry>
   <entry key="tile.extrabiomes.woodslab.cypress.name">Zypressenstufe</entry>
   <entry key="tile.extrabiomes.woodslab.rainbow_eucalyptus.name">Regenbogen-Eukalyptus-Stufe</entry>
-  <entry key="tile.extrabiomes.woodslab.autumn.name">Herbststufe</entry>
+  <entry key="tile.extrabiomes.woodslab.autumn.name">Herbstholzstufe</entry>
   <entry key="tile.extrabiomes.woodslab.bald_cypress.name">Sumpfzypressenstufe</entry>
+  <entry key="tile.extrabiomes.woodslab.sakura_blossom.name">Japanische Blütenkirschholzstufe</entry>
 </properties>
