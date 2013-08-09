@@ -114,9 +114,7 @@ public class WorldGenLegendOak extends WorldGenerator {
             }
     }
 
-    protected void growTree(World world, Random random, int x, int y, int z, int height,
-            int leaflessHeight, int leafWidth)
-    {
+    protected void growTree(World world, Random random, int x, int y, int z, int height, int leaflessHeight, int leafWidth) {
         world.setBlock(x, y - 1, z, Block.dirt.blockID);
         world.setBlock(x - 1, y - 1, z, Block.dirt.blockID);
         world.setBlock(x, y - 1, z - 1, Block.dirt.blockID);
@@ -143,13 +141,10 @@ public class WorldGenLegendOak extends WorldGenerator {
 
     }
 
-    private void inside(World world, Random random, int size, BendDirection xDirection,
-            BendDirection zDirection, int x, int y, int z)
-    {
+    private void inside(World world, Random random, int size, BendDirection xDirection, BendDirection zDirection, int x, int y, int z) {
         int length = 0;
         while (length < 2 * size / 3) {
-            setBlockAndMetadata(world, x, y, z, TreeBlock.BRANCH.getID(),
-                    TreeBlock.BRANCH.getMetadata());
+            setBlockAndMetadata(world, x, y, z, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
             if (random.nextInt(3) == 0 || length == 2 * size / 3 - 1) growLeafNode(world, x, y, z);
             switch (xDirection) {
                 case STRAIGHT:
@@ -178,9 +173,7 @@ public class WorldGenLegendOak extends WorldGenerator {
         }
     }
 
-    private void insideSmall(World world, Random random, int size, BendDirection xDirection,
-            BendDirection zDirection, int x, int y, int z)
-    {
+    private void insideSmall(World world, Random random, int size, BendDirection xDirection, BendDirection zDirection, int x, int y, int z) {
         int length = 0;
         while (length < size / 3) {
             setBlockAndMetadata(world, x, y, z, TreeBlock.BRANCH.getID(),
@@ -213,9 +206,7 @@ public class WorldGenLegendOak extends WorldGenerator {
         }
     }
 
-    private void primary(World world, Random random, int size, BendDirection xDirection,
-            BendDirection zDirection, int x, int y, int z)
-    {
+    private void primary(World world, Random random, int size, BendDirection xDirection, BendDirection zDirection, int x, int y, int z) {
         Acuteness acuteness = Acuteness.LOOSE;
         int length = 0;
         if (xDirection == BendDirection.RIGHT) x += 2;
@@ -264,9 +255,7 @@ public class WorldGenLegendOak extends WorldGenerator {
         }
     }
 
-    private void secondary(World world, Random random, int size, BendDirection xDirection,
-            BendDirection zDirection, int x, int y, int z)
-    {
+    private void secondary(World world, Random random, int size, BendDirection xDirection, BendDirection zDirection, int x, int y, int z) {
         int length = 0;
         for (int branch = 0; branch < 2; branch++) {
             int x1 = x;

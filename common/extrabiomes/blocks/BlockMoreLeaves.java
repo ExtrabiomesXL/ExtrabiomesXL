@@ -223,7 +223,7 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable {
     }
  
 	public float getSpawnChanceFallingLeaves(int metadata) {
-		return 0.05F;
+		return 0.01F;
 	}
 
     @SideOnly(Side.CLIENT)

@@ -30,9 +30,7 @@ public abstract class BiomeHelper {
 
     private static Optional<? extends ArrayList<BiomeGenBase>> activeBiomes = Optional.absent();
 
-    public static void addTerrainBlockstoBiome(BiomeSettings biome, int topBlockID,
-            int fillerBlockID)
-    {
+    public static void addTerrainBlockstoBiome(BiomeSettings biome, int topBlockID, int fillerBlockID) {
         if (!biome.getBiome().isPresent()) return;
         final BiomeGenBase baseBiome = biome.getBiome().get();
         baseBiome.topBlock = (byte) topBlockID;
@@ -51,12 +49,9 @@ public abstract class BiomeHelper {
      *            - the biome to create
      */
     public static void createBiome(BiomeSettings setting) throws Exception {
-        if (BiomeGenBase.biomeList[setting.getID()] != null)
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Biome id %d is already in use by %s when adding %s. Please review the configuration file.",
-                            setting.getID(), BiomeGenBase.biomeList[setting.getID()].biomeName,
-                            setting.toString()));
+        if (BiomeGenBase.biomeList[setting.getID()] != null) {
+            throw new IllegalArgumentException(String.format("Biome id %d is already in use by %s when adding %s. Please review the configuration file.", setting.getID(), BiomeGenBase.biomeList[setting.getID()].biomeName, setting.toString()));
+        }
 
         setting.createBiome();
     }
@@ -105,9 +100,11 @@ public abstract class BiomeHelper {
     public static Collection<BiomeGenBase> getActiveBiomes() {
         if (!activeBiomes.isPresent()) {
             activeBiomes = Optional.of(new ArrayList<BiomeGenBase>(BiomeSettings.values().length));
-            for (final BiomeSettings setting : BiomeSettings.values())
-                if (setting.getBiome().isPresent() && !setting.isVanilla())
+            for (final BiomeSettings setting : BiomeSettings.values()) {
+                if (setting.getBiome().isPresent() && !setting.isVanilla()) {
                     activeBiomes.get().add(setting.getBiome().get());
+                }
+            }
             activeBiomes.get().trimToSize();
         }
         return ImmutableSet.copyOf(activeBiomes.get());

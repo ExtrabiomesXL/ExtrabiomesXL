@@ -173,8 +173,8 @@ public class BiomeManagerImpl extends BiomeManager {
         
         addWeightedTreeGenForBiome(biome.get(), OAK_TREE_GEN, 99);
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 1);
-        addWeightedTreeGenForBiome(biome.get(), BIRCH_TREE_GEN, 9650);
-        addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 250);
+        addWeightedTreeGenForBiome(biome.get(), BIRCH_TREE_GEN, 9750);
+        addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 150);
     }
 
     private static void addDefaultTrees(Optional<? extends BiomeGenBase> biome) {
@@ -313,6 +313,14 @@ public class BiomeManagerImpl extends BiomeManager {
     	addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 10);
     }
     
+    private static void addForestedIsland(Optional<? extends BiomeGenBase> biome) {
+    	if (!biome.isPresent()) return;
+    	
+    	addWeightedTreeGenForBiome(biome.get(), OAK_TREE_GEN, 85);
+        addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 10);
+    	addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 5);
+    }
+    
     private static void addForestedHills(Optional<? extends BiomeGenBase> biome) {
         if (!biome.isPresent()) return;
         
@@ -360,7 +368,7 @@ public class BiomeManagerImpl extends BiomeManager {
         addBirchForestTrees(birchforest);
         addExtremeJungleTrees(extremejungle);
         addForestedHills(forestedhills);
-        addDefaultTrees(forestedisland);
+        addForestedIsland(forestedisland);
         addDefaultTrees(glacier);
         addGreenHills(greenhills);
         addGreenSwampTrees(greenswamp);
