@@ -55,6 +55,7 @@ import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleTree;
 import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType;
+import extrabiomes.module.summa.worldgen.WorldGenSakuraBlossomTree;
 
 @SuppressWarnings("deprecation")
 public class BiomeManagerImpl extends BiomeManager {
@@ -79,6 +80,7 @@ public class BiomeManagerImpl extends BiomeManager {
     private static final WorldGenerator                                               CYPRESS_GEN				= new WorldGenCypressTree(false);
     private static final WorldGenerator                                               BALD_CYPRESS_GEN			= new WorldGenBaldCypressTree(false);
     private static final WorldGenerator                                               RAINBOW_EUCALYPTUS_GEN	= new WorldGenRainbowEucalyptusTree(false);
+    private static final WorldGenerator                                               SAKURA_BLOSSOM_GEN		= new WorldGenSakuraBlossomTree(false);
 
     private static final Collection<BiomeGenBase>                                     disableDefaultGrassBiomes = new ArrayList();
 
@@ -171,7 +173,8 @@ public class BiomeManagerImpl extends BiomeManager {
         
         addWeightedTreeGenForBiome(biome.get(), OAK_TREE_GEN, 99);
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 1);
-        addWeightedTreeGenForBiome(biome.get(), BIRCH_TREE_GEN, 9900);
+        addWeightedTreeGenForBiome(biome.get(), BIRCH_TREE_GEN, 9400);
+        addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 500);
     }
 
     private static void addDefaultTrees(Optional<? extends BiomeGenBase> biome) {
@@ -299,6 +302,15 @@ public class BiomeManagerImpl extends BiomeManager {
         addWeightedTreeGenForBiome(biome.get(), CYPRESS_GEN, 6);
         addWeightedTreeGenForBiome(biome.get(), JAPANESE_MAPLE_SHRUB_GEN, 4);
         addWeightedTreeGenForBiome(biome.get(), JAPANESE_MAPLE_GEN, 6);
+        addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 3);
+    }
+    
+    private static void addGreenHills(Optional<? extends BiomeGenBase> biome) {
+    	if (!biome.isPresent()) return;
+    	
+    	addWeightedTreeGenForBiome(biome.get(), OAK_TREE_GEN, 90);
+        addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 10);
+    	addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 10);
     }
     
     private static void addForestedHills(Optional<? extends BiomeGenBase> biome) {
@@ -308,6 +320,7 @@ public class BiomeManagerImpl extends BiomeManager {
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 8);
         addWeightedTreeGenForBiome(biome.get(), CYPRESS_GEN, 5);
         addWeightedTreeGenForBiome(biome.get(), JAPANESE_MAPLE_GEN, 6);
+        addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 4);
     }
 
     private static void buildWeightedBiomeGrassList() {
@@ -349,7 +362,7 @@ public class BiomeManagerImpl extends BiomeManager {
         addForestedHills(forestedhills);
         addDefaultTrees(forestedisland);
         addDefaultTrees(glacier);
-        addDefaultTrees(greenhills);
+        addGreenHills(greenhills);
         addGreenSwampTrees(greenswamp);
         addDefaultTrees(icewasteland);
         addDefaultTrees(marsh);

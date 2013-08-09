@@ -143,6 +143,19 @@ public abstract class RecipeHandler {
 	            proxy.addSmelting(logCypress.get(), charcoal, 0.15F);
 	        }
         }
+
+        for (final Element logSakura : new Element[] { Element.LOG_SAKURA_BLOSSOM }) {
+	        if (logSakura.isPresent()) {
+	            final ItemStack sakuraPlanks = new ItemStack(block, 2, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata());
+	
+	            // cypressLog  = cypressPlanks
+	            final IRecipe recipe = new ShapelessOreRecipe(sakuraPlanks, logSakura.get());
+	            proxy.addRecipe(recipe);
+	
+	            // cypressLog ==> charcoal
+	            proxy.addSmelting(logSakura.get(), charcoal, 0.15F);
+	        }
+        }
         
         for (final Element logBaldCypress : new Element[] { Element.LOG_BALD_CYPRESS, Element.LOG_QUARTER_BALD_CYPRESS, Element.LOG_KNEE_BALD_CYPRESS }) {
 	        if (logBaldCypress.isPresent()) {

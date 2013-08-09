@@ -25,29 +25,19 @@ public class LegendOakGenerator implements IWorldGenerator {
 	}
 
     @Override
-	public void generate(Random rand, int chunkX, int chunkZ,
-			World world, IChunkProvider chunkGenerator,
-			IChunkProvider chunkProvider)
-	{
+	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		chunkX = chunkX << 4;
 		chunkZ = chunkZ << 4;
 		int rarity = 0;
-		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
-				chunkX);
+		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkX);
 
-		if (biome == BiomeGenBase.forest
-				|| biome == BiomeGenBase.forestHills
-				|| BiomeManager.forestedhills.isPresent()
-				&& biome == BiomeManager.forestedhills.get()
-				|| BiomeManager.forestedisland.isPresent()
-				&& biome == BiomeManager.forestedisland.get()
-				|| BiomeManager.rainforest.isPresent()
-				&& biome == BiomeManager.rainforest.get())
+		if (biome == BiomeGenBase.forest || biome == BiomeGenBase.forestHills || BiomeManager.forestedhills.isPresent() && biome == BiomeManager.forestedhills.get() || BiomeManager.forestedisland.isPresent() && biome == BiomeManager.forestedisland.get() || BiomeManager.rainforest.isPresent() && biome == BiomeManager.rainforest.get()) {
 			rarity = 100;
+		}
 
-		if (biome == BiomeGenBase.plains
-				|| biome == BiomeGenBase.extremeHillsEdge)
+		if (biome == BiomeGenBase.plains || biome == BiomeGenBase.extremeHillsEdge) {
 			rarity = 1000;
+		}
 
 		if (rarity == 0) return;
 
@@ -57,6 +47,5 @@ public class LegendOakGenerator implements IWorldGenerator {
 			final int y = world.getHeightValue(x, z);
 			treeGen.generate(world, rand, x, y, z);
 		}
-
 	}
 }

@@ -27,6 +27,7 @@ import extrabiomes.events.BlockActiveEvent.BaldCypressStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.CypressStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FirStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.JapaneseMapleStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.NewWoodSlabActiveEvent;
 import extrabiomes.events.BlockActiveEvent.PlankActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RainbowEucalyptusStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedCobbleStairsActiveEvent;
@@ -34,12 +35,14 @@ import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockBrickStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedRockSlabActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedwoodStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.SakuraBlossomStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WallActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WoodSlabActiveEvent;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.module.fabrica.block.BlockCustomWall;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.module.fabrica.block.BlockCustomWoodSlab;
+import extrabiomes.module.fabrica.block.BlockNewWoodSlab;
 import extrabiomes.module.fabrica.block.BlockRedRockSlab;
 import extrabiomes.proxy.CommonProxy;
 
@@ -53,6 +56,7 @@ public class RecipeManager {
     private Optional<ItemStack>   plankJapaneseMapleItem = Optional.absent();
     private Optional<ItemStack>   plankRainbowEucalyptusItem = Optional.absent();
     private Optional<ItemStack>   plankAutumnItem	= Optional.absent();
+    private Optional<ItemStack>   plankSakuraBlossomItem	= Optional.absent();
     private Optional<ItemStack>   redRockItem     	= Optional.absent();
     private Optional<ItemStack>   redCobbleItem   	= Optional.absent();
     private Optional<ItemStack>   redRockBrickItem	= Optional.absent();
@@ -68,6 +72,7 @@ public class RecipeManager {
     private final List<ItemStack> autumnLogs     	= new ArrayList<ItemStack>();
     private final List<ItemStack> japanesemapleLogs = new ArrayList<ItemStack>();
     private final List<ItemStack> rainboweucalyptusLogs = new ArrayList<ItemStack>();
+    private final List<ItemStack> sakurablossomLogs = new ArrayList<ItemStack>();
 
     @ForgeSubscribe
     public void acaciaStairsRecipeHandler(AcaciaStairsActiveEvent event) {
@@ -107,6 +112,11 @@ public class RecipeManager {
     @ForgeSubscribe
     public void rainbowEucalyptusStairsRecipeHandler(RainbowEucalyptusStairsActiveEvent event) {
         if (plankRainbowEucalyptusItem.isPresent()) addStairsRecipe(plankRainbowEucalyptusItem.get(), event.block);
+    }
+    
+    @ForgeSubscribe
+    public void rainbowSakuraBlossomStairsRecipeHandler(SakuraBlossomStairsActiveEvent event) {
+        if (plankSakuraBlossomItem.isPresent()) addStairsRecipe(plankSakuraBlossomItem.get(), event.block);
     }
 
     @ForgeSubscribe
@@ -180,6 +190,14 @@ public class RecipeManager {
         }
 
         plankRainbowEucalyptusItem = Optional.of(new ItemStack(event.block, 1, BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.metadata()));
+
+        planks = new ItemStack(event.block, 2, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata());
+        for (final ItemStack itemstack : sakurablossomLogs) {
+            final IRecipe recipe = new ShapelessOreRecipe(planks, itemstack);
+            Extrabiomes.proxy.addRecipe(recipe);
+        }
+
+        plankSakuraBlossomItem = Optional.of(new ItemStack(event.block, 1, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata()));
     }
 
     @ForgeSubscribe
@@ -242,6 +260,14 @@ public class RecipeManager {
 
         if (redCobbleItem.isPresent()) {
             final IRecipe recipe = new ShapedOreRecipe(new ItemStack(event.block, 6, BlockCustomWall.BlockType.RED_COBBLE.metadata()), new String[] { "ppp", "ppp" }, 'p', redCobbleItem.get());
+            Extrabiomes.proxy.addRecipe(recipe);
+        }
+    }
+    
+    @ForgeSubscribe
+    public void newWoodSlabRecipeHandler(NewWoodSlabActiveEvent event) {
+    	if (plankSakuraBlossomItem.isPresent()) {
+            final IRecipe recipe = new ShapedOreRecipe(new ItemStack(event.block, 6, BlockNewWoodSlab.BlockType.SAKURA_BLOSSOM.metadata()), new String[] { "ppp" }, 'p', plankSakuraBlossomItem.get());
             Extrabiomes.proxy.addRecipe(recipe);
         }
     }

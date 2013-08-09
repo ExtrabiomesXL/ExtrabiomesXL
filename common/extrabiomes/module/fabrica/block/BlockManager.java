@@ -24,11 +24,13 @@ import extrabiomes.events.BlockActiveEvent.RedRockSlabActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedwoodStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WallActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WoodSlabActiveEvent;
+import extrabiomes.events.BlockActiveEvent.NewWoodSlabActiveEvent;
 import extrabiomes.events.BlockActiveEvent.CypressStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.JapaneseMapleStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RainbowEucalyptusStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.AutumnStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.BaldCypressStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.SakuraBlossomStairsActiveEvent;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
@@ -61,6 +63,54 @@ public enum BlockManager {
             proxy.registerOreInAllSubblocks("plankWood", thisBlock);
             
             Extrabiomes.postInitEvent(new PlankActiveEvent(thisBlock));
+        }
+    },
+    NEWWOODSLAB {
+        @Override
+        protected void create() {
+            Stuff.newslabWood = Optional.of(new BlockNewWoodSlab(getSettings().getID(), false));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.NEWWOODSLAB;
+        }
+
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.newslabWood.get();
+
+            thisBlock.setUnlocalizedName("extrabiomes.woodslab");
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+
+            proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisBlock.blockID));
+            Extrabiomes.postInitEvent(new NewWoodSlabActiveEvent(thisBlock));
+        }
+    },
+    NEWDOUBLEWOODSLAB {
+        @Override
+        protected void create() {
+            Stuff.newslabWoodDouble = Optional.of(new BlockNewWoodSlab(getSettings().getID(), true));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.NEWDOUBLEWOODSLAB;
+        }
+
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.newslabWoodDouble.get();
+
+            thisBlock.setUnlocalizedName("extrabiomes.woodslab");
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            ItemNewWoodSlab.setSlabs((BlockHalfSlab) Stuff.newslabWood.get(), (BlockHalfSlab) Stuff.newslabWoodDouble.get());
+            proxy.registerBlock(Stuff.newslabWood.get(), extrabiomes.module.fabrica.block.ItemNewWoodSlab.class);
+            proxy.registerBlock(thisBlock, extrabiomes.module.fabrica.block.ItemNewWoodSlab.class);
+
+            proxy.registerOreInAllSubblocks("slabWood", Stuff.newslabWood.get());
         }
     },
     WOODSLAB {
@@ -109,10 +159,6 @@ public enum BlockManager {
             proxy.registerBlock(thisBlock, extrabiomes.module.fabrica.block.ItemWoodSlab.class);
 
             proxy.registerOreInAllSubblocks("slabWood", Stuff.slabWood.get());
-
-            new ItemStack(Stuff.slabWood.get(), 1, BlockCustomWoodSlab.BlockType.FIR.metadata());
-            new ItemStack(Stuff.slabWood.get(), 1, BlockCustomWoodSlab.BlockType.REDWOOD.metadata());
-            new ItemStack(Stuff.slabWood.get(), 1, BlockCustomWoodSlab.BlockType.ACACIA.metadata());
         }
     },
     REDWOODSTAIRS {
@@ -305,6 +351,30 @@ public enum BlockManager {
 
             proxy.registerOre("stairWood", thisBlock);
             Extrabiomes.postInitEvent(new AutumnStairsActiveEvent(thisBlock));
+        }
+    },
+    SAKURABLOSSOMSTAIRS {
+        @Override
+        protected void create() {
+            Stuff.stairsSakuraBlossom = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata()));
+        }
+
+        @Override
+        protected BlockSettings getSettings() {
+            return BlockSettings.SAKURABLOSSOMSTAIRS;
+        }
+
+        @Override
+        protected void prepare() {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.stairsSakuraBlossom.get();
+
+            thisBlock.setUnlocalizedName("extrabiomes.stairs.sakurablossom");
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock);
+
+            proxy.registerOre("stairWood", thisBlock);
+            Extrabiomes.postInitEvent(new SakuraBlossomStairsActiveEvent(thisBlock));
         }
     },
     REDROCKSLAB {

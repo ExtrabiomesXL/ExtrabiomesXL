@@ -27,6 +27,8 @@ public enum Stuff {
 	public static Optional<? extends Block>	slabRedRockDouble		= Optional.absent();
 	public static Optional<? extends Block>	slabWood				= Optional.absent();
 	public static Optional<? extends Block>	slabWoodDouble			= Optional.absent();
+	public static Optional<? extends Block>	newslabWood				= Optional.absent();
+	public static Optional<? extends Block>	newslabWoodDouble		= Optional.absent();
 	public static Optional<? extends Block>	stairsAcacia			= Optional.absent();
 	public static Optional<? extends Block>	stairsFir				= Optional.absent();
 	public static Optional<? extends Block>	stairsRedCobble			= Optional.absent();
@@ -38,6 +40,7 @@ public enum Stuff {
 	public static Optional<? extends Block> stairsJapaneseMaple		= Optional.absent();
 	public static Optional<? extends Block> stairsRainbowEucalyptus	= Optional.absent();
 	public static Optional<? extends Block> stairsAutumn			= Optional.absent();
+	public static Optional<? extends Block> stairsSakuraBlossom		= Optional.absent();
 	
 
 }

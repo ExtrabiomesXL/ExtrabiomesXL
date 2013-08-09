@@ -40,11 +40,12 @@ import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleShrub;
 import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleTree;
 import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
+import extrabiomes.module.summa.worldgen.WorldGenSakuraBlossomTree;
 
 public class BlockNewSapling extends BlockFlower {
 
     public enum BlockType {
-        BALD_CYPRESS(0), JAPANESE_MAPLE(1), JAPANESE_MAPLE_SHRUB(2), RAINBOW_EUCALYPTUS(3);
+        BALD_CYPRESS(0), JAPANESE_MAPLE(1), JAPANESE_MAPLE_SHRUB(2), RAINBOW_EUCALYPTUS(3), SAKURA_BLOSSOM(4);
 
         private final int metadata;
 
@@ -103,6 +104,7 @@ public class BlockNewSapling extends BlockFlower {
 	    textures[1] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingjapanesemaple");
 	    textures[2] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingjapanesemapleshrub");
 	    textures[3] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingrainboweucalyptus");
+	    textures[4] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingsakura");
     }
 
     private void attemptGrowTree(World world, int x, int y, int z, Random rand) {
@@ -132,7 +134,7 @@ public class BlockNewSapling extends BlockFlower {
         metadata = unmarkedMetadata(metadata);
         
         // unmarkedMetadata has the potential to return a value between 0 and 7, since only 0 to 6 are valid we need to check validity.
-        if (metadata < 0 || metadata > 3) metadata = 0;
+        if (textures[metadata] == null) metadata = 0;
         
         return textures[metadata];
     }
@@ -181,6 +183,8 @@ public class BlockNewSapling extends BlockFlower {
             }
         } else if(metadata == BlockType.JAPANESE_MAPLE.metadata()) {
         	tree = new WorldGenJapaneseMapleTree(true);
+        } else if(metadata == BlockType.SAKURA_BLOSSOM.metadata()) {
+        	tree = new WorldGenSakuraBlossomTree(true);
         } else {
         	tree = new WorldGenJapaneseMapleShrub(true);
         }
@@ -261,6 +265,8 @@ public class BlockNewSapling extends BlockFlower {
 	    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.JAPANESE_MAPLE.metadata() && chance <= SaplingSettings.JAPANESE_MAPLE.chance()){
 	    				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
 	    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.JAPANESE_MAPLE_SHRUB.metadata() && chance <= SaplingSettings.JAPANESE_MAPLE_SHRUB.chance()){
+	    				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+	    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.SAKURA_BLOSSOM.metadata && chance <= SaplingSettings.SAKURA_BLOSSOM.chance()) {
 	    				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
 	    			}
 	    		}

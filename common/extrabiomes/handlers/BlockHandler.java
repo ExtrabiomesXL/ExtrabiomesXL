@@ -20,6 +20,8 @@ import extrabiomes.blocks.BlockCustomTallGrass;
 import extrabiomes.blocks.BlockGreenLeaves;
 import extrabiomes.blocks.BlockKneeLog;
 import extrabiomes.blocks.BlockLeafPile;
+import extrabiomes.blocks.BlockMiniLog;
+import extrabiomes.blocks.BlockMoreLeaves;
 import extrabiomes.blocks.BlockNewLeaves;
 import extrabiomes.blocks.BlockNewLog;
 import extrabiomes.blocks.BlockNewQuarterLog;
@@ -32,6 +34,7 @@ import extrabiomes.helpers.BiomeHelper;
 import extrabiomes.helpers.ForestryModHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
+import extrabiomes.lib.Blocks;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
@@ -40,6 +43,7 @@ import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.module.summa.worldgen.LeafPileGenerator;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.renderers.RenderKneeLog;
+import extrabiomes.renderers.RenderMiniLog;
 import extrabiomes.renderers.RenderNewQuarterLog;
 import extrabiomes.renderers.RenderQuarterLog;
 
@@ -75,6 +79,7 @@ public abstract class BlockHandler {
         createGrass();
         createGreenLeaves();
         createNewLeaves();
+        createMoreLeaves();
         createLeafPile();
         createRedRock();
         createSapling();
@@ -206,6 +211,25 @@ public abstract class BlockHandler {
         ForestryModHelper.addToForesterBackpack(stack);
     }
 
+    private static void createMoreLeaves() {
+        final int blockID = BlockSettings.MORELEAVES.getID();
+        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
+
+        final BlockMoreLeaves block = new BlockMoreLeaves(blockID, Material.leaves, false);
+        block.setUnlocalizedName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+
+        final CommonProxy proxy = Extrabiomes.proxy;
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomMoreLeaves.class);
+        proxy.registerOreInAllSubblocks("treeLeaves", block);
+        proxy.setBurnProperties(block.blockID, 30, 60);
+
+        Element.LEAVES_SAKURA_BLOSSOM.set(new ItemStack(block, 1, BlockMoreLeaves.BlockType.SAKURA_BLOSSOM.metadata()));
+        
+        final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
+        ForestryModHelper.registerLeaves(stack);
+        ForestryModHelper.addToForesterBackpack(stack);
+    }
+
     private static void createGreenLeaves() {
         final int blockID = BlockSettings.GREENLEAVES.getID();
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
@@ -246,9 +270,35 @@ public abstract class BlockHandler {
 
     private static void createLogs() {
         createWood();
+        createMiniLogs();
         createQuarterLogs();
         createNewQuarterLogs();
         createKneeLogs();
+    }
+    
+    private static void createMiniLogs(){
+    	final int blockID = BlockSettings.MINILOG.getID();
+        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
+
+        final BlockMiniLog block = new BlockMiniLog(blockID);
+        Blocks.BLOCK_LOG_SAKURA_GROVE.set(block);
+        block.setUnlocalizedName("extrabiomes.log").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+
+        final CommonProxy proxy = Extrabiomes.proxy;
+        proxy.setBlockHarvestLevel(block, "axe", 0);
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomMiniLog.class);
+        proxy.registerOreInAllSubblocks("logWood", block);
+        proxy.registerEventHandler(block);
+        proxy.setBurnProperties(block.blockID, 5, 5);
+
+        Element.LOG_SAKURA_BLOSSOM.set(new ItemStack(block, 1, BlockMiniLog.BlockType.SAKURA_BLOSSOM.metadata()));
+
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
+        for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType.values()) {
+            FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
+        }
+        
+        BlockMiniLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderMiniLog()));
     }
     
     private static void createKneeLogs(){
@@ -281,6 +331,9 @@ public abstract class BlockHandler {
         Element.LOG_KNEE_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, Short.MAX_VALUE));
         
         BlockKneeLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderKneeLog()));
+
+        FacadeHelper.addBuildcraftFacade(block.blockID);
+        FacadeHelper.addBuildcraftFacade(block2.blockID);
         
     }
     
@@ -314,6 +367,10 @@ public abstract class BlockHandler {
         Element.LOG_QUARTER_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, Short.MAX_VALUE));
         
         BlockNewQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderNewQuarterLog()));
+        
+
+        FacadeHelper.addBuildcraftFacade(block.blockID);
+        FacadeHelper.addBuildcraftFacade(block2.blockID);
         
     }
 
@@ -444,6 +501,7 @@ public abstract class BlockHandler {
         Element.SAPLING_JAPANESE_MAPLE.set(new ItemStack(block, 1, BlockNewSapling.BlockType.JAPANESE_MAPLE.metadata()));
         Element.SAPLING_JAPANESE_MAPLE_SHRUB.set(new ItemStack(block, 1, BlockNewSapling.BlockType.JAPANESE_MAPLE_SHRUB.metadata()));
         Element.SAPLING_RAINBOW_EUCALYPTUS.set(new ItemStack(block, 1, BlockNewSapling.BlockType.RAINBOW_EUCALYPTUS.metadata()));
+        Element.SAPLING_SAKURA_BLOSSOM.set(new ItemStack(block, 1, BlockNewSapling.BlockType.SAKURA_BLOSSOM.metadata()));
 
         final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
         

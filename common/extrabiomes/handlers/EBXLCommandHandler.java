@@ -16,9 +16,11 @@ import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleShrub;
 import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleTree;
+import extrabiomes.module.summa.worldgen.WorldGenLegendOak;
 import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
 import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType;
+import extrabiomes.module.summa.worldgen.WorldGenSakuraBlossomTree;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -96,9 +98,9 @@ public class EBXLCommandHandler extends CommandBase {
                 			}
                 		}
                 	} else if(cmds[0].equals("kill")) {
-                		killTree(player, 96, 64, 230);
+                		killTree(player, 0, 4, 0);
                 	} else if(cmds[0].equals("spawn")) {
-                		(new WorldGenBaldCypressTree(true)).generate(player.worldObj, player.worldObj.rand, 96, 64, 230);
+                		(new WorldGenSakuraBlossomTree(true)).generate(player.worldObj, player.worldObj.rand, 0, 4, 0);
                 	} else if(cmds[0].equals("killtree")) {
                 		if(cmds.length == 4){
                 			try {
@@ -172,6 +174,10 @@ public class EBXLCommandHandler extends CommandBase {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenBigAutumnTree.getLastSeed()));
                 			} else if(cmds[1].equals("baldcypress")) {
                 				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenBaldCypressTree.getLastSeed()));
+                			} else if(cmds[1].equals("sakura")){
+                				player.addChatMessage("The last seed used was: " + Long.toString(WorldGenSakuraBlossomTree.getLastSeed()));
+                			} else if(cmds[1].equals("legend")) {
+                				player.addChatMessage("The Legend Oak does not currently support seeding.");
                 			} else {
                 				treeNames(player);
                 			}
@@ -233,6 +239,10 @@ public class EBXLCommandHandler extends CommandBase {
                     				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    			} else if(cmds[1].equals("sakura")) {
+                    				(new WorldGenSakuraBlossomTree(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    			} else if(cmds[1].equals("legend")) {
+                    				(new WorldGenLegendOak(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                     			} else {
                     				treeNames(player);
                     			}
@@ -296,6 +306,11 @@ public class EBXLCommandHandler extends CommandBase {
                     				WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
                     				tree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
                     				tree.generate(player.worldObj, seed, x, y, z);
+                    			} else if(cmds[1].equals("sakura")) {
+                    				(new WorldGenSakuraBlossomTree(true)).generate(player.worldObj, seed, x, y, z);
+                    			} else if(cmds[1].equals("legend")) {
+                    				(new WorldGenLegendOak(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                    				player.addChatMessage("The Legend Oak does not currently support seeding.");
                     			} else {
                     				treeNames(player);
                     			}
@@ -319,7 +334,8 @@ public class EBXLCommandHandler extends CommandBase {
 		player.addChatMessage("acacia, cypress, fir, redwood, largeFir,");
 		player.addChatMessage("brown, orange, red, yellow, largebrown,");
 		player.addChatMessage("largeorange, largered, largeyellow, baldcypress,");
-		player.addChatMessage("rainbow, japanesemaple, japanesemaple, japanesemapleshrub");
+		player.addChatMessage("rainbow, japanesemaple, japanesemaple, japanesemapleshrub,");
+		player.addChatMessage("sakura, legend");
 	}
 	
 	private boolean killTree(EntityPlayer player, int x, int y, int z){

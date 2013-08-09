@@ -251,6 +251,186 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator {
     	return true;
     }
     
+    public boolean placeThinBlockLine(int[] start, int[] end, ItemStack logs, World world) {
+    	if(start.length != 3 || end.length != 3) return false;
+    	
+    	int[] last = {start[0], start[1], start[2]};
+    	
+    	// Get the direction vector
+    	int[] direction = {
+    		start[0] - end[0],
+    		start[1] - end[1],
+    		start[2] - end[2]
+    	};
+    	int inc = 1;
+    	
+    	
+    	if(Math.abs(direction[2]) > Math.abs(direction[1]) && Math.abs(direction[2]) > Math.abs(direction[0])) {
+    		// We are going to use the y axis as our major axis
+    		if(direction[2] >= 0){
+	    		for (int z = start[2]; z >= end[2]; z--){
+	    			double m = (z - start[2]) / (double)direction[2];
+	    			int x = (int)(start[0] + (direction[0] * m));
+	    			int y = (int)(start[1] + (direction[1] * m));
+	    			if(Block.blocksList[world.getBlockId(x, y, z)] == null) setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 8);
+	    			
+	    			// Detect the distance
+	    			int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
+	    			LogHelper.info("Dist: %d", dist);
+	    			if(dist == 2) {
+	    				setBlockAndMetadata(world, last[0], last[1], z, logs.itemID, logs.getItemDamage() | 8);
+	    			} else if(dist == 3) {
+	    				if(direction[0] > 0) {
+		    				setBlockAndMetadata(world, x, last[1], last[2], logs.itemID, logs.getItemDamage() | 8);
+		    				setBlockAndMetadata(world, x, y, last[2], logs.itemID, logs.getItemDamage() | 8);
+	    				} else {
+		    				setBlockAndMetadata(world, last[0], y, last[2], logs.itemID, logs.getItemDamage() | 8);
+		    				setBlockAndMetadata(world, x, y, last[2], logs.itemID, logs.getItemDamage() | 8);
+	    				}
+	    			}
+	    			
+	    			last[0] = x;
+	    			last[1] = y;
+	    			last[2] = z;
+	    		}
+    		} else {
+	    		for (int z = start[2]; z <= end[2]; z++){
+	    			double m = (z - start[2]) / (double)direction[2];
+	    			int x = (int)(start[0] + (direction[0] * m));
+	    			int y = (int)(start[1] + (direction[1] * m));
+	    			if(Block.blocksList[world.getBlockId(x, y, z)] == null) setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 8);
+	    			
+	    			// Detect the distance
+	    			int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
+	    			LogHelper.info("Dist: %d", dist);
+	    			if(dist == 2) {
+	    				setBlockAndMetadata(world, last[0], last[1], z, logs.itemID, logs.getItemDamage() | 8);
+	    			} else if(dist == 3) {
+	    				if(direction[0] > 0) {
+		    				setBlockAndMetadata(world, x, last[1], last[2], logs.itemID, logs.getItemDamage() | 8);
+		    				setBlockAndMetadata(world, x, y, last[2], logs.itemID, logs.getItemDamage() | 8);
+	    				} else {
+		    				setBlockAndMetadata(world, last[0], y, last[2], logs.itemID, logs.getItemDamage() | 8);
+		    				setBlockAndMetadata(world, x, y, last[2], logs.itemID, logs.getItemDamage() | 8);
+	    				}
+	    			}
+	    			
+	    			last[0] = x;
+	    			last[1] = y;
+	    			last[2] = z;
+	    		}
+    		}
+    	} else if (Math.abs(direction[0]) > Math.abs(direction[1])) {
+    		// Treverse along the x axis
+    		if(direction[0] >= 0){
+	    		for (int x = start[0]; x >= end[0]; x--){
+	    			double m = (x - start[0]) / (double)direction[0];
+	    			int z = (int)(start[2] + (direction[2] * m));
+	    			int y = (int)(start[1] + (direction[1] * m));
+	    			if(Block.blocksList[world.getBlockId(x, y, z)] == null) setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 4);
+	    			
+	    			// Detect the distance
+	    			int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
+	    			if(dist == 2) {
+	    				setBlockAndMetadata(world, x, last[1], last[2], logs.itemID, logs.getItemDamage() | 4);
+	    			} else if(dist == 3) {
+	    				if(direction[2] > 0) {
+		    				setBlockAndMetadata(world, last[0], last[1], z, logs.itemID, logs.getItemDamage() | 4);
+		    				setBlockAndMetadata(world, last[0], y, z, logs.itemID, logs.getItemDamage() | 4);
+	    				} else {
+		    				setBlockAndMetadata(world, last[0], y, last[2], logs.itemID, logs.getItemDamage() | 4);
+		    				setBlockAndMetadata(world, last[0], y, z, logs.itemID, logs.getItemDamage() | 4);
+	    				}
+	    			}
+	    			
+	    			last[0] = x;
+	    			last[1] = y;
+	    			last[2] = z;
+	    		}
+    		} else {
+	    		for (int x = start[0]; x <= end[0]; x++){
+	    			double m = (x - start[0]) / (double)direction[0];
+	    			int z = (int)(start[2] + (direction[2] * m));
+	    			int y = (int)(start[1] + (direction[1] * m));
+	    			if(Block.blocksList[world.getBlockId(x, y, z)] == null) setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 4);
+	    			
+	    			// Detect the distance
+	    			int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
+	    			if(dist == 2) {
+	    				setBlockAndMetadata(world, x, last[1], last[2], logs.itemID, logs.getItemDamage() | 4);
+	    			} else if(dist == 3) {
+	    				if(direction[2] > 0) {
+		    				setBlockAndMetadata(world, last[0], last[1], z, logs.itemID, logs.getItemDamage() | 4);
+		    				setBlockAndMetadata(world, last[0], y, z, logs.itemID, logs.getItemDamage() | 4);
+	    				} else {
+		    				setBlockAndMetadata(world, last[0], y, last[2], logs.itemID, logs.getItemDamage() | 4);
+		    				setBlockAndMetadata(world, last[0], y, z, logs.itemID, logs.getItemDamage() | 4);
+	    				}
+	    			}
+	    			
+	    			last[0] = x;
+	    			last[1] = y;
+	    			last[2] = z;
+	    		}
+    		}
+    	} else {
+    		// We will use the y axis as our major axis
+    		if(direction[1] >= 0) {
+	    		for (int y = start[1]; y >= end[1]; y--){
+	    			double m = (y - start[1]) / (double)direction[1];
+	    			int x = (int)(start[0] + (direction[0] * m));
+	    			int z = (int)(start[2] + (direction[2] * m));
+	    			if(Block.blocksList[world.getBlockId(x, y, z)] == null) setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage());
+	    			
+	    			// Detect the distance
+	    			int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
+	    			if(dist == 2) {
+	    				setBlockAndMetadata(world, last[0], y, last[2], logs.itemID, logs.getItemDamage());
+	    			} else if(dist == 3) {
+	    				if(direction[2] > 0) {
+		    				setBlockAndMetadata(world, last[0], last[1], z, logs.itemID, logs.getItemDamage());
+		    				setBlockAndMetadata(world, x, last[1], z, logs.itemID, logs.getItemDamage());
+	    				} else {
+		    				setBlockAndMetadata(world, x, last[1], last[2], logs.itemID, logs.getItemDamage());
+		    				setBlockAndMetadata(world, x, last[1], z, logs.itemID, logs.getItemDamage());
+	    				}
+	    			}
+	    			
+	    			last[0] = x;
+	    			last[1] = y;
+	    			last[2] = z;
+	    		}
+    		} else {
+	    		for (int y = start[1]; y <= end[1]; y++){
+	    			double m = (y - start[1]) / (double)direction[1];
+	    			int x = (int)(start[0] + (direction[0] * m));
+	    			int z = (int)(start[2] + (direction[2] * m));
+	    			if(Block.blocksList[world.getBlockId(x, y, z)] == null) setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage());
+	    			
+	    			// Detect the distance
+	    			int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
+	    			if(dist == 2) {
+	    				setBlockAndMetadata(world, last[0], y, last[2], logs.itemID, logs.getItemDamage());
+	    			} else if(dist == 3) {
+	    				if(direction[2] > 0) {
+		    				setBlockAndMetadata(world, last[0], last[1], z, logs.itemID, logs.getItemDamage());
+		    				setBlockAndMetadata(world, x, last[1], z, logs.itemID, logs.getItemDamage());
+	    				} else {
+		    				setBlockAndMetadata(world, x, last[1], last[2], logs.itemID, logs.getItemDamage());
+		    				setBlockAndMetadata(world, x, last[1], z, logs.itemID, logs.getItemDamage());
+	    				}
+	    			}
+	    			
+	    			last[0] = x;
+	    			last[1] = y;
+	    			last[2] = z;
+	    		}
+    		}
+    	}
+    	
+    	return true;
+    }
+    
     public boolean checkLeavesCircle(double x, int y, double z, double r, World world) {
     	double dist = r * r;
 		

@@ -50,7 +50,12 @@ public enum BlockSettings {
     JAPANESEMAPLESTAIRS 	(2233),
     RAINBOWEUCALYPTUSSTAIRS	(2234),
     AUTUMNSTAIRS			(2235),
-    BALDCYPRESSSTAIRS		(2236);
+    BALDCYPRESSSTAIRS		(2236),
+    MORELEAVES				(2237),
+    MINILOG					(2238),
+    NEWWOODSLAB            	(2239),
+    NEWDOUBLEWOODSLAB      	(2240),
+    SAKURABLOSSOMSTAIRS		(2241);
     // Next block IDs 253 (decending) and 2224 (ascending)
 
     // @formatter:on

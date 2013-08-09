@@ -23,6 +23,12 @@ public abstract class BlockActiveEvent extends Event {
 		}
 	}
 
+	public static class SakuraBlossomStairsActiveEvent extends BlockActiveEvent {
+		public SakuraBlossomStairsActiveEvent(Block block) {
+			super(block);
+		}
+	}
+
 	public static class RainbowEucalyptusStairsActiveEvent extends BlockActiveEvent {
 		public RainbowEucalyptusStairsActiveEvent(Block block) {
 			super(block);
@@ -91,6 +97,12 @@ public abstract class BlockActiveEvent extends Event {
 
 	public static class WoodSlabActiveEvent extends BlockActiveEvent {
 		public WoodSlabActiveEvent(Block block) {
+			super(block);
+		}
+	}
+
+	public static class NewWoodSlabActiveEvent extends BlockActiveEvent {
+		public NewWoodSlabActiveEvent(Block block) {
 			super(block);
 		}
 	}

@@ -34,10 +34,10 @@ import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.GeneralSettings;
 
-public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
+public class BlockMoreLeaves extends BlockLeavesBase implements IShearable {
 
     public enum BlockType {
-        BALD_CYPRESS(0), JAPANESE_MAPLE(1), JAPANESE_MAPLE_SHRUB(2), RAINBOW_EUCALYPTUS(3);
+        SAKURA_BLOSSOM(0);
 
         private final int      metadata;
         private ItemStack      sapling            = new ItemStack(Block.sapling);
@@ -53,10 +53,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
         }
 
         private static void loadCustomBlocks() {
-            if (Element.SAPLING_BALD_CYPRESS.isPresent()) BALD_CYPRESS.sapling = Element.SAPLING_BALD_CYPRESS.get();
-            if (Element.SAPLING_JAPANESE_MAPLE.isPresent()) JAPANESE_MAPLE.sapling = Element.SAPLING_JAPANESE_MAPLE.get();
-            if (Element.SAPLING_JAPANESE_MAPLE_SHRUB.isPresent()) JAPANESE_MAPLE_SHRUB.sapling = Element.SAPLING_JAPANESE_MAPLE_SHRUB.get();
-            if (Element.SAPLING_RAINBOW_EUCALYPTUS.isPresent()) RAINBOW_EUCALYPTUS.sapling = Element.SAPLING_RAINBOW_EUCALYPTUS.get();
+            if (Element.SAPLING_SAKURA_BLOSSOM.isPresent()) SAKURA_BLOSSOM.sapling = Element.SAPLING_SAKURA_BLOSSOM.get();
 
             loadedCustomBlocks = true;
         }
@@ -132,25 +129,16 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
     
     private Icon[] textures  = {null, null, null, null, null, null, null, null, null, null, null, null};
 
-    public BlockNewLeaves(int id, Material material, boolean useFastGraphics) {
+    public BlockMoreLeaves(int id, Material material, boolean useFastGraphics) {
         super(id, material, useFastGraphics);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister){
-    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbaldcypressfancy");
-    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbaldcypressfast");
-    	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemaplefancy");
-    	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemaplefast");
-    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemapleshrubfancy");
-    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemapleshrubfast");
-    	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesrainboweucalyptusfancy");
-    	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesrainboweucalyptusfast");
-    	textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbaldcypress");
-    	textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesjapanesemaple");
-    	textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesjapanesemapleshrub");
-    	textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesrainboweucalyptus");
+    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafancy");
+    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafast");
+    	textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavessakura");
     }
 
     @Override
@@ -182,11 +170,11 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
     public int colorMultiplier(IBlockAccess iBlockAccess, int x, int y, int z) {
         final int metadata = unmarkedMetadata(iBlockAccess.getBlockMetadata(x, y, z));
 
-        if(metadata == BlockType.JAPANESE_MAPLE.metadata()) {
+        //if(metadata == BlockType.JAPANESE_MAPLE.metadata()) {
         	return getRenderColor(metadata);
-        } else { 
-        	return calcSmoothedBiomeFoliageColor(iBlockAccess, x, z);
-        }
+        //} else { 
+        //	return calcSmoothedBiomeFoliageColor(iBlockAccess, x, z);
+        //}
     }
 
     @Override
@@ -209,16 +197,10 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
     private void leafTypeDropper(IBlockAccess iBlockAccess, World world, int x, int y, int z, int metadata, int par7) {
         final int damageValue = unmarkedMetadata(iBlockAccess.getBlockMetadata(x, y, z));
         if (world.isRemote) return;
-        
-        if (damageValue == BlockType.JAPANESE_MAPLE.metadata || damageValue == BlockType.JAPANESE_MAPLE_SHRUB.metadata ||  !GeneralSettings.bigTreeSaplingDropModifier) {
-            if (world.rand.nextInt(20) == 0) {
-                doSaplingDrop(world, x, y, z, metadata, par7);
-            }
-        } else {
-            if (world.rand.nextInt(90) == 0) {
-                doSaplingDrop(world, x, y, z, metadata, par7);
-            }
-        }
+               
+	    if (world.rand.nextInt(20) == 0) {
+	        doSaplingDrop(world, x, y, z, metadata, par7);
+	    }
     }
 
     @Override
@@ -258,15 +240,16 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
         
         
         switch(metadata){
-	        case 0:
-	        	return ColorizerFoliage.getFoliageColor(1.0F, 0.5F);
-	        case 1:
-	        	return 0xffffff;
-	        	//return ColorizerFoliage.getFoliageColor(1.0F, 0.2F);
-	        case 2:
-	        	return ColorizerFoliage.getFoliageColor(1.0F, 0.5F);
+	        //case 0:
+	        //	return ColorizerFoliage.getFoliageColor(1.0F, 0.5F);
+	        //case 1:
+	        //	return 0xffffff;
+	        //	//return ColorizerFoliage.getFoliageColor(1.0F, 0.2F);
+	        //case 2:
+	        //	return ColorizerFoliage.getFoliageColor(1.0F, 0.5F);
 	        default:
-	        	return ColorizerFoliage.getFoliageColor(1.0F, 0.0F);
+	        	//return ColorizerFoliage.getFoliageColor(1.0F, 1.0F);
+	        	return 0xffffff;
         	//
         }
         
@@ -345,12 +328,12 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable {
 
         if (isUserPlaced(metadata) || !isDecaying(metadata)) return;
 
-        final int rangeWood = (unmarkedMetadata(metadata) == BlockType.JAPANESE_MAPLE.metadata) ? 8 : 6;
+        final int rangeWood = 8;
         final int rangeCheckChunk = rangeWood + 1;
         final byte var9 = 32;
         final int var10 = var9 * var9;
         final int var11 = var9 / 2;
-        final int leafRange = (unmarkedMetadata(metadata) == BlockType.JAPANESE_MAPLE.metadata) ? 10 : 4;
+        final int leafRange = 10;
         
         if (adjacentTreeBlocks == null) {
         	adjacentTreeBlocks = new int[var9 * var9 * var9];

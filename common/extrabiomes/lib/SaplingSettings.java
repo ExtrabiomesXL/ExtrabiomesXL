@@ -5,7 +5,7 @@ import net.minecraftforge.common.Property;
 import extrabiomes.utility.EnhancedConfiguration;
 
 public enum SaplingSettings {
-	BROWN(30.0f), ORANGE(30.0f), PURPLE(30.0f), YELLOW(30.0f), FIR(6.0f), REDWOOD(0.5f), ACACIA(26.4f), CYPRESS(22.0f), BALD_CYPRESS(0.5f), JAPANESE_MAPLE(20.9f), JAPANESE_MAPLE_SHRUB(90.0f), RAINBOW_EUCALYPTUS(0.5f);
+	UMBER(25.0f), GOLDENROD(25.0f), VERMILLION(25.0f), CITRINE(25.0f), FIR(6.0f), REDWOOD(0.5f), ACACIA(26.4f), CYPRESS(22.0f), BALD_CYPRESS(0.5f), JAPANESE_MAPLE(20.9f), JAPANESE_MAPLE_SHRUB(90.0f), RAINBOW_EUCALYPTUS(0.5f), SAKURA_BLOSSOM(19.99f);
 	
     private double 			chance;
     private final double	defaultChance;

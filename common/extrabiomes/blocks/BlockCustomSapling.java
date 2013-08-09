@@ -296,19 +296,19 @@ public class BlockCustomSapling extends BlockFlower {
     			// Determine if the sapling should despawn
     			if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.ACACIA.metadata() && chance <= SaplingSettings.ACACIA.chance()) {
     				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
-    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.UMBER.metadata() && chance <= SaplingSettings.BROWN.chance()) {
+    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.UMBER.metadata() && chance <= SaplingSettings.UMBER.chance()) {
     				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
     			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.CYPRESS.metadata() && chance <= SaplingSettings.CYPRESS.chance()) {
     				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
     			} else if(metadata == BlockType.FIR.metadata() && chance <= SaplingSettings.FIR.chance() * ratio) {
     				plant2x2Sapling(posX, posY, posZ, event.entityItem.worldObj, event.entityItem.getEntityItem());
-    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.GOLDENROD.metadata() && chance <= SaplingSettings.ORANGE.chance()) {
+    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.GOLDENROD.metadata() && chance <= SaplingSettings.GOLDENROD.chance()) {
     				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
-    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.VERMILLION.metadata() && chance <= SaplingSettings.PURPLE.chance()) {
+    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.VERMILLION.metadata() && chance <= SaplingSettings.VERMILLION.chance()) {
     				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
     			} else if(metadata == BlockType.REDWOOD.metadata() && chance <= SaplingSettings.REDWOOD.chance() * ratio) {
     				plant2x2Sapling(posX, posY, posZ, event.entityItem.worldObj, event.entityItem.getEntityItem());
-    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.CITRINE.metadata() && chance <= SaplingSettings.YELLOW.chance()){
+    			} else if(event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.CITRINE.metadata() && chance <= SaplingSettings.CITRINE.chance()){
     				event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
     			}
     		}
