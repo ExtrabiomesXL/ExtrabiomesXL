@@ -38,11 +38,13 @@
   <entry key="tile.extrabiomes.leaves.japanese_maple.name">Листва японского клёна</entry>
   <entry key="tile.extrabiomes.leaves.japanese_maple_shrub.name">Листва кустарника японского клёна</entry>
   <entry key="tile.extrabiomes.leaves.rainbow_eucalyptus.name">Листва радужного эвкалипта</entry>
+  <entry key="tile.extrabiomes.leaves.sakura_blossom.name">Диства цветущей сакуры</entry>
   <entry key="tile.extrabiomes.leafpile.name">Опавшие листья</entry>
   <entry key="tile.extrabiomes.log.0.name">Пихта</entry>
   <entry key="tile.extrabiomes.log.1.name">Акация</entry>
   <entry key="tile.extrabiomes.log.2.name">Кипарис</entry>
   <entry key="tile.extrabiomes.log.3.name">Японский клён</entry>
+  <entry key="tile.extrabiomes.log.sakura_blossom.name">Цветущая сакура</entry>
   <entry key="tile.extrabiomes.cypresskneelog.name">Локоть болотного кипариса</entry>
   <entry key="tile.extrabiomes.rainbowkneelog.name">Локоть радужного эвкалипта</entry>
   <entry key="tile.extrabiomes.newlog.0.name">Радужный эвкалипт</entry>
@@ -61,6 +63,7 @@
   <entry key="tile.extrabiomes.planks.5.name">Доски из радужного кипариса</entry>
   <entry key="tile.extrabiomes.planks.6.name">Доски из осеннего дерева</entry>
   <entry key="tile.extrabiomes.planks.7.name">Доски из болотного кипариса</entry>
+  <entry key="tile.extrabiomes.planks.8.name">Доски из цветущей сакуры</entry>
   <entry key="tile.extrabiomes.quicksand.name">Зыбучий песок</entry>
   <entry key="tile.extrabiomes.redrock.0.name">Красный камень</entry>
   <entry key="tile.extrabiomes.redrock.1.name">Красный булыжник</entry>
@@ -80,6 +83,7 @@
   <entry key="tile.extrabiomes.sapling.japanese_maple.name">Саженец японского клёна</entry>
   <entry key="tile.extrabiomes.sapling.japanese_maple_shrub.name">Саженец кустарника японского клёна</entry>
   <entry key="tile.extrabiomes.sapling.rainbow_eucalyptus.name">Саженец радужного эвкалипта</entry>
+  <entry key="tile.extrabiomes.sapling.sakura_blossom.name">Саженец цветущей сакуры</entry>
   <entry key="tile.extrabiomes.stairs.acacia.name">Ступеньки из акации</entry>
   <entry key="tile.extrabiomes.stairs.fir.name">Ступеньки из пихты</entry>
   <entry key="tile.extrabiomes.stairs.redcobble.name">Ступеньки из красного булыжника</entry>
@@ -90,6 +94,7 @@
   <entry key="tile.extrabiomes.stairs.baldcypress.name">Ступеньки из болотного кипариса</entry>
   <entry key="tile.extrabiomes.stairs.autumn.name">Ступеньки из осеннего дерева</entry>
   <entry key="tile.extrabiomes.stairs.rainboweucalyptus.name">Ступеньки из радужного эвкалипта</entry>
+  <entry key="tile.extrabiomes.stairs.sakurablossom.name">Ступеньки из цветущей сакуры</entry>
   <entry key="tile.extrabiomes.tallgrass.0.name">Коричневая трава</entry>
   <entry key="tile.extrabiomes.tallgrass.1.name">Низкая коричневая трава</entry>
   <entry key="tile.extrabiomes.tallgrass.2.name">Мёртвая трава</entry>
@@ -104,4 +109,5 @@
   <entry key="tile.extrabiomes.woodslab.rainbow_eucalyptus.name">Плита из радужного эвкалипта</entry>
   <entry key="tile.extrabiomes.woodslab.autumn.name">Плита из осеннего дерева</entry>
   <entry key="tile.extrabiomes.woodslab.bald_cypress.name">Плита из болотного кипариса</entry>
+  <entry key="tile.extrabiomes.woodslab.sakura_blossom.name">Плита из цветущей сакуры</entry>
 </properties>
