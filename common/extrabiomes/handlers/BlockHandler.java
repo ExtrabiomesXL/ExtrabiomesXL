@@ -294,10 +294,7 @@ public abstract class BlockHandler {
         Element.LOG_SAKURA_BLOSSOM.set(new ItemStack(block, 1, BlockMiniLog.BlockType.SAKURA_BLOSSOM.metadata()));
 
         ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
-        for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType.values()) {
-            FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
-        }
-        
+                
         BlockMiniLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderMiniLog()));
     }
     
@@ -321,7 +318,6 @@ public abstract class BlockHandler {
     	block2.setUnlocalizedName("extrabiomes.rainbowkneelog").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
     	
         proxy.setBlockHarvestLevel(block2, "axe", 0);
-        //proxy.registerBlock(block2, extrabiomes.utility.MultiItemBlock.class);
         proxy.registerBlock(block2, net.minecraft.item.ItemBlock.class);
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block2);
@@ -332,6 +328,9 @@ public abstract class BlockHandler {
         
         BlockKneeLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderKneeLog()));
 
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block.blockID, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block2.blockID, 1, Short.MAX_VALUE));
+        
         FacadeHelper.addBuildcraftFacade(block.blockID);
         FacadeHelper.addBuildcraftFacade(block2.blockID);
         
@@ -367,8 +366,9 @@ public abstract class BlockHandler {
         Element.LOG_QUARTER_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, Short.MAX_VALUE));
         
         BlockNewQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderNewQuarterLog()));
-        
 
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block.blockID, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block2.blockID, 1, Short.MAX_VALUE));
         FacadeHelper.addBuildcraftFacade(block.blockID);
         FacadeHelper.addBuildcraftFacade(block2.blockID);
         
@@ -511,10 +511,11 @@ public abstract class BlockHandler {
         ForestryModHelper.registerSapling(Element.SAPLING_JAPANESE_MAPLE.get());
         ForestryModHelper.registerSapling(Element.SAPLING_JAPANESE_MAPLE_SHRUB.get());
         ForestryModHelper.registerSapling(Element.SAPLING_RAINBOW_EUCALYPTUS.get());
+        ForestryModHelper.registerSapling(Element.SAPLING_SAKURA_BLOSSOM.get());
         ForestryModHelper.addToForesterBackpack(stack);
 
         // all but redwood
-        final Element[] forestrySaplings = { Element.SAPLING_JAPANESE_MAPLE, Element.SAPLING_JAPANESE_MAPLE_SHRUB };
+        final Element[] forestrySaplings = { Element.SAPLING_JAPANESE_MAPLE, Element.SAPLING_JAPANESE_MAPLE_SHRUB, Element.SAPLING_SAKURA_BLOSSOM };
         for (final Element sapling : forestrySaplings){
             ForestryModHelper.registerGermling(sapling.get());
         }
@@ -564,6 +565,11 @@ public abstract class BlockHandler {
         Element.LOG_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, BlockNewLog.BlockType.RAINBOW_EUCALYPTUS.metadata()));
         Element.LOG_AUTUMN.set(new ItemStack(block2, 1, BlockNewLog.BlockType.AUTUMN.metadata()));
         Element.LOG_BALD_CYPRESS.set(new ItemStack(block2, 1, BlockNewLog.BlockType.BALD_CYPRESS.metadata()));
+
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block2, 1, Short.MAX_VALUE));
+        for (final BlockNewLog.BlockType type : BlockNewLog.BlockType.values()) {
+            FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
+        }
     }
 
 }

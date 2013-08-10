@@ -61,7 +61,7 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase {
     	lastSeed = rand.nextLong();
     	
     	// Make sure the tree can generate
-    	//if(!checkTree(world, new Random(lastSeed), x, y, z)) return false;
+    	if(!checkTree(world, new Random(lastSeed), x, y, z)) return false;
     	
         return generateTree(world, new Random(lastSeed), x, y, z);
     }
@@ -71,7 +71,7 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase {
     	lastSeed = seed;
     	
     	// Make sure the tree can generate
-    	//if(!checkTree(world, new Random(lastSeed), x, y, z)) return false;
+    	if(!checkTree(world, new Random(lastSeed), x, y, z)) return false;
     	
         return generateTree(world, new Random(seed), x, y, z);
     }
@@ -83,7 +83,7 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase {
 	private static final int	BRANCHES_BASE_NUMBER		= 2;		// The total number of branches on the tree
 	private static final int	BRANCHES_EXTRA				= 4;		// The how many extra branches can occur on the tree
 	private static final int	CANOPY_WIDTH				= 8;		// How many blocks will this tree cover
-	private static final int	CANOPY_WIDTH_VARIANCE		= 6;		// How many extra blocks may this tree cover
+	private static final int	CANOPY_WIDTH_VARIANCE		= 4;		// How many extra blocks may this tree cover
 	
 	static int last = 0;
 	
@@ -182,7 +182,7 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase {
     	Iterator<int[]> itt = branches.iterator();
     	while (itt.hasNext()) {
     	   int[] cluster = itt.next();
-    	   if(!checkLeafCluster(world, cluster[0], cluster[1], cluster[2], 2, 1)) return false;
+    	   if(!checkLeafCluster(world, cluster[0], cluster[1], cluster[2], 2, 2)) return false;
     	}
 
     	// Calculate the center position
@@ -282,7 +282,7 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase {
     }
     
     public boolean checkCanopyLayer(World world, double x, double y, double z, double radius) {
-    	double minDist = (radius - 2 > 0) ? ((radius - 2) * (radius - 2)) : -1;
+    	double minDist = (radius - 3 > 0) ? ((radius - 3) * (radius - 3)) : -1;
     	double maxDist = radius * radius;
     	    	
     	for(int z1 = (int)-radius; z1 < (radius + 1); z1++) {
@@ -301,7 +301,7 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase {
     }
     
     public void generateCanopyLayer(World world, Random rand, double x, double y, double z, double radius, int skipChance, ItemStack leaves) {
-    	double minDist = (radius - 2 > 0) ? ((radius - 2) * (radius - 2)) : -1;
+    	double minDist = (radius - 3 > 0) ? ((radius - 3) * (radius - 3)) : -1;
     	double maxDist = radius * radius;
     	    	
     	for(int z1 = (int)-radius; z1 < (radius + 1); z1++) {

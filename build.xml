@@ -24,6 +24,7 @@
         <!-- setup source dirs -->
         <property name="dev.src" location="${dev.home}/common"/>
         <property name="dev.resources" location="${dev.home}/resources"/>
+        <property name="dev.lang" location="${dev.home}/common/lang"/>
 
         <!-- check if the directories are present -->
         <condition property="has.dev.src" value="true" else="false">
@@ -41,19 +42,19 @@
 
     <target name="clean">
         <!-- clean minecraft sources -->
-        <delete verbose="true" failonerror="false">
+        <delete includeemptydirs="true" verbose="true" failonerror="false">
             <fileset dir="${mcp.src.minecraft}">
                 <present present="both" targetdir="${dev.src}"/>
             </fileset>
         </delete>
-        <delete verbose="true" failonerror="false">
+        <delete includeemptydirs="true" verbose="true" failonerror="false">
             <fileset dir="${mcp.src.minecraft}">
                 <present present="both" targetdir="${dev.core.src}"/>
             </fileset>
         </delete>
 
         <!-- clean classes -->
-        <delete verbose="true" failonerror="false">
+        <delete includeemptydirs="true" verbose="true" failonerror="false">
             <fileset dir="${mcp.bin}"/>
         </delete>
     </target>
@@ -89,8 +90,9 @@
         <jar destfile="${release.home}/${release.jar}">
             <fileset dir="${mcp.bin}" includes="extrabiomes/**/*.class"/>
             <fileset dir="${dev.resources}">
-				<exclude name="mcmod.template"/>
-			</fileset>
+                <exclude name="mcmod.template"/>
+            </fileset>
+            <fileset dir="${dev.src}" includes="extrabiomes/lang/*.xml"/>
             <mappedresources>
                 <concat>
                     <fileset dir="${dev.resources}" includes="mcmod.template"/>

@@ -82,7 +82,7 @@ public class TreeCapitatorPlugin
             tree.setString("treeName", "sakurablossom");
             tree.setString("logs", String.format("%d,0; %d,4; %d,8", BlockSettings.MINILOG.getID(), BlockSettings.MINILOG.getID(), BlockSettings.MINILOG.getID()));
             tree.setString("leaves", String.format("%d,0; %d,8", BlockSettings.MORELEAVES.getID(), BlockSettings.MORELEAVES.getID()));
-            tree.setInteger("maxHorLeafBreakDist", 6);
+            tree.setInteger("maxHorLeafBreakDist", 8);
             tree.setBoolean("requireLeafDecayCheck", false);
             treeList.appendTag(tree);
             
