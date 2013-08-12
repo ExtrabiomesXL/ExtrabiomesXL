@@ -6,7 +6,6 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
@@ -26,7 +25,7 @@ public class BiomeMountainRidge extends ExtrabiomeGenBase {
         maxHeight = 1.7F;
         setDisableRain();
         spawnableCreatureList.clear();
-        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 1, 3));
+        //spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 1, 3));
     }
 
     @Override

@@ -20,13 +20,15 @@ import net.minecraftforge.event.EventBus;
 import com.google.common.base.Optional;
 
 
+
+
 //import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
-//import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
-//import cpw.mods.fml.common.Mod.PostInit;
-//import cpw.mods.fml.common.Mod.PreInit;
-//import cpw.mods.fml.common.Mod.ServerStarting;
+import cpw.mods.fml.common.Mod.PostInit;
+import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.ServerStarting;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -71,14 +73,14 @@ public class Extrabiomes {
 
     private static Optional<EventBus> initBus                  = Optional.of(new EventBus());
     
-    @Mod.EventHandler
+    @Init
     public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException {
         proxy.registerRenderInformation();
         Module.postEvent(new ModuleInitEvent());
         TreeCapitatorPlugin.init();
     }
     
-    @Mod.EventHandler
+    @PostInit
     public static void postInit(FMLPostInitializationEvent event) {
         PluginManager.activatePlugins();
         RecipeHandler.init();
@@ -91,7 +93,7 @@ public class Extrabiomes {
         return initBus.isPresent() ? initBus.get().post(event) : false;
     }
 
-    @Mod.EventHandler
+    @PreInit
     public static void preInit(FMLPreInitializationEvent event) throws Exception {
         LogHelper.info("Intializing.");
 
@@ -122,7 +124,7 @@ public class Extrabiomes {
 
     }
     
-    @Mod.EventHandler
+    @ServerStarting
     public void serverStart(FMLServerStartingEvent event) {
     	if(GeneralSettings.consoleCommandsDisabled) return; 
     	

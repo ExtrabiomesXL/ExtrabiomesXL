@@ -18,9 +18,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-//import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.liquids.LiquidStack;
 
 
 
@@ -105,19 +103,10 @@ public class ForestryPlugin {
     }
 
     private void addFermenterRecipeSapling(ItemStack resource) throws Exception {
-    	// Make sure that all the fluids that we need exist
-    	for(final String type : new String[] { "water", "biomass", "honey", "juice" }) {
-    		if(!FluidRegistry.isFluidRegistered(type)) {
-	    		LogHelper.warning("Unable to find fluid named '%s' when adding Forestry fermenter recipes.", type);
-	    		return;
-    		}
-		}
-    	
-    	
     	try {
-	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.0f, getFluidStack("biomass"), getFluidStack("water"));
-	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("biomass"), getFluidStack("juice"));
-	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getFluidStack("biomass"), getFluidStack("honey"));
+	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.0f, getLiquidStack("biomass"), new LiquidStack(Block.waterStill.blockID, 1));
+	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getLiquidStack("biomass"), getLiquidStack("juice"));
+	        fermenterAddRecipe.get().invoke(fermenterManager, resource, BIOMASS_SAPLINGS, 1.5f, getLiquidStack("biomass"), getLiquidStack("honey"));
     	} catch (Exception e) {
     		LogHelper.severe("The forestry API changed in reguards to fluids/liquids.");
     	}
@@ -138,7 +127,7 @@ public class ForestryPlugin {
         }
         
         if (carpenterAddRecipe.isPresent() && Element.RED_COBBLE.isPresent()) {
-            carpenterAddRecipe.get().invoke(carpenterManager, 10, new FluidStack(Block.waterStill.blockID, 3000), null, new ItemStack(Item.clay, 4), new Object[] { "#", Character.valueOf('#'), Element.RED_COBBLE.get() });
+            carpenterAddRecipe.get().invoke(carpenterManager, 10, new LiquidStack(Block.waterStill.blockID, 3000), null, new ItemStack(Item.clay, 4), new Object[] { "#", Character.valueOf('#'), Element.RED_COBBLE.get() });
         }
     }
 
@@ -155,13 +144,18 @@ public class ForestryPlugin {
         	FMLInterModComms.sendMessage("Forestry", "add-farmable-sapling", String.format("farmArboreal@%s.%s", sapling.itemID, sapling.getItemDamage()));
         }
     }
-
-    private FluidStack getFluidStack(String name) throws Exception {
-    	return FluidRegistry.getFluidStack(name, 1);
-    	//return FluidRegistry.getFluid(name);
-        //final ItemStack itemStack = (ItemStack) getForestryItem.get().invoke(null, name);
-        //return new FluidStack(itemStack.itemID, 1, itemStack.getTagCompound());
+    
+    private LiquidStack getLiquidStack(String name) throws Exception {
+        final ItemStack itemStack = (ItemStack) getForestryItem.get().invoke(null, name);
+        return new LiquidStack(itemStack.itemID, 1, itemStack.getItemDamage());
     }
+
+    //private FluidStack getFluidStack(String name) throws Exception {
+    //	return FluidRegistry.getFluidStack(name, 1);
+    //	//return FluidRegistry.getFluid(name);
+    //    //final ItemStack itemStack = (ItemStack) getForestryItem.get().invoke(null, name);
+    //    //return new FluidStack(itemStack.itemID, 1, itemStack.getTagCompound());
+    //}
 
     @ForgeSubscribe
     public void init(PluginEvent.Init event) throws Exception {
@@ -209,9 +203,9 @@ public class ForestryPlugin {
             backpackItems = (ArrayList[]) fld.get(null);
 
             cls = Class.forName("forestry.api.recipes.IFermenterManager");
-            fermenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", ItemStack.class, int.class, float.class, FluidStack.class, FluidStack.class));
+            fermenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", ItemStack.class, int.class, float.class, LiquidStack.class, LiquidStack.class));
             cls = Class.forName("forestry.api.recipes.ICarpenterManager");
-            carpenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", int.class, FluidStack.class, ItemStack.class, ItemStack.class, Object[].class));
+            carpenterAddRecipe = Optional.fromNullable(cls.getMethod("addRecipe", int.class, LiquidStack.class, ItemStack.class, ItemStack.class, Object[].class));
         } catch (final Exception ex) {
             ex.printStackTrace();
             //LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR), "Forestry");

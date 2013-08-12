@@ -412,7 +412,7 @@ public abstract class BlockHandler {
 
         BlockQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderQuarterLog()));
 
-        for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType.values()) {
+        for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType.values()){
             FacadeHelper.addBuildcraftFacade(blockSE.blockID, type.metadata());
         }
     }

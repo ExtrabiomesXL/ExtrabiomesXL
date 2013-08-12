@@ -6,7 +6,6 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeDecorator;
@@ -24,7 +23,7 @@ public class BiomeMeadow extends ExtrabiomeGenBase {
         maxHeight = 0.0F;
         setBiomeName("Meadow");
 
-        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 6, 2, 6));
+        //spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 6, 2, 6));
     }
 
     @Override

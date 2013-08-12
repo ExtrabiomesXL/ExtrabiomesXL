@@ -80,10 +80,10 @@ public class EntityScarecrow extends EntityGolem {
 		return false;
 	}
 
-	//@Override
-	//public int getMaxHealth() {
-	//	return 5;
-	//}
+	@Override
+	public int getMaxHealth() {
+		return 5;
+	}
 
 	@Override
 	protected float getSoundVolume() {

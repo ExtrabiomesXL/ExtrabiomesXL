@@ -6,7 +6,6 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
@@ -24,7 +23,7 @@ public class BiomeSavanna extends ExtrabiomeGenBase {
         minHeight = 0.0F;
         maxHeight = 0.1F;
 
-        spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 2, 4));
+        //spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 2, 4));
     }
 
     @Override

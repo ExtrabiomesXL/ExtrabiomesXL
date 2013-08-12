@@ -8,10 +8,8 @@ package extrabiomes.module.fabrica.scarecrow;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityBat;
 
 import org.lwjgl.opengl.GL11;
@@ -22,7 +20,7 @@ import extrabiomes.Extrabiomes;
 
 @SideOnly(Side.CLIENT)
 public class RenderScarecrow extends RenderLiving {
-	private static final ResourceLocation model_resource = new ResourceLocation(Extrabiomes.TEXTURE_PATH + "textures/models/scarecrow.png");
+	//private static final ResourceLocation model_resource = new ResourceLocation(Extrabiomes.TEXTURE_PATH + "textures/models/scarecrow.png");
 	
 	public RenderScarecrow(ModelBase modelbase, float f) {
 		super(modelbase, f);
@@ -41,7 +39,7 @@ public class RenderScarecrow extends RenderLiving {
 	}
 
 	@Override
-	protected void preRenderCallback(EntityLivingBase entityliving, float f) {
+	protected void preRenderCallback(EntityLiving entityliving, float f) {
 		preRenderScale((EntityScarecrow) entityliving, f);
 	}
 
@@ -55,10 +53,10 @@ public class RenderScarecrow extends RenderLiving {
 		super.doRenderLiving(entityScarecrow, d, d1, d2, f, f1);
 	}
 
-	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
-		// TODO Auto-generated method stub
-		return model_resource;
-		//return new ResourceLocation(Extrabiomes.TEXTURE_PATH + "scarecrow");
-	}
+	//@Override
+	//protected ResourceLocation func_110775_a(Entity entity) {
+	//	// TODO Auto-generated method stub
+	//	return model_resource;
+	//	//return new ResourceLocation(Extrabiomes.TEXTURE_PATH + "scarecrow");
+	//}
 }
