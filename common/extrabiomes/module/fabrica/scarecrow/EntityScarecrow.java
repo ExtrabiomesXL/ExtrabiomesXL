@@ -23,18 +23,15 @@ public class EntityScarecrow extends EntityGolem {
 	
 	public EntityScarecrow(World world) {
 		super(world);
+		
+		texture = "/mods/ExtrabiomesXL/textures/models/scarecrow.png";
+		
 		preventEntitySpawning = true;
 		
 		tasks.addTask(1, new EntityAIScareClosest(this, EntityMob.class, 50.0F));
 		tasks.addTask(2, new EntityAIScareClosest(this, EntityCreature.class, 50.0F));
 		tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 50.0F));
 		tasks.addTask(7, new EntityAILookIdle(this));
-		
-		
-		//tasks.addTask(7, new EntityAIWatchClosest(this, EntityCreature.class, 50.0F));
-		//tasks.addTask(7, new EntityAIWatchClosest(this, EntityMob.class, 50.0F));
-		//tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 50.0F));
-		//tasks.addTask(7, new EntityAILookIdle(this));
 	}
 
 	@Override
