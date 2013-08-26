@@ -319,7 +319,7 @@ public abstract class BlockHandler {
     	
         proxy.setBlockHarvestLevel(block2, "axe", 0);
         proxy.registerBlock(block2, net.minecraft.item.ItemBlock.class);
-        proxy.registerOreInAllSubblocks("logWood", block);
+        proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
         proxy.setBurnProperties(block2.blockID, 5, 5);
         
