@@ -93,7 +93,7 @@ public class Extrabiomes {
 
     @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event) throws Exception {
-        LogHelper.info("Intializing.");
+        LogHelper.info("Initializing.");
 
         // Load the localization files into the LanguageRegistry
         LocalizationHandler.loadLanguages();
