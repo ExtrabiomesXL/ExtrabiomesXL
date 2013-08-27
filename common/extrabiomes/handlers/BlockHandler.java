@@ -568,7 +568,7 @@ public abstract class BlockHandler {
 
         ForestryModHelper.addToForesterBackpack(new ItemStack(block2, 1, Short.MAX_VALUE));
         for (final BlockNewLog.BlockType type : BlockNewLog.BlockType.values()) {
-            FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
+            FacadeHelper.addBuildcraftFacade(block2.blockID, type.metadata());
         }
     }
 
