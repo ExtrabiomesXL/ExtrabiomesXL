@@ -18,80 +18,80 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-
-public class EntityScarecrow extends EntityGolem {
-	
-	public EntityScarecrow(World world) {
-		super(world);
-		preventEntitySpawning = true;
-		
-		tasks.addTask(1, new EntityAIScareClosest(this, EntityMob.class, 50.0F));
-		tasks.addTask(2, new EntityAIScareClosest(this, EntityCreature.class, 50.0F));
-		tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 50.0F));
-		tasks.addTask(7, new EntityAILookIdle(this));
-		
-		
-		//tasks.addTask(7, new EntityAIWatchClosest(this, EntityCreature.class, 50.0F));
-		//tasks.addTask(7, new EntityAIWatchClosest(this, EntityMob.class, 50.0F));
-		//tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 50.0F));
-		//tasks.addTask(7, new EntityAILookIdle(this));
-	}
-
-	@Override
-	public boolean canBePushed() {
-		return false;
-	}
-	
-	private class EntityAIScareClosest extends EntityAIWatchClosest {
-
-		public EntityAIScareClosest(EntityLiving par1EntityLiving, Class par2Class, float par3) {
-			super(par1EntityLiving, par2Class, par3);
-		}
-
-		@Override
-		public void startExecuting()
-		{
-			super.startExecuting();
-			if (closestEntity instanceof EntityCreature && !(closestEntity instanceof EntityGolem)) {
-				((EntityCreature) closestEntity).tasks.addTask(1, new EntityAIAvoidEntity((EntityCreature) closestEntity, EntityScarecrow.class, 10.0F, 0.3F, 0.4F));
-			}
-		}
-	}
-
-	@Override
-	protected boolean canDespawn() {
-		return false;
-	}
-
-	@Override
-	protected int decreaseAirSupply(int par1) {
-		return par1;
-	}
-
-	@Override
-	protected void dropFewItems(boolean par1, int par2) {
-		dropItem(Item.stick.itemID, 3);
-		dropItem(Block.melon.blockID, 1);
-		dropItem(Block.pumpkin.blockID, 1);
-	}
-
-	@Override
-	public boolean canBeCollidedWith() {
-		return false;
-	}
-
-	//@Override
-	//public int getMaxHealth() {
-	//	return 5;
-	//}
-
-	@Override
-	protected float getSoundVolume() {
-		return 0.0F;
-	}
-
-	@Override
-	public boolean isAIEnabled() {
-		return true;
-	}
+public class EntityScarecrow extends EntityGolem
+{
+    
+    public EntityScarecrow(World world)
+    {
+        super(world);
+        preventEntitySpawning = true;
+        
+        tasks.addTask(1, new EntityAIScareClosest(this, EntityMob.class, 50.0F));
+        tasks.addTask(2, new EntityAIScareClosest(this, EntityCreature.class, 50.0F));
+        tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 50.0F));
+        tasks.addTask(7, new EntityAILookIdle(this));
+    }
+    
+    @Override
+    public boolean canBePushed()
+    {
+        return false;
+    }
+    
+    private class EntityAIScareClosest extends EntityAIWatchClosest
+    {
+        
+        public EntityAIScareClosest(EntityLiving par1EntityLiving, Class<?> par2Class, float par3)
+        {
+            super(par1EntityLiving, par2Class, par3);
+        }
+        
+        @Override
+        public void startExecuting()
+        {
+            super.startExecuting();
+            if (closestEntity instanceof EntityCreature && !(closestEntity instanceof EntityGolem))
+            {
+                ((EntityCreature) closestEntity).tasks.addTask(1, new EntityAIAvoidEntity((EntityCreature) closestEntity, EntityScarecrow.class, 10.0F, 0.3F, 0.4F));
+            }
+        }
+    }
+    
+    @Override
+    protected boolean canDespawn()
+    {
+        return false;
+    }
+    
+    @Override
+    protected int decreaseAirSupply(int par1)
+    {
+        return par1;
+    }
+    
+    @Override
+    protected void dropFewItems(boolean par1, int par2)
+    {
+        dropItem(Item.stick.itemID, 3);
+        dropItem(Block.melon.blockID, 1);
+        dropItem(Block.pumpkin.blockID, 1);
+    }
+    
+    @Override
+    public boolean canBeCollidedWith()
+    {
+        return true;
+    }
+    
+    @Override
+    protected float getSoundVolume()
+    {
+        return 0.0F;
+    }
+    
+    @Override
+    public boolean isAIEnabled()
+    {
+        return true;
+    }
 }
