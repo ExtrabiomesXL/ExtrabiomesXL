@@ -53,8 +53,8 @@
   <entry key="tile.extrabiomes.log.quarter.0.name">Mammutbaumstamm</entry>
   <entry key="tile.extrabiomes.log.quarter.1.name">Tannenstamm</entry>
   <entry key="tile.extrabiomes.log.quarter.2.name">Eichenstamm</entry>
-  <entry key="tile.extrabiomes.rainboweucalyptusquarter.name">Regenbogen-Eukalyptus-Viertelstamm</entry>
-  <entry key="tile.extrabiomes.baldcypressquarter.name">Sumpfzypressen-Viertelstamm</entry>
+  <entry key="tile.extrabiomes.rainboweucalyptusquarter.name">Regenbogen-Eukalyptus-Stammviertel</entry>
+  <entry key="tile.extrabiomes.baldcypressquarter.name">Sumpfzypressen-Stammviertel</entry>
   <entry key="tile.extrabiomes.planks.0.name">Mammutbaumplanken</entry>
   <entry key="tile.extrabiomes.planks.1.name">Tannenbaumplanken</entry>
   <entry key="tile.extrabiomes.planks.2.name">Akazienplanken</entry>
