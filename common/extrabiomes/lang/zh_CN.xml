@@ -38,7 +38,7 @@
   <entry key="tile.extrabiomes.leaves.japanese_maple.name">日本枫树树叶</entry>
   <entry key="tile.extrabiomes.leaves.japanese_maple_shrub.name">日本枫树灌木叶</entry>
   <entry key="tile.extrabiomes.leaves.rainbow_eucalyptus.name">彩虹桉树树叶</entry>
-  <entry key="tile.extrabiomes.leaves.sakura_blossom.name">Sakura Blossom Leaves</entry> 
+  <entry key="tile.extrabiomes.leaves.sakura_blossom.name">樱花树树叶</entry> 
   <entry key="tile.extrabiomes.leafpile.name">叶茎</entry>
   <entry key="tile.extrabiomes.log.0.name">冷杉原木</entry>
   <entry key="tile.extrabiomes.log.1.name">刺槐原木</entry>
@@ -48,7 +48,7 @@
   <entry key="tile.extrabiomes.rainbowkneelog.name">彩虹桉树肘部原木</entry>
   <entry key="tile.extrabiomes.newlog.0.name">彩虹桉树原木</entry>
   <entry key="tile.extrabiomes.newlog.1.name">秋季树原木</entry>
-  <entry key="tile.extrabiomes.newlog.2.name">Sakura Blossom Log</entry> 
+  <entry key="tile.extrabiomes.newlog.2.name">樱花树原木</entry> 
   <entry key="tile.extrabiomes.log.quarter.0.name">红木原木</entry>
   <entry key="tile.extrabiomes.log.quarter.1.name">冷杉原木</entry>
   <entry key="tile.extrabiomes.log.quarter.2.name">橡树原木</entry>
@@ -61,8 +61,8 @@
   <entry key="tile.extrabiomes.planks.4.name">日本枫树木板</entry>
   <entry key="tile.extrabiomes.planks.5.name">彩虹桉树木板</entry>
   <entry key="tile.extrabiomes.planks.6.name">秋季树木板</entry>
-  <entry key="tile.extrabiomes.planks.7.name">Untranslated</entry> 
-  <entry key="tile.extrabiomes.planks.8.name">Untranslated</entry> 
+  <entry key="tile.extrabiomes.planks.7.name">落羽松木板</entry> 
+  <entry key="tile.extrabiomes.planks.8.name">樱花树木板</entry> 
   <entry key="tile.extrabiomes.quicksand.name">流沙</entry>
   <entry key="tile.extrabiomes.redrock.0.name">红岩</entry>
   <entry key="tile.extrabiomes.redrock.1.name">红岩圆石</entry>
@@ -82,7 +82,7 @@
   <entry key="tile.extrabiomes.sapling.japanese_maple.name">日本枫树树苗</entry>
   <entry key="tile.extrabiomes.sapling.japanese_maple_shrub.name">日本枫树灌木丛</entry>
   <entry key="tile.extrabiomes.sapling.rainbow_eucalyptus.name">彩虹桉树树苗</entry>
-  <entry key="tile.extrabiomes.sapling.sakura_blossom.name">Sakura Blossom Sapling</entry> 
+  <entry key="tile.extrabiomes.sapling.sakura_blossom.name">樱花树树苗</entry> 
   <entry key="tile.extrabiomes.stairs.acacia.name">刺槐木台阶</entry>
   <entry key="tile.extrabiomes.stairs.fir.name">冷杉木台阶</entry>
   <entry key="tile.extrabiomes.stairs.redcobble.name">红色圆石台阶</entry>
@@ -105,6 +105,6 @@
   <entry key="tile.extrabiomes.woodslab.cypress.name">柏树台阶</entry>
   <entry key="tile.extrabiomes.woodslab.rainbow_eucalyptus.name">彩虹桉树台阶</entry>
   <entry key="tile.extrabiomes.woodslab.autumn.name">秋季树台阶</entry>
-  <entry key="tile.extrabiomes.woodslab.bald_cypress.name">Bald Cypress Slab</entry> 
-  <entry key="tile.extrabiomes.woodslab.sakura_blossom.name">Sakura Blossom Slab</entry> 
+  <entry key="tile.extrabiomes.woodslab.bald_cypress.name">落羽松台阶</entry> 
+  <entry key="tile.extrabiomes.woodslab.sakura_blossom.name">樱花树台阶</entry> 
 </properties>
