@@ -3,10 +3,10 @@
 <properties version="1.0">
   <comment>German (DE) Localization File</comment>
   <entry key="config.amica.comment">Setze "amica" auf "true", um andere Mods einzuschalten.</entry>
-  <entry key="config.block.terraingen.comment">%s wird in der Terrain-Generation benutzt. Seine ID muss unter 256 liegen.</entry>
+  <entry key="config.block.terraingen.comment">%s wird zur Terrain-Generation benutzt. Die verwendete ID muss unter 256 liegen.</entry>
   <entry key="config.cautia.comment">Setze "cautia" auf "true", um Gefahren einzuschalten.</entry>
   <entry key="config.fabrica.comment">Setze "fabrica" auf "true", um die herstellbaren Items einzuschalten.</entry>
-  <entry key="config.summa.comment">Setze "summa" aus "false", um den Mod auszuschalten.</entry>
+  <entry key="config.summa.comment">Setze "summa" auf "false", um die Mod auszuschalten.</entry>
   <entry key="item.extrabiomes.scarecrow.name">Vogelscheuche</entry>
   <entry key="item.extrabiomes.paste.name">Kaktus-Paste</entry>
   <entry key="item.extrabiomes.logturner.name">Stammdreher</entry>
@@ -15,7 +15,7 @@
   <entry key="log.message.plugin.init">Initialisiere %s Plug-In.</entry>
   <entry key="log.message.plugin.error">Konnte mit %s nicht interagieren. Plug-In wird deaktiviert.</entry>
   <entry key="module.status.enabled">Modul %s ist aktiviert.</entry>
-  <entry key="module.status.disabled">Modul %s is dekativiert, wird übersprungen.</entry>
+  <entry key="module.status.disabled">Modul %s ist dekativiert, wird übersprungen.</entry>
   <entry key="tile.extrabiomes.leaves.umber.name">Umbrafarbene Herbstblätter</entry>
   <entry key="tile.extrabiomes.leaves.goldenrod.name">Goldruten-Herbstblätter</entry>
   <entry key="tile.extrabiomes.leaves.vermillion.name">Zinnoberrote Herbstblätter</entry>
