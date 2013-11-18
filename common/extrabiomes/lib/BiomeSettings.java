@@ -41,111 +41,152 @@ import extrabiomes.module.summa.biome.BiomeWasteland;
 import extrabiomes.module.summa.biome.BiomeWoodlands;
 import extrabiomes.utility.EnhancedConfiguration;
 
-public enum BiomeSettings {
-    DESERT, EXTREMEHILLS, FOREST, JUNGLE, PLAINS, SWAMPLAND, TAIGA, ALPINE(32, BiomeAlpine.class), AUTUMNWOODS(
-            33, BiomeAutumnWoods.class), BIRCHFOREST(34, BiomeBirchForest.class), EXTREMEJUNGLE(35,
-            BiomeExtremeJungle.class), FORESTEDHILLS(36, BiomeForestedHills.class), FORESTEDISLAND(
-            37, BiomeForestedIsland.class), GLACIER(38, BiomeGlacier.class), GREENHILLS(39,
-            BiomeGreenHills.class), GREENSWAMP(40, BiomeGreenSwamp.class), ICEWASTELAND(41,
-            BiomeIceWasteland.class), MARSH(42, BiomeMarsh.class, false), MEADOW(43, BiomeMeadow.class), MINIJUNGLE(
-            44, BiomeMiniJungle.class), MOUNTAINDESERT(45, BiomeMountainDesert.class), MOUNTAINRIDGE(
-            46, BiomeMountainRidge.class), MOUNTAINTAIGA(47, BiomeMountainTaiga.class), PINEFOREST(
-            48, BiomePineForest.class), RAINFOREST(49, BiomeRainforest.class), REDWOODFOREST(50,
-            BiomeRedwoodForest.class), REDWOODLUSH(51, BiomeRedwoodLush.class), SAVANNA(52,
-            BiomeSavanna.class), SHRUBLAND(53, BiomeShrubland.class), SNOWYFOREST(54,
-            BiomeSnowForest.class), SNOWYRAINFOREST(55, BiomeSnowRainforest.class), TEMPORATERAINFOREST(
-            56, BiomeTemporateRainforest.class), TUNDRA(57, BiomeTundra.class), WASTELAND(58,
-            BiomeWasteland.class), WOODLANDS(59, BiomeWoodlands.class);
-
+public enum BiomeSettings
+{
+    DESERT,
+    EXTREMEHILLS,
+    FOREST,
+    JUNGLE,
+    PLAINS,
+    SWAMPLAND,
+    TAIGA,
+    ALPINE(32, BiomeAlpine.class),
+    AUTUMNWOODS(33, BiomeAutumnWoods.class),
+    BIRCHFOREST(34, BiomeBirchForest.class),
+    EXTREMEJUNGLE(35, BiomeExtremeJungle.class),
+    FORESTEDHILLS(36, BiomeForestedHills.class),
+    FORESTEDISLAND(37, BiomeForestedIsland.class),
+    GLACIER(38, BiomeGlacier.class),
+    GREENHILLS(39, BiomeGreenHills.class),
+    GREENSWAMP(40, BiomeGreenSwamp.class),
+    ICEWASTELAND(41, BiomeIceWasteland.class),
+    MARSH(42, BiomeMarsh.class, false),
+    MEADOW(43, BiomeMeadow.class),
+    MINIJUNGLE(44, BiomeMiniJungle.class),
+    MOUNTAINDESERT(45, BiomeMountainDesert.class),
+    MOUNTAINRIDGE(46, BiomeMountainRidge.class),
+    MOUNTAINTAIGA(47, BiomeMountainTaiga.class),
+    PINEFOREST(48, BiomePineForest.class),
+    RAINFOREST(49, BiomeRainforest.class),
+    REDWOODFOREST(50, BiomeRedwoodForest.class),
+    REDWOODLUSH(51, BiomeRedwoodLush.class),
+    SAVANNA(52, BiomeSavanna.class),
+    SHRUBLAND(53, BiomeShrubland.class),
+    SNOWYFOREST(54, BiomeSnowForest.class),
+    SNOWYRAINFOREST(55, BiomeSnowRainforest.class),
+    TEMPORATERAINFOREST(56, BiomeTemporateRainforest.class),
+    TUNDRA(57, BiomeTundra.class),
+    WASTELAND(58, BiomeWasteland.class),
+    WOODLANDS(59, BiomeWoodlands.class);
+    
     private final int                                               defaultID;
-
+    
     private int                                                     biomeID       = 0;
     private boolean                                                 enabled       = true;
     private boolean                                                 allowVillages = true;
     private final Optional<? extends Class<? extends BiomeGenBase>> biomeClass;
     private Optional<? extends BiomeGenBase>                        biome         = Optional
                                                                                           .absent();
-
-    private BiomeSettings() {
+    
+    private BiomeSettings()
+    {
         this(0, null);
     }
-
-    private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass) {
+    
+    private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass)
+    {
         this.defaultID = defaultID;
         biomeID = this.defaultID;
         this.biomeClass = Optional.fromNullable(biomeClass);
     }
     
-    private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass, boolean defaultGen) {
+    private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass, boolean defaultGen)
+    {
         this.defaultID = defaultID;
         biomeID = this.defaultID;
         this.biomeClass = Optional.fromNullable(biomeClass);
         this.enabled = defaultGen;
     }
-
-    public boolean allowVillages() {
+    
+    public boolean allowVillages()
+    {
         return allowVillages;
     }
-
-    public void createBiome() throws Exception {
-        if (biomeClass.isPresent() && !biome.isPresent()) {
+    
+    public void createBiome() throws Exception
+    {
+        if (biomeClass.isPresent() && !biome.isPresent())
+        {
             biome = Optional.of(biomeClass.get().newInstance());
         }
     }
-
-    public Optional<? extends BiomeGenBase> getBiome() {
+    
+    public Optional<? extends BiomeGenBase> getBiome()
+    {
         return biome;
     }
-
-    public int getID() {
+    
+    public int getID()
+    {
         return biomeID;
     }
-
-    public boolean isEnabled() {
+    
+    public boolean isEnabled()
+    {
         return enabled;
     }
-
-    public boolean isVanilla() {
+    
+    public boolean isVanilla()
+    {
         return !biomeClass.isPresent();
     }
-
-    private String keyAllowVillages() {
+    
+    private String keyAllowVillages()
+    {
         return keyVanillaPrefix() + toString() + ".allowvillages";
     }
-
-    private String keyEnabled() {
+    
+    private String keyEnabled()
+    {
         return keyVanillaPrefix() + toString() + ".enablegeneration";
     }
-
-    private String keyID() {
+    
+    private String keyID()
+    {
         return toString() + ".id";
     }
-
-    private String keyVanillaPrefix() {
+    
+    private String keyVanillaPrefix()
+    {
         return isVanilla() ? "vanilla." : "";
     }
-
-    public void load(EnhancedConfiguration configuration) {
+    
+    public void load(EnhancedConfiguration configuration)
+    {
         Property property;
-
-        if (!isVanilla()) {
+        
+        if (!isVanilla())
+        {
             property = configuration.getBiome(keyID(), defaultID);
             biomeID = property.getInt(0);
-        } 
-
+        }
+        
         property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyEnabled(), enabled);
-        if (!isVanilla() && biomeID == 0) property.set(Boolean.toString(false));
+        if (!isVanilla() && biomeID == 0)
+            property.set(Boolean.toString(false));
         enabled = property.getBoolean(false);
-
+        
         property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), true);
-        if (!isVanilla() && biomeID == 0) property.set(Boolean.toString(false));
+        if (!isVanilla() && biomeID == 0)
+            property.set(Boolean.toString(false));
         allowVillages = property.getBoolean(false);
-
+        
     }
-
+    
     @Override
-    public String toString() {
+    public String toString()
+    {
         return super.toString().toLowerCase();
     }
-
+    
 }
