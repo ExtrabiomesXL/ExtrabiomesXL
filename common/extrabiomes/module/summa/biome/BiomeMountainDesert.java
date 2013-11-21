@@ -12,11 +12,13 @@ import net.minecraft.world.biome.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeMountainDesert extends ExtrabiomeGenBase {
-
-    public BiomeMountainDesert() {
+public class BiomeMountainDesert extends ExtrabiomeGenBase
+{
+    
+    public BiomeMountainDesert()
+    {
         super(BiomeSettings.MOUNTAINDESERT.getID());
-
+        
         setColor(0xFA9418);
         setBiomeName("Mountainous Desert");
         temperature = BiomeGenBase.desertHills.temperature;
@@ -28,9 +30,10 @@ public class BiomeMountainDesert extends ExtrabiomeGenBase {
         spawnableCreatureList.clear();
         setDisableRain();
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MOUNTAINDESERT).build();
     }
 }

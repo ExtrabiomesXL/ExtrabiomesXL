@@ -10,10 +10,12 @@ import net.minecraft.world.biome.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeRedwoodLush extends ExtrabiomeGenBase {
-    public BiomeRedwoodLush() {
+public class BiomeRedwoodLush extends ExtrabiomeGenBase
+{
+    public BiomeRedwoodLush()
+    {
         super(BiomeSettings.REDWOODLUSH.getID());
-
+        
         setColor(0x4AC758);
         setBiomeName("Lush Redwoods");
         temperature = 1.1F;
@@ -21,9 +23,10 @@ public class BiomeRedwoodLush extends ExtrabiomeGenBase {
         minHeight = 0.9F;
         maxHeight = 1.5F;
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.REDWOODLUSH).build();
     }
 }

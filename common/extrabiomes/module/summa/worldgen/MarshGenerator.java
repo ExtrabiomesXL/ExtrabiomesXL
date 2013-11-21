@@ -13,41 +13,43 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
-import extrabiomes.api.BiomeManager;
+import extrabiomes.lib.BiomeSettings;
 
-@SuppressWarnings("deprecation")
-public class MarshGenerator implements IWorldGenerator {
-
-	private static final WorldGenerator	genMarsh	= new WorldGenMarshGrass();
-	private static final WorldGenerator	genDirtBed	= new WorldGenMarshDirt();
-
+public class MarshGenerator implements IWorldGenerator
+{
+    
+    private static final WorldGenerator genMarsh   = new WorldGenMarshGrass();
+    private static final WorldGenerator genDirtBed = new WorldGenMarshDirt();
+    
     @Override
-	public void generate(Random random, int chunkX, int chunkZ,
-			World world, IChunkProvider chunkGenerator,
-			IChunkProvider chunkProvider)
-	{
-		chunkX = chunkX << 4;
-		chunkZ = chunkZ << 4;
-		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
-				chunkZ);
-
-		if (BiomeManager.marsh.isPresent()
-				&& biome == BiomeManager.marsh.get())
-			generateMarsh(random, chunkX, chunkZ, world);
-
-	}
-
-	private void generateMarsh(Random rand, int x, int z, World world) {
-		for (int i = 0; i < 127; i++) {
-			final int x1 = x + rand.nextInt(16) + 8;
-			final int z1 = z + rand.nextInt(16) + 8;
-			genMarsh.generate(world, rand, x1, 0, z1);
-		}
-
-		for (int i = 0; i < 256; i++) {
-			final int x1 = x + rand.nextInt(1) + 8;
-			final int z1 = z + rand.nextInt(1) + 8;
-			genDirtBed.generate(world, rand, x1, 0, z1);
-		}
-	}
+    public void generate(Random random, int chunkX, int chunkZ,
+            World world, IChunkProvider chunkGenerator,
+            IChunkProvider chunkProvider)
+    {
+        chunkX = chunkX << 4;
+        chunkZ = chunkZ << 4;
+        final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
+                chunkZ);
+        
+        if (BiomeSettings.MARSH.getBiome().isPresent() && biome == BiomeSettings.MARSH.getBiome().get())
+            generateMarsh(random, chunkX, chunkZ, world);
+        
+    }
+    
+    private void generateMarsh(Random rand, int x, int z, World world)
+    {
+        for (int i = 0; i < 127; i++)
+        {
+            final int x1 = x + rand.nextInt(16) + 8;
+            final int z1 = z + rand.nextInt(16) + 8;
+            genMarsh.generate(world, rand, x1, 0, z1);
+        }
+        
+        for (int i = 0; i < 256; i++)
+        {
+            final int x1 = x + rand.nextInt(1) + 8;
+            final int z1 = z + rand.nextInt(1) + 8;
+            genDirtBed.generate(world, rand, x1, 0, z1);
+        }
+    }
 }

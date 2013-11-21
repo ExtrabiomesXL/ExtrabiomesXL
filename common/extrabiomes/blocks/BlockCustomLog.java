@@ -23,102 +23,118 @@ import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
 
-public class BlockCustomLog extends BlockLog {
-    public enum BlockType {
+public class BlockCustomLog extends BlockLog
+{
+    public enum BlockType
+    {
         FIR(0), ACACIA(1), CYPRESS(2), JAPANESE_MAPLE(3);
-
+        
         private final int metadata;
-
-        BlockType(int metadata) {
+        
+        BlockType(int metadata)
+        {
             this.metadata = metadata;
         }
-
-        public int metadata() {
+        
+        public int metadata()
+        {
             return metadata;
         }
     }
     
-    private Icon[] textures  = {null, null, null, null, null, null, null, null};
+    private Icon[]                 textures = { null, null, null, null, null, null, null, null };
     private HashMap<Integer, Icon> texturesMap;
-    private int index = 97;
+    private int                    index    = 97;
     
-    public BlockCustomLog(int id) {
+    public BlockCustomLog(int id)
+    {
         super(id);
-        texturesMap = new HashMap();
+        texturesMap = new HashMap<Integer, Icon>();
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister){
-    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirside");
-    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirtop");
-
-    	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciaside");
-    	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciatop");
-    	
-    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logcypressside");
-    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logcypresstop");
-    	
-    	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logjapanesemapleside");
-    	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logjapanesemapletop");
-    	
-    	setupTextures(index);
+    public void registerIcons(IconRegister iconRegister)
+    {
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirside");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirtop");
+        
+        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciaside");
+        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciatop");
+        
+        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logcypressside");
+        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logcypresstop");
+        
+        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logjapanesemapleside");
+        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logjapanesemapletop");
+        
+        setupTextures(index);
     }
     
-    private void setupTextures(int index){
-    	//Side textures
-    	texturesMap.put(index, textures[0]);
-    	texturesMap.put(index + 1, textures[2]);
-    	texturesMap.put(index + 2, textures[4]);
-    	texturesMap.put(index + 3, textures[6]);
-
-    	//top/bottom textures
-    	texturesMap.put(index + 16, textures[1]);
-    	texturesMap.put(index + 17, textures[3]);
-    	texturesMap.put(index + 18, textures[5]);
-    	texturesMap.put(index + 19, textures[7]);
-    	
+    private void setupTextures(int index)
+    {
+        //Side textures
+        texturesMap.put(index, textures[0]);
+        texturesMap.put(index + 1, textures[2]);
+        texturesMap.put(index + 2, textures[4]);
+        texturesMap.put(index + 3, textures[6]);
+        
+        //top/bottom textures
+        texturesMap.put(index + 16, textures[1]);
+        texturesMap.put(index + 17, textures[3]);
+        texturesMap.put(index + 18, textures[5]);
+        texturesMap.put(index + 19, textures[7]);
+        
     }
-
+    
     @Override
-    public Icon getIcon(int side, int metadata) {
+    public Icon getIcon(int side, int metadata)
+    {
         final int orientation = metadata & 12;
         int type = metadata & 3;
-        if (type > 3) type = 0;
-        if (orientation == 0 && (side == 1 || side == 0) || orientation == 4 && (side == 5 || side == 4) || orientation == 8 && (side == 2 || side == 3)) {
-        	return texturesMap.get(index + 16 + type);
+        if (type > 3)
+            type = 0;
+        if (orientation == 0 && (side == 1 || side == 0) || orientation == 4 && (side == 5 || side == 4) || orientation == 8 && (side == 2 || side == 3))
+        {
+            return texturesMap.get(index + 16 + type);
         }
         
         return texturesMap.get(index + type);
     }
-
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list) {
+    public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list)
+    {
         for (final BlockType type : BlockType.values())
             list.add(new ItemStack(blockID, 1, type.metadata()));
     }
-
+    
     @Override
-    public int idDropped(int metadata, Random rand, int unused) {
+    public int idDropped(int metadata, Random rand, int unused)
+    {
         return blockID;
     }
-
+    
     @ForgeSubscribe
-    public void onUseLogTurnerEvent(UseLogTurnerEvent event) {
+    public void onUseLogTurnerEvent(UseLogTurnerEvent event)
+    {
         final int id = event.world.getBlockId(event.x, event.y, event.z);
-
-        if (id == blockID) {
+        
+        if (id == blockID)
+        {
             final Block wood = Block.wood;
             event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F,
                     wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F,
                     wood.stepSound.getPitch() * 1.55F);
-
-            if (!event.world.isRemote) {
+            
+            if (!event.world.isRemote)
+            {
                 final int metadata = event.world.getBlockMetadata(event.x, event.y, event.z);
                 int orientation = metadata & 12;
                 final int type = metadata & 3;
-
+                
                 orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
                 event.world.setBlock(event.x, event.y, event.z, blockID, type
                         | orientation, 3);
@@ -126,7 +142,7 @@ public class BlockCustomLog extends BlockLog {
             event.setHandled();
         }
     }
-
+    
     @Override
     public boolean canSustainLeaves(World world, int x, int y, int z)
     {

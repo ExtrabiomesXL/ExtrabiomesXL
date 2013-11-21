@@ -12,14 +12,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation is used to tell IDResolver to limit the range of
- * acceptable block IDs for a block
+ * This annotation is used to tell IDResolver to limit the range of acceptable block IDs for a block
  * 
  * @author ShaRose
  * 
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface IDRestrictionAnnotation {
-	public int maxIDRValue();
+public @interface IDRestrictionAnnotation
+{
+    public int maxIDRValue();
 }

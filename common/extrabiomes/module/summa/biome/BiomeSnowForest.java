@@ -16,11 +16,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeSnowForest extends ExtrabiomeGenBase {
-
-    public BiomeSnowForest() {
+public class BiomeSnowForest extends ExtrabiomeGenBase
+{
+    
+    @SuppressWarnings("unchecked")
+    public BiomeSnowForest()
+    {
         super(BiomeSettings.SNOWYFOREST.getID());
-
+        
         setColor(0x5BA68D);
         setBiomeName("Snow Forest");
         temperature = BiomeGenBase.taigaHills.temperature;
@@ -28,25 +31,28 @@ public class BiomeSnowForest extends ExtrabiomeGenBase {
         minHeight = 0.1F;
         maxHeight = 0.5F;
         setEnableSnow();
-
+        
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.SNOWYFOREST).build();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor() {
+    public int getBiomeFoliageColor()
+    {
         return ColorizerFoliage.getFoliageColor(0.0F, 0.2F);
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor() {
+    public int getBiomeGrassColor()
+    {
         return ColorizerGrass.getGrassColor(0.0F, 0.2F);
     }
-
+    
 }

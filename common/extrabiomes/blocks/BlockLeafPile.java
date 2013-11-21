@@ -20,15 +20,18 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 
-public class BlockLeafPile extends Block {
-
-    static private boolean canThisPlantGrowOnThisBlockID(int blockId) {
+public class BlockLeafPile extends Block
+{
+    
+    static private boolean canThisPlantGrowOnThisBlockID(int blockId)
+    {
         return blockId == Block.grass.blockID || blockId == Block.dirt.blockID;
     }
     
     private Icon texture;
-
-    public BlockLeafPile(int id, int index, Material material) {
+    
+    public BlockLeafPile(int id, int index, Material material)
+    {
         super(id, material);
         final float f = 0.5F;
         final float f1 = 0.015625F;
@@ -37,78 +40,94 @@ public class BlockLeafPile extends Block {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister){
-    	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leafpile");
+    public void registerIcons(IconRegister iconRegister)
+    {
+        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leafpile");
     }
     
-    @Override//Change this to more appropriate method
-    public Icon getIcon(int side, int metadata){
-    	return texture;
-    }
-
     @Override
-    public boolean canBlockStay(World world, int x, int y, int z) {
+    //Change this to more appropriate method
+    public Icon getIcon(int side, int metadata)
+    {
+        return texture;
+    }
+    
+    @Override
+    public boolean canBlockStay(World world, int x, int y, int z)
+    {
         return canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
     }
-
+    
     @Override
-    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+    public boolean canPlaceBlockAt(World world, int x, int y, int z)
+    {
         return super.canPlaceBlockAt(world, x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
     }
-
-    private void checkFlowerChange(World world, int x, int y, int z) {
-        if (!canBlockStay(world, x, y, z)) {
+    
+    private void checkFlowerChange(World world, int x, int y, int z)
+    {
+        if (!canBlockStay(world, x, y, z))
+        {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
             world.setBlock(x, y, z, 0);
         }
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess iBlockAccess, int x, int y, int z) {
+    public int colorMultiplier(IBlockAccess iBlockAccess, int x, int y, int z)
+    {
         return iBlockAccess.getBiomeGenForCoords(x, z).getBiomeFoliageColor();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBlockColor() {
+    public int getBlockColor()
+    {
         return ColorizerFoliage.getFoliageColorBasic();
     }
-
+    
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
+    {
         return null;
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getRenderColor(int metadata) {
+    public int getRenderColor(int metadata)
+    {
         return getBlockColor();
     }
-
+    
     @Override
-    public boolean isBlockReplaceable(World world, int x, int y, int z) {
+    public boolean isBlockReplaceable(World world, int x, int y, int z)
+    {
         return true;
     }
-
+    
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube()
+    {
         return false;
     }
-
+    
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int neigborId) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, int neigborId)
+    {
         super.onNeighborBlockChange(world, x, y, z, neigborId);
         checkFlowerChange(world, x, y, z);
     }
-
+    
     @Override
-    public boolean renderAsNormalBlock() {
+    public boolean renderAsNormalBlock()
+    {
         return false;
     }
-
+    
     @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
+    public void updateTick(World world, int x, int y, int z, Random rand)
+    {
         checkFlowerChange(world, x, y, z);
     }
 }

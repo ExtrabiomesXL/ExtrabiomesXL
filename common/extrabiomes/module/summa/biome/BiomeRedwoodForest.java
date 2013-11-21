@@ -10,11 +10,13 @@ import net.minecraft.world.biome.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeRedwoodForest extends ExtrabiomeGenBase {
-
-    public BiomeRedwoodForest() {
+public class BiomeRedwoodForest extends ExtrabiomeGenBase
+{
+    
+    public BiomeRedwoodForest()
+    {
         super(BiomeSettings.REDWOODFOREST.getID());
-
+        
         setColor(0x0BD626);
         setBiomeName("Redwood Forest");
         temperature = 1.1F;
@@ -22,9 +24,10 @@ public class BiomeRedwoodForest extends ExtrabiomeGenBase {
         minHeight = 0.9F;
         maxHeight = 1.5F;
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.REDWOODFOREST).build();
     }
 }

@@ -16,11 +16,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeWoodlands extends ExtrabiomeGenBase {
-
-    public BiomeWoodlands() {
+public class BiomeWoodlands extends ExtrabiomeGenBase
+{
+    
+    @SuppressWarnings("unchecked")
+    public BiomeWoodlands()
+    {
         super(BiomeSettings.WOODLANDS.getID());
-
+        
         //setColor(0x056621);
         setColor(0x85B53E);
         setBiomeName("Woodlands");
@@ -28,25 +31,28 @@ public class BiomeWoodlands extends ExtrabiomeGenBase {
         rainfall = BiomeGenBase.forest.rainfall;
         minHeight = 0.2F;
         maxHeight = 0.4F;
-
+        
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.WOODLANDS).build();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor() {
+    public int getBiomeFoliageColor()
+    {
         return ColorizerFoliage.getFoliageColor(1.0F, 1.0F);
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor() {
+    public int getBiomeGrassColor()
+    {
         return ColorizerGrass.getGrassColor(1.0F, 1.0F);
     }
-
+    
 }

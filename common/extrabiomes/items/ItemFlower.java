@@ -3,19 +3,23 @@ package extrabiomes.items;
 import net.minecraft.item.ItemStack;
 import extrabiomes.utility.MultiItemBlock;
 
-public class ItemFlower extends MultiItemBlock {
-
-    public ItemFlower(int id) {
+public class ItemFlower extends MultiItemBlock
+{
+    
+    public ItemFlower(int id)
+    {
         super(id);
     }
-
+    
     @Override
-    public String getUnlocalizedName(ItemStack itemstack) {
+    public String getUnlocalizedName(ItemStack itemstack)
+    {
         int metadata = itemstack.getItemDamage();
-        if (metadata > 7) metadata = 7;
+        if (metadata > 7)
+            metadata = 7;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
         return super.getUnlocalizedName(itemstack);
     }
-
+    
 }

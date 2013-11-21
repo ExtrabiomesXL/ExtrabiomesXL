@@ -11,21 +11,25 @@ import net.minecraftforge.event.Event;
 /**
  * These events are fired during FML @PostInit to manage plugins
  */
-public class PluginEvent extends Event {
-
-	/**
-	 * Fired before any ExtrabiomesXL plugin is initialized
-	 */
-	public static class Pre extends PluginEvent {}
-
-	/**
-	 * Fired to initialize ExtrabiomesXL plugins
-	 */
-	public static class Init extends PluginEvent {}
-
-	/**
-	 * Fired after every ExtrabiomesXL plugin is initialized
-	 */
-	public static class Post extends PluginEvent {}
-
+public class PluginEvent extends Event
+{
+    
+    /**
+     * Fired before any ExtrabiomesXL plugin is initialized
+     */
+    public static class Pre extends PluginEvent
+    {}
+    
+    /**
+     * Fired to initialize ExtrabiomesXL plugins
+     */
+    public static class Init extends PluginEvent
+    {}
+    
+    /**
+     * Fired after every ExtrabiomesXL plugin is initialized
+     */
+    public static class Post extends PluginEvent
+    {}
+    
 }

@@ -11,11 +11,13 @@ import net.minecraft.world.biome.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeIceWasteland extends ExtrabiomeGenBase {
-
-    public BiomeIceWasteland() {
+public class BiomeIceWasteland extends ExtrabiomeGenBase
+{
+    
+    public BiomeIceWasteland()
+    {
         super(BiomeSettings.ICEWASTELAND.getID());
-
+        
         spawnableCreatureList.clear();
         topBlock = (byte) Block.blockSnow.blockID;
         fillerBlock = (byte) Block.blockSnow.blockID;
@@ -27,10 +29,11 @@ public class BiomeIceWasteland extends ExtrabiomeGenBase {
         minHeight = 0.3F;
         maxHeight = 0.4F;
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.ICEWASTELAND).build();
     }
-
+    
 }

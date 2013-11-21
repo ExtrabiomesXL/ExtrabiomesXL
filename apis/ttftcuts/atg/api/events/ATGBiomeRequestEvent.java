@@ -1,17 +1,19 @@
 package ttftcuts.atg.api.events;
 
-import com.google.common.base.Optional;
-
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.Event;
 
-public class ATGBiomeRequestEvent extends Event {
+import com.google.common.base.Optional;
 
-	public String biomeName;
-	public Optional<BiomeGenBase> biome;
-	
-	public ATGBiomeRequestEvent(String biomeName) {
-		this.biomeName = biomeName;
-		this.biome = Optional.absent();
-	}
+public class ATGBiomeRequestEvent extends Event
+{
+    
+    public String                 biomeName;
+    public Optional<BiomeGenBase> biome;
+    
+    public ATGBiomeRequestEvent(String biomeName)
+    {
+        this.biomeName = biomeName;
+        this.biome = Optional.absent();
+    }
 }

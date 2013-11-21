@@ -11,27 +11,32 @@ import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeTemporateRainforest extends ExtrabiomeGenBase {
-
-    public BiomeTemporateRainforest() {
+public class BiomeTemporateRainforest extends ExtrabiomeGenBase
+{
+    
+    public BiomeTemporateRainforest()
+    {
         this(BiomeSettings.TEMPORATERAINFOREST.getID());
     }
-
-    BiomeTemporateRainforest(int id) {
+    
+    @SuppressWarnings("unchecked")
+    BiomeTemporateRainforest(int id)
+    {
         super(id);
-
+        
         setColor(0x338235);
         setBiomeName("Temperate Rainforest");
         temperature = 0.6F;
         rainfall = 0.9F;
         minHeight = 0.4F;
         maxHeight = 1.5F;
-
+        
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.TEMPORATERAINFOREST).build();
     }
 }

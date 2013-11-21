@@ -6,30 +6,34 @@
 
 package extrabiomes.localization;
 
-public enum Localization {
+public enum Localization
+{
     US("en_US"), GERMAN("de_DE"), FRENCH("fr_FR"), PORTUGAL("pt_PT"), BRAZIL("pt_BR"), ITALIAN(
-            "it_IT"), RUSSIAN("ru_RU"), CHINESE_SC("zh_CN"),CHINESE_TC("zh_TW"), SPANISH_AR("es_AR"), SPANISH_ES("es_ES"),
-            SPANISH_MX("es_MX"), SPANISH_UY("es_UY"), SPANISH_VE("es_VE")/*
-                                       * CZECH("cs_CZ"), WELSH("cy_GB"),
-                                       * FRENCH("fr_FR"),
-                                       * JAPANESE("ja_JP"),
-                                       * DUTCH("nl_NL"),
-                                       * POLISH("pl_PL"),
-                                       * SERBIAN("sr_RS"),
-                                       * SWEDISH("sv_SE")
-                                       */;
-
+            "it_IT"), RUSSIAN("ru_RU"), CHINESE_SC("zh_CN"), CHINESE_TC("zh_TW"), SPANISH_AR("es_AR"), SPANISH_ES("es_ES"),
+    SPANISH_MX("es_MX"), SPANISH_UY("es_UY"), SPANISH_VE("es_VE")/*
+                                                                 * CZECH("cs_CZ"), WELSH("cy_GB"),
+                                                                 * FRENCH("fr_FR"),
+                                                                 * JAPANESE("ja_JP"),
+                                                                 * DUTCH("nl_NL"),
+                                                                 * POLISH("pl_PL"),
+                                                                 * SERBIAN("sr_RS"),
+                                                                 * SWEDISH("sv_SE")
+                                                                 */;
+    
     private final String locale;
-
-    Localization(String locale) {
+    
+    Localization(String locale)
+    {
         this.locale = locale;
     }
-
-    public String filename() {
+    
+    public String filename()
+    {
         return String.format("/extrabiomes/lang/%s.xml", locale);
     }
-
-    public String locale() {
+    
+    public String locale()
+    {
         return locale;
     }
 }

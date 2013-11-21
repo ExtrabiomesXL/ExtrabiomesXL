@@ -8,31 +8,36 @@ package extrabiomes.lib;
 
 import extrabiomes.utility.EnhancedConfiguration;
 
-public enum ItemSettings {
-    LOGTURNER   (12870),
-    SCARECROW   (12871),
-    PASTE       (12872);
-
+public enum ItemSettings
+{
+    LOGTURNER(12870),
+    SCARECROW(12871),
+    PASTE(12872);
+    
     private final int defaultID;
-
+    
     private int       itemID;
-
-    private ItemSettings(int defaultID) {
+    
+    private ItemSettings(int defaultID)
+    {
         this.defaultID = defaultID;
         itemID = this.defaultID;
     }
-
-    public int getID() {
+    
+    public int getID()
+    {
         return itemID;
     }
-
-    public void load(EnhancedConfiguration configuration) {
+    
+    public void load(EnhancedConfiguration configuration)
+    {
         itemID = configuration.getItem(toString() + ".id", defaultID).getInt(0);
     }
-
+    
     @Override
-    public String toString() {
+    public String toString()
+    {
         return super.toString().toLowerCase();
     }
-
+    
 }

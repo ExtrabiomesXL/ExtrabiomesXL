@@ -10,11 +10,13 @@ import net.minecraft.world.biome.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeRainforest extends ExtrabiomeGenBase {
-
-    public BiomeRainforest() {
+public class BiomeRainforest extends ExtrabiomeGenBase
+{
+    
+    public BiomeRainforest()
+    {
         super(BiomeSettings.RAINFOREST.getID());
-
+        
         setColor(0x0BD626);
         setBiomeName("Rainforest");
         temperature = 1.1F;
@@ -22,9 +24,10 @@ public class BiomeRainforest extends ExtrabiomeGenBase {
         minHeight = 0.4F;
         maxHeight = 1.3F;
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.RAINFOREST).build();
     }
 }

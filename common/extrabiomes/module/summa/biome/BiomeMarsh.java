@@ -11,11 +11,13 @@ import net.minecraft.world.biome.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeMarsh extends ExtrabiomeGenBase {
-
-    public BiomeMarsh() {
+public class BiomeMarsh extends ExtrabiomeGenBase
+{
+    
+    public BiomeMarsh()
+    {
         super(BiomeSettings.MARSH.getID());
-
+        
         setColor(255);
         setBiomeName("Marsh");
         temperature = BiomeGenBase.swampland.temperature;
@@ -23,10 +25,11 @@ public class BiomeMarsh extends ExtrabiomeGenBase {
         minHeight = -0.4F;
         maxHeight = 0.0F;
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MARSH).build();
     }
-
+    
 }

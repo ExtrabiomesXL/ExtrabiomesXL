@@ -9,9 +9,11 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.block.Block;
 import extrabiomes.lib.BiomeSettings;
 
-public class BiomeGlacier extends ExtrabiomeGenBase {
-
-    public BiomeGlacier() {
+public class BiomeGlacier extends ExtrabiomeGenBase
+{
+    
+    public BiomeGlacier()
+    {
         super(BiomeSettings.GLACIER.getID());
         spawnableCreatureList.clear();
         topBlock = (byte) Block.blockSnow.blockID;
@@ -24,5 +26,5 @@ public class BiomeGlacier extends ExtrabiomeGenBase {
         minHeight = 1.4F;
         maxHeight = 2.1F;
     }
-
+    
 }

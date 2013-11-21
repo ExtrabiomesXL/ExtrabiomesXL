@@ -17,21 +17,24 @@ import extrabiomes.module.amica.Amica;
 import extrabiomes.module.cautia.Cautia;
 import extrabiomes.module.fabrica.Fabrica;
 
-enum Module {
+enum Module
+{
     CAUTIA(Cautia.class), FABRICA(Fabrica.class), AMICA(Amica.class);
-
-    private static final String       MODULE_STATUS_DISABLED = "module.status.disabled";
-    private static final String       MODULE_STATUS_ENABLED  = "module.status.enabled";
-    private static Optional<EventBus> eventBus               = Optional.of(new EventBus());
-
-    public static boolean postEvent(Event event) {
+    
+    private static Optional<EventBus> eventBus = Optional.of(new EventBus());
+    
+    public static boolean postEvent(Event event)
+    {
         return eventBus.isPresent() ? eventBus.get().post(event) : false;
     }
-
-    static void registerModules() throws InstantiationException, IllegalAccessException {
-        for (final Module module : Module.values()) {
-
-            switch (module) {
+    
+    static void registerModules() throws InstantiationException, IllegalAccessException
+    {
+        for (final Module module : Module.values())
+        {
+            
+            switch (module)
+            {
                 case CAUTIA:
                     module.enabled = ModuleControlSettings.CAUTIA.isEnabled();
                     break;
@@ -42,30 +45,37 @@ enum Module {
                     module.enabled = ModuleControlSettings.AMICA.isEnabled();
                     break;
             }
-
+            
             LogHelper.info(module.enabled ? "Module %s is enabled." : "Module %s is disabled, skipping.", module.toString());
-
+            
             // skip disabled modules
-            if (!module.enabled) continue;
-
-            if (eventBus.isPresent()) eventBus.get().register(module.pluginClass.newInstance());
+            if (!module.enabled)
+                continue;
+            
+            if (eventBus.isPresent())
+                eventBus.get().register(module.pluginClass.newInstance());
         }
     }
-
-    public static void releaseStaticResources() {
+    
+    public static void releaseStaticResources()
+    {
         eventBus = Optional.absent();
     }
-
+    
     private boolean     enabled = false;
-
+    
+    @SuppressWarnings("rawtypes")
     private final Class pluginClass;
-
-    private Module(Class pluginClass) {
+    
+    @SuppressWarnings("rawtypes")
+    private Module(Class pluginClass)
+    {
         this.pluginClass = pluginClass;
     }
-
-    public boolean isEnabled() {
+    
+    public boolean isEnabled()
+    {
         return enabled;
     }
-
+    
 }

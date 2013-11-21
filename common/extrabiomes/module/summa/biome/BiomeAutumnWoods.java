@@ -17,9 +17,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeAutumnWoods extends ExtrabiomeGenBase {
-
-    public BiomeAutumnWoods() {
+public class BiomeAutumnWoods extends ExtrabiomeGenBase
+{
+    
+    @SuppressWarnings("unchecked")
+    public BiomeAutumnWoods()
+    {
         super(BiomeSettings.AUTUMNWOODS.getID());
         setColor(0xF29C11);
         setBiomeName("Autumn Woods");
@@ -27,25 +30,28 @@ public class BiomeAutumnWoods extends ExtrabiomeGenBase {
         rainfall = BiomeGenBase.forest.rainfall;
         minHeight = 0.2F;
         maxHeight = 0.8F;
-
+        
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.AUTUMNWOODS).build();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor() {
+    public int getBiomeFoliageColor()
+    {
         return ColorizerFoliage.getFoliageColor(1.0F, 0.1F);
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor() {
+    public int getBiomeGrassColor()
+    {
         return ColorizerGrass.getGrassColor(1.0F, 0.1F);
     }
-
+    
 }

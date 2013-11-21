@@ -8,10 +8,10 @@ package extrabiomes.lib;
 
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
-import extrabiomes.Extrabiomes;
 import extrabiomes.utility.EnhancedConfiguration;
 
-public enum BlockSettings {
+public enum BlockSettings
+{
     // @formatter:off
     AUTUMNLEAVES        	(2200),
     CATTAIL             	(2201),
@@ -55,39 +55,44 @@ public enum BlockSettings {
     MINILOG					(2238),
     NEWWOODSLAB            	(2239),
     NEWDOUBLEWOODSLAB      	(2240),
-    SAKURABLOSSOMSTAIRS		(2241);
-    // Next block IDs 253 (decending) and 2224 (ascending)
-
-    // @formatter:on
-
+    SAKURABLOSSOMSTAIRS		(2241);    // Next block IDs 253 (decending) and 2224 (ascending)
+    
+        // @formatter:on
+    
     private int            blockID;
-
+    
     private final int      defaultID;
-
+    
     private static boolean clearedQuarterLogs = false;
-
+    
     static boolean         clearedWoodSlabs   = false;
-
-    private BlockSettings(int defaultID) {
+    
+    private BlockSettings(int defaultID)
+    {
         this.defaultID = defaultID;
         blockID = this.defaultID;
     }
-
-    public int getID() {
+    
+    public int getID()
+    {
         return blockID;
     }
-
-    private String idKey() {
+    
+    private String idKey()
+    {
         return toString() + ".id";
     }
-
-    private boolean isQuarterLog() {
+    
+    private boolean isQuarterLog()
+    {
         return this == QUARTERLOG0 || this == QUARTERLOG1 || this == QUARTERLOG2 || this == QUARTERLOG3;
     }
-
-    public void load(EnhancedConfiguration configuration) {
+    
+    public void load(EnhancedConfiguration configuration)
+    {
         Property property;
-        switch (this) {
+        switch (this)
+        {
             case CRACKEDSAND:
             case REDROCK:
                 property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(), defaultID, String.format("%s is used in terrain generation. Its id must be less than 256.", toString()));
@@ -95,58 +100,73 @@ public enum BlockSettings {
             default:
                 property = configuration.getBlock(idKey(), defaultID);
         }
-
+        
         blockID = property.getInt(0);
-
-        if (isQuarterLog()) {
-            if (blockID == 0 && !clearedQuarterLogs) {
+        
+        if (isQuarterLog())
+        {
+            if (blockID == 0 && !clearedQuarterLogs)
+            {
                 final BlockSettings[] settings = { QUARTERLOG0, QUARTERLOG1, QUARTERLOG2, QUARTERLOG3 };
-
-                for (final BlockSettings setting : settings) {
+                
+                for (final BlockSettings setting : settings)
+                {
                     setting.setToZero(configuration);
                 }
                 
                 clearedQuarterLogs = true;
             }
         }
-
-        if (this == PLANKS) {
-            if (blockID == 0) {
+        
+        if (this == PLANKS)
+        {
+            if (blockID == 0)
+            {
                 final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB, FIRSTAIRS, REDWOODSTAIRS, ACACIASTAIRS };
-
-                for (final BlockSettings setting : settings) {
+                
+                for (final BlockSettings setting : settings)
+                {
                     setting.setToZero(configuration);
                 }
             }
         }
-
-        if (this == REDROCK) {
-        	if (blockID == 0) {
+        
+        if (this == REDROCK)
+        {
+            if (blockID == 0)
+            {
                 final BlockSettings[] settings = { REDROCKSLAB, WALL };
-
-                for (final BlockSettings setting : settings) {
+                
+                for (final BlockSettings setting : settings)
+                {
                     setting.setToZero(configuration);
                 }
-            }	
+            }
         }
-
-        if (this == WOODSLAB || this == DOUBLEWOODSLAB) {
-        	if (blockID == 0 && !clearedWoodSlabs) {
+        
+        if (this == WOODSLAB || this == DOUBLEWOODSLAB)
+        {
+            if (blockID == 0 && !clearedWoodSlabs)
+            {
                 final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB };
-
-                for (final BlockSettings setting : settings) {
+                
+                for (final BlockSettings setting : settings)
+                {
                     setting.setToZero(configuration);
                 }
                 
                 clearedWoodSlabs = true;
             }
         }
-
-        if (this == REDROCKSLAB || this == DOUBLEREDROCKSLAB) {
-            if (blockID == 0 && !clearedWoodSlabs) {
+        
+        if (this == REDROCKSLAB || this == DOUBLEREDROCKSLAB)
+        {
+            if (blockID == 0 && !clearedWoodSlabs)
+            {
                 final BlockSettings[] settings = { REDROCKSLAB, DOUBLEREDROCKSLAB };
-
-                for (final BlockSettings setting : settings) {
+                
+                for (final BlockSettings setting : settings)
+                {
                     setting.setToZero(configuration);
                 }
                 
@@ -154,16 +174,18 @@ public enum BlockSettings {
             }
         }
     }
-
-    private void setToZero(EnhancedConfiguration configuration) {
+    
+    private void setToZero(EnhancedConfiguration configuration)
+    {
         final Property property = configuration.getBlock(idKey(), 0);
         property.set(Integer.toString(0));
         blockID = 0;
     }
-
+    
     @Override
-    public String toString() {
+    public String toString()
+    {
         return super.toString().toLowerCase();
     }
-
+    
 }

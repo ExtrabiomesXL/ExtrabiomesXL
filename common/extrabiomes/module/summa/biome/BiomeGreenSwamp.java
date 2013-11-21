@@ -13,11 +13,14 @@ import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeGreenSwamp extends ExtrabiomeGenBase {
-
-    public BiomeGreenSwamp() {
+public class BiomeGreenSwamp extends ExtrabiomeGenBase
+{
+    
+    @SuppressWarnings("unchecked")
+    public BiomeGreenSwamp()
+    {
         super(BiomeSettings.GREENSWAMP.getID());
-
+        
         setColor(0x68C474);
         setBiomeName("Green Swamplands");
         temperature = BiomeGenBase.swampland.temperature - 0.1F;
@@ -26,9 +29,10 @@ public class BiomeGreenSwamp extends ExtrabiomeGenBase {
         maxHeight = 0.1F;
         spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 1, 1, 1));
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.GREENSWAMP).build();
     }
 }

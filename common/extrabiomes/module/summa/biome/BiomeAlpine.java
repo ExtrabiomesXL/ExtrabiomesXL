@@ -13,9 +13,12 @@ import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeAlpine extends ExtrabiomeGenBase {
-
-    public BiomeAlpine() {
+public class BiomeAlpine extends ExtrabiomeGenBase
+{
+    
+    @SuppressWarnings("unchecked")
+    public BiomeAlpine()
+    {
         super(BiomeSettings.ALPINE.getID());
         topBlock = (byte) Block.stone.blockID;
         fillerBlock = (byte) Block.stone.blockID;
@@ -26,13 +29,14 @@ public class BiomeAlpine extends ExtrabiomeGenBase {
         rainfall = 0.1F;
         minHeight = 1.3F;
         maxHeight = 2.1F;
-
+        
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 8, 4, 4));
-
+        
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.ALPINE).build();
     }
 }

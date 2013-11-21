@@ -6,15 +6,16 @@
 
 package extrabiomes.localization;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import extrabiomes.Extrabiomes;
 
-public class LocalizationHandler {
-
-	public static void loadLanguages() {
-		for (final Localization localeFile : Localization.values())
-			Extrabiomes.proxy.loadLocalization(
-					localeFile.filename(), localeFile.locale());
-	}
-
+public class LocalizationHandler
+{
+    
+    public static void loadLanguages()
+    {
+        for (final Localization localeFile : Localization.values())
+            Extrabiomes.proxy.loadLocalization(
+                    localeFile.filename(), localeFile.locale());
+    }
+    
 }

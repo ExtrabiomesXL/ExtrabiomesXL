@@ -10,34 +10,42 @@ import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.utility.MultiItemBlock;
 
-public class ItemCustomLeaves extends MultiItemBlock {
-
-    private static final int METADATA_BITMASK       = 0x3;
-    protected static int unmarkedMetadata(int metadata) {
+public class ItemCustomLeaves extends MultiItemBlock
+{
+    
+    private static final int METADATA_BITMASK = 0x3;
+    
+    protected static int unmarkedMetadata(int metadata)
+    {
         return metadata & METADATA_BITMASK;
     }
-
+    
     @Override
-    public String getUnlocalizedName(ItemStack itemstack) {
+    public String getUnlocalizedName(ItemStack itemstack)
+    {
         int metadata = unmarkedMetadata(itemstack.getItemDamage());
-        if (metadata > 3) metadata = 3;
+        if (metadata > 3)
+            metadata = 3;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
         return super.getUnlocalizedName() + "." + BlockAutumnLeaves.BlockType.values()[metadata].toString().toLowerCase();
     }
-
+    
     private static final int METADATA_USERPLACEDBIT = 0x4;
-
-    private static int setUserPlacedOnMetadata(final int metadata) {
+    
+    private static int setUserPlacedOnMetadata(final int metadata)
+    {
         return metadata | METADATA_USERPLACEDBIT;
     }
-
-    public ItemCustomLeaves(final int id) {
+    
+    public ItemCustomLeaves(final int id)
+    {
         super(id);
     }
-
+    
     @Override
-    public int getMetadata(final int metadata) {
+    public int getMetadata(final int metadata)
+    {
         return setUserPlacedOnMetadata(metadata);
     }
 }

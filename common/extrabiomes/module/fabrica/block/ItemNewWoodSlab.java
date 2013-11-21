@@ -12,23 +12,27 @@ import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Optional;
 
-public class ItemNewWoodSlab extends ItemSlab {
-
-	private static Optional<BlockHalfSlab>	singleSlab	= Optional.absent();
-	private static Optional<BlockHalfSlab>	doubleSlab	= Optional.absent();
-
-	static void setSlabs(BlockHalfSlab singleSlab, BlockHalfSlab doubleSlab) {
-		ItemNewWoodSlab.singleSlab = Optional.of(singleSlab);
-		ItemNewWoodSlab.doubleSlab = Optional.of(doubleSlab);
-	}
-
-	public ItemNewWoodSlab(int id) {
-		super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab.get().blockID);
-	}
-
-	@Override
-	public String getUnlocalizedName(ItemStack itemStack) {
-		return singleSlab.get().getFullSlabName(itemStack.getItemDamage());
-	}
-
+public class ItemNewWoodSlab extends ItemSlab
+{
+    
+    private static Optional<BlockHalfSlab> singleSlab = Optional.absent();
+    private static Optional<BlockHalfSlab> doubleSlab = Optional.absent();
+    
+    static void setSlabs(BlockHalfSlab singleSlab, BlockHalfSlab doubleSlab)
+    {
+        ItemNewWoodSlab.singleSlab = Optional.of(singleSlab);
+        ItemNewWoodSlab.doubleSlab = Optional.of(doubleSlab);
+    }
+    
+    public ItemNewWoodSlab(int id)
+    {
+        super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab.get().blockID);
+    }
+    
+    @Override
+    public String getUnlocalizedName(ItemStack itemStack)
+    {
+        return singleSlab.get().getFullSlabName(itemStack.getItemDamage());
+    }
+    
 }

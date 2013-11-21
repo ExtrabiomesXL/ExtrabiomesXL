@@ -13,41 +13,39 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
-import extrabiomes.api.BiomeManager;
+import extrabiomes.lib.BiomeSettings;
 
-@SuppressWarnings("deprecation")
-public class LeafPileGenerator implements IWorldGenerator {
-
-	private final WorldGenerator	leafPileGen;
-
-	public LeafPileGenerator(int blockID) {
-		leafPileGen = new WorldGenLeafPile(blockID);
-	}
-
+public class LeafPileGenerator implements IWorldGenerator
+{
+    
+    private final WorldGenerator leafPileGen;
+    
+    public LeafPileGenerator(int blockID)
+    {
+        leafPileGen = new WorldGenLeafPile(blockID);
+    }
+    
     @Override
-	public void generate(Random rand, int chunkX, int chunkZ,
-			World world, IChunkProvider chunkGenerator,
-			IChunkProvider chunkProvider)
-	{
-		chunkX = chunkX << 4;
-		chunkZ = chunkZ << 4;
-		final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
-				chunkZ);
-
-		if (BiomeManager.greenswamp.isPresent()
-				&& biome == BiomeManager.greenswamp.get()
-				|| BiomeManager.mountainridge.isPresent()
-				&& biome == BiomeManager.mountainridge.get()
-				|| BiomeManager.redwoodlush.isPresent()
-				&& biome == BiomeManager.redwoodlush.get()
-				|| BiomeManager.woodlands.isPresent()
-				&& biome == BiomeManager.woodlands.get())
-			for (int i = 0; i < 2; i++) {
-				final int x = chunkX + rand.nextInt(16) + 8;
-				final int y = rand.nextInt(128);
-				final int z = chunkZ + rand.nextInt(16) + 8;
-				leafPileGen.generate(world, rand, x, y, z);
-			}
-	}
-
+    public void generate(Random rand, int chunkX, int chunkZ,
+            World world, IChunkProvider chunkGenerator,
+            IChunkProvider chunkProvider)
+    {
+        chunkX = chunkX << 4;
+        chunkZ = chunkZ << 4;
+        final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
+                chunkZ);
+        
+        if (BiomeSettings.GREENSWAMP.getBiome().isPresent() && biome == BiomeSettings.GREENSWAMP.getBiome().get()
+                || BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && biome == BiomeSettings.MOUNTAINRIDGE.getBiome().get()
+                || BiomeSettings.REDWOODLUSH.getBiome().isPresent() && biome == BiomeSettings.REDWOODLUSH.getBiome().get()
+                || BiomeSettings.WOODLANDS.getBiome().isPresent() && biome == BiomeSettings.WOODLANDS.getBiome().get())
+            for (int i = 0; i < 2; i++)
+            {
+                final int x = chunkX + rand.nextInt(16) + 8;
+                final int y = rand.nextInt(128);
+                final int z = chunkZ + rand.nextInt(16) + 8;
+                leafPileGen.generate(world, rand, x, y, z);
+            }
+    }
+    
 }

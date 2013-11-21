@@ -8,15 +8,15 @@ package extrabiomes.api.events;
 
 import net.minecraftforge.event.Event;
 
-
 /**
  * Used by the API to retrieve a biomeID
  * 
  * @author Scott
  * 
  */
-public class GetBiomeIDEvent extends Event {
-
+public class GetBiomeIDEvent extends Event
+{
+    
     /**
      * Valid values:
      * 
@@ -53,9 +53,10 @@ public class GetBiomeIDEvent extends Event {
      */
     public final String targetBiome;
     public int          biomeID;
-
-    public GetBiomeIDEvent(String targetBiome) {
+    
+    public GetBiomeIDEvent(String targetBiome)
+    {
         this.targetBiome = targetBiome;
     }
-
+    
 }

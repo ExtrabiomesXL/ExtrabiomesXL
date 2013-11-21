@@ -6,7 +6,7 @@
 
 package extrabiomes.events;
 
-
-public class ModulePreInitEvent extends ModuleEvent {
-
+public class ModulePreInitEvent extends ModuleEvent
+{   
+    
 }

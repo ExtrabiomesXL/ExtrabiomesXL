@@ -12,39 +12,44 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import extrabiomes.api.BiomeManager;
+import extrabiomes.lib.BiomeSettings;
 
-@SuppressWarnings("deprecation")
-class WorldGenOasis extends WorldGenerator {
-
+class WorldGenOasis extends WorldGenerator
+{
+    
     private static final int AVERAGE_OASIS = 7;
-
+    
     @Override
-    public boolean generate(World world, Random rand, int x, int y, int z) {
-
-        if (world.getBlockMaterial(x, y, z) != Material.water) return false;
-
+    public boolean generate(World world, Random rand, int x, int y, int z)
+    {
+        
+        if (world.getBlockMaterial(x, y, z) != Material.water)
+            return false;
+        
         final int xzRadius = rand.nextInt(AVERAGE_OASIS - 2) + 2;
         final int yRadius = 2;
-
+        
         for (int x1 = x - xzRadius; x1 <= x + xzRadius; x1++)
-            for (int z1 = z - xzRadius; z1 <= z + xzRadius; z1++) {
+            for (int z1 = z - xzRadius; z1 <= z + xzRadius; z1++)
+            {
                 final int a = x1 - x;
                 final int b = z1 - z;
-
-                if (a * a + b * b > xzRadius * xzRadius) continue;
-
-                for (int y1 = y - yRadius; y1 <= y + yRadius; y1++) {
+                
+                if (a * a + b * b > xzRadius * xzRadius)
+                    continue;
+                
+                for (int y1 = y - yRadius; y1 <= y + yRadius; y1++)
+                {
                     final int blocktoReplace = world.getBlockId(x1, y1, z1);
-
+                    
                     if (blocktoReplace == Block.stone.blockID
                             || blocktoReplace == Block.sand.blockID
                             || blocktoReplace == Block.sandStone.blockID
-                            || blocktoReplace == BiomeManager.mountainridge.get().topBlock)
+                            || BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && blocktoReplace == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock)
                         world.setBlock(x1, y1, z1, Block.grass.blockID);
                 }
             }
-
+        
         return true;
     }
 }

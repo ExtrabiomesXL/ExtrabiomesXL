@@ -10,11 +10,13 @@ import net.minecraft.world.biome.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeTundra extends ExtrabiomeGenBase {
-
-    public BiomeTundra() {
+public class BiomeTundra extends ExtrabiomeGenBase
+{
+    
+    public BiomeTundra()
+    {
         super(BiomeSettings.TUNDRA.getID());
-
+        
         setColor(0x305A85);
         setBiomeName("Tundra");
         temperature = 0.0F;
@@ -22,10 +24,11 @@ public class BiomeTundra extends ExtrabiomeGenBase {
         minHeight = 0.0F;
         maxHeight = 0.2F;
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.TUNDRA).build();
     }
-
+    
 }

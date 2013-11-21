@@ -7,7 +7,6 @@
 
 package extrabiomes.proxy;
 
-import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -17,18 +16,20 @@ import extrabiomes.module.fabrica.scarecrow.ModelScarecrow;
 import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
 
 @SideOnly(Side.CLIENT)
-public class ClientProxy extends CommonProxy {
-	@Override
-	public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
-	{	
-		final int renderId = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(renderId, handler);
-		return renderId;
-	}
-
-	@Override
-	public void registerScarecrowRendering() {
-		RenderingRegistry.registerEntityRenderingHandler(EntityScarecrow.class, new RenderScarecrow(new ModelScarecrow(), 0.4F));
-	}
-
+public class ClientProxy extends CommonProxy
+{
+    @Override
+    public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
+    {
+        final int renderId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(renderId, handler);
+        return renderId;
+    }
+    
+    @Override
+    public void registerScarecrowRendering()
+    {
+        RenderingRegistry.registerEntityRenderingHandler(EntityScarecrow.class, new RenderScarecrow(new ModelScarecrow(), 0.4F));
+    }
+    
 }

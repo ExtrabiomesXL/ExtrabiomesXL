@@ -9,18 +9,22 @@ package extrabiomes.handlers;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
-public class SaplingFuelHandler implements IFuelHandler {
-
+public class SaplingFuelHandler implements IFuelHandler
+{
+    
     private final int saplingID;
-
-    public SaplingFuelHandler(int saplingID) {
+    
+    public SaplingFuelHandler(int saplingID)
+    {
         this.saplingID = saplingID;
     }
-
+    
     @Override
-    public int getBurnTime(ItemStack fuel) {
-        if (fuel.itemID == saplingID) return 100;
+    public int getBurnTime(ItemStack fuel)
+    {
+        if (fuel.itemID == saplingID)
+            return 100;
         return 0;
     }
-
+    
 }

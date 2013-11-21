@@ -11,12 +11,14 @@ import com.google.common.base.Optional;
 import extrabiomes.api.Api;
 import extrabiomes.api.PluginEvent;
 
-class PluginManager extends Api {
-
-	static void activatePlugins() {
-		Api.pluginBus.get().post(new PluginEvent.Pre());
-		Api.pluginBus.get().post(new PluginEvent.Init());
-		Api.pluginBus.get().post(new PluginEvent.Post());
-		Api.pluginBus = Optional.absent();
-	}
+class PluginManager extends Api
+{
+    
+    static void activatePlugins()
+    {
+        Api.pluginBus.get().post(new PluginEvent.Pre());
+        Api.pluginBus.get().post(new PluginEvent.Init());
+        Api.pluginBus.get().post(new PluginEvent.Post());
+        Api.pluginBus = Optional.absent();
+    }
 }

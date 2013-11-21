@@ -11,38 +11,43 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import extrabiomes.api.BiomeManager;
+import extrabiomes.lib.BiomeSettings;
 
-@SuppressWarnings("deprecation")
-class WorldGenTinyCactus extends WorldGenerator {
-
+class WorldGenTinyCactus extends WorldGenerator
+{
+    
     private final int blockID;
     private final int metadata;
-
-    WorldGenTinyCactus(int blockID, int metadata) {
+    
+    WorldGenTinyCactus(int blockID, int metadata)
+    {
         this.blockID = blockID;
         this.metadata = metadata;
     }
-
+    
     @Override
-    public boolean generate(World world, Random rand, int x, int y, int z) {
-        for (int i = 0; i < 10; i++) {
+    public boolean generate(World world, Random rand, int x, int y, int z)
+    {
+        for (int i = 0; i < 10; i++)
+        {
             final int x1 = x + rand.nextInt(8) - rand.nextInt(8);
             final int y1 = y + rand.nextInt(4) - rand.nextInt(4);
             final int z1 = z + rand.nextInt(8) - rand.nextInt(8);
-
-            if (!world.isAirBlock(x1, y1, z1)) continue;
-
+            
+            if (!world.isAirBlock(x1, y1, z1))
+                continue;
+            
             final int i1 = 1 + rand.nextInt(rand.nextInt(3) + 1);
-
-            for (int y2 = 0; y2 < i1; y2++) {
+            
+            for (int y2 = 0; y2 < i1; y2++)
+            {
                 final int id = world.getBlockId(x1, y1 + y2 - 1, z1);
                 if (id == Block.sand.blockID
-                        || (byte) id == BiomeManager.mountainridge.get().topBlock)
+                        || BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock)
                     world.setBlock(x1, y1 + y2, z1, blockID, metadata, 2);
             }
         }
-
+        
         return true;
     }
 }

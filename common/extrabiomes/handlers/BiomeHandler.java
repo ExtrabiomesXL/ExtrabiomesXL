@@ -6,8 +6,6 @@
 
 package extrabiomes.handlers;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import net.minecraft.world.WorldType;
@@ -29,67 +27,84 @@ import extrabiomes.module.summa.worldgen.MountainDesertGenerator;
 import extrabiomes.module.summa.worldgen.MountainRidgeGenerator;
 import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
 
-public enum BiomeHandler {
+public enum BiomeHandler
+{
     INSTANCE;
-
-    private static List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
-
-    public static void enableBiomes() {
+    
+    public static void enableBiomes()
+    {
         final Set<WorldType> worldTypes = BiomeHelper.discoverWorldTypes();
-
-        for (final BiomeSettings setting : BiomeSettings.values()) {
+        
+        for (final BiomeSettings setting : BiomeSettings.values())
+        {
             final Optional<? extends BiomeGenBase> biome = setting.getBiome();
-            if (!setting.isVanilla()) {
-                if (setting.isEnabled() && biome.isPresent()) {
+            if (!setting.isVanilla())
+            {
+                if (setting.isEnabled() && biome.isPresent())
+                {
                     BiomeHelper.enableBiome(worldTypes, biome.get());
-                } else {
+                }
+                else
+                {
                     LogHelper.fine("Custom biome %s disabled.", setting.toString());
                 }
-            } else if (!setting.isEnabled()) {
+            }
+            else if (!setting.isEnabled())
+            {
                 Extrabiomes.proxy.removeBiome(BiomeHelper.settingToBiomeGenBase(setting));
                 LogHelper.fine("Vanilla biome %s disabled.", biome.toString());
             }
-
-            if (setting.allowVillages() && biome.isPresent()) {
+            
+            if (setting.allowVillages() && biome.isPresent())
+            {
                 BiomeManager.addVillageBiome(biome.get(), true);
                 LogHelper.fine("Village spawning enabled for custom biome %s.", setting.toString());
             }
         }
-
+        
     }
-
-    public static void init() throws Exception {
-        for (final BiomeSettings biome : BiomeSettings.values()) {
-            if (biome.getID() > 0) {
-            	BiomeHelper.createBiome(biome);
+    
+    public static void init() throws Exception
+    {
+        for (final BiomeSettings biome : BiomeSettings.values())
+        {
+            if (biome.getID() > 0)
+            {
+                BiomeHelper.createBiome(biome);
             }
         }
-
+        
         Api.getExtrabiomesXLEventBus().register(INSTANCE);
     }
-
-    public static void registerWorldGenerators() {
-        if (BiomeSettings.MARSH.getBiome().isPresent()) {
+    
+    public static void registerWorldGenerators()
+    {
+        if (BiomeSettings.MARSH.getBiome().isPresent())
+        {
             Extrabiomes.proxy.registerWorldGenerator(new MarshGenerator());
         }
-
-        if (BiomeSettings.MOUNTAINDESERT.getBiome().isPresent()) {
+        
+        if (BiomeSettings.MOUNTAINDESERT.getBiome().isPresent())
+        {
             Extrabiomes.proxy.registerWorldGenerator(new MountainDesertGenerator());
         }
-
-        if (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent()) {
+        
+        if (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent())
+        {
             Extrabiomes.proxy.registerWorldGenerator(new MountainRidgeGenerator());
         }
-
+        
         Extrabiomes.proxy.registerWorldGenerator(new VanillaFloraGenerator());
         Extrabiomes.proxy.registerWorldGenerator(new LegendOakGenerator());
     }
-
+    
     @ForgeSubscribe
-    public void handleBiomeIDRequestsFromAPI(GetBiomeIDEvent event) {
+    public void handleBiomeIDRequestsFromAPI(GetBiomeIDEvent event)
+    {
         final Optional<BiomeSettings> settings = Optional.fromNullable(BiomeSettings.valueOf(event.targetBiome.toUpperCase()));
-        if (settings.isPresent()) {
-        	event.biomeID = settings.get().getID();
+        if (settings.isPresent())
+        {
+            event.biomeID = settings.get().getID();
         }
     }
 }

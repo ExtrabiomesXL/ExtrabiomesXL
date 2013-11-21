@@ -1,19 +1,8 @@
 package extrabiomes.blocks;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Random;
 
-import org.lwjgl.input.Keyboard;
-
-import com.google.common.base.Optional;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import extrabiomes.Extrabiomes;
-import extrabiomes.api.UseLogTurnerEvent;
-import extrabiomes.blocks.BlockCustomLog.BlockType;
-import extrabiomes.blocks.BlockQuarterLog.BarkOn;
-import extrabiomes.helpers.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPistonBase;
@@ -24,334 +13,373 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import extrabiomes.Extrabiomes;
+import extrabiomes.api.UseLogTurnerEvent;
 
-
-public class BlockNewQuarterLog extends BlockLog {
-	
-	public enum BlockType {
+public class BlockNewQuarterLog extends BlockLog
+{
+    
+    public enum BlockType
+    {
         BALD_CYPRESS(0);
-
+        
         private final int metadata;
-
-        BlockType(int metadata) {
+        
+        BlockType(int metadata)
+        {
             this.metadata = metadata;
         }
-
-        public int metadata() {
+        
+        public int metadata()
+        {
             return metadata;
         }
     }
-	
-	private Icon[] textures  = {null, null, null, null, null, null, null, null, null};
-    private static int renderId = 32; 
-    private String treeType = "quarter";
-	
-	public BlockNewQuarterLog(int id, String treeType) {
+    
+    private Icon[]     textures = { null, null, null, null, null, null, null, null, null };
+    private static int renderId = 32;
+    private String     treeType = "quarter";
+    
+    public BlockNewQuarterLog(int id, String treeType)
+    {
         super(id);
         
         this.treeType = treeType;
     }
-	
-	
-	@Override
+    
+    @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister){
-
-    	textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top1");
-    	textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top2");
-    	textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top3");
-    	textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top4");
-
-    	textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "log1");
-    	textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "log2");
-    	textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "side1");
-    	textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "side2");
-    	
-    	textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "todo");
-    	
+    public void registerIcons(IconRegister iconRegister)
+    {
+        
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top1");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top2");
+        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top3");
+        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top4");
+        
+        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "log1");
+        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "log2");
+        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "side1");
+        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "side2");
+        
+        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "todo");
+        
     }
-	
-	@Override
-    public Icon getIcon(int side, int metadata) {
+    
+    @Override
+    public Icon getIcon(int side, int metadata)
+    {
         final int orientation = metadata;
         
-        switch(side){
-        	case 0:
-        		return textures[bottopIcon(orientation)];
-	        case 1:
-	        	return textures[topIcon(orientation)];
-	        case 2:
-	        	return textures[southIcon(orientation)];
-	        case 3:
-	        	return textures[northIcon(orientation)];
-	        case 4:
-	        	return textures[eastIcon(orientation)];
-	        case 5:
-	        	return textures[westIcon(orientation)];
+        switch (side)
+        {
+            case 0:
+                return textures[bottopIcon(orientation)];
+            case 1:
+                return textures[topIcon(orientation)];
+            case 2:
+                return textures[southIcon(orientation)];
+            case 3:
+                return textures[northIcon(orientation)];
+            case 4:
+                return textures[eastIcon(orientation)];
+            case 5:
+                return textures[westIcon(orientation)];
         }
         
         return textures[4];
         
     }
-	
-	private int topIcon(int orientation) {
-		switch(orientation){
-	    	case 0:
-	    		return 0;
-	    	case 1:
-	    		return 1;
-	    	case 2:
-	    		return 2;
-	    	case 3:
-	    		return 3;
-	    	case 4:
-	    		return 4;
-	    	case 5:
-	    		return 5;
-	    	case 6:
-	    		return 7;
-	    	case 7:
-	    		return 6;
-	    	case 8:
-	    		return 5;
-	    	case 9:
-	    		return 4;
-	    	case 10:
-	    		return 6;
-	    	case 11:
-	    		return 7;
-	    	default:
-	    		return 8;
-	    }
-	}
-
-	private int bottopIcon(int orientation) {
-		switch(orientation){
-	    	case 0:
-	    		return 0;
-	    	case 1:
-	    		return 1;
-	    	case 2:
-	    		return 2;
-	    	case 3:
-	    		return 3;
-	    	case 4:
-	    		return 6;
-	    	case 5:
-	    		return 7;
-	    	case 6:
-	    		return 5;
-	    	case 7:
-	    		return 4;
-	    	case 8:
-	    		return 6;
-	    	case 9:
-	    		return 7;
-	    	case 10:
-	    		return 5;
-	    	case 11:
-	    		return 4;
-	    		
-	    	default:
-	    		return 8;
-	    }
-	}
-	
-	private int eastIcon(int orientation) {
-		switch(orientation){
-			case 0:
-				return 5;
-			case 1:
-				return 7;
-			case 2:
-				return 6;
-			case 3:
-				return 4;
-			case 4:
-				return 7;
-			case 5:
-				return 5;
-			case 6:
-				return 4;
-			case 7:
-				return 6;
-	    	case 8:
-	    		return 0;
-	    	case 9:
-	    		return 1;
-	    	case 10:
-	    		return 2;
-	    	case 11:
-	    		return 3;
-	    	default:
-	    		return 8;
-	    }
-	}
-	
-	private int westIcon(int orientation) {
-		switch(orientation){
-			case 0:
-				return 6;
-			case 1:
-				return 4;
-			case 2:
-				return 5;
-			case 3:
-				return 7;
-			case 4:
-				return 4;
-			case 5:
-				return 6;
-			case 6:
-				return 7;
-			case 7:
-				return 5;
-	    	case 8:
-	    		return 1;
-	    	case 9:
-	    		return 0;
-	    	case 10:
-	    		return 3;
-	    	case 11:
-	    		return 2;
-	    	default:
-	    		return 8;
-	    }
-	}
-	
-	private int southIcon(int orientation) {
-		switch(orientation){
-			case 0:
-				return 4;
-			case 1:
-				return 5;
-			case 2:
-				return 7;
-			case 3:
-				return 6;
-			
-	    	case 4:
-	    		return 0;
-	    	case 5:
-	    		return 1;
-	    	case 6:
-	    		return 2;
-	    	case 7:
-	    		return 3;
-			case 8:
-				return 4;
-			case 9:
-				return 7;
-			case 10:
-				return 6;
-			case 11:
-				return 5;
-	    	default:
-	    		return 8;
-	    }
-	}
-	
-	private int northIcon(int orientation) {
-		switch(orientation){
-			case 0:
-				return 7;
-			case 1:
-				return 6;
-			case 2:
-				return 4;
-			case 3:
-				return 5;
-	    	case 4:
-	    		return 1;
-	    	case 5:
-	    		return 0;
-	    	case 6:
-	    		return 3;
-	    	case 7:
-	    		return 2;
-			case 8:
-				return 6;
-			case 9:
-				return 5;
-			case 10:
-				return 4;
-			case 11:
-				return 7;
-	    	default:
-	    		return 8;
-	    }
-	}
-
-    public static void setRenderId(int renderId) {
+    
+    private int topIcon(int orientation)
+    {
+        switch (orientation)
+        {
+            case 0:
+                return 0;
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 3:
+                return 3;
+            case 4:
+                return 4;
+            case 5:
+                return 5;
+            case 6:
+                return 7;
+            case 7:
+                return 6;
+            case 8:
+                return 5;
+            case 9:
+                return 4;
+            case 10:
+                return 6;
+            case 11:
+                return 7;
+            default:
+                return 8;
+        }
+    }
+    
+    private int bottopIcon(int orientation)
+    {
+        switch (orientation)
+        {
+            case 0:
+                return 0;
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 3:
+                return 3;
+            case 4:
+                return 6;
+            case 5:
+                return 7;
+            case 6:
+                return 5;
+            case 7:
+                return 4;
+            case 8:
+                return 6;
+            case 9:
+                return 7;
+            case 10:
+                return 5;
+            case 11:
+                return 4;
+                
+            default:
+                return 8;
+        }
+    }
+    
+    private int eastIcon(int orientation)
+    {
+        switch (orientation)
+        {
+            case 0:
+                return 5;
+            case 1:
+                return 7;
+            case 2:
+                return 6;
+            case 3:
+                return 4;
+            case 4:
+                return 7;
+            case 5:
+                return 5;
+            case 6:
+                return 4;
+            case 7:
+                return 6;
+            case 8:
+                return 0;
+            case 9:
+                return 1;
+            case 10:
+                return 2;
+            case 11:
+                return 3;
+            default:
+                return 8;
+        }
+    }
+    
+    private int westIcon(int orientation)
+    {
+        switch (orientation)
+        {
+            case 0:
+                return 6;
+            case 1:
+                return 4;
+            case 2:
+                return 5;
+            case 3:
+                return 7;
+            case 4:
+                return 4;
+            case 5:
+                return 6;
+            case 6:
+                return 7;
+            case 7:
+                return 5;
+            case 8:
+                return 1;
+            case 9:
+                return 0;
+            case 10:
+                return 3;
+            case 11:
+                return 2;
+            default:
+                return 8;
+        }
+    }
+    
+    private int southIcon(int orientation)
+    {
+        switch (orientation)
+        {
+            case 0:
+                return 4;
+            case 1:
+                return 5;
+            case 2:
+                return 7;
+            case 3:
+                return 6;
+                
+            case 4:
+                return 0;
+            case 5:
+                return 1;
+            case 6:
+                return 2;
+            case 7:
+                return 3;
+            case 8:
+                return 4;
+            case 9:
+                return 7;
+            case 10:
+                return 6;
+            case 11:
+                return 5;
+            default:
+                return 8;
+        }
+    }
+    
+    private int northIcon(int orientation)
+    {
+        switch (orientation)
+        {
+            case 0:
+                return 7;
+            case 1:
+                return 6;
+            case 2:
+                return 4;
+            case 3:
+                return 5;
+            case 4:
+                return 1;
+            case 5:
+                return 0;
+            case 6:
+                return 3;
+            case 7:
+                return 2;
+            case 8:
+                return 6;
+            case 9:
+                return 5;
+            case 10:
+                return 4;
+            case 11:
+                return 7;
+            default:
+                return 8;
+        }
+    }
+    
+    public static void setRenderId(int renderId)
+    {
         BlockNewQuarterLog.renderId = renderId;
     }
-
+    
     @Override
-    public int getRenderType() {
+    public int getRenderType()
+    {
         return renderId;
     }
-
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list) {
-        for (final BlockType type : BlockType.values()) {
+    public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list)
+    {
+        for (final BlockType type : BlockType.values())
+        {
             list.add(new ItemStack(blockID, 1, type.metadata()));
         }
     }
-
+    
     @Override
-    public int idDropped(int metadata, Random rand, int unused) {
+    public int idDropped(int metadata, Random rand, int unused)
+    {
         return blockID;
     }
     
     @Override
-    public int damageDropped(int metadata) {
+    public int damageDropped(int metadata)
+    {
         return 0;
     }
     
     @ForgeSubscribe
-    public void onUseLogTurnerEvent(UseLogTurnerEvent event) {
+    public void onUseLogTurnerEvent(UseLogTurnerEvent event)
+    {
         int id = event.world.getBlockId(event.x, event.y, event.z);
-
-        if (id == blockID) {
+        
+        if (id == blockID)
+        {
             final Block wood = Block.wood;
             event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F, wood.stepSound.getPitch() * 1.55F);
-
-            if (!event.world.isRemote) {
+            
+            if (!event.world.isRemote)
+            {
                 int metadata = event.world.getBlockMetadata(event.x, event.y, event.z);
                 
-                if (event.entityPlayer.isSneaking() == true) {
-                	switch(BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving)) {
-	                	case 0:
-	                		metadata = (++metadata > 3) ? 0: metadata;
-	                		break;
-	                	case 1:
-	                		metadata = (--metadata < 0 || metadata > 3) ? 3: metadata;
-	                		break;
-	                	case 2:
-	                		metadata = (++metadata > 7 || metadata < 4) ? 4: metadata;
-	                		break;
-	                	case 3:
-	                		metadata = (--metadata < 4 || metadata > 7) ? 7: metadata;
-	                		break;
-	                	case 4:
-	                		metadata = (++metadata > 11 || metadata < 8) ? 8: metadata;
-	                		break;
-	                	default:
-	                		metadata = (--metadata < 8) ? 11: metadata;
-	                		break;
-	            	}
-                } else {
-	                // Increment the orentation
-	                if(BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving) % 2 == 0) {
-	                	metadata = (++metadata > 11) ? 0: metadata;
-	                } else {
-	                	metadata = (--metadata < 0) ? 11: metadata;
-	                }
+                if (event.entityPlayer.isSneaking() == true)
+                {
+                    switch (BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving))
+                    {
+                        case 0:
+                            metadata = (++metadata > 3) ? 0 : metadata;
+                            break;
+                        case 1:
+                            metadata = (--metadata < 0 || metadata > 3) ? 3 : metadata;
+                            break;
+                        case 2:
+                            metadata = (++metadata > 7 || metadata < 4) ? 4 : metadata;
+                            break;
+                        case 3:
+                            metadata = (--metadata < 4 || metadata > 7) ? 7 : metadata;
+                            break;
+                        case 4:
+                            metadata = (++metadata > 11 || metadata < 8) ? 8 : metadata;
+                            break;
+                        default:
+                            metadata = (--metadata < 8) ? 11 : metadata;
+                            break;
+                    }
                 }
-
+                else
+                {
+                    // Increment the orentation
+                    if (BlockPistonBase.determineOrientation(event.world, event.x, event.y, event.z, event.entityLiving) % 2 == 0)
+                    {
+                        metadata = (++metadata > 11) ? 0 : metadata;
+                    }
+                    else
+                    {
+                        metadata = (--metadata < 0) ? 11 : metadata;
+                    }
+                }
+                
                 event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);
-
+                
                 //unturned = false;
             }
             event.setHandled();
@@ -362,17 +390,17 @@ public class BlockNewQuarterLog extends BlockLog {
     }
     
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack)
+    {
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
         
-                
         world.setBlock(x, y, z, blockID, 3, 3);
-	}
+    }
     
     @Override
     public boolean canSustainLeaves(World world, int x, int y, int z)
     {
         return true;
     }
-	
+    
 }

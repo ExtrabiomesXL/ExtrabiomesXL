@@ -6,34 +6,38 @@
 
 package extrabiomes.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.utility.IDRestrictionAnnotation;
 
 @IDRestrictionAnnotation(maxIDRValue = 255)
-public class GenericTerrainBlock extends Block {
-
-    public GenericTerrainBlock(int id, int index, Material material) {
+public class GenericTerrainBlock extends Block
+{
+    
+    public GenericTerrainBlock(int id, int index, Material material)
+    {
         super(id, material);
     }
     
-    public Icon texture;
+    public Icon   texture;
     
     public String texturePath;
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister){
-    	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texturePath);
+    public void registerIcons(IconRegister iconRegister)
+    {
+        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texturePath);
     }
-	
-	@Override
-	public Icon getIcon(int side, int metadata) {
-		return texture;
-	}
+    
+    @Override
+    public Icon getIcon(int side, int metadata)
+    {
+        return texture;
+    }
 }

@@ -10,14 +10,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import extrabiomes.Extrabiomes;
 
-public class BlockCustomStairs extends BlockStairs {
-
-	public BlockCustomStairs(int blockID, Block modelBlock, int modelMetadata) {
-		super(blockID, modelBlock, modelMetadata);
-		//setRequiresSelfNotify();
-		//setTextureFile("/extrabiomes/extrabiomes.png");
-		setLightOpacity(0);
-		setCreativeTab(Extrabiomes.tabsEBXL);
-	}
-
+public class BlockCustomStairs extends BlockStairs
+{
+    
+    public BlockCustomStairs(int blockID, Block modelBlock, int modelMetadata)
+    {
+        super(blockID, modelBlock, modelMetadata);
+        //setRequiresSelfNotify();
+        //setTextureFile("/extrabiomes/extrabiomes.png");
+        setLightOpacity(0);
+        setCreativeTab(Extrabiomes.tabsEBXL);
+    }
+    
 }

@@ -9,19 +9,22 @@ package extrabiomes.items;
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockGreenLeaves;
 
-public class ItemCustomGreenLeaves extends ItemCustomLeaves {
-
-    public ItemCustomGreenLeaves(int id) {
+public class ItemCustomGreenLeaves extends ItemCustomLeaves
+{
+    
+    public ItemCustomGreenLeaves(int id)
+    {
         super(id);
     }
-
+    
     @Override
-    public String getUnlocalizedName(ItemStack itemstack) {
+    public String getUnlocalizedName(ItemStack itemstack)
+    {
         int metadata = unmarkedMetadata(itemstack.getItemDamage());
         //if (metadata > 2) metadata = 0;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
         return super.getUnlocalizedName() + "." + BlockGreenLeaves.BlockType.values()[metadata].toString().toLowerCase();
     }
-
+    
 }

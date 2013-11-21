@@ -12,29 +12,32 @@ import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Optional;
 
-public class ItemRedRockSlab extends ItemSlab {
-
-	private static Optional<BlockHalfSlab>	singleSlab	= Optional
-																.absent();
-	private static Optional<BlockHalfSlab>	doubleSlab	= Optional
-																.absent();
-
-	static void setSlabs(BlockHalfSlab singleSlab,
-			BlockHalfSlab doubleSlab)
-	{
-		ItemRedRockSlab.singleSlab = Optional.of(singleSlab);
-		ItemRedRockSlab.doubleSlab = Optional.of(doubleSlab);
-	}
-
-	public ItemRedRockSlab(int id) {
-		super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab
-				.get().blockID);
-	}
-
-	@Override
-	public String getUnlocalizedName(ItemStack itemStack) {
-		return singleSlab.get().getFullSlabName(
-				itemStack.getItemDamage());
-	}
-
+public class ItemRedRockSlab extends ItemSlab
+{
+    
+    private static Optional<BlockHalfSlab> singleSlab = Optional
+                                                              .absent();
+    private static Optional<BlockHalfSlab> doubleSlab = Optional
+                                                              .absent();
+    
+    static void setSlabs(BlockHalfSlab singleSlab,
+            BlockHalfSlab doubleSlab)
+    {
+        ItemRedRockSlab.singleSlab = Optional.of(singleSlab);
+        ItemRedRockSlab.doubleSlab = Optional.of(doubleSlab);
+    }
+    
+    public ItemRedRockSlab(int id)
+    {
+        super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab
+                .get().blockID);
+    }
+    
+    @Override
+    public String getUnlocalizedName(ItemStack itemStack)
+    {
+        return singleSlab.get().getFullSlabName(
+                itemStack.getItemDamage());
+    }
+    
 }

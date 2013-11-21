@@ -18,22 +18,22 @@ import extrabiomes.api.events.GetBiomeIDEvent;
  * @author Scott
  * 
  */
-public abstract class Biomes {
-
+public abstract class Biomes
+{
+    
     /**
      * Retrieves a custom biome
      * 
-     * @param targetBiome
-     *            The string name of the targertBiome. See
-     *            {@link GetBiomeIDEvent#targetBiome} for valid values.
-     * @return The requested biome. If the biome does not exist, the
-     *         <code>Optional</code> value will not be present.
+     * @param targetBiome The string name of the targertBiome. See {@link GetBiomeIDEvent#targetBiome} for valid values.
+     * @return The requested biome. If the biome does not exist, the <code>Optional</code> value will not be present.
      */
-    public static Optional<BiomeGenBase> getBiome(String targetBiome) {
+    public static Optional<BiomeGenBase> getBiome(String targetBiome)
+    {
         final GetBiomeIDEvent event = new GetBiomeIDEvent(targetBiome);
         Api.getExtrabiomesXLEventBus().post(event);
-        if (event.biomeID <= 0) return Optional.absent();
+        if (event.biomeID <= 0)
+            return Optional.absent();
         return Optional.of(BiomeGenBase.biomeList[event.biomeID]);
     }
-
+    
 }

@@ -17,62 +17,74 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
+import extrabiomes.lib.Reference;
 import extrabiomes.module.fabrica.block.BlockManager;
 import extrabiomes.module.fabrica.block.ItemPaste;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ItemScarecrow;
 
-public class Fabrica {
-
+public class Fabrica
+{
+    
     private int scarecrowID = 0;
     private int pasteID     = 0;
-
+    
     @ForgeSubscribe(priority = EventPriority.LOW)
-    public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException {
+    public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException
+    {
         BlockManager.init();
-
-        if (scarecrowID > 0) {
+        
+        if (scarecrowID > 0)
+        {
             final int scarecrowEntityID = Extrabiomes.proxy.findGlobalUniqueEntityId();
             Extrabiomes.proxy.registerEntityID(EntityScarecrow.class, ItemScarecrow.NAME, scarecrowEntityID);
             Extrabiomes.proxy.registerEntity(EntityScarecrow.class, ItemScarecrow.NAME, Extrabiomes.instance, scarecrowEntityID, 300, 2, true);
-
+            
             final IRecipe recipe = new ShapedOreRecipe(Stuff.scarecrow.get(), new String[] { " p ", "sms", " s " }, 'p', Block.pumpkin, 'm', Block.melon, 's', Item.stick);
             Extrabiomes.proxy.addRecipe(recipe);
         }
-
-        if (pasteID > 0) {
-            if (Element.TINY_CACTUS.isPresent()) {
+        
+        if (pasteID > 0)
+        {
+            if (Element.TINY_CACTUS.isPresent())
+            {
                 IRecipe recipe = new ShapelessOreRecipe(Stuff.paste.get(), Block.cactus);
                 Extrabiomes.proxy.addRecipe(recipe);
-
+                
                 recipe = new ShapelessOreRecipe(Stuff.paste.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get());
                 Extrabiomes.proxy.addRecipe(recipe);
-
+                
                 Extrabiomes.proxy.addSmelting(Stuff.paste.get().itemID, 0, new ItemStack(Item.dyePowder, 1, 2), 0.2F);
             }
         }
     }
-
+    
     @ForgeSubscribe(priority = EventPriority.LOW)
-    public void preInit(ModulePreInitEvent event) throws Exception {
+    public void preInit(ModulePreInitEvent event) throws Exception
+    {
         BlockManager.preInit();
         scarecrowID = ItemSettings.SCARECROW.getID();
         pasteID = ItemSettings.PASTE.getID();
-
-        if (scarecrowID > 0){
-        	Extrabiomes.proxy.registerScarecrowRendering();
-        	Stuff.scarecrow = Optional.of(new ItemScarecrow(scarecrowID).setUnlocalizedName(ItemScarecrow.NAME));
+        
+        if (scarecrowID > 0)
+        {
+            Extrabiomes.proxy.registerScarecrowRendering();
+            Stuff.scarecrow = Optional.of(new ItemScarecrow(scarecrowID).setUnlocalizedName(ItemScarecrow.NAME));
+            GameRegistry.registerItem(Stuff.scarecrow.get(), ItemScarecrow.NAME, Reference.MOD_ID);
         }
         
-        if (pasteID > 0) {
+        if (pasteID > 0)
+        {
             Stuff.paste = Optional.of(new ItemPaste(pasteID).setUnlocalizedName("extrabiomes.paste").setCreativeTab(Extrabiomes.tabsEBXL));
+            GameRegistry.registerItem(Stuff.paste.get(), "extrabiomes.paste", Reference.MOD_ID);
         }
     }
-
+    
 }

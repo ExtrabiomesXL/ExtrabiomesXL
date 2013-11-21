@@ -10,7 +10,8 @@ import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Optional;
 
-public enum Element {
+public enum Element
+{
     // @formatter:off
     AUTUMN_SHRUB,
     CATTAIL,
@@ -83,18 +84,21 @@ public enum Element {
     LOG_BALD_CYPRESS,
     LOG_SAKURA_BLOSSOM;
     // @formatter:on
-
+    
     private Optional<ItemStack> stack = Optional.absent();
-
-    public ItemStack get() {
+    
+    public ItemStack get()
+    {
         return stack.get();
     }
-
-    public boolean isPresent() {
+    
+    public boolean isPresent()
+    {
         return stack.isPresent();
     }
-
-    public void set(ItemStack stack) {
+    
+    public void set(ItemStack stack)
+    {
         this.stack = Optional.of(stack);
     }
 }

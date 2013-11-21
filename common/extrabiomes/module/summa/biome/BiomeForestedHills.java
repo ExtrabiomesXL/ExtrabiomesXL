@@ -17,36 +17,42 @@ import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeForestedHills extends ExtrabiomeGenBase {
-
-    public BiomeForestedHills() {
+public class BiomeForestedHills extends ExtrabiomeGenBase
+{
+    
+    @SuppressWarnings("unchecked")
+    public BiomeForestedHills()
+    {
         super(BiomeSettings.FORESTEDHILLS.getID());
-
+        
         setBiomeName("Forested Hills");
-
+        
         temperature = BiomeGenBase.forest.temperature - 0.1F;
         rainfall = BiomeGenBase.forest.rainfall;
         minHeight = 0.2F;
         maxHeight = 1.8F;
-
+        
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.FORESTEDHILLS).build();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor() {
+    public int getBiomeFoliageColor()
+    {
         return ColorizerFoliage.getFoliageColor(0.8F, 1.0F);
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor() {
+    public int getBiomeGrassColor()
+    {
         return ColorizerGrass.getGrassColor(0.8F, 1.0F);
     }
-
+    
 }

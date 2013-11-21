@@ -21,57 +21,69 @@ import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.lib.Element;
 
-public class BlockCustomWall extends BlockWall {
-
-    public enum BlockType {
+public class BlockCustomWall extends BlockWall
+{
+    
+    public enum BlockType
+    {
         RED_COBBLE(0);
-
+        
         private final int metadata;
-
-        BlockType(int metadata) {
+        
+        BlockType(int metadata)
+        {
             this.metadata = metadata;
         }
-
-        public int metadata() {
+        
+        public int metadata()
+        {
             return metadata;
         }
     }
     
     private Icon texture;
-
-    public BlockCustomWall(int id) {
+    
+    public BlockCustomWall(int id)
+    {
         super(id, Block.blocksList[Element.RED_COBBLE.get().itemID]);
         //setTextureFile("/extrabiomes/extrabiomes.png");
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister){
-    	texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+    public void registerIcons(IconRegister iconRegister)
+    {
+        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
     }
-    	
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void addCreativeItems(ArrayList itemList) {
+    public void addCreativeItems(ArrayList itemList)
+    {
         for (final BlockType blockType : BlockType.values())
             itemList.add(new ItemStack(this, 1, blockType.metadata()));
     }
-
+    
     @Override
-    public boolean canPlaceTorchOnTop(World world, int x, int y, int z) {
+    public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
+    {
         return true;
     }
-
+    
     @Override
-    public Icon getIcon(int side, int metadata) {
+    public Icon getIcon(int side, int metadata)
+    {
         return texture;
     }
-
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList) {
+    public void getSubBlocks(int id, CreativeTabs tab, List itemList)
+    {
         for (final BlockType blockType : BlockType.values())
             itemList.add(new ItemStack(this, 1, blockType.metadata()));
     }
-
+    
 }

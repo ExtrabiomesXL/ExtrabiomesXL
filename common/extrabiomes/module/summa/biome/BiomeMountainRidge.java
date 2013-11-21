@@ -13,11 +13,14 @@ import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeMountainRidge extends ExtrabiomeGenBase {
-
-    public BiomeMountainRidge() {
+public class BiomeMountainRidge extends ExtrabiomeGenBase
+{
+    
+    @SuppressWarnings("unchecked")
+    public BiomeMountainRidge()
+    {
         super(BiomeSettings.MOUNTAINRIDGE.getID());
-
+        
         setColor(0xC4722F);
         setBiomeName("Mountain Ridge");
         temperature = BiomeGenBase.desert.temperature;
@@ -28,9 +31,10 @@ public class BiomeMountainRidge extends ExtrabiomeGenBase {
         spawnableCreatureList.clear();
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 1, 3));
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MOUNTAINRIDGE).build();
     }
 }

@@ -13,22 +13,26 @@ import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeSavanna extends ExtrabiomeGenBase {
-    public BiomeSavanna() {
+public class BiomeSavanna extends ExtrabiomeGenBase
+{
+    @SuppressWarnings("unchecked")
+    public BiomeSavanna()
+    {
         super(BiomeSettings.SAVANNA.getID());
-
+        
         setColor(0xBFA243);
         setBiomeName("Savanna");
         temperature = BiomeGenBase.desert.temperature;
         rainfall = BiomeGenBase.desert.rainfall;
         minHeight = 0.0F;
         maxHeight = 0.1F;
-
+        
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 2, 4));
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.SAVANNA).build();
     }
 }

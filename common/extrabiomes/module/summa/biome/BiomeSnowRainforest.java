@@ -15,11 +15,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeSnowRainforest extends BiomeTemporateRainforest {
-
-    public BiomeSnowRainforest() {
+public class BiomeSnowRainforest extends BiomeTemporateRainforest
+{
+    
+    public BiomeSnowRainforest()
+    {
         super(BiomeSettings.SNOWYRAINFOREST.getID());
-
+        
         setColor(0x338277);
         setBiomeName("Snowy Rainforest");
         temperature = BiomeGenBase.taigaHills.temperature;
@@ -28,22 +30,25 @@ public class BiomeSnowRainforest extends BiomeTemporateRainforest {
         maxHeight = 1.5F;
         setEnableSnow();
     }
-
+    
     @Override
-    public BiomeDecorator createBiomeDecorator() {
+    public BiomeDecorator createBiomeDecorator()
+    {
         return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.SNOWYRAINFOREST).build();
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor() {
+    public int getBiomeFoliageColor()
+    {
         return ColorizerFoliage.getFoliageColor(0.0F, 0.1F);
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor() {
+    public int getBiomeGrassColor()
+    {
         return ColorizerGrass.getGrassColor(0.0F, 0.1F);
     }
-
+    
 }

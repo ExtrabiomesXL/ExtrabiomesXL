@@ -9,7 +9,6 @@ package extrabiomes.handlers;
 import java.io.File;
 import java.util.logging.Level;
 
-import net.minecraftforge.common.ConfigCategory;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 
@@ -30,37 +29,46 @@ import extrabiomes.utility.EnhancedConfiguration;
  * Loads configuration data
  * 
  */
-public abstract class ConfigurationHandler {
-	
-    public static void init(File configFile) {
+public abstract class ConfigurationHandler
+{
+    
+    public static void init(File configFile)
+    {
         Optional<EnhancedConfiguration> optionalConfig = Optional.absent();
         
-        try {
+        try
+        {
             optionalConfig = Optional.of(new EnhancedConfiguration(configFile));
             final EnhancedConfiguration configuration = optionalConfig.get();
-
-            for (final BiomeSettings setting : BiomeSettings.values()) {
+            
+            for (final BiomeSettings setting : BiomeSettings.values())
+            {
                 setting.load(configuration);
             }
             
-            for (final DecorationSettings setting : DecorationSettings.values()) {
-            	setting.load(configuration);
-            }
-
-            for (final BlockSettings setting : BlockSettings.values()) {
+            for (final DecorationSettings setting : DecorationSettings.values())
+            {
                 setting.load(configuration);
             }
-
-            for (final ItemSettings setting : ItemSettings.values()) {
+            
+            for (final BlockSettings setting : BlockSettings.values())
+            {
                 setting.load(configuration);
             }
-
+            
+            for (final ItemSettings setting : ItemSettings.values())
+            {
+                setting.load(configuration);
+            }
+            
             configuration.addCustomCategoryComment("saplingreplanting", "Settings to configure the chance that saplings will replant themselves up despawning on valid soil.");
-            for (final SaplingSettings setting : SaplingSettings.values()) {
+            for (final SaplingSettings setting : SaplingSettings.values())
+            {
                 setting.load(configuration);
             }
-
-            for (final ModuleControlSettings setting : ModuleControlSettings.values()) {
+            
+            for (final ModuleControlSettings setting : ModuleControlSettings.values())
+            {
                 setting.load(configuration);
             }
             
@@ -68,16 +76,20 @@ public abstract class ConfigurationHandler {
             bigTreeSaplingDropRateProperty.comment = "Setting relative sapling drops to true will decrease the amount of saplings dropped by decaying fir and redwood leaf blocks to a more reasonable amount.";
             GeneralSettings.bigTreeSaplingDropModifier = bigTreeSaplingDropRateProperty.getBoolean(false);
             
-            
             //
             Property consoleCommandsDisabled = configuration.get(Configuration.CATEGORY_GENERAL, "DisableConsoleCommands", true);
             consoleCommandsDisabled.comment = "Set to false to enable console commands.";
             GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
             
-        } catch (final Exception e) {
+        }
+        catch (final Exception e)
+        {
             LogHelper.log(Level.SEVERE, e, "%s had had a problem loading its configuration", Reference.MOD_NAME);
-        } finally {
-            if (optionalConfig.isPresent()) optionalConfig.get().save();
+        }
+        finally
+        {
+            if (optionalConfig.isPresent())
+                optionalConfig.get().save();
         }
     }
 }

@@ -16,25 +16,31 @@ import com.google.common.base.Optional;
 import extrabiomes.api.BiomeManager;
 
 @SuppressWarnings("deprecation")
-abstract class ExtrabiomeGenBase extends BiomeGenBase {
-
-	protected ExtrabiomeGenBase(int id) {
-		super(id);
-	}
-
+abstract class ExtrabiomeGenBase extends BiomeGenBase
+{
+    
+    protected ExtrabiomeGenBase(int id)
+    {
+        super(id);
+    }
+    
     @Override
-	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-		final Optional<? extends WorldGenerator> grassGen = BiomeManager
-				.chooseRandomGrassGenforBiome(rand, this);
-		if (grassGen.isPresent()) return grassGen.get();
-		return super.getRandomWorldGenForGrass(rand);
-	}
-
+    public WorldGenerator getRandomWorldGenForGrass(Random rand)
+    {
+        final Optional<? extends WorldGenerator> grassGen = BiomeManager
+                .chooseRandomGrassGenforBiome(rand, this);
+        if (grassGen.isPresent())
+            return grassGen.get();
+        return super.getRandomWorldGenForGrass(rand);
+    }
+    
     @Override
-	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
-		final Optional<? extends WorldGenerator> treeGen = BiomeManager
-				.chooseRandomTreeGenforBiome(rand, this);
-		if (treeGen.isPresent()) return treeGen.get();
-		return super.getRandomWorldGenForTrees(rand);
-	}
+    public WorldGenerator getRandomWorldGenForTrees(Random rand)
+    {
+        final Optional<? extends WorldGenerator> treeGen = BiomeManager
+                .chooseRandomTreeGenforBiome(rand, this);
+        if (treeGen.isPresent())
+            return treeGen.get();
+        return super.getRandomWorldGenForTrees(rand);
+    }
 }

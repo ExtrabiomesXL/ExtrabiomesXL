@@ -9,12 +9,14 @@ package extrabiomes.module.fabrica.block;
 import net.minecraft.block.Block;
 import extrabiomes.Extrabiomes;
 
-public class BlockWoodStairs extends BlockCustomStairs {
-
-	public BlockWoodStairs(int id, Block modelBlock, int modelMetadata) {
-		super(id, modelBlock, modelMetadata);
-		this.setBurnProperties(blockID, 5, 20);
-		setCreativeTab(Extrabiomes.tabsEBXL);
-	}
-
+public class BlockWoodStairs extends BlockCustomStairs
+{
+    
+    public BlockWoodStairs(int id, Block modelBlock, int modelMetadata)
+    {
+        super(id, modelBlock, modelMetadata);
+        Block.setBurnProperties(blockID, 5, 20);
+        setCreativeTab(Extrabiomes.tabsEBXL);
+    }
+    
 }
