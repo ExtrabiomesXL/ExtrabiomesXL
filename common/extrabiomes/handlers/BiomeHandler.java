@@ -55,7 +55,7 @@ public enum BiomeHandler
                 LogHelper.fine("Vanilla biome %s disabled.", biome.toString());
             }
             
-            if (setting.allowVillages() && biome.isPresent())
+            if (setting.isEnabled() && setting.allowVillages() && biome.isPresent())
             {
                 BiomeManager.addVillageBiome(biome.get(), true);
                 LogHelper.fine("Village spawning enabled for custom biome %s.", setting.toString());
@@ -68,7 +68,7 @@ public enum BiomeHandler
     {
         for (final BiomeSettings biome : BiomeSettings.values())
         {
-            if (biome.getID() > 0)
+            if (biome.getID() > 0 && biome.isEnabled())
             {
                 BiomeHelper.createBiome(biome);
             }
@@ -79,17 +79,17 @@ public enum BiomeHandler
     
     public static void registerWorldGenerators()
     {
-        if (BiomeSettings.MARSH.getBiome().isPresent())
+        if (BiomeSettings.MARSH.isEnabled() && BiomeSettings.MARSH.getBiome().isPresent())
         {
             Extrabiomes.proxy.registerWorldGenerator(new MarshGenerator());
         }
         
-        if (BiomeSettings.MOUNTAINDESERT.getBiome().isPresent())
+        if (BiomeSettings.MOUNTAINDESERT.isEnabled() && BiomeSettings.MOUNTAINDESERT.getBiome().isPresent())
         {
             Extrabiomes.proxy.registerWorldGenerator(new MountainDesertGenerator());
         }
         
-        if (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent())
+        if (BiomeSettings.MOUNTAINRIDGE.isEnabled() && BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent())
         {
             Extrabiomes.proxy.registerWorldGenerator(new MountainRidgeGenerator());
         }
