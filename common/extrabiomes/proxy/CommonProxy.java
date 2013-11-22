@@ -61,7 +61,7 @@ public class CommonProxy
     @SuppressWarnings("unchecked")
     public void addRecipe(IRecipe recipe)
     {
-        CraftingManager.getInstance().getRecipeList().add(recipe);
+        CraftingManager.getInstance().getRecipeList().add(0, recipe);
     }
     
     public void addSmelting(int itemID, int metadata, ItemStack itemstack, float experience)

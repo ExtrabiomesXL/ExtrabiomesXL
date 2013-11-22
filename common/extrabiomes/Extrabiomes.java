@@ -69,7 +69,6 @@ public class Extrabiomes
     public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException
     {
         proxy.registerRenderInformation();
-        Module.postEvent(new ModuleInitEvent());
         TreeCapitatorPlugin.init();
     }
     
@@ -117,6 +116,7 @@ public class Extrabiomes
         Module.registerModules();
         Module.postEvent(new ModulePreInitEvent());
         proxy.addStringLocalization("itemGroup.extrabiomesTab", "en_US", Reference.MOD_ID);
+        Module.postEvent(new ModuleInitEvent());
         
     }
     

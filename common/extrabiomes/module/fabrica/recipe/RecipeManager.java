@@ -81,7 +81,9 @@ public class RecipeManager
     
     private void addStairsRecipe(ItemStack source, Block target)
     {
-        final IRecipe recipe = new ShapedOreRecipe(new ItemStack(target, 4), new String[] { "r  ", "rr ", "rrr" }, 'r', source);
+        IRecipe recipe = new ShapedOreRecipe(new ItemStack(target, 4), new String[] { "r  ", "rr ", "rrr" }, 'r', source);
+        Extrabiomes.proxy.addRecipe(recipe);
+        recipe = new ShapedOreRecipe(new ItemStack(target, 4), new String[] { "  r", " rr", "rrr" }, 'r', source);
         Extrabiomes.proxy.addRecipe(recipe);
     }
     
