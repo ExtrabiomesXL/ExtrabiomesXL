@@ -9,7 +9,7 @@ public class GenModGlacier implements IGenMod
     @Override
     public int modify(int height, Random random, double rawHeight)
     {
-        return height + 4;
+        return height + 3;
     }
     
     @Override
