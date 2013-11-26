@@ -25,7 +25,7 @@ public class ItemSapling extends MultiItemBlock
         int metadata = unmarkedMetadata(itemstack.getItemDamage());
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
-        return super.getUnlocalizedName() + "." + BlockCustomSapling.BlockType.values()[metadata].toString().toLowerCase();
+        return super.getUnlocalizedName() + "." + BlockCustomSapling.BlockType.values()[metadata].toString().toLowerCase(Locale.ENGLISH);
         //return super.getUnlocalizedName(itemstack);
     }
 }

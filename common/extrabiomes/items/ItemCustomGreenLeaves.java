@@ -24,7 +24,7 @@ public class ItemCustomGreenLeaves extends ItemCustomLeaves
         //if (metadata > 2) metadata = 0;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
-        return super.getUnlocalizedName() + "." + BlockGreenLeaves.BlockType.values()[metadata].toString().toLowerCase();
+        return super.getUnlocalizedName() + "." + BlockGreenLeaves.BlockType.values()[metadata].toString().toLowerCase(Locale.ENGLISH);
     }
     
 }

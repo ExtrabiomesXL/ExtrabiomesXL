@@ -28,7 +28,7 @@ public class ItemCustomMiniLog extends MultiItemBlock
             metadata = 0;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
-        return super.getUnlocalizedName() + "." + BlockMiniLog.BlockType.values()[metadata].toString().toLowerCase();
+        return super.getUnlocalizedName() + "." + BlockMiniLog.BlockType.values()[metadata].toString().toLowerCase(Locale.ENGLISH);
     }
     
     private static final int METADATA_USERPLACEDBIT = 0x4;
