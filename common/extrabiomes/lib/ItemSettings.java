@@ -6,6 +6,8 @@
 
 package extrabiomes.lib;
 
+import java.util.Locale;
+
 import extrabiomes.utility.EnhancedConfiguration;
 
 public enum ItemSettings

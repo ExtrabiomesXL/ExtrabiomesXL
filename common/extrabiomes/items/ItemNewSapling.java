@@ -1,5 +1,7 @@
 package extrabiomes.items;
 
+import java.util.Locale;
+
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockNewSapling;
 import extrabiomes.utility.MultiItemBlock;

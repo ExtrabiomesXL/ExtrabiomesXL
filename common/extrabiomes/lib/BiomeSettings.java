@@ -6,6 +6,8 @@
 
 package extrabiomes.lib;
 
+import java.util.Locale;
+
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.Property;
 

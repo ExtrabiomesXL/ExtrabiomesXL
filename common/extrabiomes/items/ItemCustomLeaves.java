@@ -6,6 +6,8 @@
 
 package extrabiomes.items;
 
+import java.util.Locale;
+
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.utility.MultiItemBlock;

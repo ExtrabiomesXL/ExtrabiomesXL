@@ -1,5 +1,7 @@
 package extrabiomes.lib;
 
+import java.util.Locale;
+
 import net.minecraftforge.common.Property;
 import extrabiomes.utility.EnhancedConfiguration;
 

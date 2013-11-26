@@ -7,6 +7,7 @@
 package extrabiomes;
 
 import java.io.File;
+import java.util.Locale;
 
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;

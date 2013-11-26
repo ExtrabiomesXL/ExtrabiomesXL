@@ -6,6 +6,7 @@
 
 package extrabiomes.handlers;
 
+import java.util.Locale;
 import java.util.Set;
 
 import net.minecraft.world.WorldType;
