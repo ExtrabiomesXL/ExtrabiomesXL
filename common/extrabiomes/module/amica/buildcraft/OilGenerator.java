@@ -24,8 +24,8 @@ public class OilGenerator implements IWorldGenerator
         final BiomeGenBase biome = world.getWorldChunkManager()
                 .getBiomeGenAt(x, z);
         
-        if ((BiomeSettings.MOUNTAINDESERT.getBiome().isPresent() && biome == BiomeSettings.MOUNTAINDESERT.getBiome().get()
-                || BiomeSettings.WASTELAND.getBiome().isPresent() && biome == BiomeSettings.WASTELAND.getBiome().get())
+        if (((BiomeSettings.MOUNTAINDESERT.getBiome().isPresent() && biome == BiomeSettings.MOUNTAINDESERT.getBiome().get())
+                || (BiomeSettings.WASTELAND.getBiome().isPresent() && biome == BiomeSettings.WASTELAND.getBiome().get()))
                 && rand.nextFloat() > 0.97)
         {
             // Generate a small deposit

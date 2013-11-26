@@ -45,7 +45,7 @@ class WorldGenOasis extends WorldGenerator
                     if (blocktoReplace == Block.stone.blockID
                             || blocktoReplace == Block.sand.blockID
                             || blocktoReplace == Block.sandStone.blockID
-                            || BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && blocktoReplace == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock)
+                            || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && blocktoReplace == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock))
                         world.setBlock(x1, y1, z1, Block.grass.blockID);
                 }
             }

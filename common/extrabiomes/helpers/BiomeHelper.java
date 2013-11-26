@@ -119,25 +119,29 @@ public abstract class BiomeHelper
     
     public static BiomeGenBase settingToBiomeGenBase(BiomeSettings setting)
     {
-        switch (setting)
+        if (setting.getBiome().isPresent())
         {
-            case DESERT:
-                return BiomeGenBase.desert;
-            case EXTREMEHILLS:
-                return BiomeGenBase.extremeHills;
-            case FOREST:
-                return BiomeGenBase.forest;
-            case JUNGLE:
-                return BiomeGenBase.jungle;
-            case SWAMPLAND:
-                return BiomeGenBase.swampland;
-            case TAIGA:
-                return BiomeGenBase.taiga;
-            case PLAINS:
-                return BiomeGenBase.plains;
-            default:
-                return setting.getBiome().get();
+            switch (setting)
+            {
+                case DESERT:
+                    return BiomeGenBase.desert;
+                case EXTREMEHILLS:
+                    return BiomeGenBase.extremeHills;
+                case FOREST:
+                    return BiomeGenBase.forest;
+                case JUNGLE:
+                    return BiomeGenBase.jungle;
+                case SWAMPLAND:
+                    return BiomeGenBase.swampland;
+                case TAIGA:
+                    return BiomeGenBase.taiga;
+                case PLAINS:
+                    return BiomeGenBase.plains;
+                default:
+                    return setting.getBiome().get();
+            }
         }
+        return null;
     }
     
     @SuppressWarnings("deprecation")

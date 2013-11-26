@@ -16,9 +16,12 @@ class PluginManager extends Api
     
     static void activatePlugins()
     {
-        Api.pluginBus.get().post(new PluginEvent.Pre());
-        Api.pluginBus.get().post(new PluginEvent.Init());
-        Api.pluginBus.get().post(new PluginEvent.Post());
-        Api.pluginBus = Optional.absent();
+        if (Api.pluginBus.isPresent())
+        {
+            Api.pluginBus.get().post(new PluginEvent.Pre());
+            Api.pluginBus.get().post(new PluginEvent.Init());
+            Api.pluginBus.get().post(new PluginEvent.Post());
+            Api.pluginBus = Optional.absent();
+        }
     }
 }

@@ -12,9 +12,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
-import extrabiomes.api.BiomeManager;
+import extrabiomes.lib.BiomeSettings;
 
-@SuppressWarnings("deprecation")
 public class QuicksandGenerator implements IWorldGenerator
 {
     
@@ -34,8 +33,7 @@ public class QuicksandGenerator implements IWorldGenerator
         chunkZ = chunkZ << 4;
         final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
                 chunkZ);
-        if (!BiomeManager.minijungle.isPresent()
-                || biome != BiomeManager.minijungle.get())
+        if (!BiomeSettings.MINIJUNGLE.getBiome().isPresent() || biome != BiomeSettings.MINIJUNGLE.getBiome().get())
             return;
         
         // 1 to 3 attempts with with a bias toward 2

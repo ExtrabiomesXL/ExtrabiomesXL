@@ -70,10 +70,8 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     protected boolean canThisPlantGrowOnThisBlockID(int id)
     {
         
-        return BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent()
-                && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock
-                || BiomeSettings.WASTELAND.getBiome().isPresent()
-                && (byte) id == BiomeSettings.WASTELAND.getBiome().get().topBlock
+        return (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock)
+                || (BiomeSettings.WASTELAND.getBiome().isPresent() && (byte) id == BiomeSettings.WASTELAND.getBiome().get().topBlock)
                 || super.canThisPlantGrowOnThisBlockID(id);
     }
     
