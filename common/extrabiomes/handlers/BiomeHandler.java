@@ -101,7 +101,7 @@ public enum BiomeHandler
     @ForgeSubscribe
     public void handleBiomeIDRequestsFromAPI(GetBiomeIDEvent event)
     {
-        final Optional<BiomeSettings> settings = Optional.fromNullable(BiomeSettings.valueOf(event.targetBiome.toUpperCase()));
+        final Optional<BiomeSettings> settings = Optional.fromNullable(BiomeSettings.valueOf(event.targetBiome.toUpperCase(Locale.ENGLISH)));
         if (settings.isPresent())
         {
             event.biomeID = settings.get().getID();

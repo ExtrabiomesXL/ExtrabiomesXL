@@ -28,7 +28,7 @@ public class ItemCustomLeaves extends MultiItemBlock
             metadata = 3;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
-        return super.getUnlocalizedName() + "." + BlockAutumnLeaves.BlockType.values()[metadata].toString().toLowerCase();
+        return super.getUnlocalizedName() + "." + BlockAutumnLeaves.BlockType.values()[metadata].toString().toLowerCase(Locale.ENGLISH);
     }
     
     private static final int METADATA_USERPLACEDBIT = 0x4;
