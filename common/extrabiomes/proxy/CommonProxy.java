@@ -206,8 +206,11 @@ public class CommonProxy
     
     public void removeBiome(BiomeGenBase biome)
     {
-        WorldType.DEFAULT.removeBiome(checkNotNull(biome));
-        WorldType.LARGE_BIOMES.removeBiome(biome);
+        if (biome != null)
+        {
+            WorldType.DEFAULT.removeBiome(checkNotNull(biome));
+            WorldType.LARGE_BIOMES.removeBiome(biome);
+        }
     }
     
     public void setBlockHarvestLevel(Block block, String toolClass, int harvestLevel)
