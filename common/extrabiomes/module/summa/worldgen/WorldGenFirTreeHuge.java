@@ -20,10 +20,7 @@ public class WorldGenFirTreeHuge extends WorldGenerator
     
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK_NE(new ItemStack(
-                Block.wood, 1, 1)), TRUNK_NW(new ItemStack(Block.wood, 1, 1)), TRUNK_SE(
-                new ItemStack(Block.wood, 1, 1)), TRUNK_SW(new ItemStack(
-                Block.wood, 1, 1));
+        LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK(new ItemStack(Block.wood, 1, 1));
         
         private ItemStack      stack;
         
@@ -36,24 +33,8 @@ public class WorldGenFirTreeHuge extends WorldGenerator
                 LEAVES.stack = Element.LEAVES_FIR.get();
             }
             
-            if (Element.LOG_HUGE_FIR_NE.isPresent())
-            {
-                TRUNK_NE.stack = Element.LOG_HUGE_FIR_NE.get();
-            }
-            
-            if (Element.LOG_HUGE_FIR_NW.isPresent())
-            {
-                TRUNK_NW.stack = Element.LOG_HUGE_FIR_NW.get();
-            }
-            
-            if (Element.LOG_HUGE_FIR_SE.isPresent())
-            {
-                TRUNK_SE.stack = Element.LOG_HUGE_FIR_SE.get();
-            }
-            
-            if (Element.LOG_HUGE_FIR_SW.isPresent())
-            {
-                TRUNK_SW.stack = Element.LOG_HUGE_FIR_SW.get();
+            if(Element.LOG_QUARTER_FIR.isPresent()){
+            	TRUNK.stack = Element.LOG_QUARTER_FIR.get();
             }
             
             loadedCustomBlocks = true;
@@ -238,10 +219,12 @@ public class WorldGenFirTreeHuge extends WorldGenerator
             
             if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + l3, z))
             {
-                setBlockAndMetadata(world, x, y + l3, z, TreeBlock.TRUNK_SE.getID(), TreeBlock.TRUNK_SE.getMetadata());
-                setBlockAndMetadata(world, x - 1, y + l3, z, TreeBlock.TRUNK_SW.getID(), TreeBlock.TRUNK_SW.getMetadata());
-                setBlockAndMetadata(world, x, y + l3, z - 1, TreeBlock.TRUNK_NE.getID(), TreeBlock.TRUNK_NE.getMetadata());
-                setBlockAndMetadata(world, x - 1, y + l3, z - 1, TreeBlock.TRUNK_NW.getID(), TreeBlock.TRUNK_NW.getMetadata());
+            	
+            	setBlockAndMetadata(world, x, y + l3, z, TreeBlock.TRUNK.getID(), 2);
+                setBlockAndMetadata(world, x - 1, y + l3, z, TreeBlock.TRUNK.getID(), 3);
+                setBlockAndMetadata(world, x, y + l3, z - 1, TreeBlock.TRUNK.getID(), 1);
+                setBlockAndMetadata(world, x - 1, y + l3, z - 1, TreeBlock.TRUNK.getID(), 0);
+                
             }
         }
         

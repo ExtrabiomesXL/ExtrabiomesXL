@@ -15,49 +15,64 @@ import extrabiomes.utility.EnhancedConfiguration;
 public enum BlockSettings
 {
     // @formatter:off
-    AUTUMNLEAVES        	(2200),
-    CATTAIL             	(2201),
-    CRACKEDSAND         	(255),
-    FLOWER              	(2202),
-    GRASS               	(2203),
-    GREENLEAVES         	(2204),
-    LEAFPILE            	(2205),
     REDROCK             	(254),
-    SAPLING             	(2207),
-    CUSTOMLOG           	(2208),
-    QUARTERLOG0         	(2209),
-    QUARTERLOG1         	(2211),
-    QUARTERLOG2         	(2212),
-    QUARTERLOG3         	(2213),
-    QUICKSAND           	(2214),
-    PLANKS              	(2215),
-    WOODSLAB            	(2216),
-    DOUBLEWOODSLAB      	(2217),
-    REDWOODSTAIRS       	(2218),
-    FIRSTAIRS           	(2219),
-    ACACIASTAIRS        	(2220),
-    REDROCKSLAB         	(2206),
-    DOUBLEREDROCKSLAB   	(2222),
-    REDCOBBLESTAIRS     	(2223),
-    REDROCKBRICKSTAIRS  	(2221),
-    WALL                	(2210),
-    NEWSAPLING          	(2224),
-    NEWQUARTERLOG       	(2225),
-    NEWLEAVES		    	(2226),
-    KNEELOG		        	(2227),
-    RAINBOWKNEELOG      	(2228),
-    RAINBOWQUARTERLOG   	(2229),
-    NEWLOG					(2231),
-    CYPRESSSTAIRS			(2232),
-    JAPANESEMAPLESTAIRS 	(2233),
-    RAINBOWEUCALYPTUSSTAIRS	(2234),
-    AUTUMNSTAIRS			(2235),
-    BALDCYPRESSSTAIRS		(2236),
-    MORELEAVES				(2237),
-    MINILOG					(2238),
-    NEWWOODSLAB            	(2239),
-    NEWDOUBLEWOODSLAB      	(2240),
-    SAKURABLOSSOMSTAIRS		(2241);    // Next block IDs 253 (decending) and 2224 (ascending)
+    CRACKEDSAND         	(255),
+    QUICKSAND           	(2300),
+
+    FLOWER              	(2310),
+    CATTAIL             	(2311),
+    GRASS               	(2312),
+    LEAFPILE            	(2313),
+    
+    SAPLING             	(2320),
+    NEWSAPLING          	(2321),
+    
+    AUTUMNLEAVES        	(2330),
+    GREENLEAVES         	(2331),
+    NEWLEAVES		    	(2332),
+    MORELEAVES				(2333),
+
+    QUARTERLOG0         	(0),
+    QUARTERLOG1         	(0),
+    QUARTERLOG2         	(0),
+    QUARTERLOG3         	(0),
+    
+    CUSTOMLOG           	(2340),
+    NEWLOG					(2341),
+
+    KNEELOG		        	(2345),
+    RAINBOWKNEELOG      	(2346),
+    RAINBOWQUARTERLOG   	(2347),
+    
+    NEWQUARTERLOG       	(2350),
+    FIRQUARTERLOG			(2351),
+    REDWOODQUARTERLOG		(2352),
+    OAKQUARTERLOG			(2353),
+
+    MINILOG					(2357),
+    
+    PLANKS              	(2360),
+   
+    WOODSLAB            	(2363),
+    DOUBLEWOODSLAB      	(2364),
+    NEWWOODSLAB            	(2365),
+    NEWDOUBLEWOODSLAB      	(2366),
+    REDROCKSLAB         	(2367),
+
+    REDCOBBLESTAIRS     	(2370),
+    REDROCKBRICKSTAIRS  	(2371),
+    REDWOODSTAIRS       	(2372),
+    FIRSTAIRS           	(2373),
+    ACACIASTAIRS        	(2374),
+    DOUBLEREDROCKSLAB   	(2375),
+    CYPRESSSTAIRS			(2376),
+    JAPANESEMAPLESTAIRS 	(2377),
+    RAINBOWEUCALYPTUSSTAIRS	(2378),
+    AUTUMNSTAIRS			(2379),
+    BALDCYPRESSSTAIRS		(2380),
+    SAKURABLOSSOMSTAIRS		(2381),
+    
+    WALL                	(2400);    // Next block IDs 253 (decending) and 2224 (ascending)
     
         // @formatter:on
     

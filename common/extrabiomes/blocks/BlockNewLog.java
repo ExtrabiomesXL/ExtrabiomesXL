@@ -21,12 +21,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
+import extrabiomes.helpers.LogHelper;
 
 public class BlockNewLog extends BlockLog
 {
     public enum BlockType
     {
-        RAINBOW_EUCALYPTUS(0), AUTUMN(1), BALD_CYPRESS(2);
+        RAINBOW_EUCALYPTUS(0), AUTUMN(1), BALD_CYPRESS(2), REDWOOD(3);
         
         private final int metadata;
         
@@ -60,6 +61,9 @@ public class BlockNewLog extends BlockLog
         
         textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logbaldcypressside");
         textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logbaldcypresstop");
+        
+        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodside");
+        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodtop");
     }
     
     @Override
@@ -67,7 +71,7 @@ public class BlockNewLog extends BlockLog
     {
         final int orientation = metadata & 12;
         int type = metadata & 3;
-        if (type > 2)
+        if (type > 3)
             type = 0;
         if (orientation == 0 && (side == 1 || side == 0) || orientation == 4 && (side == 5 || side == 4) || orientation == 8 && (side == 2 || side == 3))
         {
@@ -87,6 +91,7 @@ public class BlockNewLog extends BlockLog
         for (final BlockType type : BlockType.values())
         {
             list.add(new ItemStack(blockID, 1, type.metadata()));
+            LogHelper.info("Block Name: %s", type.toString());
         }
     }
     

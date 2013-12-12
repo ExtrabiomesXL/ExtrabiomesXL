@@ -96,7 +96,7 @@ public class Extrabiomes
         // Load the localization files into the LanguageRegistry
         LocalizationHandler.loadLanguages();
         
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg"));
+        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "/extrabiomes.cfg"));
         
         BiomeHandler.init();
         

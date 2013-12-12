@@ -74,6 +74,9 @@ public enum Element
     LEAVES_RAINBOW_EUCALYPTUS,
     LEAVES_SAKURA_BLOSSOM,
     LOG_QUARTER_BALD_CYPRESS,
+    LOG_QUARTER_OAK,
+    LOG_QUARTER_FIR,
+    LOG_QUARTER_REDWOOD,
     LOG_QUARTER_RAINBOW_EUCALYPTUS,
     LOG_KNEE_BALD_CYPRESS,
     LOG_KNEE_RAINBOW_EUCALYPTUS,
@@ -82,7 +85,8 @@ public enum Element
     LOG_RAINBOW_EUCALYPTUS,
     LOG_AUTUMN,
     LOG_BALD_CYPRESS,
-    LOG_SAKURA_BLOSSOM;
+    LOG_SAKURA_BLOSSOM,
+    LOG_REDWOOD;
     // @formatter:on
     
     private Optional<ItemStack> stack = Optional.absent();

@@ -30,9 +30,7 @@ public class WorldGenLegendOak extends WorldGenerator
     
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves)), TRUNK_NE(new ItemStack(Block.wood)), TRUNK_NW(
-                new ItemStack(Block.wood)), TRUNK_SE(new ItemStack(Block.wood)), TRUNK_SW(
-                new ItemStack(Block.wood)), BRANCH(new ItemStack(Block.wood));
+        LEAVES(new ItemStack(Block.leaves)), BRANCH(new ItemStack(Block.wood)), TRUNK(new ItemStack(Block.wood));
         
         private ItemStack      stack;
         
@@ -40,14 +38,8 @@ public class WorldGenLegendOak extends WorldGenerator
         
         private static void loadCustomBlocks()
         {
-            if (Element.LOG_HUGE_OAK_NE.isPresent())
-                TRUNK_NE.stack = Element.LOG_HUGE_OAK_NE.get();
-            if (Element.LOG_HUGE_OAK_NW.isPresent())
-                TRUNK_NW.stack = Element.LOG_HUGE_OAK_NW.get();
-            if (Element.LOG_HUGE_OAK_SE.isPresent())
-                TRUNK_SE.stack = Element.LOG_HUGE_OAK_SE.get();
-            if (Element.LOG_HUGE_OAK_SW.isPresent())
-                TRUNK_SW.stack = Element.LOG_HUGE_OAK_SW.get();
+        	if(Element.LOG_QUARTER_OAK.isPresent())
+        		TRUNK.stack = Element.LOG_QUARTER_OAK.get();
             
             loadedCustomBlocks = true;
         }
@@ -150,14 +142,11 @@ public class WorldGenLegendOak extends WorldGenerator
         
         for (int yOffset = 0; yOffset < height + 1; yOffset++)
         {
-            setBlockAndMetadata(world, x, y + yOffset, z, TreeBlock.TRUNK_SE.getID(),
-                    TreeBlock.TRUNK_SE.getMetadata());
-            setBlockAndMetadata(world, x - 1, y + yOffset, z, TreeBlock.TRUNK_SW.getID(),
-                    TreeBlock.TRUNK_SW.getMetadata());
-            setBlockAndMetadata(world, x, y + yOffset, z - 1, TreeBlock.TRUNK_NE.getID(),
-                    TreeBlock.TRUNK_NE.getMetadata());
-            setBlockAndMetadata(world, x - 1, y + yOffset, z - 1, TreeBlock.TRUNK_NW.getID(),
-                    TreeBlock.TRUNK_NW.getMetadata());
+        	setBlockAndMetadata(world, x, y + yOffset, z, TreeBlock.TRUNK.getID(), 2);
+            setBlockAndMetadata(world, x - 1, y + yOffset, z, TreeBlock.TRUNK.getID(), 3);
+            setBlockAndMetadata(world, x, y + yOffset, z - 1, TreeBlock.TRUNK.getID(), 1);
+            setBlockAndMetadata(world, x - 1, y + yOffset, z - 1, TreeBlock.TRUNK.getID(), 0);
+            
         }
         
     }

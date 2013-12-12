@@ -364,15 +364,16 @@ public abstract class BlockHandler
     
     private static void createNewQuarterLogs()
     {
+        final CommonProxy proxy = Extrabiomes.proxy;
+    	BlockNewQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderNewQuarterLog()));
+    	
         final BlockNewQuarterLog block = new BlockNewQuarterLog(BlockSettings.NEWQUARTERLOG.getID(), "baldcypress");
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.NEWQUARTERLOG.getID() <= 0)
             return;
         
         block.setUnlocalizedName("extrabiomes.baldcypressquarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
-        
-        final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.setBlockHarvestLevel(block, "axe", 0);
-        
+    
+        proxy.setBlockHarvestLevel(block, "axe", 0); 
         proxy.registerBlock(block, net.minecraft.item.ItemBlock.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
@@ -390,15 +391,62 @@ public abstract class BlockHandler
         proxy.registerEventHandler(block2);
         proxy.setBurnProperties(block2.blockID, 5, 5);
         
+        final BlockNewQuarterLog block3 = new BlockNewQuarterLog(BlockSettings.OAKQUARTERLOG.getID(), "oak");
+        if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.OAKQUARTERLOG.getID() <= 0)
+            return;
+        
+        block3.setUnlocalizedName("extrabiomes.oakquarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        
+        proxy.setBlockHarvestLevel(block3, "axe", 0);
+        proxy.registerBlock(block3, net.minecraft.item.ItemBlock.class, block3.getUnlocalizedName() + ":" + block3.getClass().getName());
+        proxy.registerOreInAllSubblocks("logWood", block3);
+        proxy.registerEventHandler(block3);
+        proxy.setBurnProperties(block3.blockID, 5, 5);
+        
+        final BlockNewQuarterLog block4 = new BlockNewQuarterLog(BlockSettings.FIRQUARTERLOG.getID(), "fir");
+        if (!ModuleControlSettings.SUMMA.isEnabled() && BlockSettings.FIRQUARTERLOG.getID() <= 0)
+            return;
+        
+        block4.setUnlocalizedName("extrabiomes.firquarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        
+        proxy.setBlockHarvestLevel(block4, "axe", 0);
+        proxy.registerBlock(block4, net.minecraft.item.ItemBlock.class, block4.getUnlocalizedName() + ":" + block4.getClass().getName());
+        proxy.registerOreInAllSubblocks("logWood", block4);
+        proxy.registerEventHandler(block4);
+        proxy.setBurnProperties(block4.blockID, 5, 5);
+
+        final BlockNewQuarterLog block5 = new BlockNewQuarterLog(BlockSettings.REDWOODQUARTERLOG.getID(), "redwood");
+        if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.REDWOODQUARTERLOG.getID() <= 0)
+            return;
+        
+        block5.setUnlocalizedName("extrabiomes.redwoodquarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        //block5.setRenderId(renderId);
+        
+        proxy.setBlockHarvestLevel(block5, "axe", 0);
+        proxy.registerBlock(block5, net.minecraft.item.ItemBlock.class, block5.getUnlocalizedName() + ":" + block5.getClass().getName());
+        proxy.registerOreInAllSubblocks("logWood", block5);
+        proxy.registerEventHandler(block5);
+        proxy.setBurnProperties(block5.blockID, 5, 5);
+        
+        
         Element.LOG_QUARTER_BALD_CYPRESS.set(new ItemStack(block, 1, Short.MAX_VALUE));
         Element.LOG_QUARTER_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, Short.MAX_VALUE));
+        Element.LOG_QUARTER_OAK.set(new ItemStack(block3, 1, Short.MAX_VALUE));
+        Element.LOG_QUARTER_FIR.set(new ItemStack(block4, 1, Short.MAX_VALUE));
+        Element.LOG_QUARTER_REDWOOD.set(new ItemStack(block5, 1, Short.MAX_VALUE));
         
-        BlockNewQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderNewQuarterLog()));
+        //BlockNewQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderNewQuarterLog()));
         
         ForestryModHelper.addToForesterBackpack(new ItemStack(block.blockID, 1, Short.MAX_VALUE));
         ForestryModHelper.addToForesterBackpack(new ItemStack(block2.blockID, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block3.blockID, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block4.blockID, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block5.blockID, 1, Short.MAX_VALUE));
         FacadeHelper.addBuildcraftFacade(block.blockID);
         FacadeHelper.addBuildcraftFacade(block2.blockID);
+        FacadeHelper.addBuildcraftFacade(block3.blockID);
+        FacadeHelper.addBuildcraftFacade(block4.blockID);
+        FacadeHelper.addBuildcraftFacade(block5.blockID);
         
     }
     
@@ -418,12 +466,11 @@ public abstract class BlockHandler
         
         for (final BlockQuarterLog block : new BlockQuarterLog[] { blockNW, blockNE, blockSW, blockSE })
         {
-            block.setUnlocalizedName("extrabiomes.log.quarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+            block.setUnlocalizedName("extrabiomes.log.quarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F); //*/.setCreativeTab(Extrabiomes.tabsEBXL);
             
             final CommonProxy proxy = Extrabiomes.proxy;
             proxy.setBlockHarvestLevel(block, "axe", 0);
-            proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class,
-                    block.getUnlocalizedName() + ":" + block.getBarkOnSides().toString() + ":" + block.getClass().getName());
+            proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class, block.getUnlocalizedName() + ":" + block.getBarkOnSides().toString() + ":" + block.getClass().getName());
             proxy.registerOreInAllSubblocks("logWood", block);
             proxy.registerEventHandler(block);
             proxy.setBurnProperties(block.blockID, 5, 5);
@@ -608,6 +655,7 @@ public abstract class BlockHandler
         Element.LOG_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, BlockNewLog.BlockType.RAINBOW_EUCALYPTUS.metadata()));
         Element.LOG_AUTUMN.set(new ItemStack(block2, 1, BlockNewLog.BlockType.AUTUMN.metadata()));
         Element.LOG_BALD_CYPRESS.set(new ItemStack(block2, 1, BlockNewLog.BlockType.BALD_CYPRESS.metadata()));
+        Element.LOG_REDWOOD.set(new ItemStack(block2, 1, BlockNewLog.BlockType.REDWOOD.metadata()));
         
         ForestryModHelper.addToForesterBackpack(new ItemStack(block2, 1, Short.MAX_VALUE));
         for (final BlockNewLog.BlockType type : BlockNewLog.BlockType.values())

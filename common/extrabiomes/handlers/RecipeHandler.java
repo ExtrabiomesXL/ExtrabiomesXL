@@ -22,6 +22,8 @@ public abstract class RecipeHandler
         writeCrackedSandRecipes();
         writeLogRecipes();
         
+        writeLogConversionRecipes();
+        
         writeFlowerRecipes();
         writeLeafPileRecipes();
     }
@@ -97,6 +99,47 @@ public abstract class RecipeHandler
         final IRecipe recipe = new ShapedOreRecipe(Block.leaves,
                 new String[] { "lll", "lll", "lll" }, 'l', Element.LEAFPILE.get());
         Extrabiomes.proxy.addRecipe(recipe);
+    }
+    
+    private static void writeLogConversionRecipes() {
+        final CommonProxy proxy = Extrabiomes.proxy;
+        
+    	if(Element.LOG_QUARTER_BALD_CYPRESS.isPresent() && Element.LOG_BALD_CYPRESS.isPresent()) {
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_BALD_CYPRESS.get().getItem().itemID, 4, Element.LOG_BALD_CYPRESS.get().getItemDamage()),new String[] { "ll","ll" }, 'l', Element.LOG_QUARTER_BALD_CYPRESS.get()));
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_QUARTER_BALD_CYPRESS.get().getItem().itemID, 4, 0), new String[] { "ll","ll" }, 'l', Element.LOG_BALD_CYPRESS.get()));
+    	}
+    	
+    	if(Element.LOG_QUARTER_RAINBOW_EUCALYPTUS.isPresent() && Element.LOG_RAINBOW_EUCALYPTUS.isPresent()) {
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_RAINBOW_EUCALYPTUS.get().getItem().itemID, 4, Element.LOG_RAINBOW_EUCALYPTUS.get().getItemDamage()),new String[] { "ll","ll" }, 'l', Element.LOG_QUARTER_RAINBOW_EUCALYPTUS.get()));
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_QUARTER_RAINBOW_EUCALYPTUS.get().getItem().itemID, 4, 0), new String[] { "ll","ll" }, 'l', Element.LOG_RAINBOW_EUCALYPTUS.get()));
+    	}
+    	
+    	if(Element.LOG_QUARTER_FIR.isPresent() && Element.LOG_FIR.isPresent()) {
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_FIR.get().getItem().itemID, 4, Element.LOG_FIR.get().getItemDamage()),new String[] { "ll","ll" }, 'l', Element.LOG_QUARTER_FIR.get()));
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_QUARTER_FIR.get().getItem().itemID, 4, 0), new String[] { "ll","ll" }, 'l', Element.LOG_FIR.get()));
+    	}
+    	if(Element.LOG_QUARTER_FIR.isPresent() && Element.LOG_HUGE_FIR_SE.isPresent()) {
+            proxy.addRecipe(new ShapelessOreRecipe(new ItemStack(Element.LOG_QUARTER_FIR.get().getItem().itemID, 1, 0), Element.LOG_HUGE_FIR_SE.get()));
+        }
+    	
+    	if(Element.LOG_REDWOOD.isPresent() && Element.LOG_REDWOOD.isPresent()) {
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_REDWOOD.get().getItem().itemID, 4, Element.LOG_REDWOOD.get().getItemDamage()),new String[] { "ll","ll" }, 'l', Element.LOG_QUARTER_REDWOOD.get()));
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_QUARTER_REDWOOD.get().getItem().itemID, 4, 0), new String[] { "ll","ll" }, 'l', Element.LOG_REDWOOD.get()));
+    	}
+    	if(Element.LOG_QUARTER_REDWOOD.isPresent() && Element.LOG_HUGE_REDWOOD_SE.isPresent()) {
+            proxy.addRecipe(new ShapelessOreRecipe(new ItemStack(Element.LOG_QUARTER_REDWOOD.get().getItem().itemID, 1, 0), Element.LOG_HUGE_REDWOOD_SE.get()));
+    	}
+    	
+    	if(Element.LOG_HUGE_OAK_SE.isPresent() && Element.LOG_QUARTER_OAK.isPresent()) {
+            proxy.addRecipe(new ShapelessOreRecipe(new ItemStack(Element.LOG_QUARTER_OAK.get().getItem().itemID, 1, 0), Element.LOG_HUGE_OAK_SE.get()));
+    	}
+    	if(Element.LOG_QUARTER_OAK.isPresent()) {
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Block.wood, 4, 0), new String[] { "ll","ll" }, 'l', Element.LOG_QUARTER_OAK.get()));
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_QUARTER_OAK.get().getItem().itemID, 4, 0), new String[] { "ll","ll" }, 'l', new ItemStack(Block.wood, 1, 0)));
+    	}
+    	
+
+    	
     }
     
     private static void writeLogRecipes()
@@ -207,7 +250,7 @@ public abstract class RecipeHandler
             }
         }
         
-        for (final Element firLog : new Element[] { Element.LOG_FIR, Element.LOG_HUGE_FIR_NE, Element.LOG_HUGE_FIR_NW, Element.LOG_HUGE_FIR_SE, Element.LOG_HUGE_FIR_SW })
+        for (final Element firLog : new Element[] { Element.LOG_FIR, Element.LOG_QUARTER_FIR })
         {
             if (firLog.isPresent())
             {
@@ -222,7 +265,7 @@ public abstract class RecipeHandler
             }
         }
         
-        for (final Element redwoodLog : new Element[] { Element.LOG_HUGE_REDWOOD_NE, Element.LOG_HUGE_REDWOOD_NW, Element.LOG_HUGE_REDWOOD_SE, Element.LOG_HUGE_REDWOOD_SW })
+        for (final Element redwoodLog : new Element[] { Element.LOG_QUARTER_REDWOOD })
         {
             if (redwoodLog.isPresent())
             {
@@ -237,7 +280,7 @@ public abstract class RecipeHandler
             }
         }
         
-        for (final Element oakLog : new Element[] { Element.LOG_HUGE_OAK_NE, Element.LOG_HUGE_OAK_NW, Element.LOG_HUGE_OAK_SE, Element.LOG_HUGE_OAK_SW })
+        for (final Element oakLog : new Element[] { Element.LOG_QUARTER_OAK })
         {
             if (oakLog.isPresent())
             {

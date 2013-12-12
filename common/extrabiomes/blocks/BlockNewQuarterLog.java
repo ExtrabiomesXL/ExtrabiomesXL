@@ -17,6 +17,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
+import extrabiomes.helpers.LogHelper;
 
 public class BlockNewQuarterLog extends BlockLog
 {
@@ -64,7 +65,7 @@ public class BlockNewQuarterLog extends BlockLog
         textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "side1");
         textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "side2");
         
-        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "todo");
+        //textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "todo");
         
     }
     
@@ -250,9 +251,9 @@ public class BlockNewQuarterLog extends BlockLog
             case 8:
                 return 4;
             case 9:
-                return 7;
-            case 10:
                 return 6;
+            case 10:
+                return 7;
             case 11:
                 return 5;
             default:
@@ -281,15 +282,15 @@ public class BlockNewQuarterLog extends BlockLog
             case 7:
                 return 2;
             case 8:
-                return 6;
+                return 7;
             case 9:
                 return 5;
             case 10:
                 return 4;
             case 11:
-                return 7;
+                return 6;
             default:
-                return 8;
+                return 0;
         }
     }
     
@@ -379,6 +380,8 @@ public class BlockNewQuarterLog extends BlockLog
                 }
                 
                 event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);
+                
+                LogHelper.info("Orientation: %d", metadata);
                 
                 //unturned = false;
             }
