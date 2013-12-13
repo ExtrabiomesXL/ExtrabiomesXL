@@ -207,10 +207,10 @@ public class WorldGenRedwood extends WorldGenerator
             if (Block.blocksList[j4] == null || Block.blocksList[j4].isLeaves(world, x, y + y1, z))
             {
 
-            	setBlockAndMetadata(world, x, y1, z, TreeBlock.TRUNK.getID(), 2);
-                setBlockAndMetadata(world, x - 1, y1, z, TreeBlock.TRUNK.getID(), 3);
-                setBlockAndMetadata(world, x, y1, z - 1, TreeBlock.TRUNK.getID(), 1);
-                setBlockAndMetadata(world, x - 1, y1, z - 1, TreeBlock.TRUNK.getID(), 0);
+            	setBlockAndMetadata(world, x, y + y1, z, TreeBlock.TRUNK.getID(), 2);
+                setBlockAndMetadata(world, x - 1, y + y1, z, TreeBlock.TRUNK.getID(), 3);
+                setBlockAndMetadata(world, x, y + y1, z - 1, TreeBlock.TRUNK.getID(), 1);
+                setBlockAndMetadata(world, x - 1, y + y1, z - 1, TreeBlock.TRUNK.getID(), 0);
                 
             }
         }
