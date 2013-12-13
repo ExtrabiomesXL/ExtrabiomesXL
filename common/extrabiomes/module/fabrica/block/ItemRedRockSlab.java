@@ -15,13 +15,10 @@ import com.google.common.base.Optional;
 public class ItemRedRockSlab extends ItemSlab
 {
     
-    private static Optional<BlockHalfSlab> singleSlab = Optional
-                                                              .absent();
-    private static Optional<BlockHalfSlab> doubleSlab = Optional
-                                                              .absent();
+    private static Optional<BlockHalfSlab> singleSlab = Optional.absent();
+    private static Optional<BlockHalfSlab> doubleSlab = Optional.absent();
     
-    static void setSlabs(BlockHalfSlab singleSlab,
-            BlockHalfSlab doubleSlab)
+    static void setSlabs(BlockHalfSlab singleSlab, BlockHalfSlab doubleSlab)
     {
         ItemRedRockSlab.singleSlab = Optional.of(singleSlab);
         ItemRedRockSlab.doubleSlab = Optional.of(doubleSlab);
@@ -29,15 +26,13 @@ public class ItemRedRockSlab extends ItemSlab
     
     public ItemRedRockSlab(int id)
     {
-        super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab
-                .get().blockID);
+        super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab.get().blockID);
     }
     
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        return singleSlab.get().getFullSlabName(
-                itemStack.getItemDamage());
+        return singleSlab.get().getFullSlabName(itemStack.getItemDamage());
     }
     
 }

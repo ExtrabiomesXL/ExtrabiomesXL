@@ -486,10 +486,8 @@ public enum BlockManager
             thisBlock.setUnlocalizedName("extrabiomes.redrockslab");
             proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
             ItemRedRockSlab.setSlabs((BlockHalfSlab) Stuff.slabRedRock.get(), (BlockHalfSlab) Stuff.slabRedRockDouble.get());
-            proxy.registerBlock(Stuff.slabRedRock.get(), extrabiomes.module.fabrica.block.ItemRedRockSlab.class,
-                    Stuff.slabRedRock.get().getUnlocalizedName() + ":" + Stuff.slabRedRock.get().getClass().getName());
-            proxy.registerBlock(thisBlock, extrabiomes.module.fabrica.block.ItemRedRockSlab.class,
-                    thisBlock.getUnlocalizedName() + ":double:" + thisBlock.getClass().getName());
+            proxy.registerBlock(Stuff.slabRedRock.get(), extrabiomes.module.fabrica.block.ItemRedRockSlab.class, Stuff.slabRedRock.get().getUnlocalizedName() + ":" + Stuff.slabRedRock.get().getClass().getName());
+            proxy.registerBlock(thisBlock, extrabiomes.module.fabrica.block.ItemRedRockSlab.class, thisBlock.getUnlocalizedName() + ":double:" + thisBlock.getClass().getName());
         }
     },
     REDCOBBLESTAIRS
@@ -497,9 +495,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsRedCobble = Optional.of(new BlockCustomStairs(getSettings().getID(),
-                    Block.blocksList[Element.RED_COBBLE.get().itemID], Element.RED_COBBLE.get()
-                            .getItemDamage()));
+            Stuff.stairsRedCobble = Optional.of(new BlockCustomStairs(getSettings().getID(), Block.blocksList[Element.RED_COBBLE.get().itemID], Element.RED_COBBLE.get().getItemDamage()));
         }
         
         @Override
@@ -526,9 +522,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsRedRockBrick = Optional.of(new BlockCustomStairs(getSettings().getID(),
-                    Block.blocksList[Element.RED_ROCK_BRICK.get().itemID], Element.RED_ROCK_BRICK
-                            .get().getItemDamage()));
+            Stuff.stairsRedRockBrick = Optional.of(new BlockCustomStairs(getSettings().getID(), Block.blocksList[Element.RED_ROCK_BRICK.get().itemID], Element.RED_ROCK_BRICK .get().getItemDamage()));
         }
         
         @Override

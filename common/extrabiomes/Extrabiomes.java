@@ -18,6 +18,7 @@ import net.minecraftforge.event.EventBus;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
@@ -41,6 +42,7 @@ import extrabiomes.lib.Reference;
 import extrabiomes.localization.LocalizationHandler;
 import extrabiomes.module.amica.treecapitator.TreeCapitatorPlugin;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
+import extrabiomes.plugins.PluginThaumcraft4;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
 //import cpw.mods.fml.common.Loader;
@@ -49,8 +51,8 @@ import extrabiomes.utility.CreativeTab;
 //import cpw.mods.fml.common.Mod.PreInit;
 //import cpw.mods.fml.common.Mod.ServerStarting;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies="after:Thaumcraft")
+@NetworkMod(clientSideRequired = true, serverSideRequired = false )
 public class Extrabiomes
 {
     
@@ -80,6 +82,17 @@ public class Extrabiomes
         RecipeHandler.init();
         initBus = Optional.absent();
         Module.releaseStaticResources();
+        
+        if (Loader.isModLoaded("Thaumcraft")) {
+                try {
+                	PluginThaumcraft4.PostInit();
+                }
+                catch (Exception e) {
+                        System.out.println("[BiomesOPlenty] There was an error while integrating Thaumcraft with Biomes O' Plenty!");
+                        e.printStackTrace(System.err);
+                }
+        }
+        
         LogHelper.info("Successfully Loaded.");
     }
     

@@ -173,10 +173,7 @@ public abstract class BlockHandler
             return;
         
         final BlockCustomTallGrass block = new BlockCustomTallGrass(blockID, 48, Material.vine);
-        block.setUnlocalizedName("extrabiomes.tallgrass").setHardness(0.0F)
-                .setStepSound(Block.soundGrassFootstep)
-                /*.setTextureFile("/extrabiomes/extrabiomes.png")*/
-                .setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setUnlocalizedName("extrabiomes.tallgrass").setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
         
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemGrass.class, block.getUnlocalizedName() + ":" + block.getClass().getName());

@@ -98,8 +98,7 @@ public class BlockCustomFlower extends Block implements IPlantable
     
     private boolean canThisPlantGrowOnThisBlockID(int id)
     {
-        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID || id == Block.sand.blockID
-                || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock);
+        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID || id == Block.sand.blockID || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock);
     }
     
     private void checkFlowerChange(World world, int x, int y, int z)

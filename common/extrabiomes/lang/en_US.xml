@@ -10,6 +10,7 @@
   <entry key="item.extrabiomes.logturner.name">Log Turner</entry>
   <entry key="item.extrabiomes.paste.name">Cactus Paste</entry>
   <entry key="item.extrabiomes.scarecrow.name">Scarecrow</entry>
+  <entry key="entity.extrabiomes.scarecrow.name">Scarecrow</entry>
   <entry key="log.message.initializing">Intializing.</entry>
   <entry key="log.message.load.success">Successfully Loaded.</entry>
   <entry key="log.message.plugin.init">Initializing %s plugin.</entry>

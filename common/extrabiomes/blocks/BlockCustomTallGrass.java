@@ -128,6 +128,12 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     }
     
     @Override
+    public int damageDropped(int metadata)
+    {
+        return metadata;
+    }
+    
+    @Override
     public boolean isBlockReplaceable(World world, int x, int y, int z)
     {
         return true;

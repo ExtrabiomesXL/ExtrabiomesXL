@@ -381,7 +381,7 @@ public class BlockNewQuarterLog extends BlockLog
                 
                 event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);
                 
-                LogHelper.info("Orientation: %d", metadata);
+                //LogHelper.info("Orientation: %d", metadata);
                 
                 //unturned = false;
             }
