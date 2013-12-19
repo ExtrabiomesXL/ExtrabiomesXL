@@ -19,19 +19,19 @@ public enum Localization
                                                                  * SERBIAN("sr_RS"),
                                                                  * SWEDISH("sv_SE")
                                                                  */;
-    
+
     private final String locale;
-    
+
     Localization(String locale)
     {
         this.locale = locale;
     }
-    
+
     public String filename()
     {
         return String.format("/extrabiomes/lang/%s.xml", locale);
     }
-    
+
     public String locale()
     {
         return locale;

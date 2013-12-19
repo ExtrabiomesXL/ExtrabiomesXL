@@ -32,6 +32,8 @@ minecraft {
     assetDir = "run/assets"
 }
 
+version = "${config.minecraft_version}-${config.mod_version}"
+
 processResources
 {
     // replace stuff in mcmod.info, nothing else
