@@ -5,6 +5,6 @@
 Thumbs.db
 *.jar
 desktop.ini
-/build.properties
 desktop.ini
 /bin
+/.gradle

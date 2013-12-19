@@ -1,8 +1,0 @@
-# Example build.properties file.  You should set these values to meet your needs on your system.
-#
-# dir.project : Required. This is the folder that contains your local copy the ExtrabiomesXL repo to.
-dir.project=C:/github/ExtrabiomesXL
-# dir.mcp : Required. The path to the mcp folder created by Forge when running install.cmd or install.sh (You must use the src distribution of Forge).
-dir.mcp=c:/forge/mcp
-# dir.release : Required. The target path where the binary files will be created.
-dir.release=${dir.project}/bin
