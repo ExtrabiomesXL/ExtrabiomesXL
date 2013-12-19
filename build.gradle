@@ -23,7 +23,7 @@ configFile.withReader {
     project.ext.config = new ConfigSlurper().parse prop
 }
 
-version = "1.0"
+version = config.mod_version
 group= "extrabiomes"
 archivesBaseName = "ExtrabiomesXL"
 
