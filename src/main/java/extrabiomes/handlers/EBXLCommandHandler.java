@@ -29,26 +29,26 @@ import extrabiomes.module.summa.worldgen.WorldGenSakuraBlossomTree;
 
 public class EBXLCommandHandler extends CommandBase
 {
-    
+
     @Override
     public String getCommandName()
     {
         return "ebxl";
     }
-    
+
     @Override
     public String getCommandUsage(ICommandSender icommandsender)
     {
         return "/ebxl help";
     }
-    
+
     @Override
     public void processCommand(ICommandSender icommandsender, String[] cmds)
     {
         if (icommandsender instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) icommandsender;
-            
+
             if (cmds.length == 0)
             {
                 player.addChatMessage("use \"/ebxl help\" for the list of valid commands.");
@@ -134,14 +134,14 @@ public class EBXLCommandHandler extends CommandBase
                             int x = Integer.parseInt(cmds[1]);
                             int y = Integer.parseInt(cmds[2]);
                             int z = Integer.parseInt(cmds[3]);
-                            
+
                             killTree(player, x, y, z);
                         }
                         catch (Exception e)
                         {
                             player.addChatMessage("X, Y and Z must be valid numbers.");
                         }
-                        
+
                     }
                     else if (cmds.length == 2 && cmds[1].equals("here"))
                     {
@@ -161,7 +161,7 @@ public class EBXLCommandHandler extends CommandBase
                     else if (cmds.length == 2)
                     {
                         int newTime = Integer.parseInt(cmds[1]);
-                        
+
                         if (newTime >= 0 && newTime <= 10000)
                         {
                             BlockCustomSapling.setSaplingLifespan(newTime);
@@ -281,7 +281,7 @@ public class EBXLCommandHandler extends CommandBase
                             int x = Integer.parseInt(cmds[2]);
                             int y = Integer.parseInt(cmds[3]);
                             int z = Integer.parseInt(cmds[4]);
-                            
+
                             if (cmds[1].equals("acacia"))
                             {
                                 (new WorldGenAcacia(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
@@ -392,7 +392,7 @@ public class EBXLCommandHandler extends CommandBase
                             int y = Integer.parseInt(cmds[3]);
                             int z = Integer.parseInt(cmds[4]);
                             long seed = Long.parseLong(cmds[5]);
-                            
+
                             if (cmds[1].equals("acacia"))
                             {
                                 (new WorldGenAcacia(true)).generate(player.worldObj, seed, x, y, z);
@@ -508,9 +508,9 @@ public class EBXLCommandHandler extends CommandBase
                 }
             }
         }
-        
+
     }
-    
+
     private void treeNames(EntityPlayer player)
     {
         player.addChatMessage("Only the following tree names are supported:");
@@ -520,26 +520,26 @@ public class EBXLCommandHandler extends CommandBase
         player.addChatMessage("rainbow, japanesemaple, japanesemaple, japanesemapleshrub,");
         player.addChatMessage("sakura, legend");
     }
-    
+
     private boolean killTree(EntityPlayer player, int x, int y, int z)
     {
         Queue<Vector3> killList = new LinkedList<Vector3>();
-        
+
         killList.add(new Vector3(x, y, z));
         Vector3 currentBlock;
-        
+
         while (killList.size() > 0)
         {
             currentBlock = killList.remove();
             int blockId = player.worldObj.getBlockId(currentBlock.x(), currentBlock.y(), currentBlock.z());
             int damage = player.worldObj.getBlockId(currentBlock.x(), currentBlock.y(), currentBlock.z());
             String blockType = OreDictionary.getOreName(OreDictionary.getOreID(new ItemStack(blockId, 1, damage)));
-            
+
             // shorten the coords
             int x1 = currentBlock.x();
             int y1 = currentBlock.y();
             int z1 = currentBlock.z();
-            
+
             if (blockType.equals("logWood") || blockType.equals("treeLeaves"))
             {
                 // Add extra blocks to the list
@@ -549,15 +549,15 @@ public class EBXLCommandHandler extends CommandBase
                 killList.add(new Vector3(x1 - 1, y1, z1));
                 killList.add(new Vector3(x1, y1, z1 + 1));
                 killList.add(new Vector3(x1, y1, z1 - 1));
-                
+
                 // Remove the block
                 player.worldObj.setBlockToAir(x1, y1, z1);
             }
         }
-        
+
         return true;
     }
-    
+
     private void helpList(EntityPlayer player)
     {
         // List the available commands
@@ -568,5 +568,10 @@ public class EBXLCommandHandler extends CommandBase
         player.addChatMessage("/ebxl saplingdespawntime [ticks]");
         player.addChatMessage("/ebxl spawntree <treetype> <x> <y> <z> [seed]");
         player.addChatMessage("/ebxl version");
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
