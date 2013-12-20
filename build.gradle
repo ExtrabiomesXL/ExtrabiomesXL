@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+
+// define the properties file
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    // read config.  it shall from now on be referenced as simply config or as project.config
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+version = config.mod_version
+group= "extrabiomes"
+archivesBaseName = "ExtrabiomesXL"
+
+minecraft {
+    version = config.minecraft_version + "-" + config.forge_version
+    assetDir = "run/assets"
+}
+
+version = "${config.minecraft_version}-${config.mod_version}"
+
+processResources
+{
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        include 'version.properties'
+
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+        exclude 'version.properties'
+    }
+}
