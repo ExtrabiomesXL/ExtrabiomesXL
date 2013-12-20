@@ -7,19 +7,28 @@
 
 #### How to install and use the source code ####
 
-1. Download the latest recommended MinecraftForge src distribution.
-2. Extract the Forge src zip file and run install.bat/.sh in the forge folder.
+1. Download the latest Minecraft Forge src distribution.
+2. Extract the Forge src zip file, cd inside the extracted Forge src directory, and run the appropriate Gradle commands to setup your dev environment ([Help](http://www.minecraftforge.net/wiki/Installation/Source)).
 3. Clone this git repo to whatever location you like.
-4. Use the eclipse folder in your Forge/MCP setup as your Eclipse workspace.
-5. Under the Minecraft project, add the "common" and "resources" folders in the git repo as linked folders and set both as source folders.
+4. Open the project Gradle generated for you using your IDE of choise.
+5. Link the java and resources folders under src/main in your ExtrabiomesXL local git clone as source folders.
+6. Replace the build.gradle file in your forge src directory root with the one from ExtrabiomesXL.
 
 #### How to build from the source code ####
 
-1. Download and install Apache Ant on your system. Make sure it is available on the path environment variable.
-2. In the EBXL repo folder, make a copy of build.properties_example and name it build.properties.
-3. Edit the values in build.properties to contain valid paths on your system for the 3 properties. Details can be found in build.properties_example.
-4. From a console window run "ant" from the ExtrabiomesXL repo folder. The build will create its output in the bin folder.
-5. Install the resulting mod archive by copying it to the mods folder on the client or server. The mod is universal and works on both the client and the server.
+If you have Gradle installed on your system, cd to the Forge src directory root, and run the command
+````
+gradle build
+````
+If you do not have Gradle installed, run the bundled Gradle wrapper which came with Forge by running
+````
+gradlew.bat build
+````
+On Windows. If you're on Linux/OS X, run
+````
+gradlew build
+````
+The generated build will be found under build/lib
 
 * * *
 
