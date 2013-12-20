@@ -41,99 +41,79 @@ import extrabiomes.lib.Reference;
 
 public class CommonProxy
 {
-    
+
     public void addBiome(Collection<WorldType> worldTypes, BiomeGenBase biome)
     {
         for (final WorldType worldType : worldTypes)
             worldType.addNewBiome(biome);
     }
-    
+
     public void addGrassPlant(Block block, int metadata, int weight)
     {
         MinecraftForge.addGrassPlant(block, metadata, weight);
     }
-    
-    public void addName(Object object, String name)
-    {
-        LanguageRegistry.addName(object, name);
-    }
-    
+
     @SuppressWarnings("unchecked")
     public void addRecipe(IRecipe recipe)
     {
         CraftingManager.getInstance().getRecipeList().add(0, recipe);
     }
-    
+
     public void addSmelting(int itemID, int metadata, ItemStack itemstack, float experience)
     {
         FurnaceRecipes.smelting().addSmelting(itemID, metadata, itemstack, experience);
     }
-    
+
     public void addSmelting(ItemStack input, ItemStack output, float experience)
     {
         FurnaceRecipes.smelting().addSmelting(input.itemID, output, experience);
     }
-    
-    public void addStringLocalization(String key, String lang, String value)
-    {
-        LanguageRegistry.instance().addStringLocalization(key, lang, value);
-    }
-    
+
     public int findGlobalUniqueEntityId()
     {
         return EntityRegistry.findGlobalUniqueEntityId();
     }
-    
+
     public Logger getFMLLogger()
     {
         return FMLLog.getLogger();
     }
-    
+
     public Optional<ItemStack> getGrassSeed(World world)
     {
         return Optional.fromNullable(ForgeHooks.getGrassSeed(world));
     }
-    
+
     public ArrayList<ItemStack> getOres(String name)
     {
         return OreDictionary.getOres(name);
     }
-    
-    public String getStringLocalization(String key)
-    {
-        return LanguageRegistry.instance().getStringLocalization(key);
-    }
-    
+
     public boolean isModLoaded(String modID)
     {
         return Loader.isModLoaded(modID);
     }
-    
-    public void loadLocalization(String filename, String locale)
-    {
-        LanguageRegistry.instance().loadLocalization(filename, locale, true);
-    }
-    
+
     public boolean postEventToBus(Event event)
     {
         return MinecraftForge.EVENT_BUS.post(event);
     }
-    
+
     public void registerBlock(Block block, String uniqueName)
     {
         GameRegistry.registerBlock(block, ItemBlock.class, uniqueName, Reference.MOD_ID);
     }
-    
+
     public void registerBlock(Block block, Class<? extends ItemBlock> itemclass, String uniqueName)
     {
         GameRegistry.registerBlock(block, itemclass, uniqueName, Reference.MOD_ID);
     }
-    
+
     public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
     {
         return 0;
     }
-    
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void registerEntity(Class entityClass, String entityName, Object mod, int entityID,
             int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
@@ -141,69 +121,69 @@ public class CommonProxy
         EntityRegistry.registerModEntity(entityClass, entityName, entityID, mod, trackingRange,
                 updateFrequency, sendsVelocityUpdates);
     }
-    
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void registerEntityID(Class entityClass, String entityName, int entityID)
     {
         EntityRegistry.registerGlobalEntityID(entityClass, entityName, entityID);
     }
-    
+
     public void registerEventHandler(Object target)
     {
         MinecraftForge.EVENT_BUS.register(target);
     }
-    
+
     public void registerFuelHandler(IFuelHandler fuelHandler)
     {
         GameRegistry.registerFuelHandler(checkNotNull(fuelHandler));
     }
-    
+
     public void registerOre(int id, Block ore)
     {
         OreDictionary.registerOre(id, new ItemStack(ore));
     }
-    
+
     public void registerOre(int id, Item ore)
     {
         OreDictionary.registerOre(id, new ItemStack(ore));
     }
-    
+
     public void registerOre(int id, ItemStack ore)
     {
         OreDictionary.registerOre(id, ore);
     }
-    
+
     public void registerOre(String name, Block ore)
     {
         OreDictionary.registerOre(name, new ItemStack(ore));
     }
-    
+
     public void registerOre(String name, Item ore)
     {
         OreDictionary.registerOre(name, new ItemStack(ore));
     }
-    
+
     public void registerOre(String name, ItemStack ore)
     {
         OreDictionary.registerOre(name, ore);
     }
-    
+
     public void registerOreInAllSubblocks(String name, Block ore)
     {
         OreDictionary.registerOre(name, new ItemStack(ore, 1, Short.MAX_VALUE));
     }
-    
+
     public void registerRenderInformation()
     {}
-    
+
     public void registerScarecrowRendering()
     {}
-    
+
     public void registerWorldGenerator(IWorldGenerator worldGenerator)
     {
         GameRegistry.registerWorldGenerator(worldGenerator);
     }
-    
+
     public void removeBiome(BiomeGenBase biome)
     {
         if (biome != null)
@@ -212,15 +192,15 @@ public class CommonProxy
             WorldType.LARGE_BIOMES.removeBiome(biome);
         }
     }
-    
+
     public void setBlockHarvestLevel(Block block, String toolClass, int harvestLevel)
     {
         MinecraftForge.setBlockHarvestLevel(block, toolClass, harvestLevel);
     }
-    
+
     public void setBurnProperties(int id, int encouragement, int flammability)
     {
         Block.setBurnProperties(id, encouragement, flammability);
     }
-    
+
 }

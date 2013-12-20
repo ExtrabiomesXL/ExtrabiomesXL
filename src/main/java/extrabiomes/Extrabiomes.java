@@ -39,7 +39,6 @@ import extrabiomes.handlers.RecipeHandler;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.Reference;
-import extrabiomes.localization.LocalizationHandler;
 import extrabiomes.module.amica.treecapitator.TreeCapitatorPlugin;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.plugins.PluginThaumcraft4;
@@ -55,26 +54,26 @@ import extrabiomes.utility.CreativeTab;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false )
 public class Extrabiomes
 {
-    
+
     @Instance(Reference.MOD_ID)
     public static Extrabiomes         instance;
-    
+
     @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
     public static CommonProxy         proxy;
-    
+
     public static final CreativeTabs  tabsEBXL     = new CreativeTab("extrabiomesTab");
-    
+
     public static final String        TEXTURE_PATH = Reference.MOD_ID.toLowerCase(Locale.ENGLISH) + ":";
-    
+
     private static Optional<EventBus> initBus      = Optional.of(new EventBus());
-    
+
     @Mod.EventHandler
     public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException
     {
         proxy.registerRenderInformation();
         TreeCapitatorPlugin.init();
     }
-    
+
     @Mod.EventHandler
     public static void postInit(FMLPostInitializationEvent event)
     {
@@ -82,7 +81,7 @@ public class Extrabiomes
         RecipeHandler.init();
         initBus = Optional.absent();
         Module.releaseStaticResources();
-        
+
         if (Loader.isModLoaded("Thaumcraft")) {
                 try {
                 	PluginThaumcraft4.PostInit();
@@ -92,61 +91,57 @@ public class Extrabiomes
                         e.printStackTrace(System.err);
                 }
         }
-        
+
         LogHelper.info("Successfully Loaded.");
     }
-    
+
     public static boolean postInitEvent(Event event)
     {
         return initBus.isPresent() ? initBus.get().post(event) : false;
     }
-    
+
     @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event) throws Exception
     {
         LogHelper.info("Initializing.");
-        
-        // Load the localization files into the LanguageRegistry
-        LocalizationHandler.loadLanguages();
-        
+
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "/extrabiomes.cfg"));
-        
+
         BiomeHandler.init();
-        
+
         // remove after 3.6.0 release
         BiomeManagerImpl.populateAPIBiomes();
         new BiomeManagerImpl();
         //
-        
+
         Extrabiomes.registerInitEventHandler(new RecipeManager());
-        
+
         BlockHandler.createBlocks();
         ItemHandler.createItems();
-        
+
         BiomeHandler.registerWorldGenerators();
         BiomeHandler.enableBiomes();
         BiomeManagerImpl.buildWeightedFloraLists();
-        
+
         Module.registerModules();
         Module.postEvent(new ModulePreInitEvent());
-        proxy.addStringLocalization("itemGroup.extrabiomesTab", "en_US", Reference.MOD_ID);
         Module.postEvent(new ModuleInitEvent());
-        
+
     }
-    
+
     @Mod.EventHandler
     public void serverStart(FMLServerStartingEvent event)
     {
         if (GeneralSettings.consoleCommandsDisabled)
             return;
-        
+
         MinecraftServer server = MinecraftServer.getServer(); //Gets current server
         ICommandManager command = server.getCommandManager(); //Gets the command manager to use for server
         ServerCommandManager serverCommand = ((ServerCommandManager) command); //Turns it into another form to use
-        
+
         serverCommand.registerCommand(new EBXLCommandHandler());
     }
-    
+
     public static void registerInitEventHandler(Object target)
     {
         if (initBus.isPresent())
