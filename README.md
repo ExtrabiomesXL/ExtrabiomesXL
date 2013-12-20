@@ -12,7 +12,7 @@
 3. Clone this git repo to whatever location you like.
 4. Open the project Gradle generated for you using your IDE of choise.
 5. Link the java and resources folders under src/main in your ExtrabiomesXL local git clone as source folders.
-6. Replace the build.gradle file in your forge src directory root with the one from ExtrabiomesXL.
+6. Replace the build.gradle file in your forge src directory root with the one from ExtrabiomesXL. Be sure to copy build.properties to the same location as well.
 
 #### How to build from the source code ####
 
