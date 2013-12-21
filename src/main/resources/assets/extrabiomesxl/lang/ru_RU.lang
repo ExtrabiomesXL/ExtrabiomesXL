@@ -5,9 +5,13 @@ config.cautia.comment=Установите "cautia" на "true", чтобы до
 config.fabrica.comment=Установите "fabrica" на "true", чтобы включить крафт предметов.
 config.summa.comment=Установите "summa" на "false", чтобы отключить мод.
 
+itemGroup.extrabiomesTab=ExtrabiomesXL
+
 item.extrabiomes.logturner.name=Переворачиватель брёвен
 item.extrabiomes.paste.name=Кактусовая паста
 item.extrabiomes.scarecrow.name=Пугало
+
+entity.extrabiomes.scarecrow.name=Пугало
 
 log.message.initializing=Инициализация.
 log.message.load.success=Успешно загружен.
@@ -51,11 +55,15 @@ tile.extrabiomes.rainbowkneelog.name=Локоть древесины радуж�
 tile.extrabiomes.newlog.0.name=Древесина радужного эвкалипта
 tile.extrabiomes.newlog.1.name=Древесина осеннего дерева
 tile.extrabiomes.newlog.2.name=Древесина болотного кипариса
-tile.extrabiomes.log.quarter.0.name=Четверть древесины красного дерева
-tile.extrabiomes.log.quarter.1.name=Четверть древесины пихты
-tile.extrabiomes.log.quarter.2.name=Четверть древесины дуба
+tile.extrabiomes.newlog.3.name=Древесина красного дерева
+tile.extrabiomes.log.quarter.0.name=Старая четверть древесины красного дерева
+tile.extrabiomes.log.quarter.1.name=Старая четверть древесины пихты
+tile.extrabiomes.log.quarter.2.name=Старая четверть древесины дуба
 tile.extrabiomes.rainboweucalyptusquarter.name=Четверть древесины радужного эвкалипта
 tile.extrabiomes.baldcypressquarter.name=Четверть древесины болотного кипариса
+tile.extrabiomes.redwoodquarter.name=Четверть древесины красного дерева
+tile.extrabiomes.firquarter.name=Четверть древесины пихты
+tile.extrabiomes.oakquarter.name=Четверть древесины дуба
 tile.extrabiomes.planks.0.name=Доски из древесины красного дерева
 tile.extrabiomes.planks.1.name=Доски из древесины пихты
 tile.extrabiomes.planks.2.name=Доски из древесины акации
