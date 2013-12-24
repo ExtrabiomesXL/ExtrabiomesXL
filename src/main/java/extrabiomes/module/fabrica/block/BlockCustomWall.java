@@ -57,14 +57,6 @@ public class BlockCustomWall extends BlockWall
         texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
     }
     
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    @Override
-    public void addCreativeItems(ArrayList itemList)
-    {
-        for (final BlockType blockType : BlockType.values())
-            itemList.add(new ItemStack(this, 1, blockType.metadata()));
-    }
-    
     @Override
     public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
     {

@@ -61,14 +61,6 @@ public class BlockRedRock extends Block
         textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");
     }
     
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    @Override
-    public void addCreativeItems(ArrayList itemList)
-    {
-        for (final BlockType blockType : BlockType.values())
-            itemList.add(new ItemStack(this, 1, blockType.metadata()));
-    }
-    
     @Override
     public int damageDropped(int metadata)
     {
