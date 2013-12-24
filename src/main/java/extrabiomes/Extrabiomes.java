@@ -86,7 +86,10 @@ public class Extrabiomes
                 try {
                 	PluginThaumcraft4.PostInit();
                 }
-                catch (Exception e) {}
+                catch (Exception e) {
+                        System.out.println("[BiomesOPlenty] There was an error while integrating Thaumcraft with Biomes O' Plenty!");
+                        e.printStackTrace(System.err);
+                }
         }
 
         LogHelper.info("Successfully Loaded.");
