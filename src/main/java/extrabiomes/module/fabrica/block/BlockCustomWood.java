@@ -41,10 +41,7 @@ public class BlockCustomWood extends BlockWood
     public BlockCustomWood(int id)
     {
         super(id);
-        //blockIndexInTexture = 128;
-        //setTextureFile("/extrabiomes/extrabiomes.png");
         setStepSound(soundWoodFootstep);
-        //setRequiresSelfNotify();
         setHardness(2.0F);
         setResistance(5.0F);
         setBurnProperties(blockID, 5, 20);

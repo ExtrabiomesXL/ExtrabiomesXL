@@ -57,7 +57,6 @@ public class BlockCustomWoodSlab extends BlockWoodSlab
         setResistance(5.0F);
         setStepSound(soundWoodFootstep);
         setBurnProperties(blockID, 5, 20);
-        //setTextureFile("/extrabiomes/extrabiomes.png");
         setLightOpacity(0);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }

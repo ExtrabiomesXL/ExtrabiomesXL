@@ -25,7 +25,6 @@ class BlockQuicksand extends Block
         super(id, Material.sand);
         setHardness(4.0F);
         setStepSound(Block.soundSandFootstep);
-        //setTextureFile("/extrabiomes/extrabiomes.png");
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     

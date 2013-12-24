@@ -6,7 +6,6 @@
 
 package extrabiomes.module.fabrica.block;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -46,7 +45,6 @@ public class BlockCustomWall extends BlockWall
     public BlockCustomWall(int id)
     {
         super(id, Block.blocksList[Element.RED_COBBLE.get().itemID]);
-        //setTextureFile("/extrabiomes/extrabiomes.png");
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     
