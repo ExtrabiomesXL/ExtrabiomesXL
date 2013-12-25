@@ -14,22 +14,20 @@ import extrabiomes.module.amica.atg.ATGPlugin;
 import extrabiomes.module.amica.buildcraft.BuildcraftPlugin;
 import extrabiomes.module.amica.forestry.ForestryPlugin;
 import extrabiomes.module.amica.ic2.IC2Plugin;
-import extrabiomes.module.amica.treecapitator.TreeCapitatorPlugin;
 
 public class Amica
 {
-    
+
     public static final String LOG_MESSAGE_PLUGIN_ERROR = "log.message.plugin.error";
     public static final String LOG_MESSAGE_PLUGIN_INIT  = "log.message.plugin.init";
-    
+
     @ForgeSubscribe(priority = EventPriority.LOWEST)
     public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException
     {
         Api.registerPlugin(new BuildcraftPlugin());
         Api.registerPlugin(new ForestryPlugin());
         Api.registerPlugin(new IC2Plugin());
-        Api.registerPlugin(new TreeCapitatorPlugin());
         Api.registerPlugin(new ATGPlugin());
     }
-    
+
 }
