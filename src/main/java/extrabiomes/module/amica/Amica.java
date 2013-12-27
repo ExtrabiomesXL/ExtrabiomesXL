@@ -14,6 +14,7 @@ import extrabiomes.module.amica.atg.ATGPlugin;
 import extrabiomes.module.amica.buildcraft.BuildcraftPlugin;
 import extrabiomes.module.amica.forestry.ForestryPlugin;
 import extrabiomes.module.amica.ic2.IC2Plugin;
+import extrabiomes.module.amica.newdawn.NewDawnPlugin;
 
 public class Amica
 {
@@ -28,6 +29,7 @@ public class Amica
         Api.registerPlugin(new ForestryPlugin());
         Api.registerPlugin(new IC2Plugin());
         Api.registerPlugin(new ATGPlugin());
+        Api.registerPlugin(new NewDawnPlugin());
     }
 
 }
