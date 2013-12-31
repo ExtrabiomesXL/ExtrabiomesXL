@@ -58,8 +58,10 @@ public class NewDawnPlugin implements NewDawnBiomeProvider
 	public Set<NewDawnBiomeSelector> getBiomeSelectors(SimplexNoise worldNoise) {
 		final HashSet<NewDawnBiomeSelector> selectors = new HashSet<NewDawnBiomeSelector>();
 		
-		selectors.add(new CommonBiomeSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_MEDIUM));
-		//selectors.add(new UncommonBiomeSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_LOWEST));
+		selectors.add(new EBXLWastelandSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_LOWEST));
+		selectors.add(new EBXLAridSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_MEDIUM - 1));
+		selectors.add(new EBXLDampSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_MEDIUM));
+		selectors.add(new EBXLNormalSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_MEDIUM + 1));
 		
 		return selectors;
 	}
