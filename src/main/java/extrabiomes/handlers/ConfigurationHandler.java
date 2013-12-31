@@ -81,6 +81,10 @@ public abstract class ConfigurationHandler
             consoleCommandsDisabled.comment = "Set to false to enable console commands.";
             GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
             
+            Property configVersion = configuration.get("Version", "configFileVersoin", "3.14.6");
+            configVersion.comment = "To help ebxl in updating the config file int he future.";
+            //GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
+            
         }
         catch (final Exception e)
         {
