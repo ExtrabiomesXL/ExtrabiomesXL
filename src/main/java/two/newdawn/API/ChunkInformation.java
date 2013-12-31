@@ -19,6 +19,8 @@ public class ChunkInformation {
 
   /* The maximum world height. You must not exceed it, Minecraft forbids it! */
   public static final int WORLD_HEIGHT = 256;
+  /* A scale factor to ease in calculation */
+  public static final double BLOCK_SCALE = ((double) WORLD_HEIGHT) / 128.0;
   /* The length of each side of a chunk */
   public static final int CHUNK_SIZE_X = 16;
   public static final int CHUNK_SIZE_Z = 16;
@@ -110,7 +112,7 @@ public class ChunkInformation {
 
     float lowHumidity = this.humidity[0];
     float avgHumidity = 0.0f;
-    float highHumidity =this.humidity[0];
+    float highHumidity = this.humidity[0];
     for (float h : this.humidity) {
       avgHumidity += h;
       lowHumidity = Math.min(h, lowHumidity);

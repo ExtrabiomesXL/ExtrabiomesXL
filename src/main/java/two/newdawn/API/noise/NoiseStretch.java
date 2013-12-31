@@ -40,7 +40,6 @@ public class NoiseStretch {
 
   /**
    * Creates a new 3D noise stretcher.
-   * Currently not used.
    *
    * @param noise the base noise to use.
    * @param stretchX the stretch value for x-coordinates.

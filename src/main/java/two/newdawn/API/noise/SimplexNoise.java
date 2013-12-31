@@ -38,7 +38,7 @@ public class SimplexNoise {  // Simplex noise in 2D, 3D and 4D
   private static final double F4 = (Math.sqrt(5.0) - 1.0) / 4.0;
   private static final double G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
 
-  // This method is a *lot* faster than using (int)Math.floor(x)
+  /* Static helper functions */
   private static int fastfloor(double x) {
     int xi = (int) x;
     return x < xi ? xi - 1 : xi;
@@ -60,9 +60,16 @@ public class SimplexNoise {  // Simplex noise in 2D, 3D and 4D
    */
   protected final short[] doubledPermutationTable;
   protected final short[] variatedPermutationTable;
+  protected final Random random;
 
+  /**
+   * Generate a new noise field using the given random generator.
+   * 
+   * @param random the random generator to use to initialize this field.
+   */
   public SimplexNoise(final Random random) {
     final byte[] bytes = new byte[1024];
+    this.random = random;
     random.nextBytes(bytes);
     doubledPermutationTable = new short[bytes.length * 2];
     variatedPermutationTable = new short[doubledPermutationTable.length];
@@ -75,10 +82,40 @@ public class SimplexNoise {  // Simplex noise in 2D, 3D and 4D
     System.arraycopy(variatedPermutationTable, 0, variatedPermutationTable, bytes.length, bytes.length);
   }
 
+  /**
+   * Returns the random that was used to initialize this noise field.
+   *
+   * @return the random that was used to initialize this noise field.
+   */
+  public Random getRandom() {
+    return random;
+  }
+
+  /**
+   * Generates a new 2D noise stretcher based on this noise.
+   *
+   * @param stretchX the stretch value for x-coordinates.
+   * @param stretchZ the stretch value for z-coordinates.
+   * @param offsetX an offset added to the x-coordinate, which should be initialized with a random value like random.nextDouble().
+   * @param offsetZ an offset added to the z-coordinate, which should be initialized with a random value like random.nextDouble().
+   * @return a 2D NoiseStrech using this noise.
+   */
   public NoiseStretch generateNoiseStretcher(double stretchX, double stretchZ, double offsetX, double offsetZ) {
     return new NoiseStretch(this, stretchX, stretchZ, offsetX, offsetZ);
   }
 
+  /**
+   * Generates a new 3D noise stretcher based on this noise.
+   *
+   * @param noise the base noise to use.
+   * @param stretchX the stretch value for x-coordinates.
+   * @param stretchY the stretch value for y-coordinates.
+   * @param stretchZ the stretch value for z-coordinates.
+   * @param offsetX an offset added to the x-coordinate, which should be initialized with a random value like random.nextDouble().
+   * @param offsetY an offset added to the y-coordinate, which should be initialized with a random value like random.nextDouble().
+   * @param offsetZ an offset added to the z-coordinate, which should be initialized with a random value like random.nextDouble().
+   * @return a 3D NoiseStrech using this noise.
+   */
   public NoiseStretch generateNoiseStretcher(double stretchX, double stretchY, double stretchZ, double offsetX, double offsetY, double offsetZ) {
     return new NoiseStretch(this, stretchX, stretchY, stretchZ, offsetX, offsetY, offsetZ);
   }
