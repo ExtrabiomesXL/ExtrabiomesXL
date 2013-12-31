@@ -49,7 +49,7 @@ import extrabiomes.utility.CreativeTab;
 //import cpw.mods.fml.common.Mod.PreInit;
 //import cpw.mods.fml.common.Mod.ServerStarting;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies="after:Thaumcraft")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies="")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false )
 public class Extrabiomes
 {
