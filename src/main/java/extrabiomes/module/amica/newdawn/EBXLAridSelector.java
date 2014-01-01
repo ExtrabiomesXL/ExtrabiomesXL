@@ -8,18 +8,21 @@ import two.newdawn.API.noise.SimplexNoise;
 import extrabiomes.lib.BiomeSettings;
 
 public class EBXLAridSelector extends NewDawnBiomeSelector {
-	protected static final NewDawnBiome biomeAlpine = NewDawnBiome.copyVanilla(BiomeSettings.ALPINE.getBiome().get());
-	protected static final NewDawnBiome biomeGlacier = NewDawnBiome.copyVanilla(BiomeSettings.GLACIER.getBiome().get());
-    protected static final NewDawnBiome biomeMountainDesert = NewDawnBiome.copyVanilla(BiomeSettings.MOUNTAINDESERT.getBiome().get());
-    protected static final NewDawnBiome biomeMountainRidge = NewDawnBiome.copyVanilla(BiomeSettings.MOUNTAINRIDGE.getBiome().get());
-    protected static final NewDawnBiome biomeSavannah = NewDawnBiome.copyVanilla(BiomeSettings.SAVANNA.getBiome().get());    
-    protected static final NewDawnBiome biomeTundra = NewDawnBiome.copyVanilla(BiomeSettings.TUNDRA.getBiome().get());
+	protected static final NewDawnBiome biomeAlpine = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.ALPINE);
+	protected static final NewDawnBiome biomeGlacier = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.GLACIER);
+    protected static final NewDawnBiome biomeMountainDesert = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MOUNTAINDESERT);
+    protected static final NewDawnBiome biomeMountainRidge = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MOUNTAINRIDGE);
+    protected static final NewDawnBiome biomeSavannah = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.SAVANNA);    
+    protected static final NewDawnBiome biomeTundra = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.TUNDRA);
+	protected static final NewDawnBiome biomeWasteland = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.WASTELAND);
+	protected static final NewDawnBiome biomeIceWasteland = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.ICEWASTELAND);
 	
     protected NoiseStretch stretchAlpine;
     protected NoiseStretch stretchGlacier;
     protected NoiseStretch stretchMountain;
     protected NoiseStretch stretchSavannah;
     protected NoiseStretch stretchTundra;
+	protected NoiseStretch stretchWasteland;
     
 	public EBXLAridSelector(SimplexNoise worldNoise, int priority) {
 		super(worldNoise, priority);
@@ -29,6 +32,7 @@ public class EBXLAridSelector extends NewDawnBiomeSelector {
 		stretchMountain = worldNoise.generateNoiseStretcher(384, 384, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
 		stretchSavannah = worldNoise.generateNoiseStretcher(512, 512, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
 		stretchTundra = worldNoise.generateNoiseStretcher(512, 512, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
+		stretchWasteland = worldNoise.generateNoiseStretcher(384, 384, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
 	}
 
 	@Override
@@ -50,6 +54,8 @@ public class EBXLAridSelector extends NewDawnBiomeSelector {
 			} else {
 				if( stretchTundra.getNoise(blockX, blockZ) > 0 )
 					return biomeTundra;
+				else if( stretchWasteland.getNoise(blockX, blockZ) > 0 )
+					return biomeIceWasteland;
 			}
 		} else if( isMountain ) {
 			final double noise = stretchMountain.getNoise(blockX, blockZ);
@@ -59,7 +65,8 @@ public class EBXLAridSelector extends NewDawnBiomeSelector {
 				return biomeMountainRidge;
 		} else if( stretchSavannah.getNoise(blockX, blockZ) > 0 ) {
 			return biomeSavannah;
-		}
+		} else if( stretchWasteland.getNoise(blockX, blockZ) > 0 )
+			return biomeWasteland;
 		
 		return null;
 	}

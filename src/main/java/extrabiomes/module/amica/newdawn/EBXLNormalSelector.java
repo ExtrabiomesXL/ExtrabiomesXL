@@ -8,15 +8,15 @@ import two.newdawn.API.noise.SimplexNoise;
 import extrabiomes.lib.BiomeSettings;
 
 public class EBXLNormalSelector extends NewDawnBiomeSelector {
-	protected static final NewDawnBiome biomeAutumnWoods = NewDawnBiome.copyVanilla(BiomeSettings.AUTUMNWOODS.getBiome().get());
-	protected static final NewDawnBiome biomeBirchForest = NewDawnBiome.copyVanilla(BiomeSettings.BIRCHFOREST.getBiome().get());
-	protected static final NewDawnBiome biomeForestedHills = NewDawnBiome.copyVanilla(BiomeSettings.FORESTEDHILLS.getBiome().get());
-	protected static final NewDawnBiome biomeMeadow = NewDawnBiome.copyVanilla(BiomeSettings.MEADOW.getBiome().get());
-	protected static final NewDawnBiome biomeMountainTaiga = NewDawnBiome.copyVanilla(BiomeSettings.MOUNTAINTAIGA.getBiome().get());
-	protected static final NewDawnBiome biomePineForest = NewDawnBiome.copyVanilla(BiomeSettings.PINEFOREST.getBiome().get());
-    protected static final NewDawnBiome biomeShrubland = NewDawnBiome.copyVanilla(BiomeSettings.SHRUBLAND.getBiome().get());
-    protected static final NewDawnBiome biomeSnowForest = NewDawnBiome.copyVanilla(BiomeSettings.SNOWYFOREST.getBiome().get());
-    protected static final NewDawnBiome biomeWoodlands = NewDawnBiome.copyVanilla(BiomeSettings.WOODLANDS.getBiome().get());
+	protected static final NewDawnBiome biomeAutumnWoods = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.AUTUMNWOODS);
+	protected static final NewDawnBiome biomeBirchForest = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.BIRCHFOREST);
+	protected static final NewDawnBiome biomeForestedHills = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.FORESTEDHILLS);
+	protected static final NewDawnBiome biomeMeadow = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MEADOW);
+	protected static final NewDawnBiome biomeMountainTaiga = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MOUNTAINTAIGA);
+	protected static final NewDawnBiome biomePineForest = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.PINEFOREST);
+    protected static final NewDawnBiome biomeShrubland = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.SHRUBLAND);
+    protected static final NewDawnBiome biomeSnowForest = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.SNOWYFOREST);
+    protected static final NewDawnBiome biomeWoodlands = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.WOODLANDS);
 	
     protected NoiseStretch stretchAutumn;
     protected NoiseStretch stretchBirch;

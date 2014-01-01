@@ -3,7 +3,9 @@ package extrabiomes.module.amica.newdawn;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.ForgeSubscribe;
+import two.newdawn.API.NewDawnBiome;
 import two.newdawn.API.NewDawnBiomeList;
 import two.newdawn.API.NewDawnBiomeProvider;
 import two.newdawn.API.NewDawnBiomeSelector;
@@ -11,6 +13,7 @@ import two.newdawn.API.noise.SimplexNoise;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
 import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.BiomeSettings;
 
 public class NewDawnPlugin implements NewDawnBiomeProvider
 {
@@ -28,6 +31,19 @@ public class NewDawnPlugin implements NewDawnBiomeProvider
     private boolean isEnabled()
     {
         return enabled && Extrabiomes.proxy.isModLoaded("newdawn");
+    }
+    
+    public static NewDawnBiome getBiomeIfEnabled(BiomeSettings biome) {
+    	if( biome != null && biome.isEnabled() ) {
+    		final BiomeGenBase gen;
+    		try {
+    			gen = biome.getBiome().get();
+    		} catch( Exception e ) {
+    			return null;
+    		}
+    		return NewDawnBiome.copyVanilla(gen);
+    	}
+    	return null;
     }
     
     /*
@@ -58,7 +74,6 @@ public class NewDawnPlugin implements NewDawnBiomeProvider
 	public Set<NewDawnBiomeSelector> getBiomeSelectors(SimplexNoise worldNoise) {
 		final HashSet<NewDawnBiomeSelector> selectors = new HashSet<NewDawnBiomeSelector>();
 		
-		selectors.add(new EBXLWastelandSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_LOWEST));
 		selectors.add(new EBXLAridSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_MEDIUM - 1));
 		selectors.add(new EBXLDampSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_MEDIUM));
 		selectors.add(new EBXLNormalSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_MEDIUM + 1));
