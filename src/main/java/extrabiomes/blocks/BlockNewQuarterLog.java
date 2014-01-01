@@ -17,7 +17,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
-import extrabiomes.helpers.LogHelper;
 
 public class BlockNewQuarterLog extends BlockLog
 {
@@ -39,7 +38,7 @@ public class BlockNewQuarterLog extends BlockLog
         }
     }
     
-    private Icon[]     textures = { null, null, null, null, null, null, null, null, null };
+    private final Icon[]     textures = { null, null, null, null, null, null, null, null, null };
     private static int renderId = 32;
     private String     treeType = "quarter";
     

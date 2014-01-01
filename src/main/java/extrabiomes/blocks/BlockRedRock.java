@@ -9,7 +9,6 @@ package extrabiomes.blocks;
 import static extrabiomes.blocks.BlockRedRock.BlockType.RED_COBBLE;
 import static extrabiomes.blocks.BlockRedRock.BlockType.RED_ROCK_BRICK;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -45,7 +44,7 @@ public class BlockRedRock extends Block
         }
     }
     
-    private Icon[] textures = { null, null, null };
+    private final Icon[] textures = { null, null, null };
     
     public BlockRedRock(int id, int index, Material material)
     {
