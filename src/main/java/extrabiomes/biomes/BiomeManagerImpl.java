@@ -53,7 +53,7 @@ import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleShrub;
 import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleTree;
 import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
-import extrabiomes.module.summa.worldgen.WorldGenRedwood;
+import extrabiomes.module.summa.worldgen.WorldGenNewRedwood;
 import extrabiomes.module.summa.worldgen.WorldGenSakuraBlossomTree;
 
 @SuppressWarnings("deprecation")
@@ -72,7 +72,7 @@ public class BiomeManagerImpl extends BiomeManager
     private static final WorldGenerator                                               FIR_TREE_GEN              = new WorldGenFirTree(false);
     private static final WorldGenerator                                               GRASS_GEN                 = new WorldGenTallGrass(Block.tallGrass.blockID, 1);
     private static final WorldGenerator                                               OAK_TREE_GEN              = new WorldGenTrees(false);
-    private static final WorldGenerator                                               REDWOOD_TREE_GEN          = new WorldGenRedwood(false);
+    private static final WorldGenerator                                               REDWOOD_TREE_GEN          = new WorldGenNewRedwood(false);
     private static final WorldGenerator                                               SHRUB_GEN                 = new WorldGenShrub(3, 0);
     private static final WorldGenerator                                               SWAMP_TREE_GEN            = new WorldGenSwamp();
     private static final WorldGenerator                                               TAIGA_GEN                 = new WorldGenTaiga1();
