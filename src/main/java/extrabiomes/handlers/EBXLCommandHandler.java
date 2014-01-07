@@ -24,7 +24,7 @@ import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleShrub;
 import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleTree;
 import extrabiomes.module.summa.worldgen.WorldGenLegendOak;
 import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
-import extrabiomes.module.summa.worldgen.WorldGenRedwood;
+import extrabiomes.module.summa.worldgen.WorldGenNewRedwood;
 import extrabiomes.module.summa.worldgen.WorldGenSakuraBlossomTree;
 
 public class EBXLCommandHandler extends CommandBase
@@ -216,7 +216,7 @@ public class EBXLCommandHandler extends CommandBase
                         }
                         else if (cmds[1].equals("redwood"))
                         {
-                            player.addChatMessage("The last seed used was: " + Long.toString(WorldGenRedwood.getLastSeed()));
+                            player.addChatMessage("The last seed used was: " + Long.toString(WorldGenNewRedwood.getLastSeed()));
                         }
                         else if (cmds[1].equals("largefir"))
                         {
@@ -312,7 +312,7 @@ public class EBXLCommandHandler extends CommandBase
                             }
                             else if (cmds[1].equals("redwood"))
                             {
-                                (new WorldGenRedwood(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
+                                (new WorldGenNewRedwood(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
                             else if (cmds[1].equals("largeFir"))
                             {
@@ -423,7 +423,7 @@ public class EBXLCommandHandler extends CommandBase
                             }
                             else if (cmds[1].equals("redwood"))
                             {
-                                (new WorldGenRedwood(true)).generate(player.worldObj, seed, x, y, z);
+                                (new WorldGenNewRedwood(true)).generate(player.worldObj, seed, x, y, z);
                             }
                             else if (cmds[1].equals("largeFir"))
                             {

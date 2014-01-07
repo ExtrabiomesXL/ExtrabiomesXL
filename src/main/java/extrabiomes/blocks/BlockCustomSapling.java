@@ -36,7 +36,7 @@ import extrabiomes.module.summa.worldgen.WorldGenBigAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenCypressTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTree;
 import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
-import extrabiomes.module.summa.worldgen.WorldGenRedwood;
+import extrabiomes.module.summa.worldgen.WorldGenNewRedwood;
 
 public class BlockCustomSapling extends BlockFlower
 {
@@ -271,7 +271,7 @@ public class BlockCustomSapling extends BlockFlower
                         }
                         else
                         {
-                            tree = new WorldGenRedwood(true);
+                            tree = new WorldGenNewRedwood(true);
                         }
                         isHuge = true;
                         break;
