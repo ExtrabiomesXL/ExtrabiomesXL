@@ -72,7 +72,8 @@ public enum BlockSettings
     BALDCYPRESSSTAIRS		(2380),
     SAKURABLOSSOMSTAIRS		(2381),
     
-    WALL                	(2400);    // Next block IDs 253 (decending) and 2224 (ascending)
+	WALL					(2400),
+	MACHINE					(2401); // Next block IDs 253 (decending) and 2224 (ascending)
     
         // @formatter:on
     

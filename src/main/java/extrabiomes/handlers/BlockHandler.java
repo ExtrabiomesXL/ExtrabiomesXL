@@ -20,6 +20,7 @@ import extrabiomes.blocks.BlockCustomTallGrass;
 import extrabiomes.blocks.BlockGreenLeaves;
 import extrabiomes.blocks.BlockKneeLog;
 import extrabiomes.blocks.BlockLeafPile;
+import extrabiomes.blocks.BlockMachine;
 import extrabiomes.blocks.BlockMiniLog;
 import extrabiomes.blocks.BlockMoreLeaves;
 import extrabiomes.blocks.BlockNewLeaves;
@@ -89,6 +90,7 @@ public abstract class BlockHandler
         createSapling();
         createNewSapling();
         createLogs();
+		createMachines();
     }
 
     private static void createCattail()
@@ -293,6 +295,23 @@ public abstract class BlockHandler
         createNewQuarterLogs();
         createKneeLogs();
     }
+
+	private static void createMachines() {
+		final int blockID = BlockSettings.MACHINE.getID();
+		if (blockID <= 0) return;
+
+		final BlockMachine block = new BlockMachine(blockID);
+		block.setUnlocalizedName("extrabiomes.machine")
+				.setStepSound(Block.soundMetalFootstep).setHardness(2.0F)
+				.setResistance(Block.cobblestone.getExplosionResistance(null))
+				.setCreativeTab(Extrabiomes.tabsEBXL);
+
+		final CommonProxy proxy = Extrabiomes.proxy;
+		proxy.setBlockHarvestLevel(block, "pick", 0);
+		proxy.registerBlock(block, net.minecraft.item.ItemBlock.class,
+				block.getUnlocalizedName() + ":" + block.getClass().getName());
+		proxy.registerEventHandler(block);
+	}
 
     private static void createMiniLogs()
     {
