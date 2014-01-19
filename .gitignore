@@ -5,6 +5,15 @@
 Thumbs.db
 *.jar
 desktop.ini
-desktop.ini
 /bin
 /.gradle
+/.settings
+/bin
+/build
+/eclipse
+/run
+/.classpath
+/.project
+/gradle
+/gradlew
+/gradlew.bat
