@@ -11,12 +11,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeSubscribe;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
+import extrabiomes.helpers.LogHelper;
 
 public class BlockNewQuarterLog extends BlockLog
 {
@@ -380,7 +382,7 @@ public class BlockNewQuarterLog extends BlockLog
                 
                 event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);
                 
-                //LogHelper.info("Orientation: %d", metadata);
+                LogHelper.info("Orientation: %d", metadata);
                 
                 //unturned = false;
             }
@@ -396,7 +398,258 @@ public class BlockNewQuarterLog extends BlockLog
     {
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
         
-        world.setBlock(x, y, z, blockID, 3, 3);
+        final int direction = BlockPistonBase.determineOrientation(world, x, y, z, entity);
+        
+        int checkBlockId = 0;
+        int checkMetaId = 0;
+
+        
+        switch(direction){
+        	case 0:
+        	case 1: // Up/down
+        		checkBlockId = world.getBlockId(x, y+1, z);
+        		checkMetaId = world.getBlockMetadata(x, y+1, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId < 4){
+        	        world.setBlock(x, y, z, blockID, checkMetaId, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x, y-1, z);
+        		checkMetaId = world.getBlockMetadata(x, y-1, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId < 4){
+        	        world.setBlock(x, y, z, blockID, checkMetaId, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x, y, z+1);
+        		checkMetaId = world.getBlockMetadata(x, y, z+1);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 2){
+        	        world.setBlock(x, y, z, blockID, 1, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 3){
+        	        world.setBlock(x, y, z, blockID, 0, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x, y, z-1);
+        		checkMetaId = world.getBlockMetadata(x, y, z-1);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 1){
+        	        world.setBlock(x, y, z, blockID, 2, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 0){
+        	        world.setBlock(x, y, z, blockID, 3, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x+1, y, z);
+        		checkMetaId = world.getBlockMetadata(x+1, y, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 2){
+        	        world.setBlock(x, y, z, blockID, 3, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 1){
+        	        world.setBlock(x, y, z, blockID, 0, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x-1, y, z);
+        		checkMetaId = world.getBlockMetadata(x-1, y, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 3){
+        	        world.setBlock(x, y, z, blockID, 2, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 0){
+        	        world.setBlock(x, y, z, blockID, 1, 3);
+        			return;
+        		}
+        		
+        		
+        		int rotation = MathHelper.floor_double((double)((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+        		
+        		// set the default rotation
+        		if(direction == 0) {
+        			switch(rotation){
+	    				case 0:
+	    					world.setBlock(x, y, z, blockID, 2, 3);
+	    					break;
+	    				case 1:
+	    					world.setBlock(x, y, z, blockID, 3, 3);
+	    					break;
+	    				case 2:
+	    					world.setBlock(x, y, z, blockID, 0, 3);
+	    					break;
+	    				default:
+	    					world.setBlock(x, y, z, blockID, 1, 3);
+	    					break;
+        			}
+        		} else {
+        			switch(rotation){
+	    				case 0:
+	    					world.setBlock(x, y, z, blockID, 1, 3);
+	    					break;
+	    				case 1:
+	    					world.setBlock(x, y, z, blockID, 2, 3);
+	    					break;
+	    				case 2:
+	    					world.setBlock(x, y, z, blockID, 3, 3);
+	    					break;
+	    				default:
+	    					world.setBlock(x, y, z, blockID, 0, 3);
+	    					break;
+        			}
+        		}
+        		
+        		// Set it to the default  vertical rotation
+        		//world.setBlock(x, y, z, blockID, 3, 3);
+        		
+        		break;
+        	case 2:
+        	case 3: // North/South
+        		checkBlockId = world.getBlockId(x, y, z+1);
+        		checkMetaId = world.getBlockMetadata(x, y, z+1);
+        		
+        		if(checkBlockId == blockID && checkMetaId > 3 && checkMetaId < 8){
+        	        world.setBlock(x, y, z, blockID, checkMetaId, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x, y, z-1);
+        		checkMetaId = world.getBlockMetadata(x, y, z-1);
+        		
+        		if(checkBlockId == blockID && checkMetaId > 3 && checkMetaId < 8){
+        	        world.setBlock(x, y, z, blockID, checkMetaId, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x+1, y, z);
+        		checkMetaId = world.getBlockMetadata(x+1, y, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 7){
+        	        world.setBlock(x, y, z, blockID, 6, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 4){
+        	        world.setBlock(x, y, z, blockID, 5, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x-1, y, z);
+        		checkMetaId = world.getBlockMetadata(x-1, y, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 6){
+        	        world.setBlock(x, y, z, blockID, 7, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 5){
+        	        world.setBlock(x, y, z, blockID, 4, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x, y+1, z);
+        		checkMetaId = world.getBlockMetadata(x, y+1, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 5){
+        	        world.setBlock(x, y, z, blockID, 6, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 4){
+        	        world.setBlock(x, y, z, blockID, 7, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x, y-1, z);
+        		checkMetaId = world.getBlockMetadata(x, y-1, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 6){
+        	        world.setBlock(x, y, z, blockID, 5, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 7){
+        	        world.setBlock(x, y, z, blockID, 4, 3);
+        			return;
+        		}
+        		
+        		// set the default rotation
+        		if(direction == 2) {
+        			world.setBlock(x, y, z, blockID, 7, 3);
+        		} else {
+        			world.setBlock(x, y, z, blockID, 6, 3);
+        		}
+        		
+        		break;
+        	default: // East/West
+        		checkBlockId = world.getBlockId(x+1, y, z);
+        		checkMetaId = world.getBlockMetadata(x+1, y, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId > 7){
+        	        world.setBlock(x, y, z, blockID, checkMetaId, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x-1, y, z);
+        		checkMetaId = world.getBlockMetadata(x-1, y, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId > 7){
+        	        world.setBlock(x, y, z, blockID, checkMetaId, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x, y+1, z);
+        		checkMetaId = world.getBlockMetadata(x, y+1, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 9){
+        	        world.setBlock(x, y, z, blockID, 10, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 8){
+        	        world.setBlock(x, y, z, blockID, 11, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x, y-1, z);
+        		checkMetaId = world.getBlockMetadata(x, y-1, z);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 10){
+        	        world.setBlock(x, y, z, blockID, 9, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 11){
+        	        world.setBlock(x, y, z, blockID, 8, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x, y, z-1);
+        		checkMetaId = world.getBlockMetadata(x, y, z-1);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 8){
+        	        world.setBlock(x, y, z, blockID, 9, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 11){
+        	        world.setBlock(x, y, z, blockID, 10, 3);
+        			return;
+        		}
+        		
+        		checkBlockId = world.getBlockId(x, y, z+1);
+        		checkMetaId = world.getBlockMetadata(x, y, z+1);
+        		
+        		if(checkBlockId == blockID && checkMetaId == 9){
+        	        world.setBlock(x, y, z, blockID, 8, 3);
+        			return;
+        		} else if (checkBlockId == blockID && checkMetaId == 10){
+        	        world.setBlock(x, y, z, blockID, 11, 3);
+        			return;
+        		}
+        		
+        		LogHelper.info("Block: %d, Meta: %d", checkBlockId, checkMetaId);
+        		
+
+        		// set the default rotation
+        		if(direction == 4) {
+        			world.setBlock(x, y, z, blockID, 11, 3);
+        		} else {
+        			world.setBlock(x, y, z, blockID, 10, 3);
+        		}
+        		
+        		break;
+        }
     }
     
     @Override
