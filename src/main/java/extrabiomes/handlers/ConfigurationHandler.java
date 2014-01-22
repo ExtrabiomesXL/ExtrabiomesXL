@@ -32,7 +32,7 @@ import extrabiomes.utility.EnhancedConfiguration;
 public abstract class ConfigurationHandler
 {
     
-    public static void init(File configFile)
+    public static void init(File configFile, boolean upgrade)
     {
         Optional<EnhancedConfiguration> optionalConfig = Optional.absent();
         
@@ -72,17 +72,19 @@ public abstract class ConfigurationHandler
                 setting.load(configuration);
             }
             
-            Property bigTreeSaplingDropRateProperty = configuration.get(Configuration.CATEGORY_GENERAL, "Relative sapling drops", false);
+            Property bigTreeSaplingDropRateProperty = configuration.get(Configuration.CATEGORY_GENERAL, "Relative sapling drops", GeneralSettings.bigTreeSaplingDropModifier);
             bigTreeSaplingDropRateProperty.comment = "Setting relative sapling drops to true will decrease the amount of saplings dropped by decaying fir and redwood leaf blocks to a more reasonable amount.";
             GeneralSettings.bigTreeSaplingDropModifier = bigTreeSaplingDropRateProperty.getBoolean(false);
             
             //
-            Property consoleCommandsDisabled = configuration.get(Configuration.CATEGORY_GENERAL, "DisableConsoleCommands", true);
+            Property consoleCommandsDisabled = configuration.get(Configuration.CATEGORY_GENERAL, "DisableConsoleCommands", GeneralSettings.consoleCommandsDisabled);
             consoleCommandsDisabled.comment = "Set to false to enable console commands.";
             GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
             
-            Property configVersion = configuration.get("Version", "configFileVersoin", "3.14.6");
-            configVersion.comment = "To help ebxl in updating the config file int he future.";
+            if(!upgrade){
+	            Property configVersion = configuration.get("Version", "configFileVersoin", "3.14.6");
+	            configVersion.comment = "To help ebxl in updating the config file int he future.";
+            }
             //GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
             
         }
