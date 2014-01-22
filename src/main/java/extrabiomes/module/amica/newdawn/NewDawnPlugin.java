@@ -1,6 +1,7 @@
 package extrabiomes.module.amica.newdawn;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import net.minecraft.world.biome.BiomeGenBase;
@@ -9,6 +10,7 @@ import two.newdawn.API.NewDawnBiome;
 import two.newdawn.API.NewDawnBiomeList;
 import two.newdawn.API.NewDawnBiomeProvider;
 import two.newdawn.API.NewDawnBiomeSelector;
+import two.newdawn.API.noise.NoiseStretch;
 import two.newdawn.API.noise.SimplexNoise;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.PluginEvent;
@@ -44,6 +46,19 @@ public class NewDawnPlugin implements NewDawnBiomeProvider
     		return NewDawnBiome.copyVanilla(gen);
     	}
     	return null;
+    }
+    
+    public static int fuzzValue(int value, Random rng) {
+    	final double fuzz = 0.2 * value * rng.nextDouble();
+    	final double result = 0.9 * value + fuzz;
+    	return (int)result;
+    }
+    public static NoiseStretch getFuzzyStretch(int size, SimplexNoise noise) {
+    	final Random rng = noise.getRandom();
+    	final int sizeX = fuzzValue(size, rng);
+    	final int sizeZ = fuzzValue(size, rng);
+    	final NoiseStretch stretch =  noise.generateNoiseStretcher(sizeX, sizeZ, rng.nextDouble(), rng.nextDouble());
+    	return stretch;
     }
     
     /*
