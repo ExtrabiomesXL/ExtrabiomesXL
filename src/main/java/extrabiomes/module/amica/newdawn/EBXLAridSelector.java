@@ -27,12 +27,12 @@ public class EBXLAridSelector extends NewDawnBiomeSelector {
 	public EBXLAridSelector(SimplexNoise worldNoise, int priority) {
 		super(worldNoise, priority);
 		
-		stretchAlpine = worldNoise.generateNoiseStretcher(256, 256, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchGlacier = worldNoise.generateNoiseStretcher(256, 128, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchMountain = worldNoise.generateNoiseStretcher(384, 384, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchSavannah = worldNoise.generateNoiseStretcher(512, 512, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchTundra = worldNoise.generateNoiseStretcher(512, 512, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchWasteland = worldNoise.generateNoiseStretcher(384, 384, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
+		stretchGlacier = NewDawnPlugin.getFuzzyStretch(128,  worldNoise);
+		stretchAlpine = NewDawnPlugin.getFuzzyStretch(256,  worldNoise);
+		stretchMountain = NewDawnPlugin.getFuzzyStretch(384,  worldNoise);
+		stretchWasteland = NewDawnPlugin.getFuzzyStretch(384,  worldNoise);
+		stretchSavannah = NewDawnPlugin.getFuzzyStretch(512,  worldNoise);
+		stretchTundra = NewDawnPlugin.getFuzzyStretch(512,  worldNoise);
 	}
 
 	@Override
