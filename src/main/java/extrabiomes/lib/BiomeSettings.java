@@ -169,18 +169,20 @@ public enum BiomeSettings
         
         if (!isVanilla())
         {
-            property = configuration.getBiome(keyID(), defaultID);
+            property = configuration.getBiome(keyID(), biomeID);
             biomeID = property.getInt(0);
         }
         
         property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyEnabled(), enabled);
-        if (!isVanilla() && biomeID == 0)
+        if (!isVanilla() && biomeID == 0) {
             property.set(Boolean.toString(false));
+        }
         enabled = property.getBoolean(false);
         
-        property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), true);
-        if (!isVanilla() && biomeID == 0)
+        property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), allowVillages);
+        if (!isVanilla() && biomeID == 0) {
             property.set(Boolean.toString(false));
+        }
         allowVillages = property.getBoolean(false);
         
     }
