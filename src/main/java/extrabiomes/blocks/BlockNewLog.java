@@ -91,7 +91,7 @@ public class BlockNewLog extends BlockLog
         for (final BlockType type : BlockType.values())
         {
             list.add(new ItemStack(blockID, 1, type.metadata()));
-            LogHelper.info("Block Name: %s", type.toString());
+            //LogHelper.info("Block Name: %s", type.toString());
         }
     }
     

@@ -33,7 +33,7 @@ public enum ItemSettings
     
     public void load(EnhancedConfiguration configuration)
     {
-        itemID = configuration.getItem(toString() + ".id", defaultID).getInt(0);
+        itemID = configuration.getItem(toString() + ".id", itemID).getInt(0);
     }
     
     @Override
