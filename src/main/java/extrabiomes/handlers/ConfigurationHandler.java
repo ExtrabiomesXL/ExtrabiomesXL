@@ -23,6 +23,7 @@ import extrabiomes.lib.ItemSettings;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.lib.Reference;
 import extrabiomes.lib.SaplingSettings;
+import extrabiomes.module.amica.newdawn.NewDawnSettings;
 import extrabiomes.utility.EnhancedConfiguration;
 
 /**
@@ -68,6 +69,12 @@ public abstract class ConfigurationHandler
             }
             
             for (final ModuleControlSettings setting : ModuleControlSettings.values())
+            {
+                setting.load(configuration);
+            }
+            
+            configuration.addCustomCategoryComment(EnhancedConfiguration.CATEGORY_NEWDAWN, "New Dawn biome size hints.");
+            for (final NewDawnSettings setting : NewDawnSettings.values())
             {
                 setting.load(configuration);
             }
