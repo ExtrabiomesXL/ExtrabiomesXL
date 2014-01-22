@@ -27,11 +27,11 @@ public class EBXLNormalSelector extends NewDawnBiomeSelector {
 	public EBXLNormalSelector(SimplexNoise worldNoise, int priority) {
 		super(worldNoise, priority);
 		
-		stretchForest = NewDawnPlugin.getFuzzyStretch(256,  worldNoise);
-		stretchAutumn = NewDawnPlugin.getFuzzyStretch(384,  worldNoise);
-		stretchSnowy = NewDawnPlugin.getFuzzyStretch(384,  worldNoise);
-		stretchBirch = NewDawnPlugin.getFuzzyStretch(512,  worldNoise);
-		stretchMeadow = NewDawnPlugin.getFuzzyStretch(512,  worldNoise);
+		stretchForest = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.FOREST.getStretchSize(),  worldNoise);
+		stretchAutumn = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.AUTUMN.getStretchSize(),  worldNoise);
+		stretchSnowy = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.SNOWY.getStretchSize(),  worldNoise);
+		stretchBirch = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.BIRCH.getStretchSize(),  worldNoise);
+		stretchMeadow = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.MEADOW.getStretchSize(),  worldNoise);
 	}
 
 	@Override

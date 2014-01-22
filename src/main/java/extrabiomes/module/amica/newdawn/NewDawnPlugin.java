@@ -61,30 +61,6 @@ public class NewDawnPlugin implements NewDawnBiomeProvider
     	return stretch;
     }
     
-    /*
-    @SuppressWarnings({ "rawtypes" })
-    @ForgeSubscribe
-    public void preInit(PluginEvent.Pre event)
-    {
-        if (!isEnabled())
-            return;
-        //LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_INIT), "NewDawn");
-        LogHelper.fine("Initializing %s plugin.", "NewDawn");
-        
-        try
-        {
-        	
-        }
-        catch (final Exception ex)
-        {
-            ex.printStackTrace();
-            //LogHelper.fine(Extrabiomes.proxy.getStringLocalization(LOG_MESSAGE_PLUGIN_ERROR), "NewDawn");
-            LogHelper.fine("Could not communicate with %s. Disabling plugin.", "NewDawn");
-            enabled = false;
-        }
-    }
-    */
-
 	@Override
 	public Set<NewDawnBiomeSelector> getBiomeSelectors(SimplexNoise worldNoise) {
 		final HashSet<NewDawnBiomeSelector> selectors = new HashSet<NewDawnBiomeSelector>();

@@ -27,11 +27,11 @@ public class EBXLDampSelector extends NewDawnBiomeSelector {
 	public EBXLDampSelector(SimplexNoise worldNoise, int priority) {
 		super(worldNoise, priority);
 		
-		stretchMiniJungle = NewDawnPlugin.getFuzzyStretch(128,  worldNoise);
-		stretchExtremeJungle = NewDawnPlugin.getFuzzyStretch(384,  worldNoise);
-		stretchRedwood = NewDawnPlugin.getFuzzyStretch(384,  worldNoise);
-		stretchGreen = NewDawnPlugin.getFuzzyStretch(512,  worldNoise);
-		stretchRainforest = NewDawnPlugin.getFuzzyStretch(512,  worldNoise);
+		stretchMiniJungle = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.MINI_JUNGLE.getStretchSize(),  worldNoise);
+		stretchExtremeJungle = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.EXTREME_JUNGLE.getStretchSize(), worldNoise);
+		stretchRedwood = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.REDWOOD.getStretchSize(),  worldNoise);
+		stretchGreen = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.GREEN.getStretchSize(),  worldNoise);
+		stretchRainforest = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.RAINFOREST.getStretchSize(),  worldNoise);
 	}
 
 	@Override

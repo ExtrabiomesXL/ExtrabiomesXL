@@ -12,7 +12,7 @@ public class EBXLAridSelector extends NewDawnBiomeSelector {
 	protected static final NewDawnBiome biomeGlacier = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.GLACIER);
     protected static final NewDawnBiome biomeMountainDesert = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MOUNTAINDESERT);
     protected static final NewDawnBiome biomeMountainRidge = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MOUNTAINRIDGE);
-    protected static final NewDawnBiome biomeSavannah = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.SAVANNA);    
+    protected static final NewDawnBiome biomeSavanna = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.SAVANNA);    
     protected static final NewDawnBiome biomeTundra = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.TUNDRA);
 	protected static final NewDawnBiome biomeWasteland = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.WASTELAND);
 	protected static final NewDawnBiome biomeIceWasteland = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.ICEWASTELAND);
@@ -20,19 +20,19 @@ public class EBXLAridSelector extends NewDawnBiomeSelector {
     protected NoiseStretch stretchAlpine;
     protected NoiseStretch stretchGlacier;
     protected NoiseStretch stretchMountain;
-    protected NoiseStretch stretchSavannah;
+    protected NoiseStretch stretchSavanna;
     protected NoiseStretch stretchTundra;
 	protected NoiseStretch stretchWasteland;
     
 	public EBXLAridSelector(SimplexNoise worldNoise, int priority) {
 		super(worldNoise, priority);
 		
-		stretchGlacier = NewDawnPlugin.getFuzzyStretch(128,  worldNoise);
-		stretchAlpine = NewDawnPlugin.getFuzzyStretch(256,  worldNoise);
-		stretchMountain = NewDawnPlugin.getFuzzyStretch(384,  worldNoise);
-		stretchWasteland = NewDawnPlugin.getFuzzyStretch(384,  worldNoise);
-		stretchSavannah = NewDawnPlugin.getFuzzyStretch(512,  worldNoise);
-		stretchTundra = NewDawnPlugin.getFuzzyStretch(512,  worldNoise);
+		stretchGlacier = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.GLACIER.getStretchSize(),  worldNoise);
+		stretchAlpine = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.ALPINE.getStretchSize(),  worldNoise);
+		stretchMountain = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.MOUNTAIN.getStretchSize(),  worldNoise);
+		stretchWasteland = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.WASTELAND.getStretchSize(),  worldNoise);
+		stretchSavanna = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.SAVANNA.getStretchSize(),  worldNoise);
+		stretchTundra = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.TUNDRA.getStretchSize(),  worldNoise);
 	}
 
 	@Override
@@ -63,8 +63,8 @@ public class EBXLAridSelector extends NewDawnBiomeSelector {
 				return biomeMountainDesert;
 			else if( noise > 0 )
 				return biomeMountainRidge;
-		} else if( stretchSavannah.getNoise(blockX, blockZ) > 0 ) {
-			return biomeSavannah;
+		} else if( stretchSavanna.getNoise(blockX, blockZ) > 0 ) {
+			return biomeSavanna;
 		} else if( stretchWasteland.getNoise(blockX, blockZ) > 0 )
 			return biomeWasteland;
 		

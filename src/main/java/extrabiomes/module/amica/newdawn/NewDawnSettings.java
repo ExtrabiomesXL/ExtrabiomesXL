@@ -18,13 +18,14 @@ public enum NewDawnSettings {
 	REDWOOD(StretchSize.MEDIUM),
 	MOUNTAIN(StretchSize.MEDIUM),
 	WASTELAND(StretchSize.MEDIUM),
+	SAVANNA(StretchSize.MEDIUM),
 	
 	BIRCH(StretchSize.LARGE),
 	GREEN(StretchSize.LARGE),
 	RAINFOREST(StretchSize.LARGE),
 	TUNDRA(StretchSize.LARGE),
 	
-	STRETCH_MEADOW(StretchSize.EXTRA_LARGE);
+	MEADOW(StretchSize.EXTRA_LARGE);
 	
 	public enum StretchSize {
 		EXTRA_SMALL(128),
