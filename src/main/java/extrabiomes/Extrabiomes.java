@@ -101,8 +101,22 @@ public class Extrabiomes
     public static void preInit(FMLPreInitializationEvent event) throws Exception
     {
         LogHelper.info("Initializing.");
+       
+        // Handle upgrading
+        File test = new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg");
+        if(test.exists()) {
+        	ConfigurationHandler.init(test, true);
+        	
+        	File newFile = new File(event.getModConfigurationDirectory(), "/extrabiomes/oldunusedconfig.cfg");
+        	
+        	if(!newFile.exists()) {
+        		test.renameTo(newFile);
+        	}
+        	
+        	LogHelper.info("Upgrading Configfile");
+        }
 
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "/extrabiomes.cfg"));
+        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "/extrabiomes.cfg"), false);
 
         BiomeHandler.init();
 
