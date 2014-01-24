@@ -27,11 +27,11 @@ public class EBXLNormalSelector extends NewDawnBiomeSelector {
 	public EBXLNormalSelector(SimplexNoise worldNoise, int priority) {
 		super(worldNoise, priority);
 		
-		stretchAutumn = worldNoise.generateNoiseStretcher(384, 384, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchBirch = worldNoise.generateNoiseStretcher(512, 512, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchForest = worldNoise.generateNoiseStretcher(256, 256, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchSnowy = worldNoise.generateNoiseStretcher(384, 384, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchMeadow = worldNoise.generateNoiseStretcher(512, 512, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
+		stretchForest = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.FOREST.getStretchSize(),  worldNoise);
+		stretchAutumn = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.AUTUMN.getStretchSize(),  worldNoise);
+		stretchSnowy = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.SNOWY.getStretchSize(),  worldNoise);
+		stretchBirch = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.BIRCH.getStretchSize(),  worldNoise);
+		stretchMeadow = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.MEADOW.getStretchSize(),  worldNoise);
 	}
 
 	@Override

@@ -27,11 +27,11 @@ public class EBXLDampSelector extends NewDawnBiomeSelector {
 	public EBXLDampSelector(SimplexNoise worldNoise, int priority) {
 		super(worldNoise, priority);
 		
-		stretchExtremeJungle = worldNoise.generateNoiseStretcher(384, 384, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchGreen = worldNoise.generateNoiseStretcher(512, 512, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchMiniJungle = worldNoise.generateNoiseStretcher(128, 128, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchRainforest = worldNoise.generateNoiseStretcher(512, 512, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());
-		stretchRedwood = worldNoise.generateNoiseStretcher(384, 384, worldNoise.getRandom().nextDouble(), worldNoise.getRandom().nextDouble());	
+		stretchMiniJungle = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.MINI_JUNGLE.getStretchSize(),  worldNoise);
+		stretchExtremeJungle = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.EXTREME_JUNGLE.getStretchSize(), worldNoise);
+		stretchRedwood = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.REDWOOD.getStretchSize(),  worldNoise);
+		stretchGreen = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.GREEN.getStretchSize(),  worldNoise);
+		stretchRainforest = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.RAINFOREST.getStretchSize(),  worldNoise);
 	}
 
 	@Override

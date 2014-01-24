@@ -113,10 +113,10 @@ public enum BlockSettings
         {
             case CRACKEDSAND:
             case REDROCK:
-                property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(), defaultID, String.format("%s is used in terrain generation. Its id must be less than 256.", toString()));
+                property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(), blockID, String.format("%s is used in terrain generation. Its id must be less than 256.", toString()));
                 break;
             default:
-                property = configuration.getBlock(idKey(), defaultID);
+                property = configuration.getBlock(idKey(), blockID);
         }
         
         blockID = property.getInt(0);
