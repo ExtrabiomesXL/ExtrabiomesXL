@@ -13,13 +13,13 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.IChunkLoader;
-import net.minecraft.world.gen.ChunkProviderServer;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.GenesisChunkProvider;
 
 public class BlockMachine extends Block {
 
@@ -40,6 +40,7 @@ public class BlockMachine extends Block {
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void doGenesis(World world, int x, int y, int z, EntityPlayer player) {
 		LogHelper.info("GENESIS @ " + x + "," + y + "," + z + " by "
 				+ player.getDisplayName());
@@ -55,7 +56,7 @@ public class BlockMachine extends Block {
 		do {
 			Optional<?extends BiomeGenBase> opt = biomes[world.rand.nextInt(biomes.length)].getBiome();
 			if (opt.isPresent()) newBiome = opt.get();
-		} while (oldBiome == newBiome);
+		} while (oldBiome == newBiome || newBiome == null);
 
 		LogHelper.info(oldBiome.biomeName + " >> " + newBiome.biomeName);
 		
@@ -78,8 +79,9 @@ public class BlockMachine extends Block {
 		players.addAll(worldServer.playerEntities);
 		for (EntityPlayerMP p : players) {
 			if( worldServer.getPlayerManager().isPlayerWatchingChunk(p, chunkX, chunkZ)) {
-				p.setLocationAndAngles(chunkX - 5 << 4, p.posY,
-						chunkZ - 5 << 4, 0F, 0F);
+				LogHelper.info(" - pushing " + p);
+				p.setLocationAndAngles((chunkX - 5) << 4, p.posY,
+						(chunkZ - 5) << 4, 0F, 0F);
 				worldServer.updateEntityWithOptionalForce(p, false);
 			}
 		}
@@ -87,8 +89,8 @@ public class BlockMachine extends Block {
 		LogHelper.info("0");
 
 		// unload affected chunk
-		ChunkProviderServer provider = (ChunkProviderServer) world
-				.getChunkProvider();
+		GenesisChunkProvider provider = new GenesisChunkProvider(world,
+				newBiome);
 		provider.unloadChunksIfNotNearSpawn(chunkX, chunkZ);
 
 		int loadCount = 0;
@@ -109,18 +111,11 @@ public class BlockMachine extends Block {
 		LogHelper.info("1");
 
 		// regenerate the chunk
-		IChunkLoader loader = provider.currentChunkLoader;
-		provider.currentChunkLoader = null;
+		IChunkLoader loader = provider.getCurrentChunkLoader();
+		provider.setCurrentChunkLoader(null);
 		provider.loadChunk(chunkX, chunkZ);
-		provider.currentChunkLoader = loader;
-
-		// TODO: notify via
-		// WorldServer.playerManager.chunkWatcher.sendToAllPlayersWatchingChunk(Packet51MapChunk)...
-		/*
-		 * PlayerInstance chunkwatcher = worldObj.func_73040_p().func_72690_a(x,
-		 * z, false); if (chunkwatcher != null) chunkwatcher.func_73256_a(new
-		 * Packet51MapChunk(worldObj.func_72964_e(x, z), true, -1));
-		 */
+		provider.populate(provider, chunkX, chunkZ);
+		provider.setCurrentChunkLoader(loader);
 
 		LogHelper.info("2");
 
