@@ -13,6 +13,7 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.EventBus;
 
@@ -34,6 +35,7 @@ import extrabiomes.handlers.BiomeHandler;
 import extrabiomes.handlers.BlockHandler;
 import extrabiomes.handlers.ConfigurationHandler;
 import extrabiomes.handlers.EBXLCommandHandler;
+import extrabiomes.handlers.GenesisBiomeOverrideHandler;
 import extrabiomes.handlers.ItemHandler;
 import extrabiomes.handlers.RecipeHandler;
 import extrabiomes.helpers.LogHelper;
@@ -66,6 +68,8 @@ public class Extrabiomes
     public static final String        TEXTURE_PATH = Reference.MOD_ID.toLowerCase(Locale.ENGLISH) + ":";
 
     private static Optional<EventBus> initBus      = Optional.of(new EventBus());
+    
+    private static GenesisBiomeOverrideHandler genHandler = new GenesisBiomeOverrideHandler();
 
     @Mod.EventHandler
     public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException
@@ -77,6 +81,8 @@ public class Extrabiomes
     @Mod.EventHandler
     public static void postInit(FMLPostInitializationEvent event)
     {
+    	
+    	
         PluginManager.activatePlugins();
         RecipeHandler.init();
         initBus = Optional.absent();
@@ -101,6 +107,8 @@ public class Extrabiomes
     public static void preInit(FMLPreInitializationEvent event) throws Exception
     {
         LogHelper.info("Initializing.");
+        
+    	MinecraftForge.TERRAIN_GEN_BUS.register(genHandler);
        
         // Handle upgrading
         File test = new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg");

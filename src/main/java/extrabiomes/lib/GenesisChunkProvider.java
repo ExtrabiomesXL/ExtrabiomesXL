@@ -54,11 +54,12 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 
 	@Override
 	public Chunk provideChunk(int i, int j) {
-		System.out.println("Genesis - provide chunk " + i + "," + j);
+		//System.out.println("Genesis - provide chunk " + i + "," + j);
 
-		super.provideChunk(i, j); // this sets the random seed among other things...
+		//super.provideChunk(i, j); // this sets the random seed among other things...
 
 		byte[] abyte = new byte[32768];
+		//ethis
 		this.generateTerrain(i, j, abyte);
 
 		BiomeGenBase[] biomeArray = new BiomeGenBase[256];
@@ -78,7 +79,7 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 
 	@Override
 	public void populate(IChunkProvider par1IChunkProvider, int i, int j) {
-		System.out.println("Genesis - populate " + i + "," + j);
+		//System.out.println("Genesis - populate " + i + "," + j);
 
 		BlockSand.fallInstantly = true;
 		int k = i * 16;
