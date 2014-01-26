@@ -10,6 +10,7 @@ import net.minecraftforge.event.terraingen.WorldTypeEvent.InitBiomeGens;
 import extrabiomes.helpers.LogHelper;
 
 public class GenesisBiomeOverrideHandler extends GenLayer{
+	public static GenesisBiomeOverrideHandler	INSTANCE	= new GenesisBiomeOverrideHandler();
 	
 	public static class coord {
 		public int x = 0;
@@ -33,17 +34,13 @@ public class GenesisBiomeOverrideHandler extends GenLayer{
 		this.parent = par;
 	}
 
-	static int replaceBiome = -1;
-	
-	
+	private int	replaceBiome	= -1;
 	
 	@ForgeSubscribe
 	public void hookGenesisBiomeHandler(InitBiomeGens event){
 		//this.parent = event.originalBiomeGens[0];
 		
 		event.newBiomeGens = event.originalBiomeGens;
-		
-		//
 		event.newBiomeGens[0] = new GenesisBiomeOverrideHandler(0, event.originalBiomeGens[0]);
 		
 		LogHelper.info("We had the log command");
@@ -51,32 +48,35 @@ public class GenesisBiomeOverrideHandler extends GenLayer{
 
 	@Override
 	public int[] getInts(int x, int z, int width, int depth) {
-		int[] aint = IntCache.getIntCache(width * depth);
-		
+		final int[] ints;
 		
 		if(replaceBiome != -1){
+			LogHelper.info("Overriding @ " + x + "," + z + " x " + width + ","
+					+ depth + " = " + replaceBiome);
+			ints = IntCache.getIntCache(width * depth);
 			for(int i = 0; i < (width * depth); i++) {
 				//LogHelper.info("Genesis X: %d, Z: %d, width: %d, depth: %d", x, z, width, depth);
-				aint[i] = replaceBiome;
+				ints[i] = replaceBiome;
 			}
 		} else {
-			aint = this.parent.getInts(x, z, width, depth);
+			// LogHelper.info("Not overriding.");
+			ints = this.parent.getInts(x, z, width, depth);
 		}
 		
-		return aint;
+		return ints;
 	}
 	
 	public static void enable(int newBiome){
 		if(newBiome > -1 && newBiome < 128) {
-			replaceBiome = newBiome;
+			LogHelper.info("Genesis override handler enabled, target = "
+					+ newBiome);
+			INSTANCE.replaceBiome = newBiome;
 		}
 	}
 	
 	public static void disable() {
-		replaceBiome = -1;
+		LogHelper.info("Genesis override handler disabled");
+		INSTANCE.replaceBiome = -1;
 	}
-	
-	
-	//void StartOverride
 
 }

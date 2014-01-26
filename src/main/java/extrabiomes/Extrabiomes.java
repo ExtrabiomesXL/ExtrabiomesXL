@@ -68,8 +68,6 @@ public class Extrabiomes
     public static final String        TEXTURE_PATH = Reference.MOD_ID.toLowerCase(Locale.ENGLISH) + ":";
 
     private static Optional<EventBus> initBus      = Optional.of(new EventBus());
-    
-    private static GenesisBiomeOverrideHandler genHandler = new GenesisBiomeOverrideHandler();
 
     @Mod.EventHandler
     public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException
@@ -108,8 +106,7 @@ public class Extrabiomes
     {
         LogHelper.info("Initializing.");
         
-    	MinecraftForge.TERRAIN_GEN_BUS.register(genHandler);
-       
+		MinecraftForge.TERRAIN_GEN_BUS.register(GenesisBiomeOverrideHandler.INSTANCE);
         // Handle upgrading
         File test = new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg");
         if(test.exists()) {
