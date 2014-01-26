@@ -68,7 +68,6 @@ public class BlockMachine extends Block {
 	}
 
 	@SuppressWarnings("unchecked")
-	@SideOnly(Side.SERVER)
 	public void doGenesis(World world, int x, int y, int z, EntityPlayer sender) {
 		// pick a new biome
 		LogHelper.info("Starting genesis at " + x + "," + z);
