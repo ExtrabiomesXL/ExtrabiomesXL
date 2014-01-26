@@ -23,6 +23,7 @@ import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import extrabiomes.helpers.LogHelper;
 
 public class GenesisChunkProvider extends ChunkProviderGenerate {
 	private final BiomeGenBase	_biome;
@@ -54,24 +55,25 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 
 	@Override
 	public Chunk provideChunk(int i, int j) {
-		//System.out.println("Genesis - provide chunk " + i + "," + j);
+		LogHelper.info("Genesis - provide chunk @ " + i + "," + j
+				+ ", biomeId = " + _biome.biomeID);
 
 		//super.provideChunk(i, j); // this sets the random seed among other things...
 
-		byte[] abyte = new byte[32768];
-		//ethis
-		this.generateTerrain(i, j, abyte);
+		byte[] terrain = new byte[32768];
+		this.generateTerrain(i, j, terrain);
 
 		BiomeGenBase[] biomeArray = new BiomeGenBase[256];
 		Arrays.fill(biomeArray, _biome);
-		this.replaceBlocksForBiome(i, j, abyte, biomeArray);
+		this.replaceBlocksForBiome(i, j, terrain, biomeArray);
 
-		Chunk chunk = new Chunk(this._world, abyte, i, j);
-		byte[] abyte1 = chunk.getBiomeArray();
+		Chunk chunk = new Chunk(this._world, terrain, i, j);
+		byte[] biomes = chunk.getBiomeArray();
 
-		for (int k = 0; k < abyte1.length; ++k) {
-			abyte1[k] = (byte) _biome.biomeID;
+		for (int k = 0; k < biomes.length; ++k) {
+			biomes[k] = (byte) _biome.biomeID;
 		}
+		chunk.setBiomeArray(biomes);
 
 		chunk.generateSkylightMap();
 		return chunk;
