@@ -25,6 +25,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
+import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.BlockSettings;
 
 public class BlockQuarterLog extends BlockLog
 {
@@ -348,8 +350,28 @@ public class BlockQuarterLog extends BlockLog
     @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
     {
-        final ItemStack itemstack = super.getPickBlock(target, world, x, y, z);
-        itemstack.itemID = BarkOn.SE.blockID;
+    	int meta = world.getBlockMetadata(x, y, z);
+    	int pickID = 0;
+    	int pickMeta = 0;
+    	
+    	switch (meta){
+	    	case 1:
+	    		pickID = BlockSettings.NEWLOG.getID();
+	    		pickMeta = BlockNewLog.BlockType.REDWOOD.metadata();
+	    		break;
+	    	case 2:
+	    		pickID = Block.wood.blockID;
+	    		pickMeta = 0;
+	    		break;
+    		default:
+    			pickID = BlockSettings.CUSTOMLOG.getID();
+    			pickMeta = BlockCustomLog.BlockType.FIR.metadata();
+    			break;
+    	}
+    	
+    	
+        final ItemStack itemstack = new ItemStack(pickID, 1, pickMeta);//super.getPickBlock(target, world, x, y, z);
+        //itemstack.itemID = BarkOn.SE.blockID;
         return itemstack;
     }
     
@@ -505,7 +527,33 @@ public class BlockQuarterLog extends BlockLog
     @Override
     public int idDropped(int metadata, Random rand, int unused)
     {
-        return BarkOn.SE.blockID;
+    	LogHelper.info("Unused: %d", unused);
+    	
+    	metadata &= 3;
+    	switch (metadata){
+	    	case 1:
+    			return BlockSettings.CUSTOMLOG.getID();
+	    	case 2:
+	    		return Block.wood.blockID;
+    		default:
+	    		return BlockSettings.NEWLOG.getID();
+    	}
+    	
+        //return BarkOn.SE.blockID;
+    }
+        
+    @Override
+    public int damageDropped(int metadata)
+    {
+    	metadata &= 3;
+       	switch (metadata){
+	    	case 0:
+	    		return BlockNewLog.BlockType.REDWOOD.metadata();
+	    	case 2:
+	    		return 0;
+			default:
+				return BlockCustomLog.BlockType.FIR.metadata();
+		}
     }
     
     @Override
@@ -754,4 +802,10 @@ public class BlockQuarterLog extends BlockLog
         return true;
     }
     
+    
+    @Override
+    protected boolean canSilkHarvest()
+    {
+        return false;
+    }
 }

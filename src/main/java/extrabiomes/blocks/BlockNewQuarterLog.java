@@ -18,7 +18,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
-import extrabiomes.helpers.LogHelper;
+//import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.BlockSettings;
 
 public class BlockNewQuarterLog extends BlockLog
 {
@@ -320,12 +321,36 @@ public class BlockNewQuarterLog extends BlockLog
     @Override
     public int idDropped(int metadata, Random rand, int unused)
     {
+    	if(blockID == BlockSettings.REDWOODQUARTERLOG.getID()) {
+    		return BlockSettings.NEWLOG.getID();
+    	} else if(blockID == BlockSettings.RAINBOWQUARTERLOG.getID()) {
+    		return BlockSettings.NEWLOG.getID();
+    	} else if(blockID == BlockSettings.FIRQUARTERLOG.getID()) {
+    		return BlockSettings.CUSTOMLOG.getID();
+    	} else if(blockID == BlockSettings.OAKQUARTERLOG.getID()) {
+    		return Block.wood.blockID;
+    	} else if(blockID == BlockSettings.NEWQUARTERLOG.getID()) {
+    		return BlockSettings.NEWLOG.getID();
+    	}
+    	
+    	//LogHelper.info("BlockID: %d, unused: %d", blockID, unused);
         return blockID;
     }
     
     @Override
     public int damageDropped(int metadata)
     {
+    	if(blockID == BlockSettings.REDWOODQUARTERLOG.getID()) {
+    		return BlockNewLog.BlockType.REDWOOD.metadata();
+    	} else if(blockID == BlockSettings.RAINBOWQUARTERLOG.getID()) {
+    		return BlockNewLog.BlockType.RAINBOW_EUCALYPTUS.metadata();
+    	} else if(blockID == BlockSettings.FIRQUARTERLOG.getID()) {
+    		return BlockCustomLog.BlockType.FIR.metadata();
+    	} else if(blockID == BlockSettings.OAKQUARTERLOG.getID()) {
+    		return Block.wood.blockID;
+    	} else if(blockID == BlockSettings.NEWQUARTERLOG.getID()) {
+    		return BlockNewLog.BlockType.BALD_CYPRESS.metadata();
+    	}
         return 0;
     }
     
@@ -382,7 +407,7 @@ public class BlockNewQuarterLog extends BlockLog
                 
                 event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);
                 
-                LogHelper.info("Orientation: %d", metadata);
+                //LogHelper.info("Orientation: %d", metadata);
                 
                 //unturned = false;
             }
@@ -638,7 +663,7 @@ public class BlockNewQuarterLog extends BlockLog
         			return;
         		}
         		
-        		LogHelper.info("Block: %d, Meta: %d", checkBlockId, checkMetaId);
+        		//LogHelper.info("Block: %d, Meta: %d", checkBlockId, checkMetaId);
         		
 
         		// set the default rotation
@@ -654,6 +679,13 @@ public class BlockNewQuarterLog extends BlockLog
     
     @Override
     public boolean canSustainLeaves(World world, int x, int y, int z)
+    {
+        return true;
+    }
+    
+    
+    @Override
+    protected boolean canSilkHarvest()
     {
         return true;
     }
