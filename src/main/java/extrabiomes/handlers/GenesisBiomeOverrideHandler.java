@@ -3,6 +3,7 @@ package extrabiomes.handlers;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -50,16 +51,17 @@ public class GenesisBiomeOverrideHandler extends GenLayer{
 	public int[] getInts(int x, int z, int width, int depth) {
 		final int[] ints;
 		
-		if(replaceBiome != -1){
-			LogHelper.info("Overriding @ " + x + "," + z + " x " + width + ","
-					+ depth + " = " + replaceBiome);
+		
+		
+		if(INSTANCE.replaceBiome != -1){
+			LogHelper.info("Overriding @ " + x + "," + z + " x " + width + "," + depth + " = " +  BiomeGenBase.biomeList[INSTANCE.replaceBiome].biomeName);
 			ints = IntCache.getIntCache(width * depth);
 			for(int i = 0; i < (width * depth); i++) {
 				//LogHelper.info("Genesis X: %d, Z: %d, width: %d, depth: %d", x, z, width, depth);
-				ints[i] = replaceBiome;
+				ints[i] = INSTANCE.replaceBiome;
 			}
 		} else {
-			// LogHelper.info("Not overriding.");
+			//LogHelper.info("Not overriding.");
 			ints = this.parent.getInts(x, z, width, depth);
 		}
 		
@@ -68,8 +70,7 @@ public class GenesisBiomeOverrideHandler extends GenLayer{
 	
 	public static void enable(int newBiome){
 		if(newBiome > -1 && newBiome < 128) {
-			LogHelper.info("Genesis override handler enabled, target = "
-					+ newBiome);
+			LogHelper.info("Genesis override handler enabled, target = " + newBiome);
 			INSTANCE.replaceBiome = newBiome;
 		}
 	}

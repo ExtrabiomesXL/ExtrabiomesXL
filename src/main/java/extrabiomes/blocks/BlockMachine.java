@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -12,6 +13,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.packet.Packet51MapChunk;
 import net.minecraft.server.management.PlayerInstance;
+import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -21,6 +25,8 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.IChunkLoader;
 import net.minecraft.world.gen.ChunkProviderServer;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -57,18 +63,54 @@ public class BlockMachine extends Block {
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z,
-			EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-		if (!doingGenesis && !world.isRemote) {
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+		if (!doingGenesis && !world.isRemote && canDoGenesis(world, x, y, z, 3, player)) {
 			doingGenesis = true;
-			doGenesis(world, x, y, z, player);
+			doGenesis(world, x, y, z, 3, player);
 			doingGenesis = false;
 		}
 		return false;
 	}
+	
+	public boolean canDoGenesis(World world, int x, int y, int z, int range, EntityPlayer sender){
+		// Only run in the overworld
+		if(sender.dimension != 0) return false;
+		
+		Integer chunkX = x >> 4;
+		Integer chunkZ = z >> 4;
+		
+		for (int x1 = chunkX.intValue() - range; x1 <= chunkX.intValue() + range; x1++) {
+			for (int z1 = chunkZ.intValue() - range; z1 <= chunkZ.intValue() + range; z1++) {
+				
+				ChunkCoordinates chunkcoordinates = world.getSpawnPoint();
+	            int k = x1 * 16 + 8 - chunkcoordinates.posX;
+	            int l = z1 * 16 + 8 - chunkcoordinates.posZ;
+	            short short1 = 128;
+
+	            if (k < -short1 || k > short1 || l < -short1 || l > short1){
+	            } else {
+	            	ChatMessageComponent message = new ChatMessageComponent();
+	            	message.addText("[Project Lazareth] - You are to close to spawn!");
+	            	message.setBold(true);
+	            	message.setColor(EnumChatFormatting.AQUA);
+	            	
+	            	
+					sender.sendChatToPlayer(message);
+	            	//LogHelper.info("Spawn Chunk At: (X: %d, Z: %d)", x1, z1);
+	            	return false;
+	            }
+				
+				//final Chunk chunk = world.getChunkFromBlockCoords(x, z);
+				//chunks.put(Pair.of(x1, z1), chunk); // save map of chunks
+				//providerServer.unloadChunksIfNotNearSpawn(x1, z1);
+			}
+		}
+		
+		return true;
+	}
 
 	@SuppressWarnings("unchecked")
-	public void doGenesis(World world, int x, int y, int z, EntityPlayer sender) {
+	public void doGenesis(World world, int x, int y, int z, int range, EntityPlayer sender) {
 		// pick a new biome
 		LogHelper.info("Starting genesis at " + x + "," + z);
 
@@ -81,8 +123,7 @@ public class BlockMachine extends Block {
 		// newBiome = BiomeSettings.AUTUMNWOODS.getBiome().get();
 
 		do {
-			Optional<? extends BiomeGenBase> opt = biomes[world.rand
-					.nextInt(biomes.length)].getBiome();
+			Optional<? extends BiomeGenBase> opt = biomes[world.rand.nextInt(biomes.length)].getBiome();
 			if (opt.isPresent()) newBiome = opt.get();
 		} while (oldBiome == newBiome || newBiome == null);
 
@@ -91,7 +132,6 @@ public class BlockMachine extends Block {
 
 		GenesisBiomeOverrideHandler.enable(newBiome.biomeID);
 
-		int range = 3;
 		Integer dimension = null;
 		Integer chunkX = sender.getPlayerCoordinates().posX >> 4;
 		Integer chunkZ = sender.getPlayerCoordinates().posZ >> 4;
@@ -100,17 +140,12 @@ public class BlockMachine extends Block {
 			chunkX = Integer.valueOf((int) sender.posX >> 4);
 			chunkZ = Integer.valueOf((int) sender.posZ >> 4);
 		}
-		WorldServer worldObj = DimensionManager.getWorld(dimension.intValue());
+		WorldServer worldObj = DimensionManager.getWorld(0);
 		if (worldObj == null) {
-			LogHelper.warning("Target world " + dimension.intValue()
-					+ " is not loaded for genesis?!");
-			// throw new CommandException("The target world is not loaded", new
-			// Object[0]);
+			LogHelper.warning("Target dimension 0 is not loaded for genesis?!");
 		}
-		ChunkProviderServer providerServer = (ChunkProviderServer) worldObj
-				.getChunkProvider();
-		GenesisChunkProvider providerGenesis = new GenesisChunkProvider(world,
-				newBiome);
+		ChunkProviderServer providerServer = (ChunkProviderServer) worldObj.getChunkProvider();
+		GenesisChunkProvider providerGenesis = new GenesisChunkProvider(world, newBiome);
 
 		// clear players from the danger zone and force unload chunks in
 		// question
@@ -124,19 +159,14 @@ public class BlockMachine extends Block {
 		LogHelper.info("Safe position = " + safeX + "," + safeZ);
 
 		Map<Pair<Integer, Integer>, Chunk> chunks = new HashMap<Pair<Integer, Integer>, Chunk>();
-		for (int x1 = chunkX.intValue() - range; x1 <= chunkX.intValue()
-				+ range; x1++) {
-			for (int z1 = chunkZ.intValue() - range; z1 <= chunkZ.intValue()
-					+ range; z1++) {
+		for (int x1 = chunkX.intValue() - range; x1 <= chunkX.intValue() + range; x1++) {
+			for (int z1 = chunkZ.intValue() - range; z1 <= chunkZ.intValue() + range; z1++) {
 				for (EntityPlayerMP player : players) {
-					if (worldObj.getPlayerManager().isPlayerWatchingChunk(
-							player, x1, z1)
-							&& !playerOrigPositions.containsKey(player)) {
+					if (worldObj.getPlayerManager().isPlayerWatchingChunk(player, x1, z1) && !playerOrigPositions.containsKey(player)) {
 						final Vec3 origPosition = Vec3.createVectorHelper(player.posX, player.posY,player.posZ);
 						playerOrigPositions.put(player, origPosition);
 						LogHelper.info("Moving player " + player);
-						player.setLocationAndAngles(safeX, player.posY, safeZ,
-								0.0F, 0.0F);
+						player.setLocationAndAngles(safeX, player.posY, safeZ, 0.0F, 0.0F);
 						worldObj.updateEntityWithOptionalForce(player, true);
 					}
 				}
@@ -169,21 +199,25 @@ public class BlockMachine extends Block {
 
 		IChunkLoader chunkloader = providerServer.currentChunkLoader;
 		providerServer.currentChunkLoader = null;
-		for (int x1 = chunkX.intValue() - range; x1 <= chunkX.intValue()
-				+ range; x1++) {
-			for (int z1 = chunkZ.intValue() - range; z1 <= chunkZ.intValue()
-					+ range; z1++) {
+		for (int x1 = chunkX.intValue() - range; x1 <= chunkX.intValue() + range; x1++) {
+			for (int z1 = chunkZ.intValue() - range; z1 <= chunkZ.intValue() + range; z1++) {
 				// GenesisBiomeOverrideHandler.myQueue.add(new
 				// GenesisBiomeOverrideHandler.coord(x1, z1));
 
-				final Chunk chunk = providerGenesis.loadChunk(x1, z1);
-				providerGenesis.populate(providerGenesis, x1, z1);
-				/*
-				 * // re-attempt to force set biome on chunk byte[] chunkBiomes
-				 * = chunk.getBiomeArray(); for (int k = 0; k < biomes.length;
-				 * ++k) { chunkBiomes[k] = (byte) newBiome.biomeID; }
-				 * chunk.setBiomeArray(chunkBiomes);
-				 */
+				final Chunk chunk = providerServer.loadChunk(x1, z1);
+				
+				byte[] chunkBiomes = chunk.getBiomeArray();
+				for (int k = 0; k < chunkBiomes.length; ++k) {
+					chunkBiomes[k] = (byte) newBiome.biomeID;
+				}
+				chunk.setBiomeArray(chunkBiomes);
+				
+				//providerServer.populate(providerGenesis, x1, z1);
+				
+				
+				 
+				//chunk.sendUpdates = true;
+				//chunk.setStorageArrays(par1ArrayOfExtendedBlockStorage);
 				chunk.setChunkModified();
 			}
 		}
@@ -195,17 +229,11 @@ public class BlockMachine extends Block {
 		// new Object[] { sender.getCommandSenderName(), chunkX, chunkZ,
 		// Integer.valueOf(range), Integer.valueOf(caller.dimension) }), new
 		// Object[0]);
-		for (int x1 = chunkX.intValue() - range; x1 <= chunkX.intValue()
-				+ range; x1++) {
-			for (int z1 = chunkZ.intValue() - range; z1 <= chunkZ.intValue()
-					+ range; z1++) {
-				PlayerInstance chunkwatcher = worldObj.getPlayerManager()
-						.getOrCreateChunkWatcher(x1, z1, false);
+		for (int x1 = chunkX.intValue() - range; x1 <= chunkX.intValue() + range; x1++) {
+			for (int z1 = chunkZ.intValue() - range; z1 <= chunkZ.intValue() + range; z1++) {
+				PlayerInstance chunkwatcher = worldObj.getPlayerManager().getOrCreateChunkWatcher(x1, z1, false);
 				if (chunkwatcher != null) {
-					chunkwatcher
-							.sendToAllPlayersWatchingChunk(new Packet51MapChunk(
-									worldObj.getChunkFromChunkCoords(x1, z1),
-									true, -1));
+					chunkwatcher.sendToAllPlayersWatchingChunk(new Packet51MapChunk(worldObj.getChunkFromChunkCoords(x1, z1), true, -1));
 				}
 			}
 		}

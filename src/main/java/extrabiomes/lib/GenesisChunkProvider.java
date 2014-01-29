@@ -36,30 +36,27 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 	}
 
 	public IChunkLoader getCurrentChunkLoader() {
-		final ChunkProviderServer parent = (ChunkProviderServer) _world
-				.getChunkProvider();
+		final ChunkProviderServer parent = (ChunkProviderServer) _world.getChunkProvider();
 		return parent.currentChunkLoader;
 	}
 
 	public void setCurrentChunkLoader(IChunkLoader loader) {
-		final ChunkProviderServer parent = (ChunkProviderServer) _world
-				.getChunkProvider();
+		final ChunkProviderServer parent = (ChunkProviderServer) _world.getChunkProvider();
 		parent.currentChunkLoader = loader;
 	}
 
 	public void unloadChunksIfNotNearSpawn(int chunkX, int chunkZ) {
-		final ChunkProviderServer parent = (ChunkProviderServer) _world
-				.getChunkProvider();
+		final ChunkProviderServer parent = (ChunkProviderServer) _world.getChunkProvider();
 		parent.unloadChunksIfNotNearSpawn(chunkX, chunkZ);
 	}
 
 	@Override
 	public Chunk provideChunk(int i, int j) {
-		LogHelper.info("Genesis - provide chunk @ " + i + "," + j
-				+ ", biomeId = " + _biome.biomeID);
+		//LogHelper.info("Genesis - provide chunk @ " + i + "," + j + ", biomeId = " + _biome.biomeID);
 
-		//super.provideChunk(i, j); // this sets the random seed among other things...
+		//Chunk chunk = super.provideChunk(i, j); // this sets the random seed among other things...
 
+		//chunk.getBlockStorageArray()
 		byte[] terrain = new byte[32768];
 		this.generateTerrain(i, j, terrain);
 
@@ -70,12 +67,13 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 		Chunk chunk = new Chunk(this._world, terrain, i, j);
 		byte[] biomes = chunk.getBiomeArray();
 
-		for (int k = 0; k < biomes.length; ++k) {
-			biomes[k] = (byte) _biome.biomeID;
-		}
-		chunk.setBiomeArray(biomes);
+		//for (int k = 0; k < biomes.length; ++k) {
+		//	biomes[k] = (byte) _biome.biomeID;
+		//}
+		//chunk.setBiomeArray(biomes);
 
-		chunk.generateSkylightMap();
+		//chunk.generateSkylightMap();
+		
 		return chunk;
 	}
 
@@ -93,74 +91,58 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 		rand.setSeed(i * i1 + j * j1 ^ this._world.getSeed());
 		boolean flag = false;
 
-		MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(this, _world,
-				rand, i, j, flag));
+		MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(this, _world, rand, i, j, flag));
 
 		int k1;
 		int l1;
 		int i2;
 
-		if (_biome != BiomeGenBase.desert
-				&& _biome != BiomeGenBase.desertHills
-				&& !flag
-				&& rand.nextInt(4) == 0
-				&& TerrainGen.populate(this, _world, rand, i,
-						j, flag, LAKE)) {
+		if (_biome != BiomeGenBase.desert && _biome != BiomeGenBase.desertHills && !flag && rand.nextInt(4) == 0 && TerrainGen.populate(this, _world, rand, i, j, flag, LAKE)) {
 			k1 = k + rand.nextInt(16) + 8;
 			l1 = rand.nextInt(128);
 			i2 = l + rand.nextInt(16) + 8;
-			( new WorldGenLakes(Block.waterStill.blockID) ).generate(
-					this._world, rand, k1, l1, i2);
+			(new WorldGenLakes(Block.waterStill.blockID)).generate(this._world, rand, k1, l1, i2);
 		}
 
-		if (TerrainGen.populate(this, _world, rand, i, j,
-				flag, LAVA) && !flag && rand.nextInt(8) == 0) {
+		if (TerrainGen.populate(this, _world, rand, i, j, flag, LAVA) && !flag && rand.nextInt(8) == 0) {
 			k1 = k + rand.nextInt(16) + 8;
 			l1 = rand.nextInt(rand.nextInt(120) + 8);
 			i2 = l + rand.nextInt(16) + 8;
 
 			if (l1 < 63 || rand.nextInt(10) == 0) {
-				( new WorldGenLakes(Block.lavaStill.blockID) ).generate(
-						this._world, rand, k1, l1, i2);
+				(new WorldGenLakes(Block.lavaStill.blockID)).generate(this._world, rand, k1, l1, i2);
 			}
 		}
 
-		boolean doGen = TerrainGen.populate(this, _world, rand,
-				i, j, flag, DUNGEON);
+		boolean doGen = TerrainGen.populate(this, _world, rand, i, j, flag, DUNGEON);
 		for (k1 = 0; doGen && k1 < 8; ++k1) {
 			l1 = k + rand.nextInt(16) + 8;
 			i2 = rand.nextInt(128);
 			int j2 = l + rand.nextInt(16) + 8;
-			( new WorldGenDungeons() ).generate(this._world, rand, l1, i2,
-					j2);
+			(new WorldGenDungeons()).generate(this._world, rand, l1, i2, j2);
 		}
 
 		_biome.decorate(this._world, rand, k, l);
-		SpawnerAnimals.performWorldGenSpawning(this._world, _biome, k + 8,
-				l + 8, 16, 16, rand);
+		SpawnerAnimals.performWorldGenSpawning(this._world, _biome, k + 8, l + 8, 16, 16, rand);
 		k += 8;
 		l += 8;
 
-		doGen = TerrainGen.populate(this, _world, rand, i,
-				j, flag, ICE);
+		doGen = TerrainGen.populate(this, _world, rand, i, j, flag, ICE);
 		for (k1 = 0; doGen && k1 < 16; ++k1) {
 			for (l1 = 0; l1 < 16; ++l1) {
 				i2 = this._world.getPrecipitationHeight(k + k1, l + l1);
 
 				if (this._world.isBlockFreezable(k1 + k, i2 - 1, l1 + l)) {
-					this._world.setBlock(k1 + k, i2 - 1, l1 + l,
-							Block.ice.blockID, 0, 2);
+					this._world.setBlock(k1 + k, i2 - 1, l1 + l, Block.ice.blockID, 0, 2);
 				}
 
 				if (this._world.canSnowAt(k1 + k, i2, l1 + l)) {
-					this._world.setBlock(k1 + k, i2, l1 + l,
-							Block.snow.blockID, 0, 2);
+					this._world.setBlock(k1 + k, i2, l1 + l, Block.snow.blockID, 0, 2);
 				}
 			}
 		}
 
-		MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(this, _world,
-				rand, i, j, flag));
+		//MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(this, _world, rand, i, j, flag));
 
 		BlockSand.fallInstantly = false;
 	}
