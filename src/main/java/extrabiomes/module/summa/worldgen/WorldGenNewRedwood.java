@@ -14,7 +14,7 @@ public class WorldGenNewRedwood extends WorldGenerator
 
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves)), TRUNK(new ItemStack(Block.wood, 1, 1));
+        LEAVES(new ItemStack(Block.leaves)), TRUNK(new ItemStack(Block.wood, 1, 1)), BRANCH(new ItemStack(Block.wood, 1, 1));
 
         private ItemStack      stack;
 
@@ -28,8 +28,13 @@ public class WorldGenNewRedwood extends WorldGenerator
             }
 
             if(Element.LOG_REDWOOD.isPresent()){
-                TRUNK.stack = Element.LOG_REDWOOD.get();
+            	BRANCH.stack = Element.LOG_REDWOOD.get();
             }
+
+            if(Element.LOG_QUARTER_REDWOOD.isPresent()){
+            	useQuarter = true;
+                TRUNK.stack = Element.LOG_QUARTER_REDWOOD.get();
+            }            
 
             loadedCustomBlocks = true;
         }
@@ -62,6 +67,7 @@ public class WorldGenNewRedwood extends WorldGenerator
 
     // Store the last seed that was used to generate a tree
     private static long lastSeed = 0;
+    private static boolean useQuarter = false;
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
@@ -82,9 +88,9 @@ public class WorldGenNewRedwood extends WorldGenerator
 
     private boolean generateTree(World world, Random rand, int x, int y, int z)
     {
-        final int height = rand.nextInt(23) + 16;
+        final int height = rand.nextInt(23) + 26;
         byte b0 = 1;
-        int flag1 = 0;
+        int flag1 = 1;
 
         if (y < 1 || y + height + 5 > 256)
             return false;
@@ -92,6 +98,7 @@ public class WorldGenNewRedwood extends WorldGenerator
         if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1)
             return false;
 
+        /*
         if (rand.nextInt(4) == 0)
         {
             b0 = 1;
@@ -105,17 +112,22 @@ public class WorldGenNewRedwood extends WorldGenerator
         {
             flag1 = 1;
         }
+        
+        //x-=1;
+        //z-=1;
+       
 
-        for (int j1 = -b0; j1 <= b0; j1++)
-        {
-            for (int j2 = -b0; j2 <= b0; j2++)
-            {
-                if(world.getBlockId(x + j1, y - 1, z + j2) == 0) {
-                    return false;
-                }
-            }
-        }
+        //for (int j1 = -b0; j1 <= b0; j1++)
+        //{
+        //    for (int j2 = -b0; j2 <= b0; j2++)
+        //    {
+        //        if(world.getBlockId(x + j1, y - 1, z + j2) == 0) {
+        //            return false;
+        //        }
+        //    }
+        //}
 
+        
         int b1 = b0;
         if (flag1 == 0)
         {
@@ -134,7 +146,7 @@ public class WorldGenNewRedwood extends WorldGenerator
                         blockID = world.getBlockId(x + j1, y + k3, z + j2);
                         if(Block.blocksList[blockID] == null || Block.blocksList[blockID].isLeaves(world, x + j1, y + k3, z + j2))
                         {
-                            setBlockAndMetadata(world, x + j1, y + k3, z + j2, TreeBlock.TRUNK.getID(), TreeBlock.TRUNK.getMetadata());
+                            setBlockAndMetadata(world, x + j1, y + k3, z + j2, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
                         }
                     }
 
@@ -148,7 +160,7 @@ public class WorldGenNewRedwood extends WorldGenerator
                         blockID = world.getBlockId(x + j1, y + j3, z + j2);
                         if (!(j3 < height / 2) && (Block.blocksList[blockID] == null || Block.blocksList[blockID].canBeReplacedByLeaves(world, x + j1, y + j3, z + j2)))
                         {
-                            setBlockAndMetadata(world, x + j1, y + j3, z + j2, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            //setBlockAndMetadata(world, x + j1, y + j3, z + j2, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
 
 
@@ -176,7 +188,7 @@ public class WorldGenNewRedwood extends WorldGenerator
                     for (int j4 = height / 2; j4 <= height; j4++)
                     {
                         if ((rand.nextInt(1) == 0) && (world.getBlockId(x + k1, y + j4, z + k2) == 0)) {
-                            setBlockAndMetadata(world, x + k1, y + j4, z + k2, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            //setBlockAndMetadata(world, x + k1, y + j4, z + k2, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                     }
                 }
@@ -225,76 +237,85 @@ public class WorldGenNewRedwood extends WorldGenerator
                 }
             }
             return true;
-        }
+        }*/
 
-        for (int j1 = 0; j1 <= 1; j1++)
-        {
-            for (int j2 = 0; j2 <= 1; j2++)
-            {
-                if (j1 == 1)
-                {
-                    setBlockAndMetadata(world, x + j1, y, z + j2, 0, 0);
-                }
-
-                setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.dirt.blockID, 0);
-
-                int id = world.getBlockId(x + j1, y, z + j2);
-                if(Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x + j1, y, z + j2))
-                {
-                    setBlockAndMetadata(world, x + j1, y, z + j2, TreeBlock.TRUNK.getID(), TreeBlock.TRUNK.getMetadata());
-                }
-
-                for (int k3 = 1; k3 <= height - 4; k3++)
-                {
-                    id = world.getBlockId(x + j1, y + k3, z + j2);
-                    if(Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x + j1, y + k3, z + j2))
-                    {
-                        setBlockAndMetadata(world, x + j1, y + k3, z + j2, TreeBlock.TRUNK.getID(), TreeBlock.TRUNK.getMetadata());
-                    }
-                }
-            }
+        if(!useQuarter) {
+	        for (int j1 = 0; j1 <= 1; j1++)
+	        {
+	            for (int j2 = 0; j2 <= 1; j2++)
+	            {
+	                if (j1 == 1)
+	                {
+	                    setBlockAndMetadata(world, x + j1, y, z + j2, 0, 0);
+	                }
+	
+	                setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.dirt.blockID, 0);
+	
+	                int id = world.getBlockId(x + j1, y, z + j2);
+	                if(Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x + j1, y, z + j2))
+	                {
+	                    setBlockAndMetadata(world, x + j1, y, z + j2, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
+	                }
+	
+	                for (int k3 = 1; k3 <= height - 4; k3++)
+	                {
+	                    id = world.getBlockId(x + j1, y + k3, z + j2);
+	                    if(Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x + j1, y + k3, z + j2))
+	                    {
+	                        setBlockAndMetadata(world, x + j1, y + k3, z + j2, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
+	                    }
+	                }
+	            }
+	        }
+        } else {
+        	for (int offset = 0; offset <= height - 4; offset++) {
+        		setBlockAndMetadata(world, x, y + offset, z, TreeBlock.TRUNK.getID(), 0);
+        		setBlockAndMetadata(world, x, y + offset, z + 1, TreeBlock.TRUNK.getID(), 3);
+        		setBlockAndMetadata(world, x + 1, y + offset, z, TreeBlock.TRUNK.getID(), 1);
+        		setBlockAndMetadata(world, x + 1, y + offset, z + 1, TreeBlock.TRUNK.getID(), 2);
+        	}
         }
 
         for (int j3 = height / 2; j3 <= height - 6; j3++)
         {
             if (rand.nextInt(4) == 0)
             {
-                generateBranch(world, rand, x - 1, y + j3, z, -1, 0);
+                generateBranch(world, rand, x, y + j3, z+1, -1, 0);
             }
 
             if (rand.nextInt(4) == 0)
             {
-                generateBranch(world, rand, x, y + j3, z, 1, 0);
+                generateBranch(world, rand, x+1, y + j3, z+1, 1, 0);
             }
 
             if (rand.nextInt(4) == 0)
             {
-                generateBranch(world, rand, x, y + j3, z - 1, 0, -1);
+                generateBranch(world, rand, x+1, y + j3, z, 0, -1);
             }
 
             if (rand.nextInt(4) == 0)
             {
-                generateBranch(world, rand, x, y + j3, z, 0, 1);
+                generateBranch(world, rand, x+1, y + j3, z+1, 0, 1);
             }
 
             if (rand.nextInt(4) == 0)
             {
-                generateBranch(world, rand, x - 1, y + j3, z, -1, 1);
+                generateBranch(world, rand, x, y + j3, z, -1, 1);
             }
 
             if (rand.nextInt(4) == 0)
             {
-                generateBranch(world, rand, x - 1, y + j3, z - 1, -1, -1);
+                generateBranch(world, rand, x, y + j3, z, -1, -1);
             }
 
             if (rand.nextInt(4) == 0)
             {
-                generateBranch(world, rand, x, y + j3, z, 1, 1);
+                generateBranch(world, rand, x, y + j3, z+1, 1, 1);
             }
 
             if (rand.nextInt(4) == 0)
             {
-                generateBranch(world, rand, x, y + j3, z - 1, 1, -1);
+                generateBranch(world, rand, x, y + j3, z, 1, -1);
             }
         }
 
@@ -328,7 +349,7 @@ public class WorldGenNewRedwood extends WorldGenerator
             final int id = world.getBlockId(x, y, z);
             if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y, z))
             {
-                setBlockAndMetadata(world, x, y, z, TreeBlock.TRUNK.getID(), TreeBlock.TRUNK.getMetadata());
+                setBlockAndMetadata(world, x, y, z, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
             }
 
             if ((br == 8) || (random.nextInt(6) == 0))

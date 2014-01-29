@@ -186,6 +186,7 @@ public class BlockCustomSapling extends BlockFlower
         int x1 = 0;
         int z1 = 0;
         boolean isHuge = false;
+        int offset = 0;
         
         final boolean isForestryFarmed = world.getBlockId(x, y - 1, z) == forestrySoilID;
         
@@ -268,10 +269,12 @@ public class BlockCustomSapling extends BlockFlower
                         if (metadata == BlockType.FIR.metadata())
                         {
                             tree = new WorldGenFirTreeHuge(true);
+                            offset = 1;
                         }
                         else
                         {
                             tree = new WorldGenNewRedwood(true);
+                            offset = 0;
                         }
                         isHuge = true;
                         break;
@@ -299,8 +302,6 @@ public class BlockCustomSapling extends BlockFlower
             }
             else
                 world.setBlock(x, y, z, 0);
-            
-            final int offset = isHuge ? 1 : 0;
             
             if (!tree.generate(world, rand, x + x1 + offset, y, z + z1 + offset))
             {

@@ -25,7 +25,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
-import extrabiomes.helpers.LogHelper;
+//import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BlockSettings;
 
 public class BlockQuarterLog extends BlockLog
@@ -527,7 +527,7 @@ public class BlockQuarterLog extends BlockLog
     @Override
     public int idDropped(int metadata, Random rand, int unused)
     {
-    	LogHelper.info("Unused: %d", unused);
+    	//LogHelper.info("Unused: %d", unused);
     	
     	metadata &= 3;
     	switch (metadata){
