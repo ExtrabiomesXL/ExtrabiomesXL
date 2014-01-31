@@ -62,7 +62,7 @@ public class BlockCustomFlower extends Block implements IPlantable
         setBlockBounds(0.5F - var4, 0.0F, 0.5F - var4, 0.5F + var4, var4 * 3.0F, 0.5F + var4);
         
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.addGrassPlant(this, BlockType.AUTUMN_SHRUB.metadata(), 2);
+        //proxy.addGrassPlant(this, BlockType.AUTUMN_SHRUB.metadata(), 2);
         proxy.addGrassPlant(this, BlockType.HYDRANGEA.metadata(), 2);
         proxy.addGrassPlant(this, BlockType.ORANGE.metadata(), 5);
         proxy.addGrassPlant(this, BlockType.PURPLE.metadata(), 5);
@@ -195,9 +195,8 @@ public class BlockCustomFlower extends Block implements IPlantable
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int id, CreativeTabs tab, List itemList)
     {
-        for (final BlockType type : BlockType.values())
-        {
-            itemList.add(new ItemStack(this, 1, type.metadata()));
+        for (final BlockType type : BlockType.values()) {
+        	if(type.metadata() != 0 && type.metadata() != 5) itemList.add(new ItemStack(this, 1, type.metadata()));
         }
     }
     
