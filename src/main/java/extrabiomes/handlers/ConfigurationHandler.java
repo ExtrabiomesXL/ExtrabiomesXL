@@ -32,9 +32,16 @@ import extrabiomes.utility.EnhancedConfiguration;
  */
 public abstract class ConfigurationHandler
 {
-    
-    public static void init(File configFile, boolean upgrade)
+	public static void init(File configFile)
+	{
+		init(configFile, false);
+	}
+
+	public static void init(File configFile, boolean upgradeOverride)
     {
+		if (upgradeOverride) {
+			LogHelper.info("Overriding upgrade preference");
+		}
         Optional<EnhancedConfiguration> optionalConfig = Optional.absent();
         
         try
@@ -42,6 +49,27 @@ public abstract class ConfigurationHandler
             optionalConfig = Optional.of(new EnhancedConfiguration(configFile));
             final EnhancedConfiguration configuration = optionalConfig.get();
             
+			// version section
+            Property configVersion;
+			if (configuration.hasKey(EnhancedConfiguration.CATEGORY_VERSION, "configFileVersoin")) {
+				// handle legacy typoed option
+				configVersion = configuration.get(EnhancedConfiguration.CATEGORY_VERSION, "configFileVersoin", "");
+			} else {
+				configVersion = configuration.get(EnhancedConfiguration.CATEGORY_VERSION, "configFileVersion", "");
+			}
+			configVersion.comment = "To help ebxl in updating the config file in the future.";
+
+			// for future use - are we upgrading between config versions?
+			@SuppressWarnings("unused")
+			final boolean isNewVersion = !configVersion.getString().equals(Reference.CONFIG_VERSION);
+			configVersion.set(Reference.CONFIG_VERSION);
+
+			Property upgradeProp = configuration.get("version", "upgrade", upgradeOverride);
+			upgradeProp.comment = "Should new (game changing) features be automatically enabled?";
+			boolean autoUpgrade = upgradeProp.getBoolean(false);
+
+			// load general config settings
+
             for (final BiomeSettings setting : BiomeSettings.values())
             {
                 setting.load(configuration);
@@ -88,14 +116,10 @@ public abstract class ConfigurationHandler
             consoleCommandsDisabled.comment = "Set to false to enable console commands.";
             GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
 
-            Property useLegacyRedwoods = configuration.get(Configuration.CATEGORY_GENERAL, "UseLegacyRedwoods", upgrade ? true : GeneralSettings.useLegacyRedwoods);
+            Property useLegacyRedwoods = configuration.get(Configuration.CATEGORY_GENERAL, "UseLegacyRedwoods", autoUpgrade ? true : GeneralSettings.useLegacyRedwoods);
             useLegacyRedwoods.comment = "Set to true to enable old redwood tree generation.";
             GeneralSettings.useLegacyRedwoods = useLegacyRedwoods.getBoolean(false);
             
-            if(!upgrade){
-	            Property configVersion = configuration.get("Version", "configFileVersoin", "3.14.6");
-	            configVersion.comment = "To help ebxl in updating the config file int he future.";
-            }
             //GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
             
         }
