@@ -96,17 +96,14 @@ public class BlockCustomFlower extends Block implements IPlantable
             return metadata;
         }
 
-		@SideOnly(Side.CLIENT)
 		private Icon	icon;
-
-		@SideOnly(Side.CLIENT)
 		public Icon getIcon() {
 			return icon;
 		}
 
-		@SideOnly(Side.CLIENT)
-		public void registerIcon(IconRegister iconRegister) {
+		public Icon registerIcon(IconRegister iconRegister) {
 			icon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + this.texture);
+			return icon;
 		}
     }
 
@@ -131,14 +128,18 @@ public class BlockCustomFlower extends Block implements IPlantable
 				}
         	}
         }
+		LogHelper.fine(this.toString() + ": initialized group " + group + ", "
+				+ groupMap.size() + " flowers");
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
+		LogHelper.fine(this.toString() + ": registerIcons");
 		for (BlockType type : groupMap.values()) {
-			type.registerIcon(iconRegister);
+			final Icon icon = type.registerIcon(iconRegister);
+			LogHelper.fine(this.toString() + ": " + type + " = " + icon);
 		}
     }
     

@@ -143,7 +143,7 @@ public abstract class BlockHandler
         if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0)
             return;
 
-        final BlockCustomFlower block = new BlockCustomFlower(blockID, 32, Material.plants);
+        final BlockCustomFlower block = new BlockCustomFlower(blockID, 0, Material.plants);
         block.setUnlocalizedName("extrabiomes.flower").setTickRandomly(true).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
