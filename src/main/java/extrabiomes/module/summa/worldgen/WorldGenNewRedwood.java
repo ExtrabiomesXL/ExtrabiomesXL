@@ -239,7 +239,7 @@ public class WorldGenNewRedwood extends WorldGenerator
             return true;
         }*/
 
-        if(!useQuarter) {
+        if( TreeBlock.TRUNK.getID() != 0 && !useQuarter) {
 	        for (int j1 = 0; j1 <= 1; j1++)
 	        {
 	            for (int j2 = 0; j2 <= 1; j2++)
