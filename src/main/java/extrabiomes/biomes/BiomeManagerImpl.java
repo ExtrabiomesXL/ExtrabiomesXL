@@ -17,6 +17,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Random;
 
+import extrabiomes.lib.GeneralSettings;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -54,6 +55,7 @@ import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleShrub;
 import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleTree;
 import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
 import extrabiomes.module.summa.worldgen.WorldGenNewRedwood;
+import extrabiomes.module.summa.worldgen.WorldGenRedwood;
 import extrabiomes.module.summa.worldgen.WorldGenSakuraBlossomTree;
 
 @SuppressWarnings("deprecation")
@@ -71,6 +73,7 @@ public class BiomeManagerImpl extends BiomeManager
     private static final WorldGenerator                                               FERN_GEN                  = new WorldGenTallGrass(Block.tallGrass.blockID, 2);
     private static final WorldGenerator                                               FIR_TREE_GEN              = new WorldGenFirTree(false);
     private static final WorldGenerator                                               GRASS_GEN                 = new WorldGenTallGrass(Block.tallGrass.blockID, 1);
+    private static final WorldGenerator                                               LEGACY_REDWOOD_GEN        = new WorldGenRedwood(false);
     private static final WorldGenerator                                               OAK_TREE_GEN              = new WorldGenTrees(false);
     private static final WorldGenerator                                               REDWOOD_TREE_GEN          = new WorldGenNewRedwood(false);
     private static final WorldGenerator                                               SHRUB_GEN                 = new WorldGenShrub(3, 0);
@@ -295,7 +298,7 @@ public class BiomeManagerImpl extends BiomeManager
         if (!biome.isPresent())
             return;
         
-        addWeightedTreeGenForBiome(biome.get(), REDWOOD_TREE_GEN, 100);
+        addWeightedTreeGenForBiome(biome.get(), GeneralSettings.useLegacyRedwoods ? LEGACY_REDWOOD_GEN : REDWOOD_TREE_GEN, 100);
     }
     
     private static void addRedwoodLushTrees(Optional<? extends BiomeGenBase> biome)
@@ -303,7 +306,7 @@ public class BiomeManagerImpl extends BiomeManager
         if (!biome.isPresent())
             return;
         
-        addWeightedTreeGenForBiome(biome.get(), REDWOOD_TREE_GEN, 50);
+        addWeightedTreeGenForBiome(biome.get(), GeneralSettings.useLegacyRedwoods ? LEGACY_REDWOOD_GEN : REDWOOD_TREE_GEN, 50);
         addWeightedTreeGenForBiome(biome.get(), FIR_TREE_GEN, 50);
     }
     
