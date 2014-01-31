@@ -453,8 +453,8 @@ public class BlockQuarterLog extends BlockLog
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list)
     {
-        for (final BlockType type : BlockType.values())
-            list.add(new ItemStack(blockID, 1, type.metadata()));
+        //for (final BlockType type : BlockType.values())
+        //    list.add(new ItemStack(blockID, 1, type.metadata()));
     }
     
     private int getSWTextureOffset(int side, final int orientation)

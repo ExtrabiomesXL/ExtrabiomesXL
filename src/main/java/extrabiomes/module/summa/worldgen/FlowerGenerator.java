@@ -28,7 +28,7 @@ public class FlowerGenerator implements IWorldGenerator
     
     public FlowerGenerator(int flowerID)
     {
-        new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.AUTUMN_SHRUB.metadata());
+        //new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.AUTUMN_SHRUB.metadata());
         hydrangeaGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.HYDRANGEA.metadata());
         buttercupGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.ORANGE.metadata());
         lavenderGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.PURPLE.metadata());
@@ -175,6 +175,7 @@ public class FlowerGenerator implements IWorldGenerator
                 callaGen.generate(world, rand, x, y, z);
             }
             
+            /*
             for (int i = 0; i < 5; i++)
             {
                 final int x = chunkX + rand.nextInt(16) + 8;
@@ -182,6 +183,7 @@ public class FlowerGenerator implements IWorldGenerator
                 final int z = chunkZ + rand.nextInt(16) + 8;
                 rootGen.generate(world, rand, x, y, z);
             }
+            */
         }
         
         if (BiomeSettings.MINIJUNGLE.getBiome().isPresent() && biome == BiomeSettings.MINIJUNGLE.getBiome().get())
@@ -272,13 +274,13 @@ public class FlowerGenerator implements IWorldGenerator
         
         if (BiomeSettings.REDWOODLUSH.getBiome().isPresent() && biome == BiomeSettings.REDWOODLUSH.getBiome().get())
         {
-            for (int i = 0; i < 5; i++)
+            /*for (int i = 0; i < 5; i++)
             {
                 final int x = chunkX + rand.nextInt(16) + 8;
                 final int y = rand.nextInt(128);
                 final int z = chunkZ + rand.nextInt(16) + 8;
                 rootGen.generate(world, rand, x, y, z);
-            }
+            }//*/
             
             for (int i = 0; i < 2; i++)
             {
