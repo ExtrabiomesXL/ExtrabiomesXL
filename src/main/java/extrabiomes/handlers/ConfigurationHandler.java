@@ -88,7 +88,7 @@ public abstract class ConfigurationHandler
             consoleCommandsDisabled.comment = "Set to false to enable console commands.";
             GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
 
-            Property useLegacyRedwoods = configuration.get(Configuration.CATEGORY_GENERAL, "UseLegacyRedwoods", GeneralSettings.useLegacyRedwoods);
+            Property useLegacyRedwoods = configuration.get(Configuration.CATEGORY_GENERAL, "UseLegacyRedwoods", upgrade ? true : GeneralSettings.useLegacyRedwoods);
             useLegacyRedwoods.comment = "Set to true to enable old redwood tree generation.";
             GeneralSettings.useLegacyRedwoods = useLegacyRedwoods.getBoolean(false);
             
