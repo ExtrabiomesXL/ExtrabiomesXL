@@ -87,6 +87,10 @@ public abstract class ConfigurationHandler
             Property consoleCommandsDisabled = configuration.get(Configuration.CATEGORY_GENERAL, "DisableConsoleCommands", GeneralSettings.consoleCommandsDisabled);
             consoleCommandsDisabled.comment = "Set to false to enable console commands.";
             GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
+
+            Property useLegacyRedwoods = configuration.get(Configuration.CATEGORY_GENERAL, "UseLegacyRedwoods", GeneralSettings.useLegacyRedwoods);
+            useLegacyRedwoods.comment = "Set to true to enable old redwood tree generation.";
+            GeneralSettings.useLegacyRedwoods = useLegacyRedwoods.getBoolean(false);
             
             if(!upgrade){
 	            Property configVersion = configuration.get("Version", "configFileVersoin", "3.14.6");
