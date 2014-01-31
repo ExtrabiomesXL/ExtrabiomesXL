@@ -79,8 +79,6 @@ public class Extrabiomes
     @Mod.EventHandler
     public static void postInit(FMLPostInitializationEvent event)
     {
-    	
-    	
         PluginManager.activatePlugins();
         RecipeHandler.init();
         initBus = Optional.absent();
@@ -107,6 +105,7 @@ public class Extrabiomes
         LogHelper.info("Initializing.");
         
 		MinecraftForge.TERRAIN_GEN_BUS.register(GenesisBiomeOverrideHandler.INSTANCE);
+
         // Handle upgrading
         File test = new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg");
         if(test.exists()) {
@@ -128,7 +127,6 @@ public class Extrabiomes
         // remove after 3.6.0 release
         BiomeManagerImpl.populateAPIBiomes();
         new BiomeManagerImpl();
-        //
 
         Extrabiomes.registerInitEventHandler(new RecipeManager());
 

@@ -23,7 +23,6 @@ import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import extrabiomes.helpers.LogHelper;
 
 public class GenesisChunkProvider extends ChunkProviderGenerate {
 	private final BiomeGenBase	_biome;
