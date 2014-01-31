@@ -6,6 +6,7 @@
 
 package extrabiomes.blocks;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -131,6 +132,10 @@ public class BlockCustomFlower extends Block implements IPlantable
 		LogHelper.fine(this.toString() + ": initialized group " + group + ", "
 				+ groupMap.size() + " flowers");
     }
+
+	public Collection<BlockType> getGroupTypes() {
+		return groupMap.values();
+	}
     
     @Override
     @SideOnly(Side.CLIENT)

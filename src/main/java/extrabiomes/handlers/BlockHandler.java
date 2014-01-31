@@ -6,6 +6,8 @@
 
 package extrabiomes.handlers;
 
+import java.util.Collection;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
@@ -14,6 +16,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCatTail;
 import extrabiomes.blocks.BlockCustomFlower;
+import extrabiomes.blocks.BlockCustomFlower.BlockType;
 import extrabiomes.blocks.BlockCustomLog;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockCustomTallGrass;
@@ -79,7 +82,7 @@ public abstract class BlockHandler
         createAutumnLeaves();
         createCattail();
         createCrackedSand();
-        createFlower();
+		createFlowers();
         createGrass();
         createGreenLeaves();
         createNewLeaves();
@@ -135,35 +138,45 @@ public abstract class BlockHandler
         FacadeHelper.addBuildcraftFacade(block.blockID);
     }
 
-    private static void createFlower()
+	private static void createFlowers()
     {
-        final int blockID = BlockSettings.FLOWER.getID();
-        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0)
-            return;
+		if (!ModuleControlSettings.SUMMA.isEnabled()) return;
 
-        final BlockCustomFlower block = new BlockCustomFlower(blockID, 0, Material.plants);
-        block.setUnlocalizedName("extrabiomes.flower").setTickRandomly(true).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+		final int blockIDs[] = { BlockSettings.FLOWER.getID(),
+				BlockSettings.FLOWER2.getID(), BlockSettings.FLOWER3.getID() };
+		
+		final CommonProxy proxy = Extrabiomes.proxy;
+		
+		for (int group = 0; group < blockIDs.length; ++group) {
+			final int blockID = blockIDs[group];
+			if (blockID <= 0) return;
 
-        final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemFlower.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+	        final BlockCustomFlower block = new BlockCustomFlower(blockID, group, Material.plants);
+			block.setUnlocalizedName(
+					"extrabiomes.flower" + ( group > 0 ? group : "" ))
+					.setTickRandomly(true).setHardness(0.0F)
+					.setStepSound(Block.soundGrassFootstep)
+					.setCreativeTab(Extrabiomes.tabsEBXL);
+	        proxy.registerBlock(block, extrabiomes.items.ItemFlower.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
 
-        Element.AUTUMN_SHRUB.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.AUTUMN_SHRUB.metadata()));
-        Element.HYDRANGEA.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.HYDRANGEA.metadata()));
-        Element.FLOWER_ORANGE.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.BLUEBELL.metadata()));
-        Element.FLOWER_PURPLE.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.LAVENDER.metadata()));
-        Element.FLOWER_WHITE.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.CALLA_WHITE.metadata()));
-        Element.ROOT.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.ROOT.metadata()));
-        Element.TINY_CACTUS.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.TINY_CACTUS.metadata()));
-        Element.TOADSTOOL.set(new ItemStack(block, 1, BlockCustomFlower.BlockType.TOADSTOOL.metadata()));
+			Collection<BlockType> types = block.getGroupTypes();
+			for (BlockType type : types) {
+				Element element = Element.valueOf(type.toString());
+				ItemStack item = new ItemStack(block, 1, type.metadata());
+				element.set(item);
+			}
+	
+	        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
 
-        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
+	        proxy.registerWorldGenerator(new FlowerGenerator(block.blockID));
+		}
 
-        ForestryModHelper.registerBasicFlower(Element.HYDRANGEA.get());
-        ForestryModHelper.registerBasicFlower(Element.FLOWER_ORANGE.get());
-        ForestryModHelper.registerBasicFlower(Element.FLOWER_PURPLE.get());
-        ForestryModHelper.registerBasicFlower(Element.FLOWER_WHITE.get());
+		// TODO: register other flowers with forestry
 
-        proxy.registerWorldGenerator(new FlowerGenerator(block.blockID));
+		ForestryModHelper.registerBasicFlower(Element.HYDRANGEA.get());
+		ForestryModHelper.registerBasicFlower(Element.BUTTERCUP.get());
+		ForestryModHelper.registerBasicFlower(Element.LAVENDER.get());
+		ForestryModHelper.registerBasicFlower(Element.CALLA_WHITE.get());
     }
 
     private static void createGrass()

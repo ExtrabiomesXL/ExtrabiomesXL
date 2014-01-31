@@ -51,27 +51,27 @@ public abstract class RecipeHandler
             proxy.addRecipe(recipe);
         }
         
-        if (Element.FLOWER_ORANGE.isPresent())
+        if (Element.BUTTERCUP.isPresent())
         {
             // orangeFlower = orangeDye
             final ItemStack dye = new ItemStack(Item.dyePowder, 1, 14);
-            final IRecipe recipe = new ShapelessOreRecipe(dye, Element.FLOWER_ORANGE.get());
+            final IRecipe recipe = new ShapelessOreRecipe(dye, Element.BUTTERCUP.get());
             proxy.addRecipe(recipe);
         }
         
-        if (Element.FLOWER_PURPLE.isPresent())
+        if (Element.LAVENDER.isPresent())
         {
             // purpleFlower = purpleDye
             final ItemStack dye = new ItemStack(Item.dyePowder, 1, 5);
-            final IRecipe recipe = new ShapelessOreRecipe(dye, Element.FLOWER_PURPLE.get());
+            final IRecipe recipe = new ShapelessOreRecipe(dye, Element.LAVENDER.get());
             proxy.addRecipe(recipe);
         }
         
-        if (Element.FLOWER_WHITE.isPresent())
+        if (Element.CALLA_WHITE.isPresent())
         {
             // whiteFlower = lightGreyDye
             final ItemStack dye = new ItemStack(Item.dyePowder, 1, 7);
-            final IRecipe recipe = new ShapelessOreRecipe(dye, Element.FLOWER_WHITE.get());
+            final IRecipe recipe = new ShapelessOreRecipe(dye, Element.CALLA_WHITE.get());
             proxy.addRecipe(recipe);
         }
         

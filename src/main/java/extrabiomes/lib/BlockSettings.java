@@ -23,6 +23,8 @@ public enum BlockSettings
     CATTAIL             	(2311),
     GRASS               	(2312),
     LEAFPILE            	(2313),
+    FLOWER2					(2314),
+    FLOWER3					(2315),
     
     SAPLING             	(2320),
     NEWSAPLING          	(2321),
