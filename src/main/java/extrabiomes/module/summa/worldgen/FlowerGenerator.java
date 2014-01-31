@@ -30,12 +30,12 @@ public class FlowerGenerator implements IWorldGenerator
     {
         //new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.AUTUMN_SHRUB.metadata());
         hydrangeaGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.HYDRANGEA.metadata());
-        buttercupGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.ORANGE.metadata());
-        lavenderGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.PURPLE.metadata());
+        buttercupGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.BUTTERCUP.metadata());
+        lavenderGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.LAVENDER.metadata());
         rootGen = new WorldGenRoot(flowerID, BlockCustomFlower.BlockType.ROOT.metadata());
         tinyCactusGen = new WorldGenTinyCactus(flowerID, BlockCustomFlower.BlockType.TINY_CACTUS.metadata());
         toadStoolGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.TOADSTOOL.metadata());
-        callaGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.WHITE.metadata());
+        callaGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.CALLA_WHITE.metadata());
     }
     
     @Override

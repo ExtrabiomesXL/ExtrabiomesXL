@@ -7,6 +7,7 @@
 package extrabiomes.blocks;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -19,6 +20,9 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+
+import com.google.common.collect.Maps;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -27,60 +31,114 @@ import extrabiomes.proxy.CommonProxy;
 
 public class BlockCustomFlower extends Block implements IPlantable
 {
-    
+	public static int	NUM_GROUPS	= 2;	// number of flower groups
+
     public enum BlockType
     {
-        AUTUMN_SHRUB(0), HYDRANGEA(1), ORANGE(2), PURPLE(3), TINY_CACTUS(4), ROOT(5), TOADSTOOL(6), WHITE(7);
+    	// group 0 - original flowers
+		AUTUMN_SHRUB(0, 0, "autumnshrub", 0),
+		HYDRANGEA(0, 1, "hydrangea", 2),
+		BUTTERCUP(0, 2, "buttercup", 5),	// was "ORANGE"
+		LAVENDER(0, 3, "lavender", 5),		// was "PURPLE"
+		TINY_CACTUS(0, 4, "tinycactus", 5),
+		ROOT(0, 5, "root", 0),
+		TOADSTOOL(0, 6, "toadstools", 0),
+		CALLA_WHITE(0, 7, "calla", 5),		// was "WHITE"
+        // group 1 - added in 3.15
+		ALLIUM(1, 0, "allium", 3),
+		AMARYLLIS_PINK(1, 1, "amaryllis_pink", 3),
+		AMARYLLIS_RED(1, 2, "amaryllis_red", 3),
+		AMARYLLIS_WHITE(1, 3, "amaryllis_white", 3),
+		BACHELORS_BUTTON(1, 4, "bachelorsbutton", 3),
+		BELLS_OF_IRELAND(1, 5, "bellsofireland", 3),
+		BLUEBELL(1, 6, "bluebell", 3),
+		CALLA_BLACK(1, 7, "calla_black", 3),
+		DAISY(1, 8, "daisy", 3),
+		DANDELION(1, 9, "dandelion", 3),
+		EELGRASS(1, 10, "eelgrass", 3),
+		GARDENIA(1, 11, "gardenia", 3),
+		GERBERA_ORANGE(1, 12, "gerbera_orange", 3),
+		GERBERA_PINK(1, 13, "gerbera_pink", 3),
+		GERBERA_RED(1, 14, "gerbera_red", 3),
+		GERBERA_YELLOW(1, 15, "gerbera_yellow", 3),
+        // group 2 - added in 3.15
+		GLORIOSA(2, 0, "gloriosa", 3),
+		IRIS_BLUE(2, 1, "iris_blue", 3),
+		IRIS_PURPLE(2, 2, "iris_purple", 3),
+		LILY(2, 3, "lily", 3),
+		MARSH_MARIGOLD(2, 4, "marshmarigold", 3),
+		PANSY(2, 5, "pansy", 3),
+		POPPY(2, 6, "poppy", 3),
+		REDROVER(2, 7, "redrover", 3),
+		SNAPDRAGON(2, 8, "snapdragon", 3),
+		TULIP(2, 9, "tulips", 3),
+		VIOLET(2, 10, "violet", 3),
+		YARROW(2, 11, "yarrow", 3);
         
-        private final int metadata;
-        
-        BlockType(int metadata)
-        {
+		private final int		group;
+		private final int		metadata;
+		private final int		weight;
+		private final String	texture;
+
+		BlockType(int group, int metadata, String texture, int weight) {
+			this.group = group;
             this.metadata = metadata;
-        }
+			this.texture = texture;
+			this.weight = weight;
+		}
         
-        public int metadata()
-        {
+		public int group() {
+			return group;
+		}
+
+		public int metadata() {
             return metadata;
         }
+
+		@SideOnly(Side.CLIENT)
+		private Icon	icon;
+
+		@SideOnly(Side.CLIENT)
+		public Icon getIcon() {
+			return icon;
+		}
+
+		@SideOnly(Side.CLIENT)
+		public void registerIcon(IconRegister iconRegister) {
+			icon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + this.texture);
+		}
     }
-    
-    private Icon autumnShrub;
-    private Icon hydrangea;
-    private Icon orange;
-    private Icon purple;
-    private Icon tinyCactus;
-    private Icon root;
-    private Icon toadstool;
-    private Icon white;
-    
-    public BlockCustomFlower(int id, int index, Material material)
+
+	private final int	group;
+	private final Map<Integer, BlockType>	groupMap;
+	public BlockCustomFlower(int id, int group, Material material)
     {
         super(id, material);
-        //blockIndexInTexture = index;
-        final float var4 = 0.2F;
-        setBlockBounds(0.5F - var4, 0.0F, 0.5F - var4, 0.5F + var4, var4 * 3.0F, 0.5F + var4);
         
+        final float offset = 0.2F;
+        setBlockBounds(0.5F - offset, 0.0F, 0.5F - offset, 0.5F + offset, offset * 3.0F, 0.5F + offset);
+        
+        this.group = group;
+		this.groupMap = Maps.newHashMap();
+
         final CommonProxy proxy = Extrabiomes.proxy;
-        //proxy.addGrassPlant(this, BlockType.AUTUMN_SHRUB.metadata(), 2);
-        proxy.addGrassPlant(this, BlockType.HYDRANGEA.metadata(), 2);
-        proxy.addGrassPlant(this, BlockType.ORANGE.metadata(), 5);
-        proxy.addGrassPlant(this, BlockType.PURPLE.metadata(), 5);
-        proxy.addGrassPlant(this, BlockType.WHITE.metadata(), 5);
+        for( BlockType type : BlockType.values() ) {
+			if (type.group == this.group) {
+				groupMap.put(type.metadata, type);
+				if (type.weight > 0) {
+					proxy.addGrassPlant(this, type.metadata, type.weight);
+				}
+        	}
+        }
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-        autumnShrub = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "autumnshrub");
-        hydrangea = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "hydrangea");
-        orange = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "buttercup");
-        purple = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "lavender");
-        tinyCactus = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "tinycactus");
-        root = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "root");
-        toadstool = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "toadstools");
-        white = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "calla");
+		for (BlockType type : groupMap.values()) {
+			type.registerIcon(iconRegister);
+		}
     }
     
     @Override
@@ -98,6 +156,7 @@ public class BlockCustomFlower extends Block implements IPlantable
     
     private boolean canThisPlantGrowOnThisBlockID(int id)
     {
+		// TODO: separate rules for edge cases (like cactus)
         return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID || id == Block.sand.blockID || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock);
     }
     
@@ -117,31 +176,10 @@ public class BlockCustomFlower extends Block implements IPlantable
     }
     
     @Override
+	@SideOnly(Side.CLIENT)
     public Icon getIcon(int side, int metadata)
     {
-        //if (metadata > 7) metadata = 7;
-        //return super.getBlockTextureFromSideAndMetadata(side, metadata) + metadata;
-        switch (metadata)
-        {
-            case 0:
-                return autumnShrub;
-            case 1:
-                return hydrangea;
-            case 2:
-                return orange;
-            case 3:
-                return purple;
-            case 4:
-                return tinyCactus;
-            case 5:
-                return root;
-            case 6:
-                return toadstool;
-            case 7:
-                return white;
-            default:
-                return autumnShrub;
-        }
+		return groupMap.get(metadata).getIcon();
     }
     
     @Override
