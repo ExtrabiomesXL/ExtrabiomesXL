@@ -26,6 +26,7 @@ import com.google.common.collect.Maps;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.proxy.CommonProxy;
 
@@ -179,7 +180,13 @@ public class BlockCustomFlower extends Block implements IPlantable
 	@SideOnly(Side.CLIENT)
     public Icon getIcon(int side, int metadata)
     {
-		return groupMap.get(metadata).getIcon();
+		BlockType type = groupMap.get(metadata);
+		if( type != null ) {
+			return type.getIcon();
+		} else {
+			LogHelper.warning("No Icon found for "+type);
+			return null;
+		}
     }
     
     @Override
