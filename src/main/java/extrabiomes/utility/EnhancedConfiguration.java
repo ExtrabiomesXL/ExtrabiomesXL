@@ -22,6 +22,7 @@ public class EnhancedConfiguration extends Configuration
     public static final String CATEGORY_BIOME      = "biome";
     public static final String CATEGORY_DECORATION = "decoration";
     public static final String CATEGORY_NEWDAWN    = "newdawn";
+    public static final String CATEGORY_VERSION    = "version";
     private final boolean[]    configBiomes        = new boolean[BiomeGenBase.biomeList.length];
     
     public EnhancedConfiguration(File file)
