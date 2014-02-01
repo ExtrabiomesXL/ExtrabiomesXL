@@ -176,6 +176,7 @@ public abstract class BlockHandler
 				}
 				ItemStack item = new ItemStack(block, 1, type.metadata());
 				element.set(item);
+
 			}
 	
 			generator.registerBlock(blockID, types);

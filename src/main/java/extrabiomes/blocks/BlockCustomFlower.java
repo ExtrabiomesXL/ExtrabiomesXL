@@ -40,12 +40,12 @@ public class BlockCustomFlower extends Block implements IPlantable
     	// group 0 - original flowers
 		AUTUMN_SHRUB(0, 0, "autumnshrub", 0, -1),
 		HYDRANGEA(0, 1, "hydrangea", 2, 12),
-		BUTTERCUP(0, 2, "buttercup", 5, 14), // was "ORANGE"
+		BUTTERCUP(0, 2, "buttercup", 5, 11), // was "ORANGE", now produces yellow dye
 		LAVENDER(0, 3, "lavender", 5, 5), // was "PURPLE"
 		TINY_CACTUS(0, 4, "tinycactus", 5, -1),
 		ROOT(0, 5, "root", 0, -1),
 		TOADSTOOL(0, 6, "toadstools", 0, -1),
-		CALLA_WHITE(0, 7, "calla", 5, 7), // was "WHITE"
+		CALLA_WHITE(0, 7, "calla_white", 5, 7), // was "WHITE"
         // group 1 - added in 3.15
 		ALLIUM(1, 0, "allium", 3, 13),
 		AMARYLLIS_PINK(1, 1, "amaryllis_pink", 3, 9),
