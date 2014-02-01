@@ -159,7 +159,11 @@ public abstract class BlockHandler
 					.setTickRandomly(true).setHardness(0.0F)
 					.setStepSound(Block.soundGrassFootstep)
 					.setCreativeTab(Extrabiomes.tabsEBXL);
-	        proxy.registerBlock(block, extrabiomes.items.ItemFlower.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+			proxy.registerBlock(
+					block,
+					extrabiomes.items.ItemFlower.class,
+					block.getUnlocalizedName() + ":"
+							+ block.getClass().getName());
 
 			Collection<BlockType> types = block.getGroupTypes();
 			for (BlockType type : types) {
