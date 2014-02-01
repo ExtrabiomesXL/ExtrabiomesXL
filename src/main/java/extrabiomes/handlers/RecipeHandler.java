@@ -8,6 +8,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
+import extrabiomes.blocks.BlockCustomFlower;
+import extrabiomes.blocks.BlockCustomFlower.BlockType;
 import extrabiomes.lib.Element;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.proxy.CommonProxy;
@@ -43,38 +45,24 @@ public abstract class RecipeHandler
     {
         final CommonProxy proxy = Extrabiomes.proxy;
         
-        if (Element.HYDRANGEA.isPresent())
-        {
-            // hydrangea = lightBlueDye
-            final ItemStack dye = new ItemStack(Item.dyePowder, 1, 12);
-            final IRecipe recipe = new ShapelessOreRecipe(dye, Element.HYDRANGEA.get());
-            proxy.addRecipe(recipe);
-        }
-        
-        if (Element.BUTTERCUP.isPresent())
-        {
-            // orangeFlower = orangeDye
-            final ItemStack dye = new ItemStack(Item.dyePowder, 1, 14);
-            final IRecipe recipe = new ShapelessOreRecipe(dye, Element.BUTTERCUP.get());
-            proxy.addRecipe(recipe);
-        }
-        
-        if (Element.LAVENDER.isPresent())
-        {
-            // purpleFlower = purpleDye
-            final ItemStack dye = new ItemStack(Item.dyePowder, 1, 5);
-            final IRecipe recipe = new ShapelessOreRecipe(dye, Element.LAVENDER.get());
-            proxy.addRecipe(recipe);
-        }
-        
-        if (Element.CALLA_WHITE.isPresent())
-        {
-            // whiteFlower = lightGreyDye
-            final ItemStack dye = new ItemStack(Item.dyePowder, 1, 7);
-            final IRecipe recipe = new ShapelessOreRecipe(dye, Element.CALLA_WHITE.get());
-            proxy.addRecipe(recipe);
-        }
-        
+		for (Element element : Element.values()) {
+			if (!element.isPresent()) continue;
+			final BlockType block;
+			try {
+				block = BlockCustomFlower.BlockType.valueOf(element.name());
+			} catch (Exception e) {
+				continue;
+			}
+			if (block != null) {
+				final int color = block.color();
+				if (color == -1 || color == 0 || color == 3 || color == 4
+						|| color == 15) continue;
+				final ItemStack dye = new ItemStack(Item.dyePowder, 1, color);
+				final IRecipe recipe = new ShapelessOreRecipe(dye, element.get());
+				proxy.addRecipe(recipe);
+			}
+		}
+
         if (Element.TOADSTOOL.isPresent())
         {
             
