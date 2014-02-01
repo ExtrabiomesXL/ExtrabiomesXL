@@ -28,9 +28,9 @@ public class PluginThaumcraft4 {
 		ThaumcraftApi.registerObjectTag(Element.LEAFPILE.get().itemID, Element.LEAFPILE.get().getItemDamage(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.VOID, 1));
 		ThaumcraftApi.registerObjectTag(Element.ROOT.get().itemID, Element.ROOT.get().getItemDamage(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.AIR, 1));
 		
-		ThaumcraftApi.registerObjectTag(Element.FLOWER_ORANGE.get().itemID, Element.FLOWER_ORANGE.get().getItemDamage(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.SENSES, 1).add(Aspect.LIFE, 1));
-		ThaumcraftApi.registerObjectTag(Element.FLOWER_PURPLE.get().itemID, Element.FLOWER_PURPLE.get().getItemDamage(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.SENSES, 1).add(Aspect.LIFE, 1));
-		ThaumcraftApi.registerObjectTag(Element.FLOWER_WHITE.get().itemID, Element.FLOWER_WHITE.get().getItemDamage(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.SENSES, 1).add(Aspect.LIFE, 1));
+		ThaumcraftApi.registerObjectTag(Element.BUTTERCUP.get().itemID, Element.BUTTERCUP.get().getItemDamage(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.SENSES, 1).add(Aspect.LIFE, 1));
+		ThaumcraftApi.registerObjectTag(Element.HYDRANGEA.get().itemID, Element.HYDRANGEA.get().getItemDamage(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.SENSES, 1).add(Aspect.LIFE, 1));
+		ThaumcraftApi.registerObjectTag(Element.CALLA_WHITE.get().itemID, Element.CALLA_WHITE.get().getItemDamage(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.SENSES, 1).add(Aspect.LIFE, 1));
 		ThaumcraftApi.registerObjectTag(Element.HYDRANGEA.get().itemID, Element.HYDRANGEA.get().getItemDamage(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.SENSES, 1).add(Aspect.LIFE, 1));
 		
 		
