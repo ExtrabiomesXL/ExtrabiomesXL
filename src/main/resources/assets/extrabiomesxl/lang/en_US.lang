@@ -35,6 +35,37 @@ tile.extrabiomes.flower.4.name=Tiny Cactus
 tile.extrabiomes.flower.5.name=Root
 tile.extrabiomes.flower.6.name=Toad Stool
 tile.extrabiomes.flower.7.name=Calla Lilies
+
+tile.extrabiomes.flower1.0.name=Allium
+tile.extrabiomes.flower1.1.name=Pink Amaryllis
+tile.extrabiomes.flower1.2.name=Red Amaryllis
+tile.extrabiomes.flower1.3.name=White Amaryllis
+tile.extrabiomes.flower1.4.name=Bachelor's Button
+tile.extrabiomes.flower1.5.name=Bells of Ireland
+tile.extrabiomes.flower1.6.name=Bluebell
+tile.extrabiomes.flower1.7.name=Black Calla Lilies
+tile.extrabiomes.flower1.8.name=Daisy
+tile.extrabiomes.flower1.9.name=Dandelion
+tile.extrabiomes.flower1.10.name=Eelgrass
+tile.extrabiomes.flower1.11.name=Gardenia
+tile.extrabiomes.flower1.12.name=Orange Gerbera
+tile.extrabiomes.flower1.13.name=Pink Gerbera
+tile.extrabiomes.flower1.14.name=Red Gerbera
+tile.extrabiomes.flower1.15.name=Yellow Gerbera
+
+tile.extrabiomes.flower2.0.name=Pink Oriental Lily
+tile.extrabiomes.flower2.1.name=Blue Iris
+tile.extrabiomes.flower2.2.name=Purple Iris
+tile.extrabiomes.flower2.3.name=Lily
+tile.extrabiomes.flower2.4.name=Marsh Marigold
+tile.extrabiomes.flower2.5.name=Pansy
+tile.extrabiomes.flower2.6.name=Poppy
+tile.extrabiomes.flower2.7.name=Red Rover
+tile.extrabiomes.flower2.8.name=Snapdragon
+tile.extrabiomes.flower2.9.name=Tulip
+tile.extrabiomes.flower2.10.name=Violet
+tile.extrabiomes.flower2.11.name=Yarrow
+
 tile.extrabiomes.leaves.fir.name=Fir Leaves
 tile.extrabiomes.leaves.redwood.name=Redwood Leaves
 tile.extrabiomes.leaves.acacia.name=Acacia Leaves
