@@ -36,6 +36,7 @@ import extrabiomes.blocks.GenericTerrainBlock;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
 import extrabiomes.helpers.BiomeHelper;
 import extrabiomes.helpers.ForestryModHelper;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Blocks;
@@ -167,7 +168,13 @@ public abstract class BlockHandler
 
 			Collection<BlockType> types = block.getGroupTypes();
 			for (BlockType type : types) {
-				Element element = Element.valueOf(type.toString());
+				final Element element;
+				try {
+					element = Element.valueOf(type.name());
+				} catch (Exception e) {
+					LogHelper.warning("No element found for flower " + type);
+					continue;
+				}
 				ItemStack item = new ItemStack(block, 1, type.metadata());
 				element.set(item);
 			}

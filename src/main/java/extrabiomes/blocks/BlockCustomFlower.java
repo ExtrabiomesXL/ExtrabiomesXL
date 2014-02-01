@@ -38,57 +38,63 @@ public class BlockCustomFlower extends Block implements IPlantable
     public enum BlockType
     {
     	// group 0 - original flowers
-		AUTUMN_SHRUB(0, 0, "autumnshrub", 0),
-		HYDRANGEA(0, 1, "hydrangea", 2),
-		BUTTERCUP(0, 2, "buttercup", 5),	// was "ORANGE"
-		LAVENDER(0, 3, "lavender", 5),		// was "PURPLE"
-		TINY_CACTUS(0, 4, "tinycactus", 5),
-		ROOT(0, 5, "root", 0),
-		TOADSTOOL(0, 6, "toadstools", 0),
-		CALLA_WHITE(0, 7, "calla", 5),		// was "WHITE"
+		AUTUMN_SHRUB(0, 0, "autumnshrub", 0, -1),
+		HYDRANGEA(0, 1, "hydrangea", 2, 12),
+		BUTTERCUP(0, 2, "buttercup", 5, 14), // was "ORANGE"
+		LAVENDER(0, 3, "lavender", 5, 5), // was "PURPLE"
+		TINY_CACTUS(0, 4, "tinycactus", 5, -1),
+		ROOT(0, 5, "root", 0, -1),
+		TOADSTOOL(0, 6, "toadstools", 0, -1),
+		CALLA_WHITE(0, 7, "calla", 5, 7), // was "WHITE"
         // group 1 - added in 3.15
-		ALLIUM(1, 0, "allium", 3),
-		AMARYLLIS_PINK(1, 1, "amaryllis_pink", 3),
-		AMARYLLIS_RED(1, 2, "amaryllis_red", 3),
-		AMARYLLIS_WHITE(1, 3, "amaryllis_white", 3),
-		BACHELORS_BUTTON(1, 4, "bachelorsbutton", 3),
-		BELLS_OF_IRELAND(1, 5, "bellsofireland", 3),
-		BLUEBELL(1, 6, "bluebell", 3),
-		CALLA_BLACK(1, 7, "calla_black", 3),
-		DAISY(1, 8, "daisy", 3),
-		DANDELION(1, 9, "dandelion", 3),
-		EELGRASS(1, 10, "eelgrass", 3),
-		GARDENIA(1, 11, "gardenia", 3),
-		GERBERA_ORANGE(1, 12, "gerbera_orange", 3),
-		GERBERA_PINK(1, 13, "gerbera_pink", 3),
-		GERBERA_RED(1, 14, "gerbera_red", 3),
-		GERBERA_YELLOW(1, 15, "gerbera_yellow", 3),
+		ALLIUM(1, 0, "allium", 3, 13),
+		AMARYLLIS_PINK(1, 1, "amaryllis_pink", 3, 9),
+		AMARYLLIS_RED(1, 2, "amaryllis_red", 3, 1),
+		AMARYLLIS_WHITE(1, 3, "amaryllis_white", 3, -1 /* 15 */),
+		BACHELORS_BUTTON(1, 4, "bachelorsbutton", 3, -1 /* 4 */),
+		BELLS_OF_IRELAND(1, 5, "bellsofireland", 3, 10),
+		BLUEBELL(1, 6, "bluebell", 3, 12),
+		CALLA_BLACK(1, 7, "calla_black", 3, -1 /* 0 */),
+		DAISY(1, 8, "daisy", 3, -1 /* 15 */),
+		DANDELION(1, 9, "dandelion", 3, 11),
+		EELGRASS(1, 10, "eelgrass", 3, -1),
+		GARDENIA(1, 11, "gardenia", 3, 7),
+		GERBERA_ORANGE(1, 12, "gerbera_orange", 3, 14),
+		GERBERA_PINK(1, 13, "gerbera_pink", 3, 9),
+		GERBERA_RED(1, 14, "gerbera_red", 3, 1),
+		GERBERA_YELLOW(1, 15, "gerbera_yellow", 3, 11),
         // group 2 - added in 3.15
-		GLORIOSA(2, 0, "gloriosa", 3),
-		IRIS_BLUE(2, 1, "iris_blue", 3),
-		IRIS_PURPLE(2, 2, "iris_purple", 3),
-		LILY(2, 3, "lily", 3),
-		MARSH_MARIGOLD(2, 4, "marshmarigold", 3),
-		PANSY(2, 5, "pansy", 3),
-		POPPY(2, 6, "poppy", 3),
-		REDROVER(2, 7, "redrover", 3),
-		SNAPDRAGON(2, 8, "snapdragon", 3),
-		TULIP(2, 9, "tulips", 3),
-		VIOLET(2, 10, "violet", 3),
-		YARROW(2, 11, "yarrow", 3);
+		ORIENTAL_PINK_LILY(2, 0, "orientalpinklily", 3, 9),
+		IRIS_BLUE(2, 1, "iris_blue", 3, -1 /* 4 */),
+		IRIS_PURPLE(2, 2, "iris_purple", 3, 5),
+		LILY(2, 3, "lily", 3, 13),
+		MARSH_MARIGOLD(2, 4, "marshmarigold", 3, 11),
+		PANSY(2, 5, "pansy", 3, -1 /* special case, yellow + purple */),
+		POPPY(2, 6, "poppy", 3, 1),
+		REDROVER(2, 7, "redrover", 3, 1),
+		SNAPDRAGON(2, 8, "snapdragon", 3, -1 /* future special case? */),
+		TULIP(2, 9, "tulips", 3, 14),
+		VIOLET(2, 10, "violet", 3, 5),
+		YARROW(2, 11, "yarrow", 3, 11);
         
 		private final int		group;
 		private final int		metadata;
 		private final int		weight;
 		private final String	texture;
+		private final int		color;		// what color of dye should this make?
 
-		BlockType(int group, int metadata, String texture, int weight) {
+		BlockType(int group, int metadata, String texture, int weight, int color) {
 			this.group = group;
             this.metadata = metadata;
 			this.texture = texture;
 			this.weight = weight;
+			this.color = color;
 		}
         
+		public int color() {
+			return color;
+		}
+
 		public int group() {
 			return group;
 		}
