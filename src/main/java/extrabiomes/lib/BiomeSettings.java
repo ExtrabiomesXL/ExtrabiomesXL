@@ -110,6 +110,13 @@ public enum BiomeSettings
         this.enabled = defaultGen;
     }
     
+	public static BiomeSettings findBiomeSettings(int id) {
+		for (BiomeSettings settings : BiomeSettings.values()) {
+			if (settings.biomeID == id) return settings;
+		}
+		return null;
+	}
+
     public boolean allowVillages()
     {
         return allowVillages;
