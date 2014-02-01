@@ -149,6 +149,7 @@ public abstract class BlockHandler
 				BlockSettings.FLOWER2.getID(), BlockSettings.FLOWER3.getID() };
 		
 		final CommonProxy proxy = Extrabiomes.proxy;
+		final FlowerGenerator generator = new FlowerGenerator();
 		
 		for (int group = 0; group < blockIDs.length; ++group) {
 			final int blockID = blockIDs[group];
@@ -179,11 +180,11 @@ public abstract class BlockHandler
 				element.set(item);
 			}
 	
+			generator.registerBlock(blockID, types);
 	        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
-
-			LogHelper.info("Registering flower generator for " + block.blockID + ", " + group);
-	        proxy.registerWorldGenerator(new FlowerGenerator(block.blockID));
 		}
+		
+		proxy.registerWorldGenerator(generator);
 
 		// TODO: register other flowers with forestry
 
