@@ -62,6 +62,11 @@ public class FlowerGenerator implements IWorldGenerator
 		}
 	}
 
+	protected boolean biomeCheck(BiomeSettings settings, BiomeGenBase biome) {
+		return settings.getBiome().isPresent()
+				&& biome == settings.getBiome().get();
+	}
+
     @Override
     public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
@@ -69,130 +74,219 @@ public class FlowerGenerator implements IWorldGenerator
         chunkZ = chunkZ << 4;
         final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkZ);
         
-        if (BiomeSettings.BIRCHFOREST.getBiome().isPresent() && biome == BiomeSettings.BIRCHFOREST.getBiome().get())
-        {
+		if (biomeCheck(BiomeSettings.ALPINE, biome)) {
+			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.IRIS_BLUE, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.IRIS_PURPLE, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.PANSY, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.VIOLET, world, chunkX, chunkZ, rand, 1);
+		}
+
+		if (biomeCheck(BiomeSettings.AUTUMNWOODS, biome))
+		{
+			applyGenerator(BlockType.ALLIUM, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.REDROVER, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.BIRCHFOREST, biome))
+		{
+			applyGenerator(BlockType.ALLIUM, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.BLUEBELL, world, chunkX, chunkZ, rand, 2);
 			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DAISY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DANDELION, world, chunkX, chunkZ, rand, 2);
 			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.FORESTEDHILLS.getBiome().isPresent() && biome == BiomeSettings.FORESTEDHILLS.getBiome().get())
-        {
-			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.PANSY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.REDROVER, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.TULIP, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.VIOLET, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.EXTREMEJUNGLE, biome))
+		{
+			applyGenerator(BlockType.GARDENIA, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.FORESTEDHILLS, biome))
+		{
+			applyGenerator(BlockType.ALLIUM, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.BLUEBELL, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DAISY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DANDELION, world, chunkX, chunkZ, rand, 2);
 			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.IRIS_BLUE, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.IRIS_PURPLE, world, chunkX, chunkZ, rand, 2);
 			applyGenerator(BlockType.LAVENDER, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.FORESTEDHILLS.getBiome().isPresent() && biome == BiomeSettings.FORESTEDHILLS.getBiome().get())
-        {
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.FORESTEDISLAND.getBiome().isPresent() && biome == BiomeSettings.FORESTEDISLAND.getBiome().get())
-        {
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.LILY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.ORIENTAL_PINK_LILY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.TULIP, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.VIOLET, world, chunkX, chunkZ, rand, 2);
+		}
+		   
+		if (biomeCheck(BiomeSettings.FORESTEDISLAND, biome))
+		{
+			applyGenerator(BlockType.ALLIUM, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DAISY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DANDELION, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.IRIS_BLUE, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.IRIS_PURPLE, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.LAVENDER, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.LILY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.ORIENTAL_PINK_LILY, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.GREENHILLS, biome))
+		{
+			applyGenerator(BlockType.ALLIUM, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.BACHELORS_BUTTON, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.BLUEBELL, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DAISY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DANDELION, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.IRIS_BLUE, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.IRIS_PURPLE, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.LILY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.ORIENTAL_PINK_LILY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.TULIP, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.VIOLET, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.GREENSWAMP, biome))
+		{
+			applyGenerator(BlockType.ALLIUM, world, chunkX, chunkZ, rand, 2);
 			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.AUTUMNWOODS.getBiome().isPresent() && biome == BiomeSettings.AUTUMNWOODS.getBiome().get())
-        {
+			applyGenerator(BlockType.DAISY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DANDELION, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.EELGRASS, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.LILY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.MARSH_MARIGOLD, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.ORIENTAL_PINK_LILY, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.MEADOW, biome))
+		{
+			applyGenerator(BlockType.GERBERA_ORANGE, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.GERBERA_PINK, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.GERBERA_RED, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.GERBERA_YELLOW, world, chunkX, chunkZ, rand, 1);
+
+			applyGenerator(BlockType.ALLIUM, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.BACHELORS_BUTTON, world, chunkX, chunkZ, rand, 2);
 			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.AUTUMNWOODS.getBiome().isPresent() && biome == BiomeSettings.AUTUMNWOODS.getBiome().get()
-                || BiomeSettings.SNOWYRAINFOREST.getBiome().isPresent() && biome == BiomeSettings.SNOWYRAINFOREST.getBiome().get()
-                || BiomeSettings.TEMPORATERAINFOREST.getBiome().isPresent() && biome == BiomeSettings.TEMPORATERAINFOREST.getBiome().get()
-                || BiomeSettings.TUNDRA.getBiome().isPresent() && biome == BiomeSettings.TUNDRA.getBiome().get())
-        {
-			applyGenerator(BlockType.TOADSTOOL, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.GREENHILLS.getBiome().isPresent() && biome == BiomeSettings.GREENHILLS.getBiome().get())
-        {
+			applyGenerator(BlockType.DAISY, world, chunkX, chunkZ, rand, 2);
 			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.GREENSWAMP.getBiome().isPresent() && biome == BiomeSettings.GREENSWAMP.getBiome().get())
-        {
+			applyGenerator(BlockType.YARROW, world, chunkX, chunkZ, rand, 2);
+
+			applyGenerator(BlockType.DANDELION, world, chunkX, chunkZ, rand, 4);
+			applyGenerator(BlockType.POPPY, world, chunkX, chunkZ, rand, 4);
+		}
+
+		if (biomeCheck(BiomeSettings.MINIJUNGLE, biome))
+		{
+			applyGenerator(BlockType.GARDENIA, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.MOUNTAINTAIGA, biome))
+		{
+			applyGenerator(BlockType.PANSY, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.PINEFOREST, biome))
+		{
+			applyGenerator(BlockType.BLUEBELL, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.PANSY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.REDROVER, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.TULIP, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.VIOLET, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.RAINFOREST, biome))
+		{
+			applyGenerator(BlockType.GARDENIA, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.REDWOODLUSH, biome))
+		{
+			applyGenerator(BlockType.BLUEBELL, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.TULIP, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.VIOLET, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.SAVANNA, biome))
+		{
+			applyGenerator(BlockType.AMARYLLIS_PINK, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.AMARYLLIS_RED, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.AMARYLLIS_WHITE, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.CALLA_BLACK, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.GERBERA_ORANGE, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.GERBERA_PINK, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.GERBERA_RED, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.GERBERA_YELLOW, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.SNAPDRAGON, world, chunkX, chunkZ, rand, 1);
+
+			applyGenerator(BlockType.ALLIUM, world, chunkX, chunkZ, rand, 2);
 			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-        }
+			applyGenerator(BlockType.DAISY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DANDELION, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.POPPY, world, chunkX, chunkZ, rand, 2);
+
+			applyGenerator(BlockType.BELLS_OF_IRELAND, world, chunkX, chunkZ, rand, 4);
+			applyGenerator(BlockType.LAVENDER, world, chunkX, chunkZ, rand, 4);
+			applyGenerator(BlockType.YARROW, world, chunkX, chunkZ, rand, 4);
+		}
+
+		if (biomeCheck(BiomeSettings.SHRUBLAND, biome))
+		{
+			applyGenerator(BlockType.GERBERA_ORANGE, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.GERBERA_PINK, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.GERBERA_RED, world, chunkX, chunkZ, rand, 1);
+			applyGenerator(BlockType.GERBERA_YELLOW, world, chunkX, chunkZ, rand, 1);
+
+			applyGenerator(BlockType.ALLIUM, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.BACHELORS_BUTTON, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.BLUEBELL, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DAISY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DANDELION, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.SNAPDRAGON, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.TULIP, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.YARROW, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.WOODLANDS, biome))
+		{
+			applyGenerator(BlockType.ALLIUM, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.BACHELORS_BUTTON, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.BLUEBELL, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DAISY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.DANDELION, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.IRIS_BLUE, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.IRIS_PURPLE, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.LAVENDER, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.LILY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.ORIENTAL_PINK_LILY, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.TULIP, world, chunkX, chunkZ, rand, 2);
+		}
+    
+        ////////// nonstandard flowers //////////
         
-        if (BiomeSettings.MINIJUNGLE.getBiome().isPresent() && biome == BiomeSettings.MINIJUNGLE.getBiome().get())
-        {
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.MOUNTAINDESERT.getBiome().isPresent() && biome == BiomeSettings.MOUNTAINDESERT.getBiome().get())
+		if (biomeCheck(BiomeSettings.MOUNTAINDESERT, biome))
         {
 			applyGenerator(BlockType.TINY_CACTUS, world, chunkX, chunkZ, rand, 70);
         }
         
-        if (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && biome == BiomeSettings.MOUNTAINRIDGE.getBiome().get())
+		if (biomeCheck(BiomeSettings.MOUNTAINRIDGE, biome))
         {
 			applyGenerator(BlockType.TINY_CACTUS, world, chunkX, chunkZ, rand, 62);
         }
         
-        if (BiomeSettings.PINEFOREST.getBiome().isPresent() && biome == BiomeSettings.PINEFOREST.getBiome().get())
+		if (biomeCheck(BiomeSettings.AUTUMNWOODS, biome)
+				|| biomeCheck(BiomeSettings.SNOWYRAINFOREST, biome)
+				|| biomeCheck(BiomeSettings.TEMPORATERAINFOREST, biome)
+				|| biomeCheck(BiomeSettings.TUNDRA, biome))
         {
-			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.RAINFOREST.getBiome().isPresent() && biome == BiomeSettings.RAINFOREST.getBiome().get())
-        {
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 4);
-        }
-        
-        if (BiomeSettings.REDWOODFOREST.getBiome().isPresent() && biome == BiomeSettings.REDWOODFOREST.getBiome().get())
-        {
-			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.REDWOODLUSH.getBiome().isPresent() && biome == BiomeSettings.REDWOODLUSH.getBiome().get())
-        {
-			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.SAVANNA.getBiome().isPresent() && biome == BiomeSettings.SAVANNA.getBiome().get())
-        {
-			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 6);
-			applyGenerator(BlockType.LAVENDER, world, chunkX, chunkZ, rand, 8);
-        }
-        
-        if (BiomeSettings.SHRUBLAND.getBiome().isPresent() && biome == BiomeSettings.SHRUBLAND.getBiome().get())
-        {
-			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.LAVENDER, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.TEMPORATERAINFOREST.getBiome().isPresent() && biome == BiomeSettings.TEMPORATERAINFOREST.getBiome().get())
-        {
-			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.WOODLANDS.getBiome().isPresent() && biome == BiomeSettings.WOODLANDS.getBiome().get())
-        {
-			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-        }
-        
-        if (BiomeSettings.MEADOW.getBiome().isPresent() && biome == BiomeSettings.MEADOW.getBiome().get())
-        {
-			applyGenerator(BlockType.BUTTERCUP, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.HYDRANGEA, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.CALLA_WHITE, world, chunkX, chunkZ, rand, 2);
-			applyGenerator(BlockType.LAVENDER, world, chunkX, chunkZ, rand, 2);
+			applyGenerator(BlockType.TOADSTOOL, world, chunkX, chunkZ, rand, 2);
         }
     }
 }
