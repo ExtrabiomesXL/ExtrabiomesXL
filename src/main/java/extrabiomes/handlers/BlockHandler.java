@@ -179,6 +179,7 @@ public abstract class BlockHandler
 	
 	        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
 
+			LogHelper.info("Registering flower generator for " + block.blockID + ", " + group);
 	        proxy.registerWorldGenerator(new FlowerGenerator(block.blockID));
 		}
 

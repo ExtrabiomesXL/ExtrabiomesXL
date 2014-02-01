@@ -14,6 +14,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.blocks.BlockCustomFlower;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 
 public class FlowerGenerator implements IWorldGenerator
@@ -21,7 +22,8 @@ public class FlowerGenerator implements IWorldGenerator
     private final WorldGenerator hydrangeaGen;
     private final WorldGenerator buttercupGen;
     private final WorldGenerator lavenderGen;
-    private final WorldGenerator rootGen;
+    @SuppressWarnings("unused")
+	private final WorldGenerator rootGen;
     private final WorldGenerator tinyCactusGen;
     private final WorldGenerator toadStoolGen;
     private final WorldGenerator callaGen;
@@ -38,6 +40,15 @@ public class FlowerGenerator implements IWorldGenerator
         callaGen = new WorldGenMetadataFlowers(flowerID, BlockCustomFlower.BlockType.CALLA_WHITE.metadata());
     }
     
+	protected void applyGenerator(WorldGenerator gen, World world, int chunkX,
+			int chunkZ, Random rand) {
+		final int x = chunkX + rand.nextInt(16) + 8;
+		final int y = rand.nextInt(128);
+		final int z = chunkZ + rand.nextInt(16) + 8;
+		final boolean succ = gen.generate(world, rand, x, y, z);
+		LogHelper.info("applyGenerator = " + succ + ", " + gen);
+	}
+
     @Override
     public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
@@ -49,20 +60,9 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -70,25 +70,10 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                lavenderGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(lavenderGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -96,15 +81,8 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -112,20 +90,9 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -133,10 +100,7 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -147,10 +111,7 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                final int x = chunkX + rand.nextInt(16) + 8;
-                final int y = rand.nextInt(128);
-                final int z = chunkZ + rand.nextInt(16) + 8;
-                toadStoolGen.generate(world, rand, x, y, z);
+				applyGenerator(toadStoolGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -158,10 +119,7 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -169,10 +127,7 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                final int x = chunkX + rand.nextInt(16) + 8;
-                final int y = rand.nextInt(128);
-                final int z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
             }
             
             /*
@@ -190,10 +145,7 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -201,10 +153,7 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 70; i++)
             {
-                final int x = chunkX + rand.nextInt(16) + 8;
-                final int y = rand.nextInt(128);
-                final int z = chunkZ + rand.nextInt(16) + 8;
-                tinyCactusGen.generate(world, rand, x, y, z);
+				applyGenerator(tinyCactusGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -212,10 +161,7 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 62; i++)
             {
-                final int x = chunkX + rand.nextInt(16) + 8;
-                final int y = rand.nextInt(128);
-                final int z = chunkZ + rand.nextInt(16) + 8;
-                tinyCactusGen.generate(world, rand, x, y, z);
+				applyGenerator(tinyCactusGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -223,20 +169,9 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -244,10 +179,7 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 4; i++)
             {
-                final int x = chunkX + rand.nextInt(16) + 8;
-                final int y = rand.nextInt(128);
-                final int z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -255,20 +187,9 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -284,20 +205,9 @@ public class FlowerGenerator implements IWorldGenerator
             
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -305,18 +215,12 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 6; i++)
             {
-                final int x = chunkX + rand.nextInt(16) + 8;
-                final int y = rand.nextInt(128);
-                final int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
             }
             
             for (int i = 0; i < 8; i++)
             {
-                final int x = chunkX + rand.nextInt(16) + 8;
-                final int y = rand.nextInt(128);
-                final int z = chunkZ + rand.nextInt(16) + 8;
-                lavenderGen.generate(world, rand, x, y, z);
+				applyGenerator(lavenderGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -324,15 +228,8 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                lavenderGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
+				applyGenerator(lavenderGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -340,20 +237,9 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -361,20 +247,9 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
             }
         }
         
@@ -382,25 +257,10 @@ public class FlowerGenerator implements IWorldGenerator
         {
             for (int i = 0; i < 2; i++)
             {
-                int x = chunkX + rand.nextInt(16) + 8;
-                int y = rand.nextInt(128);
-                int z = chunkZ + rand.nextInt(16) + 8;
-                buttercupGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                hydrangeaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                callaGen.generate(world, rand, x, y, z);
-                
-                x = chunkX + rand.nextInt(16) + 8;
-                y = rand.nextInt(128);
-                z = chunkZ + rand.nextInt(16) + 8;
-                lavenderGen.generate(world, rand, x, y, z);
+				applyGenerator(buttercupGen, world, chunkX, chunkZ, rand);
+				applyGenerator(hydrangeaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(callaGen, world, chunkX, chunkZ, rand);
+				applyGenerator(lavenderGen, world, chunkX, chunkZ, rand);
             }
         }
     }
