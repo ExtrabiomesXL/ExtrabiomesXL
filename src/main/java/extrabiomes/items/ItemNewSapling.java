@@ -1,7 +1,10 @@
 package extrabiomes.items;
 
+import java.util.List;
 import java.util.Locale;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockNewSapling;
 import extrabiomes.utility.MultiItemBlock;
@@ -28,6 +31,11 @@ public class ItemNewSapling extends MultiItemBlock
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
         return super.getUnlocalizedName() + "." + BlockNewSapling.BlockType.values()[metadata].toString().toLowerCase(Locale.ENGLISH);
+    }
+    
+    @Override
+    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
+    	BlockNewSapling.addInformation(itemForTooltip.getItemDamage(), listOfLines);
     }
     
 }

@@ -8,36 +8,17 @@ package extrabiomes.items;
 
 import java.util.Locale;
 
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockMiniLog;
 import extrabiomes.utility.MultiItemBlock;
 
-public class ItemCustomMiniLog extends MultiItemBlock
+public class ItemCustomMiniLog extends ItemBlock
 {
-    
-    private static final int METADATA_BITMASK = 0x3;
-    
-    protected static int unmarkedMetadata(int metadata)
-    {
-        return metadata & METADATA_BITMASK;
-    }
-    
     @Override
     public String getUnlocalizedName(ItemStack itemstack)
     {
-        int metadata = unmarkedMetadata(itemstack.getItemDamage());
-        if (metadata > 0)
-            metadata = 0;
-        itemstack = itemstack.copy();
-        itemstack.setItemDamage(metadata);
-        return super.getUnlocalizedName() + "." + BlockMiniLog.BlockType.values()[metadata].toString().toLowerCase(Locale.ENGLISH);
-    }
-    
-    private static final int METADATA_USERPLACEDBIT = 0x4;
-    
-    private static int setUserPlacedOnMetadata(final int metadata)
-    {
-        return metadata | METADATA_USERPLACEDBIT;
+        return super.getUnlocalizedName() + "." + BlockMiniLog.BlockType.values()[0].toString().toLowerCase(Locale.ENGLISH);
     }
     
     public ItemCustomMiniLog(final int id)
@@ -45,9 +26,4 @@ public class ItemCustomMiniLog extends MultiItemBlock
         super(id);
     }
     
-    @Override
-    public int getMetadata(final int metadata)
-    {
-        return setUserPlacedOnMetadata(metadata);
-    }
 }

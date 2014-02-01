@@ -17,6 +17,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
+import extrabiomes.lib.BlockSettings;
 
 public class BlockKneeLog extends BlockLog
 {
@@ -317,12 +318,27 @@ public class BlockKneeLog extends BlockLog
     @Override
     public int idDropped(int metadata, Random rand, int unused)
     {
-        return blockID;
+    	/*
+    	if(blockID == BlockSettings.RAINBOWKNEELOG.getID()) {
+    		return BlockSettings.NEWLOG.getID();
+    	} else if(blockID == BlockSettings.KNEELOG.getID()) {
+    		return BlockSettings.NEWLOG.getID();
+    	}
+    	*/
+    	
+    	//LogHelper.info("BlockID: %d, unused: %d", blockID, unused);
+        return BlockSettings.NEWLOG.getID();
     }
     
     @Override
     public int damageDropped(int metadata)
     {
+    	if(blockID == BlockSettings.RAINBOWKNEELOG.getID()) {
+    		return BlockNewLog.BlockType.RAINBOW_EUCALYPTUS.metadata();
+    	} else if(blockID == BlockSettings.KNEELOG.getID()) {
+    		return BlockNewLog.BlockType.BALD_CYPRESS.metadata();
+    	}
+
         return 0;
     }
     

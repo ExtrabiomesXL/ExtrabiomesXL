@@ -14,6 +14,7 @@ import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -39,18 +40,24 @@ public class BlockNewSapling extends BlockFlower
     
     public enum BlockType
     {
-        BALD_CYPRESS(0), JAPANESE_MAPLE(1), JAPANESE_MAPLE_SHRUB(2), RAINBOW_EUCALYPTUS(3), SAKURA_BLOSSOM(4);
+        BALD_CYPRESS(0, new String[] {"2x2"}), JAPANESE_MAPLE(1,  new String[] {"1x1"}), JAPANESE_MAPLE_SHRUB(2,  new String[] {"1x1"}), RAINBOW_EUCALYPTUS(3,  new String[] {"2x2"}), SAKURA_BLOSSOM(4,  new String[] {"1x1"});
         
         private final int metadata;
+        private final String[] toolTipData;
         
-        BlockType(int metadata)
+        BlockType(int metadata, String[] data)
         {
             this.metadata = metadata;
+            this.toolTipData = data;
         }
         
         public int metadata()
         {
             return metadata;
+        }
+        
+        public String[] toolTipData(){
+        	return toolTipData;
         }
     }
     
@@ -407,5 +414,29 @@ public class BlockNewSapling extends BlockFlower
                 ((EntityItem) event.entity).lifespan = saplingLifespan;
             }
         }
+    }
+    
+    public static void addInformation(int metaData, List listOfLines) {
+    	BlockType test = BlockType.values()[metaData];
+    	
+    	if(test != null) {
+    		String[] lines = test.toolTipData();
+    		if(lines.length < 1) return;
+    		
+    		if(lines.length > 1) {
+    			for(int line = 1; line < lines.length; line++) {
+    				listOfLines.add(lines[line]);
+    			}
+    			
+    			if(lines[0] != "") {
+    				listOfLines.add("");
+    			}
+    		}
+    		
+    		if(lines[0] != "") {
+    			listOfLines.add("§oPlanting Guide:§r");
+        		listOfLines.add(lines[0]);
+			}
+    	}
     }
 }

@@ -38,57 +38,59 @@ public class BlockCustomFlower extends Block implements IPlantable
     public enum BlockType
     {
     	// group 0 - original flowers
-		AUTUMN_SHRUB(0, 0, "autumnshrub", 0, -1),
-		HYDRANGEA(0, 1, "hydrangea", 2, 12),
-		BUTTERCUP(0, 2, "buttercup", 5, 11), // was "ORANGE", now produces yellow dye
-		LAVENDER(0, 3, "lavender", 5, 5), // was "PURPLE"
-		TINY_CACTUS(0, 4, "tinycactus", 5, -1),
-		ROOT(0, 5, "root", 0, -1),
-		TOADSTOOL(0, 6, "toadstools", 0, -1),
-		CALLA_WHITE(0, 7, "calla_white", 5, 7), // was "WHITE"
+		AUTUMN_SHRUB(0, 0, "autumnshrub", 0, -1, new String[] {}),
+		HYDRANGEA(0, 1, "hydrangea", 2, 12, new String[] {"One of these flowers can be crafted","into Light Blue Dye, using", "a crafting table."}),
+		BUTTERCUP(0, 2, "buttercup", 5, 11, new String[] {"This flower which can be crafted", "into Yellow Dye, is said to", "glow yellow when held under your", "chin if you like butter."}), // was "ORANGE", now produces yellow dye
+		LAVENDER(0, 3, "lavender", 5, 5, new String[] {}), // was "PURPLE"
+		TINY_CACTUS(0, 4, "tinycactus", 5, -1, new String[] {}),
+		ROOT(0, 5, "root", 0, -1, new String[] {}),
+		TOADSTOOL(0, 6, "toadstools", 0, -1, new String[] {}),
+		CALLA_WHITE(0, 7, "calla_white", 5, 7, new String[] {}), // was "WHITE"
         // group 1 - added in 3.15
-		ALLIUM(1, 0, "allium", 3, 13),
-		AMARYLLIS_PINK(1, 1, "amaryllis_pink", 3, 9),
-		AMARYLLIS_RED(1, 2, "amaryllis_red", 3, 1),
-		AMARYLLIS_WHITE(1, 3, "amaryllis_white", 3, -1 /* 15 */),
-		BACHELORS_BUTTON(1, 4, "bachelorsbutton", 3, -1 /* 4 */),
-		BELLS_OF_IRELAND(1, 5, "bellsofireland", 3, 10),
-		BLUEBELL(1, 6, "bluebell", 3, 12),
-		CALLA_BLACK(1, 7, "calla_black", 3, -1 /* 0 */),
-		DAISY(1, 8, "daisy", 3, -1 /* 15 */),
-		DANDELION(1, 9, "dandelion", 3, 11),
-		EELGRASS(1, 10, "eelgrass", 3, -1),
-		GARDENIA(1, 11, "gardenia", 3, 7),
-		GERBERA_ORANGE(1, 12, "gerbera_orange", 3, 14),
-		GERBERA_PINK(1, 13, "gerbera_pink", 3, 9),
-		GERBERA_RED(1, 14, "gerbera_red", 3, 1),
-		GERBERA_YELLOW(1, 15, "gerbera_yellow", 3, 11),
+		ALLIUM(1, 0, "allium", 3, 13, new String[] {""}),
+		AMARYLLIS_PINK(1, 1, "amaryllis_pink", 3, 9, new String[] {}),
+		AMARYLLIS_RED(1, 2, "amaryllis_red", 3, 1, new String[] {}),
+		AMARYLLIS_WHITE(1, 3, "amaryllis_white", 3, -1, new String[] {} /* 15 */),
+		BACHELORS_BUTTON(1, 4, "bachelorsbutton", 3, -1, new String[] {} /* 4 */),
+		BELLS_OF_IRELAND(1, 5, "bellsofireland", 3, 10, new String[] {}),
+		BLUEBELL(1, 6, "bluebell", 3, 12, new String[] {}),
+		CALLA_BLACK(1, 7, "calla_black", 3, -1, new String[] {} /* 0 */),
+		DAISY(1, 8, "daisy", 3, -1, new String[] {} /* 15 */),
+		DANDELION(1, 9, "dandelion", 3, 11, new String[] {}),
+		EELGRASS(1, 10, "eelgrass", 3, -1, new String[] {}),
+		GARDENIA(1, 11, "gardenia", 3, 7, new String[] {}),
+		GERBERA_ORANGE(1, 12, "gerbera_orange", 3, 14, new String[] {}),
+		GERBERA_PINK(1, 13, "gerbera_pink", 3, 9, new String[] {}),
+		GERBERA_RED(1, 14, "gerbera_red", 3, 1, new String[] {}),
+		GERBERA_YELLOW(1, 15, "gerbera_yellow", 3, 11, new String[] {}),
         // group 2 - added in 3.15
-		ORIENTAL_PINK_LILY(2, 0, "orientalpinklily", 3, 9),
-		IRIS_BLUE(2, 1, "iris_blue", 3, -1 /* 4 */),
-		IRIS_PURPLE(2, 2, "iris_purple", 3, 5),
-		LILY(2, 3, "lily", 3, 13),
-		MARSH_MARIGOLD(2, 4, "marshmarigold", 3, 11),
-		PANSY(2, 5, "pansy", 3, -1 /* special case, yellow + purple */),
-		POPPY(2, 6, "poppy", 3, 1),
-		REDROVER(2, 7, "redrover", 3, 1),
-		SNAPDRAGON(2, 8, "snapdragon", 3, -1 /* future special case? */),
-		TULIP(2, 9, "tulips", 3, 14),
-		VIOLET(2, 10, "violet", 3, 5),
-		YARROW(2, 11, "yarrow", 3, 11);
+		ORIENTAL_PINK_LILY(2, 0, "orientalpinklily", 3, 9, new String[] {}),
+		IRIS_BLUE(2, 1, "iris_blue", 3, -1, new String[] {} /* 4 */),
+		IRIS_PURPLE(2, 2, "iris_purple", 3, 5, new String[] {}),
+		LILY(2, 3, "lily", 3, 13, new String[] {}),
+		MARSH_MARIGOLD(2, 4, "marshmarigold", 3, 11, new String[] {}),
+		PANSY(2, 5, "pansy", 3, -1, new String[] {} /* special case, yellow + purple */),
+		POPPY(2, 6, "poppy", 3, 1, new String[] {}),
+		REDROVER(2, 7, "redrover", 3, 1, new String[] {}),
+		SNAPDRAGON(2, 8, "snapdragon", 3, -1, new String[] {} /* future special case? */),
+		TULIP(2, 9, "tulips", 3, 14, new String[] {}),
+		VIOLET(2, 10, "violet", 3, 5, new String[] {}),
+		YARROW(2, 11, "yarrow", 3, 11, new String[] {});
         
 		private final int		group;
 		private final int		metadata;
 		private final int		weight;
 		private final String	texture;
 		private final int		color;		// what color of dye should this make?
+		private final String[] toolTipText;
 
-		BlockType(int group, int metadata, String texture, int weight, int color) {
+		BlockType(int group, int metadata, String texture, int weight, int color, String[] toolTip) {
 			this.group = group;
             this.metadata = metadata;
 			this.texture = texture;
 			this.weight = weight;
 			this.color = color;
+			this.toolTipText = toolTip;
 		}
         
 		public int color() {
@@ -112,6 +114,12 @@ public class BlockCustomFlower extends Block implements IPlantable
 			icon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + this.texture);
 			return icon;
 		}
+        
+        public String[] getToolTipText(){
+        	return toolTipText;
+        }
+		
+		
     }
 
 	public final int						group;
@@ -129,15 +137,14 @@ public class BlockCustomFlower extends Block implements IPlantable
         final CommonProxy proxy = Extrabiomes.proxy;
         for( BlockType type : BlockType.values() ) {
 			if (type.group == this.group) {
-				LogHelper.info(this+": "+group+":"+type.metadata+" = "+type);
+				//LogHelper.info(this+": "+group+":"+type.metadata+" = "+type);
 				groupMap.put(type.metadata, type);
 				if (type.weight > 0) {
 					proxy.addGrassPlant(this, type.metadata, type.weight);
 				}
         	}
         }
-		LogHelper.fine(this.toString() + ": initialized group " + group + ", "
-				+ groupMap.size() + " flowers");
+		//LogHelper.fine(this.toString() + ": initialized group " + group + ", " + groupMap.size() + " flowers");
     }
 
 	public Collection<BlockType> getGroupTypes() {
@@ -285,5 +292,14 @@ public class BlockCustomFlower extends Block implements IPlantable
     public void updateTick(World world, int x, int y, int z, Random rand)
     {
         checkFlowerChange(world, x, y, z);
+    }
+    
+
+    public void addInformation(int metaData, List listOfLines) {
+    	if(groupMap.containsKey(metaData)){
+    		for (final String line : groupMap.get(metaData).getToolTipText()) {
+    			listOfLines.add(line);
+            }
+    	}
     }
 }

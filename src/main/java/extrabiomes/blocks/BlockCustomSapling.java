@@ -25,6 +25,7 @@ import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import extrabiomes.blocks.BlockNewSapling.BlockType;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.SaplingSettings;
@@ -44,18 +45,24 @@ public class BlockCustomSapling extends BlockFlower
     
     public enum BlockType
     {
-        UMBER(0), GOLDENROD(1), VERMILLION(2), CITRINE(3), FIR(4), REDWOOD(5), ACACIA(6), CYPRESS(7);
+        UMBER(0, new String[] {"1x1"}), GOLDENROD(1, new String[] {"1x1"}), VERMILLION(2, new String[] {"1x1"}), CITRINE(3, new String[] {"1x1"}), FIR(4, new String[] {"1x1, 2x2"}), REDWOOD(5, new String[] {"2x2"}), ACACIA(6, new String[] {"1x1","Some", "Sample", "Text"}), CYPRESS(7, new String[] {"1x1"});
         
         private final int metadata;
+        private final String[] toolTipData;
         
-        BlockType(int metadata)
+        BlockType(int metadata, String[] data)
         {
             this.metadata = metadata;
+            this.toolTipData = data;
         }
         
         public int metadata()
         {
             return metadata;
+        }
+        
+        public String[] toolTipData(){
+        	return toolTipData;
         }
     }
     
@@ -481,5 +488,29 @@ public class BlockCustomSapling extends BlockFlower
                 ((EntityItem) event.entity).lifespan = saplingLifespan;
             }
         }
+    }
+    
+    public static void addInformation(int metaData, List listOfLines) {
+    	BlockType test = BlockType.values()[metaData];
+    	
+    	if(test != null) {
+    		String[] lines = test.toolTipData();
+    		if(lines.length < 1) return;
+    		
+    		if(lines.length > 1) {
+    			for(int line = 1; line < lines.length; line++) {
+    				listOfLines.add(lines[line]);
+    			}
+    			
+    			if(lines[0] != "") {
+    				listOfLines.add("");
+    			}
+    		}
+    		
+    		if(lines[0] != "") {
+    			listOfLines.add("§oPlanting Guide:§r");
+        		listOfLines.add(lines[0]);
+			}
+    	}
     }
 }
