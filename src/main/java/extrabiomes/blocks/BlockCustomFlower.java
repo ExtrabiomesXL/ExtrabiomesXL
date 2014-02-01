@@ -108,7 +108,7 @@ public class BlockCustomFlower extends Block implements IPlantable
 		}
     }
 
-	private final int	group;
+	public final int						group;
 	private final Map<Integer, BlockType>	groupMap;
 	public BlockCustomFlower(int id, int group, Material material)
     {
@@ -123,6 +123,7 @@ public class BlockCustomFlower extends Block implements IPlantable
         final CommonProxy proxy = Extrabiomes.proxy;
         for( BlockType type : BlockType.values() ) {
 			if (type.group == this.group) {
+				LogHelper.info(this+": "+group+":"+type.metadata+" = "+type);
 				groupMap.put(type.metadata, type);
 				if (type.weight > 0) {
 					proxy.addGrassPlant(this, type.metadata, type.weight);
@@ -144,7 +145,10 @@ public class BlockCustomFlower extends Block implements IPlantable
 		LogHelper.fine(this.toString() + ": registerIcons");
 		for (BlockType type : groupMap.values()) {
 			final Icon icon = type.registerIcon(iconRegister);
-			LogHelper.fine(this.toString() + ": " + type + " = " + icon);
+			if (icon == null)
+				LogHelper.warning("No icon found for " + type+" (" + type.group + "," + type.metadata + ")");
+			else
+				LogHelper.fine(this.toString() + ": " + type + " = " + icon);
 		}
     }
     
@@ -190,7 +194,6 @@ public class BlockCustomFlower extends Block implements IPlantable
 		if( type != null ) {
 			return type.getIcon();
 		} else {
-			LogHelper.warning("No Icon found for "+type);
 			return null;
 		}
     }
