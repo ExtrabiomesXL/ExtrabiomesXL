@@ -65,7 +65,6 @@ public abstract class RecipeHandler
 
         if (Element.TOADSTOOL.isPresent())
         {
-            
             final ItemStack toadstool = Element.TOADSTOOL.get();
             
             // emptyBowl + redMushroom + 2 toadstools = soup
@@ -124,10 +123,7 @@ public abstract class RecipeHandler
     	if(Element.LOG_QUARTER_OAK.isPresent()) {
     		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Block.wood, 4, 0), new String[] { "ll","ll" }, 'l', Element.LOG_QUARTER_OAK.get()));
     		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_QUARTER_OAK.get().getItem().itemID, 4, 0), new String[] { "ll","ll" }, 'l', new ItemStack(Block.wood, 1, 0)));
-    	}
-    	
-
-    	
+		}
     }
     
     private static void writeLogRecipes()
