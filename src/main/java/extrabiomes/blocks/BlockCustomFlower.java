@@ -56,7 +56,7 @@ public class BlockCustomFlower extends Block implements IPlantable
 		BLUEBELL(1, 6, "bluebell", 3, 12, new String[] {}),
 		CALLA_BLACK(1, 7, "calla_black", 3, -1, new String[] {} /* 0 */),
 		DAISY(1, 8, "daisy", 3, -1, new String[] {} /* 15 */),
-		DANDELION(1, 9, "dandelion", 3, 11, new String[] {}),
+		DANDELION(1, 9, "dandelion", 3, -1, new String[] {}),
 		EELGRASS(1, 10, "eelgrass", 3, -1, new String[] {}),
 		GARDENIA(1, 11, "gardenia", 3, 7, new String[] {}),
 		GERBERA_ORANGE(1, 12, "gerbera_orange", 3, 14, new String[] {}),
