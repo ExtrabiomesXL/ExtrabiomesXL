@@ -6,6 +6,8 @@
 
 package extrabiomes.items;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -77,5 +79,11 @@ public class LogTurner extends ItemTool
             world.setBlock(x, y, z, blockID, type | orientation, 3);
         }
         return true;
+    }
+    
+    @Override
+    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
+    	listOfLines.add("Use this to change the");
+    	listOfLines.add("orientation of logs.");
     }
 }

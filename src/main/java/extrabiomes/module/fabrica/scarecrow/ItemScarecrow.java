@@ -6,6 +6,8 @@
 
 package extrabiomes.module.fabrica.scarecrow;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
@@ -88,5 +90,11 @@ public class ItemScarecrow extends Item
     public boolean requiresMultipleRenderPasses()
     {
         return true;
+    }
+    
+    @Override
+    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
+    	listOfLines.add("Keeps your garden free");
+    	listOfLines.add("of most creatures.");
     }
 }

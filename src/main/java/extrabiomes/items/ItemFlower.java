@@ -1,6 +1,10 @@
 package extrabiomes.items;
 
+import java.util.Collection;
+import java.util.List;
+
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.helpers.LogHelper;
@@ -18,9 +22,8 @@ public class ItemFlower extends MultiItemBlock
 
 		this.group = b.group;
 
-		LogHelper.finer("ItemFlower - " + id + ", "
-				+ ( b != null ? b.blockID : "null" ) + ", group = " + group);
-
+		//LogHelper.finer("ItemFlower - " + id + ", " + ( b != null ? b.blockID : "null" ) + ", group = " + group);
+		
 		max_meta = b.getGroupTypes().size();
     }
     
@@ -32,6 +35,17 @@ public class ItemFlower extends MultiItemBlock
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
         return super.getUnlocalizedName(itemstack);
+    }
+
+    @Override
+    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
+    	//BlockNewSapling.addInformation(itemForTooltip.getItemDamage(), listOfLines);
+    	//BlockCustomFlower()
+    	//groupType[]
+    	((BlockCustomFlower)Block.blocksList[itemForTooltip.itemID]).addInformation(itemForTooltip.getItemDamage(), listOfLines);
+    	
+    	//listOfLines.add("Group: " + Block.blocksList[itemForTooltip.itemID].getUnlocalizedName());
+    	
     }
     
 }
