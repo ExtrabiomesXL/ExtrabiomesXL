@@ -434,7 +434,7 @@ public class BlockNewSapling extends BlockFlower
     		}
     		
     		if(lines[0] != "") {
-    			listOfLines.add("§oPlanting Guide:§r");
+    			listOfLines.add("\u00A7oPlanting Guide:\u00A7r");
         		listOfLines.add(lines[0]);
 			}
     	}

@@ -39,21 +39,21 @@ public class BlockCustomFlower extends Block implements IPlantable
     {
     	// group 0 - original flowers
 		AUTUMN_SHRUB(0, 0, "autumnshrub", 0, -1, new String[] {}),
-		HYDRANGEA(0, 1, "hydrangea", 2, 12, new String[] {"One of these flowers can be crafted","into Light Blue Dye, using", "a crafting table."}),
-		BUTTERCUP(0, 2, "buttercup", 5, 11, new String[] {"This flower which can be crafted", "into Yellow Dye, is said to", "glow yellow when held under your", "chin if you like butter."}), // was "ORANGE", now produces yellow dye
-		LAVENDER(0, 3, "lavender", 5, 5, new String[] {}), // was "PURPLE"
-		TINY_CACTUS(0, 4, "tinycactus", 5, -1, new String[] {}),
+		HYDRANGEA(0, 1, "hydrangea", 2, 12, new String[] {"One of these flowers can be","crafted into \u00A7b\u00A7oLight Blue Dye\u00A7r\u00A77,", "using a crafting table."}),
+		BUTTERCUP(0, 2, "buttercup", 5, 11, new String[] {"This flower which can be", "crafted into \u00A76\u00A7oYellow Dye\u00A7r\u00A77,", "it is said to glow yellow", "when held under your chin if", "you like butter."}), // was "ORANGE", now produces yellow dye
+		LAVENDER(0, 3, "lavender", 5, 5, new String[] {"Besides being valued for it’s", "vibrant colors, but also it’s", "fragrant scent. This flower", "can be crafted into \u00A75\u00A7oPurple Dye\u00A7r\u00A77."}), // was "PURPLE"
+		TINY_CACTUS(0, 4, "tinycactus", 5, -1, new String[] {"Four of these non-prickly", "cacti can be crafted into", "\u00A7oCactus Paste\u00A7r\u00A77, which can be", "smelted into \u00A72\u00A7oCactus Green Dye\u00A7r\u00A77."}),
 		ROOT(0, 5, "root", 0, -1, new String[] {}),
 		TOADSTOOL(0, 6, "toadstools", 0, -1, new String[] {}),
-		CALLA_WHITE(0, 7, "calla_white", 5, 7, new String[] {}), // was "WHITE"
+		CALLA_WHITE(0, 7, "calla_white", 5, 7, new String[] {"This flower which produces", "\u00A7oLight Gray Dye\u00A7r\u00A77, was also a", "favorite of many painters", "to use in their works of art."}), // was "WHITE"
         // group 1 - added in 3.15
-		ALLIUM(1, 0, "allium", 3, 13, new String[] {""}),
+		ALLIUM(1, 0, "allium", 3, 13, new String[] {"This flower produces \u00A7d\u00A7oMagenta", "\u00A7d\u00A7oDye\u00A7r\u00A77. Some claim that it can", "also be used to keep vampires", "away as it is the flowering", "part of garlic, though it has", "never been proven."}),
 		AMARYLLIS_PINK(1, 1, "amaryllis_pink", 3, 9, new String[] {}),
 		AMARYLLIS_RED(1, 2, "amaryllis_red", 3, 1, new String[] {}),
 		AMARYLLIS_WHITE(1, 3, "amaryllis_white", 3, -1, new String[] {} /* 15 */),
 		BACHELORS_BUTTON(1, 4, "bachelorsbutton", 3, -1, new String[] {} /* 4 */),
 		BELLS_OF_IRELAND(1, 5, "bellsofireland", 3, 10, new String[] {}),
-		BLUEBELL(1, 6, "bluebell", 3, 12, new String[] {}),
+		BLUEBELL(1, 6, "bluebell", 3, 12, new String[] {"This mythical flower, was", "said to have sprang up from", "the blood of the dying prince", "Hyacinthus. \u00A7b\u00A7oLight Blue Dye", "can be made from this flower."}),
 		CALLA_BLACK(1, 7, "calla_black", 3, -1, new String[] {} /* 0 */),
 		DAISY(1, 8, "daisy", 3, -1, new String[] {} /* 15 */),
 		DANDELION(1, 9, "dandelion", 3, -1, new String[] {}),
@@ -66,7 +66,7 @@ public class BlockCustomFlower extends Block implements IPlantable
         // group 2 - added in 3.15
 		ORIENTAL_PINK_LILY(2, 0, "orientalpinklily", 3, 9, new String[] {}),
 		IRIS_BLUE(2, 1, "iris_blue", 3, -1, new String[] {} /* 4 */),
-		IRIS_PURPLE(2, 2, "iris_purple", 3, 5, new String[] {}),
+		IRIS_PURPLE(2, 2, "iris_purple", 3, 5, new String[] {"The Iris takes its name from", "the Greek word for rainbow,", "referring to the wide variety", "of flower colors found among", "the many species. This one", "will produce \u00A75\u00A7oPurple Dye\u00A7r\u00A77."}),
 		LILY(2, 3, "lily", 3, 13, new String[] {}),
 		MARSH_MARIGOLD(2, 4, "marshmarigold", 3, 11, new String[] {}),
 		PANSY(2, 5, "pansy", 3, -1, new String[] {} /* special case, yellow + purple */),
