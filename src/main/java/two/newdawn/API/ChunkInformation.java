@@ -58,17 +58,17 @@ public class ChunkInformation {
   /* The humidity-map of this chunk */
   public final float[] humidity;
   /* Statistical height information of this chunk. Height is the first air block above terrain */
-  public final int lowestHeight;
-  public final int averageHeight;
-  public final int highestHeight;
+  protected int lowestHeight;
+  protected int averageHeight;
+  protected int highestHeight;
   /* Statistical temperature information of this chunk */
-  public final float lowestTemperature;
-  public final float averageTemperature;
-  public final float highestTemperature;
+  protected float lowestTemperature;
+  protected float averageTemperature;
+  protected float highestTemperature;
   /* Statistical humidity information of this chunk */
-  public final float lowestHumidity;
-  public final float averageHumidity;
-  public final float highestHumidity;
+  protected float lowestHumidity;
+  protected float averageHumidity;
+  protected float highestHumidity;
   /* Additional information. Intended for mods that need to store any kind of extra data for whatever reason. */
   public final HashMap<String, Object> additionalInformation = new HashMap<String, Object>();
 
@@ -85,7 +85,9 @@ public class ChunkInformation {
     this.baseValues = basicInfo;
     this.temperature = temperature;
     this.humidity = humidity;
+  }
 
+  public void updateMinMaxInformation() {
     int lowHeight = Integer.MAX_VALUE;
     int highHight = Integer.MIN_VALUE;
     int avgHeight = 0;
@@ -473,5 +475,86 @@ public class ChunkInformation {
    */
   public int getAverageHeight() {
     return averageHeight;
+  }
+
+  /**
+   * Returns the lowest height of this chunk.
+   *
+   * @return the lowest height of this chunk.
+   */
+  public int getLowestHeight() {
+    return lowestHeight;
+  }
+
+  /**
+   * Returns the highest height of this chunk.
+   *
+   * @return the highest height of this chunk.
+   */
+  public int getHighestHeight() {
+    return highestHeight;
+  }
+
+  /**
+   * Returns the lowest temperature of this chunk.
+   *
+   * @return the lowest temperature of this chunk.
+   */
+  public float getLowestTemperature() {
+    return lowestTemperature;
+  }
+
+  /**
+   * Returns the highest temperature of this chunk.
+   *
+   * @return the highest temperature of this chunk.
+   */
+  public float getHighestTemperature() {
+    return highestTemperature;
+  }
+
+  /**
+   * Returns the lowest humidity of this chunk.
+   *
+   * @return the lowest humidity of this chunk.
+   */
+  public float getLowestHumidity() {
+    return lowestHumidity;
+  }
+
+  /**
+   * Returns the highest humidity of this chunk.
+   *
+   * @return the highest humidity of this chunk.
+   */
+  public float getHighestHumidity() {
+    return highestHumidity;
+  }
+
+  /**
+   * Returns the difference between highest and lowest height in this chunk.
+   *
+   * @return the difference between highest and lowest height in this chunk.
+   */
+  public int getHeightDifference() {
+    return this.highestHeight - this.lowestHeight;
+  }
+
+  /**
+   * Returns the difference between highest and lowest temperature in this chunk.
+   *
+   * @return the difference between highest and lowest temperature in this chunk.
+   */
+  public float getTemperatureDifference() {
+    return this.highestTemperature - this.lowestTemperature;
+  }
+
+  /**
+   * Returns the difference between highest and lowest humidity in this chunk.
+   *
+   * @return the difference between highest and lowest humidity in this chunk.
+   */
+  public float getHumidityDifference() {
+    return this.highestHumidity - this.lowestHumidity;
   }
 }

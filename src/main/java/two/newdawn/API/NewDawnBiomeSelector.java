@@ -2,8 +2,6 @@
  */
 package two.newdawn.API;
 
-import java.util.Arrays;
-import net.minecraft.block.Block;
 import two.newdawn.API.noise.SimplexNoise;
 
 /**
@@ -40,7 +38,7 @@ public abstract class NewDawnBiomeSelector implements Comparable<NewDawnBiomeSel
    * The priority should be set by the provider.
    *
    * @param worldNoise the world base noise.
-   * @param priority the priority of this selector.
+   * @param priority the priority of this selector. @See getPriority.
    */
   public NewDawnBiomeSelector(final SimplexNoise worldNoise, final int priority) {
     this.worldNoise = worldNoise;
@@ -115,6 +113,9 @@ public abstract class NewDawnBiomeSelector implements Comparable<NewDawnBiomeSel
 
   /**
    * Returns the priority of this selector.
+   * Higher priority selectors will get a chance to select a biome before lower
+   * priority selectors.<br>
+   * Set in constructor.
    *
    * @return the priority of this selector.
    */
@@ -143,6 +144,6 @@ public abstract class NewDawnBiomeSelector implements Comparable<NewDawnBiomeSel
 
   @Override
   public int compareTo(final NewDawnBiomeSelector other) {
-    return Integer.signum(this.getPriority() - other.getPriority());
+    return Integer.signum(other.getPriority() - this.getPriority());
   }
 }
