@@ -28,8 +28,8 @@ import two.newdawn.API.noise.SimplexNoise;
  */
 public interface NewDawnBiomeProvider {
 
-  public static final int PRIORITY_HIGHEST = 0;
-  public static final int PRIORITY_LOWEST = 100;
+  public static final int PRIORITY_HIGHEST = 1000;
+  public static final int PRIORITY_LOWEST = 0;
   public static final int PRIORITY_MEDIUM = PRIORITY_LOWEST / 2;
 
   /**
