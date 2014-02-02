@@ -28,7 +28,7 @@ public class ItemPaste extends Item
     @Override
     public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
     	listOfLines.add("This green paste made from");
-    	listOfLines.add("4 §oTiny Cacti§r can be smelted");
-    	listOfLines.add("into §2Cactus Green§r.");
+    	listOfLines.add("4 \u00A7oTiny Cacti\u00A7r\u00A77 can be smelted");
+    	listOfLines.add("into \u00A72\u00A7oCactus Green\u00A7r\u00A77.");
     }
 }
