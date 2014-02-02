@@ -45,7 +45,7 @@ public class BlockCustomSapling extends BlockFlower
     
     public enum BlockType
     {
-        UMBER(0, new String[] {"1x1"}), GOLDENROD(1, new String[] {"1x1"}), VERMILLION(2, new String[] {"1x1"}), CITRINE(3, new String[] {"1x1"}), FIR(4, new String[] {"1x1, 2x2"}), REDWOOD(5, new String[] {"2x2"}), ACACIA(6, new String[] {"1x1","Some", "Sample", "Text"}), CYPRESS(7, new String[] {"1x1"});
+        UMBER(0, new String[] {"1x1"}), GOLDENROD(1, new String[] {"1x1"}), VERMILLION(2, new String[] {"1x1"}), CITRINE(3, new String[] {"1x1"}), FIR(4, new String[] {"1x1, 2x2"}), REDWOOD(5, new String[] {"2x2"}), ACACIA(6, new String[] {"1x1"}), CYPRESS(7, new String[] {"1x1"});
         
         private final int metadata;
         private final String[] toolTipData;
@@ -508,7 +508,7 @@ public class BlockCustomSapling extends BlockFlower
     		}
     		
     		if(lines[0] != "") {
-    			listOfLines.add("§oPlanting Guide:§r");
+    			listOfLines.add("\u00A7oPlanting Guide:\u00A7r");
         		listOfLines.add(lines[0]);
 			}
     	}
