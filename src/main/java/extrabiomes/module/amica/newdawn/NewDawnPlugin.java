@@ -7,9 +7,9 @@ import java.util.Set;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.ForgeSubscribe;
 import two.newdawn.API.NewDawnBiome;
-import two.newdawn.API.NewDawnBiomeList;
 import two.newdawn.API.NewDawnBiomeProvider;
 import two.newdawn.API.NewDawnBiomeSelector;
+import two.newdawn.API.NewDawnRegistry;
 import two.newdawn.API.noise.NoiseStretch;
 import two.newdawn.API.noise.SimplexNoise;
 import extrabiomes.Extrabiomes;
@@ -27,7 +27,7 @@ public class NewDawnPlugin implements NewDawnBiomeProvider
         if (!isEnabled())
             return;
         LogHelper.info("Registering NewDawn biome provider...");
-        NewDawnBiomeList.registerProvider(this);
+		NewDawnRegistry.registerProvider(this);
     }
     
     private boolean isEnabled()
@@ -65,9 +65,10 @@ public class NewDawnPlugin implements NewDawnBiomeProvider
 	public Set<NewDawnBiomeSelector> getBiomeSelectors(SimplexNoise worldNoise) {
 		final HashSet<NewDawnBiomeSelector> selectors = new HashSet<NewDawnBiomeSelector>();
 		
-		selectors.add(new EBXLAridSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_MEDIUM - 1));
-		selectors.add(new EBXLDampSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_MEDIUM));
-		selectors.add(new EBXLNormalSelector(worldNoise,NewDawnBiomeProvider.PRIORITY_MEDIUM + 1));
+		// NB: had to change priority values because the constants are broken in the API
+		selectors.add(new EBXLAridSelector(worldNoise, 450));
+		selectors.add(new EBXLDampSelector(worldNoise, 500));
+		selectors.add(new EBXLNormalSelector(worldNoise, 550));
 		
 		return selectors;
 	}
