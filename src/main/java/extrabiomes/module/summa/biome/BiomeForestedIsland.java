@@ -9,7 +9,6 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import cpw.mods.fml.relauncher.Side;
@@ -19,11 +18,16 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeForestedIsland extends ExtrabiomeGenBase
 {
-    
+
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.FORESTEDISLAND;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomeForestedIsland()
     {
-        super(BiomeSettings.FORESTEDISLAND.getID());
+		super(BiomeSettings.FORESTEDISLAND);
         
         setColor(0x62BF6C);
         setBiomeName("Forested Island");
@@ -33,12 +37,6 @@ public class BiomeForestedIsland extends ExtrabiomeGenBase
         maxHeight = 0.8F;
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.FORESTEDISLAND).build();
     }
     
     @Override

@@ -8,7 +8,6 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
@@ -16,11 +15,16 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeExtremeJungle extends ExtrabiomeGenBase
 {
-    
+
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.EXTREMEJUNGLE;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomeExtremeJungle()
     {
-        super(BiomeSettings.EXTREMEJUNGLE.getID());
+		super(BiomeSettings.EXTREMEJUNGLE);
         setColor(0x2c4205);
         setBiomeName("Extreme Jungle");
         temperature = BiomeGenBase.jungle.temperature;
@@ -32,9 +36,4 @@ public class BiomeExtremeJungle extends ExtrabiomeGenBase
         spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
     }
     
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.EXTREMEJUNGLE).build();
-    }
 }

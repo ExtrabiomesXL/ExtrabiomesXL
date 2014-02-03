@@ -8,7 +8,6 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,10 +16,15 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeGreenHills extends ExtrabiomeGenBase
 {
-    
+
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.GREENHILLS;
+	}
+
     public BiomeGreenHills()
     {
-        super(BiomeSettings.GREENHILLS.getID());
+		super(BiomeSettings.GREENHILLS);
         
         setColor(0x68C474);
         setBiomeName("Green Hills");
@@ -28,12 +32,6 @@ public class BiomeGreenHills extends ExtrabiomeGenBase
         rainfall = BiomeGenBase.forest.rainfall + 0.1F;
         minHeight = 0.6F;
         maxHeight = 1.2F;
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.GREENHILLS).build();
     }
     
     @Override

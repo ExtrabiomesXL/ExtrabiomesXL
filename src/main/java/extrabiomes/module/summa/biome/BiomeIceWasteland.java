@@ -7,16 +7,20 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
-import net.minecraft.world.biome.BiomeDecorator;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
 public class BiomeIceWasteland extends ExtrabiomeGenBase
 {
-    
+
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.ICEWASTELAND;
+	}
+
     public BiomeIceWasteland()
     {
-        super(BiomeSettings.ICEWASTELAND.getID());
+		super(BiomeSettings.ICEWASTELAND);
         
         spawnableCreatureList.clear();
         topBlock = (byte) Block.blockSnow.blockID;
@@ -28,12 +32,6 @@ public class BiomeIceWasteland extends ExtrabiomeGenBase
         rainfall = 0.1F;
         minHeight = 0.3F;
         maxHeight = 0.4F;
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.ICEWASTELAND).build();
     }
     
 }

@@ -9,7 +9,6 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.SpawnListEntry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,22 +17,20 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMeadow extends ExtrabiomeGenBase
 {
-    
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.MEADOW;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomeMeadow()
     {
-        super(BiomeSettings.MEADOW.getID());
+		super(BiomeSettings.MEADOW);
         minHeight = 0.0F;
         maxHeight = 0.0F;
         setBiomeName("Meadow");
         
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 6, 2, 6));
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MEADOW).build();
     }
     
     @Override
@@ -49,5 +46,4 @@ public class BiomeMeadow extends ExtrabiomeGenBase
     {
         return ColorizerGrass.getGrassColor(1.0F, 1.0F);
     }
-    
 }

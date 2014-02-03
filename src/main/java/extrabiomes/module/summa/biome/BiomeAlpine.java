@@ -8,18 +8,22 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
 public class BiomeAlpine extends ExtrabiomeGenBase
 {
-    
+
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.ALPINE;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomeAlpine()
     {
-        super(BiomeSettings.ALPINE.getID());
+		super(BiomeSettings.ALPINE);
         topBlock = (byte) Block.stone.blockID;
         fillerBlock = (byte) Block.stone.blockID;
         setColor(0x8DACC4);
@@ -34,9 +38,4 @@ public class BiomeAlpine extends ExtrabiomeGenBase
         
     }
     
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.ALPINE).build();
-    }
 }

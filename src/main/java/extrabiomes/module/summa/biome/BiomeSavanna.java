@@ -7,7 +7,6 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
@@ -15,10 +14,15 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeSavanna extends ExtrabiomeGenBase
 {
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.SAVANNA;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomeSavanna()
     {
-        super(BiomeSettings.SAVANNA.getID());
+		super(BiomeSettings.SAVANNA);
         
         setColor(0xBFA243);
         setBiomeName("Savanna");
@@ -28,11 +32,5 @@ public class BiomeSavanna extends ExtrabiomeGenBase
         maxHeight = 0.1F;
         
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 2, 4));
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.SAVANNA).build();
     }
 }

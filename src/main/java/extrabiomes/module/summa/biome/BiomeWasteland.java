@@ -6,7 +6,6 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
@@ -14,9 +13,14 @@ import extrabiomes.lib.DecorationSettings;
 public class BiomeWasteland extends ExtrabiomeGenBase
 {
     
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.WASTELAND;
+	}
+
     public BiomeWasteland()
     {
-        super(BiomeSettings.WASTELAND.getID());
+		super(BiomeSettings.WASTELAND);
         
         setColor(0x9E7C41);
         setBiomeName("Wasteland");
@@ -29,12 +33,6 @@ public class BiomeWasteland extends ExtrabiomeGenBase
         spawnableCreatureList.clear();
         
         setDisableRain();
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.WASTELAND).build();
     }
     
 }

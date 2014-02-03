@@ -7,7 +7,6 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
@@ -15,11 +14,15 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMountainTaiga extends ExtrabiomeGenBase
 {
-    
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.MOUNTAINTAIGA;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomeMountainTaiga()
     {
-        super(BiomeSettings.MOUNTAINTAIGA.getID());
+		super(BiomeSettings.MOUNTAINTAIGA);
         
         setColor(0xB6659);
         setBiomeName("Mountain Taiga");
@@ -29,11 +32,5 @@ public class BiomeMountainTaiga extends ExtrabiomeGenBase
         maxHeight = 1.2F;
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 8, 4, 4));
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MOUNTAINTAIGA).build();
     }
 }
