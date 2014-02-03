@@ -17,40 +17,43 @@ import extrabiomes.utility.EnhancedConfiguration;
 
 public enum DecorationSettings
 {
-    //   lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm
-    ALPINE(null, 7, 0, 0, null, null, null, null, null, null, null, null),
-    AUTUMNWOODS(null, 6, null, 6, null, 3, null, null, null, null, null, null),
-    BIRCHFOREST(null, 7, null, 1, null, null, null, null, null, null, null, null),
-    EXTREMEJUNGLE(null, 50, 4, 25, null, null, null, null, null, null, null, null),
-    FORESTEDHILLS(null, 7, 1, 5, null, null, null, null, null, null, null, null),
-    //   lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm
-    FORESTEDISLAND(null, 7, null, 3, null, null, null, null, null, null, null, null),
-    GLACIER(null, null, null, null, null, null, null, null, null, null, null, null),
-    GREENHILLS(null, 1, null, null, null, null, null, null, null, null, null, null),
-    GREENSWAMP(4, 4, 0, null, 0, 8, 10, null, 0, 0, 1, null),
-    ICEWASTELAND(null, 0, null, null, null, null, null, null, null, null, null, null),
-    //   lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm
-    MARSH(null, 0, null, 999, null, null, 10, null, null, null, null, null),
-    MEADOW(null, 0, 9, 12, null, null, null, null, null, null, null, null),
-    MINIJUNGLE(12, 15, 5, null, null, 2, 70, null, null, null, 3, null),
-    MOUNTAINDESERT(null, 0, null, null, 2, null, 50, 10, null, null, null, null),
-    MOUNTAINRIDGE(null, 0, null, 12, null, null, null, null, null, null, null, null),
-    //   lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm
-    MOUNTAINTAIGA(null, 10, null, 1, null, null, null, null, null, null, null, null),
-    PINEFOREST(null, 10, null, 1, null, null, null, null, null, null, null, null),
-    RAINFOREST(null, 22, 2, 4, null, null, null, null, null, null, null, null),
-    REDWOODFOREST(null, 7, null, null, null, null, null, null, null, null, null, null),
-    REDWOODLUSH(null, 8, null, null, null, null, null, null, null, null, null, null),
-    //   lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm
-    SAVANNA(null, 0, 1, 17, null, null, null, null, null, null, null, null),
-    SHRUBLAND(null, 1, 3, 1, null, null, null, null, null, null, null, null),
-    SNOWYFOREST(null, 8, 1, 4, null, null, null, null, null, null, null, null),
-    SNOWYRAINFOREST(null, 17, null, 16, null, 2, null, null, null, null, null, null),
-    TEMPORATERAINFOREST(null, 17, null, 16, null, 2, null, null, null, null, null, null),
-    //   lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm
-    TUNDRA(null, null, -999, -999, null, null, null, null, 0, 0, null, null),
-    WASTELAND(null, null, null, 1, 3, null, null, null, null, null, null, null),
-    WOODLANDS(null, 8, null, 3, null, null, null, null, null, null, null, null);
+	// @formatter:off
+    //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
+    ALPINE				(null, 7,    0,    0,    null, null, null, null, null, null, null, null, 2   ), // 5
+    AUTUMNWOODS			(null, 6,    null, 6,    null, 3,    null, null, null, null, null, null, 2   ), // 2
+    BIRCHFOREST			(null, 7,    null, 1,    null, null, null, null, null, null, null, null, 2   ), // 10
+    EXTREMEJUNGLE		(null, 50,   4,    25,   null, null, null, null, null, null, null, null, 2   ), // 1
+    FORESTEDHILLS		(null, 7,    1,    5,    null, null, null, null, null, null, null, null, 2   ), // 12
+    //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
+    FORESTEDISLAND		(null, 7,    null, 3,    null, null, null, null, null, null, null, null, 2   ), // 8
+    GLACIER				(null, null, null, null, null, null, null, null, null, null, null, null, null),
+    GREENHILLS			(null, 1,    null, null, null, null, null, null, null, null, null, null, 2   ), // 11
+    GREENSWAMP			(4,    4,    0,    null, 0,    8,    10,   null, 0,    0,    1,    null, 2   ), // 8
+    ICEWASTELAND		(null, 0,    null, null, null, null, null, null, null, null, null, null, null),
+    //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
+    MARSH				(null, 0,    null, 999,  null, null, 10,   null, null, null, null, null, null),
+    MEADOW				(null, 0,    9,    12,   null, null, null, null, null, null, null, null, 2   ), // 12
+    MINIJUNGLE			(12,   15,   5,    null, null, 2,    70,   null, null, null, 3,    null, 2   ), // 1
+    MOUNTAINDESERT		(null, 0,    null, null, 2,    null, 50,   10,   null, null, null, null, null),
+    MOUNTAINRIDGE		(null, 0,    null, 12,   null, null, null, null, null, null, null, null, null),
+    //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
+    MOUNTAINTAIGA		(null, 10,   null, 1,    null, null, null, null, null, null, null, null, 2   ), // 1
+    PINEFOREST			(null, 10,   null, 1,    null, null, null, null, null, null, null, null, 2   ), // 6
+    RAINFOREST			(null, 22,   2,    4,    null, null, null, null, null, null, null, null, 2   ), // 1
+    REDWOODFOREST		(null, 7,    null, null, null, null, null, null, null, null, null, null, null),
+    REDWOODLUSH			(null, 8,    null, null, null, null, null, null, null, null, null, null, 2   ), // 3
+    //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
+    SAVANNA				(null, 0,    1,    17,   null, null, null, null, null, null, null, null, 2   ), // 18
+    SHRUBLAND			(null, 1,    3,    1,    null, null, null, null, null, null, null, null, 2   ), // 13
+    SNOWYFOREST			(null, 8,    1,    4,    null, null, null, null, null, null, null, null, null),
+    SNOWYRAINFOREST		(null, 17,   null, 16,   null, 2,    null, null, null, null, null, null, null),
+    TEMPORATERAINFOREST	(null, 17,   null, 16,   null, 2,    null, null, null, null, null, null, null),
+    //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
+    TUNDRA				(null, null, -999, -999, null, null, null, null, 0,    0,    null, null, null),
+    WASTELAND			(null, null, null, 1,    3,    null, null, null, null, null, null, null, null),
+    WOODLANDS			(null, 8,    null, 3,    null, null, null, null, null, null, null, null, 2   ), // 11
+	// @formatter:on
+	DEFAULT();
     
     public enum Decoration
     {
@@ -65,7 +68,8 @@ public enum DecorationSettings
         SAND(".sand", 1),
         SAND2(".sandTwo", 3),
         CLAY(".clay", 1),
-        BIGMUSHROOMS(".bigMushrooms", 0);
+		BIGMUSHROOMS(".bigMushrooms", 0),
+		NEW_FLOWERS(".newFlowers", 0);
         
         public final String key; // config file key
         public final int    def; // default value
@@ -81,10 +85,15 @@ public enum DecorationSettings
     
     private DecorationSettings()
     {
-        this(null, null, null, null, null, null, null, null, null, null, null, null);
+		this(null, null, null, null, null, null, null, null, null, null, null,
+				null, null);
     }
     
-    private DecorationSettings(Integer waterlily, Integer trees, Integer flowers, Integer grass, Integer deadBush, Integer mushrooms, Integer reeds, Integer cacti, Integer sand, Integer sand2, Integer clay, Integer bigMushrooms)
+	private DecorationSettings(Integer waterlily, Integer trees,
+			Integer flowers, Integer grass, Integer deadBush,
+			Integer mushrooms, Integer reeds, Integer cacti, Integer sand,
+			Integer sand2, Integer clay, Integer bigMushrooms,
+			Integer newFlowers)
     {
         initSetting(Decoration.WATERLILY, waterlily);
         initSetting(Decoration.TREES, trees);
@@ -98,6 +107,7 @@ public enum DecorationSettings
         initSetting(Decoration.SAND2, sand2);
         initSetting(Decoration.CLAY, clay);
         initSetting(Decoration.BIGMUSHROOMS, bigMushrooms);
+		initSetting(Decoration.NEW_FLOWERS, newFlowers);
     }
     
     private void initSetting(Decoration key, Integer val)
@@ -123,6 +133,7 @@ public enum DecorationSettings
         parseProperty(configuration, Decoration.SAND2);
         parseProperty(configuration, Decoration.CLAY);
         parseProperty(configuration, Decoration.BIGMUSHROOMS);
+		parseProperty(configuration, Decoration.NEW_FLOWERS);
     }
     
     private void parseProperty(EnhancedConfiguration configuration, Decoration decoration)

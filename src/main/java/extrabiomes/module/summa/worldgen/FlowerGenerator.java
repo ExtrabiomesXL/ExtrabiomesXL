@@ -23,6 +23,8 @@ import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomFlower.BlockType;
 import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings.Decoration;
+import extrabiomes.module.summa.biome.ExtrabiomeGenBase;
 
 public class FlowerGenerator implements IWorldGenerator
 {
@@ -246,7 +248,8 @@ public class FlowerGenerator implements IWorldGenerator
 		final BiomeSettings settings = BiomeSettings
 				.findBiomeSettings(biome.biomeID);
 		if (settings != null && biomeCheck(settings, biome) && flowerMaps.containsKey(settings)) {
-			final int maxFlowers = Math.max(biome.theBiomeDecorator.flowersPerChunk, 1);
+			final ExtrabiomeGenBase eBiome = (ExtrabiomeGenBase)biome; 
+			final int maxFlowers = eBiome.getDecorationSettings().getValue(Decoration.NEW_FLOWERS);
 			List<BlockType> map = flowerMaps.get(settings);
 			for (int flowers = 0; flowers < maxFlowers; ++flowers) {
 				final int idx = rand.nextInt(map.size());
