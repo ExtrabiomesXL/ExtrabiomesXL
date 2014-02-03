@@ -22,6 +22,7 @@ import com.google.common.collect.Maps;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomFlower.BlockType;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings.Decoration;
 import extrabiomes.module.summa.biome.ExtrabiomeGenBase;
@@ -245,16 +246,19 @@ public class FlowerGenerator implements IWorldGenerator
         chunkZ = chunkZ << 4;
         final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkZ);
         
-		final BiomeSettings settings = BiomeSettings
-				.findBiomeSettings(biome.biomeID);
+		final BiomeSettings settings = BiomeSettings.findBiomeSettings(biome.biomeID);
 		if (settings != null && biomeCheck(settings, biome) && flowerMaps.containsKey(settings)) {
 			final ExtrabiomeGenBase eBiome = (ExtrabiomeGenBase)biome; 
-			final int maxFlowers = eBiome.getDecorationSettings().getValue(Decoration.NEW_FLOWERS);
-			List<BlockType> map = flowerMaps.get(settings);
-			for (int flowers = 0; flowers < maxFlowers; ++flowers) {
-				final int idx = rand.nextInt(map.size());
-				final BlockType type = map.get(idx);
-				applyGenerator(type, world, chunkX, chunkZ, rand);
+			final int maxFlowers = eBiome.getDecorationSettings().getSetting(Decoration.NEW_FLOWERS);
+			if( maxFlowers > 0 ) {
+				List<BlockType> map = flowerMaps.get(settings);
+				LogHelper.finer("[FG] "+eBiome.getDecorationSettings()+" = "+maxFlowers+", "+map.size()+" varieties");
+				for (int flowers = 0; flowers < maxFlowers; ++flowers) {
+					final int idx = rand.nextInt(map.size());
+					final BlockType type = map.get(idx);
+					LogHelper.finest("[FG] "+eBiome.biomeName+" > "+flowers+"/"+maxFlowers+" = "+type);
+					applyGenerator(type, world, chunkX, chunkZ, rand);
+				}
 			}
 		}
 
