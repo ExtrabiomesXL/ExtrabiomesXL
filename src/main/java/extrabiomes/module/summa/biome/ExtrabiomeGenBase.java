@@ -8,20 +8,49 @@ package extrabiomes.module.summa.biome;
 
 import java.util.Random;
 
+import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.google.common.base.Optional;
 
 import extrabiomes.api.BiomeManager;
+import extrabiomes.helpers.LogHelper;
+import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 
 @SuppressWarnings("deprecation")
 abstract class ExtrabiomeGenBase extends BiomeGenBase
 {
-    
-    protected ExtrabiomeGenBase(int id)
+	protected BiomeSettings			biomeSettings;
+
+	// protected DecorationSettings decorationSettings;
+
+	protected ExtrabiomeGenBase(BiomeSettings biomeSettings)
     {
-        super(id);
+		super(biomeSettings.getID());
+		this.biomeSettings = biomeSettings;
+		/*
+		 * NB: DecorationSettings cannot be set here, it MUST be hard-coded
+		 * because of how the vanilla parent class's constructor works :(
+		 */
+    }
+	
+	public BiomeSettings getBiomeSettings() {
+		return biomeSettings;
+	}
+
+	abstract public DecorationSettings getDecorationSettings();
+	
+    @Override
+    public BiomeDecorator createBiomeDecorator()
+    {
+		try {
+			return new CustomBiomeDecorator.Builder(this).loadSettings(getDecorationSettings()).build();
+		} catch (Exception e) {
+			LogHelper.severe("No decoration settings found for " + this);
+			return null;
+		}
     }
     
     @Override

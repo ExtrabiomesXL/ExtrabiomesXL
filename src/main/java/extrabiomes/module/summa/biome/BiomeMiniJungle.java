@@ -8,7 +8,6 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
@@ -16,11 +15,15 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMiniJungle extends ExtrabiomeGenBase
 {
-    
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.MINIJUNGLE;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomeMiniJungle()
     {
-        super(BiomeSettings.MINIJUNGLE.getID());
+		super(BiomeSettings.MINIJUNGLE);
         
         setColor(0x41D923);
         setBiomeName("Mini Jungle");
@@ -32,11 +35,5 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase
         
         spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));
         spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MINIJUNGLE).build();
     }
 }

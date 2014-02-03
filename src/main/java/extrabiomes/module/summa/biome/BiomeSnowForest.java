@@ -8,7 +8,6 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import cpw.mods.fml.relauncher.Side;
@@ -18,11 +17,15 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeSnowForest extends ExtrabiomeGenBase
 {
-    
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.SNOWYFOREST;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomeSnowForest()
     {
-        super(BiomeSettings.SNOWYFOREST.getID());
+		super(BiomeSettings.SNOWYFOREST);
         
         setColor(0x5BA68D);
         setBiomeName("Snow Forest");
@@ -33,12 +36,6 @@ public class BiomeSnowForest extends ExtrabiomeGenBase
         setEnableSnow();
         
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.SNOWYFOREST).build();
     }
     
     @Override
@@ -54,5 +51,4 @@ public class BiomeSnowForest extends ExtrabiomeGenBase
     {
         return ColorizerGrass.getGrassColor(0.0F, 0.2F);
     }
-    
 }

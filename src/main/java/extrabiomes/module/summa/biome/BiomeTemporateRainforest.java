@@ -6,23 +6,21 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
 public class BiomeTemporateRainforest extends ExtrabiomeGenBase
 {
-    
-    public BiomeTemporateRainforest()
-    {
-        this(BiomeSettings.TEMPORATERAINFOREST.getID());
-    }
-    
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.TEMPORATERAINFOREST;
+	}
+
     @SuppressWarnings("unchecked")
-    BiomeTemporateRainforest(int id)
+	public BiomeTemporateRainforest()
     {
-        super(id);
+		super(BiomeSettings.TEMPORATERAINFOREST);
         
         setColor(0x338235);
         setBiomeName("Temperate Rainforest");
@@ -32,11 +30,5 @@ public class BiomeTemporateRainforest extends ExtrabiomeGenBase
         maxHeight = 1.5F;
         
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.TEMPORATERAINFOREST).build();
     }
 }

@@ -7,17 +7,20 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMountainDesert extends ExtrabiomeGenBase
 {
-    
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.MOUNTAINDESERT;
+	}
+
     public BiomeMountainDesert()
     {
-        super(BiomeSettings.MOUNTAINDESERT.getID());
+		super(BiomeSettings.MOUNTAINDESERT);
         
         setColor(0xFA9418);
         setBiomeName("Mountainous Desert");
@@ -29,11 +32,5 @@ public class BiomeMountainDesert extends ExtrabiomeGenBase
         fillerBlock = (byte) Block.sand.blockID;
         spawnableCreatureList.clear();
         setDisableRain();
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.MOUNTAINDESERT).build();
     }
 }

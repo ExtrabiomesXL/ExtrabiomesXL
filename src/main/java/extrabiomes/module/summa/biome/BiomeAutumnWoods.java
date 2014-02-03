@@ -9,7 +9,6 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import cpw.mods.fml.relauncher.Side;
@@ -19,11 +18,16 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeAutumnWoods extends ExtrabiomeGenBase
 {
-    
+
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.AUTUMNWOODS;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomeAutumnWoods()
     {
-        super(BiomeSettings.AUTUMNWOODS.getID());
+		super(BiomeSettings.AUTUMNWOODS);
         setColor(0xF29C11);
         setBiomeName("Autumn Woods");
         temperature = BiomeGenBase.forest.temperature;
@@ -32,12 +36,6 @@ public class BiomeAutumnWoods extends ExtrabiomeGenBase
         maxHeight = 0.8F;
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.AUTUMNWOODS).build();
     }
     
     @Override

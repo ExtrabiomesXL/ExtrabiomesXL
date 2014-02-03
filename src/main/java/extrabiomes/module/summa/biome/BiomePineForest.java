@@ -9,7 +9,6 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import cpw.mods.fml.relauncher.Side;
@@ -19,11 +18,15 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomePineForest extends ExtrabiomeGenBase
 {
-    
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.PINEFOREST;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomePineForest()
     {
-        super(BiomeSettings.PINEFOREST.getID());
+		super(BiomeSettings.PINEFOREST);
         
         setColor(0x469C7E);
         setBiomeName("Pine Forest");
@@ -33,12 +36,6 @@ public class BiomePineForest extends ExtrabiomeGenBase
         maxHeight = 0.3F;
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
-    }
-    
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.PINEFOREST).build();
     }
     
     @Override
@@ -54,5 +51,4 @@ public class BiomePineForest extends ExtrabiomeGenBase
     {
         return ColorizerGrass.getGrassColor(0.4F, 0.6F);
     }
-    
 }

@@ -7,7 +7,6 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import extrabiomes.lib.BiomeSettings;
@@ -15,11 +14,16 @@ import extrabiomes.lib.DecorationSettings;
 
 public class BiomeGreenSwamp extends ExtrabiomeGenBase
 {
-    
+
+	@Override
+	public DecorationSettings getDecorationSettings() {
+		return DecorationSettings.GREENSWAMP;
+	}
+
     @SuppressWarnings("unchecked")
     public BiomeGreenSwamp()
     {
-        super(BiomeSettings.GREENSWAMP.getID());
+		super(BiomeSettings.GREENSWAMP);
         
         setColor(0x68C474);
         setBiomeName("Green Swamplands");
@@ -30,9 +34,4 @@ public class BiomeGreenSwamp extends ExtrabiomeGenBase
         spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 1, 1, 1));
     }
     
-    @Override
-    public BiomeDecorator createBiomeDecorator()
-    {
-        return new CustomBiomeDecorator.Builder(this).loadSettings(DecorationSettings.GREENSWAMP).build();
-    }
 }
