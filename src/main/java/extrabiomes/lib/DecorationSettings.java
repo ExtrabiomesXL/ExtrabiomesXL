@@ -51,7 +51,7 @@ public enum DecorationSettings
     //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
     TUNDRA				(null, null, null, 0,    null, null, null, null, 0,    0,    null, null, null),
     WASTELAND			(null, null, null, 1,    3,    null, null, null, null, null, null, null, null),
-    WOODLANDS			(null, 8,    null, 3,    null, null, null, null, null, null, null, null, 5   ), // 11
+    WOODLANDS			(null, 8,    null, 3,    null, null, null, null, null, null, null, null, 6   ), // 11
 	// @formatter:on
 	DEFAULT();
     
@@ -59,7 +59,7 @@ public enum DecorationSettings
     {
         WATERLILY(".waterlily", 0),
         TREES(".trees", 0),
-        FLOWERS(".flowers", 2),
+        FLOWERS(".flowers", 0),	// was 2, by default we don't want vanilla flowers any more
         GRASS(".grass", 1),
         DEADBUSH(".deadBush", 0),
         MUSHROOMS(".mushrooms", 0),

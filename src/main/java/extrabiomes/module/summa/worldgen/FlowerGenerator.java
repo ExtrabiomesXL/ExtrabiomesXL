@@ -58,6 +58,11 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.BIRCHFOREST, BlockType.VIOLET);
 
 		registerFlower(BiomeSettings.EXTREMEJUNGLE, BlockType.GARDENIA);
+		registerFlower(BiomeSettings.EXTREMEJUNGLE, BlockType.GERBERA_ORANGE);
+		registerFlower(BiomeSettings.EXTREMEJUNGLE, BlockType.GERBERA_PINK);
+		registerFlower(BiomeSettings.EXTREMEJUNGLE, BlockType.GERBERA_RED);
+		registerFlower(BiomeSettings.EXTREMEJUNGLE, BlockType.GERBERA_YELLOW);
+		registerFlower(BiomeSettings.EXTREMEJUNGLE, BlockType.ORIENTAL_PINK_LILY);
 
 		registerFlower(BiomeSettings.FORESTEDHILLS, BlockType.ALLIUM);
 		registerFlower(BiomeSettings.FORESTEDHILLS, BlockType.BLUEBELL);
@@ -116,6 +121,11 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.MEADOW, BlockType.YARROW);
 
 		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.GARDENIA);
+		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.GERBERA_ORANGE);
+		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.GERBERA_PINK);
+		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.GERBERA_RED);
+		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.GERBERA_YELLOW);
+		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.ORIENTAL_PINK_LILY);
 
 		registerFlower(BiomeSettings.MOUNTAINTAIGA, BlockType.PANSY);
 
@@ -127,6 +137,11 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.PINEFOREST, BlockType.VIOLET);
 
 		registerFlower(BiomeSettings.RAINFOREST, BlockType.GARDENIA);
+		registerFlower(BiomeSettings.RAINFOREST, BlockType.GERBERA_ORANGE);
+		registerFlower(BiomeSettings.RAINFOREST, BlockType.GERBERA_PINK);
+		registerFlower(BiomeSettings.RAINFOREST, BlockType.GERBERA_RED);
+		registerFlower(BiomeSettings.RAINFOREST, BlockType.GERBERA_YELLOW);
+		registerFlower(BiomeSettings.RAINFOREST, BlockType.ORIENTAL_PINK_LILY);
 
 		registerFlower(BiomeSettings.REDWOODLUSH, BlockType.BLUEBELL);
 		registerFlower(BiomeSettings.REDWOODLUSH, BlockType.TULIP);
