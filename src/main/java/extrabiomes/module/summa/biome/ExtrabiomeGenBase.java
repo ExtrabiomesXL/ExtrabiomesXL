@@ -20,7 +20,7 @@ import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
 @SuppressWarnings("deprecation")
-abstract class ExtrabiomeGenBase extends BiomeGenBase
+public abstract class ExtrabiomeGenBase extends BiomeGenBase
 {
 	protected BiomeSettings			biomeSettings;
 
