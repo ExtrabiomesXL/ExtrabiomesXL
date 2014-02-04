@@ -10,10 +10,9 @@ import java.util.Collection;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCatTail;
@@ -22,6 +21,7 @@ import extrabiomes.blocks.BlockCustomFlower.BlockType;
 import extrabiomes.blocks.BlockCustomLog;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockCustomTallGrass;
+import extrabiomes.blocks.BlockCustomVine;
 import extrabiomes.blocks.BlockGreenLeaves;
 import extrabiomes.blocks.BlockKneeLog;
 import extrabiomes.blocks.BlockLeafPile;
@@ -48,7 +48,6 @@ import extrabiomes.lib.Blocks;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
-import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.module.summa.worldgen.LeafPileGenerator;
@@ -100,6 +99,7 @@ public abstract class BlockHandler
         createSapling();
         createNewSapling();
         createLogs();
+		createVines();
 		createMachines();
     }
 
@@ -200,6 +200,52 @@ public abstract class BlockHandler
 		ForestryModHelper.registerBasicFlower(Element.LAVENDER.get());
 		ForestryModHelper.registerBasicFlower(Element.CALLA_WHITE.get());
     }
+
+	private static void createVines() {
+		if (!ModuleControlSettings.SUMMA.isEnabled()) return;
+
+		final CommonProxy proxy = Extrabiomes.proxy;
+
+		for (BlockCustomVine.BlockType blockType : BlockCustomVine.BlockType
+				.values()) {
+			final BlockSettings settings;
+			try {
+				settings = BlockSettings.valueOf(blockType.name());
+			} catch (Exception e) {
+				LogHelper.severe("Unable to find settings for " + blockType);
+				continue;
+			}
+
+			final int blockID = settings.getID();
+			if (blockID <= 0) continue;
+
+			/*
+			 * final String shortName = blockType.name()
+			 * .substring(blockType.name().indexOf('_')).toLowerCase();
+			 */
+
+			final BlockCustomVine block = new BlockCustomVine(blockID, blockType);
+			block.setUnlocalizedName(
+					"extrabiomes.vine." + blockType.name().toLowerCase())
+					.setCreativeTab(Extrabiomes.tabsEBXL);
+			proxy.registerBlock(block, ItemBlock.class,
+					block.getUnlocalizedName() + ":"
+							+ block.getClass().getName());
+
+			final Element element;
+			try {
+				element = Element.valueOf("VINE_" + blockType.name());
+			} catch (Exception e) {
+				LogHelper.warning("No element found for vine " + blockType);
+				continue;
+			}
+			ItemStack item = new ItemStack(block, 1);
+			element.set(item);
+
+			ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1,
+					Short.MAX_VALUE));
+		}
+	}
 
     private static void createGrass()
     {

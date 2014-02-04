@@ -25,6 +25,8 @@ public enum BlockSettings
     LEAFPILE            	(2313),
     FLOWER2					(2314),
     FLOWER3					(2315),
+    GLORIOSA				(2316),
+    SPANISH_MOSS			(2317),
     
     SAPLING             	(2320),
     NEWSAPLING          	(2321),
