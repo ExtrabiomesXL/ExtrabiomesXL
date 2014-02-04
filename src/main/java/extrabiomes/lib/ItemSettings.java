@@ -14,7 +14,8 @@ public enum ItemSettings
 {
     LOGTURNER(12870),
     SCARECROW(12871),
-    PASTE(12872);
+    PASTE(12872),
+    DYE(12873);
     
     private final int defaultID;
     

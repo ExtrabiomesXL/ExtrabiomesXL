@@ -5,6 +5,8 @@ import net.minecraft.item.Item;
 
 import com.google.common.base.Optional;
 
+import extrabiomes.items.ItemCustomDye;
+
 /**
  * This class contains all of the custom items and blocks.
  * 
@@ -18,6 +20,7 @@ public enum Stuff
     public static Optional<? extends Item>  scarecrow               = Optional.absent();
     public static Optional<? extends Item>  paste                   = Optional.absent();
     public static Optional<? extends Item>  logTurner               = Optional.absent();
+    public static Optional<? extends Item>	dye						= Optional.absent();
     
     public static Optional<? extends Block> planks                  = Optional.absent();
     public static Optional<? extends Block> quickSand               = Optional.absent();
@@ -38,6 +41,5 @@ public enum Stuff
     public static Optional<? extends Block> stairsJapaneseMaple     = Optional.absent();
     public static Optional<? extends Block> stairsRainbowEucalyptus = Optional.absent();
     public static Optional<? extends Block> stairsAutumn            = Optional.absent();
-    public static Optional<? extends Block> stairsSakuraBlossom     = Optional.absent();
-    
+    public static Optional<? extends Block> stairsSakuraBlossom     = Optional.absent();	
 }

@@ -13,6 +13,7 @@ import com.google.common.base.Optional;
 import cpw.mods.fml.common.registry.GameRegistry;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
+import extrabiomes.items.ItemCustomDye;
 import extrabiomes.items.LogTurner;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
@@ -25,6 +26,7 @@ public abstract class ItemHandler
     public static void createItems()
     {
         createLogTurner();
+		createDye();
     }
     
     private static void createLogTurner()
@@ -44,4 +46,16 @@ public abstract class ItemHandler
         Element.LOGTURNER.set(new ItemStack(logTurner));
     }
     
+	private static void createDye() {
+		final int itemID = ItemSettings.DYE.getID();
+		if (itemID <= 0) return;
+
+		final ItemCustomDye dye = new ItemCustomDye(itemID);
+		Stuff.dye = Optional.of(dye);
+		dye.setCreativeTab(Extrabiomes.tabsEBXL);
+		GameRegistry.registerItem(dye, "extrabiomes.dye", Reference.MOD_ID);
+
+		dye.init();
+	}
+
 }
