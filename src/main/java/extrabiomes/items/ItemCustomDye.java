@@ -70,6 +70,10 @@ public class ItemCustomDye extends Item {
 			element.set(new ItemStack(this, 1, color.meta));
 			OreDictionary.registerOre("dye"+StringUtils.capitalize(color.name), element.get());
 		}
+		/*
+		 * // make sure wool recipes are good
+		 * OreDictionary.initVanillaEntries();
+		 */
 	}
 
 	/**

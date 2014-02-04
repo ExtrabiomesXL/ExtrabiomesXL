@@ -90,6 +90,10 @@ public abstract class RecipeHandler
             // emptyBowl + brownMushroom + 2 toadstools = soup
             recipe = new ShapelessOreRecipe(Item.bowlSoup, Block.mushroomRed, toadstool, toadstool, Item.bowlEmpty);
             proxy.addRecipe(recipe);
+
+			// toadstool = brown dye
+			recipe = new ShapelessOreRecipe(Element.DYE_BROWN.get(), toadstool);
+			proxy.addRecipe(recipe);
         }
     }
     
