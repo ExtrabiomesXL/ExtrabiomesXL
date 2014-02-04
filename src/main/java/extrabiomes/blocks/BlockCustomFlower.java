@@ -51,7 +51,7 @@ public class BlockCustomFlower extends Block implements IPlantable
 		AMARYLLIS_PINK(1, 1, "amaryllis_pink", 3, 9, new String[] {}),
 		AMARYLLIS_RED(1, 2, "amaryllis_red", 3, 1, new String[] {}),
 		AMARYLLIS_WHITE(1, 3, "amaryllis_white", 3, 15, new String[] {}),
-		BACHELORS_BUTTON(1, 4, "bachelorsbutton", 3, 3, new String[] {}),
+		BACHELORS_BUTTON(1, 4, "bachelorsbutton", 3, 4, new String[] {}),
 		BELLS_OF_IRELAND(1, 5, "bellsofireland", 3, 10, new String[] {}),
 		BLUEBELL(1, 6, "bluebell", 3, 12, new String[] {"This mythical flower, was", "said to have sprang up from", "the blood of the dying prince", "Hyacinthus. \u00A7b\u00A7oLight Blue Dye", "can be made from this flower."}),
 		CALLA_BLACK(1, 7, "calla_black", 3, 0, new String[] {}),
@@ -65,7 +65,7 @@ public class BlockCustomFlower extends Block implements IPlantable
 		GERBERA_YELLOW(1, 15, "gerbera_yellow", 3, 11, new String[] {}),
         // group 2 - added in 3.15
 		ORIENTAL_PINK_LILY(2, 0, "orientalpinklily", 3, 9, new String[] {}),
-		IRIS_BLUE(2, 1, "iris_blue", 3, 3, new String[] {}),
+		IRIS_BLUE(2, 1, "iris_blue", 3, 4, new String[] {}),
 		IRIS_PURPLE(2, 2, "iris_purple", 3, 5, new String[] {"The Iris takes its name from", "the Greek word for rainbow,", "referring to the wide variety", "of flower colors found among", "the many species. This one", "will produce \u00A75\u00A7oPurple Dye\u00A7r\u00A77."}),
 		LILY(2, 3, "lily", 3, 13, new String[] {}),
 		MARSH_MARIGOLD(2, 4, "marshmarigold", 3, 11, new String[] {}),
