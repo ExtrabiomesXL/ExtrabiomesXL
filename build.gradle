@@ -34,13 +34,13 @@ minecraft {
 
 version = "${config.minecraft_version}-${config.mod_version}"
 
-if (System.getenv().hasProperty("GIT_BRANCH"))
+if (System.env.hasProperty("GIT_BRANCH"))
 {
-    version = version + "." + System.getenv("GIT_BRANCH")
+    version = version + "." + System.env.GIT_BRANCH
 }
-if (System.getenv().hasProperty("BUILD_NUMBER"))
+if (System.env.hasProperty("BUILD_NUMBER"))
 {
-    version = version + "_" + System.getenv("BUILD_NUMBER")
+    version = version + "_" + System.env.BUILD_NUMBER
 }
 
 processResources
