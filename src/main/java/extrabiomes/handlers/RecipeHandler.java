@@ -55,9 +55,25 @@ public abstract class RecipeHandler
 			}
 			if (block != null) {
 				final int color = block.color();
-				if (color == -1 || color == 0 || color == 3 || color == 4
-						|| color == 15) continue;
-				final ItemStack dye = new ItemStack(Item.dyePowder, 1, color);
+				final ItemStack dye;
+				switch (color) {
+					case -1:
+						continue;
+					case 0:
+						dye = Element.DYE_BLACK.get();
+						break;
+					case 3:
+						dye = Element.DYE_BROWN.get();
+						break;
+					case 4:
+						dye = Element.DYE_BLUE.get();
+						break;
+					case 15:
+						dye = Element.DYE_WHITE.get();
+						break;
+					default:
+						dye = new ItemStack(Item.dyePowder, 1, color);
+				}
 				final IRecipe recipe = new ShapelessOreRecipe(dye, element.get());
 				proxy.addRecipe(recipe);
 			}
