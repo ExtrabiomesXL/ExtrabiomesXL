@@ -32,7 +32,7 @@ minecraft {
     assetDir = "run/assets"
 }
 
-version = "${config.minecraft_version}-${config.mod_version}"
+version = "${config.minecraft_version}-${config.mod_version}.${System.env.BUILD_NUMBER}"
 
 processResources
 {
