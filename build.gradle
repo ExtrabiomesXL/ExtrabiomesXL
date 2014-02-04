@@ -36,7 +36,8 @@ version = "${config.minecraft_version}-${config.mod_version}"
 
 if (System.env.GIT_BRANCH)
 {
-    version = version + "-" + System.env.GIT_BRANCH
+    branch = System.env.GIT_BRANCH.tokenize('/')
+    version = version + "-" + branch.pop()
 }
 if (System.env.BUILD_NUMBER)
 {
