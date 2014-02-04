@@ -52,7 +52,7 @@ public abstract class ItemHandler
 
 		final ItemCustomDye dye = new ItemCustomDye(itemID);
 		Stuff.dye = Optional.of(dye);
-		dye.setCreativeTab(Extrabiomes.tabsEBXL);
+		dye.setUnlocalizedName("extrabiomes.dye").setCreativeTab(Extrabiomes.tabsEBXL);
 		GameRegistry.registerItem(dye, "extrabiomes.dye", Reference.MOD_ID);
 
 		dye.init();

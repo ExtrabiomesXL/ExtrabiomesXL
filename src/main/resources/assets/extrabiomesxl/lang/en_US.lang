@@ -7,6 +7,10 @@ config.summa.comment=Set summa to false to disable the mod.
 
 itemGroup.extrabiomesTab=ExtrabiomesXL
 
+item.extrabiomes.dye.black.name=Black Dye
+item.extrabiomes.dye.blue.name=Blue Dye
+item.extrabiomes.dye.brown.name=Brown Dye
+item.extrabiomes.dye.white.name=White Dye
 item.extrabiomes.logturner.name=Log Turner
 item.extrabiomes.paste.name=Cactus Paste
 item.extrabiomes.scarecrow.name=Scarecrow
