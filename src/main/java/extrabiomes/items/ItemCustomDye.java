@@ -27,8 +27,8 @@ public class ItemCustomDye extends Item {
 	public enum Color
 	{
 		BLACK("black", 0, 0x1E1B1B, 0),
-		BROWN("brown", 1, 0x51301A, 3),
-		BLUE("blue", 2, 0x253192, 4),
+		BLUE("blue", 1, 0x253192, 4),
+		BROWN("brown", 2, 0x51301A, 3),
 		WHITE("white", 3, 0xF0F0F0, 15);
 		
 		public final String	name;
@@ -65,6 +65,8 @@ public class ItemCustomDye extends Item {
 			final Color color = Color.values()[idx];
 			final Element element = elements[idx];
 			
+			LogHelper.info(color + " = " + element);
+
 			element.set(new ItemStack(this, 1, color.meta));
 			OreDictionary.registerOre("dye"+StringUtils.capitalize(color.name), element.get());
 		}
