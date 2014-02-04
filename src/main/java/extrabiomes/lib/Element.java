@@ -38,7 +38,6 @@ public enum Element
 	GERBERA_PINK,
 	GERBERA_RED,
 	GERBERA_YELLOW,
-	// GLORIOSA,
 	GRASS_BROWN,
 	GRASS_BROWN_SHORT,
 	GRASS_DEAD,
@@ -118,6 +117,8 @@ public enum Element
     TINY_CACTUS,
     TOADSTOOL,
     TULIP,
+    VINE_GLORIOSA,
+    VINE_SPANISH_MOSS,
     VIOLET,
     YARROW;
     // @formatter:on
