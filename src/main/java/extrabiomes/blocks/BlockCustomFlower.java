@@ -51,7 +51,7 @@ public class BlockCustomFlower extends Block implements IPlantable
 		AMARYLLIS_PINK(1, 1, "amaryllis_pink", 3, 9, new String[] {}),
 		AMARYLLIS_RED(1, 2, "amaryllis_red", 3, 1, new String[] {}),
 		AMARYLLIS_WHITE(1, 3, "amaryllis_white", 3, 15, new String[] {}),
-		BACHELORS_BUTTON(1, 4, "bachelorsbutton", 3, 4, new String[] {}),
+		BACHELORS_BUTTON(1, 4, "bachelorsbutton_blue", 3, 4, new String[] {}),
 		BELLS_OF_IRELAND(1, 5, "bellsofireland", 3, 10, new String[] {}),
 		BLUEBELL(1, 6, "bluebell", 3, 12, new String[] {"This mythical flower, was", "said to have sprang up from", "the blood of the dying prince", "Hyacinthus. \u00A7b\u00A7oLight Blue Dye", "can be made from this flower."}),
 		CALLA_BLACK(1, 7, "calla_black", 3, 0, new String[] {}),
