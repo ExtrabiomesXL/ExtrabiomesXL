@@ -25,7 +25,6 @@ import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
-import extrabiomes.blocks.BlockNewSapling.BlockType;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.SaplingSettings;
