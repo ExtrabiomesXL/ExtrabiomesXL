@@ -11,6 +11,7 @@ import extrabiomes.Extrabiomes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.item.Item;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -28,16 +29,22 @@ public class BlockCropBasic extends BlockFlower {
 		;
 
 		private ArrayList<Icon> icons;
+		private Item seed;
+		private Item crop;
 		
-		@Override
 		public Icon getStageIcon(int stage) {
 			return icons.get(stage);
 		}
-
-		@Override
 		public void setStageIcons(ArrayList<Icon> icons) {
 			this.icons = icons;
 		}
+		
+	    public Item getSeedItem() {
+	    	return seed;
+	    }
+	    public Item getCropItem() {
+	    	return crop;
+	    }
 	}
 	
 	public final ICropType cropType;
@@ -58,7 +65,7 @@ public class BlockCropBasic extends BlockFlower {
 		ArrayList<Icon> icons = Lists.newArrayListWithExpectedSize(MAX_GROWTH_STAGE+1);
 		final String name = cropType.name().toLowerCase();
 		Icon lastIcon = null;
-		for( int k = 0; k < MAX_GROWTH_STAGE; ++k ) {
+		for( int k = 0; k < icons.size(); ++k ) {
 			final String texture = "plant_" + name + k;
 			Icon icon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texture);
 			if( icon != null ) {
@@ -171,5 +178,15 @@ public class BlockCropBasic extends BlockFlower {
 	public int getRenderType() {
 		return 6;
 	}
-		
+	
+	protected int getSeedItem()
+	{
+		return cropType.getSeedItem().itemID;
+	}
+	
+	protected int getCropItem()
+	{
+		return cropType.getCropItem().itemID;
+	}
+
 }
