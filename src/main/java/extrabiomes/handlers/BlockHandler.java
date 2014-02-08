@@ -7,15 +7,21 @@
 package extrabiomes.handlers;
 
 import java.util.Collection;
+import java.util.List;
+
+import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCatTail;
+import extrabiomes.blocks.BlockCropBasic;
+import extrabiomes.blocks.BlockCropRegrow;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomFlower.BlockType;
 import extrabiomes.blocks.BlockCustomLog;
@@ -34,6 +40,7 @@ import extrabiomes.blocks.BlockNewSapling;
 import extrabiomes.blocks.BlockQuarterLog;
 import extrabiomes.blocks.BlockRedRock;
 import extrabiomes.blocks.GenericTerrainBlock;
+import extrabiomes.blocks.ICropType;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
 import extrabiomes.helpers.BiomeHelper;
 import extrabiomes.helpers.ForestryModHelper;
@@ -98,10 +105,7 @@ public abstract class BlockHandler
         createSapling();
         createNewSapling();
         createLogs();
-<<<<<<< HEAD
-=======
 		createVines();
->>>>>>> 1788b0b... Added vines (#43). No worldgen yet.
     }
 
     private static void createCattail()

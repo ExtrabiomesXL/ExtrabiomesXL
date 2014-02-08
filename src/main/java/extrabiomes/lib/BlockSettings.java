@@ -30,6 +30,7 @@ public enum BlockSettings
     
     SAPLING             	(2320),
     NEWSAPLING          	(2321),
+    STRAWBERRY				(2322),
     
     AUTUMNLEAVES        	(2330),
     GREENLEAVES         	(2331),
@@ -75,10 +76,8 @@ public enum BlockSettings
     AUTUMNSTAIRS			(2379),
     BALDCYPRESSSTAIRS		(2380),
     SAKURABLOSSOMSTAIRS		(2381),
-    
+
     WALL                	(2400);    // Next block IDs 253 (decending) and 2224 (ascending)
-    
-        // @formatter:on
     
     private int            blockID;
     

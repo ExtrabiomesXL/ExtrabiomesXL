@@ -121,7 +121,11 @@ public enum Element
     VINE_GLORIOSA,
     VINE_SPANISH_MOSS,
     VIOLET,
-    YARROW;
+    YARROW,
+    
+    SEED_STRAWBERRY,
+    PLANT_STRAWBERRY,
+    CROP_STRAWBERRY;
     // @formatter:on
     
     private Optional<ItemStack> stack = Optional.absent();
