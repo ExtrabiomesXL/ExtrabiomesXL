@@ -1,25 +1,42 @@
 package extrabiomes.blocks;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import com.google.common.collect.Lists;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import extrabiomes.Extrabiomes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BlockCropBasic extends BlockFlower {
 	
 	public static final int MAX_GROWTH_STAGE=7;
+	protected static final int MIN_LIGHT_LEVEL = 9;
+	protected static final int MIN_FERTILIZER = 2;
+	protected static final int MAX_FERTILIZER = 5;
 	
 	public enum CropType implements ICropType {
 		;
 
+		private ArrayList<Icon> icons;
+		
 		@Override
 		public Icon getStageIcon(int stage) {
-			// TODO Auto-generated method stub
-			return null;
+			return icons.get(stage);
+		}
+
+		@Override
+		public void setStageIcons(ArrayList<Icon> icons) {
+			this.icons = icons;
 		}
 	}
 	
@@ -30,21 +47,129 @@ public class BlockCropBasic extends BlockFlower {
 		// TODO: set creative tab
 		this.setStepSound(Block.soundGrassFootstep);
 		
-        final float offset = 0.2F;
-        setBlockBounds(0.5F - offset, 0.0F, 0.5F - offset, 0.5F + offset, offset * 3.0F, 0.5F + offset);
+		final float offset = 0.2F;
+		setBlockBounds(0.5F - offset, 0.0F, 0.5F - offset, 0.5F + offset, offset * 3.0F, 0.5F + offset);
 	}
 	
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
-    {
-    	//cropType.registerAllIcons(iconRegister);
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister iconRegister)
+	{
+		ArrayList<Icon> icons = Lists.newArrayListWithExpectedSize(MAX_GROWTH_STAGE+1);
+		final String name = cropType.name().toLowerCase();
+		Icon lastIcon = null;
+		for( int k = 0; k < MAX_GROWTH_STAGE; ++k ) {
+			final String texture = "plant_" + name + k;
+			Icon icon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texture);
+			if( icon != null ) {
+				lastIcon = icon;
+			} else {
+				icon = lastIcon;
+			}
+			icons.set(k, icon);
+		}
+	}
 
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Icon getIcon(int side, int metadata)
+	{
+		return cropType.getStageIcon(metadata);
+	}
 
 	@Override
 	public EnumPlantType getPlantType(World world, int x, int y, int z) {
 		return EnumPlantType.Crop;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see net.minecraft.block.BlockCrops#updateTick(net.minecraft.world.World, int, int, int, java.util.Random)
+	 */
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random rand) {
+		super.updateTick(world, x, y, z, rand);
+		
+		if( world.getBlockLightValue(x, y, z) >= MIN_LIGHT_LEVEL ) {
+			int meta = world.getBlockMetadata(x, y, z);
+
+			if( meta < MAX_GROWTH_STAGE ) {
+				float rate = this.getGrowthRate(world, x, y, z);
+				
+				if( rand.nextInt((int)( 25F / rate) + 1) == 0 ) {
+					++meta;
+					world.setBlockMetadataWithNotify(x, y, z, meta, 2);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Apply bonemeal to the crops.
+	 */
+	public void fertilize(World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z)
+				+ MathHelper.getRandomIntegerInRange(world.rand, MIN_FERTILIZER, MAX_FERTILIZER);
+		
+		if( meta > MAX_GROWTH_STAGE ) {
+			meta = MAX_GROWTH_STAGE;
+		}
+		
+		world.setBlockMetadataWithNotify(x, y, z, meta, 2);
+	}
+	
+	/**
+	 * Gets the growth rate for the crop. Setup to encourage rows by halving growth rate if there is diagonals, crops on
+	 * different sides that aren't opposing, and by adding growth for every crop next to this one (and for crop below
+	 * this one). Args: x, y, z
+	 */
+	private float getGrowthRate(World world, int x, int y, int z)
+	{
+		float rate = 1.0F;
+		final int id_nZ = world.getBlockId(x, y, z - 1);
+		final int id_pZ = world.getBlockId(x, y, z + 1);
+		final int id_nX = world.getBlockId(x - 1, y, z);
+		final int id_pX = world.getBlockId(x + 1, y, z);
+		final int id_nXnZ = world.getBlockId(x - 1, y, z - 1);
+		final int id_pXnZ = world.getBlockId(x + 1, y, z - 1);
+		final int id_pXpZ = world.getBlockId(x + 1, y, z + 1);
+		final int id_nXpZ = world.getBlockId(x - 1, y, z + 1);
+		final boolean flagX = id_nX == this.blockID || id_pX == this.blockID;
+		final boolean flagZ = id_nZ == this.blockID || id_pZ == this.blockID;
+		final boolean flagD = id_nXnZ == this.blockID || id_pXnZ == this.blockID || id_pXpZ == this.blockID || id_nXpZ == this.blockID;
+		
+		// bonus for nearby soil
+		for (int i = x - 1; i <= x + 1; ++i) {
+			for (int j = z - 1; j <= z + 1; ++j) {
+				final int id_ground = world.getBlockId(i, y - 1, j);
+				float bonus = 0.0F;
+				
+				if (blocksList[id_ground] != null && blocksList[id_ground].canSustainPlant(world, i, y - 1, j, ForgeDirection.UP, this)) {
+					bonus = 1.0F;
+					
+					if (blocksList[id_ground].isFertile(world, i, y - 1, j)) {
+						bonus = 3.0F;
+					}
+				}
+					
+				if (i != x || j != z) {
+					bonus /= 4.0F;
+				}
+					
+				rate += bonus;
+			}
+		}
+		
+		// penalty for adjacent similar crops
+		if (flagD || flagX && flagZ) {
+			rate /= 2.0F;
+		}
+		
+		return rate;
+	}
+		
+	public int getRenderType() {
+		return 6;
+	}
+		
 }
