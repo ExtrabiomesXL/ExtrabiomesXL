@@ -27,12 +27,17 @@ public class BlockCropBasic extends BlockFlower {
 	protected static final int MIN_FERTILIZER = 2;
 	protected static final int MAX_FERTILIZER = 5;
 	
+	protected static final int	RENDER_TYPE_CROP	= 6;
+	protected static final int	RENDER_TYPE_FLOWER	= 1;
+	protected static final int	DEFAULT_RENDER_TYPE	= RENDER_TYPE_CROP;
+
 	public enum CropType implements ICropType {
 		;
 
 		private ArrayList<Icon> icons;
 		private Item seed;
 		private Item crop;
+		private int				renderType;
 		
 		@Override
 		public Icon getStageIcon(int stage) {
@@ -60,6 +65,11 @@ public class BlockCropBasic extends BlockFlower {
 	    public void setCropItem(Item crop) {
 	    	this.crop = crop;
 	    }
+
+		@Override
+		public int getRenderType() {
+			return renderType;
+		}
 
 	}
 	
@@ -200,7 +210,7 @@ public class BlockCropBasic extends BlockFlower {
 		
 	@Override
 	public int getRenderType() {
-		return 6;
+		return cropType.getRenderType();
 	}
 	
 	public int getSeedItem() {

@@ -8,11 +8,16 @@ import net.minecraft.util.Icon;
 public class BlockCropRegrow extends BlockCropBasic {
 
 	public enum CropType implements ICropType {
-		STRAWBERRY;
+		STRAWBERRY(RENDER_TYPE_FLOWER);
 		
 		private ArrayList<Icon> icons;		
 		private Item seed;
 		private Item crop;
+		private final int		renderType;
+
+		private CropType(Integer renderType) {
+			this.renderType = (renderType == null ? DEFAULT_RENDER_TYPE : renderType);
+		}
 		
 		@Override
 		public Icon getStageIcon(int stage) {
@@ -35,11 +40,15 @@ public class BlockCropRegrow extends BlockCropBasic {
 		@Override
 		public void setSeedItem(Item seed) {
 			this.seed = seed;
-
 		}
 		@Override
 		public void setCropItem(Item crop) {
 			this.crop = crop;
+		}
+
+		@Override
+		public int getRenderType() {
+			return renderType;
 		}
 	}
 	
