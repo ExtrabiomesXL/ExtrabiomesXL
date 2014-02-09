@@ -34,6 +34,7 @@ import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.handlers.BiomeHandler;
 import extrabiomes.handlers.BlockHandler;
 import extrabiomes.handlers.ConfigurationHandler;
+import extrabiomes.handlers.CropHandler;
 import extrabiomes.handlers.EBXLCommandHandler;
 import extrabiomes.handlers.GenesisBiomeOverrideHandler;
 import extrabiomes.handlers.ItemHandler;
@@ -132,6 +133,7 @@ public class Extrabiomes
 
         BlockHandler.createBlocks();
         ItemHandler.createItems();
+        CropHandler.createCrops();
 
         BiomeHandler.registerWorldGenerators();
         BiomeHandler.enableBiomes();
