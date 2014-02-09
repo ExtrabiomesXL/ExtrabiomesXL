@@ -75,7 +75,9 @@ public class BlockCustomFlower extends Block implements IPlantable
 		SNAPDRAGON(2, 8, "snapdragon", 3, -1, new String[] {} /* future special case? */),
 		TULIP(2, 9, "tulips", 3, 14, new String[] {}),
 		VIOLET(2, 10, "violet", 3, 5, new String[] {}),
-		YARROW(2, 11, "yarrow", 3, 11, new String[] {});
+		YARROW(2, 11, "yarrow", 3, 11, new String[] {}),
+		// group 2 cont - added in 3.15.2
+		BELLADONNA(2, 12, "belladonna", 3, 4, new String[] {});
         
 		private final int		group;
 		private final int		metadata;
