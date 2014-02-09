@@ -12,5 +12,8 @@ public interface ICropType {
     public Item getSeedItem();
     public Item getCropItem();
 	
+	public void setSeedItem(Item seed);
+	public void setCropItem(Item crop);
+
 	public String name();
 }

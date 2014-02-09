@@ -14,19 +14,33 @@ public class BlockCropRegrow extends BlockCropBasic {
 		private Item seed;
 		private Item crop;
 		
+		@Override
 		public Icon getStageIcon(int stage) {
 			return icons.get(stage);
 		}
+		@Override
 		public void setStageIcons(ArrayList<Icon> icons) {
 			this.icons = icons;
 		}
 		
-	    public Item getSeedItem() {
+	    @Override
+		public Item getSeedItem() {
 	    	return seed;
 	    }
-	    public Item getCropItem() {
+	    @Override
+		public Item getCropItem() {
 	    	return crop;
 	    }
+
+		@Override
+		public void setSeedItem(Item seed) {
+			this.seed = seed;
+
+		}
+		@Override
+		public void setCropItem(Item crop) {
+			this.crop = crop;
+		}
 	}
 	
 	public BlockCropRegrow(int blockID, CropType type) {

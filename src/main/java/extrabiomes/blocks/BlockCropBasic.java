@@ -3,11 +3,6 @@ package extrabiomes.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import extrabiomes.Extrabiomes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -17,6 +12,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
+
+import com.google.common.collect.Lists;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import extrabiomes.Extrabiomes;
+import extrabiomes.helpers.LogHelper;
 
 public class BlockCropBasic extends BlockFlower {
 	
@@ -32,19 +34,33 @@ public class BlockCropBasic extends BlockFlower {
 		private Item seed;
 		private Item crop;
 		
+		@Override
 		public Icon getStageIcon(int stage) {
 			return icons.get(stage);
 		}
+		@Override
 		public void setStageIcons(ArrayList<Icon> icons) {
 			this.icons = icons;
 		}
 		
-	    public Item getSeedItem() {
+	    @Override
+		public Item getSeedItem() {
 	    	return seed;
 	    }
-	    public Item getCropItem() {
+	    @Override
+		public Item getCropItem() {
 	    	return crop;
 	    }
+
+	    @Override
+	    public void setSeedItem(Item seed) {
+	    	this.seed = seed;
+	    }
+	    @Override
+	    public void setCropItem(Item crop) {
+	    	this.crop = crop;
+	    }
+
 	}
 	
 	public final ICropType cropType;
@@ -62,10 +78,10 @@ public class BlockCropBasic extends BlockFlower {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister)
 	{
-		ArrayList<Icon> icons = Lists.newArrayListWithExpectedSize(MAX_GROWTH_STAGE+1);
+		ArrayList<Icon> icons = Lists.newArrayListWithCapacity(MAX_GROWTH_STAGE+1);
 		final String name = cropType.name().toLowerCase();
 		Icon lastIcon = null;
-		for( int k = 0; k < icons.size(); ++k ) {
+		for (int k = 0; k <= MAX_GROWTH_STAGE; ++k) {
 			final String texture = "plant_" + name + k;
 			Icon icon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texture);
 			if( icon != null ) {
@@ -73,15 +89,22 @@ public class BlockCropBasic extends BlockFlower {
 			} else {
 				icon = lastIcon;
 			}
-			icons.set(k, icon);
+			icons.add(k, icon);
 		}
+		cropType.setStageIcons(icons);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Icon getIcon(int side, int metadata)
 	{
-		return cropType.getStageIcon(metadata);
+		try {
+			return cropType.getStageIcon(metadata);
+		} catch (Exception e) {
+			LogHelper.warning("Unable to get stage icon for " + cropType.name()
+					+ " @ " + metadata);
+			return null;
+		}
 	}
 
 	@Override
@@ -175,18 +198,22 @@ public class BlockCropBasic extends BlockFlower {
 		return rate;
 	}
 		
+	@Override
 	public int getRenderType() {
 		return 6;
 	}
 	
-	protected int getSeedItem()
-	{
+	public int getSeedItem() {
 		return cropType.getSeedItem().itemID;
 	}
-	
-	protected int getCropItem()
-	{
+	public int getCropItem() {
 		return cropType.getCropItem().itemID;
+	}
+	public void setSeedItem(Item seed) {
+		cropType.setSeedItem(seed);
+	}
+	public void setCropItem(Item crop) {
+		cropType.setCropItem(crop);
 	}
 
 }

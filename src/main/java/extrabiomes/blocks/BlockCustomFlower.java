@@ -31,6 +31,7 @@ import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.proxy.CommonProxy;
 
+// TODO: make this extend BlockFlower
 public class BlockCustomFlower extends Block implements IPlantable
 {
 	public static int	NUM_GROUPS	= 2;	// number of flower groups
