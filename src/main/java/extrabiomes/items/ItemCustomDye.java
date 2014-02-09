@@ -106,8 +106,8 @@ public class ItemCustomDye extends Item {
 	/**
 	 * Gets an icon index based on an item's damage value
 	 */
-	public Icon getIconFromDamage(int par1) {
-		int j = MathHelper.clamp_int(par1, 0, dyeIcons.length);
+	public Icon getIconFromDamage(int meta) {
+		int j = MathHelper.clamp_int(meta, 0, dyeIcons.length);
 		return this.dyeIcons[j];
 	}
 
@@ -117,8 +117,8 @@ public class ItemCustomDye extends Item {
 	 * damage or NBT.
 	 */
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack) {
-		int i = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, dyeIcons.length);
+	public String getUnlocalizedName(ItemStack itemStack) {
+		int i = MathHelper.clamp_int(itemStack.getItemDamage(), 0, dyeIcons.length);
 		return super.getUnlocalizedName() + "." + Color.values()[i].name;
 	}
 
