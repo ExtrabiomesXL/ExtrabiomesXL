@@ -3,9 +3,13 @@ package extrabiomes.handlers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.base.Optional;
 
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockCropBasic;
 import extrabiomes.blocks.BlockCropRegrow;
@@ -15,6 +19,7 @@ import extrabiomes.items.ItemCustomSeed;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
+import extrabiomes.proxy.CommonProxy;
 
 public class CropHandler {
     public static void createCrops() {
@@ -41,7 +46,11 @@ public class CropHandler {
     			continue;
 			}
 
-			element.set(new ItemStack(item.itemID, 1, type.meta));
+			final ItemStack crop_item = new ItemStack(item.itemID, 1, type.meta);
+			element.set(crop_item);
+			OreDictionary.registerOre(
+					"crop" + StringUtils.capitalize(type.name().toLowerCase()),
+					crop_item);
 		}
 	}
 
@@ -84,13 +93,16 @@ public class CropHandler {
     }
     
     private static void createRegrowCrops() {
+		final CommonProxy proxy = Extrabiomes.proxy;
+
     	for( BlockCropRegrow.CropType type : BlockCropRegrow.CropType.values() ) {
+			final String name = type.name();
+
     		final BlockSettings plant_settings;
     		final Element plant_element;
     		final Element crop_element;
+
     		try {
-    			final String name = type.name();
-    			
     			plant_settings = BlockSettings.valueOf(name);
 				plant_element = Element.valueOf("PLANT_" + name);
 				crop_element = Element.valueOf("CROP_" + name);
@@ -102,6 +114,8 @@ public class CropHandler {
     		final BlockCropRegrow block = new BlockCropRegrow(plant_settings.getID(), type);
 			plant_element.set(new ItemStack(block));
 			block.setCropItem(crop_element.get().getItem());
+
+			proxy.registerEventHandler(new CropBonemealEventHandler(block));
     	}
     }
 

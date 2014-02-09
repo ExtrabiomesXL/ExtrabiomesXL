@@ -10,6 +10,8 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomFlower.BlockType;
+import extrabiomes.helpers.LogHelper;
+import extrabiomes.items.ItemCustomSeed;
 import extrabiomes.lib.Element;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.proxy.CommonProxy;
@@ -28,6 +30,30 @@ public abstract class RecipeHandler
         
         writeFlowerRecipes();
         writeLeafPileRecipes();
+
+		writeSeedRecipes();
+	}
+
+	private static void writeSeedRecipes() {
+		if (!Stuff.seed.isPresent() || !Stuff.crop.isPresent()) return;
+
+		for (ItemCustomSeed.SeedType type : ItemCustomSeed.SeedType.values()) {
+			final Element seed_element;
+			final Element crop_element;
+			try {
+				seed_element = Element.valueOf("SEED_" + type.name());
+				crop_element = Element.valueOf("CROP_" + type.name());
+			} catch (Exception e) {
+				LogHelper.severe("Unable to find crop source for seed " + type);
+				continue;
+			}
+			
+			if (!seed_element.isPresent() || !crop_element.isPresent()) continue;
+
+			final IRecipe recipe = new ShapelessOreRecipe(seed_element.get(),
+					crop_element.get());
+			Extrabiomes.proxy.addRecipe(recipe);
+		}
     }
     
     private static void writeCrackedSandRecipes()
