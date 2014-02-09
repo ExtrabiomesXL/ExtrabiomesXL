@@ -50,6 +50,7 @@ public class ItemCustomCrop extends ItemFood {
 		super(itemID, DEFAULT_HUNGER, DEFAULT_SATURATION, false);
 		setMaxDamage(0);
 		setHasSubtypes(true);
+		setUnlocalizedName("extrabiomes.crop");
 
 		NUM_CROPS = CropType.values().length;
 	}

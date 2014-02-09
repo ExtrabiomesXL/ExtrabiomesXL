@@ -17,9 +17,8 @@ public enum ItemSettings
     SCARECROW			(12871),
     PASTE				(12872),
     DYE					(12873),
-    
-    SEED_STRAWBERRY		(12874),
-    CROP_STRAWBERRY		(12875);
+    SEED				(12874),
+    CROP				(12875);
     // @formatter:on
     
     private final int defaultID;
