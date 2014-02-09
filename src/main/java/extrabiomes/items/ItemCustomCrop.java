@@ -111,9 +111,10 @@ public class ItemCustomCrop extends ItemFood {
 		final CropType crop = getCropType(itemStack.getItemDamage());
 		
 		// TODO: check for planting root crops
-
-		if (player.canEat(crop.edible == CropType.Edible.ALWAYS))
-        {
+		
+		if( crop.edible == CropType.Edible.NO ) {
+			// can't eat cotton and things
+		} else if (player.canEat(crop.edible == CropType.Edible.ALWAYS)) {
             player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
         }
 

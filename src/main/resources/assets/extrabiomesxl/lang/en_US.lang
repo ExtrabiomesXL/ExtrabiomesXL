@@ -15,7 +15,9 @@ item.extrabiomes.logturner.name=Log Turner
 item.extrabiomes.paste.name=Cactus Paste
 item.extrabiomes.scarecrow.name=Scarecrow
 
-item.extrabiomes.crop.strawberry=Strawberry
+item.extrabiomes.crop.strawberry.name=Strawberry
+
+item.extrabiomes.seed.strawberry.name=Strawberry Seeds
 
 entity.extrabiomes.scarecrow.name=Scarecrow
 
