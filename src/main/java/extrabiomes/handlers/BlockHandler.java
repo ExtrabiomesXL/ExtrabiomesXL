@@ -40,6 +40,7 @@ import extrabiomes.blocks.BlockNewQuarterLog;
 import extrabiomes.blocks.BlockNewSapling;
 import extrabiomes.blocks.BlockQuarterLog;
 import extrabiomes.blocks.BlockRedRock;
+import extrabiomes.blocks.BlockWaterPlant;
 import extrabiomes.blocks.GenericTerrainBlock;
 import extrabiomes.blocks.ICropType;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
@@ -56,6 +57,7 @@ import extrabiomes.lib.Element;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
+import extrabiomes.module.summa.worldgen.EelGrassGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.module.summa.worldgen.LeafPileGenerator;
 import extrabiomes.proxy.CommonProxy;
@@ -63,6 +65,9 @@ import extrabiomes.renderers.RenderKneeLog;
 import extrabiomes.renderers.RenderMiniLog;
 import extrabiomes.renderers.RenderNewQuarterLog;
 import extrabiomes.renderers.RenderQuarterLog;
+import extrabiomes.subblocks.SubBlock;
+import extrabiomes.subblocks.SubBlockWaterPlant;
+import extrabiomes.utility.MultiItemBlock;
 
 public abstract class BlockHandler
 {
@@ -91,7 +96,7 @@ public abstract class BlockHandler
         ForestryModHelper.addToForesterBackpack(stack);
     }
 
-    public static void createBlocks()
+    public static void createBlocks() throws Exception
     {
         createAutumnLeaves();
         createCattail();
@@ -108,7 +113,23 @@ public abstract class BlockHandler
         createLogs();
 		createVines();
 		createMachines();
-    }    
+		createWaterPlants();
+		
+    }
+    
+    private static void createWaterPlants() throws Exception {
+    	final BlockWaterPlant waterPlantBlock = new BlockWaterPlant(4000, "waterPlant");
+    	
+    	waterPlantBlock.setUnlocalizedName("extrabiomes.waterplant").setHardness(0.01F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+    	
+    	// Add the subblocks
+    	waterPlantBlock.registerSubBlock(new SubBlockWaterPlant("eelgrass").addPlaceableBlock(Block.sand.blockID).addPlaceableBlock(Block.gravel.blockID).addPlaceableBlock(Block.blockClay.blockID), 0);
+    	
+    	final CommonProxy proxy = Extrabiomes.proxy;
+        proxy.registerBlock(waterPlantBlock, extrabiomes.items.ItemBlockWaterPlant.class, waterPlantBlock.getUnlocalizedName() + ":" + waterPlantBlock.getClass().getName());
+        
+        proxy.registerWorldGenerator(new EelGrassGenerator(waterPlantBlock.blockID, 0));
+    }
 
     private static void createCattail()
     {
