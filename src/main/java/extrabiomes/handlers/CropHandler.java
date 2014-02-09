@@ -61,11 +61,17 @@ public class CropHandler {
 				continue;
 			}
 
-			seed_element.set(new ItemStack(item.itemID, 1, type.meta));
+			final ItemStack seed_item = new ItemStack(item.itemID, 1, type.meta);
+			seed_element.set(seed_item);
 			// and associate with our target block
 			if (plant_element != null && plant_element.isPresent()) {
-				type.cropType = (BlockFlower) Block.blocksList[plant_element
-						.get().itemID];
+				final BlockFlower block = (BlockFlower) Block.blocksList[plant_element.get().itemID];
+				type.cropType = block;
+				if(block instanceof BlockCropBasic) {
+					( (BlockCropBasic) block ).setSeedItem(seed_item);
+				} else {
+					LogHelper.severe("Unable to set seed item for " + type);
+				}
 			} else {
 				LogHelper.severe("Missing plant element for " + type);
 			}
