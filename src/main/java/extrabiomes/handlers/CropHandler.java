@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Optional;
 
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockCropBasic;
 import extrabiomes.blocks.BlockCropRegrow;
@@ -15,6 +16,7 @@ import extrabiomes.items.ItemCustomSeed;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
+import extrabiomes.proxy.CommonProxy;
 
 public class CropHandler {
     public static void createCrops() {
@@ -84,6 +86,8 @@ public class CropHandler {
     }
     
     private static void createRegrowCrops() {
+		final CommonProxy proxy = Extrabiomes.proxy;
+
     	for( BlockCropRegrow.CropType type : BlockCropRegrow.CropType.values() ) {
     		final BlockSettings plant_settings;
     		final Element plant_element;
@@ -102,6 +106,8 @@ public class CropHandler {
     		final BlockCropRegrow block = new BlockCropRegrow(plant_settings.getID(), type);
 			plant_element.set(new ItemStack(block));
 			block.setCropItem(crop_element.get().getItem());
+
+			proxy.registerEventHandler(new CropBonemealEventHandler(block));
     	}
     }
 
