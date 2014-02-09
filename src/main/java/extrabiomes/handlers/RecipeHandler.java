@@ -37,8 +37,6 @@ public abstract class RecipeHandler
 	private static void writeSeedRecipes() {
 		if (!Stuff.seed.isPresent() || !Stuff.crop.isPresent()) return;
 
-		final CommonProxy proxy = Extrabiomes.proxy;
-
 		for (ItemCustomSeed.SeedType type : ItemCustomSeed.SeedType.values()) {
 			final Element seed_element;
 			final Element crop_element;
