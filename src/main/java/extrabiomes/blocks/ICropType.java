@@ -15,5 +15,7 @@ public interface ICropType {
 	public void setSeedItem(Item seed);
 	public void setCropItem(Item crop);
 
+	public int getRenderType();
+
 	public String name();
 }
