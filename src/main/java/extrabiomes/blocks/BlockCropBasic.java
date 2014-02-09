@@ -6,6 +6,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -159,6 +160,25 @@ public class BlockCropBasic extends BlockFlower {
 		world.setBlockMetadataWithNotify(x, y, z, meta, 2);
 	}
 	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z,
+			EntityPlayer player, int side, float px, float py, float pz) {
+		final ItemStack item = player.inventory.getCurrentItem();
+		boolean bonemeal = false;
+		
+		if (item != null && item.itemID == Item.dyePowder.itemID && item.getItemDamage() == 15) {
+			bonemeal = true;
+		}
+		// TODO: detect other types of fertilizer?
+		
+		if (bonemeal) {
+			fertilize(world, x, y, z);
+		}
+		
+		super.onBlockActivated(world, x, y, z, player, side, px, py, pz);
+		return true;
+	}
+
 	/**
 	 * Gets the growth rate for the crop. Setup to encourage rows by halving growth rate if there is diagonals, crops on
 	 * different sides that aren't opposing, and by adding growth for every crop next to this one (and for crop below
