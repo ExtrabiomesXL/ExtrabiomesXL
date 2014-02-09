@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 
 public class BlockCropRegrow extends BlockCropBasic {
+
+	public static final int	REGROW_META	= 4;
 
 	public enum CropType implements ICropType {
 		STRAWBERRY(RENDER_TYPE_FLOWER);
@@ -55,5 +58,34 @@ public class BlockCropRegrow extends BlockCropBasic {
 	
 	public BlockCropRegrow(int blockID, CropType type) {
 		super(blockID, type);
+	}
+
+	@Override
+	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y,
+			int z, int meta, int fortune) {
+		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+
+		// for now, regrowers only ever produce one item
+		if (meta >= MAX_GROWTH_STAGE) {
+			ret.add(new ItemStack(this.getCropItem(), 1, 0));
+		}
+
+		return ret;
+	}
+
+	@Override
+	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int meta) {
+		if (!world.isRemote) {
+			doRegrow(world, x, y, z, meta);
+		}
+		super.onBlockDestroyedByPlayer(world, x, y, z, meta);
+	}
+
+	/**
+	 * Replace the block at half growth.
+	 */
+	public void doRegrow(World world, int x, int y, int z, int meta) {
+		final int newMeta = meta > REGROW_META ? REGROW_META : meta;
+		world.setBlock(x, y, z, blockID, newMeta, 1 | 2 | 4);
 	}
 }
