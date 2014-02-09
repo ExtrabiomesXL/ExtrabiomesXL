@@ -3,6 +3,7 @@ package extrabiomes.blocks;
 import java.util.ArrayList;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
 public class BlockCropRegrow extends BlockCropBasic {
@@ -11,7 +12,7 @@ public class BlockCropRegrow extends BlockCropBasic {
 		STRAWBERRY(RENDER_TYPE_FLOWER);
 		
 		private ArrayList<Icon> icons;		
-		private Item seed;
+		private ItemStack		seed;
 		private Item crop;
 		private final int		renderType;
 
@@ -29,7 +30,7 @@ public class BlockCropRegrow extends BlockCropBasic {
 		}
 		
 	    @Override
-		public Item getSeedItem() {
+		public ItemStack getSeedItem() {
 	    	return seed;
 	    }
 	    @Override
@@ -38,7 +39,7 @@ public class BlockCropRegrow extends BlockCropBasic {
 	    }
 
 		@Override
-		public void setSeedItem(Item seed) {
+		public void setSeedItem(ItemStack seed) {
 			this.seed = seed;
 		}
 		@Override

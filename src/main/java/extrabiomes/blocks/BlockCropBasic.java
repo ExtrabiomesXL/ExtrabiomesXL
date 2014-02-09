@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -35,8 +36,8 @@ public class BlockCropBasic extends BlockFlower {
 		;
 
 		private ArrayList<Icon> icons;
-		private Item seed;
-		private Item crop;
+		private ItemStack		seed;
+		private Item			crop;
 		private int				renderType;
 		
 		@Override
@@ -49,7 +50,7 @@ public class BlockCropBasic extends BlockFlower {
 		}
 		
 	    @Override
-		public Item getSeedItem() {
+		public ItemStack getSeedItem() {
 	    	return seed;
 	    }
 	    @Override
@@ -58,7 +59,7 @@ public class BlockCropBasic extends BlockFlower {
 	    }
 
 	    @Override
-	    public void setSeedItem(Item seed) {
+		public void setSeedItem(ItemStack seed) {
 	    	this.seed = seed;
 	    }
 	    @Override
@@ -207,6 +208,33 @@ public class BlockCropBasic extends BlockFlower {
 		
 		return rate;
 	}
+
+	/**
+	 * Currently borrowed directly from vanilla crops, will improve.
+	 */
+	@Override
+	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune) {
+		ArrayList<ItemStack> ret = super.getBlockDropped(world, x, y, z, metadata, fortune);
+
+		if (metadata >= MAX_GROWTH_STAGE) {
+			for (int n = 0; n < 3 + fortune; n++) {
+				if (world.rand.nextInt(15) <= metadata) {
+					ret.add(new ItemStack(this.getSeedItem(), 1, 0));
+				}
+			}
+		}
+
+		return ret;
+	}
+
+	@Override
+	public int idDropped(int meta, Random rand, int fortune) {
+		return meta >= MAX_GROWTH_STAGE ? this.getCropItem() : this.getSeedItem();
+	}
+	@Override
+	public int quantityDropped(Random random) {
+		return 1;
+	}
 		
 	@Override
 	public int getRenderType() {
@@ -219,7 +247,7 @@ public class BlockCropBasic extends BlockFlower {
 	public int getCropItem() {
 		return cropType.getCropItem().itemID;
 	}
-	public void setSeedItem(Item seed) {
+	public void setSeedItem(ItemStack seed) {
 		cropType.setSeedItem(seed);
 	}
 	public void setCropItem(Item crop) {
