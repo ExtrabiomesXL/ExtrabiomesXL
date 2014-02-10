@@ -19,6 +19,7 @@ import extrabiomes.items.ItemCustomSeed;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
+import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.proxy.CommonProxy;
 
 public class CropHandler {
@@ -30,8 +31,19 @@ public class CropHandler {
     	createRegrowCrops();
 		// finally create the seeds that create the blocks
 		createSeedItems();
+		// register wild crops with worldgen
+		registerWildCrops();
     }
     
+	private static void registerWildCrops() {
+		Element[] crops = { Element.PLANT_STRAWBERRY };
+
+		final FlowerGenerator generator = FlowerGenerator.getInstance();
+		for (Element crop : crops) {
+			generator.registerCrop(crop);
+		}
+	}
+
 	private static void createCropItems() {
 		final ItemSettings settings = ItemSettings.CROP;
 		ItemCustomCrop item = new ItemCustomCrop(settings.getID());
