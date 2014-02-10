@@ -20,23 +20,30 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import cpw.mods.fml.common.IWorldGenerator;
+import extrabiomes.blocks.BlockCropBasic;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomFlower.BlockType;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings.Decoration;
+import extrabiomes.lib.Element;
 import extrabiomes.module.summa.biome.ExtrabiomeGenBase;
 
 public class FlowerGenerator implements IWorldGenerator
 {
-	private final Map<BlockType, WorldGenerator>	flowerGens;
-	private final Map<BiomeSettings, List<BlockCustomFlower.BlockType>>	flowerMaps;
-    
-    public FlowerGenerator()
-    {
-    	flowerGens = Maps.newHashMap();
-		flowerMaps = Maps.newHashMap();
+	private final Map<BlockType, WorldGenerator>						flowerGens	= Maps.newHashMap();
+	private final Map<BiomeSettings, List<BlockCustomFlower.BlockType>>	flowerMaps	= Maps.newHashMap();
+	private final Map<Element, WorldGenerator>							cropGens	= Maps.newHashMap();
 
+	private static FlowerGenerator										INSTANCE;
+    
+	public static FlowerGenerator getInstance() {
+		if (INSTANCE == null) INSTANCE = new FlowerGenerator();
+		return INSTANCE;
+	}
+
+	private FlowerGenerator()
+    {
 		registerFlower(BiomeSettings.ALPINE, BlockType.HYDRANGEA);
 		registerFlower(BiomeSettings.ALPINE, BlockType.IRIS_BLUE);
 		registerFlower(BiomeSettings.ALPINE, BlockType.IRIS_PURPLE);
@@ -215,6 +222,15 @@ public class FlowerGenerator implements IWorldGenerator
 		}
 	}
 
+	// special gen for wild crops
+	public void registerCrop(Element element) {
+		if (element.isPresent()) {
+			final WorldGenerator gen = new WorldGenMetadataFlowers(
+					element.get().itemID, BlockCropBasic.MAX_GROWTH_STAGE);
+			cropGens.put(element, gen);
+		}
+	}
+
 	protected void registerFlower(BiomeSettings settings, BlockType type) {
 		if (!settings.getBiome().isPresent()) return;
 		final List<BlockType> list;
@@ -227,8 +243,7 @@ public class FlowerGenerator implements IWorldGenerator
 		list.add(type);
 	}
     
-	protected int applyGenerator(BlockType type, World world, int chunkX,
-			int chunkZ, Random rand, int times) {
+	protected int applyGenerator(BlockType type, World world, int chunkX, int chunkZ, Random rand, int times) {
 		final WorldGenerator gen = flowerGens.get(type);
 		int count = 0;
 		if (gen != null) {
@@ -245,6 +260,13 @@ public class FlowerGenerator implements IWorldGenerator
 	protected boolean applyGenerator(BlockType type, World world, int chunkX, int chunkZ, Random rand) {
 		final WorldGenerator gen = flowerGens.get(type);
 		if (gen != null) {
+			return applyGenerator(gen, world, chunkX, chunkZ, rand);
+		}
+		return false;
+	}
+
+	protected boolean applyGenerator(WorldGenerator gen, World world, int chunkX, int chunkZ, Random rand) {
+		if (gen != null) {
 			final int x = chunkX + rand.nextInt(16) + 8;
 			final int y = rand.nextInt(128);
 			final int z = chunkZ + rand.nextInt(16) + 8;
@@ -252,6 +274,7 @@ public class FlowerGenerator implements IWorldGenerator
 		}
 		return false;
 	}
+
 
 	protected boolean biomeCheck(BiomeSettings settings, BiomeGenBase biome) {
 		return settings.getBiome().isPresent()
@@ -296,6 +319,18 @@ public class FlowerGenerator implements IWorldGenerator
 				|| biomeCheck(BiomeSettings.TEMPORATERAINFOREST, biome)
 				|| biomeCheck(BiomeSettings.TUNDRA, biome)) {
 			applyGenerator(BlockType.TOADSTOOL, world, chunkX, chunkZ, rand, 2);
+		}
+
+		if (biomeCheck(BiomeSettings.GREENHILLS, biome)
+				|| biomeCheck(BiomeSettings.FORESTEDHILLS, biome)
+				|| biomeCheck(BiomeSettings.FORESTEDISLAND, biome)
+				|| biomeCheck(BiomeSettings.BIRCHFOREST, biome)
+				|| biomeCheck(BiomeSettings.PINEFOREST, biome)
+				|| biomeCheck(BiomeSettings.MEADOW, biome)
+				|| biomeCheck(BiomeSettings.WOODLANDS, biome)) {
+			final WorldGenerator gen = cropGens.get(Element.PLANT_STRAWBERRY);
+			for (int x = 0; x < 4; ++x)
+				applyGenerator(gen, world, chunkX, chunkZ, rand);
 		}
     }
     

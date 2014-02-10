@@ -109,6 +109,7 @@ public class BlockCropBasic extends BlockFlower {
 	@SideOnly(Side.CLIENT)
 	public Icon getIcon(int side, int metadata)
 	{
+		if (metadata > MAX_GROWTH_STAGE) metadata = MAX_GROWTH_STAGE;
 		try {
 			return cropType.getStageIcon(metadata);
 		} catch (Exception e) {

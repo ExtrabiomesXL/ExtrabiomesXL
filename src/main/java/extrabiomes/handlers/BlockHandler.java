@@ -7,21 +7,15 @@
 package extrabiomes.handlers;
 
 import java.util.Collection;
-import java.util.List;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCatTail;
-import extrabiomes.blocks.BlockCropBasic;
-import extrabiomes.blocks.BlockCropRegrow;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomFlower.BlockType;
 import extrabiomes.blocks.BlockCustomLog;
@@ -41,7 +35,6 @@ import extrabiomes.blocks.BlockQuarterLog;
 import extrabiomes.blocks.BlockRedRock;
 import extrabiomes.blocks.BlockWaterPlant;
 import extrabiomes.blocks.GenericTerrainBlock;
-import extrabiomes.blocks.ICropType;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
 import extrabiomes.helpers.BiomeHelper;
 import extrabiomes.helpers.ForestryModHelper;
@@ -64,9 +57,7 @@ import extrabiomes.renderers.RenderKneeLog;
 import extrabiomes.renderers.RenderMiniLog;
 import extrabiomes.renderers.RenderNewQuarterLog;
 import extrabiomes.renderers.RenderQuarterLog;
-import extrabiomes.subblocks.SubBlock;
 import extrabiomes.subblocks.SubBlockWaterPlant;
-import extrabiomes.utility.MultiItemBlock;
 
 public abstract class BlockHandler
 {
@@ -181,7 +172,7 @@ public abstract class BlockHandler
 				BlockSettings.FLOWER2.getID(), BlockSettings.FLOWER3.getID() };
 		
 		final CommonProxy proxy = Extrabiomes.proxy;
-		final FlowerGenerator generator = new FlowerGenerator();
+		final FlowerGenerator generator = FlowerGenerator.getInstance();
 		
 		for (int group = 0; group < blockIDs.length; ++group) {
 			final int blockID = blockIDs[group];
