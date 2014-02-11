@@ -26,7 +26,7 @@ public enum BlockSettings
     FLOWER2					(2314),
     FLOWER3					(2315),
     GLORIOSA				(2316),
-    SPANISH_MOSS			(2317),
+    SPANISH_MOSS			(0),
     
     SAPLING             	(2320),
     NEWSAPLING          	(2321),

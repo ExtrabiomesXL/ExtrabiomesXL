@@ -52,6 +52,8 @@ import extrabiomes.module.summa.worldgen.CatTailGenerator;
 import extrabiomes.module.summa.worldgen.EelGrassGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.module.summa.worldgen.LeafPileGenerator;
+import extrabiomes.module.summa.worldgen.VineGenerator;
+import extrabiomes.module.summa.worldgen.WorldGenCustomVine;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.renderers.RenderKneeLog;
 import extrabiomes.renderers.RenderMiniLog;
@@ -256,11 +258,25 @@ public abstract class BlockHandler
 				LogHelper.warning("No element found for vine " + blockType);
 				continue;
 			}
-			ItemStack item = new ItemStack(block, 1);
+			final ItemStack item = new ItemStack(block, 1);
 			element.set(item);
 
 			ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1,
 					Short.MAX_VALUE));
+			
+			final VineGenerator generator;
+			// gloriosa gets a biome list override
+			if( blockType == BlockCustomVine.BlockType.GLORIOSA ) {
+				final BiomeSettings[] biomeList = {
+					BiomeSettings.EXTREMEJUNGLE,
+					BiomeSettings.MINIJUNGLE,
+					BiomeSettings.RAINFOREST
+				};
+				generator = new VineGenerator(block, biomeList);
+			} else {
+				generator = new VineGenerator(block);	
+			}
+			proxy.registerWorldGenerator(generator);
 		}
 	}
 
