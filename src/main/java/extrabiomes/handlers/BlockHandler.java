@@ -111,7 +111,10 @@ public abstract class BlockHandler
     }
     
     private static void createWaterPlants() throws Exception {
-    	final BlockWaterPlant waterPlantBlock = new BlockWaterPlant(4000, "waterPlant");
+        final int blockID = BlockSettings.WATERPLANT.getID();
+        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
+        
+    	final BlockWaterPlant waterPlantBlock = new BlockWaterPlant(blockID, "waterPlant");
     	
     	waterPlantBlock.setUnlocalizedName("extrabiomes.waterplant").setHardness(0.01F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
     	
