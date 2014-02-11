@@ -306,18 +306,14 @@ public class FlowerGenerator implements IWorldGenerator
 
 		// //////// nonstandard flowers //////////
 
-		if (biomeCheck(BiomeSettings.MOUNTAINDESERT, biome)) {
-			applyGenerator(BlockType.TINY_CACTUS, world, chunkX, chunkZ, rand, 70);
-		}
-
-		if (biomeCheck(BiomeSettings.MOUNTAINRIDGE, biome)) {
-			applyGenerator(BlockType.TINY_CACTUS, world, chunkX, chunkZ, rand, 62);
+		if (biomeCheck(BiomeSettings.MOUNTAINDESERT, biome)
+				|| biomeCheck(BiomeSettings.MOUNTAINRIDGE, biome)) {
+			applyGenerator(BlockType.TINY_CACTUS, world, chunkX, chunkZ, rand, 64);
 		}
 
 		if (biomeCheck(BiomeSettings.AUTUMNWOODS, biome)
-				|| biomeCheck(BiomeSettings.SNOWYRAINFOREST, biome)
-				|| biomeCheck(BiomeSettings.TEMPORATERAINFOREST, biome)
-				|| biomeCheck(BiomeSettings.TUNDRA, biome)) {
+				|| biomeCheck(BiomeSettings.PINEFOREST, biome)
+				|| biomeCheck(BiomeSettings.TEMPORATERAINFOREST, biome)) {
 			applyGenerator(BlockType.TOADSTOOL, world, chunkX, chunkZ, rand, 2);
 		}
 
