@@ -93,13 +93,10 @@ public class BlockCropBasic extends BlockFlower {
 		final String name = cropType.name().toLowerCase();
 		Icon lastIcon = null;
 		for (int k = 0; k <= MAX_GROWTH_STAGE; ++k) {
-			final String texture = "plant_" + name + k;
+			int l = (k != (MAX_GROWTH_STAGE - 1)) ? k : k-1;
+			
+			final String texture = "plant_" + name + l;
 			Icon icon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texture);
-			if( icon != null ) {
-				lastIcon = icon;
-			} else {
-				icon = lastIcon;
-			}
 			icons.add(k, icon);
 		}
 		cropType.setStageIcons(icons);
