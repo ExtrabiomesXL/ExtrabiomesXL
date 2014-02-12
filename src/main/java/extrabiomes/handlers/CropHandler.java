@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockCropBasic;
@@ -19,6 +20,7 @@ import extrabiomes.items.ItemCustomSeed;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
+import extrabiomes.lib.Reference;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.proxy.CommonProxy;
 
@@ -48,6 +50,7 @@ public class CropHandler {
 		final ItemSettings settings = ItemSettings.CROP;
 		ItemCustomCrop item = new ItemCustomCrop(settings.getID());
 		Stuff.crop = Optional.of(item);
+		GameRegistry.registerItem(item, "extrabiomes.crop", Reference.MOD_ID);
 
 		for (ItemCustomCrop.CropType type : ItemCustomCrop.CropType.values()) {
 			final Element element;
@@ -70,6 +73,7 @@ public class CropHandler {
 		final ItemSettings settings = ItemSettings.SEED;
 		ItemCustomSeed item = new ItemCustomSeed(settings.getID());
 		Stuff.seed = Optional.of(item);
+		GameRegistry.registerItem(item, "extrabiomes.seed", Reference.MOD_ID);
 
 		for (ItemCustomSeed.SeedType type : ItemCustomSeed.SeedType.values()) {
 			final Element seed_element;

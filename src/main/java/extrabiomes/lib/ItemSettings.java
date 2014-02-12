@@ -18,7 +18,8 @@ public enum ItemSettings
     PASTE				(12872),
     DYE					(12873),
     SEED				(12874),
-    CROP				(12875);
+    CROP				(12875),
+    FOOD				(12876);
     // @formatter:on
     
     private final int defaultID;

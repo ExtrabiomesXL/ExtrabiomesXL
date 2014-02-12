@@ -19,6 +19,9 @@ item.extrabiomes.crop.strawberry.name=Strawberry
 
 item.extrabiomes.seed.strawberry.name=Strawberry Seeds
 
+item.extrabiomes.food.chocolate.name=Chocolate
+item.extrabiomes.food.chocolate_strawberry.name=Chocolate Covered Strawberry
+
 entity.extrabiomes.scarecrow.name=Scarecrow
 
 log.message.initializing=Intializing.

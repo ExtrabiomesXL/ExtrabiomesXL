@@ -14,91 +14,94 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 
-public class ItemCustomCrop extends ItemFood {
+public class ItemCustomFood extends ItemFood {
 
 	public static final int		DEFAULT_HUNGER		= 2;	// 1.0 meat
 	public static final float	DEFAULT_SATURATION	= 0.6f;
 
-	public enum CropType {
-		STRAWBERRY(0, null, null);
-
+	public enum FoodType {
+		// @formatter:off
+		//						 idx   hung  sat   text
+		CHOCOLATE			 	(0,    3,    0.5f, "chocolate" ),
+		CHOCOLATE_STRAWBERRY	(1,    7,    1.0f, "ch_strawberry" );
+		// @formatter:on
+		
 		public final int	meta;
 		public final int	hunger;
 		public final float	saturation;
 		public Icon			icon;
+		public final String texture;
 		
-		public enum Edible {
-			ALWAYS, YES, NO;
-		};
-		public Edible	edible	= Edible.YES;
-
-		private CropType(int meta, Integer hunger, Float saturation) {
+		public boolean 		alwaysEdible = false;
+		
+		private FoodType(int meta, Integer hunger, Float saturation, String texture ) {
 			this.meta = meta;
 			this.hunger = (hunger == null ? DEFAULT_HUNGER : hunger);
 			this.saturation = (saturation == null ? DEFAULT_SATURATION : saturation);
+			this.texture = texture;
 		}
 		
-		private CropType(int meta, Integer hunger, Float saturation, Edible edible) {
-			this(meta, hunger, saturation);
-			this.edible = edible;
+		private FoodType(int meta, Integer hunger, Float saturation, String texture, boolean alwaysEdible) {
+			this(meta, hunger, saturation, texture);
+			this.alwaysEdible = alwaysEdible;
 		}
 	}
 
-	private final int	NUM_CROPS;
+	private final int	NUM_FOODS;
 
-	public ItemCustomCrop(int itemID) {
+	public ItemCustomFood(int itemID) {
 		super(itemID, DEFAULT_HUNGER, DEFAULT_SATURATION, false);
 		setMaxDamage(0);
 		setHasSubtypes(true);
-		setUnlocalizedName("extrabiomes.crop");
+		setUnlocalizedName("extrabiomes.food");
 		setCreativeTab(Extrabiomes.tabsEBXL);
 
-		NUM_CROPS = CropType.values().length;
+		NUM_FOODS = FoodType.values().length;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
-		for (CropType type : CropType.values()) {
-			final String iconPath = Extrabiomes.TEXTURE_PATH + type.name().toLowerCase();
+		for (FoodType type : FoodType.values()) {
+			final String iconPath = Extrabiomes.TEXTURE_PATH + type.texture;
 			type.icon = iconRegister.registerIcon(iconPath);
 		}
 	}
 
 	@Override
 	public int getMetadata(int meta) {
-		return MathHelper.clamp_int(meta, 0, NUM_CROPS);
+		return MathHelper.clamp_int(meta, 0, NUM_FOODS);
 	}
 
 	@Override
 	public Icon getIconFromDamage(int meta) {
-		return getCropType(meta).icon;
+		return getFoodType(meta).icon;
 	}
 
-	public CropType getCropType(int meta) {
-		return CropType.values()[getMetadata(meta)];
+	public FoodType getFoodType(int meta) {
+		return FoodType.values()[getMetadata(meta)];
 	}
 	
 	@Override
 	public String getUnlocalizedName(ItemStack itemStack) {
-		final CropType crop = getCropType(itemStack.getItemDamage());
-		return super.getUnlocalizedName() + "." + crop.name().toLowerCase();
+		final FoodType type = getFoodType(itemStack.getItemDamage());
+		return super.getUnlocalizedName() + "." + type.name().toLowerCase();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int itemID, CreativeTabs tabs, List list) {
-		for (CropType type : CropType.values()) {
+		for (FoodType type : FoodType.values()) {
 			list.add(new ItemStack(itemID, 1, type.meta));
 		}
 	}
 
 	@Override
 	public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player) {
-		final CropType crop = getCropType(itemStack.getItemDamage());
+		final FoodType type = getFoodType(itemStack.getItemDamage());
 
-		player.getFoodStats().addStats(crop.hunger, crop.saturation);
+		player.getFoodStats().addStats(type.hunger, type.saturation);
 		world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 		this.onFoodEaten(itemStack, world, player);
 
@@ -109,13 +112,9 @@ public class ItemCustomCrop extends ItemFood {
     @Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
-		final CropType crop = getCropType(itemStack.getItemDamage());
+		final FoodType type = getFoodType(itemStack.getItemDamage());
 		
-		// TODO: check for planting root crops
-		
-		if( crop.edible == CropType.Edible.NO ) {
-			// can't eat cotton and things
-		} else if (player.canEat(crop.edible == CropType.Edible.ALWAYS)) {
+		if (player.canEat(type.alwaysEdible)) {
             player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
         }
 

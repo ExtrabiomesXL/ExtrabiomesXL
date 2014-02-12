@@ -41,6 +41,7 @@ public class ItemCustomSeed extends Item implements IPlantable {
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setUnlocalizedName("extrabiomes.seed");
+		setCreativeTab(Extrabiomes.tabsEBXL);
 
 		NUM_SEEDS = SeedType.values().length;
 	}

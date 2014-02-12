@@ -14,6 +14,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.items.ItemCustomDye;
+import extrabiomes.items.ItemCustomFood;
 import extrabiomes.items.LogTurner;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
@@ -27,6 +28,7 @@ public abstract class ItemHandler
     {
         createLogTurner();
 		createDye();
+		createFoods();
     }
     
     private static void createLogTurner()
@@ -57,5 +59,13 @@ public abstract class ItemHandler
 
 		dye.init();
 	}
-
+	
+	private static void createFoods() {
+		final int itemID = ItemSettings.FOOD.getID();
+		if( itemID <= 0) return;
+		
+		final ItemCustomFood food = new ItemCustomFood(itemID);
+		Stuff.food = Optional.of(food);
+		GameRegistry.registerItem(food, "extrabiomes.food", Reference.MOD_ID);
+	}
 }
