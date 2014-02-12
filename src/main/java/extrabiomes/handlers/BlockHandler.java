@@ -122,6 +122,8 @@ public abstract class BlockHandler
     	final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(waterPlantBlock, extrabiomes.items.ItemBlockWaterPlant.class, waterPlantBlock.getUnlocalizedName() + ":" + waterPlantBlock.getClass().getName());
         
+        Element.WATERPLANT.set(new ItemStack(waterPlantBlock, 1, 0));
+        
         proxy.registerWorldGenerator(new EelGrassGenerator(waterPlantBlock.blockID, 0));
     }
 
