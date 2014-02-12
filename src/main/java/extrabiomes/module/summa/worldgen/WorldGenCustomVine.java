@@ -3,6 +3,8 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import extrabiomes.blocks.BlockCustomVine;
+import extrabiomes.helpers.LogHelper;
+import net.minecraft.block.Block;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Facing;
 import net.minecraft.world.World;
@@ -23,12 +25,14 @@ public class WorldGenCustomVine extends WorldGenerator
 
         for (int _z = z; y < 128; ++y)
         {
-            if (world.isAirBlock(x, y, z))
+        	final int targetBlockID = world.getBlockId(x, y, z);
+            if (world.isAirBlock(x, y, z) || (targetBlockID == Block.vine.blockID) )
             {
                 for (int j = 2; j <= 5; ++j)
                 {
                     if (block.canPlaceBlockOnSide(world, x, y, z, j))
                     {
+                    	//LogHelper.info("Gloriosa placing at "+x+","+y+","+z);
                         world.setBlock(x, y, z, block.blockID, 1 << Direction.facingToDirection[Facing.oppositeSide[j]], 2);
                         break;
                     }

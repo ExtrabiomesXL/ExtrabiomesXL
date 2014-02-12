@@ -14,6 +14,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.blocks.BlockCustomVine;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 
 public class VineGenerator implements IWorldGenerator
@@ -37,6 +38,17 @@ public class VineGenerator implements IWorldGenerator
     	this.biomeList = (biomeList == null ? DEFAULT_BIOME_LIST : biomeList);
     }
     
+    private boolean biomeCheck(BiomeGenBase biome) {
+		final BiomeSettings settings = BiomeSettings.findBiomeSettings(biome.biomeID);    	
+		if( settings != null ) {
+			for( final BiomeSettings goodBiome : biomeList ) {
+				if( settings == goodBiome )
+					return settings.getBiome().isPresent() && biome == settings.getBiome().get();
+			}
+		}
+		return false;
+    }
+    
     @Override
     public void generate(Random rand, int chunkX, int chunkZ,
             World world, IChunkProvider chunkGenerator,
@@ -45,14 +57,15 @@ public class VineGenerator implements IWorldGenerator
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
         final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkX);
-        
-        if (BiomeSettings.GREENSWAMP.getBiome().isPresent() && biome == BiomeSettings.GREENSWAMP.getBiome().get())
-            for (int i = 0; i < 20; i++)
-            {
-                final int x = chunkX + rand.nextInt(16) + 8;
-                final int z = chunkZ + rand.nextInt(16) + 8;
-                final int y = world.getHeightValue(x, z);
-                vineGen.generate(world, rand, x, y, z);
-            }
+        if( !biomeCheck(biome) ) return;
+		
+    	//LogHelper.info("Gloriosa starting generation in "+biome);
+        for (int i = 0; i < 30; i++)
+        {
+            final int x = chunkX + rand.nextInt(16) + 8;
+            final int z = chunkZ + rand.nextInt(16) + 8;
+            final int y = world.getHeightValue(x, z);
+            vineGen.generate(world, rand, x, y, z);
+        }
     }
 }
