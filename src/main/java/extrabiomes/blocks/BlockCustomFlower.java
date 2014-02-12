@@ -78,7 +78,8 @@ public class BlockCustomFlower extends Block implements IPlantable
 		VIOLET(2, 10, "violet", 3, 5, new String[] {}),
 		YARROW(2, 11, "yarrow", 3, 11, new String[] {}),
 		// group 2 cont - added in 3.15.2
-		BELLADONNA(2, 12, "belladonna", 3, 4, new String[] {});
+		BELLADONNA(2, 12, "belladonna", 3, 4, new String[] {}),
+		BLUE_POPPY(2, 13, "himalayanbluepoppy", 3, 6, new String[] {});	// only cyan dye
         
 		private final int		group;
 		private final int		metadata;

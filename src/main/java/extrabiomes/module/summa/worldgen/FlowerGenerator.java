@@ -44,6 +44,7 @@ public class FlowerGenerator implements IWorldGenerator
 
 	private FlowerGenerator()
     {
+		registerFlower(BiomeSettings.ALPINE, BlockType.BLUE_POPPY);
 		registerFlower(BiomeSettings.ALPINE, BlockType.HYDRANGEA);
 		registerFlower(BiomeSettings.ALPINE, BlockType.IRIS_BLUE);
 		registerFlower(BiomeSettings.ALPINE, BlockType.IRIS_PURPLE);
@@ -86,6 +87,7 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.FORESTEDHILLS, BlockType.VIOLET);
 
 		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.ALLIUM);
+		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.BLUE_POPPY);
 		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.DAISY);
 		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.DANDELION);
 		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.IRIS_BLUE);
@@ -97,6 +99,7 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.GREENHILLS, BlockType.ALLIUM);
 		registerFlower(BiomeSettings.GREENHILLS, BlockType.BACHELORS_BUTTON);
 		registerFlower(BiomeSettings.GREENHILLS, BlockType.BLUEBELL);
+		registerFlower(BiomeSettings.GREENHILLS, BlockType.BLUE_POPPY);
 		registerFlower(BiomeSettings.GREENHILLS, BlockType.DAISY);
 		registerFlower(BiomeSettings.GREENHILLS, BlockType.DANDELION);
 		registerFlower(BiomeSettings.GREENHILLS, BlockType.IRIS_BLUE);
@@ -108,6 +111,7 @@ public class FlowerGenerator implements IWorldGenerator
 
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.ALLIUM);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.BELLADONNA);
+		registerFlower(BiomeSettings.GREENSWAMP, BlockType.BLUE_POPPY);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.BUTTERCUP);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.DAISY);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.DANDELION);
@@ -130,6 +134,7 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.MEADOW, BlockType.YARROW);
 
 		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.BELLADONNA);
+		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.BLUE_POPPY);
 		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.GARDENIA);
 		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.GERBERA_ORANGE);
 		registerFlower(BiomeSettings.MINIJUNGLE, BlockType.GERBERA_PINK);
@@ -194,6 +199,7 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.WOODLANDS, BlockType.ALLIUM);
 		registerFlower(BiomeSettings.WOODLANDS, BlockType.BACHELORS_BUTTON);
 		registerFlower(BiomeSettings.WOODLANDS, BlockType.BLUEBELL);
+		registerFlower(BiomeSettings.WOODLANDS, BlockType.BLUE_POPPY);
 		registerFlower(BiomeSettings.WOODLANDS, BlockType.DAISY);
 		registerFlower(BiomeSettings.WOODLANDS, BlockType.DANDELION);
 		registerFlower(BiomeSettings.WOODLANDS, BlockType.IRIS_BLUE);
