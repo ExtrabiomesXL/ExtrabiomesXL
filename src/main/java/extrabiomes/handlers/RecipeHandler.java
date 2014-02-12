@@ -34,8 +34,17 @@ public abstract class RecipeHandler
 
 		writeSeedRecipes();
 		writeFoodRecipes();
+		
+		writeWaterPantRecipes();
 	}
 
+    private static void writeWaterPantRecipes() {
+    	if(!Element.WATERPLANT.isPresent()) return;
+    	
+    	final IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Item.dyePowder, 1, 2), Element.WATERPLANT.get());
+    	Extrabiomes.proxy.addRecipe(recipe);
+    }
+    
 	private static void writeSeedRecipes() {
 		if (!Stuff.seed.isPresent() || !Stuff.crop.isPresent()) return;
 
