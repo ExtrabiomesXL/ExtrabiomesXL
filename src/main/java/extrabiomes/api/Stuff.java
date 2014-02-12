@@ -23,6 +23,7 @@ public enum Stuff
     public static Optional<? extends Item>	dye						= Optional.absent();
     public static Optional<? extends Item>	crop					= Optional.absent();
     public static Optional<? extends Item>	seed					= Optional.absent();
+    public static Optional<? extends Item>	food					= Optional.absent();
     
     public static Optional<? extends Block> planks                  = Optional.absent();
     public static Optional<? extends Block> quickSand               = Optional.absent();

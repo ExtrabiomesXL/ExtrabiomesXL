@@ -11,6 +11,7 @@ import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomFlower.BlockType;
 import extrabiomes.helpers.LogHelper;
+import extrabiomes.items.ItemCustomFood;
 import extrabiomes.items.ItemCustomSeed;
 import extrabiomes.lib.Element;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
@@ -32,6 +33,7 @@ public abstract class RecipeHandler
         writeLeafPileRecipes();
 
 		writeSeedRecipes();
+		writeFoodRecipes();
 	}
 
 	private static void writeSeedRecipes() {
@@ -365,6 +367,23 @@ public abstract class RecipeHandler
         final IRecipe recipe = new ShapedOreRecipe(Element.LOGTURNER.get(), new String[] { "ss",
                 " s", "ss" }, 's', "stickWood");
         Extrabiomes.proxy.addRecipe(recipe);
+    }
+    
+    private static void writeFoodRecipes()
+    {
+    	if (!Stuff.food.isPresent())
+    		return;
+    	final int foodID = Stuff.food.get().itemID;
+    	final CommonProxy proxy = Extrabiomes.proxy;
+    	
+    	final ItemStack chocolate = new ItemStack(foodID, 1, ItemCustomFood.FoodType.CHOCOLATE.meta);
+    	final ItemStack cocoa_powder = new ItemStack(Item.dyePowder, 1, 3);
+    	IRecipe recipe = new ShapelessOreRecipe(chocolate, cocoa_powder, Item.sugar, Item.bucketMilk);
+    	proxy.addRecipe(recipe);
+    	
+    	final ItemStack choco_strawberry = new ItemStack(foodID, 1, ItemCustomFood.FoodType.CHOCOLATE_STRAWBERRY.meta);
+    	recipe = new ShapelessOreRecipe(choco_strawberry, chocolate, "cropStrawberry");
+    	proxy.addRecipe(recipe);
     }
     
 }

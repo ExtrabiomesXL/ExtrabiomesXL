@@ -228,8 +228,10 @@ public abstract class BlockHandler
 
 		final CommonProxy proxy = Extrabiomes.proxy;
 
-		for (BlockCustomVine.BlockType blockType : BlockCustomVine.BlockType
-				.values()) {
+		//BlockCustomVine.BlockType[] vines = BlockCustomVine.BlockType.values();
+		BlockCustomVine.BlockType[] vines = { BlockCustomVine.BlockType.GLORIOSA };
+		
+		for (BlockCustomVine.BlockType blockType : vines) {
 			final BlockSettings settings;
 			try {
 				settings = BlockSettings.valueOf(blockType.name());
