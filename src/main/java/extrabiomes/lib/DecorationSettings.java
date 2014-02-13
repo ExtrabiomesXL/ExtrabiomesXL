@@ -19,7 +19,7 @@ public enum DecorationSettings
 {
 	// @formatter:off
     //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
-    ALPINE				(null, 7,    null, 0,    null, null, null, null, null, null, null, null, 2   ), // 5
+    ALPINE				(null, 7,    null, 0,    null, null, null, null, null, null, null, null, 4   ), // 5
     AUTUMNWOODS			(null, 6,    null, 6,    null, 3,    null, null, null, null, null, null, 5   ), // 2
     BIRCHFOREST			(null, 7,    null, 1,    null, null, null, null, null, null, null, null, 6   ), // 10
     EXTREMEJUNGLE		(null, 50,   null, 25,   null, null, null, null, null, null, null, null, 7   ), // 1
@@ -37,7 +37,7 @@ public enum DecorationSettings
     MOUNTAINDESERT		(null, 0,    null, null, 2,    null, 50,   10,   null, null, null, null, null),
     MOUNTAINRIDGE		(null, 0,    null, 12,   null, null, null, null, null, null, null, null, null),
     //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
-    MOUNTAINTAIGA		(null, 10,   null, 1,    null, null, null, null, null, null, null, null, 2   ), // 1
+    MOUNTAINTAIGA		(null, 10,   null, 1,    null, null, null, null, null, null, null, null, 4   ), // 1
     PINEFOREST			(null, 10,   null, 1,    null, null, null, null, null, null, null, null, 4   ), // 6
     RAINFOREST			(null, 22,   null, 4,    null, null, null, null, null, null, null, null, 6   ), // 1
     REDWOODFOREST		(null, 7,    null, null, null, null, null, null, null, null, null, null, null),
