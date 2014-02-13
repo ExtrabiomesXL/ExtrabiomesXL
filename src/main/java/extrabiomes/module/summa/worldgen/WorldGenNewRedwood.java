@@ -91,11 +91,15 @@ public class WorldGenNewRedwood extends WorldGenerator
         final int height = rand.nextInt(23) + 26;
         byte b0 = 1;
         int flag1 = 1;
+        int chunkCheck =  13;
 
         if (y < 1 || y + height + 5 > 256)
             return false;
 
         if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1)
+            return false;
+        
+        if (!world.checkChunksExist(x - chunkCheck, y - chunkCheck, z - chunkCheck, x + chunkCheck, y + chunkCheck, z + chunkCheck))
             return false;
 
         /*

@@ -8,6 +8,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Element;
 import extrabiomes.module.summa.TreeSoilRegistry;
 
@@ -93,7 +94,7 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase
     {
         final int height = rand.nextInt(BASE_HEIGHT_VARIANCE) + BASE_HEIGHT;
         final double radius = (CANOPY_WIDTH + rand.nextInt(CANOPY_WIDTH_VARIANCE)) / 2.0D;
-        final int chunkCheck = (int) Math.ceil(radius) + 1;
+        final int chunkCheck = (int) Math.ceil(radius) + 5;
         
         // Make sure that a tree can grow on the soil
         if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x, y - 1, z))))
@@ -322,7 +323,14 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase
         {
             for (int x1 = (int) -radius; x1 < (radius + 1); x1++)
             {
-                final Block block = Block.blocksList[world.getBlockId((int) (x1 + x), (int) y, (int) (z1 + z))];
+                Block block;
+                
+                try {
+                	block = Block.blocksList[world.getBlockId((int) (x1 + x), (int) y, (int) (z1 + z))];
+                } catch (Exception e) {
+                	LogHelper.info("Sakura tree tried to generate in an ungenerated chunk.");
+                	return false;
+                }
                 
                 if ((((x1 * x1) + (z1 * z1)) <= maxDist) && (((x1 * x1) + (z1 * z1)) >= minDist))
                 {
