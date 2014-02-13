@@ -214,12 +214,9 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
     {
         final int metadata = unmarkedMetadata(iBlockAccess.getBlockMetadata(x, y, z));
         
-        if (metadata == BlockType.JAPANESE_MAPLE.metadata())
-        {
+        if (metadata == BlockType.JAPANESE_MAPLE.metadata() || metadata == BlockType.JAPANESE_MAPLE_SHRUB.metadata()) {
             return getRenderColor(metadata);
-        }
-        else
-        {
+        } else {
             return calcSmoothedBiomeFoliageColor(iBlockAccess, x, z);
         }
     }
