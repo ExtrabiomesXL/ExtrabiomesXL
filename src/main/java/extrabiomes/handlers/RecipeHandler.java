@@ -116,6 +116,13 @@ public abstract class RecipeHandler
 			}
 		}
 
+		if (Element.VINE_GLORIOSA.isPresent()) {
+			final ItemStack gloriosa = Element.VINE_GLORIOSA.get();
+			final ItemStack dye = new ItemStack(Item.dyePowder, 1, 1);
+			final IRecipe recipe = new ShapelessOreRecipe(dye, gloriosa);
+			proxy.addRecipe(recipe);
+		}
+
         if (Element.TOADSTOOL.isPresent())
         {
             final ItemStack toadstool = Element.TOADSTOOL.get();
