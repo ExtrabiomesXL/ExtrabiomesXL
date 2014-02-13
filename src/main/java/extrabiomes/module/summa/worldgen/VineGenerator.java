@@ -56,10 +56,12 @@ public class VineGenerator implements IWorldGenerator
     {
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
-        final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkX);
+        final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkZ);
+        
         if( !biomeCheck(biome) ) return;
+
+        //LogHelper.info("Gloriosa starting generation in " + biome.biomeName);
 		
-    	//LogHelper.info("Gloriosa starting generation in "+biome);
         for (int i = 0; i < 30; i++)
         {
             final int x = chunkX + rand.nextInt(16) + 8;
