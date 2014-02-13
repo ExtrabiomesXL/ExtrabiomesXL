@@ -14,7 +14,6 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import extrabiomes.blocks.BlockCustomVine;
-import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 
 public class VineGenerator implements IWorldGenerator
@@ -62,7 +61,7 @@ public class VineGenerator implements IWorldGenerator
 
         //LogHelper.info("Gloriosa starting generation in " + biome.biomeName);
 		
-        for (int i = 0; i < 30; i++)
+		for (int i = 0; i < 20; i++)
         {
             final int x = chunkX + rand.nextInt(16) + 8;
             final int z = chunkZ + rand.nextInt(16) + 8;
