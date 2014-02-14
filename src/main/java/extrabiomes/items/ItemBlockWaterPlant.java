@@ -26,8 +26,7 @@ public class ItemBlockWaterPlant extends ItemBlock
         setMaxDamage(0);
         setHasSubtypes(true);
     }
-    
-    @SideOnly(Side.CLIENT)
+
     private Block getBlock()
     {
         return Block.blocksList[getBlockID()];
