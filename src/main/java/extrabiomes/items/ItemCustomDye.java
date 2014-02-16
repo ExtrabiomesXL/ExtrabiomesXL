@@ -107,7 +107,7 @@ public class ItemCustomDye extends Item {
 	 * Gets an icon index based on an item's damage value
 	 */
 	public Icon getIconFromDamage(int meta) {
-		int j = MathHelper.clamp_int(meta, 0, dyeIcons.length);
+		int j = MathHelper.clamp_int(meta, 0, Color.values().length);
 		return this.dyeIcons[j];
 	}
 
@@ -118,7 +118,7 @@ public class ItemCustomDye extends Item {
 	 */
 	@Override
 	public String getUnlocalizedName(ItemStack itemStack) {
-		int i = MathHelper.clamp_int(itemStack.getItemDamage(), 0, dyeIcons.length);
+		int i = MathHelper.clamp_int(itemStack.getItemDamage(), 0, Color.values().length);
 		return super.getUnlocalizedName() + "." + Color.values()[i].name;
 	}
 
