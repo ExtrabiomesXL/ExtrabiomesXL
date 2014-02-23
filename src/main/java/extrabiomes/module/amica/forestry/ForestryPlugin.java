@@ -158,7 +158,7 @@ public class ForestryPlugin
         
         if (carpenterAddRecipe.isPresent() && Element.RED_COBBLE.isPresent())
         {
-            carpenterAddRecipe.get().invoke(carpenterManager, 10, new FluidStack(Block.waterStill.blockID, 3000), null, new ItemStack(Item.clay, 4), new Object[] { "#", Character.valueOf('#'), Element.RED_COBBLE.get() });
+            carpenterAddRecipe.get().invoke(carpenterManager, 10, getFluidStack("water", 3000), null, new ItemStack(Item.clay, 4), new Object[] { "#", Character.valueOf('#'), Element.RED_COBBLE.get() });
         }
     }
     
@@ -181,10 +181,12 @@ public class ForestryPlugin
     
     private FluidStack getFluidStack(String name) throws Exception
     {
-        return FluidRegistry.getFluidStack(name, 1);
-        //return FluidRegistry.getFluid(name);
-        //final ItemStack itemStack = (ItemStack) getForestryItem.get().invoke(null, name);
-        //return new FluidStack(itemStack.itemID, 1, itemStack.getTagCompound());
+        return getFluidStack(name, 1000);
+    }
+    
+    private FluidStack getFluidStack(String name, int ammount) throws Exception
+    {
+        return FluidRegistry.getFluidStack(name, ammount);
     }
     
     @ForgeSubscribe
