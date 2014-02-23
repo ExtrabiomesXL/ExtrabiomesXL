@@ -10,6 +10,7 @@ import java.util.Locale;
 
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.utility.EnhancedConfiguration;
 
 public enum BlockSettings
@@ -109,17 +110,25 @@ public enum BlockSettings
         return this == QUARTERLOG0 || this == QUARTERLOG1 || this == QUARTERLOG2 || this == QUARTERLOG3;
     }
     
-    public void load(EnhancedConfiguration configuration)
+    public void load(EnhancedConfiguration configuration, boolean update)
     {
         Property property;
         switch (this)
         {
             case CRACKEDSAND:
             case REDROCK:
-                property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(), blockID, String.format("%s is used in terrain generation. Its id must be less than 256.", toString()));
+            	if(update || blockID == 0) {
+            		property = configuration.get(Configuration.CATEGORY_BLOCK, idKey(), blockID);
+            	} else {
+            		property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(), blockID, String.format("%s is used in terrain generation. Its id must be less than 256.", toString()));
+            	}
                 break;
             default:
-                property = configuration.getBlock(idKey(), blockID);
+            	if(update || blockID == 0) {
+            		property = configuration.get(Configuration.CATEGORY_BLOCK, idKey(), blockID);
+            	} else {
+            		property = configuration.getBlock(idKey(), blockID);
+            	}
         }
         
         blockID = property.getInt(0);

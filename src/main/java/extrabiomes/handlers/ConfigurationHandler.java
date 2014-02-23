@@ -82,12 +82,12 @@ public abstract class ConfigurationHandler
             
             for (final BlockSettings setting : BlockSettings.values())
             {
-                setting.load(configuration);
+                setting.load(configuration, upgradeOverride);
             }
             
             for (final ItemSettings setting : ItemSettings.values())
             {
-                setting.load(configuration);
+                setting.load(configuration, upgradeOverride);
             }
             
             configuration.addCustomCategoryComment("saplingreplanting", "Settings to configure the chance that saplings will replant themselves up despawning on valid soil.");
