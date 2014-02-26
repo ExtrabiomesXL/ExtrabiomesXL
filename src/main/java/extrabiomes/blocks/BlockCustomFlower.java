@@ -114,6 +114,7 @@ public class BlockCustomFlower extends Block implements IPlantable
 			return icon;
 		}
 
+		@SideOnly(Side.CLIENT)
 		public Icon registerIcon(IconRegister iconRegister) {
 			icon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + this.texture);
 			return icon;
