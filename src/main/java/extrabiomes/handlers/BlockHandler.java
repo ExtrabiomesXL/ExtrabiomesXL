@@ -120,7 +120,7 @@ public abstract class BlockHandler
     	waterPlantBlock.registerSubBlock(new SubBlockWaterPlant("eelgrass").addPlaceableBlock(Block.grass.blockID).addPlaceableBlock(Block.sand.blockID).addPlaceableBlock(Block.gravel.blockID).addPlaceableBlock(Block.blockClay.blockID), 0);
     	
     	final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(waterPlantBlock, extrabiomes.items.ItemBlockWaterPlant.class, waterPlantBlock.getUnlocalizedName() + ":" + waterPlantBlock.getClass().getName());
+        proxy.registerBlock(waterPlantBlock, extrabiomes.items.ItemBlockWaterPlant.class, "extrabiomesxl:waterplant1");
         
         Element.WATERPLANT.set(new ItemStack(waterPlantBlock, 1, 0));
         
@@ -137,7 +137,7 @@ public abstract class BlockHandler
         block.setUnlocalizedName("extrabiomes.cattail").setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemCatTail.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, extrabiomes.items.ItemCatTail.class, "extrabiomesxl:plants4");
         proxy.registerOre("reedTypha", block);
 
         Element.CATTAIL.set(new ItemStack(block));
@@ -158,7 +158,7 @@ public abstract class BlockHandler
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "pickaxe", 0);
-        proxy.registerBlock(block, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, "extrabiomesxl:terrain_blocks2");
 
         proxy.registerOre("sandCracked", block);
 
@@ -187,15 +187,13 @@ public abstract class BlockHandler
 
 	        final BlockCustomFlower block = new BlockCustomFlower(blockID, group, Material.plants);
 			block.setUnlocalizedName(
-					"extrabiomes.flower" + ( group > 0 ? group : "" ))
+					"extrabiomes.flower")
 					.setTickRandomly(true).setHardness(0.0F)
 					.setStepSound(Block.soundGrassFootstep)
 					.setCreativeTab(Extrabiomes.tabsEBXL);
 			proxy.registerBlock(
 					block,
-					extrabiomes.items.ItemFlower.class,
-					block.getUnlocalizedName() + ":"
-							+ block.getClass().getName());
+					extrabiomes.items.ItemFlower.class, "extrabiomesxl:flower" + (group+1));
 
 			Collection<BlockType> types = block.getGroupTypes();
 			for (BlockType type : types) {
@@ -628,7 +626,7 @@ public abstract class BlockHandler
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "pickaxe", 0);
-        proxy.registerBlock(block, extrabiomes.items.ItemRedRock.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, extrabiomes.items.ItemRedRock.class, "extrabiomesxl:terrain_blocks1");
 
         Element.RED_ROCK.set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_ROCK.metadata()));
         Element.RED_COBBLE.set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_COBBLE.metadata()));

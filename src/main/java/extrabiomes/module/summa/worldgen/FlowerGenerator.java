@@ -115,7 +115,7 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.BUTTERCUP);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.DAISY);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.DANDELION);
-		registerFlower(BiomeSettings.GREENSWAMP, BlockType.EELGRASS);
+		//registerFlower(BiomeSettings.GREENSWAMP, BlockType.EELGRASS);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.LILY);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.MARSH_MARIGOLD);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.ORIENTAL_PINK_LILY);

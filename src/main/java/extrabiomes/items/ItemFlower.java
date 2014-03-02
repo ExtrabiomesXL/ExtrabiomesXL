@@ -28,24 +28,13 @@ public class ItemFlower extends MultiItemBlock
     }
     
     @Override
-    public String getUnlocalizedName(ItemStack itemstack)
-    {
-        int metadata = itemstack.getItemDamage();
-		if (metadata > max_meta) metadata = max_meta;
-        itemstack = itemstack.copy();
-        itemstack.setItemDamage(metadata);
-        return super.getUnlocalizedName(itemstack);
+    public String getUnlocalizedName(ItemStack itemstack) {
+    	return ((BlockCustomFlower)Block.blocksList[itemstack.itemID]).getUnlocalizedName(itemstack.getItemDamage());
     }
 
     @Override
     public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
-    	//BlockNewSapling.addInformation(itemForTooltip.getItemDamage(), listOfLines);
-    	//BlockCustomFlower()
-    	//groupType[]
     	((BlockCustomFlower)Block.blocksList[itemForTooltip.itemID]).addInformation(itemForTooltip.getItemDamage(), listOfLines);
-    	
-    	//listOfLines.add("Group: " + Block.blocksList[itemForTooltip.itemID].getUnlocalizedName());
-    	
     }
     
 }

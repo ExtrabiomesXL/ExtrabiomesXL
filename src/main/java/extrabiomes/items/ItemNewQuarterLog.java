@@ -21,6 +21,8 @@ public class ItemNewQuarterLog extends ItemBlock
     public ItemNewQuarterLog(final int id)
     {
         super(id);
+        this.setHasSubtypes(false);
+        this.setMaxDamage(0);
     }
 
     @Override

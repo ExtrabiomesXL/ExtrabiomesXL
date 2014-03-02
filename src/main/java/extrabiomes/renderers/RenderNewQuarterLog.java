@@ -14,6 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import extrabiomes.helpers.LogHelper;
 
 public class RenderNewQuarterLog implements ISimpleBlockRenderingHandler
 {
@@ -27,51 +28,63 @@ public class RenderNewQuarterLog implements ISimpleBlockRenderingHandler
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)
     {
-        final Tessellator var4 = Tessellator.instance;
-        
-        if (renderer.useInventoryTint)
-        {
-            final int renderColor = block.getRenderColor(metadata);
-            final float red = (renderColor >> 16 & 255) / 255.0F;
-            final float green = (renderColor >> 8 & 255) / 255.0F;
-            final float blue = (renderColor & 255) / 255.0F;
-            GL11.glColor4f(red, green, blue, 1.0F);
-        }
-        
-        block.setBlockBoundsForItemRender();
-        GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
-        GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
-        var4.startDrawingQuads();
-        var4.setNormal(0.0F, -1.0F, 0.0F);
-        renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, metadata));
-        var4.draw();
-        
-        var4.startDrawingQuads();
-        var4.setNormal(0.0F, 1.0F, 0.0F);
-        renderer.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(1, metadata));
-        var4.draw();
-        
-        var4.startDrawingQuads();
-        var4.setNormal(0.0F, 0.0F, -1.0F);
-        renderer.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(2, metadata));
-        var4.draw();
-        
-        var4.startDrawingQuads();
-        var4.setNormal(0.0F, 0.0F, 1.0F);
-        renderer.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(3, metadata));
-        var4.draw();
-        
-        var4.startDrawingQuads();
-        var4.setNormal(-1.0F, 0.0F, 0.0F);
-        renderer.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(4, metadata));
-        var4.draw();
-        
-        var4.startDrawingQuads();
-        var4.setNormal(1.0F, 0.0F, 0.0F);
-        renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(5, metadata));
-        var4.draw();
-        
-        GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+    	try {
+	        final Tessellator var4 = Tessellator.instance;
+	        
+	        if (renderer.useInventoryTint)
+	        {
+	            final int renderColor = block.getRenderColor(metadata);
+	            final float red = (renderColor >> 16 & 255) / 255.0F;
+	            final float green = (renderColor >> 8 & 255) / 255.0F;
+	            final float blue = (renderColor & 255) / 255.0F;
+	            GL11.glColor4f(red, green, blue, 1.0F);
+	        }
+	        
+	        block.setBlockBoundsForItemRender();
+	        GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+	        GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+	        var4.startDrawingQuads();
+	        var4.setNormal(0.0F, -1.0F, 0.0F);
+	        renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, 0));
+	        var4.draw();
+	        
+	        var4.startDrawingQuads();
+	        var4.setNormal(0.0F, 1.0F, 0.0F);
+	        renderer.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(1, 0));
+	        var4.draw();
+	        
+	        var4.startDrawingQuads();
+	        var4.setNormal(0.0F, 0.0F, -1.0F);
+	        renderer.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(2, 0));
+	        var4.draw();
+	        
+	        var4.startDrawingQuads();
+	        var4.setNormal(0.0F, 0.0F, 1.0F);
+	        renderer.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(3, 0));
+	        var4.draw();
+	        
+	        var4.startDrawingQuads();
+	        var4.setNormal(-1.0F, 0.0F, 0.0F);
+	        renderer.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(4, 0));
+	        var4.draw();
+	        
+	        var4.startDrawingQuads();
+	        var4.setNormal(1.0F, 0.0F, 0.0F);
+	        renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(5, 0));
+	        var4.draw();
+	        
+	        GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+    	} catch (Exception e) {
+    		LogHelper.severe("Block: " + block.toString());
+    		LogHelper.severe("metaData: " + metadata);
+    		LogHelper.severe("ModelID: "+ modelID);
+    		LogHelper.severe("Renderer: " + renderer.toString());
+    		
+    		
+    		e.printStackTrace();
+    		
+    		
+    	}
     }
     
     @Override
