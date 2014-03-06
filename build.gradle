@@ -49,15 +49,37 @@ processResources
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-        include 'version.properties'
+        exclude 'version.properties'
 
         // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-
+    
     // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-        exclude 'version.properties'
-    }
+    //from(sourceSets.main.resources.srcDirs) {
+    //    exclude '**/mcmod.info'
+    //    exclude '**/version.properties'
+    //}
 }
+
+jar {
+	//appendix = 'universal'
+
+	exclude 'thaumcraft'
+	exclude 'version.properties'
+}
+
+//task deobfJar(type: Jar) {
+//	println(sourceSets.main)
+//
+//	from sourceSets.main.output
+//	appendix = 'deobf'
+//	
+//	exclude 'thaumcraft'
+//	exclude 'version.properties'
+//	
+//}
+
+//artifacts {
+//	archives deobfJar
+//}
