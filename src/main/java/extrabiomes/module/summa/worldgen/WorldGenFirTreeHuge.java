@@ -138,7 +138,7 @@ public class WorldGenFirTreeHuge extends WorldGenerator
                     
                     final int id = world.getBlockId(x1, y1, z1);
                     
-                    if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(null, x1, y1, z1))
+                    if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x1, y1, z1))
                         return false;
                 }
             }
