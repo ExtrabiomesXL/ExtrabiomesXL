@@ -262,8 +262,8 @@ public abstract class RecipeHandler
         	}
         }
         
-        if(Element.LOG_REDWOOD.isPresent() && Element.LOG_HUGE_REDWOOD_NW.isPresent() && Element.LOG_HUGE_REDWOOD_NE.isPresent() && Element.LOG_HUGE_REDWOOD_SW.isPresent() && Element.LOG_HUGE_REDWOOD_SE.isPresent() && Element.LOG_REDWOOD.isPresent()) {
-        	for (final ItemStack itemstack : new ItemStack[] { Element.LOG_HUGE_REDWOOD_NW.get(), Element.LOG_HUGE_REDWOOD_NE.get(), Element.LOG_HUGE_REDWOOD_SW.get(), Element.LOG_HUGE_REDWOOD_SE.get(), Element.LOG_REDWOOD.get() }) {
+        if(Element.LOG_REDWOOD.isPresent() && Element.LOG_HUGE_REDWOOD_NW.isPresent() && Element.LOG_HUGE_REDWOOD_NE.isPresent() && Element.LOG_HUGE_REDWOOD_SW.isPresent() && Element.LOG_HUGE_REDWOOD_SE.isPresent()) {
+        	for (final ItemStack itemstack : new ItemStack[] { Element.LOG_HUGE_REDWOOD_NW.get(), Element.LOG_HUGE_REDWOOD_NE.get(), Element.LOG_HUGE_REDWOOD_SW.get(), Element.LOG_HUGE_REDWOOD_SE.get()}) {
         		final IRecipe recipe = new ShapelessOreRecipe(Element.LOG_REDWOOD.get(), itemstack);
                 Extrabiomes.proxy.addRecipe(recipe);
         	}
@@ -344,7 +344,7 @@ public abstract class RecipeHandler
             }
         }
         
-        for (final Element redwoodLog : new Element[] { Element.LOG_QUARTER_REDWOOD })
+        for (final Element redwoodLog : new Element[] { Element.LOG_QUARTER_REDWOOD, Element.LOG_REDWOOD })
         {
             if (redwoodLog.isPresent())
             {
