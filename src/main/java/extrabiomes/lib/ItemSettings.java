@@ -8,6 +8,7 @@ package extrabiomes.lib;
 
 import java.util.Locale;
 
+import net.minecraftforge.common.Configuration;
 import extrabiomes.utility.EnhancedConfiguration;
 
 public enum ItemSettings
@@ -37,9 +38,12 @@ public enum ItemSettings
         return itemID;
     }
     
-    public void load(EnhancedConfiguration configuration)
-    {
-        itemID = configuration.getItem(toString() + ".id", itemID).getInt(0);
+    public void load(EnhancedConfiguration configuration, boolean update) {
+    	if(update || itemID == 0) {
+    		itemID = configuration.get(Configuration.CATEGORY_ITEM, toString() + ".id", itemID).getInt(0);
+    	} else {
+    		itemID = configuration.getItem(toString() + ".id", itemID).getInt(0);
+    	}
     }
     
     @Override

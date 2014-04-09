@@ -6,6 +6,8 @@
 
 package extrabiomes.items;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -14,6 +16,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockWaterPlant;
 import extrabiomes.helpers.LogHelper;
 
@@ -26,8 +29,7 @@ public class ItemBlockWaterPlant extends ItemBlock
         setMaxDamage(0);
         setHasSubtypes(true);
     }
-    
-    @SideOnly(Side.CLIENT)
+
     private Block getBlock()
     {
         return Block.blocksList[getBlockID()];
@@ -57,5 +59,10 @@ public class ItemBlockWaterPlant extends ItemBlock
     public int getMetadata(int damage)
     {
         return damage;
+    }
+
+    @Override
+    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
+    	((BlockWaterPlant)Block.blocksList[itemForTooltip.itemID]).addInformation(itemForTooltip.getItemDamage(), listOfLines);
     }
 }

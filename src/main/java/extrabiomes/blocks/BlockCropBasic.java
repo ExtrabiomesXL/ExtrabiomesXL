@@ -23,10 +23,10 @@ import extrabiomes.helpers.LogHelper;
 
 public class BlockCropBasic extends BlockFlower {
 	
-	public static final int MAX_GROWTH_STAGE=7;
-	protected static final int MIN_LIGHT_LEVEL = 9;
-	protected static final int MIN_FERTILIZER = 2;
-	protected static final int MAX_FERTILIZER = 5;
+	public static final int		MAX_GROWTH_STAGE	= 7;
+	protected static final int	MIN_LIGHT_LEVEL		= 9;
+	protected static final int	MIN_FERTILIZER		= 2;
+	protected static final int	MAX_FERTILIZER		= 5;
 	
 	protected static final int	RENDER_TYPE_CROP	= 6;
 	protected static final int	RENDER_TYPE_FLOWER	= 1;

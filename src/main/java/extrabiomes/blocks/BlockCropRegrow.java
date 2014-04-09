@@ -2,6 +2,7 @@ package extrabiomes.blocks;
 
 import java.util.ArrayList;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -71,6 +72,28 @@ public class BlockCropRegrow extends BlockCropBasic {
 		}
 
 		return ret;
+	}
+
+	/**
+	 * Handle harvesting this crop if it is ready.
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param player
+	 * @return
+	 */
+	public boolean doHarvest(World world, int x, int y, int z,
+			EntityPlayer player) {
+		if (world.isRemote) return true;
+
+		int growth = world.getBlockMetadata(x, y, z);
+		if (growth >= MAX_GROWTH_STAGE) {
+			world.setBlock(x, y, z, blockID, REGROW_META, 3);
+		}
+
+		return false;
 	}
 
 	@Override

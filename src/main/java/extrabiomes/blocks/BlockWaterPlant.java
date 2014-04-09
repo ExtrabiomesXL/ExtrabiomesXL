@@ -1,15 +1,18 @@
 package extrabiomes.blocks;
 
 import java.util.List;
+import java.util.Locale;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockNewSapling.BlockType;
+import extrabiomes.helpers.ToolTipStringFormatter;
 import extrabiomes.subblocks.SubBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -165,4 +168,18 @@ public class BlockWaterPlant extends Block {
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         return null;
     }
+
+	public void addInformation(int metaData, List listOfLines) {
+		if(metaData < subBlocks.length && subBlocks[metaData] != null) {
+			String line = I18n.getString(this.getUnlocalizedName() + "." + subBlocks[metaData].getUnlocalizedName() + ".description");
+    		
+    		if(!line.equals(this.getUnlocalizedName() + "." + subBlocks[metaData].getUnlocalizedName() + ".description")) {
+    			if(listOfLines.size() > 0 && ((String)listOfLines.get(0)).length() > 20) {
+    				ToolTipStringFormatter.Format(line, listOfLines, ((String)listOfLines.get(0)).length() + 5);
+    			} else {
+    				ToolTipStringFormatter.Format(line, listOfLines);
+    			}
+    		}
+    	}
+	}
 }

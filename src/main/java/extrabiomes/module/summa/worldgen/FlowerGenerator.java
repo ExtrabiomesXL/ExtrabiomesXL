@@ -115,7 +115,7 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.BUTTERCUP);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.DAISY);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.DANDELION);
-		registerFlower(BiomeSettings.GREENSWAMP, BlockType.EELGRASS);
+		//registerFlower(BiomeSettings.GREENSWAMP, BlockType.EELGRASS);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.LILY);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.MARSH_MARIGOLD);
 		registerFlower(BiomeSettings.GREENSWAMP, BlockType.ORIENTAL_PINK_LILY);
@@ -300,11 +300,11 @@ public class FlowerGenerator implements IWorldGenerator
 			final int maxFlowers = eBiome.getDecorationSettings().getSetting(Decoration.NEW_FLOWERS);
 			if( maxFlowers > 0 ) {
 				List<BlockType> map = flowerMaps.get(settings);
-				LogHelper.finer("[FG] "+eBiome.getDecorationSettings()+" = "+maxFlowers+", "+map.size()+" varieties");
+				//LogHelper.finer("[FG] "+eBiome.getDecorationSettings()+" = "+maxFlowers+", "+map.size()+" varieties");
 				for (int flowers = 0; flowers < maxFlowers; ++flowers) {
 					final int idx = rand.nextInt(map.size());
 					final BlockType type = map.get(idx);
-					LogHelper.finest("[FG] "+eBiome.biomeName+" > "+flowers+"/"+maxFlowers+" = "+type);
+					//LogHelper.finest("[FG] "+eBiome.biomeName+" > "+flowers+"/"+maxFlowers+" = "+type);
 					applyGenerator(type, world, chunkX, chunkZ, rand);
 				}
 			}
