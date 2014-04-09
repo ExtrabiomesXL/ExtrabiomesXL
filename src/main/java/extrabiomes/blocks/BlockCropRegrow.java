@@ -2,6 +2,7 @@ package extrabiomes.blocks;
 
 import java.util.ArrayList;
 
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -69,20 +70,27 @@ public class BlockCropRegrow extends BlockCropBasic {
 		// for now, regrowers only ever produce one item
 		if (meta >= MAX_GROWTH_STAGE) {
 			ret.add(new ItemStack(this.getCropItem(), 1, 0));
+		} else {
+			ret.add(new ItemStack(this.getSeedItem(), 1, 0));
 		}
 
 		return ret;
 	}
 
 	/**
+	 * Increase hardness for grown crops so they don't break on accident.
+	 */
+	@Override
+	public float getBlockHardness(World world, int x, int y, int z) {
+		if (world.getBlockMetadata(x, y, z) >= REGROW_META)
+			return 0.5f;
+		return this.blockHardness;
+	}
+
+	/**
 	 * Handle harvesting this crop if it is ready.
 	 * 
-	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @param player
-	 * @return
+	 * @return False if a server chose not to harvest.
 	 */
 	public boolean doHarvest(World world, int x, int y, int z,
 			EntityPlayer player) {
@@ -90,18 +98,31 @@ public class BlockCropRegrow extends BlockCropBasic {
 
 		int growth = world.getBlockMetadata(x, y, z);
 		if (growth >= MAX_GROWTH_STAGE) {
-			world.setBlock(x, y, z, blockID, REGROW_META, 3);
+			EntityItem drop = new EntityItem(world, player.posX,
+					player.posY - 1.0, player.posZ, new ItemStack(
+							this.getCropItem(), 1, 0));
+			// spawn the drop, then force collide it with the player
+			world.spawnEntityInWorld(drop);
+			drop.onCollideWithPlayer(player);
+
+			// revert the meta on the block to our regrow stage
+			doRegrow(world, x, y, z, growth);
+			return true;
 		}
 
 		return false;
 	}
 
 	@Override
-	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int meta) {
-		if (!world.isRemote) {
-			doRegrow(world, x, y, z, meta);
-		}
-		super.onBlockDestroyedByPlayer(world, x, y, z, meta);
+	public boolean onBlockActivated(World world, int x, int y, int z,
+			EntityPlayer player, int par6, float par7, float par8, float par9) {
+		return doHarvest(world, x, y, z, player);
+	}
+
+	@Override
+	public void onBlockClicked(World world, int x, int y, int z,
+			EntityPlayer player) {
+		doHarvest(world, x, y, z, player);
 	}
 
 	/**
@@ -109,6 +130,6 @@ public class BlockCropRegrow extends BlockCropBasic {
 	 */
 	public void doRegrow(World world, int x, int y, int z, int meta) {
 		final int newMeta = meta > REGROW_META ? REGROW_META : meta;
-		world.setBlock(x, y, z, blockID, newMeta, 1 | 2 | 4);
+		world.setBlock(x, y, z, blockID, newMeta, 3);
 	}
 }
