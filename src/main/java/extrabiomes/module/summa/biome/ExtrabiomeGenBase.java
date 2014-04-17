@@ -11,6 +11,7 @@ import java.util.Random;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 import com.google.common.base.Optional;
 
@@ -23,13 +24,15 @@ import extrabiomes.lib.DecorationSettings;
 public abstract class ExtrabiomeGenBase extends BiomeGenBase
 {
 	protected BiomeSettings			biomeSettings;
+	protected Type[]				biomeTypeFlags;
 
 	// protected DecorationSettings decorationSettings;
 
-	protected ExtrabiomeGenBase(BiomeSettings biomeSettings)
+	protected ExtrabiomeGenBase(BiomeSettings biomeSettings, Type... biomeTypeFlags)
     {
 		super(biomeSettings.getID());
 		this.biomeSettings = biomeSettings;
+		this.biomeTypeFlags = biomeTypeFlags;
 		/*
 		 * NB: DecorationSettings cannot be set here, it MUST be hard-coded
 		 * because of how the vanilla parent class's constructor works :(
@@ -38,6 +41,10 @@ public abstract class ExtrabiomeGenBase extends BiomeGenBase
 	
 	public BiomeSettings getBiomeSettings() {
 		return biomeSettings;
+	}
+
+	public Type[] getBiomeTypeFlags() {
+		return biomeTypeFlags;
 	}
 
 	abstract public DecorationSettings getDecorationSettings();

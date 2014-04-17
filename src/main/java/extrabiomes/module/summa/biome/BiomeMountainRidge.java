@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -22,10 +23,10 @@ public class BiomeMountainRidge extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeMountainRidge()
     {
-		super(BiomeSettings.MOUNTAINRIDGE);
+		super(BiomeSettings.MOUNTAINRIDGE, Type.MOUNTAIN, Type.DESERT);
         
         setColor(0xC4722F);
-        setBiomeName("Mountain Ridge");
+		setBiomeName("Mountain Ridge");
         temperature = BiomeGenBase.desert.temperature;
         rainfall = BiomeGenBase.desert.rainfall;
         minHeight = 1.7F;

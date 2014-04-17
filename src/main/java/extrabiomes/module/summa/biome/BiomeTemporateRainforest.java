@@ -7,6 +7,7 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -20,7 +21,7 @@ public class BiomeTemporateRainforest extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
 	public BiomeTemporateRainforest()
     {
-		super(BiomeSettings.TEMPORATERAINFOREST);
+		super(BiomeSettings.TEMPORATERAINFOREST, Type.FOREST, Type.HILLS);
         
         setColor(0x338235);
         setBiomeName("Temperate Rainforest");

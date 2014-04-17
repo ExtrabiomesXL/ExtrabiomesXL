@@ -6,6 +6,7 @@
 
 package extrabiomes.module.summa.biome;
 
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -18,7 +19,7 @@ public class BiomeRedwoodLush extends ExtrabiomeGenBase
 
     public BiomeRedwoodLush()
     {
-		super(BiomeSettings.REDWOODLUSH);
+		super(BiomeSettings.REDWOODLUSH, Type.FOREST, Type.HILLS);
         
         setColor(0x4AC758);
         setBiomeName("Lush Redwoods");

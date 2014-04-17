@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -22,7 +23,7 @@ public class BiomeMountainTaiga extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeMountainTaiga()
     {
-		super(BiomeSettings.MOUNTAINTAIGA);
+		super(BiomeSettings.MOUNTAINTAIGA, Type.MOUNTAIN, Type.FROZEN, Type.FOREST);
         
         setColor(0xB6659);
         setBiomeName("Mountain Taiga");

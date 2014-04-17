@@ -6,6 +6,7 @@
 
 package extrabiomes.module.summa.biome;
 
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -18,7 +19,7 @@ public class BiomeTundra extends ExtrabiomeGenBase
 
     public BiomeTundra()
     {
-		super(BiomeSettings.TUNDRA);
+		super(BiomeSettings.TUNDRA, Type.FROZEN, Type.DESERT);
         
         setColor(0x305A85);
         setBiomeName("Tundra");

@@ -8,6 +8,7 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -21,7 +22,7 @@ public class BiomeShrubland extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeShrubland()
     {
-		super(BiomeSettings.SHRUBLAND);
+		super(BiomeSettings.SHRUBLAND, Type.PLAINS);
         
         setColor(0x51B57D);
         setBiomeName("Shrubland");

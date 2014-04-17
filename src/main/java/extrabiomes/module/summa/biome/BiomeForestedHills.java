@@ -11,6 +11,7 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
@@ -27,7 +28,7 @@ public class BiomeForestedHills extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeForestedHills()
     {
-		super(BiomeSettings.FORESTEDHILLS);
+		super(BiomeSettings.FORESTEDHILLS, Type.FOREST, Type.HILLS);
         
         setBiomeName("Forested Hills");
         

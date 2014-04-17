@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
@@ -25,7 +26,7 @@ public class BiomeMeadow extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeMeadow()
     {
-		super(BiomeSettings.MEADOW);
+		super(BiomeSettings.MEADOW, Type.PLAINS);
         minHeight = 0.0F;
         maxHeight = 0.0F;
         setBiomeName("Meadow");

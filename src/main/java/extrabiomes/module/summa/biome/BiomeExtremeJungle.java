@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -24,7 +25,7 @@ public class BiomeExtremeJungle extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeExtremeJungle()
     {
-		super(BiomeSettings.EXTREMEJUNGLE);
+		super(BiomeSettings.EXTREMEJUNGLE, Type.JUNGLE, Type.MOUNTAIN);
         setColor(0x2c4205);
         setBiomeName("Extreme Jungle");
         temperature = BiomeGenBase.jungle.temperature;

@@ -10,6 +10,7 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
@@ -25,7 +26,7 @@ public class BiomeWoodlands extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeWoodlands()
     {
-		super(BiomeSettings.WOODLANDS);
+		super(BiomeSettings.WOODLANDS, Type.FOREST);
         
         //setColor(0x056621);
         setColor(0x85B53E);

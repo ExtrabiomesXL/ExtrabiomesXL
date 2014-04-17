@@ -8,6 +8,7 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -20,7 +21,7 @@ public class BiomeMountainDesert extends ExtrabiomeGenBase
 
     public BiomeMountainDesert()
     {
-		super(BiomeSettings.MOUNTAINDESERT);
+		super(BiomeSettings.MOUNTAINDESERT, Type.MOUNTAIN, Type.DESERT);
         
         setColor(0xFA9418);
         setBiomeName("Mountainous Desert");
