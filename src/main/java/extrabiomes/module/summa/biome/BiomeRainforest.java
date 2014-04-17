@@ -19,7 +19,7 @@ public class BiomeRainforest extends ExtrabiomeGenBase
 
     public BiomeRainforest()
     {
-		super(BiomeSettings.RAINFOREST, Type.JUNGLE);
+		super(BiomeSettings.RAINFOREST, Type.JUNGLE, Type.HILLS);
         
         setColor(0x0BD626);
         setBiomeName("Rainforest");
