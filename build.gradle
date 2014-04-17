@@ -66,7 +66,7 @@ jar {
 	//appendix = 'universal'
 
 	exclude 'mcp'
-	exclude 'tfftcuts'
+	exclude 'ttftcuts'
 	exclude 'thaumcraft'
 	exclude 'two'
 	exclude 'version.properties'
