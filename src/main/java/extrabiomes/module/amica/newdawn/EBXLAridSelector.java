@@ -8,14 +8,14 @@ import two.newdawn.API.noise.SimplexNoise;
 import extrabiomes.lib.BiomeSettings;
 
 public class EBXLAridSelector extends NewDawnBiomeSelector {
-	protected static final NewDawnBiome biomeAlpine = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.ALPINE);
-	protected static final NewDawnBiome biomeGlacier = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.GLACIER);
-    protected static final NewDawnBiome biomeMountainDesert = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MOUNTAINDESERT);
-    protected static final NewDawnBiome biomeMountainRidge = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MOUNTAINRIDGE);
-    protected static final NewDawnBiome biomeSavanna = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.SAVANNA);    
-    protected static final NewDawnBiome biomeTundra = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.TUNDRA);
-	protected static final NewDawnBiome biomeWasteland = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.WASTELAND);
-	protected static final NewDawnBiome biomeIceWasteland = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.ICEWASTELAND);
+	protected static final NewDawnBiome biomeAlpine = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.ALPINE);
+	protected static final NewDawnBiome biomeGlacier = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.GLACIER);
+    protected static final NewDawnBiome biomeMountainDesert = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.MOUNTAINDESERT);
+    protected static final NewDawnBiome biomeMountainRidge = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.MOUNTAINRIDGE);
+    protected static final NewDawnBiome biomeSavanna = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.SAVANNA);    
+    protected static final NewDawnBiome biomeTundra = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.TUNDRA);
+	protected static final NewDawnBiome biomeWasteland = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.WASTELAND);
+	protected static final NewDawnBiome biomeIceWasteland = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.ICEWASTELAND);
 	
     protected NoiseStretch stretchAlpine;
     protected NoiseStretch stretchGlacier;
@@ -27,12 +27,12 @@ public class EBXLAridSelector extends NewDawnBiomeSelector {
 	public EBXLAridSelector(SimplexNoise worldNoise, int priority) {
 		super(worldNoise, priority);
 		
-		stretchGlacier = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.GLACIER.getStretchSize(),  worldNoise);
-		stretchAlpine = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.ALPINE.getStretchSize(),  worldNoise);
-		stretchMountain = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.MOUNTAIN.getStretchSize(),  worldNoise);
-		stretchWasteland = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.WASTELAND.getStretchSize(),  worldNoise);
-		stretchSavanna = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.SAVANNA.getStretchSize(),  worldNoise);
-		stretchTundra = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.TUNDRA.getStretchSize(),  worldNoise);
+		stretchGlacier = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.GLACIER.getStretchSize(),  worldNoise);
+		stretchAlpine = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.ALPINE.getStretchSize(),  worldNoise);
+		stretchMountain = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.MOUNTAIN.getStretchSize(),  worldNoise);
+		stretchWasteland = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.WASTELAND.getStretchSize(),  worldNoise);
+		stretchSavanna = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.SAVANNA.getStretchSize(),  worldNoise);
+		stretchTundra = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.TUNDRA.getStretchSize(),  worldNoise);
 	}
 
 	@Override
