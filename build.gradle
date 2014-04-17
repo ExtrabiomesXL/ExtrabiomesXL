@@ -65,7 +65,10 @@ processResources
 jar {
 	//appendix = 'universal'
 
+	exclude 'mcp.mobius.waila'
+	exclude 'tftcuts'
 	exclude 'thaumcraft'
+	exclude 'two.newdawn'
 	exclude 'version.properties'
 }
 
