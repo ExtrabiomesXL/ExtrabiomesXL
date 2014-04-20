@@ -121,7 +121,7 @@ public class CropHandler {
     		try {
     			plant_settings = BlockSettings.valueOf(name);
     			
-        		if(plant_settings.getID() == 0) break;
+        		if(plant_settings.getID() == 0) continue;
     			
 				plant_element = Element.valueOf("PLANT_" + name);
 				crop_element = Element.valueOf("CROP_" + name);
