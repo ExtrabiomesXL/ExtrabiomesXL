@@ -54,6 +54,7 @@ public enum BiomeSettings
     PLAINS,
     SWAMPLAND,
     TAIGA,
+	OCEAN,
     ALPINE(32, BiomeAlpine.class),
     AUTUMNWOODS(33, BiomeAutumnWoods.class),
     BIRCHFOREST(34, BiomeBirchForest.class),

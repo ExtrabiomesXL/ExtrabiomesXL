@@ -135,6 +135,8 @@ public abstract class BiomeHelper
                 return BiomeGenBase.taiga;
             case PLAINS:
                 return BiomeGenBase.plains;
+			case OCEAN:
+				return BiomeGenBase.ocean;
             default:
             	if (setting.getBiome().isPresent()) {
             		return setting.getBiome().get();
