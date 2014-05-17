@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -23,7 +24,7 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeMiniJungle()
     {
-		super(BiomeSettings.MINIJUNGLE);
+		super(BiomeSettings.MINIJUNGLE, Type.JUNGLE);
         
         setColor(0x41D923);
         setBiomeName("Mini Jungle");

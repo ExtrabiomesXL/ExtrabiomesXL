@@ -9,6 +9,7 @@ package extrabiomes.lib;
 import java.util.Locale;
 
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.Property;
 
 import com.google.common.base.Optional;
@@ -41,6 +42,7 @@ import extrabiomes.module.summa.biome.BiomeTemporateRainforest;
 import extrabiomes.module.summa.biome.BiomeTundra;
 import extrabiomes.module.summa.biome.BiomeWasteland;
 import extrabiomes.module.summa.biome.BiomeWoodlands;
+import extrabiomes.module.summa.biome.ExtrabiomeGenBase;
 import extrabiomes.utility.EnhancedConfiguration;
 
 public enum BiomeSettings
@@ -52,6 +54,7 @@ public enum BiomeSettings
     PLAINS,
     SWAMPLAND,
     TAIGA,
+	OCEAN,
     ALPINE(32, BiomeAlpine.class),
     AUTUMNWOODS(33, BiomeAutumnWoods.class),
     BIRCHFOREST(34, BiomeBirchForest.class),
@@ -185,13 +188,18 @@ public enum BiomeSettings
             property.set(Boolean.toString(false));
         }
         enabled = property.getBoolean(false);
-        
-        property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), allowVillages);
-        if (!isVanilla() && biomeID == 0) {
-            property.set(Boolean.toString(false));
+		if (enabled) {
+			if (!isVanilla() && biome.isPresent()) {
+				final ExtrabiomeGenBase egb = (ExtrabiomeGenBase) biome.get();
+				BiomeDictionary.registerBiomeType(egb, egb.getBiomeTypeFlags());
+			}
+			
+			property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), allowVillages);
+			if (!isVanilla() && biomeID == 0) {
+				property.set(Boolean.toString(false));
+			}
+			allowVillages = property.getBoolean(false);
         }
-        allowVillages = property.getBoolean(false);
-        
     }
     
     @Override

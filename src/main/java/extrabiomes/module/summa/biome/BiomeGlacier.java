@@ -7,6 +7,7 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -20,7 +21,7 @@ public class BiomeGlacier extends ExtrabiomeGenBase
 
     public BiomeGlacier()
     {
-		super(BiomeSettings.GLACIER);
+		super(BiomeSettings.GLACIER, Type.FROZEN, Type.WASTELAND, Type.MOUNTAIN);
         spawnableCreatureList.clear();
         topBlock = (byte) Block.blockSnow.blockID;
         fillerBlock = (byte) Block.ice.blockID;

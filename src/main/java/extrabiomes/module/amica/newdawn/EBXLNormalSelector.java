@@ -8,15 +8,15 @@ import two.newdawn.API.noise.SimplexNoise;
 import extrabiomes.lib.BiomeSettings;
 
 public class EBXLNormalSelector extends NewDawnBiomeSelector {
-	protected static final NewDawnBiome biomeAutumnWoods = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.AUTUMNWOODS);
-	protected static final NewDawnBiome biomeBirchForest = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.BIRCHFOREST);
-	protected static final NewDawnBiome biomeForestedHills = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.FORESTEDHILLS);
-	protected static final NewDawnBiome biomeMeadow = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MEADOW);
-	protected static final NewDawnBiome biomeMountainTaiga = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MOUNTAINTAIGA);
-	protected static final NewDawnBiome biomePineForest = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.PINEFOREST);
-    protected static final NewDawnBiome biomeShrubland = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.SHRUBLAND);
-    protected static final NewDawnBiome biomeSnowForest = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.SNOWYFOREST);
-    protected static final NewDawnBiome biomeWoodlands = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.WOODLANDS);
+	protected static final NewDawnBiome biomeAutumnWoods = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.AUTUMNWOODS);
+	protected static final NewDawnBiome biomeBirchForest = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.BIRCHFOREST);
+	protected static final NewDawnBiome biomeForestedHills = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.FORESTEDHILLS);
+	protected static final NewDawnBiome biomeMeadow = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.MEADOW);
+	protected static final NewDawnBiome biomeMountainTaiga = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.MOUNTAINTAIGA);
+	protected static final NewDawnBiome biomePineForest = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.PINEFOREST);
+    protected static final NewDawnBiome biomeShrubland = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.SHRUBLAND);
+    protected static final NewDawnBiome biomeSnowForest = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.SNOWYFOREST);
+    protected static final NewDawnBiome biomeWoodlands = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.WOODLANDS);
 	
     protected NoiseStretch stretchAutumn;
     protected NoiseStretch stretchBirch;
@@ -27,11 +27,11 @@ public class EBXLNormalSelector extends NewDawnBiomeSelector {
 	public EBXLNormalSelector(SimplexNoise worldNoise, int priority) {
 		super(worldNoise, priority);
 		
-		stretchForest = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.FOREST.getStretchSize(),  worldNoise);
-		stretchAutumn = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.AUTUMN.getStretchSize(),  worldNoise);
-		stretchSnowy = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.SNOWY.getStretchSize(),  worldNoise);
-		stretchBirch = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.BIRCH.getStretchSize(),  worldNoise);
-		stretchMeadow = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.MEADOW.getStretchSize(),  worldNoise);
+		stretchForest = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.FOREST.getStretchSize(),  worldNoise);
+		stretchAutumn = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.AUTUMN.getStretchSize(),  worldNoise);
+		stretchSnowy = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.SNOWY.getStretchSize(),  worldNoise);
+		stretchBirch = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.BIRCH.getStretchSize(),  worldNoise);
+		stretchMeadow = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.MEADOW.getStretchSize(),  worldNoise);
 	}
 
 	@Override

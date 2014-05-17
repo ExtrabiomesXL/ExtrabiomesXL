@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
@@ -24,7 +25,7 @@ public class BiomeGreenHills extends ExtrabiomeGenBase
 
     public BiomeGreenHills()
     {
-		super(BiomeSettings.GREENHILLS);
+		super(BiomeSettings.GREENHILLS, Type.HILLS);
         
         setColor(0x68C474);
         setBiomeName("Green Hills");

@@ -7,6 +7,7 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -20,7 +21,7 @@ public class BiomeMarsh extends ExtrabiomeGenBase
 
     public BiomeMarsh()
     {
-		super(BiomeSettings.MARSH);
+		super(BiomeSettings.MARSH, Type.SWAMP);
         
         setColor(255);
         setBiomeName("Marsh");

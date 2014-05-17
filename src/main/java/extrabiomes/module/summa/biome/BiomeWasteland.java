@@ -7,6 +7,7 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -20,7 +21,7 @@ public class BiomeWasteland extends ExtrabiomeGenBase
 
     public BiomeWasteland()
     {
-		super(BiomeSettings.WASTELAND);
+		super(BiomeSettings.WASTELAND, Type.WASTELAND);
         
         setColor(0x9E7C41);
         setBiomeName("Wasteland");

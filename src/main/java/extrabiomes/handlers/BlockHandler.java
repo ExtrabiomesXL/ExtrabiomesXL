@@ -183,7 +183,7 @@ public abstract class BlockHandler
 		
 		for (int group = 0; group < blockIDs.length; ++group) {
 			final int blockID = blockIDs[group];
-			if (blockID <= 0) return;
+			if (blockID <= 0) continue;
 
 	        final BlockCustomFlower block = new BlockCustomFlower(blockID, group, Material.plants);
 			block.setUnlocalizedName(
@@ -206,6 +206,7 @@ public abstract class BlockHandler
 				}
 				ItemStack item = new ItemStack(block, 1, type.metadata());
 				element.set(item);
+				ForestryModHelper.registerBasicFlower(item);
 
 			}
 	
@@ -217,10 +218,10 @@ public abstract class BlockHandler
 
 		// TODO: register other flowers with forestry
 
-		ForestryModHelper.registerBasicFlower(Element.HYDRANGEA.get());
-		ForestryModHelper.registerBasicFlower(Element.BUTTERCUP.get());
-		ForestryModHelper.registerBasicFlower(Element.LAVENDER.get());
-		ForestryModHelper.registerBasicFlower(Element.CALLA_WHITE.get());
+		//ForestryModHelper.registerBasicFlower(Element.HYDRANGEA.get());
+		//ForestryModHelper.registerBasicFlower(Element.BUTTERCUP.get());
+		//ForestryModHelper.registerBasicFlower(Element.LAVENDER.get());
+		//ForestryModHelper.registerBasicFlower(Element.CALLA_WHITE.get());
     }
 
 	private static void createVines() {

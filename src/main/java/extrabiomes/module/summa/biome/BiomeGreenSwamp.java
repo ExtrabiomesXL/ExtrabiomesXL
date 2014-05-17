@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -23,7 +24,7 @@ public class BiomeGreenSwamp extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeGreenSwamp()
     {
-		super(BiomeSettings.GREENSWAMP);
+		super(BiomeSettings.GREENSWAMP, Type.SWAMP, Type.WATER);
         
         setColor(0x68C474);
         setBiomeName("Green Swamplands");

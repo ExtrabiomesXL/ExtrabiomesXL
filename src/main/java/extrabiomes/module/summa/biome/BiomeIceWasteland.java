@@ -7,6 +7,7 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -20,7 +21,7 @@ public class BiomeIceWasteland extends ExtrabiomeGenBase
 
     public BiomeIceWasteland()
     {
-		super(BiomeSettings.ICEWASTELAND);
+		super(BiomeSettings.ICEWASTELAND, Type.FROZEN, Type.WASTELAND);
         
         spawnableCreatureList.clear();
         topBlock = (byte) Block.blockSnow.blockID;

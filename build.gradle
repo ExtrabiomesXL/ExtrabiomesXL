@@ -65,7 +65,10 @@ processResources
 jar {
 	//appendix = 'universal'
 
+	exclude 'mcp'
+	exclude 'ttftcuts'
 	exclude 'thaumcraft'
+	exclude 'two'
 	exclude 'version.properties'
 }
 

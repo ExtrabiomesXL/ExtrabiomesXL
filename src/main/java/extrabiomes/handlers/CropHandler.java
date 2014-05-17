@@ -120,6 +120,9 @@ public class CropHandler {
 
     		try {
     			plant_settings = BlockSettings.valueOf(name);
+    			
+        		if(plant_settings.getID() == 0) continue;
+    			
 				plant_element = Element.valueOf("PLANT_" + name);
 				crop_element = Element.valueOf("CROP_" + name);
     		} catch( Exception e ) {
@@ -130,8 +133,9 @@ public class CropHandler {
     		final BlockCropRegrow block = new BlockCropRegrow(plant_settings.getID(), type);
 			plant_element.set(new ItemStack(block));
 			block.setCropItem(crop_element.get().getItem());
-
+			block.setUnlocalizedName("extrabiomes.crop." + name.toLowerCase());
 			proxy.registerEventHandler(new CropBonemealEventHandler(block));
+			proxy.registerBlock(block, block.getUnlocalizedName());
     	}
     }
 

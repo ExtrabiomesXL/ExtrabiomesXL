@@ -6,6 +6,7 @@
 
 package extrabiomes.module.summa.biome;
 
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -18,7 +19,7 @@ public class BiomeRainforest extends ExtrabiomeGenBase
 
     public BiomeRainforest()
     {
-		super(BiomeSettings.RAINFOREST);
+		super(BiomeSettings.RAINFOREST, Type.JUNGLE, Type.HILLS);
         
         setColor(0x0BD626);
         setBiomeName("Rainforest");

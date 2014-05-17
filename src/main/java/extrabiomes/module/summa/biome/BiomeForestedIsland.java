@@ -11,6 +11,7 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
@@ -27,7 +28,7 @@ public class BiomeForestedIsland extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeForestedIsland()
     {
-		super(BiomeSettings.FORESTEDISLAND);
+		super(BiomeSettings.FORESTEDISLAND, Type.BEACH, Type.FOREST);
         
         setColor(0x62BF6C);
         setBiomeName("Forested Island");

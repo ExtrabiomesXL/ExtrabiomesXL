@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
@@ -22,7 +23,7 @@ public class BiomeSavanna extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeSavanna()
     {
-		super(BiomeSettings.SAVANNA);
+		super(BiomeSettings.SAVANNA, Type.PLAINS, Type.DESERT);
         
         setColor(0xBFA243);
         setBiomeName("Savanna");

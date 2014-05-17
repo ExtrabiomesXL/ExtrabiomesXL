@@ -52,8 +52,9 @@ public enum BiomeHandler
             }
             else if (!setting.isEnabled())
             {
-                Extrabiomes.proxy.removeBiome(BiomeHelper.settingToBiomeGenBase(setting));
-                LogHelper.fine("Vanilla biome %s disabled.", biome.toString());
+            	final BiomeGenBase bgb = BiomeHelper.settingToBiomeGenBase(setting);
+                Extrabiomes.proxy.removeBiome(bgb);
+                LogHelper.fine("Vanilla biome %s disabled.", bgb.toString());
             }
             
             if (setting.isEnabled() && setting.allowVillages() && biome.isPresent())

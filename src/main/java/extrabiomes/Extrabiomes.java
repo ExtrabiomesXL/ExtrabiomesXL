@@ -13,6 +13,7 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.EventBus;
 
@@ -35,6 +36,7 @@ import extrabiomes.handlers.BlockHandler;
 import extrabiomes.handlers.ConfigurationHandler;
 import extrabiomes.handlers.CropHandler;
 import extrabiomes.handlers.EBXLCommandHandler;
+import extrabiomes.handlers.GenesisBiomeOverrideHandler;
 import extrabiomes.handlers.ItemHandler;
 import extrabiomes.handlers.RecipeHandler;
 import extrabiomes.helpers.LogHelper;
@@ -102,7 +104,9 @@ public class Extrabiomes
     public static void preInit(FMLPreInitializationEvent event) throws Exception
     {
         LogHelper.info("Initializing.");
-       
+        
+		MinecraftForge.TERRAIN_GEN_BUS.register(GenesisBiomeOverrideHandler.INSTANCE);
+
         // Handle upgrading
         File test = new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg");
         if(test.exists()) {
@@ -124,7 +128,6 @@ public class Extrabiomes
         // remove after 3.6.0 release
         BiomeManagerImpl.populateAPIBiomes();
         new BiomeManagerImpl();
-        //
 
         Extrabiomes.registerInitEventHandler(new RecipeManager());
 

@@ -32,6 +32,8 @@ log.message.plugin.error=Could not communicate with %s. Disabling plugin.
 module.status.enabled=Module %s is enabled.
 module.status.disabled=Module %s is disabled, skipping.
 
+tile.extrabiomes.crop.strawberry.name=Strawberries
+
 tile.extrabiomes.leaves.umber.name=Umber Autumn Leaves
 tile.extrabiomes.leaves.goldenrod.name=Goldenrod Autumn Leaves
 tile.extrabiomes.leaves.vermillion.name=Vermillion Autumn Leaves

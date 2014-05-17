@@ -8,15 +8,15 @@ import two.newdawn.API.noise.SimplexNoise;
 import extrabiomes.lib.BiomeSettings;
 
 public class EBXLDampSelector extends NewDawnBiomeSelector {
-	protected static final NewDawnBiome biomeExtremeJungle = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.EXTREMEJUNGLE);
-	protected static final NewDawnBiome biomeGreenHills = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.GREENHILLS);
-    protected static final NewDawnBiome biomeGreenSwamp = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.GREENSWAMP);
-    protected static final NewDawnBiome biomeMiniJungle = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.MINIJUNGLE);
-    protected static final NewDawnBiome biomeRainforest = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.RAINFOREST);
-    protected static final NewDawnBiome biomeRedwoodForest = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.REDWOODFOREST);
-    protected static final NewDawnBiome biomeRedwoodLush = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.REDWOODLUSH);
-    protected static final NewDawnBiome biomeSnowRainforest = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.SNOWYRAINFOREST);
-    protected static final NewDawnBiome biomeTemperateRainforest = NewDawnPlugin.getBiomeIfEnabled(BiomeSettings.TEMPORATERAINFOREST);
+	protected static final NewDawnBiome biomeExtremeJungle = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.EXTREMEJUNGLE);
+	protected static final NewDawnBiome biomeGreenHills = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.GREENHILLS);
+    protected static final NewDawnBiome biomeGreenSwamp = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.GREENSWAMP);
+    protected static final NewDawnBiome biomeMiniJungle = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.MINIJUNGLE);
+    protected static final NewDawnBiome biomeRainforest = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.RAINFOREST);
+    protected static final NewDawnBiome biomeRedwoodForest = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.REDWOODFOREST);
+    protected static final NewDawnBiome biomeRedwoodLush = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.REDWOODLUSH);
+    protected static final NewDawnBiome biomeSnowRainforest = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.SNOWYRAINFOREST);
+    protected static final NewDawnBiome biomeTemperateRainforest = NewDawnPluginImpl.getBiomeIfEnabled(BiomeSettings.TEMPORATERAINFOREST);
 	
     protected NoiseStretch stretchExtremeJungle;
     protected NoiseStretch stretchGreen;
@@ -27,11 +27,11 @@ public class EBXLDampSelector extends NewDawnBiomeSelector {
 	public EBXLDampSelector(SimplexNoise worldNoise, int priority) {
 		super(worldNoise, priority);
 		
-		stretchMiniJungle = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.MINI_JUNGLE.getStretchSize(),  worldNoise);
-		stretchExtremeJungle = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.EXTREME_JUNGLE.getStretchSize(), worldNoise);
-		stretchRedwood = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.REDWOOD.getStretchSize(),  worldNoise);
-		stretchGreen = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.GREEN.getStretchSize(),  worldNoise);
-		stretchRainforest = NewDawnPlugin.getFuzzyStretch(NewDawnSettings.RAINFOREST.getStretchSize(),  worldNoise);
+		stretchMiniJungle = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.MINI_JUNGLE.getStretchSize(),  worldNoise);
+		stretchExtremeJungle = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.EXTREME_JUNGLE.getStretchSize(), worldNoise);
+		stretchRedwood = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.REDWOOD.getStretchSize(),  worldNoise);
+		stretchGreen = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.GREEN.getStretchSize(),  worldNoise);
+		stretchRainforest = NewDawnPluginImpl.getFuzzyStretch(NewDawnSettings.RAINFOREST.getStretchSize(),  worldNoise);
 	}
 
 	@Override

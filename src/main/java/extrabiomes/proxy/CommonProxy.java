@@ -36,6 +36,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Reference;
 
 public class CommonProxy
@@ -187,8 +188,13 @@ public class CommonProxy
     {
         if (biome != null)
         {
+        	LogHelper.fine("Removing biome %s",biome.toString());
             WorldType.DEFAULT.removeBiome(checkNotNull(biome));
             WorldType.LARGE_BIOMES.removeBiome(biome);
+        }
+        else
+        {
+        	LogHelper.warning("Request to remove null biome");
         }
     }
 

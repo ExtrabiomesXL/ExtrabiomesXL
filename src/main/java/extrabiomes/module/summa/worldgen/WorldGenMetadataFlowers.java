@@ -8,6 +8,7 @@ package extrabiomes.module.summa.worldgen;
 
 import java.util.Random;
 
+import extrabiomes.helpers.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -35,8 +36,19 @@ class WorldGenMetadataFlowers extends WorldGenerator
             final boolean isAir = world.isAirBlock(x1, y1, z1);
             final boolean isSnow = (world.getBlockId(x1, y1, z) == Block.snow.blockID);
             
-            if ((isAir || isSnow) && Block.blocksList[blockId].canBlockStay(world, x1, y1, z1))
-                world.setBlock(x1, y1, z1, blockId, metadata, 2);
+            try {
+	            if ((isAir || isSnow) && Block.blocksList[blockId].canBlockStay(world, x1, y1, z1)) {
+	                world.setBlock(x1, y1, z1, blockId, metadata, 2);
+	            }
+            } catch (Exception e) {
+            	LogHelper.severe("We stopped a crash in the flower generator.");
+            	LogHelper.severe("BlockID: %d, World: %s, BlockList[BlockId]: %s, Line: %d",
+            		blockId,
+            		(world == null) ? "null" : world.toString(), 
+            		(Block.blocksList[blockId] == null) ? "null": Block.blocksList[blockId].toString(),
+            		e.getStackTrace()[0].getLineNumber()
+            	);
+            }
         }
         
         return true;

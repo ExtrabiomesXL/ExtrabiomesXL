@@ -10,6 +10,7 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
@@ -25,7 +26,7 @@ public class BiomeSnowForest extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeSnowForest()
     {
-		super(BiomeSettings.SNOWYFOREST);
+		super(BiomeSettings.SNOWYFOREST, Type.FOREST, Type.FROZEN);
         
         setColor(0x5BA68D);
         setBiomeName("Snow Forest");
