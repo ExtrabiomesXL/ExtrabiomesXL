@@ -7,9 +7,20 @@ config.summa.comment=Установите "summa" на "false", чтобы от�
 
 itemGroup.extrabiomesTab=ExtrabiomesXL
 
+item.extrabiomes.dye.black.name=Чёрный краситель
+item.extrabiomes.dye.blue.name=Синий краситель
+item.extrabiomes.dye.brown.name=Коричневый краситель
+item.extrabiomes.dye.white.name=Белый краситель
 item.extrabiomes.logturner.name=Переворачиватель брёвен
 item.extrabiomes.paste.name=Кактусовая паста
 item.extrabiomes.scarecrow.name=Пугало
+
+item.extrabiomes.crop.strawberry.name=Клубника
+
+item.extrabiomes.seed.strawberry.name=Семена клубники
+
+item.extrabiomes.food.chocolate.name=Шоколад
+item.extrabiomes.food.chocolate_strawberry.name=Клубника в шоколаде
 
 entity.extrabiomes.scarecrow.name=Пугало
 
@@ -27,14 +38,60 @@ tile.extrabiomes.leaves.vermillion.name=Алая осенняя листва
 tile.extrabiomes.leaves.citrine.name=Цитриновая осенняя листва
 tile.extrabiomes.cattail.name=Рогоз
 tile.extrabiomes.crackedsand.name=Испорченный песок
-tile.extrabiomes.flower.0.name=Осенний куст
-tile.extrabiomes.flower.1.name=Гортензия
-tile.extrabiomes.flower.2.name=Лютики
-tile.extrabiomes.flower.3.name=Лаванда
-tile.extrabiomes.flower.4.name=Крошечный кактус
-tile.extrabiomes.flower.5.name=Корень
-tile.extrabiomes.flower.6.name=Поганка
-tile.extrabiomes.flower.7.name=Каллы
+
+tile.extrabiomes.flower.autumn_shrub.name=Осенний куст
+tile.extrabiomes.flower.hydrangea.name=Гортензия
+tile.extrabiomes.flower.hydrangea.description=С помощью этих цветков можно получить \b\oСветло-синий краситель\r, используя верстак.
+tile.extrabiomes.flower.buttercup.name=Лютики
+tile.extrabiomes.flower.buttercup.description=С помощью этого цветка можно получить \6\oЖёлтый краситель\r, он светиться жёлтым, когда находится под Вашим подбородком, если Вам нравится масло.
+tile.extrabiomes.flower.lavender.name=Лаванда
+tile.extrabiomes.flower.lavender.description=Помимо того, что она ценится за яркие цвета, у неё также ароматный запах. С помощью этого цветка можно получить \5\oФиолетовый краситель\r.
+tile.extrabiomes.flower.tiny_cactus.name=Крошечный кактус
+tile.extrabiomes.flower.tiny_cactus.description=Четыре этих не-колючих кактуса могут произвести \oКактусовую пасту\r, из которой можно получить \2\oКактусовый зелёный краситель\r.
+tile.extrabiomes.flower.root.name=Корень
+tile.extrabiomes.flower.toadstool.name=Поганка
+tile.extrabiomes.flower.calla_white.name=Белые каллы
+tile.extrabiomes.flower.calla_white.description=Эти цветы производят \oСветло-серый краситель\r, также были фаворитами многих художников, которые использовали их в своих произведениях искусства.
+
+tile.extrabiomes.flower.allium.name=Лук
+tile.extrabiomes.flower.allium.description=Этот цветок производит \d\oСиреневый краситель\r. Некоторые утверждают, что он также может быть использован для отпугивания вампиров, поскольку он является частью чеснока, хотя это никогда не было доказано.
+tile.extrabiomes.flower.amaryllis_pink.name=Розовый амариллис
+tile.extrabiomes.flower.amaryllis_red.name=Красный амариллис
+tile.extrabiomes.flower.amaryllis_white.name=Белый амариллис
+tile.extrabiomes.flower.bachelors_button.name=Бутон бакалавры
+tile.extrabiomes.flower.bells_of_ireland.name=Колокола Ирландии
+tile.extrabiomes.flower.bluebell.name=Колокольчик
+tile.extrabiomes.flower.bluebell.description=Этот мифический цветок, как говорили, выскочил из крови умирающего князя Гиацинта. \b\oСветло-синий краситель\r может быть получен из этого цветка.
+tile.extrabiomes.flower.calla_black.name=Чёрные каллы
+tile.extrabiomes.flower.daisy.name=Маргаритка
+tile.extrabiomes.flower.dandelion.name=Одуванчик
+tile.extrabiomes.flower.eelgrass.name=Зостера
+tile.extrabiomes.flower.gardenia.name=Гардения
+tile.extrabiomes.flower.gerbera_orange.name=Оранжевая гербера
+tile.extrabiomes.flower.gerbera_pink.name=Розовая гербера
+tile.extrabiomes.flower.gerbera_red.name=Красная гербера
+tile.extrabiomes.flower.gerbera_yellow.name=Жёлтая гербера
+
+tile.extrabiomes.flower.oriental_pink_lily.name=Розовая восточная лилия
+tile.extrabiomes.flower.iris_blue.name=Синий ирис
+tile.extrabiomes.flower.iris_purple.name=Фиолетовый ирис
+tile.extrabiomes.flower.iris_purple.description=Ирис берёт свое название от греческого слова "для радуги", ссылаясь на самые разнообразные цвета цветов, найденных среди многих видов. Он производит \5\oФиолетовый краситель\r.
+tile.extrabiomes.flower.lily.name=Лилия
+tile.extrabiomes.flower.marsh_marigold.name=Калужница болотная
+tile.extrabiomes.flower.pansy.name=Анютины глазки
+tile.extrabiomes.flower.poppy.name=Мак
+tile.extrabiomes.flower.redrover.name=Сенполия
+tile.extrabiomes.flower.snapdragon.name=Львиный зев
+tile.extrabiomes.flower.tulip.name=Тюльпан
+tile.extrabiomes.flower.violet.name=Виолетта
+tile.extrabiomes.flower.yarrow.name=Тысячелистник обыкновенный
+tile.extrabiomes.flower.belladonna.name=Дельфиниум белладонна
+tile.extrabiomes.flower.blue_poppy.name=Голубой мак
+tile.extrabiomes.flower.blue_poppy.description=Этот великолепный цветок производит \3\oБирюзовый краситель\r.
+
+tile.extrabiomes.vine.gloriosa.name=Глориоза
+tile.extrabiomes.vine.spanish_moss.name=Испанский мох
+
 tile.extrabiomes.leaves.fir.name=Листва пихты
 tile.extrabiomes.leaves.redwood.name=Листва красного дерева
 tile.extrabiomes.leaves.acacia.name=Листва акации
@@ -119,3 +176,6 @@ tile.extrabiomes.woodslab.rainbow_eucalyptus.name=Плита из древеси
 tile.extrabiomes.woodslab.autumn.name=Плита из древесины осеннего дерева
 tile.extrabiomes.woodslab.bald_cypress.name=Плита из древесины болотного кипариса
 tile.extrabiomes.woodslab.sakura_blossom.name=Плита из древесины цветущей сакуры
+
+tile.extrabiomes.waterplant.eelgrass.name=Зостера
+tile.extrabiomes.waterplant.eelgrass.description=Эта трава растёт под водой. Это название связано с длинными тонкими листьями, которые напоминают угрей. \2\oКактусовый зелёный краситель\r может быть получен из этой травы.
