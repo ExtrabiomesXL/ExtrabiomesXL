@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.BlockWoodSlab;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -46,7 +46,7 @@ public class BlockNewWoodSlab extends BlockWoodSlab
     
     private static int singleSlabID = 0;
     
-    private Icon[]     textures     = { null, null, null, null, null, null, null, null };
+    private IIcon[]     textures     = { null, null, null, null, null, null, null, null };
     
     public BlockNewWoodSlab(int id, boolean isDouble)
     {
@@ -63,9 +63,9 @@ public class BlockNewWoodSlab extends BlockWoodSlab
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "plankssakura");
+        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "plankssakura");
     }
     
     @Override
@@ -75,7 +75,7 @@ public class BlockNewWoodSlab extends BlockWoodSlab
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         return textures[0];
     }

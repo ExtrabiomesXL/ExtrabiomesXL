@@ -257,7 +257,7 @@ public class ThaumcraftApi {
 	}
 	
 	/**
-	 * Used by the thaumonomicon drilldown feature.
+	 * Used by the thaumonomIIcon drilldown feature.
 	 * @param stack the item
 	 * @return the thaumcraft recipe key that produces that item. 
 	 */

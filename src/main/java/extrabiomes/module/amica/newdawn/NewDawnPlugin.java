@@ -1,6 +1,6 @@
 package extrabiomes.module.amica.newdawn;
 
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 import com.google.common.base.Optional;
 
@@ -15,7 +15,7 @@ public class NewDawnPlugin
 	private static final String            MOD_ID = "newdawn";
     private static Optional<NewDawnPluginImpl> api    = Optional.absent();
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void preInit(PluginEvent.Pre event)
     {
         if (!Extrabiomes.proxy.isModLoaded(MOD_ID))
@@ -36,7 +36,7 @@ public class NewDawnPlugin
         }
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void init(PluginEvent.Init event)
     {
         if (!api.isPresent())
@@ -45,7 +45,7 @@ public class NewDawnPlugin
         api.get().init();
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void postInit(PluginEvent.Post event)
     {
         api = Optional.absent();

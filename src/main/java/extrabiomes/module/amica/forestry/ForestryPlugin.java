@@ -14,7 +14,7 @@ import java.util.Collection;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -189,7 +189,7 @@ public class ForestryPlugin
         return FluidRegistry.getFluidStack(name, ammount);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void init(PluginEvent.Init event) throws Exception
     {
         if (!isEnabled())
@@ -207,7 +207,7 @@ public class ForestryPlugin
     }
     
     @SuppressWarnings({ "rawtypes" })
-    @ForgeSubscribe
+    @SubscribeEvent
     public void preInit(PluginEvent.Pre event)
     {
         if (!isEnabled())

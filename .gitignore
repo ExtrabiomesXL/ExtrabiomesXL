@@ -17,3 +17,8 @@ desktop.ini
 /gradle
 /gradlew
 /gradlew.bat
+/mod.properties
+/*.iml
+/*.ipr
+/*.iws
+/out

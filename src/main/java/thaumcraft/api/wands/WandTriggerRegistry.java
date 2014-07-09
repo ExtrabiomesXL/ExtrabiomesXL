@@ -12,7 +12,7 @@ import net.minecraft.world.World;
  * This class serves a similar function to IWandable in that it allows wands to interact
  * with object in the world. In this case it is most useful for adding interaction with non-mod
  * blocks where you can't control what happens in their code.
- * Example where it is used is in crafting the thaumonomicon from a bookshelf and the
+ * Example where it is used is in crafting the thaumonomIIcon from a bookshelf and the
  * crucible from a cauldron
  * 
  * @author azanor

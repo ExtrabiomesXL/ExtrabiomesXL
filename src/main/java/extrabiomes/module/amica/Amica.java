@@ -6,8 +6,8 @@
 
 package extrabiomes.module.amica;
 
-import net.minecraftforge.event.EventPriority;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import extrabiomes.api.Api;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.module.amica.atg.ATGPlugin;
@@ -22,7 +22,7 @@ public class Amica
     public static final String LOG_MESSAGE_PLUGIN_ERROR = "log.message.plugin.error";
     public static final String LOG_MESSAGE_PLUGIN_INIT  = "log.message.plugin.init";
     
-    @ForgeSubscribe(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException
     {
         Api.registerPlugin(new BuildcraftPlugin());

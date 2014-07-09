@@ -8,7 +8,7 @@ package extrabiomes.lib;
 
 import java.util.Locale;
 
-import net.minecraftforge.common.Property;
+import net.minecraftforge.common.config.Property;
 import extrabiomes.utility.EnhancedConfiguration;
 
 public enum ModuleControlSettings

@@ -9,17 +9,17 @@ package extrabiomes.module.fabrica.block;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.block.BlockStep;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.block.BlockSlab;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 
-public class BlockRedRockSlab extends BlockStep
+public class BlockRedRockSlab extends BlockSlab
 {
     public enum BlockType
     {
@@ -45,7 +45,7 @@ public class BlockRedRockSlab extends BlockStep
     }
     
     private static int singleSlabID = 0;
-    private Icon[]     textures     = { null, null, null, null };
+    private IIcon[]     textures     = { null, null, null, null };
     
     public BlockRedRockSlab(int id, boolean isDouble)
     {
@@ -61,12 +61,12 @@ public class BlockRedRockSlab extends BlockStep
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
-        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");
-        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockslabside");
-        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockslabtop");
+        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");
+        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockslabside");
+        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockslabtop");
     }
     
     @Override
@@ -76,7 +76,7 @@ public class BlockRedRockSlab extends BlockStep
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         metadata &= 7;
         return metadata == BlockType.REDROCK.metadata() ? side < 2 ? textures[3]

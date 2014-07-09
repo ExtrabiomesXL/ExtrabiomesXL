@@ -12,10 +12,10 @@ import java.util.Random;
 
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -46,7 +46,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
         }
     }
     
-    private Icon[] textures = { null, null, null, null, null };
+    private IIcon[] textures = { null, null, null, null, null };
     
     public BlockCustomTallGrass(int id, int index, Material material)
     {
@@ -57,13 +57,13 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegistry)
+    public void registerIIcons(IIconRegister IIconRegistry)
     {
-        textures[0] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "browngrasstall");
-        textures[1] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "browngrassshort");
-        textures[2] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "deadgrassshort");
-        textures[3] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "deadgrasstall");
-        textures[4] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "deadgrassyellow");
+        textures[0] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "browngrasstall");
+        textures[1] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "browngrassshort");
+        textures[2] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "deadgrassshort");
+        textures[3] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "deadgrasstall");
+        textures[4] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "deadgrassyellow");
     }
     
     @Override
@@ -104,7 +104,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         // Ensure that the metadata stays in proper range and we return a valid texture
         if (metadata < 0 || metadata > 4)

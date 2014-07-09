@@ -6,7 +6,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class BlockCropRegrow extends BlockCropBasic {
@@ -16,7 +16,7 @@ public class BlockCropRegrow extends BlockCropBasic {
 	public enum CropType implements ICropType {
 		STRAWBERRY(RENDER_TYPE_FLOWER);
 		
-		private ArrayList<Icon> icons;		
+		private ArrayList<IIcon> IIcons;
 		private ItemStack		seed;
 		private Item crop;
 		private final int		renderType;
@@ -26,12 +26,12 @@ public class BlockCropRegrow extends BlockCropBasic {
 		}
 		
 		@Override
-		public Icon getStageIcon(int stage) {
-			return icons.get(stage);
+		public IIcon getStageIIcon(int stage) {
+			return IIcons.get(stage);
 		}
 		@Override
-		public void setStageIcons(ArrayList<Icon> icons) {
-			this.icons = icons;
+		public void setStageIIcons(ArrayList<IIcon> IIcons) {
+			this.IIcons = IIcons;
 		}
 		
 	    @Override

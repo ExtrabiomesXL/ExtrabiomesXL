@@ -9,8 +9,8 @@ package extrabiomes.handlers;
 import java.io.File;
 import java.util.logging.Level;
 
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.Property;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 import com.google.common.base.Optional;
 

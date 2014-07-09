@@ -13,12 +13,12 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -146,7 +146,7 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
     
     int[]          adjacentTreeBlocks;
     
-    private Icon[] textures = { null, null, null, null, null, null, null, null, null, null, null, null };
+    private IIcon[] textures = { null, null, null, null, null, null, null, null, null, null, null, null };
     
     public BlockMoreLeaves(int id, Material material, boolean useFastGraphics)
     {
@@ -155,11 +155,11 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafancy");
-        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafast");
-        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavessakura");
+        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafancy");
+        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafast");
+        textures[8] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavessakura");
     }
     
     @Override
@@ -244,18 +244,18 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
     
-    // Return your Better Leaves icon
-    public Icon getIconBetterLeaves(int metadata, float randomIndex)
+    // Return your Better Leaves IIcon
+    public IIcon getIIconBetterLeaves(int metadata, float randomIndex)
     {
         return textures[8 + unmarkedMetadata(metadata)];
     }
     
-    public Icon getIconFallingLeaves(int metadata)
+    public IIcon getIIconFallingLeaves(int metadata)
     {
         return textures[(unmarkedMetadata(metadata) * 2) + 1];
     }

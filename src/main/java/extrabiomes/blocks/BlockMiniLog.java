@@ -12,13 +12,13 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -43,7 +43,7 @@ public class BlockMiniLog extends BlockLog
         }
     }
     
-    private Icon[]     textures = { null, null, null, null, null, null, null, null };
+    private IIcon[]     textures = { null, null, null, null, null, null, null, null };
     private static int renderId = 33;
     
     public BlockMiniLog(int id)
@@ -57,21 +57,21 @@ public class BlockMiniLog extends BlockLog
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logsakuraside");
-        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
+        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logsakuraside");
+        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
         
-        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logautumnside");
-        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
+        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logautumnside");
+        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
         
-        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logautumnside");
-        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
+        textures[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logautumnside");
+        textures[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
         
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         final int orientation = metadata & 12;
         int type = metadata & 3;
@@ -121,7 +121,7 @@ public class BlockMiniLog extends BlockLog
         return blockID;
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onUseLogTurnerEvent(UseLogTurnerEvent event)
     {
         final int id = event.world.getBlockId(event.x, event.y, event.z);

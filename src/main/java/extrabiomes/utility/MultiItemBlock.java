@@ -9,7 +9,7 @@ package extrabiomes.utility;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -38,9 +38,9 @@ public class MultiItemBlock extends ItemBlock
     
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIconFromDamage(int md)
+    public IIcon getIIconFromDamage(int md)
     {
-        return getBlock().getIcon(0, md);
+        return getBlock().getIIcon(0, md);
     }
     
     @Override

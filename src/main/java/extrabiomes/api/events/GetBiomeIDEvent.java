@@ -6,7 +6,7 @@
 
 package extrabiomes.api.events;
 
-import net.minecraftforge.event.Event;
+import cpw.mods.fml.common.eventhandler.Event;
 
 /**
  * Used by the API to retrieve a biomeID

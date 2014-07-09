@@ -9,7 +9,7 @@ package extrabiomes.module.amica.ic2;
 import java.util.Collection;
 
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
@@ -56,7 +56,7 @@ public class IC2Plugin
                 BiomeSettings.MOUNTAINRIDGE.getBiome(), BiomeSettings.WASTELAND.getBiome()), 0, 0);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void init(PluginEvent.Init event)
     {
         if (!api.isPresent())
@@ -65,13 +65,13 @@ public class IC2Plugin
         addBiomeBonuses();
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void postInit(PluginEvent.Post event)
     {
         api = Optional.absent();
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void preInit(PluginEvent.Pre event)
     {
         if (!Extrabiomes.proxy.isModLoaded(MOD_ID))

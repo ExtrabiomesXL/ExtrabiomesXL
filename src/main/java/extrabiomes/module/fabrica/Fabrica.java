@@ -6,12 +6,12 @@
 
 package extrabiomes.module.fabrica;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraftforge.event.EventPriority;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -36,7 +36,7 @@ public class Fabrica
     private int scarecrowID = 0;
     private int pasteID     = 0;
     
-    @ForgeSubscribe(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.LOW)
     public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException
     {
         BlockManager.init();
@@ -66,7 +66,7 @@ public class Fabrica
         }
     }
     
-    @ForgeSubscribe(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.LOW)
     public void preInit(ModulePreInitEvent event) throws Exception
     {
         BlockManager.preInit();

@@ -8,10 +8,10 @@ package extrabiomes.module.cautia.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,17 +28,17 @@ class BlockQuicksand extends Block
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     
-    private Icon texture;
+    private IIcon texture;
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "quicksand");
+        texture = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "quicksand");
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         return texture;
     }

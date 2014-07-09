@@ -9,7 +9,7 @@ package extrabiomes.module.fabrica.scarecrow;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,9 +46,9 @@ public class ItemScarecrow extends Item
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        itemIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "scarecrow");
+        itemIIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "scarecrow");
     }
     
     public ItemScarecrow(int id)

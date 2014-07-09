@@ -13,14 +13,14 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPistonBase;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -90,8 +90,8 @@ public class BlockQuarterLog extends BlockLog
         return barkOnSides;
     }
     
-    private HashMap<Integer, Icon> textures;
-    private Icon[]                 textureArray = { null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null };
+    private HashMap<Integer, IIcon> textures;
+    private IIcon[]                 textureArray = { null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null };
     private int                    index;
     
     public BlockQuarterLog(int id, int index, BarkOn barkOnSides)
@@ -100,40 +100,40 @@ public class BlockQuarterLog extends BlockLog
         this.barkOnSides = barkOnSides;
         barkOnSides.blockID = blockID;
         this.index = index;
-        textures = new HashMap<Integer, Icon>();
+        textures = new HashMap<Integer, IIcon>();
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
         
-        textureArray[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideleft");
-        textureArray[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideright");
-        textureArray[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodtopleft");
-        textureArray[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodtopright");
-        textureArray[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodbottomleft");
-        textureArray[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodbottomright");
-        textureArray[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodsideleft");
-        textureArray[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodsideright");
+        textureArray[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideleft");
+        textureArray[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideright");
+        textureArray[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodtopleft");
+        textureArray[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodtopright");
+        textureArray[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodbottomleft");
+        textureArray[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodbottomright");
+        textureArray[6] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodsideleft");
+        textureArray[7] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodsideright");
         
-        textureArray[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirsideleft");
-        textureArray[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirsideright");
-        textureArray[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firtopleft");
-        textureArray[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firtopright");
-        textureArray[12] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firbottomleft");
-        textureArray[13] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firbottomright");
-        textureArray[14] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firsideleft");
-        textureArray[15] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firsideright");
+        textureArray[8] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logfirsideleft");
+        textureArray[9] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logfirsideright");
+        textureArray[10] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firtopleft");
+        textureArray[11] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firtopright");
+        textureArray[12] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firbottomleft");
+        textureArray[13] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firbottomright");
+        textureArray[14] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firsideleft");
+        textureArray[15] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firsideright");
         
-        textureArray[16] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logoaksideleft");
-        textureArray[17] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logoaksideright");
-        textureArray[18] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oaktopleft");
-        textureArray[19] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oaktopright");
-        textureArray[20] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oakbottomleft");
-        textureArray[21] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oakbottomright");
-        textureArray[22] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oaksideleft");
-        textureArray[23] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oaksideright");
+        textureArray[16] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logoaksideleft");
+        textureArray[17] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logoaksideright");
+        textureArray[18] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oaktopleft");
+        textureArray[19] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oaktopright");
+        textureArray[20] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oakbottomleft");
+        textureArray[21] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oakbottomright");
+        textureArray[22] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oaksideleft");
+        textureArray[23] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oaksideright");
         
         setupTextures(index);
     }
@@ -177,7 +177,7 @@ public class BlockQuarterLog extends BlockLog
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         final int orientation = metadata & 12;
         int type = metadata & 3;
@@ -765,7 +765,7 @@ public class BlockQuarterLog extends BlockLog
         }
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onUseLogTurnerEvent(UseLogTurnerEvent event)
     {
         int id = event.world.getBlockId(event.x, event.y, event.z);

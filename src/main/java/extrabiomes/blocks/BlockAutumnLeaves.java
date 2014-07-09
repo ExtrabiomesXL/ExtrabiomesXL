@@ -13,12 +13,12 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -103,24 +103,24 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
         }
     }
     
-    private Icon[] textures = { null, null, null, null, null, null, null, null, null, null, null, null };
+    private IIcon[] textures = { null, null, null, null, null, null, null, null, null, null, null, null };
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfancy");
-        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfast");
-        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfancy");
-        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfast");
-        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfancy");
-        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfast");
-        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfancy");
-        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfast");
-        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbrownautumn");
-        textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesorangeautumn");
-        textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredautumn");
-        textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesyellowautumn");
+        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfancy");
+        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfast");
+        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfancy");
+        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfast");
+        textures[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfancy");
+        textures[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfast");
+        textures[6] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfancy");
+        textures[7] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfast");
+        textures[8] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbrownautumn");
+        textures[9] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesorangeautumn");
+        textures[10] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredautumn");
+        textures[11] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesyellowautumn");
     }
     
     private static final int METADATA_BITMASK       = 0x3;
@@ -226,18 +226,18 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
     
-    // Return your Better Leaves icon
-    public Icon getIconBetterLeaves(int metadata, float randomIndex)
+    // Return your Better Leaves IIcon
+    public IIcon getIIconBetterLeaves(int metadata, float randomIndex)
     {
         return textures[8 + unmarkedMetadata(metadata)];
     }
     
-    public Icon getIconFallingLeaves(int metadata)
+    public IIcon getIIconFallingLeaves(int metadata)
     {
         return textures[(unmarkedMetadata(metadata) * 2) + 1];
     }

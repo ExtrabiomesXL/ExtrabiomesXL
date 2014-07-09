@@ -6,7 +6,7 @@
 
 package extrabiomes.module.fabrica.block;
 
-import net.minecraft.block.BlockHalfSlab;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 
@@ -15,10 +15,10 @@ import com.google.common.base.Optional;
 public class ItemWoodSlab extends ItemSlab
 {
     
-    private static Optional<BlockHalfSlab> singleSlab = Optional.absent();
-    private static Optional<BlockHalfSlab> doubleSlab = Optional.absent();
+    private static Optional<BlockSlab> singleSlab = Optional.absent();
+    private static Optional<BlockSlab> doubleSlab = Optional.absent();
     
-    static void setSlabs(BlockHalfSlab singleSlab, BlockHalfSlab doubleSlab)
+    static void setSlabs(BlockSlab singleSlab, BlockSlab doubleSlab)
     {
         ItemWoodSlab.singleSlab = Optional.of(singleSlab);
         ItemWoodSlab.doubleSlab = Optional.of(doubleSlab);

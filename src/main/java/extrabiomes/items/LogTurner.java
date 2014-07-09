@@ -7,11 +7,13 @@
 package extrabiomes.items;
 
 import java.util.List;
+import java.util.Set;
 
+import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.world.World;
@@ -24,13 +26,13 @@ public class LogTurner extends ItemTool
     
     public LogTurner(int id)
     {
-        super(id, 1, EnumToolMaterial.WOOD, new Block[] {});
+        super(id, ToolMaterial.WOOD, Sets.newHashSet());
     }
     
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        itemIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logturner");
+        itemIIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logturner");
     }
     
     @Override

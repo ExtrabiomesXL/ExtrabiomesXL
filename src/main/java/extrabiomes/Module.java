@@ -6,8 +6,8 @@
 
 package extrabiomes;
 
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.EventBus;
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.EventBus;
 
 import com.google.common.base.Optional;
 

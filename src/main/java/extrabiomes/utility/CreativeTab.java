@@ -14,10 +14,10 @@ public class CreativeTab extends CreativeTabs
     }
     
     @SideOnly(Side.CLIENT)
-    public Item getTabIconItem()
+    public Item getTabIIconItem()
     {
         if (!Stuff.scarecrow.isPresent())
-            return Item.itemsList[this.getTabIconItemIndex()];
+            return Item.itemsList[this.getTabIIconItemIndex()];
         return Stuff.scarecrow.get();
     }
 }

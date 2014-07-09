@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -29,12 +29,12 @@ public class ItemFocusBasic extends Item  implements IWandFocus {
         this.setMaxDamage(1);
     }
 	
-	public Icon icon;
+	public IIcon IIcon;
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public Icon getIconFromDamage(int par1) {
-		return icon;
+	public IIcon getIIconFromDamage(int par1) {
+		return IIcon;
 	}
 	
 	@Override
@@ -125,7 +125,7 @@ public class ItemFocusBasic extends Item  implements IWandFocus {
 	}
 
 	@Override
-	public Icon getOrnament() {
+	public IIcon getOrnament() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -143,7 +143,7 @@ public class ItemFocusBasic extends Item  implements IWandFocus {
 	}
 
 	@Override
-	public Icon getFocusDepthLayerIcon() {
+	public IIcon getFocusDepthLayerIIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

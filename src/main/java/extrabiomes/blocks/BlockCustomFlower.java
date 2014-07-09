@@ -14,12 +14,12 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
@@ -112,15 +112,15 @@ public class BlockCustomFlower extends Block implements IPlantable
             return metadata;
         }
 
-		private Icon	icon;
-		public Icon getIcon() {
-			return icon;
+		private IIcon	IIcon;
+		public IIcon getIIcon() {
+			return IIcon;
 		}
 
 		@SideOnly(Side.CLIENT)
-		public Icon registerIcon(IconRegister iconRegister) {
-			icon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + this.texture);
-			return icon;
+		public IIcon registerIIcon(IIconRegister IIconRegister) {
+			IIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + this.texture);
+			return IIcon;
 		}
         
         public String[] getToolTipText(){
@@ -161,15 +161,15 @@ public class BlockCustomFlower extends Block implements IPlantable
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-		LogHelper.fine(this.toString() + ": registerIcons");
+		LogHelper.fine(this.toString() + ": registerIIcons");
 		for (BlockType type : groupMap.values()) {
-			final Icon icon = type.registerIcon(iconRegister);
-			if (icon == null)
-				LogHelper.warning("No icon found for " + type+" (" + type.group + "," + type.metadata + ")");
+			final IIcon IIcon = type.registerIIcon(IIconRegister);
+			if (IIcon == null)
+				LogHelper.warning("No IIcon found for " + type+" (" + type.group + "," + type.metadata + ")");
 			else
-				LogHelper.fine(this.toString() + ": " + type + " = " + icon);
+				LogHelper.fine(this.toString() + ": " + type + " = " + IIcon);
 		}
     }
     
@@ -209,11 +209,11 @@ public class BlockCustomFlower extends Block implements IPlantable
     
     @Override
 	@SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
 		BlockType type = groupMap.get(metadata);
 		if( type != null ) {
-			return type.getIcon();
+			return type.getIIcon();
 		} else {
 			return null;
 		}

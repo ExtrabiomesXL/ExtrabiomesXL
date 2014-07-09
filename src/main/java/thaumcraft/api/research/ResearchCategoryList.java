@@ -20,11 +20,11 @@ public class ResearchCategoryList {
     public int maxDisplayRow;
     
     /** display variables **/
-    public ResourceLocation icon;
+    public ResourceLocation IIcon;
     public ResourceLocation background;
 	
-	public ResearchCategoryList(ResourceLocation icon, ResourceLocation background) {
-		this.icon = icon;
+	public ResearchCategoryList(ResourceLocation IIcon, ResourceLocation background) {
+		this.IIcon = IIcon;
 		this.background = background;
 	}
 

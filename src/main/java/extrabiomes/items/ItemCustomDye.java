@@ -3,14 +3,14 @@ package extrabiomes.items;
 import java.util.List;
 
 import net.minecraft.block.BlockColored;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -48,7 +48,7 @@ public class ItemCustomDye extends Item {
 	private static Element[] elements = {Element.DYE_BLACK, Element.DYE_BLUE, Element.DYE_BROWN, Element.DYE_WHITE};
 	
     @SideOnly(Side.CLIENT)
-    private Icon[] dyeIcons;
+    private IIcon[] dyeIIcons;
 	
 	public ItemCustomDye(int id) {
 		super(id);
@@ -104,11 +104,11 @@ public class ItemCustomDye extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	/**
-	 * Gets an icon index based on an item's damage value
+	 * Gets an IIcon index based on an item's damage value
 	 */
-	public Icon getIconFromDamage(int meta) {
+	public IIcon getIIconFromDamage(int meta) {
 		int j = MathHelper.clamp_int(meta, 0, Color.values().length);
-		return this.dyeIcons[j];
+		return this.dyeIIcons[j];
 	}
 
 	/**
@@ -136,14 +136,14 @@ public class ItemCustomDye extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIIcons(IIconRegister IIconRegister) {
 		final Color[] colors = Color.values();
-		this.dyeIcons = new Icon[colors.length];
+		this.dyeIIcons = new IIcon[colors.length];
 
 		for (int i = 0; i < colors.length; ++i) {
-			final String iconPath = Extrabiomes.TEXTURE_PATH + "dye_" + colors[i].name;
-			// LogHelper.info("Registering " + iconPath);
-			this.dyeIcons[i] = iconRegister.registerIcon(iconPath);
+			final String IIconPath = Extrabiomes.TEXTURE_PATH + "dye_" + colors[i].name;
+			// LogHelper.info("Registering " + IIconPath);
+			this.dyeIIcons[i] = IIconRegister.registerIIcon(IIconPath);
 		}
 	}
 }

@@ -2,8 +2,8 @@ package extrabiomes.subblocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,7 +12,7 @@ import extrabiomes.Extrabiomes;
 public class SubBlock {
 
 	protected String textureName;
-	protected Icon texture;
+	protected IIcon texture;
 	
 	protected int metaData = 0;
 	protected int parentId = 0;
@@ -26,11 +26,11 @@ public class SubBlock {
 	}
 	
 	@SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister) {
-        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + textureName);
+    public void registerIIcons(IIconRegister IIconRegister) {
+        texture = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + textureName);
     }
     
-    public Icon getIcon(int side, int metaData) {
+    public IIcon getIIcon(int side, int metaData) {
         return texture;
     }
     

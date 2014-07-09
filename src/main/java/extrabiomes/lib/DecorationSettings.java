@@ -9,7 +9,7 @@ package extrabiomes.lib;
 import java.util.Locale;
 import java.util.Map;
 
-import net.minecraftforge.common.Property;
+import net.minecraftforge.common.config.Property;
 
 import com.google.common.collect.Maps;
 

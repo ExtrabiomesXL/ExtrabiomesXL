@@ -31,7 +31,7 @@ public class ResearchItem
     public String[] parents = null;
     
     /**
-     * Like parent above, but a line will not be displayed in the thaumonomicon linking them. Just used to prevent clutter.
+     * Like parent above, but a line will not be displayed in the thaumonomIIcon linking them. Just used to prevent clutter.
      */
     public String[] parentsHidden = null;
     /**
@@ -40,24 +40,24 @@ public class ResearchItem
     public String[] siblings = null;
 	
     /**
-     * the horizontal position of the research icon
+     * the horizontal position of the research IIcon
      */
     public final int displayColumn;
 
     /**
-     * the vertical position of the research icon
+     * the vertical position of the research IIcon
      */
     public final int displayRow;
     
     /**
-     * the icon to be used for this research 
+     * the IIcon to be used for this research
      */
-    public final ItemStack icon_item;
+    public final ItemStack IIcon_item;
     
     /**
-     * the icon to be used for this research 
+     * the IIcon to be used for this research
      */
-    public final ResourceLocation icon_resource;
+    public final ResourceLocation IIcon_resource;
     
     /**
      * How large the research grid is. Valid values are 1 to 5.
@@ -70,7 +70,7 @@ public class ResearchItem
     private boolean isSpecial;
     
     /**
-     * This indicates if the research should use a circular icon border. Usually used for "passive" research 
+     * This indicates if the research should use a circular IIcon border. Usually used for "passive" research
      * that doesn't have recipes and grants passive effects, or that unlock automatically.
      */
     private boolean isRound;
@@ -82,19 +82,19 @@ public class ResearchItem
     
     /**
      * This indicated that the research is completely hidden and cannot be discovered by any 
-     * player-controlled means. The recipes will never show up in the thaumonomicon.
+     * player-controlled means. The recipes will never show up in the thaumonomIIcon.
      * Usually used to unlock "hidden" recipes via sibling unlocking, like 
      * the various cap and rod combos for wands.
      */
     private boolean isVirtual;    
     
     /**
-     * Hidden research does not display in the thaumonomicon until discovered
+     * Hidden research does not display in the thaumonomIIcon until discovered
      */
     private boolean isHidden;
     
     /**
-     * Concealed research does not display in the thaumonomicon until parent researches are discovered.
+     * Concealed research does not display in the thaumonomIIcon until parent researches are discovered.
      */
     private boolean isConcealed;
     
@@ -115,21 +115,21 @@ public class ResearchItem
     	this.key = par1;
     	this.category = par2;
     	this.tags = new AspectList();    	
-        this.icon_resource = null;
-        this.icon_item = null;
+        this.IIcon_resource = null;
+        this.IIcon_item = null;
         this.displayColumn = 0;
         this.displayRow = 0;
         this.setVirtual();
         
     }
     
-    public ResearchItem(String par1, String par2, AspectList tags, int par3, int par4, int par5, ResourceLocation icon)
+    public ResearchItem(String par1, String par2, AspectList tags, int par3, int par4, int par5, ResourceLocation IIcon)
     {
     	this.key = par1;
     	this.category = par2;
     	this.tags = tags;    	
-        this.icon_resource = icon;
-        this.icon_item = null;
+        this.IIcon_resource = IIcon;
+        this.IIcon_item = null;
         this.displayColumn = par3;
         this.displayRow = par4;
         this.complexity = par5;
@@ -137,13 +137,13 @@ public class ResearchItem
         if (complexity > 5) this.complexity = 5;
     }
     
-    public ResearchItem(String par1, String par2, AspectList tags, int par3, int par4, int par5, ItemStack icon)
+    public ResearchItem(String par1, String par2, AspectList tags, int par3, int par4, int par5, ItemStack IIcon)
     {
     	this.key = par1;
     	this.category = par2;
     	this.tags = tags;    	
-        this.icon_item = icon;
-        this.icon_resource = null;
+        this.IIcon_item = IIcon;
+        this.IIcon_resource = null;
         this.displayColumn = par3;
         this.displayRow = par4;
         this.complexity = par5;

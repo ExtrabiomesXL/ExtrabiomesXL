@@ -8,8 +8,8 @@ package extrabiomes.lib;
 
 import java.util.Locale;
 
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.Property;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.utility.EnhancedConfiguration;
 

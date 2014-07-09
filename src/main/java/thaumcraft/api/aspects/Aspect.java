@@ -23,7 +23,7 @@ public class Aspect {
 	 * @param tag the key that will be used to reference this aspect, as well as its latin display name
 	 * @param color color to display the tag in
 	 * @param components the aspects this one is formed from
-	 * @param image ResourceLocation pointing to a 32x32 icon of the aspect
+	 * @param image ResourceLocation pointing to a 32x32 IIcon of the aspect
 	 * @param blend GL11 blendmode (1 or 771). Used for rendering nodes. Default is 1
 	 */
 	public Aspect(String tag, int color, Aspect[] components, ResourceLocation image, int blend) {

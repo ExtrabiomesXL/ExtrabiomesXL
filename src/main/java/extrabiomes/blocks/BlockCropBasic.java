@@ -5,14 +5,14 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraft.util.Direction;
 
 import com.google.common.collect.Lists;
 
@@ -35,18 +35,18 @@ public class BlockCropBasic extends BlockFlower {
 	public enum CropType implements ICropType {
 		;
 
-		private ArrayList<Icon> icons;
+		private ArrayList<IIcon> IIcons;
 		private ItemStack		seed;
 		private Item			crop;
 		private int				renderType;
 		
 		@Override
-		public Icon getStageIcon(int stage) {
-			return icons.get(stage);
+		public IIcon getStageIIcon(int stage) {
+			return IIcons.get(stage);
 		}
 		@Override
-		public void setStageIcons(ArrayList<Icon> icons) {
-			this.icons = icons;
+		public void setStageIIcons(ArrayList<IIcon> IIcons) {
+			this.IIcons = IIcons;
 		}
 		
 	    @Override
@@ -87,30 +87,30 @@ public class BlockCropBasic extends BlockFlower {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister)
+	public void registerIIcons(IIconRegister IIconRegister)
 	{
-		ArrayList<Icon> icons = Lists.newArrayListWithCapacity(MAX_GROWTH_STAGE+1);
+		ArrayList<IIcon> IIcons = Lists.newArrayListWithCapacity(MAX_GROWTH_STAGE+1);
 		final String name = cropType.name().toLowerCase();
-		Icon lastIcon = null;
+		IIcon lastIIcon = null;
 		for (int k = 0; k <= MAX_GROWTH_STAGE; ++k) {
 			int l = (k != (MAX_GROWTH_STAGE - 1)) ? k : k-1;
 			
 			final String texture = "plant_" + name + l;
-			Icon icon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texture);
-			icons.add(k, icon);
+			IIcon IIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + texture);
+			IIcons.add(k, IIcon);
 		}
-		cropType.setStageIcons(icons);
+		cropType.setStageIIcons(IIcons);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int metadata)
+	public IIcon getIIcon(int side, int metadata)
 	{
 		if (metadata > MAX_GROWTH_STAGE) metadata = MAX_GROWTH_STAGE;
 		try {
-			return cropType.getStageIcon(metadata);
+			return cropType.getStageIIcon(metadata);
 		} catch (Exception e) {
-			LogHelper.warning("Unable to get stage icon for " + cropType.name()
+			LogHelper.warning("Unable to get stage IIcon for " + cropType.name()
 					+ " @ " + metadata);
 			return null;
 		}

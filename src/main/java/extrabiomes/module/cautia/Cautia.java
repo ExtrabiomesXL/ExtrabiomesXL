@@ -6,7 +6,7 @@
 
 package extrabiomes.module.cautia;
 
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.module.cautia.block.BlockManager;
@@ -14,13 +14,13 @@ import extrabiomes.module.cautia.block.BlockManager;
 public class Cautia
 {
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException
     {
         BlockManager.init();
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void preInit(ModulePreInitEvent event) throws Exception
     {
         BlockManager.preInit();

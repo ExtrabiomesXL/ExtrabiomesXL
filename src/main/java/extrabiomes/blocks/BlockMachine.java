@@ -7,15 +7,15 @@ import java.util.Map;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.packet.Packet51MapChunk;
-import net.minecraft.server.management.PlayerInstance;
-import net.minecraft.util.ChatMessageComponent;
+//import net.minecraft.network.packet.Packet51MapChunk;
+//import net.minecraft.server.management.PlayerInstance;
+//import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -48,15 +48,15 @@ public class BlockMachine extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
-		System.out.println("Registering icon for " + getClass().getName());
-		blockIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH
+	public void registerIIcons(IIconRegister IIconRegister) {
+		System.out.println("Registering IIcon for " + getClass().getName());
+		blockIIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH
 				+ "genesis");
 	}
 
 	@Override
-	public Icon getIcon(int side, int metadata) {
-		return blockIcon;
+	public IIcon getIIcon(int side, int metadata) {
+		return blockIIcon;
 	}
 
 	@Override
@@ -86,6 +86,7 @@ public class BlockMachine extends Block {
 
 	            if (k < -short1 || k > short1 || l < -short1 || l > short1){
 	            } else {
+                    /*
 	            	ChatMessageComponent message = new ChatMessageComponent();
 	            	message.addText("[Project Lazareth] - You are to close to spawn!");
 	            	message.setBold(true);
@@ -93,6 +94,7 @@ public class BlockMachine extends Block {
 	            	
 	            	
 					sender.sendChatToPlayer(message);
+					*/
 	            	//LogHelper.info("Spawn Chunk At: (X: %d, Z: %d)", x1, z1);
 	            	return false;
 	            }
@@ -228,10 +230,12 @@ public class BlockMachine extends Block {
 		// Object[0]);
 		for (int x1 = chunkX.intValue() - range; x1 <= chunkX.intValue() + range; x1++) {
 			for (int z1 = chunkZ.intValue() - range; z1 <= chunkZ.intValue() + range; z1++) {
+                /*
 				PlayerInstance chunkwatcher = worldObj.getPlayerManager().getOrCreateChunkWatcher(x1, z1, false);
 				if (chunkwatcher != null) {
 					chunkwatcher.sendToAllPlayersWatchingChunk(new Packet51MapChunk(worldObj.getChunkFromChunkCoords(x1, z1), true, -1));
 				}
+				*/
 			}
 		}
 

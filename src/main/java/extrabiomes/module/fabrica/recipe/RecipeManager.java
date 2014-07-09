@@ -13,7 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -72,7 +72,7 @@ public class RecipeManager
     private final List<ItemStack> rainboweucalyptusLogs      = new ArrayList<ItemStack>();
     private final List<ItemStack> sakurablossomLogs          = new ArrayList<ItemStack>();
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void acaciaStairsRecipeHandler(AcaciaStairsActiveEvent event)
     {
         if (plankAcaciaItem.isPresent())
@@ -87,56 +87,56 @@ public class RecipeManager
         Extrabiomes.proxy.addRecipe(recipe);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void firStairsRecipeHandler(FirStairsActiveEvent event)
     {
         if (plankFirItem.isPresent())
             addStairsRecipe(plankFirItem.get(), event.block);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void cypressStairsRecipeHandler(CypressStairsActiveEvent event)
     {
         if (plankCypressItem.isPresent())
             addStairsRecipe(plankCypressItem.get(), event.block);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void baldCypressStairsRecipeHandler(BaldCypressStairsActiveEvent event)
     {
         if (plankBaldCypressItem.isPresent())
             addStairsRecipe(plankBaldCypressItem.get(), event.block);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void japaneseMapleStairsRecipeHandler(JapaneseMapleStairsActiveEvent event)
     {
         if (plankJapaneseMapleItem.isPresent())
             addStairsRecipe(plankJapaneseMapleItem.get(), event.block);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void autumnStairsRecipeHandler(AutumnStairsActiveEvent event)
     {
         if (plankAutumnItem.isPresent())
             addStairsRecipe(plankAutumnItem.get(), event.block);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void rainbowEucalyptusStairsRecipeHandler(RainbowEucalyptusStairsActiveEvent event)
     {
         if (plankRainbowEucalyptusItem.isPresent())
             addStairsRecipe(plankRainbowEucalyptusItem.get(), event.block);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void rainbowSakuraBlossomStairsRecipeHandler(SakuraBlossomStairsActiveEvent event)
     {
         if (plankSakuraBlossomItem.isPresent())
             addStairsRecipe(plankSakuraBlossomItem.get(), event.block);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void plankRecipeHandler(PlankActiveEvent event)
     {
         ItemStack planks = new ItemStack(event.block, 4, BlockCustomWood.BlockType.ACACIA.metadata());
@@ -228,21 +228,21 @@ public class RecipeManager
         plankSakuraBlossomItem = Optional.of(new ItemStack(event.block, 1, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata()));
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void redCobbleStairsRecipeHandler(RedCobbleStairsActiveEvent event)
     {
         if (redCobbleItem.isPresent())
             addStairsRecipe(redCobbleItem.get(), event.block);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void redRockBrickStairsRecipeHandler(RedRockBrickStairsActiveEvent event)
     {
         if (redRockBrickItem.isPresent())
             addStairsRecipe(redRockBrickItem.get(), event.block);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void redRockRecipeHandler(RedRockActiveEvent event)
     {
         final CommonProxy proxy = Extrabiomes.proxy;
@@ -260,7 +260,7 @@ public class RecipeManager
         proxy.addSmelting(event.block.blockID, BlockRedRock.BlockType.RED_COBBLE.metadata(), redRockItem.get(), 0.1F);
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void redRockSlabRecipeHandler(RedRockSlabActiveEvent event)
     {
         final CommonProxy proxy = Extrabiomes.proxy;
@@ -285,7 +285,7 @@ public class RecipeManager
         }
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void redwoodStairsRecipeHandler(RedwoodStairsActiveEvent event)
     {
         if (plankRedwoodItem.isPresent())
@@ -294,7 +294,7 @@ public class RecipeManager
         }
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void wallRecipeHandler(WallActiveEvent event)
     {
         
@@ -305,7 +305,7 @@ public class RecipeManager
         }
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void newWoodSlabRecipeHandler(NewWoodSlabActiveEvent event)
     {
         if (plankSakuraBlossomItem.isPresent())
@@ -315,7 +315,7 @@ public class RecipeManager
         }
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void woodSlabRecipeHandler(WoodSlabActiveEvent event)
     {
         

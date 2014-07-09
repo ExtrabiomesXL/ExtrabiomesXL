@@ -11,14 +11,14 @@ import extrabiomes.helpers.ToolTipStringFormatter;
 import extrabiomes.subblocks.SubBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockWaterPlant extends Block {
 	
@@ -55,18 +55,18 @@ public class BlockWaterPlant extends Block {
 	
 	@Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerIIcons(IIconRegister IIconRegister) {
 		for(int i = 0; i < subBlocks.length; i++) {
 			if(subBlocks[i] != null) {
-				subBlocks[i].registerIcons(iconRegister);
+				subBlocks[i].registerIIcons(IIconRegister);
 			}
 		}
     }
     
     @Override
-    public Icon getIcon(int side, int metaData) {
+    public IIcon getIIcon(int side, int metaData) {
     	if(subBlocks[metaData] != null) {
-    		return subBlocks[metaData].getIcon(side, metaData);
+    		return subBlocks[metaData].getIIcon(side, metaData);
     	}
     	
         return null;

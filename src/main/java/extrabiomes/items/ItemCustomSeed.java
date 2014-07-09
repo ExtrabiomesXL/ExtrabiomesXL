@@ -4,16 +4,16 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,7 +26,7 @@ public class ItemCustomSeed extends Item implements IPlantable {
 
 		public final int		meta;
 		public BlockFlower	cropType;
-		public Icon				icon;
+		public IIcon				IIcon;
 
 		private SeedType(int meta) {
 			this.meta = meta;
@@ -48,10 +48,10 @@ public class ItemCustomSeed extends Item implements IPlantable {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIIcons(IIconRegister IIconRegister) {
 		for (SeedType type : SeedType.values()) {
-			final String iconPath = Extrabiomes.TEXTURE_PATH + "seed_" + type.name().toLowerCase();
-			type.icon = iconRegister.registerIcon(iconPath);
+			final String IIconPath = Extrabiomes.TEXTURE_PATH + "seed_" + type.name().toLowerCase();
+			type.IIcon = IIconRegister.registerIIcon(IIconPath);
 		}
 	}
 
@@ -61,8 +61,8 @@ public class ItemCustomSeed extends Item implements IPlantable {
 	}
 
 	@Override
-	public Icon getIconFromDamage(int meta) {
-		return getSeedType(meta).icon;
+	public IIcon getIIconFromDamage(int meta) {
+		return getSeedType(meta).IIcon;
 	}
 
 	public SeedType getSeedType(int meta) {

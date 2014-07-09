@@ -6,7 +6,7 @@
 
 package extrabiomes.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemBlock;
 import extrabiomes.Extrabiomes;
 
@@ -19,9 +19,9 @@ public class ItemCatTail extends ItemBlock
     }
     
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        itemIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cattail");
+        itemIIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "cattail");
     }
     
 }

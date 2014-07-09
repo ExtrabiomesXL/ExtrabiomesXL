@@ -10,10 +10,10 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWall;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -40,7 +40,7 @@ public class BlockCustomWall extends BlockWall
         }
     }
     
-    private Icon texture;
+    private IIcon texture;
     
     public BlockCustomWall(int id)
     {
@@ -50,9 +50,9 @@ public class BlockCustomWall extends BlockWall
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+        texture = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
     }
     
     @Override
@@ -62,7 +62,7 @@ public class BlockCustomWall extends BlockWall
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         return texture;
     }

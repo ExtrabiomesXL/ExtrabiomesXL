@@ -13,10 +13,10 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -44,7 +44,7 @@ public class BlockRedRock extends Block
         }
     }
     
-    private final Icon[] textures = { null, null, null };
+    private final IIcon[] textures = { null, null, null };
     
     public BlockRedRock(int id, int index, Material material)
     {
@@ -53,11 +53,11 @@ public class BlockRedRock extends Block
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrock");
-        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
-        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");
+        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrock");
+        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");
     }
     
     @Override
@@ -74,7 +74,7 @@ public class BlockRedRock extends Block
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         if (metadata > 2)
             metadata = 2;

@@ -10,7 +10,7 @@ import java.util.Locale;
 
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.Property;
+import net.minecraftforge.common.config.Property;
 
 import com.google.common.base.Optional;
 

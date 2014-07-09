@@ -10,9 +10,9 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -28,7 +28,7 @@ public class BlockLeafPile extends Block
         return blockId == Block.grass.blockID || blockId == Block.dirt.blockID;
     }
     
-    private Icon texture;
+    private IIcon texture;
     
     public BlockLeafPile(int id, int index, Material material)
     {
@@ -40,14 +40,14 @@ public class BlockLeafPile extends Block
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leafpile");
+        texture = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leafpile");
     }
     
     @Override
     //Change this to more appropriate method
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         return texture;
     }

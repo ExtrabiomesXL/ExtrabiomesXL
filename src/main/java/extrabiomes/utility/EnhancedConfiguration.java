@@ -9,11 +9,11 @@ package extrabiomes.utility;
 import java.io.File;
 
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.Property;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 /**
- * Addes functionality to the Forge {@link net.minecraftforge.common.Configuration Configuration} class
+ * Addes functionality to the Forge {@link net.minecraftforge.common.config.Configuration Configuration} class
  * 
  */
 public class EnhancedConfiguration extends Configuration

@@ -3,7 +3,7 @@ package extrabiomes.renderers;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
@@ -34,32 +34,32 @@ public class RenderMiniLog implements ISimpleBlockRenderingHandler
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
         //var4.startDrawingQuads();
         //var4.setNormal(0.0F, -1.0F, 0.0F);
-        //renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, metadata));
+        //renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, block.getIIcon(0, metadata));
         //var4.draw();
         
         var4.startDrawingQuads();
         var4.setNormal(0.0F, 1.0F, 0.0F);
-        renderer.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(1, 0));
+        renderer.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, block.getIIcon(1, 0));
         var4.draw();
         
         var4.startDrawingQuads();
         var4.setNormal(0.0F, 0.0F, -1.0F);
-        renderer.renderFaceZNeg(block, 0.0D, 0.0D, 0.1875D, block.getIcon(2, 0));
+        renderer.renderFaceZNeg(block, 0.0D, 0.0D, 0.1875D, block.getIIcon(2, 0));
         var4.draw();
         
         var4.startDrawingQuads();
         var4.setNormal(0.0F, 0.0F, 1.0F);
-        renderer.renderFaceZPos(block, 0.0D, 0.0D, -0.1875D, block.getIcon(3, 0));
+        renderer.renderFaceZPos(block, 0.0D, 0.0D, -0.1875D, block.getIIcon(3, 0));
         var4.draw();
         
         var4.startDrawingQuads();
         var4.setNormal(-1.0F, 0.0F, 0.0F);
-        renderer.renderFaceXNeg(block, 0.1875D, 0.0D, 0.0D, block.getIcon(4, 0));
+        renderer.renderFaceXNeg(block, 0.1875D, 0.0D, 0.0D, block.getIIcon(4, 0));
         var4.draw();
         
         var4.startDrawingQuads();
         var4.setNormal(1.0F, 0.0F, 0.0F);
-        renderer.renderFaceXPos(block, -0.1875D, 0.0D, 0.0D, block.getIcon(5, 0));
+        renderer.renderFaceXPos(block, -0.1875D, 0.0D, 0.0D, block.getIIcon(5, 0));
         var4.draw();
         
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
@@ -152,8 +152,8 @@ public class RenderMiniLog implements ISimpleBlockRenderingHandler
         renderer.uvRotateSouth = 1; //PosX
         renderer.uvRotateNorth = 2; //NegX
         
-        Icon icnEnd = block.getIcon(1, 0);
-        Icon icnSide = block.getIcon(2, 0);
+        IIcon icnEnd = block.getIIcon(1, 0);
+        IIcon icnSide = block.getIIcon(2, 0);
         
         // Set the render area
         renderer.setRenderBounds(0.1875D, 0.1875D, 0.8125D, 0.8125D, 0.8125D, 1.0D);
@@ -177,8 +177,8 @@ public class RenderMiniLog implements ISimpleBlockRenderingHandler
         renderer.uvRotateSouth = 1; //PosX
         renderer.uvRotateNorth = 1; //NegX
         
-        Icon icnEnd = block.getIcon(1, 0);
-        Icon icnSide = block.getIcon(2, 0);
+        IIcon icnEnd = block.getIIcon(1, 0);
+        IIcon icnSide = block.getIIcon(2, 0);
         
         // Set the render area
         renderer.setRenderBounds(0.1875D, 0.1875D, 0.0D, 0.8125D, 0.8125D, 0.1875D);
@@ -202,8 +202,8 @@ public class RenderMiniLog implements ISimpleBlockRenderingHandler
         renderer.uvRotateSouth = 0; //PosX
         renderer.uvRotateNorth = 0; //NegX
         
-        Icon icnEnd = block.getIcon(1, 0);
-        Icon icnSide = block.getIcon(2, 0);
+        IIcon icnEnd = block.getIIcon(1, 0);
+        IIcon icnSide = block.getIIcon(2, 0);
         
         // Set the render area
         renderer.setRenderBounds(0.0D, 0.1875D, 0.1875D, 0.1875D, 0.8125D, 0.8125D);
@@ -227,8 +227,8 @@ public class RenderMiniLog implements ISimpleBlockRenderingHandler
         renderer.uvRotateSouth = 0; //PosX
         renderer.uvRotateNorth = 0; //NegX
         
-        Icon icnEnd = block.getIcon(1, 0);
-        Icon icnSide = block.getIcon(2, 0);
+        IIcon icnEnd = block.getIIcon(1, 0);
+        IIcon icnSide = block.getIIcon(2, 0);
         
         // Set the render area
         renderer.setRenderBounds(0.8125D, 0.1875D, 0.1875D, 1.0D, 0.8125D, 0.8125D);
@@ -252,8 +252,8 @@ public class RenderMiniLog implements ISimpleBlockRenderingHandler
         renderer.uvRotateSouth = 0; //PosX
         renderer.uvRotateNorth = 0; //NegX
         
-        Icon icnEnd = block.getIcon(1, 0);
-        Icon icnSide = block.getIcon(2, 0);
+        IIcon icnEnd = block.getIIcon(1, 0);
+        IIcon icnSide = block.getIIcon(2, 0);
         
         // Set the render area
         renderer.setRenderBounds(0.1875D, 0.8125D, 0.1875D, 0.8125D, 1.0D, 0.8125D);
@@ -278,8 +278,8 @@ public class RenderMiniLog implements ISimpleBlockRenderingHandler
         renderer.uvRotateSouth = 0; //PosX
         renderer.uvRotateNorth = 0; //NegX
         
-        Icon icnEnd = block.getIcon(1, 0);
-        Icon icnSide = block.getIcon(2, 0);
+        IIcon icnEnd = block.getIIcon(1, 0);
+        IIcon icnSide = block.getIIcon(2, 0);
         
         // Set the render area
         renderer.setRenderBounds(0.1875D, 0.0D, 0.1875D, 0.8125D, 0.1875D, 0.8125D);
@@ -303,8 +303,8 @@ public class RenderMiniLog implements ISimpleBlockRenderingHandler
         renderer.uvRotateSouth = 0; //PosX
         renderer.uvRotateNorth = 0; //NegX
         
-        Icon icnEnd = block.getIcon(1, 0);
-        Icon icnSide = block.getIcon(2, 0);
+        IIcon icnEnd = block.getIIcon(1, 0);
+        IIcon icnSide = block.getIIcon(2, 0);
         
         // RenderBounds
         renderer.setRenderBounds(0.1875D, 0.0D, 0.1875D, 0.8125D, 1.0D, 0.8125D);
@@ -325,8 +325,8 @@ public class RenderMiniLog implements ISimpleBlockRenderingHandler
         renderer.uvRotateSouth = 1;
         renderer.uvRotateNorth = 1;
         
-        Icon icnEnd = block.getIcon(1, 0);
-        Icon icnSide = block.getIcon(2, 0);
+        IIcon icnEnd = block.getIIcon(1, 0);
+        IIcon icnSide = block.getIIcon(2, 0);
         
         // Set the render area
         renderer.setRenderBounds(0.1875D, 0.1875D, 0.0D, 0.8125D, 0.8125D, 1.0D);
@@ -349,8 +349,8 @@ public class RenderMiniLog implements ISimpleBlockRenderingHandler
         renderer.uvRotateTop = 1;
         renderer.uvRotateBottom = 1;
         
-        Icon icnEnd = block.getIcon(1, 0);
-        Icon icnSide = block.getIcon(2, 0);
+        IIcon icnEnd = block.getIIcon(1, 0);
+        IIcon icnSide = block.getIIcon(2, 0);
         
         // Set the render area
         renderer.setRenderBounds(0.0D, 0.1875D, 0.1875D, 1.0D, 0.8125D, 0.8125D);

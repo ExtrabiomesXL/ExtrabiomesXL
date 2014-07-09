@@ -9,8 +9,8 @@ package extrabiomes.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,7 +19,7 @@ import extrabiomes.Extrabiomes;
 public class BlockCatTail extends BlockFlower
 {
     
-    private Icon texture;
+    private IIcon texture;
     
     public BlockCatTail(int id, int index, Material material)
     {
@@ -31,13 +31,13 @@ public class BlockCatTail extends BlockFlower
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
-        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cattail");
+        texture = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "cattail");
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         return texture;
     }

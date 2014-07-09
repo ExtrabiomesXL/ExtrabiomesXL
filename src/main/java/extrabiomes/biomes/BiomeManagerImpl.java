@@ -19,6 +19,7 @@ import java.util.Random;
 
 import extrabiomes.lib.GeneralSettings;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
@@ -68,11 +69,11 @@ public class BiomeManagerImpl extends BiomeManager
     private static final WorldGenerator                                               ALT_TAIGA_GEN             = new WorldGenTaiga2(false);
     private static final WorldGenerator                                               BIG_FIR_TREE_GEN          = new WorldGenFirTreeHuge(false);
     private static final WorldGenerator                                               BIG_OAK_TREE_GEN          = new WorldGenBigTree(false);
-    private static final WorldGenerator                                               BIRCH_TREE_GEN            = new WorldGenForest(false);
+    private static final WorldGenerator                                               BIRCH_TREE_GEN            = new WorldGenForest(false, false);
     private static final WorldGenerator                                               CUSTOM_SWAMP_TREE_GEN     = new WorldGenCustomSwamp();
-    private static final WorldGenerator                                               FERN_GEN                  = new WorldGenTallGrass(Block.tallGrass.blockID, 2);
+    private static final WorldGenerator                                               FERN_GEN                  = new WorldGenTallGrass(Blocks.tallgrass.blockID, 2);
     private static final WorldGenerator                                               FIR_TREE_GEN              = new WorldGenFirTree(false);
-    private static final WorldGenerator                                               GRASS_GEN                 = new WorldGenTallGrass(Block.tallGrass.blockID, 1);
+    private static final WorldGenerator                                               GRASS_GEN                 = new WorldGenTallGrass(Blocks.tallgrass.blockID, 1);
     private static final WorldGenerator                                               LEGACY_REDWOOD_GEN        = new WorldGenRedwood(false);
     private static final WorldGenerator                                               OAK_TREE_GEN              = new WorldGenTrees(false);
     private static final WorldGenerator                                               REDWOOD_TREE_GEN          = new WorldGenNewRedwood(false);

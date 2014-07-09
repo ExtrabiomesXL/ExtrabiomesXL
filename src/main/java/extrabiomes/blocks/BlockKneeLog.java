@@ -6,13 +6,13 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPistonBase;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -39,7 +39,7 @@ public class BlockKneeLog extends BlockLog
         }
     }
     
-    private Icon[]     textures = { null, null, null, null, null, null, null, null, null };
+    private IIcon[]     textures = { null, null, null, null, null, null, null, null, null };
     private static int renderId = 32;
     private String     treeType = "knee";
     
@@ -52,49 +52,49 @@ public class BlockKneeLog extends BlockLog
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIconRegister IIconRegister)
     {
         
-        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee1");
-        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee2");
-        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee3");
-        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee4");
+        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee1");
+        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee2");
+        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee3");
+        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee4");
         
-        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "side1");
-        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "side2");
-        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "top");
-        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "top");
+        textures[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "side1");
+        textures[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "side2");
+        textures[6] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "top");
+        textures[7] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "top");
         
-        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "todo");
+        textures[8] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "todo");
         
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         final int orientation = metadata;
         
         switch (side)
         {
             case 0:
-                return textures[bottopIcon(orientation)];
+                return textures[bottopIIcon(orientation)];
             case 1:
-                return textures[topIcon(orientation)];
+                return textures[topIIcon(orientation)];
             case 2:
-                return textures[southIcon(orientation)];
+                return textures[southIIcon(orientation)];
             case 3:
-                return textures[northIcon(orientation)];
+                return textures[northIIcon(orientation)];
             case 4:
-                return textures[eastIcon(orientation)];
+                return textures[eastIIcon(orientation)];
             case 5:
-                return textures[westIcon(orientation)];
+                return textures[westIIcon(orientation)];
         }
         
         return textures[4];
         
     }
     
-    private int topIcon(int orientation)
+    private int topIIcon(int orientation)
     {
         switch (orientation)
         {
@@ -127,7 +127,7 @@ public class BlockKneeLog extends BlockLog
         }
     }
     
-    private int bottopIcon(int orientation)
+    private int bottopIIcon(int orientation)
     {
         switch (orientation)
         {
@@ -161,7 +161,7 @@ public class BlockKneeLog extends BlockLog
         }
     }
     
-    private int eastIcon(int orientation)
+    private int eastIIcon(int orientation)
     {
         switch (orientation)
         {
@@ -194,7 +194,7 @@ public class BlockKneeLog extends BlockLog
         }
     }
     
-    private int westIcon(int orientation)
+    private int westIIcon(int orientation)
     {
         switch (orientation)
         {
@@ -227,7 +227,7 @@ public class BlockKneeLog extends BlockLog
         }
     }
     
-    private int southIcon(int orientation)
+    private int southIIcon(int orientation)
     {
         switch (orientation)
         {
@@ -260,7 +260,7 @@ public class BlockKneeLog extends BlockLog
         }
     }
     
-    private int northIcon(int orientation)
+    private int northIIcon(int orientation)
     {
         switch (orientation)
         {
@@ -342,7 +342,7 @@ public class BlockKneeLog extends BlockLog
         return 0;
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onUseLogTurnerEvent(UseLogTurnerEvent event)
     {
         int id = event.world.getBlockId(event.x, event.y, event.z);

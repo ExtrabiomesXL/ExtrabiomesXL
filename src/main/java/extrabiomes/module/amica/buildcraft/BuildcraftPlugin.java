@@ -6,7 +6,7 @@
 
 package extrabiomes.module.amica.buildcraft;
 
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 import com.google.common.base.Optional;
 
@@ -29,7 +29,7 @@ public class BuildcraftPlugin
                 .get()));
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void init(PluginEvent.Init event)
     {
         if (!api.isPresent())
@@ -38,13 +38,13 @@ public class BuildcraftPlugin
         addOilSpawns();
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void postInit(PluginEvent.Post event)
     {
         api = Optional.absent();
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void preInit(PluginEvent.Pre event)
     {
         if (!Extrabiomes.proxy.isModLoaded("BuildCraft|Energy"))

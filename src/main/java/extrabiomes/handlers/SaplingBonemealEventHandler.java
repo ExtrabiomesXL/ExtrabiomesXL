@@ -6,8 +6,8 @@
 
 package extrabiomes.handlers;
 
-import net.minecraftforge.event.Event.Result;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import extrabiomes.blocks.BlockCustomSapling;
 
@@ -21,7 +21,7 @@ public class SaplingBonemealEventHandler
         this.sapling = sapling;
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onBonemealEvent(BonemealEvent e)
     {
         if (e.getResult() == Result.DEFAULT && e.ID == sapling.blockID)

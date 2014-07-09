@@ -24,7 +24,6 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.base.Optional;
@@ -36,6 +35,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.eventhandler.Event;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Reference;
 

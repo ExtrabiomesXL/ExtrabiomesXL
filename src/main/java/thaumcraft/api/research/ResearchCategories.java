@@ -45,13 +45,13 @@ public class ResearchCategories {
 	
 	/**
 	 * @param key the key used for this category
-	 * @param icon the icon to be used for the research category tab
+	 * @param IIcon the IIcon to be used for the research category tab
 	 * @param background the resource location of the background image to use for this category
 	 * @return the name of the research linked to this key
 	 */
-	public static void registerCategory(String key, ResourceLocation icon, ResourceLocation background) {
+	public static void registerCategory(String key, ResourceLocation IIcon, ResourceLocation background) {
 		if (getResearchList(key)==null) {
-			ResearchCategoryList rl = new ResearchCategoryList(icon, background);
+			ResearchCategoryList rl = new ResearchCategoryList(IIcon, background);
 			researchCategories.put(key, rl);
 		}
 	}

@@ -11,15 +11,15 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -68,7 +68,7 @@ public class BlockCustomSapling extends BlockFlower
     int                      saplingID        = 0;
     static int               saplingLifespan  = 5000;
     
-    private Icon[]           textures         = { null, null, null, null, null, null, null, null };
+    private IIcon[]           textures         = { null, null, null, null, null, null, null, null };
     
     private static final int METADATA_BITMASK = 0x7;
     private static final int METADATA_MARKBIT = 0x8;
@@ -112,16 +112,16 @@ public class BlockCustomSapling extends BlockFlower
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegistry)
+    public void registerIIcons(IIconRegister IIconRegistry)
     {
-        textures[0] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingbrownautumn");
-        textures[1] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingorangeautumn");
-        textures[2] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingredautumn");
-        textures[3] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingyellowautumn");
-        textures[4] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingfir");
-        textures[5] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingredwood");
-        textures[6] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingacacia");
-        textures[7] = iconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingcypress");
+        textures[0] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingbrownautumn");
+        textures[1] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingorangeautumn");
+        textures[2] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingredautumn");
+        textures[3] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingyellowautumn");
+        textures[4] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingfir");
+        textures[5] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingredwood");
+        textures[6] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingacacia");
+        textures[7] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingcypress");
     }
     
     private void attemptGrowTree(World world, int x, int y, int z, Random rand)
@@ -154,7 +154,7 @@ public class BlockCustomSapling extends BlockFlower
     }
     
     @Override
-    public Icon getIcon(int side, int metadata)
+    public IIcon getIIcon(int side, int metadata)
     {
         metadata = unmarkedMetadata(metadata);
         
@@ -360,7 +360,7 @@ public class BlockCustomSapling extends BlockFlower
         saplingLifespan = (life > 0) ? life : 0;
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void itemExpiring(ItemExpireEvent event)
     {
         if (event.entityItem.getEntityItem().itemID == saplingID)
@@ -477,7 +477,7 @@ public class BlockCustomSapling extends BlockFlower
         return id != 0 && Block.blocksList[id] != null && sapling.itemID == id && sapling.getItemDamage() == metadata;
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void itemEntering(EntityJoinWorldEvent event)
     {
         if (event.entity instanceof EntityItem && !event.world.isRemote)

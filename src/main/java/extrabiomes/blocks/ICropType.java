@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 public interface ICropType {
-	public Icon getStageIcon(int stage);
-	public void setStageIcons(ArrayList<Icon> icons);
+	public IIcon getStageIIcon(int stage);
+	public void setStageIIcons(ArrayList<IIcon> IIcons);
 	
 	public ItemStack getSeedItem();
     public Item getCropItem();

@@ -2,12 +2,12 @@ package extrabiomes.items;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -25,7 +25,7 @@ public class ItemCustomCrop extends ItemFood {
 		public final int	meta;
 		public final int	hunger;
 		public final float	saturation;
-		public Icon			icon;
+		public IIcon			IIcon;
 		
 		public enum Edible {
 			ALWAYS, YES, NO;
@@ -58,10 +58,10 @@ public class ItemCustomCrop extends ItemFood {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIIcons(IIconRegister IIconRegister) {
 		for (CropType type : CropType.values()) {
-			final String iconPath = Extrabiomes.TEXTURE_PATH + type.name().toLowerCase();
-			type.icon = iconRegister.registerIcon(iconPath);
+			final String IIconPath = Extrabiomes.TEXTURE_PATH + type.name().toLowerCase();
+			type.IIcon = IIconRegister.registerIIcon(IIconPath);
 		}
 	}
 
@@ -71,8 +71,8 @@ public class ItemCustomCrop extends ItemFood {
 	}
 
 	@Override
-	public Icon getIconFromDamage(int meta) {
-		return getCropType(meta).icon;
+	public IIcon getIIconFromDamage(int meta) {
+		return getCropType(meta).IIcon;
 	}
 
 	public CropType getCropType(int meta) {

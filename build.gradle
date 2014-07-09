@@ -33,7 +33,7 @@ archivesBaseName = "ExtrabiomesXL"
 
 minecraft {
     version = config.minecraft_version + "-" + config.forge_version
-    assetDir = "eclipse/assets"
+    runDir = "eclipse/assets"
 }
 
 version = "${config.minecraft_version}-${config.mod_version}"

@@ -9,10 +9,10 @@ package extrabiomes.handlers;
 import java.util.Locale;
 import java.util.Set;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.event.ForgeSubscribe;
 
 import com.google.common.base.Optional;
 
@@ -100,7 +100,7 @@ public enum BiomeHandler
         Extrabiomes.proxy.registerWorldGenerator(new LegendOakGenerator());
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void handleBiomeIDRequestsFromAPI(GetBiomeIDEvent event)
     {
         final Optional<BiomeSettings> settings = Optional.fromNullable(BiomeSettings.valueOf(event.targetBiome.toUpperCase(Locale.ENGLISH)));

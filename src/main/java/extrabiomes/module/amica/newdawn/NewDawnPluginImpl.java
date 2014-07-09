@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Set;
 
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import two.newdawn.API.NewDawnBiome;
 import two.newdawn.API.NewDawnBiomeProvider;
 import two.newdawn.API.NewDawnBiomeSelector;
@@ -21,7 +21,7 @@ public class NewDawnPluginImpl implements NewDawnBiomeProvider
 {
     private static boolean          enabled            = true;
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void init() {
         if (!isEnabled())
             return;
