@@ -5,9 +5,13 @@ buildscript {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
 
@@ -29,7 +33,7 @@ archivesBaseName = "ExtrabiomesXL"
 
 minecraft {
     version = config.minecraft_version + "-" + config.forge_version
-    assetDir = "run/assets"
+    assetDir = "eclipse/assets"
 }
 
 version = "${config.minecraft_version}-${config.mod_version}"
