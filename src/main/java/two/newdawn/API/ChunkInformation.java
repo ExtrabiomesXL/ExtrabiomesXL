@@ -17,6 +17,16 @@ import java.util.HashMap;
  */
 public class ChunkInformation {
 
+  public enum Temperature {
+
+    cold, medium, hot
+  };
+
+  public enum Humidity {
+
+    sparse, medium, woodland, wet
+  };
+
   /* The maximum world height. You must not exceed it, Minecraft forbids it! */
   public static final int WORLD_HEIGHT = 256;
   /* A scale factor to ease in calculation */
@@ -200,6 +210,24 @@ public class ChunkInformation {
   }
 
   /**
+   * Returns the temperature enum at the given block position.
+   *
+   * @param blockX the block x-coordinate in world space.
+   * @param blockZ the block z-coordinate in world space.
+   * @return the temperature enum at the given block position.
+   */
+  public Temperature getTemperatureType(final int blockX, final int blockZ) {
+    final float temp = temperature[blockToChunk(blockX, blockZ)];
+    if (temp <= baseValues.temperatureFreezing) {
+      return Temperature.cold;
+    } else if (temp >= baseValues.temperatureHot) {
+      return Temperature.hot;
+    } else {
+      return Temperature.medium;
+    }
+  }
+
+  /**
    * Returns the humidity at the given block position.
    * The humidity <i>usually</i> is within the range of -1 (dry) &lt;= H &lt;= 1 (wet),
    * but some calculations cause it to exceed these boundaries.
@@ -210,6 +238,26 @@ public class ChunkInformation {
    */
   public float getHumidity(final int blockX, final int blockZ) {
     return humidity[blockToChunk(blockX, blockZ)];
+  }
+
+  /**
+   * Returns the humidity enum at the given block position.
+   *
+   * @param blockX the block x-coordinate in world space.
+   * @param blockZ the block z-coordinate in world space.
+   * @return the humidity enum at the given block position.
+   */
+  public Humidity getHumidityType(final int blockX, final int blockZ) {
+    final float humid = humidity[blockToChunk(blockX, blockZ)];
+    if (humid <= baseValues.humiditySparse) {
+      return Humidity.sparse;
+    } else if (humid >= baseValues.humidityWet) {
+      return Humidity.wet;
+    } else if (humid >= baseValues.minHumidityWoodland) {
+      return Humidity.woodland;
+    } else {
+      return Humidity.medium;
+    }
   }
 
   /**
@@ -422,6 +470,18 @@ public class ChunkInformation {
    */
   public boolean isDeepWater(final int blockX, final int blockZ) {
     return (getHeight(blockX, blockZ) + 1 < baseValues.groundLevel);
+  }
+
+  /**
+   * Returns if the given block position is deep ocean.
+   * Deep ocean is much more below the shore line than other ocean.
+   *
+   * @param blockX the block x-coordinate in world space.
+   * @param blockZ the block z-coordinate in world space.
+   * @return if the given block position is deep ocean.
+   */
+  public boolean isDeepOcean(final int blockX, final int blockZ) {
+    return (getHeight(blockX, blockZ) + 4 < baseValues.groundLevel);
   }
 
   /**
