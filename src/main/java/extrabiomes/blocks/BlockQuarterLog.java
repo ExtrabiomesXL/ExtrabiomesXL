@@ -16,6 +16,9 @@ import net.minecraft.block.BlockPistonBase;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
@@ -34,7 +37,7 @@ public class BlockQuarterLog extends BlockLog
     {
         SW, SE, NW, NE;
         
-        private int blockID;
+        private Block block;
     }
     
     public enum BlockType
@@ -90,15 +93,17 @@ public class BlockQuarterLog extends BlockLog
         return barkOnSides;
     }
     
+    private BlockSettings settings;
     private HashMap<Integer, IIcon> textures;
     private IIcon[]                 textureArray = { null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null };
     private int                    index;
     
-    public BlockQuarterLog(int id, int index, BarkOn barkOnSides)
+    public BlockQuarterLog(BlockSettings settings, int index, BarkOn barkOnSides)
     {
-        super(id);
+        super();
+        this.settings = settings;
         this.barkOnSides = barkOnSides;
-        barkOnSides = blockID;
+        // barkOnSides = blockID; // TODO: huh?
         this.index = index;
         textures = new HashMap<Integer, IIcon>();
     }
@@ -268,16 +273,16 @@ public class BlockQuarterLog extends BlockLog
         return offset;
     }
     
-    private int getNextBlockID()
+    private Block getNextBlock()
     {
         //LogHelper.info(Integer.toString(blockID));
-        if (blockID == BarkOn.SW)
-            return BarkOn.NE;
-        if (blockID == BarkOn.NE)
-            return BarkOn.NW;
-        if (blockID == BarkOn.NW)
-            return BarkOn.SE;
-        return BarkOn.SW;
+        if (this == BarkOn.SW.block)
+            return BarkOn.NE.block;
+        if (this == BarkOn.NE.block)
+            return BarkOn.NW.block;
+        if (this == BarkOn.NW.block)
+            return BarkOn.SE.block;
+        return BarkOn.SW.block;
     }
     
     private int getNWTextureOffset(int side, final int orientation)
@@ -351,26 +356,26 @@ public class BlockQuarterLog extends BlockLog
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
     {
     	int meta = world.getBlockMetadata(x, y, z);
-    	int pickID = 0;
+    	Item pickItem;
     	int pickMeta = 0;
     	
     	switch (meta){
 	    	case 1:
-	    		pickID = BlockSettings.NEWLOG.getID();
+	    		pickItem = BlockSettings.NEWLOG.getItem();
 	    		pickMeta = BlockNewLog.BlockType.REDWOOD.metadata();
 	    		break;
 	    	case 2:
-	    		pickID = Block.wood;
+	    		pickItem = ItemBlock.getItemFromBlock(Blocks.log);
 	    		pickMeta = 0;
 	    		break;
     		default:
-    			pickID = BlockSettings.CUSTOMLOG.getID();
+    			pickItem = BlockSettings.CUSTOMLOG.getItem();
     			pickMeta = BlockCustomLog.BlockType.FIR.metadata();
     			break;
     	}
     	
     	
-        final ItemStack itemstack = new ItemStack(pickID, 1, pickMeta);//super.getPickBlock(target, world, x, y, z);
+        final ItemStack itemstack = new ItemStack(pickItem, 1, pickMeta);//super.getPickBlock(target, world, x, y, z);
         //itemstack.itemID = BarkOn.SE;
         return itemstack;
     }
@@ -532,11 +537,11 @@ public class BlockQuarterLog extends BlockLog
     	metadata &= 3;
     	switch (metadata){
 	    	case 1:
-    			return BlockSettings.CUSTOMLOG.getID();
+    			return BlockSettings.CUSTOMLOG.getItem();
 	    	case 2:
-	    		return Block.wood;
+	    		return ItemBlock.getItemFromBlock(Blocks.log);
     		default:
-	    		return BlockSettings.NEWLOG.getID();
+	    		return BlockSettings.NEWLOG.getItem();
     	}
     	
         //return BarkOn.SE;
@@ -565,66 +570,66 @@ public class BlockQuarterLog extends BlockLog
         
         if (orientation == Orientation.UD)
         {
-            final int northID = world.getBlock(x, y, z - 1);
+            final Block northBlock = world.getBlock(x, y, z - 1);
             final int northMeta = world.getBlockMetadata(x, y, z - 1);
-            final int southID = world.getBlock(x, y, z + 1);
+            final Block southBlock = world.getBlock(x, y, z + 1);
             final int southMeta = world.getBlockMetadata(x, y, z + 1);
-            final int westID = world.getBlock(x - 1, y, z);
+            final Block westBlock = world.getBlock(x - 1, y, z);
             final int westMeta = world.getBlockMetadata(x - 1, y, z);
-            final int eastID = world.getBlock(x + 1, y, z);
+            final Block eastBlock = world.getBlock(x + 1, y, z);
             final int eastMeta = world.getBlockMetadata(x + 1, y, z);
             
             final int thisMeta = world.getBlockMetadata(x, y, z);
             
             if (thisMeta == northMeta)
             {
-                if (northID == BarkOn.NW)
+                if (northBlock == BarkOn.NW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW.block, thisMeta, 3);
                     return;
                 }
-                if (northID == BarkOn.NE)
+                if (northBlock == BarkOn.NE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE.block, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == eastMeta)
             {
-                if (eastID == BarkOn.NE)
+                if (eastBlock == BarkOn.NE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW.block, thisMeta, 3);
                     return;
                 }
-                if (eastID == BarkOn.SE)
+                if (eastBlock == BarkOn.SE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW.block, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == southMeta)
             {
-                if (southID == BarkOn.SW)
+                if (southBlock == BarkOn.SW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW.block, thisMeta, 3);
                     return;
                 }
-                if (southID == BarkOn.SE)
+                if (southBlock == BarkOn.SE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE.block, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == westMeta)
             {
-                if (westID == BarkOn.NW)
+                if (westBlock == BarkOn.NW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE.block, thisMeta, 3);
                     return;
                 }
-                if (westID == BarkOn.SW)
+                if (westBlock == BarkOn.SW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE.block, thisMeta, 3);
                     return;
                 }
             }
@@ -632,66 +637,66 @@ public class BlockQuarterLog extends BlockLog
         
         if (orientation == Orientation.NS)
         {
-            final int upID = world.getBlock(x, y + 1, z);
+            final Block upBlock = world.getBlock(x, y + 1, z);
             final int upMeta = world.getBlockMetadata(x, y + 1, z);
-            final int downID = world.getBlock(x, y - 1, z);
+            final Block downBlock = world.getBlock(x, y - 1, z);
             final int downMeta = world.getBlockMetadata(x, y - 1, z);
-            final int westID = world.getBlock(x - 1, y, z);
+            final Block westBlock = world.getBlock(x - 1, y, z);
             final int westMeta = world.getBlockMetadata(x - 1, y, z);
-            final int eastID = world.getBlock(x + 1, y, z);
+            final Block eastBlock = world.getBlock(x + 1, y, z);
             final int eastMeta = world.getBlockMetadata(x + 1, y, z);
             
             final int thisMeta = world.getBlockMetadata(x, y, z);
             
             if (thisMeta == upMeta)
             {
-                if (upID == BarkOn.NW)
+                if (upBlock == BarkOn.NW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW.block, thisMeta, 3);
                     return;
                 }
-                if (upID == BarkOn.NE)
+                if (upBlock == BarkOn.NE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE.block, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == eastMeta)
             {
-                if (eastID == BarkOn.NE)
+                if (eastBlock == BarkOn.NE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW.block, thisMeta, 3);
                     return;
                 }
-                if (eastID == BarkOn.SE)
+                if (eastBlock == BarkOn.SE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW.block, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == downMeta)
             {
-                if (downID == BarkOn.SW)
+                if (downBlock == BarkOn.SW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW.block, thisMeta, 3);
                     return;
                 }
-                if (downID == BarkOn.SE)
+                if (downBlock == BarkOn.SE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE.block, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == westMeta)
             {
-                if (westID == BarkOn.NW)
+                if (westBlock == BarkOn.NW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE.block, thisMeta, 3);
                     return;
                 }
-                if (westID == BarkOn.SW)
+                if (westBlock == BarkOn.SW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE.block, thisMeta, 3);
                     return;
                 }
             }
@@ -699,66 +704,66 @@ public class BlockQuarterLog extends BlockLog
         
         if (orientation == Orientation.EW)
         {
-            final int northID = world.getBlock(x, y, z - 1);
+            final Block northBlock = world.getBlock(x, y, z - 1);
             final int northMeta = world.getBlockMetadata(x, y, z - 1);
-            final int southID = world.getBlock(x, y, z + 1);
+            final Block southBlock = world.getBlock(x, y, z + 1);
             final int southMeta = world.getBlockMetadata(x, y, z + 1);
-            final int upID = world.getBlock(x, y + 1, z);
+            final Block upBlock = world.getBlock(x, y + 1, z);
             final int upMeta = world.getBlockMetadata(x, y + 1, z);
-            final int downID = world.getBlock(x, y - 1, z);
+            final Block downBlock = world.getBlock(x, y - 1, z);
             final int downMeta = world.getBlockMetadata(x, y - 1, z);
             
             final int thisMeta = world.getBlockMetadata(x, y, z);
             
             if (thisMeta == northMeta)
             {
-                if (northID == BarkOn.SW)
+                if (northBlock == BarkOn.SW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE.block, thisMeta, 3);
                     return;
                 }
-                if (northID == BarkOn.NE)
+                if (northBlock == BarkOn.NE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW.block, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == upMeta)
             {
-                if (upID == BarkOn.NW)
+                if (upBlock == BarkOn.NW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE.block, thisMeta, 3);
                     return;
                 }
-                if (upID == BarkOn.NE)
+                if (upBlock == BarkOn.NE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW.block, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == southMeta)
             {
-                if (southID == BarkOn.SE)
+                if (southBlock == BarkOn.SE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW.block, thisMeta, 3);
                     return;
                 }
-                if (southID == BarkOn.NW)
+                if (southBlock == BarkOn.NW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE.block, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == downMeta)
             {
-                if (downID == BarkOn.SW)
+                if (downBlock == BarkOn.SW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE.block, thisMeta, 3);
                     return;
                 }
-                if (downID == BarkOn.SE)
+                if (downBlock == BarkOn.SE.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW.block, thisMeta, 3);
                     return;
                 }
             }
@@ -770,11 +775,11 @@ public class BlockQuarterLog extends BlockLog
     {
         Block block = event.world.getBlock(event.x, event.y, event.z);
         
-        if (id == blockID)
+        if (block == this)
         {
-            final Block wood = Block.wood;
+            final Block wood = Blocks.log;
             event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F,
-                    wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F,
+                    wood.stepSound.soundName, (wood.stepSound.getVolume() + 1.0F) / 2.0F,
                     wood.stepSound.getPitch() * 1.55F);
             
             if (!event.world.isRemote)
@@ -786,8 +791,8 @@ public class BlockQuarterLog extends BlockLog
                 orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
                 
                 if (orientation == 0)
-                    id = getNextBlockID();
-                event.world.setBlock(event.x, event.y, event.z, id, type | orientation, 3);
+                    block = getNextBlock();
+                event.world.setBlock(event.x, event.y, event.z, block, type | orientation, 3);
             }
             event.setHandled();
             
@@ -796,7 +801,6 @@ public class BlockQuarterLog extends BlockLog
         }
     }
     
-    @Override
     public boolean canSustainLeaves(World world, int x, int y, int z)
     {
         return true;

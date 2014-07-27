@@ -11,6 +11,8 @@ import java.util.List;
 import net.minecraft.block.BlockWood;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
@@ -38,13 +40,13 @@ public class BlockCustomWood extends BlockWood
     
     private IIcon[] textures = { null, null, null, null, null, null, null, null, null };
     
-    public BlockCustomWood(int id)
+    public BlockCustomWood()
     {
-        super(id);
+        super();
         setStepSound(soundTypeWood);
         setHardness(2.0F);
         setResistance(5.0F);
-        Blocks.fire.setFireInfo(5, 20);
+        Blocks.fire.setFireInfo(this, 5, 20);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     
