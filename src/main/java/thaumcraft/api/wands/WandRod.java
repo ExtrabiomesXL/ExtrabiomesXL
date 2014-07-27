@@ -32,7 +32,7 @@ public class WandRod {
 	/**
 	 * The texture that will be used for the ingame wand rod
 	 */
-	ResourceLocation texture;
+	protected ResourceLocation texture;
 	
 	/**
 	 * the actual item that makes up this rod and will be used to generate the wand recipes

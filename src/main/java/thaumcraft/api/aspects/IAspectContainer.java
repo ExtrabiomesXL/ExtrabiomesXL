@@ -11,6 +11,8 @@ package thaumcraft.api.aspects;
  */
 public interface IAspectContainer {
 	public AspectList getAspects();
+	
+	
 	public void setAspects(AspectList aspects);
 	
 	
@@ -41,7 +43,10 @@ public interface IAspectContainer {
 	 * removes a bunch of different aspects and amounts from the tile entity.
 	 * @param ot the ObjectTags object that contains the aspects and their amounts.
 	 * @return true if all the aspects and their amounts were available and successfully removed
+	 * 
+	 * Going away in the next major patch
 	 */
+	@Deprecated
 	public boolean takeFromContainer(AspectList ot);
 	
 	/**
@@ -56,7 +61,10 @@ public interface IAspectContainer {
 	 * Checks if the tile entity contains all the listed aspects and their amounts
 	 * @param ot the ObjectTags object that contains the aspects and their amounts.
 	 * @return
+	 * 
+	 * Going away in the next major patch
 	 */
+	@Deprecated
 	public boolean doesContainerContain(AspectList ot);
 	
 	/**

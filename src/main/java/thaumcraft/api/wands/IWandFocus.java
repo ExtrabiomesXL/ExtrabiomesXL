@@ -20,9 +20,9 @@ public interface IWandFocus  {
 	public int getFocusColor();
 		
 	/**
-	 * @return An IIcon that will be drawn as a block inside the focus "block".
+	 * @return An icon that will be drawn as a block inside the focus "block".
 	 */
-	IIcon getFocusDepthLayerIIcon();
+	IIcon getFocusDepthLayerIcon();
 	
 	public IIcon getOrnament();
 	

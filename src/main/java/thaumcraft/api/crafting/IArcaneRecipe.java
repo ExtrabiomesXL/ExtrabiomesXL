@@ -28,6 +28,8 @@ public interface IArcaneRecipe
 
     ItemStack getRecipeOutput();
     AspectList getAspects();
+    AspectList getAspects(IInventory var1);
     String getResearch();
 
+    
 }

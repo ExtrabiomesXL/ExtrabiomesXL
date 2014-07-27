@@ -21,20 +21,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemFocusBasic extends Item  implements IWandFocus {
 	
-	public ItemFocusBasic (int i)
+	public ItemFocusBasic ()
     {
-        super(i);
+        super();
         maxStackSize = 1;
         canRepair=false;
-        this.setMaxDamage(1);
+        this.setMaxDamage(0);
     }
 	
-	public IIcon IIcon;
+	public IIcon icon;
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public IIcon getIIconFromDamage(int par1) {
-		return IIcon;
+	public IIcon getIconFromDamage(int par1) {
+		return icon;
 	}
 	
 	@Override
@@ -143,15 +143,15 @@ public class ItemFocusBasic extends Item  implements IWandFocus {
 	}
 
 	@Override
-	public IIcon getFocusDepthLayerIIcon() {
+	public IIcon getFocusDepthLayerIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/** 
 	 * @see thaumcraft.api.wands.IWandFocus#acceptsEnchant(int)
 	 * By default fortune is off for all wands
-	 */
+	 **/
 	@Override
 	public boolean acceptsEnchant(int id) {
 		if (id==ThaumcraftApi.enchantFrugal||

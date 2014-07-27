@@ -63,7 +63,7 @@ public class ItemApi {
 	 * itemNuggetChicken, itemNuggetBeef, itemNuggetPork, itemTripleMeatTreat
 	 * 
 	 * Research:
-	 * itemResearchNotes, itemInkwell, itemThaumonomIIcon
+	 * itemResearchNotes, itemInkwell, itemThaumonomicon
 	 * 
 	 */
 

@@ -10,7 +10,9 @@ import thaumcraft.api.aspects.AspectList;
 
 public class CrucibleRecipe {
 
-	public ItemStack recipeOutput;
+	private ItemStack recipeOutput;
+	
+
 	public Object catalyst;
 	public AspectList aspects;
 	public String key;
@@ -41,6 +43,17 @@ public class CrucibleRecipe {
 		return true;
 	}
 	
+	public boolean catalystMatches(ItemStack cat) {
+		if (catalyst instanceof ItemStack && ThaumcraftApiHelper.itemMatches((ItemStack) catalyst,cat,false)) {
+			return true;
+		} else 
+		if (catalyst instanceof ArrayList && ((ArrayList<ItemStack>)catalyst).size()>0) {
+			if (ThaumcraftApiHelper.containsMatch(true, 
+					((ArrayList<ItemStack>)catalyst).toArray(new ItemStack[]{}), cat)) return true;
+		}
+		return false;
+	}
+	
 	public AspectList removeMatching(AspectList itags) {
 		AspectList temptags = new AspectList();
 		temptags.aspects.putAll(itags.aspects);
@@ -52,6 +65,10 @@ public class CrucibleRecipe {
 		
 		itags = temptags;
 		return itags;
+	}
+	
+	public ItemStack getRecipeOutput() {
+		return recipeOutput;
 	}
 	
 }

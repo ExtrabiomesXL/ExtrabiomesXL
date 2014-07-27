@@ -6,6 +6,10 @@ import java.util.LinkedHashMap;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
+import org.apache.logging.log4j.Level;
+
+import cpw.mods.fml.common.FMLLog;
+
 public class ResearchCategories {
 	
 	//Research
@@ -44,14 +48,15 @@ public class ResearchCategories {
 	}
 	
 	/**
+	 * This should only be done at the PostInit stage
 	 * @param key the key used for this category
-	 * @param IIcon the IIcon to be used for the research category tab
+	 * @param icon the icon to be used for the research category tab
 	 * @param background the resource location of the background image to use for this category
 	 * @return the name of the research linked to this key
 	 */
-	public static void registerCategory(String key, ResourceLocation IIcon, ResourceLocation background) {
+	public static void registerCategory(String key, ResourceLocation icon, ResourceLocation background) {
 		if (getResearchList(key)==null) {
-			ResearchCategoryList rl = new ResearchCategoryList(IIcon, background);
+			ResearchCategoryList rl = new ResearchCategoryList(icon, background);
 			researchCategories.put(key, rl);
 		}
 	}
@@ -59,6 +64,17 @@ public class ResearchCategories {
 	public static void addResearch(ResearchItem ri) {
 		ResearchCategoryList rl = getResearchList(ri.category);
 		if (rl!=null && !rl.research.containsKey(ri.key)) {
+			
+			if (!ri.isVirtual()) {
+				for (ResearchItem rr:rl.research.values()) {
+					if (rr.displayColumn == ri.displayColumn && rr.displayRow == ri.displayRow) {
+						FMLLog.log(Level.FATAL, "[Thaumcraft] Research ["+ri.getName()+"] not added as it overlaps with existing research ["+rr.getName()+"]");
+						return;
+					}
+				}
+			}
+			
+			
 			rl.research.put(ri.key, ri);
 			
 			if (ri.displayColumn < rl.minDisplayColumn) 
