@@ -66,7 +66,7 @@ public class ItemScarecrow extends Item
         }
         else
         {
-            final int targetBlockId = world.getBlockId(x, y, z);
+            final int targetBlockId = world.getBlock(x, y, z);
             x += Facing.offsetsXForSide[side];
             y += Facing.offsetsYForSide[side];
             z += Facing.offsetsZForSide[side];

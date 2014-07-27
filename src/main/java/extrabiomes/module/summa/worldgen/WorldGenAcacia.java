@@ -106,7 +106,7 @@ public class WorldGenAcacia extends WorldGenerator
                 {
                     if (y1 >= 0 && y1 < 256)
                     {
-                        final int id = world.getBlockId(x1, y1, z1);
+                        final int id = world.getBlock(x1, y1, z1);
                         
                         if (Block.blocksList[id] != null
                                 && !Block.blocksList[id].isLeaves(world, x1, y1, z1)
@@ -126,7 +126,7 @@ public class WorldGenAcacia extends WorldGenerator
         if (!canGrow)
             return false;
         
-        if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1)
+        if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)) || y >= 256 - height - 1)
             return false;
         
         world.setBlock(x, y - 1, z, Block.dirt);
@@ -146,7 +146,7 @@ public class WorldGenAcacia extends WorldGenerator
                 {
                     final int zOnRadius = z1 - z;
                     
-                    final Block block = Block.blocksList[world.getBlockId(x1, y1, z1)];
+                    final Block block = Block.blocksList[world.getBlock(x1, y1, z1)];
                     
                     if ((Math.abs(xOnRadius) != canopyRadius || Math.abs(zOnRadius) != canopyRadius || rand.nextInt(2) != 0 && distanceFromTop != 0) && (block == null || block.canBeReplacedByLeaves(world, x1, y1, z1)))
                     {
@@ -158,7 +158,7 @@ public class WorldGenAcacia extends WorldGenerator
         
         for (int y1 = 0; y1 < height; y1++)
         {
-            final int id = world.getBlockId(x, y + y1, z);
+            final int id = world.getBlock(x, y + y1, z);
             
             if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x, y + y1, z))
             {

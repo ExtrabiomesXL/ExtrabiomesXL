@@ -85,7 +85,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase
     
     private boolean checkTree(World world, Random rand, int x, int y, int z)
     {
-        final int below = world.getBlockId(x, y - 1, z);
+        final int below = world.getBlock(x, y - 1, z);
         final int height = rand.nextInt(BASE_HEIGHT_VARIANCE) + BASE_HEIGHT;
         int start = CANOPY_START_HEIGHT + (int) ((rand.nextDouble() * CANOPY_START_VARIANCE) - (CANOPY_START_VARIANCE / 2));
         double radius = (CANOPY_RADIUS + ((rand.nextDouble() * CANOPY_RADIUS_VARIANCE) + (CANOPY_RADIUS_VARIANCE / 2)));
@@ -124,7 +124,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase
     
     private boolean generateTree(World world, Random rand, int x, int y, int z)
     {
-        final int below = world.getBlockId(x, y - 1, z);
+        final int below = world.getBlock(x, y - 1, z);
         final int height = rand.nextInt(BASE_HEIGHT_VARIANCE) + BASE_HEIGHT;
         int start = CANOPY_START_HEIGHT + (int) ((rand.nextDouble() * CANOPY_START_VARIANCE) - (CANOPY_START_VARIANCE / 2));
         double radius = (CANOPY_RADIUS + ((rand.nextDouble() * CANOPY_RADIUS_VARIANCE) + (CANOPY_RADIUS_VARIANCE / 2)));

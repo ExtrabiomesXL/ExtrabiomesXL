@@ -533,7 +533,7 @@ public class EBXLCommandHandler extends CommandBase
             currentBlock = killList.remove();
             int blockId = player.worldObj.getBlockId(currentBlock.x(), currentBlock.y(), currentBlock.z());
             int damage = player.worldObj.getBlockId(currentBlock.x(), currentBlock.y(), currentBlock.z());
-            String blockType = OreDictionary.getOreName(OreDictionary.getOreID(new ItemStack(blockId, 1, damage)));
+            String blockType = OreDictionary.getOreName(OreDictionary.getOreID(new ItemStack(item, 1, damage)));
 
             // shorten the coords
             int x1 = currentBlock.x();

@@ -107,16 +107,16 @@ public class BlockRedRockSlab extends BlockSlab
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int blockID, CreativeTabs tab,
+    public void getSubBlocks(Item item, CreativeTabs tab,
             List itemList)
     {
         if (blockID == singleSlabID)
             for (final BlockType type : BlockType.values())
-                itemList.add(new ItemStack(blockID, 1, type.metadata()));
+                itemList.add(new ItemStack(item, 1, type.metadata()));
     }
     
     @Override
-    public int idDropped(int par1, Random par2Random, int par3)
+    public Item getItemDropped(int par1, Random par2Random, int par3)
     {
         return singleSlabID;
     }

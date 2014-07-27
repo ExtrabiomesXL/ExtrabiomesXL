@@ -58,7 +58,7 @@ public class WorldGenCustomSwamp extends WorldGenerator
                 for (int x2 = z - clearanceNeededAroundTrunk; x2 <= z
                         + clearanceNeededAroundTrunk; x2++)
                 {
-                    final int id = world.getBlockId(x1, y1, x2);
+                    final int id = world.getBlock(x1, y1, x2);
                     
                     if (Block.blocksList[id] == null
                             || Block.blocksList[id].isLeaves(world, x1,
@@ -76,7 +76,7 @@ public class WorldGenCustomSwamp extends WorldGenerator
                 }
         }
         
-        final int id = world.getBlockId(x, y - 1, z);
+        final int id = world.getBlock(x, y - 1, z);
         
         if (id != Block.grass && id != Block.dirt
                 || y >= 256 - height - 1)
@@ -113,7 +113,7 @@ public class WorldGenCustomSwamp extends WorldGenerator
         
         for (int y1 = 0; y1 < height; y1++)
         {
-            final int id2 = world.getBlockId(x, y + y1, z);
+            final int id2 = world.getBlock(x, y + y1, z);
             
             if (id2 == 0
                     || Block.blocksList[id2].isLeaves(world, x, y + y1,
@@ -130,26 +130,26 @@ public class WorldGenCustomSwamp extends WorldGenerator
             for (int x1 = x - canopyRadius; x1 <= x + canopyRadius; x1++)
                 for (int z1 = z - canopyRadius; z1 <= z + canopyRadius; z1++)
                 {
-                    final int id2 = world.getBlockId(x1, y1, z1);
+                    final int id2 = world.getBlock(x1, y1, z1);
                     if (id2 == 0
                             || !Block.blocksList[id2].isLeaves(world,
                                     x1, y1, z1))
                         continue;
                     
                     if (rand.nextInt(4) == 0
-                            && world.getBlockId(x1 - 1, y1, z1) == 0)
+                            && world.getBlock(x1 - 1, y1, z1) == 0)
                         generateVines(world, x1 - 1, y1, z1, 8);
                     
                     if (rand.nextInt(4) == 0
-                            && world.getBlockId(x1 + 1, y1, z1) == 0)
+                            && world.getBlock(x1 + 1, y1, z1) == 0)
                         generateVines(world, x1 + 1, y1, z1, 2);
                     
                     if (rand.nextInt(4) == 0
-                            && world.getBlockId(x1, y1, z1 - 1) == 0)
+                            && world.getBlock(x1, y1, z1 - 1) == 0)
                         generateVines(world, x1, y1, z1 - 1, 1);
                     
                     if (rand.nextInt(4) == 0
-                            && world.getBlockId(x1, y1, z1 + 1) == 0)
+                            && world.getBlock(x1, y1, z1 + 1) == 0)
                         generateVines(world, x1, y1, z1 + 1, 4);
                 }
         }
@@ -163,7 +163,7 @@ public class WorldGenCustomSwamp extends WorldGenerator
         world.setBlock(x, y, z,
                 Block.vine, metadata, 3);
         
-        for (int i = 4; world.getBlockId(x, --y, z) == 0 && i > 0; i--)
+        for (int i = 4; world.getBlock(x, --y, z) == 0 && i > 0; i--)
             world.setBlock(x, y, z,
                     Block.vine, metadata, 3);
     }

@@ -30,7 +30,7 @@ class WorldGenQuicksand extends WorldGenerator
                 .getBlockId(x, y, z))) && y > 2)
             y--;
         
-        final int blockID = world.getBlockId(x, y, z);
+        final int blockID = world.getBlock(x, y, z);
         if (blockID != Block.grass
                 && blockID != Block.sand)
             return false;

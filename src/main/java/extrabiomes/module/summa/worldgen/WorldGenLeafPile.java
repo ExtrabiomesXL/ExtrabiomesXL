@@ -27,7 +27,7 @@ class WorldGenLeafPile extends WorldGenerator
             int z)
     {
         int i;
-        while ((Block.blocksList[i = world.getBlockId(x, y, z)] == null || Block.blocksList[i]
+        while ((Block.blocksList[i = world.getBlock(x, y, z)] == null || Block.blocksList[i]
                 .isLeaves(world, x, y, z)) && y > 0)
             y--;
         

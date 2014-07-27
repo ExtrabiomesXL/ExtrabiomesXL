@@ -451,10 +451,10 @@ public class BlockQuarterLog extends BlockLog
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List list)
     {
         //for (final BlockType type : BlockType.values())
-        //    list.add(new ItemStack(blockID, 1, type.metadata()));
+        //    list.add(new ItemStack(item, 1, type.metadata()));
     }
     
     private int getSWTextureOffset(int side, final int orientation)
@@ -525,7 +525,7 @@ public class BlockQuarterLog extends BlockLog
     }
     
     @Override
-    public int idDropped(int metadata, Random rand, int unused)
+    public Item getItemDropped(int metadata, Random rand, int unused)
     {
     	//LogHelper.info("Unused: %d", unused);
     	
@@ -565,13 +565,13 @@ public class BlockQuarterLog extends BlockLog
         
         if (orientation == Orientation.UD)
         {
-            final int northID = world.getBlockId(x, y, z - 1);
+            final int northID = world.getBlock(x, y, z - 1);
             final int northMeta = world.getBlockMetadata(x, y, z - 1);
-            final int southID = world.getBlockId(x, y, z + 1);
+            final int southID = world.getBlock(x, y, z + 1);
             final int southMeta = world.getBlockMetadata(x, y, z + 1);
-            final int westID = world.getBlockId(x - 1, y, z);
+            final int westID = world.getBlock(x - 1, y, z);
             final int westMeta = world.getBlockMetadata(x - 1, y, z);
-            final int eastID = world.getBlockId(x + 1, y, z);
+            final int eastID = world.getBlock(x + 1, y, z);
             final int eastMeta = world.getBlockMetadata(x + 1, y, z);
             
             final int thisMeta = world.getBlockMetadata(x, y, z);
@@ -632,13 +632,13 @@ public class BlockQuarterLog extends BlockLog
         
         if (orientation == Orientation.NS)
         {
-            final int upID = world.getBlockId(x, y + 1, z);
+            final int upID = world.getBlock(x, y + 1, z);
             final int upMeta = world.getBlockMetadata(x, y + 1, z);
-            final int downID = world.getBlockId(x, y - 1, z);
+            final int downID = world.getBlock(x, y - 1, z);
             final int downMeta = world.getBlockMetadata(x, y - 1, z);
-            final int westID = world.getBlockId(x - 1, y, z);
+            final int westID = world.getBlock(x - 1, y, z);
             final int westMeta = world.getBlockMetadata(x - 1, y, z);
-            final int eastID = world.getBlockId(x + 1, y, z);
+            final int eastID = world.getBlock(x + 1, y, z);
             final int eastMeta = world.getBlockMetadata(x + 1, y, z);
             
             final int thisMeta = world.getBlockMetadata(x, y, z);
@@ -699,13 +699,13 @@ public class BlockQuarterLog extends BlockLog
         
         if (orientation == Orientation.EW)
         {
-            final int northID = world.getBlockId(x, y, z - 1);
+            final int northID = world.getBlock(x, y, z - 1);
             final int northMeta = world.getBlockMetadata(x, y, z - 1);
-            final int southID = world.getBlockId(x, y, z + 1);
+            final int southID = world.getBlock(x, y, z + 1);
             final int southMeta = world.getBlockMetadata(x, y, z + 1);
-            final int upID = world.getBlockId(x, y + 1, z);
+            final int upID = world.getBlock(x, y + 1, z);
             final int upMeta = world.getBlockMetadata(x, y + 1, z);
-            final int downID = world.getBlockId(x, y - 1, z);
+            final int downID = world.getBlock(x, y - 1, z);
             final int downMeta = world.getBlockMetadata(x, y - 1, z);
             
             final int thisMeta = world.getBlockMetadata(x, y, z);
@@ -768,7 +768,7 @@ public class BlockQuarterLog extends BlockLog
     @SubscribeEvent
     public void onUseLogTurnerEvent(UseLogTurnerEvent event)
     {
-        int id = event.world.getBlockId(event.x, event.y, event.z);
+        Block block = event.world.getBlock(event.x, event.y, event.z);
         
         if (id == blockID)
         {

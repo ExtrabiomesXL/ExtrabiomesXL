@@ -90,7 +90,7 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
                 coord[var5] = par1ArrayOfInteger[var5] + var14;
                 coord[var6] = MathHelper.floor_double(par1ArrayOfInteger[var6] + var14 * var9);
                 coord[var7] = MathHelper.floor_double(par1ArrayOfInteger[var7] + var14 * var11);
-                final int id = world.getBlockId(coord[0], coord[1], coord[2]);
+                final int id = world.getBlock(coord[0], coord[1], coord[2]);
                 
                 if (id != 0 && !Block.blocksList[id].isLeaves(world, coord[0], coord[1], coord[2]))
                 {
@@ -302,7 +302,7 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
                 else
                 {
                     var11[var9] = var10[var9] + var13;
-                    final int blockID = world.getBlockId(var11[0], var11[1], var11[2]);
+                    final int blockID = world.getBlock(var11[0], var11[1], var11[2]);
                     
                     if (blockID != 0 && !Block.blocksList[blockID].isLeaves(world, var11[0], var11[1], var11[2]))
                     {
@@ -435,7 +435,7 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
     {
         final int[] var1 = new int[] { basePos[0], basePos[1], basePos[2] };
         final int[] var2 = new int[] { basePos[0], basePos[1] + heightLimit - 1, basePos[2] };
-        final int var3 = world.getBlockId(basePos[0], basePos[1] - 1, basePos[2]);
+        final int var3 = world.getBlock(basePos[0], basePos[1] - 1, basePos[2]);
         
         if (var3 != 2 && var3 != 3)
             return false;

@@ -40,7 +40,7 @@ class WorldGenOasis extends WorldGenerator
                 
                 for (int y1 = y - yRadius; y1 <= y + yRadius; y1++)
                 {
-                    final int blocktoReplace = world.getBlockId(x1, y1, z1);
+                    final int blocktoReplace = world.getBlock(x1, y1, z1);
                     
                     if (blocktoReplace == Block.stone
                             || blocktoReplace == Block.sand

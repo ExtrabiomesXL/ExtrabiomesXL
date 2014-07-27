@@ -44,8 +44,8 @@ public class SubBlockWaterPlant extends SubBlock {
     public boolean canPlaceBlockAt(World world, int x, int y, int z) {
     	int baseId = 0;
     	int offset = 1;
-    	final int topId = world.getBlockId(x, y + 1, z);
-    	//final int curId = world.getBlockId(x, y, z);
+    	final int topId = world.getBlock(x, y + 1, z);
+    	//final int curId = world.getBlock(x, y, z);
         
     	// We need to be under water
     	if(maxHeight > 1 && topId == parentId && this.metaData == world.getBlockMetadata(x, y + 1, z)){
@@ -55,7 +55,7 @@ public class SubBlockWaterPlant extends SubBlock {
     	}
     	
     	while(maxHeight >= offset) {
-    		baseId = world.getBlockId(x, y - offset, z);
+    		baseId = world.getBlock(x, y - offset, z);
     		if(groundBlocks.isEmpty() || groundBlocks.contains((Object)baseId)) {
     			return true;
     		} else if(baseId != this.parentId || this.metaData != world.getBlockMetadata(x, y - offset, z)) {

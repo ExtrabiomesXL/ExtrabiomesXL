@@ -185,14 +185,14 @@ public class BlockCropBasic extends BlockFlower {
 	private float getGrowthRate(World world, int x, int y, int z)
 	{
 		float rate = 1.0F;
-		final int id_nZ = world.getBlockId(x, y, z - 1);
-		final int id_pZ = world.getBlockId(x, y, z + 1);
-		final int id_nX = world.getBlockId(x - 1, y, z);
-		final int id_pX = world.getBlockId(x + 1, y, z);
-		final int id_nXnZ = world.getBlockId(x - 1, y, z - 1);
-		final int id_pXnZ = world.getBlockId(x + 1, y, z - 1);
-		final int id_pXpZ = world.getBlockId(x + 1, y, z + 1);
-		final int id_nXpZ = world.getBlockId(x - 1, y, z + 1);
+		final int id_nZ = world.getBlock(x, y, z - 1);
+		final int id_pZ = world.getBlock(x, y, z + 1);
+		final int id_nX = world.getBlock(x - 1, y, z);
+		final int id_pX = world.getBlock(x + 1, y, z);
+		final int id_nXnZ = world.getBlock(x - 1, y, z - 1);
+		final int id_pXnZ = world.getBlock(x + 1, y, z - 1);
+		final int id_pXpZ = world.getBlock(x + 1, y, z + 1);
+		final int id_nXpZ = world.getBlock(x - 1, y, z + 1);
 		final boolean flagX = id_nX == this || id_pX == this;
 		final boolean flagZ = id_nZ == this || id_pZ == this;
 		final boolean flagD = id_nXnZ == this || id_pXnZ == this || id_pXpZ == this || id_nXpZ == this;
@@ -200,7 +200,7 @@ public class BlockCropBasic extends BlockFlower {
 		// bonus for nearby soil
 		for (int i = x - 1; i <= x + 1; ++i) {
 			for (int j = z - 1; j <= z + 1; ++j) {
-				final int id_ground = world.getBlockId(i, y - 1, j);
+				final int id_ground = world.getBlock(i, y - 1, j);
 				float bonus = 0.0F;
 				
 				if (blocksList[id_ground] != null && blocksList[id_ground].canSustainPlant(world, i, y - 1, j, ForgeDirection.UP, this)) {
@@ -246,7 +246,7 @@ public class BlockCropBasic extends BlockFlower {
 	}
 
 	@Override
-	public int idDropped(int meta, Random rand, int fortune) {
+	public Item getItemDropped(int meta, Random rand, int fortune) {
 		return meta >= MAX_GROWTH_STAGE ? this.getCropItem() : this.getSeedItem();
 	}
 	@Override

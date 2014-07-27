@@ -122,7 +122,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     }
     
     @Override
-    public int idDropped(int par1, Random par2Random, int par3)
+    public Item getItemDropped(int par1, Random par2Random, int par3)
     {
         return 0;
     }

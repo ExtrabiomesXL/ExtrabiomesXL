@@ -51,7 +51,7 @@ public class BlockCatTail extends BlockFlower
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z)
     {
-        final int blockId = world.getBlockId(x, y - 1, z);
+        final int blockId = world.getBlock(x, y - 1, z);
         
         if (blockId != Block.grass && blockId != Block.dirt)
             return false;

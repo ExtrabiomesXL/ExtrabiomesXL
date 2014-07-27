@@ -14,6 +14,8 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -23,6 +25,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
+import extrabiomes.lib.BlockSettings;
 
 public class BlockMiniLog extends BlockLog
 {
@@ -43,15 +46,18 @@ public class BlockMiniLog extends BlockLog
         }
     }
     
+    private BlockSettings settings;
     private IIcon[]     textures = { null, null, null, null, null, null, null, null };
     private static int renderId = 33;
     
-    public BlockMiniLog(int id)
+    public BlockMiniLog(BlockSettings settings)
     {
-        super(id);
+        super();
         
-        opaqueCubeLookup[id] = true;
-        useNeighborBrightness[id] = false;
+        this.settings = settings;
+        
+        // opaqueCubeLookup = true; // TODO: update
+        useNeighborBrightness = false;
         this.setLightOpacity(0);
     }
     
@@ -101,11 +107,11 @@ public class BlockMiniLog extends BlockLog
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List list)
     {
         for (final BlockType type : BlockType.values())
         {
-            list.add(new ItemStack(blockID, 1, type.metadata()));
+            list.add(new ItemStack(item, 1, type.metadata()));
         }
     }
     
@@ -118,13 +124,13 @@ public class BlockMiniLog extends BlockLog
     @SubscribeEvent
     public void onUseLogTurnerEvent(UseLogTurnerEvent event)
     {
-        final int id = event.world.getBlockId(event.x, event.y, event.z);
+        final Block block = event.world.getBlock(event.x, event.y, event.z);
         
-        if (id == blockID)
+        if (block == this)
         {
-            final Block wood = Block.wood;
+            final Block wood = Blocks.log;
             event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F,
-                    wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F,
+                    wood.stepSound.soundName, (wood.stepSound.getVolume() + 1.0F) / 2.0F,
                     wood.stepSound.getPitch() * 1.55F);
             
             if (!event.world.isRemote)
@@ -134,13 +140,12 @@ public class BlockMiniLog extends BlockLog
                 final int type = metadata & 3;
                 
                 orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
-                event.world.setBlock(event.x, event.y, event.z, blockID, type | orientation, 3);
+                event.world.setBlock(event.x, event.y, event.z, block, type | orientation, 3);
             }
             event.setHandled();
         }
     }
     
-    @Override
     public boolean canSustainLeaves(World world, int x, int y, int z)
     {
         return true;
@@ -149,12 +154,11 @@ public class BlockMiniLog extends BlockLog
     //
     public boolean canConnect(IBlockAccess world, int x, int y, int z)
     {
-        int Id = world.getBlockId(x, y, z);
+        Block block = world.getBlock(x, y, z);
         
-        if (Id != blockID)
+        if (block != this)
         {
-            Block block = Block.blocksList[Id];
-            return block != null && block.blockMaterial == Material.leaves;
+            return block != null && block.getMaterial() == Material.leaves;
         }
         
         return true;

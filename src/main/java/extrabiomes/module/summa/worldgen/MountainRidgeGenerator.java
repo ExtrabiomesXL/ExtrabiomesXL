@@ -50,7 +50,7 @@ public class MountainRidgeGenerator implements IWorldGenerator
             final int x1 = x + rand.nextInt(16);
             final int y1 = rand.nextInt(28) + 4;
             final int z1 = z + rand.nextInt(16);
-            final int id = world.getBlockId(x1, y1, z1);
+            final int id = world.getBlock(x1, y1, z1);
             
             if (id != 0
                     && Block.blocksList[id].isGenMineableReplaceable(

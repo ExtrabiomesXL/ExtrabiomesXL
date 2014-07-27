@@ -96,7 +96,7 @@ public class WorldGenNewRedwood extends WorldGenerator
         if (y < 1 || y + height + 5 > 256)
             return false;
 
-        if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1)
+        if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)) || y >= 256 - height - 1)
             return false;
         
         if (!world.checkChunksExist(x - chunkCheck, y - chunkCheck, z - chunkCheck, x + chunkCheck, y + chunkCheck, z + chunkCheck))
@@ -125,7 +125,7 @@ public class WorldGenNewRedwood extends WorldGenerator
         //{
         //    for (int j2 = -b0; j2 <= b0; j2++)
         //    {
-        //        if(world.getBlockId(x + j1, y - 1, z + j2) == 0) {
+        //        if(world.getBlock(x + j1, y - 1, z + j2) == 0) {
         //            return false;
         //        }
         //    }
@@ -147,7 +147,7 @@ public class WorldGenNewRedwood extends WorldGenerator
                     int blockID;
                     for (int k3 = 0; k3 <= height; k3++)
                     {
-                        blockID = world.getBlockId(x + j1, y + k3, z + j2);
+                        blockID = world.getBlock(x + j1, y + k3, z + j2);
                         if(Block.blocksList[blockID] == null || Block.blocksList[blockID].isLeaves(world, x + j1, y + k3, z + j2))
                         {
                             setBlockAndMetadata(world, x + j1, y + k3, z + j2, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
@@ -161,7 +161,7 @@ public class WorldGenNewRedwood extends WorldGenerator
                     {
                         setBlockAndMetadata(world, x + j1, y + j3, z + j2, 0, 0);
 
-                        blockID = world.getBlockId(x + j1, y + j3, z + j2);
+                        blockID = world.getBlock(x + j1, y + j3, z + j2);
                         if (!(j3 < height / 2) && (Block.blocksList[blockID] == null || Block.blocksList[blockID].canBeReplacedByLeaves(world, x + j1, y + j3, z + j2)))
                         {
                             //setBlockAndMetadata(world, x + j1, y + j3, z + j2, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
@@ -170,7 +170,7 @@ public class WorldGenNewRedwood extends WorldGenerator
 
                     }
 
-                    if(world.getBlockId(x + j1, y, z + j2) != 0) {
+                    if(world.getBlock(x + j1, y, z + j2) != 0) {
                         setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.dirt, 0);
                     } else {
                         setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.grass, 0);
@@ -191,7 +191,7 @@ public class WorldGenNewRedwood extends WorldGenerator
 
                     for (int j4 = height / 2; j4 <= height; j4++)
                     {
-                        if ((rand.nextInt(1) == 0) && (world.getBlockId(x + k1, y + j4, z + k2) == 0)) {
+                        if ((rand.nextInt(1) == 0) && (world.getBlock(x + k1, y + j4, z + k2) == 0)) {
                             //setBlockAndMetadata(world, x + k1, y + j4, z + k2, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                     }
@@ -255,7 +255,7 @@ public class WorldGenNewRedwood extends WorldGenerator
 	
 	                setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.dirt, 0);
 	
-	                int id = world.getBlockId(x + j1, y, z + j2);
+	                int id = world.getBlock(x + j1, y, z + j2);
 	                if(Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x + j1, y, z + j2))
 	                {
 	                    setBlockAndMetadata(world, x + j1, y, z + j2, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
@@ -263,7 +263,7 @@ public class WorldGenNewRedwood extends WorldGenerator
 	
 	                for (int k3 = 1; k3 <= height - 4; k3++)
 	                {
-	                    id = world.getBlockId(x + j1, y + k3, z + j2);
+	                    id = world.getBlock(x + j1, y + k3, z + j2);
 	                    if(Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x + j1, y + k3, z + j2))
 	                    {
 	                        setBlockAndMetadata(world, x + j1, y + k3, z + j2, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
@@ -350,7 +350,7 @@ public class WorldGenNewRedwood extends WorldGenerator
                 z++;
             }
 
-            final int id = world.getBlockId(x, y, z);
+            final int id = world.getBlock(x, y, z);
             if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y, z))
             {
                 setBlockAndMetadata(world, x, y, z, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
@@ -377,7 +377,7 @@ public class WorldGenNewRedwood extends WorldGenerator
                 int blockID;
                 if (((Math.abs(i) != 3) || (Math.abs(j) != 3)) && ((Math.abs(i) != 2) || (Math.abs(j) != 3)) && ((Math.abs(i) != 3) || (Math.abs(j) != 2)))
                 {
-                    blockID = world.getBlockId(x + i, y, z + j);
+                    blockID = world.getBlock(x + i, y, z + j);
                     if(Block.blocksList[blockID] == null || Block.blocksList[blockID].canBeReplacedByLeaves(world, x + i, y, z + j))
                     {
                         setBlockAndMetadata(world, x + i, y, z + j, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
@@ -387,13 +387,13 @@ public class WorldGenNewRedwood extends WorldGenerator
                 if ((Math.abs(i) >= 3) || (Math.abs(j) >= 3) || ((Math.abs(i) == 2) && (Math.abs(j) == 2)))
                     continue;
 
-                blockID = world.getBlockId(x + i, y + 1, z + j);
+                blockID = world.getBlock(x + i, y + 1, z + j);
                 if(Block.blocksList[blockID] == null || Block.blocksList[blockID].canBeReplacedByLeaves(world, x + i, y + 1, z + j))
                 {
                     setBlockAndMetadata(world, x + i, y + 1, z + j, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                 }
 
-                blockID = world.getBlockId(x + i, y - 1, z + j);
+                blockID = world.getBlock(x + i, y - 1, z + j);
                 if(Block.blocksList[blockID] == null || Block.blocksList[blockID].canBeReplacedByLeaves(world, x + i, y - 1, z + j))
                 {
                     setBlockAndMetadata(world, x + i, y - 1, z + j, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());

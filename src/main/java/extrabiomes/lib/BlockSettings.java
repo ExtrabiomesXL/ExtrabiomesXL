@@ -8,6 +8,7 @@ package extrabiomes.lib;
 
 import java.util.Locale;
 
+import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import extrabiomes.helpers.LogHelper;
@@ -16,88 +17,98 @@ import extrabiomes.utility.EnhancedConfiguration;
 public enum BlockSettings
 {
     // @formatter:off
-    REDROCK             	(254),
-    CRACKEDSAND         	(255),
-    QUICKSAND           	(2300),
+    REDROCK,
+    CRACKEDSAND,
+    QUICKSAND,
 
-    FLOWER              	(2310),
-    CATTAIL             	(2311),
-    GRASS               	(2312),
-    LEAFPILE            	(2313),
-    FLOWER2					(2314),
-    FLOWER3					(2315),
-    GLORIOSA				(2316),
-    WATERPLANT              (2317),
-    SPANISH_MOSS			(0),
+    FLOWER,
+    CATTAIL,
+    GRASS,
+    LEAFPILE,
+    FLOWER2,
+    FLOWER3,
+    GLORIOSA,
+    WATERPLANT,
+    SPANISH_MOSS	(false),
     
-    SAPLING             	(2320),
-    NEWSAPLING          	(2321),
-    STRAWBERRY				(2322),
+    SAPLING,
+    NEWSAPLING,
+    STRAWBERRY,
     
-    AUTUMNLEAVES        	(2330),
-    GREENLEAVES         	(2331),
-    NEWLEAVES		    	(2332),
-    MORELEAVES				(2333),
+    AUTUMNLEAVES,
+    GREENLEAVES,
+    NEWLEAVES,
+    MORELEAVES,
 
-    QUARTERLOG0         	(0),
-    QUARTERLOG1         	(0),
-    QUARTERLOG2         	(0),
-    QUARTERLOG3         	(0),
+    QUARTERLOG0		(false),
+    QUARTERLOG1		(false),
+    QUARTERLOG2		(false),
+    QUARTERLOG3		(false),
     
-    CUSTOMLOG           	(2340),
-    NEWLOG					(2341),
+    CUSTOMLOG,
+    NEWLOG,
 
-    KNEELOG		        	(2345),
-    RAINBOWKNEELOG      	(2346),
-    RAINBOWQUARTERLOG   	(2347),
+    KNEELOG,
+    RAINBOWKNEELOG,
+    RAINBOWQUARTERLOG,
     
-    NEWQUARTERLOG       	(2350),
-    FIRQUARTERLOG			(2351),
-    REDWOODQUARTERLOG		(2352),
-    OAKQUARTERLOG			(2353),
+    NEWQUARTERLOG,
+    FIRQUARTERLOG,
+    REDWOODQUARTERLOG,
+    OAKQUARTERLOG,
 
-    MINILOG					(2357),
+    MINILOG,
     
-    PLANKS              	(2360),
+    PLANKS,
    
-    WOODSLAB            	(2363),
-    DOUBLEWOODSLAB      	(2364),
-    NEWWOODSLAB            	(2365),
-    NEWDOUBLEWOODSLAB      	(2366),
-    REDROCKSLAB         	(2367),
+    WOODSLAB,
+    DOUBLEWOODSLAB,
+    NEWWOODSLAB,
+    NEWDOUBLEWOODSLAB,
+    REDROCKSLAB,
 
-    REDCOBBLESTAIRS     	(2370),
-    REDROCKBRICKSTAIRS  	(2371),
-    REDWOODSTAIRS       	(2372),
-    FIRSTAIRS           	(2373),
-    ACACIASTAIRS        	(2374),
-    DOUBLEREDROCKSLAB   	(2375),
-    CYPRESSSTAIRS			(2376),
-    JAPANESEMAPLESTAIRS 	(2377),
-    RAINBOWEUCALYPTUSSTAIRS	(2378),
-    AUTUMNSTAIRS			(2379),
-    BALDCYPRESSSTAIRS		(2380),
-    SAKURABLOSSOMSTAIRS		(2381),
+    REDCOBBLESTAIRS,
+    REDROCKBRICKSTAIRS,
+    REDWOODSTAIRS,
+    FIRSTAIRS,
+    ACACIASTAIRS,
+    DOUBLEREDROCKSLAB,
+    CYPRESSSTAIRS,
+    JAPANESEMAPLESTAIRS,
+    RAINBOWEUCALYPTUSSTAIRS,
+    AUTUMNSTAIRS,
+    BALDCYPRESSSTAIRS,
+    SAKURABLOSSOMSTAIRS,
 
-    WALL                	(2400);    // Next block IDs 253 (decending) and 2224 (ascending)
+    WALL;
     
-    private int            blockID;
+    private boolean			enabled;
+    private Item			item;
     
-    private final int      defaultID;
+    private static boolean	clearedQuarterLogs = false;
+    private static boolean	clearedWoodSlabs   = false;
     
-    private static boolean clearedQuarterLogs = false;
-    
-    static boolean         clearedWoodSlabs   = false;
-    
-    private BlockSettings(int defaultID)
+    private BlockSettings()
     {
-        this.defaultID = defaultID;
-        blockID = this.defaultID;
+    	this.enabled = true;
+    }
+    private BlockSettings(boolean enabled)
+    {
+        this.enabled = enabled;
     }
     
-    public int getID()
+    public boolean getEnabled()
     {
-        return blockID;
+        return enabled;
+    }
+    
+    public Item getItem()
+    {
+    	return item;
+    }
+    public void setItem(Item item)
+    {
+    	this.item = item;
     }
     
     private String idKey()
@@ -117,14 +128,14 @@ public enum BlockSettings
         {
             case CRACKEDSAND:
             case REDROCK:
-            	if(update || blockID == 0) {
+            	if(update) {
             		property = configuration.get(Configuration.CATEGORY_BLOCK, idKey(), blockID);
             	} else {
             		property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(), blockID, String.format("%s is used in terrain generation. Its id must be less than 256.", toString()));
             	}
                 break;
             default:
-            	if(update || blockID == 0) {
+            	if(update) {
             		property = configuration.get(Configuration.CATEGORY_BLOCK, idKey(), blockID);
             	} else {
             		property = configuration.getBlock(idKey(), blockID);

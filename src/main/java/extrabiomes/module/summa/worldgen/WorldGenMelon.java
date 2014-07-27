@@ -25,7 +25,7 @@ class WorldGenMelon extends WorldGenerator
             final int z1 = z + rand.nextInt(8) - rand.nextInt(8);
             
             if (world.isAirBlock(x1, y1, z1)
-                    && world.getBlockId(x1, y1 - 1, z1) == Block.grass
+                    && world.getBlock(x1, y1 - 1, z1) == Block.grass
                     && Block.pumpkin.canPlaceBlockAt(world, x1, y1, z1))
                 world.setBlock(x1, y1, z1, Block.melon);
         }

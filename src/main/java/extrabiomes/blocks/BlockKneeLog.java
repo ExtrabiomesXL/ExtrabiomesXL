@@ -9,6 +9,8 @@ import net.minecraft.block.BlockPistonBase;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -39,14 +41,17 @@ public class BlockKneeLog extends BlockLog
         }
     }
     
+    private BlockSettings settings;
+    
     private IIcon[]     textures = { null, null, null, null, null, null, null, null, null };
     private static int renderId = 32;
     private String     treeType = "knee";
     
-    public BlockKneeLog(int id, String treeType)
+    public BlockKneeLog(BlockSettings settings, String treeType)
     {
-        super(id);
+        super();
         
+        this.settings = settings;
         this.treeType = treeType;
     }
     
@@ -307,16 +312,16 @@ public class BlockKneeLog extends BlockLog
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List list)
     {
         for (final BlockType type : BlockType.values())
         {
-            list.add(new ItemStack(blockID, 1, type.metadata()));
+            list.add(new ItemStack(item, 1, type.metadata()));
         }
     }
     
     @Override
-    public int idDropped(int metadata, Random rand, int unused)
+    public Item getItemDropped(int metadata, Random rand, int unused)
     {
     	/*
     	if(blockID == BlockSettings.RAINBOWKNEELOG.getID()) {
@@ -327,15 +332,15 @@ public class BlockKneeLog extends BlockLog
     	*/
     	
     	//LogHelper.info("BlockID: %d, unused: %d", blockID, unused);
-        return BlockSettings.NEWLOG.getID();
+        return BlockSettings.NEWLOG.getItem();
     }
     
     @Override
     public int damageDropped(int metadata)
     {
-    	if(blockID == BlockSettings.RAINBOWKNEELOG.getID()) {
+    	if(settings == BlockSettings.RAINBOWKNEELOG) {
     		return BlockNewLog.BlockType.RAINBOW_EUCALYPTUS.metadata();
-    	} else if(blockID == BlockSettings.KNEELOG.getID()) {
+    	} else if(settings == BlockSettings.KNEELOG) {
     		return BlockNewLog.BlockType.BALD_CYPRESS.metadata();
     	}
 
@@ -345,12 +350,12 @@ public class BlockKneeLog extends BlockLog
     @SubscribeEvent
     public void onUseLogTurnerEvent(UseLogTurnerEvent event)
     {
-        int id = event.world.getBlockId(event.x, event.y, event.z);
+        Block block = event.world.getBlock(event.x, event.y, event.z);
         
-        if (id == blockID)
+        if (block == this)
         {
-            final Block wood = Block.wood;
-            event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F, wood.stepSound.getPitch() * 1.55F);
+            final Block wood = Blocks.log;
+            event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F, wood.stepSound.soundName, (wood.stepSound.getVolume() + 1.0F) / 2.0F, wood.stepSound.getPitch() * 1.55F);
             
             if (!event.world.isRemote)
             {
@@ -495,7 +500,7 @@ public class BlockKneeLog extends BlockLog
                     }
                 }
                 
-                event.world.setBlock(event.x, event.y, event.z, id, metadata, 3);
+                event.world.setBlock(event.x, event.y, event.z, block, metadata, 3);
                 
                 //unturned = false;
             }
@@ -511,10 +516,9 @@ public class BlockKneeLog extends BlockLog
     {
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
         
-        world.setBlock(x, y, z, blockID, 3, 3);
+        world.setBlock(x, y, z, this, 3, 3);
     }
     
-    @Override
     public boolean canSustainLeaves(World world, int x, int y, int z)
     {
         return true;

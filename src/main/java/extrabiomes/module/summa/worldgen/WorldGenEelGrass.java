@@ -29,11 +29,11 @@ class WorldGenEelGrass extends WorldGenerator
     public boolean generate(World world, Random rand, int x, int y, int z) {
         int i;
         int maxDepth = 4;
-        while ((Block.blocksList[i = world.getBlockId(x, y, z)] == null) && y > 0) {
+        while ((Block.blocksList[i = world.getBlock(x, y, z)] == null) && y > 0) {
             y--;
         }
         
-        while(((i = world.getBlockId(x, y, z)) == Block.waterMoving || i == Block.waterStill) && y > 0 && maxDepth > 0) {
+        while(((i = world.getBlock(x, y, z)) == Block.waterMoving || i == Block.waterStill) && y > 0 && maxDepth > 0) {
         	y--;
         	maxDepth--;
         }

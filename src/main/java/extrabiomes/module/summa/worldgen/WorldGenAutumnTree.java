@@ -65,7 +65,7 @@ public class WorldGenAutumnTree extends WorldGenerator
     
     private static boolean isBlockSuitableForGrowing(final World world, final int x, final int y, final int z)
     {
-        final int id = world.getBlockId(x, y, z);
+        final int id = world.getBlock(x, y, z);
         return TreeSoilRegistry.isValidSoil(id);
     }
     
@@ -89,7 +89,7 @@ public class WorldGenAutumnTree extends WorldGenerator
             {
                 for (int z1 = z - radius; z1 <= z + radius; ++z1)
                 {
-                    final int id = world.getBlockId(x1, i, z1);
+                    final int id = world.getBlock(x1, i, z1);
                     
                     if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x1, i, z1) && id != Block.grass && !Block.blocksList[id].isWood(world, x1, i, z1))
                         return false;
@@ -193,7 +193,7 @@ public class WorldGenAutumnTree extends WorldGenerator
     {
         for (int y1 = 0; y1 < height; ++y1)
         {
-            final int id = world.getBlockId(x, y + y1, z);
+            final int id = world.getBlock(x, y + y1, z);
             
             if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + y1, z))
             {

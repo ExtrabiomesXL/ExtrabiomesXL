@@ -177,13 +177,13 @@ public class BlockCustomFlower extends Block implements IPlantable
     public boolean canBlockStay(World world, int x, int y, int z)
     {
         return (world.getFullBlockLightValue(x, y, z) >= 8 || world.canBlockSeeTheSky(x, y, z))
-                && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
+                && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z));
     }
     
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z)
     {
-        return super.canPlaceBlockAt(world, x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z));
+        return super.canPlaceBlockAt(world, x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z));
     }
     
     private boolean canThisPlantGrowOnThisBlockID(int id)

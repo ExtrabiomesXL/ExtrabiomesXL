@@ -96,7 +96,7 @@ public class WorldGenRedwood extends WorldGenerator
         if (y < 1 || y + height + 1 > 256)
             return false;
         
-        if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1)
+        if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)) || y >= 256 - height - 1)
             return false;
         
         for (int y1 = y; y1 <= y + 1 + height; y1++)
@@ -118,7 +118,7 @@ public class WorldGenRedwood extends WorldGenerator
                 {
                     if (y1 >= 0 && y1 < 256)
                     {
-                        final int id = world.getBlockId(x1, y1, z1);
+                        final int id = world.getBlock(x1, y1, z1);
                         
                         if (Block.blocksList[id] != null
                                 && Block.blocksList[id].isLeaves(world, x1, y1,
@@ -155,25 +155,25 @@ public class WorldGenRedwood extends WorldGenerator
                     
                     if (Math.abs(k4) != l1 || Math.abs(i5) != l1 || l1 <= 0)
                     {
-                        int blockID = world.getBlockId(x1, y1, z1);
+                        int blockID = world.getBlock(x1, y1, z1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1, y1, z1))
                         {
                             setBlockAndMetadata(world, x1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                         
-                        blockID = world.getBlockId(x1 - 1, y1, z1);
+                        blockID = world.getBlock(x1 - 1, y1, z1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1 - 1, y1, z1))
                         {
                             setBlockAndMetadata(world, x1 - 1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                         
-                        blockID = world.getBlockId(x1, y1, z1 - 1);
+                        blockID = world.getBlock(x1, y1, z1 - 1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1, y1, z1 - 1))
                         {
                             setBlockAndMetadata(world, x1, y1, z1 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                         
-                        blockID = world.getBlockId(x1 - 1, y1, z1 - 1);
+                        blockID = world.getBlock(x1 - 1, y1, z1 - 1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1 - 1, y1, z1 - 1))
                         {
                             setBlockAndMetadata(world, x1 - 1, y1, z1 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
@@ -202,7 +202,7 @@ public class WorldGenRedwood extends WorldGenerator
         
         for (int y1 = 0; y1 < height - j3; y1++)
         {
-            final int j4 = world.getBlockId(x, y + y1, z);
+            final int j4 = world.getBlock(x, y + y1, z);
             
             if (Block.blocksList[j4] == null || Block.blocksList[j4].isLeaves(world, x, y + y1, z))
             {

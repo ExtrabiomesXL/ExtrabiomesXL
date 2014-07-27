@@ -92,7 +92,7 @@ public class ItemCustomSeed extends Item implements IPlantable {
 		if (side != ForgeDirection.UP.ordinal()) {
 			return false;
 		} else if (player.canPlayerEdit(x, y, z, side, itemStack) && player.canPlayerEdit(x, y + 1, z, side, itemStack)) {
-			final int soilID = world.getBlockId(x, y, z);
+			final int soilID = world.getBlock(x, y, z);
 			Block soil = Block.blocksList[soilID];
 
 			if (soil != null && soil.canSustainPlant(world, x, y, z, ForgeDirection.UP, this)

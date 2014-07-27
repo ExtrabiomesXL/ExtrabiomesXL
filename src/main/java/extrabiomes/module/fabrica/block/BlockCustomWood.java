@@ -75,11 +75,11 @@ public class BlockCustomWood extends BlockWood
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List list)
     {
         for (final BlockType type : BlockType.values())
         {
-            list.add(new ItemStack(blockID, 1, type.metadata()));
+            list.add(new ItemStack(item, 1, type.metadata()));
         }
     }
 }

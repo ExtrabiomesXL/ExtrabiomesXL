@@ -38,7 +38,7 @@ public class OilGenerator implements IWorldGenerator
                 final int i = startX + x;
                 final int k = startZ + z;
                 
-                final int id = world.getBlockId(i, j, k);
+                final int id = world.getBlock(i, j, k);
                 if (id != 0)
                 {
                     if (id == Block.sand

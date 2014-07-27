@@ -196,7 +196,7 @@ public class BlockCustomSapling extends BlockFlower
         boolean isHuge = false;
         int offset = 0;
         
-        final boolean isForestryFarmed = world.getBlockId(x, y - 1, z) == forestrySoilID;
+        final boolean isForestryFarmed = world.getBlock(x, y - 1, z) == forestrySoilID;
         
         if (metadata == BlockType.UMBER.metadata())
         {
@@ -421,7 +421,7 @@ public class BlockCustomSapling extends BlockFlower
         // check station one blocks for validity
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x + 1, y, z) || isSameSaplingBlock(x + 1, y, z, world, sapling)) && (world.isAirBlock(x + 1, y, z + 1) || isSameSaplingBlock(x + 1, y, z + 1, world, sapling)) && (world.isAirBlock(x, y, z + 1) || isSameSaplingBlock(x, y, z + 1, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x + 1, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x + 1, y - 1, z + 1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z + 1)))
+            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x + 1, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x + 1, y - 1, z + 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z + 1)))
             {
                 world.setBlock(x, y, z, saplingID, metadata, 2);
                 world.setBlock(x + 1, y, z, saplingID, metadata, 2);
@@ -434,7 +434,7 @@ public class BlockCustomSapling extends BlockFlower
         // check station 2
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x, y, z + 1) || isSameSaplingBlock(x, y, z + 1, world, sapling)) && (world.isAirBlock(x - 1, y, z + 1) || isSameSaplingBlock(x - 1, y, z + 1, world, sapling)) && (world.isAirBlock(x - 1, y, z) || isSameSaplingBlock(x - 1, y, z, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z + 1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x - 1, y - 1, z + 1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x - 1, y - 1, z)))
+            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z + 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x - 1, y - 1, z + 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x - 1, y - 1, z)))
             {
                 world.setBlock(x, y, z, saplingID, metadata, 2);
                 world.setBlock(x, y, z + 1, saplingID, metadata, 2);
@@ -447,7 +447,7 @@ public class BlockCustomSapling extends BlockFlower
         // Check station 3
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x - 1, y, z) || isSameSaplingBlock(x - 1, y, z, world, sapling)) && (world.isAirBlock(x - 1, y, z - 1) || isSameSaplingBlock(x - 1, y, z - 1, world, sapling)) && (world.isAirBlock(x, y, z - 1) || isSameSaplingBlock(x, y, z - 1, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x - 1, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x - 1, y - 1, z - 1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z - 1)))
+            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x - 1, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x - 1, y - 1, z - 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z - 1)))
             {
                 world.setBlock(x, y, z, saplingID, metadata, 2);
                 world.setBlock(x - 1, y, z, saplingID, metadata, 2);
@@ -460,7 +460,7 @@ public class BlockCustomSapling extends BlockFlower
         // Check station 4
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x, y, z - 1) || isSameSaplingBlock(x, y, z - 1, world, sapling)) && (world.isAirBlock(x + 1, y, z - 1) || isSameSaplingBlock(x + 1, y, z - 1, world, sapling)) && (world.isAirBlock(x + 1, y, z) || isSameSaplingBlock(x + 1, y, z, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x, y - 1, z - 1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x + 1, y - 1, z - 1)) && canThisPlantGrowOnThisBlockID(world.getBlockId(x + 1, y - 1, z)))
+            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z - 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x + 1, y - 1, z - 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x + 1, y - 1, z)))
             {
                 world.setBlock(x, y, z, saplingID, metadata, 2);
                 world.setBlock(x, y, z - 1, saplingID, metadata, 2);
@@ -473,7 +473,7 @@ public class BlockCustomSapling extends BlockFlower
     
     private boolean isSameSaplingBlock(int x, int y, int z, World world, ItemStack sapling)
     {
-        int id = world.getBlockId(x, y, z);
+        int id = world.getBlock(x, y, z);
         int metadata = world.getBlockMetadata(x, y, z);
         return id != 0 && Block.blocksList[id] != null && sapling.itemID == id && sapling.getItemDamage() == metadata;
     }

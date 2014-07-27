@@ -105,7 +105,7 @@ public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase
         final int chunkCheck = width + 1;
         
         // Make sure that a tree can grow on the soil
-        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x + 1, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x, y - 1, z + 1))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x + 1, y - 1, z + 1))))
+        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x + 1, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x, y - 1, z + 1))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x + 1, y - 1, z + 1))))
             return false;
         
         // make sure that we have room to grow the tree
@@ -142,7 +142,7 @@ public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase
         final int chunkCheck = width + 1;
         
         // Make sure that a tree can grow on the soil
-        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x + 1, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x, y - 1, z + 1))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlockId(x + 1, y - 1, z + 1))))
+        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x + 1, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x, y - 1, z + 1))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x + 1, y - 1, z + 1))))
             return false;
         
         // make sure that we have room to grow the tree

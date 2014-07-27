@@ -74,7 +74,7 @@ public class WorldGenLegendOak extends WorldGenerator
     public boolean generate(World world, Random random, int x, int y, int z)
     {
         
-        if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)))
+        if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)))
             return false;
         
         final int height = random.nextInt(4) + 3;
@@ -94,16 +94,16 @@ public class WorldGenLegendOak extends WorldGenerator
                         && (Math.abs(xOffset) != 3 || Math.abs(zOffset) != 2)
                         && (Math.abs(xOffset) != 2 || Math.abs(zOffset) != 3)
                         && (xOffset != 0 || zOffset != 0))
-                    if (world.getBlockId(x + xOffset, y, z + zOffset) == 0)
+                    if (world.getBlock(x + xOffset, y, z + zOffset) == 0)
                         setBlockAndMetadata(world, x + xOffset, y, z + zOffset,
                                 TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                 if (Math.abs(xOffset) >= 3 || Math.abs(zOffset) >= 3 || Math.abs(xOffset) == 2
                         && Math.abs(zOffset) == 2)
                     continue;
-                if (world.getBlockId(x + xOffset, y - 1, z + zOffset) == 0)
+                if (world.getBlock(x + xOffset, y - 1, z + zOffset) == 0)
                     setBlockAndMetadata(world, x + xOffset, y - 1, z + zOffset,
                             TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
-                if (world.getBlockId(x + xOffset, y + 1, z + zOffset) != 0)
+                if (world.getBlock(x + xOffset, y + 1, z + zOffset) != 0)
                     continue;
                 setBlockAndMetadata(world, x + xOffset, y + 1, z + zOffset,
                         TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());

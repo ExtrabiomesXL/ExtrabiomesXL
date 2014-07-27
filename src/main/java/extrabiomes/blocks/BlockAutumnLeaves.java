@@ -181,7 +181,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
             {
                 for (int z1 = -leafDecayRadius; z1 <= leafDecayRadius; ++z1)
                 {
-                    final int id = world.getBlockId(x + x1, y + y1, z + z1);
+                    final int id = world.getBlock(x + x1, y + y1, z + z1);
                     
                     if (Block.blocksList[id] != null)
                     {
@@ -258,7 +258,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public int idDropped(int metadata, Random rand, int par3)
+    public Item getItemDropped(int metadata, Random rand, int par3)
     {
         final Optional<BlockType> type = Optional.fromNullable(BlockType.fromMetadata(metadata));
         return type.isPresent() ? type.get().getSaplingID() : Block.sapling;
@@ -344,7 +344,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
                 {
                     for (int var14 = -rangeWood; var14 <= rangeWood; ++var14)
                     {
-                        final int id = world.getBlockId(x + var12, y + var13, z + var14);
+                        final int id = world.getBlock(x + var12, y + var13, z + var14);
                         
                         if (Block.blocksList[id] != null && Block.blocksList[id].isWood(world, x + var12, y + var13, z + var14))
                         {

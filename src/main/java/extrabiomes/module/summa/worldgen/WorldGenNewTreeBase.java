@@ -25,7 +25,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
     {
         for (int y1 = y + 1; y1 < y + height; y1++)
         {
-            if (Block.blocksList[world.getBlockId(x, y1, z)] != null)
+            if (Block.blocksList[world.getBlock(x, y1, z)] != null)
                 return false;
         }
         
@@ -63,10 +63,10 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
         {
             for (int y1 = y + 1; y1 < y + height; y1++)
             {
-                int b00 = world.getBlockId(x, y1, z);
-                int b10 = world.getBlockId(x + 1, y1, z);
-                int b01 = world.getBlockId(x, y1, z + 1);
-                int b11 = world.getBlockId(x + 1, y1, z + 1);
+                int b00 = world.getBlock(x, y1, z);
+                int b10 = world.getBlock(x + 1, y1, z);
+                int b01 = world.getBlock(x, y1, z + 1);
+                int b11 = world.getBlock(x + 1, y1, z + 1);
                 if (Block.blocksList[b00] != null && b00 != Block.waterStill && b00 != Block.waterStill)
                     return false;
                 if (Block.blocksList[b10] != null && b10 != Block.waterStill && b10 != Block.waterStill)
@@ -81,13 +81,13 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
         {
             for (int y1 = y + 1; y1 < y + height; y1++)
             {
-                if (Block.blocksList[world.getBlockId(x, y1, z)] != null)
+                if (Block.blocksList[world.getBlock(x, y1, z)] != null)
                     return false;
-                if (Block.blocksList[world.getBlockId(x + 1, y1, z)] != null)
+                if (Block.blocksList[world.getBlock(x + 1, y1, z)] != null)
                     return false;
-                if (Block.blocksList[world.getBlockId(x, y1, z + 1)] != null)
+                if (Block.blocksList[world.getBlock(x, y1, z + 1)] != null)
                     return false;
-                if (Block.blocksList[world.getBlockId(x + 1, y1, z + 1)] != null)
+                if (Block.blocksList[world.getBlock(x + 1, y1, z + 1)] != null)
                     return false;
             }
         }
@@ -122,7 +122,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
         
         for (int y1 = y - 1; y1 > 1; y1--)
         {
-            Block block = Block.blocksList[world.getBlockId(x, y1, z)];
+            Block block = Block.blocksList[world.getBlock(x, y1, z)];
             if (block != null && !block.canBeReplacedByLeaves(world, x, y1, z))
                 break;
             
@@ -162,7 +162,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] != null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] != null)
                         return false;
                 }
             }
@@ -173,7 +173,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] != null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] != null)
                         return false;
                 }
             }
@@ -188,7 +188,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] != null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] != null)
                         return false;
                 }
             }
@@ -199,7 +199,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] != null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] != null)
                         return false;
                 }
             }
@@ -214,7 +214,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] != null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] != null)
                         return false;
                 }
             }
@@ -225,7 +225,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] != null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] != null)
                         return false;
                 }
             }
@@ -255,7 +255,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 8);
                 }
             }
@@ -266,7 +266,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 8);
                 }
             }
@@ -281,7 +281,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 4);
                 }
             }
@@ -292,7 +292,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 4);
                 }
             }
@@ -307,7 +307,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage());
                 }
             }
@@ -318,7 +318,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage());
                 }
             }
@@ -350,7 +350,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 8);
                     
                     // Detect the distance
@@ -386,7 +386,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 8);
                     
                     // Detect the distance
@@ -426,7 +426,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 4);
                     
                     // Detect the distance
@@ -461,7 +461,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage() | 4);
                     
                     // Detect the distance
@@ -500,7 +500,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage());
                     
                     // Detect the distance
@@ -535,7 +535,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (Block.blocksList[world.getBlockId(x, y, z)] == null)
+                    if (Block.blocksList[world.getBlock(x, y, z)] == null)
                         setBlockAndMetadata(world, x, y, z, logs.itemID, logs.getItemDamage());
                     
                     // Detect the distance
@@ -579,7 +579,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                 int x2 = (int) (x1 + x);
                 int z2 = (int) (z1 + z);
                 
-                final Block block = Block.blocksList[world.getBlockId(x2, y, z2)];
+                final Block block = Block.blocksList[world.getBlock(x2, y, z2)];
                 
                 if (((x1 * x1) + (z1 * z1)) <= dist)
                 {
@@ -603,7 +603,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                 int x2 = (int) (x1 + x);
                 int z2 = (int) (z1 + z);
                 
-                final Block block = Block.blocksList[world.getBlockId(x2, y, z2)];
+                final Block block = Block.blocksList[world.getBlock(x2, y, z2)];
                 
                 if ((((x1 * x1) + (z1 * z1)) <= dist) && (block == null || block.canBeReplacedByLeaves(world, x2, y, z2)))
                 {

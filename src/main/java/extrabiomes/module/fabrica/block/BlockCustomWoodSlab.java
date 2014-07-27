@@ -9,16 +9,20 @@ package extrabiomes.module.fabrica.block;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockWoodSlab;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import extrabiomes.lib.BlockSettings;
 
 public class BlockCustomWoodSlab extends BlockWoodSlab
 {
@@ -45,15 +49,16 @@ public class BlockCustomWoodSlab extends BlockWoodSlab
         }
     }
     
-    private static int singleSlabID = 0;
+    private BlockSettings settings;
+    private static Block singleSlab = null;
     
     private IIcon[]     textures     = { null, null, null, null, null, null, null, null };
     
-    public BlockCustomWoodSlab(int id, boolean isDouble)
+    public BlockCustomWoodSlab(BlockSettings settings, boolean isDouble)
     {
-        super(id, isDouble);
+        super(isDouble);
         if (!isDouble)
-            singleSlabID = id;
+            singleSlab = this;
         setHardness(2.0F);
         setResistance(5.0F);
         setStepSound(soundTypeWood);
@@ -79,7 +84,7 @@ public class BlockCustomWoodSlab extends BlockWoodSlab
     @Override
     protected ItemStack createStackedBlock(int damage)
     {
-        return new ItemStack(singleSlabID, 2, damage & 7);
+        return new ItemStack(singleSlab, 2, damage & 7);
     }
     
     @Override
@@ -88,7 +93,6 @@ public class BlockCustomWoodSlab extends BlockWoodSlab
         return textures[metadata & 7];
     }
     
-    @Override
     public String getFullSlabName(int metadata)
     {
         String woodType;
@@ -125,30 +129,29 @@ public class BlockCustomWoodSlab extends BlockWoodSlab
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int blockID, CreativeTabs tab, List itemList)
+    public void getSubBlocks(Item item, CreativeTabs tab, List itemList)
     {
-        if (blockID == singleSlabID)
+        if (this == singleSlab)
         {
             for (final BlockType type : BlockType.values())
             {
-                itemList.add(new ItemStack(blockID, 1, type.metadata()));
+                itemList.add(new ItemStack(item, 1, type.metadata()));
             }
         }
     }
     
     @Override
-    public int idDropped(int par1, Random par2Random, int par3)
+    public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return singleSlabID;
+        return ItemBlock.getItemFromBlock(singleSlab);
     }
     
-    @Override
     @SideOnly(Side.CLIENT)
     /**
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      */
-    public int idPicked(World par1World, int par2, int par3, int par4)
+    public Block getPickBlock(World par1World, int par2, int par3, int par4)
     {
-        return singleSlabID;
+        return singleSlab;
     }
 }

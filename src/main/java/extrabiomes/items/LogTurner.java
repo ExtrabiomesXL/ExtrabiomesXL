@@ -59,10 +59,10 @@ public class LogTurner extends ItemTool
         if (event.isHandled())
             return true;
         
-        final int blockID = world.getBlockId(x, y, z);
+        final int blockID = world.getBlock(x, y, z);
         final int metadata = world.getBlockMetadata(x, y, z);
         
-        final ItemStack is = new ItemStack(blockID, 1, metadata);
+        final ItemStack is = new ItemStack(item, 1, metadata);
         final int oreId = OreDictionary.getOreID(is);
         final int logOreId = OreDictionary.getOreID("logWood");
         

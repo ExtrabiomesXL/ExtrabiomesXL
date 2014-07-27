@@ -25,7 +25,7 @@ public class WorldGenCustomVine extends WorldGenerator
 
         for (int _z = z; y < 128; ++y)
         {
-        	final int targetBlockID = world.getBlockId(x, y, z);
+        	final int targetBlockID = world.getBlock(x, y, z);
             if (world.isAirBlock(x, y, z) || (targetBlockID == Block.vine) )
             {
                 for (int j = 2; j <= 5; ++j)
