@@ -14,6 +14,7 @@ import net.minecraftforge.common.config.Property;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.utility.EnhancedConfiguration;
 
+@SuppressWarnings("unused")
 public enum BlockSettings
 {
     // @formatter:off
@@ -123,6 +124,8 @@ public enum BlockSettings
     
     public void load(EnhancedConfiguration configuration, boolean update)
     {
+    	// TODO: actually rewrite config loading
+    	/*
         Property property;
         switch (this)
         {
@@ -214,14 +217,17 @@ public enum BlockSettings
                 clearedWoodSlabs = true;
             }
         }
+        */
     }
     
+    /*
     private void setToZero(EnhancedConfiguration configuration)
-    {
+    {	
         final Property property = configuration.getBlock(idKey(), 0);
         property.set(Integer.toString(0));
         blockID = 0;
     }
+    */
     
     @Override
     public String toString()
