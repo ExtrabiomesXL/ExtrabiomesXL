@@ -9,9 +9,13 @@ package extrabiomes.module.fabrica.block;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -44,24 +48,24 @@ public class BlockRedRockSlab extends BlockSlab
         }
     }
     
-    private static int singleSlabID = 0;
+    private static Block singleSlab = null;
     private IIcon[]     textures     = { null, null, null, null };
     
-    public BlockRedRockSlab(int id, boolean isDouble)
+    public BlockRedRockSlab(boolean isDouble)
     {
-        super(id, isDouble);
+        super(isDouble, Material.rock);
         if (!isDouble)
-            singleSlabID = blockID;
+            singleSlab = this;
         setHardness(2.0F);
         setResistance(10.0F);
-        setStepSound(soundStoneFootstep);
+        setStepSound(soundTypeStone);
         setLightOpacity(0);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
         textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");
@@ -72,7 +76,7 @@ public class BlockRedRockSlab extends BlockSlab
     @Override
     protected ItemStack createStackedBlock(int metadata)
     {
-        return new ItemStack(singleSlabID, 2, metadata & 7);
+        return new ItemStack(singleSlab, 2, metadata & 7);
     }
     
     @Override
@@ -85,7 +89,6 @@ public class BlockRedRockSlab extends BlockSlab
                         : textures[0];
     }
     
-    @Override
     public String getFullSlabName(int metadata)
     {
         String blockStepType;
@@ -110,7 +113,7 @@ public class BlockRedRockSlab extends BlockSlab
     public void getSubBlocks(Item item, CreativeTabs tab,
             List itemList)
     {
-        if (blockID == singleSlabID)
+        if (this == singleSlab)
             for (final BlockType type : BlockType.values())
                 itemList.add(new ItemStack(item, 1, type.metadata()));
     }
@@ -118,16 +121,21 @@ public class BlockRedRockSlab extends BlockSlab
     @Override
     public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return singleSlabID;
+        return ItemBlock.getItemFromBlock(singleSlab);
     }
     
-    @Override
     @SideOnly(Side.CLIENT)
     /**
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      */
-    public int idPicked(World par1World, int par2, int par3, int par4)
+    public Block getPickBlock(World par1World, int par2, int par3, int par4)
     {
-        return singleSlabID;
+        return singleSlab;
     }
+
+	@Override
+	public String func_150002_b(int var1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

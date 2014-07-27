@@ -3,6 +3,7 @@ package extrabiomes.subblocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -15,7 +16,7 @@ public class SubBlock {
 	protected IIcon texture;
 	
 	protected int metaData = 0;
-	protected int parentId = 0;
+	protected Block parent = null;
 	
 	public SubBlock(String name) {
 		textureName = name;
@@ -42,15 +43,15 @@ public class SubBlock {
         return true;
     }
 
-    public void onNeighborBlockChange(World world, int x, int y, int z, int idNeighbor, Block block) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor, Block block) {
         if (!canBlockStay(world, x, y, z)) {
         	block.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlock(x, y, z, 0);
+            world.setBlock(x, y, z, Blocks.air);
         }
     }
     
-    public void setBlockIds(int id, int data) {
-    	parentId = id;
+    public void setBlock(Block block, int data) {
+    	parent = block;
     	metaData = data;
     }
 }

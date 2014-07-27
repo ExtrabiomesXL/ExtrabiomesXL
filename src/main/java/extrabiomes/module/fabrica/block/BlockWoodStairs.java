@@ -7,6 +7,7 @@
 package extrabiomes.module.fabrica.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import extrabiomes.Extrabiomes;
 
 public class BlockWoodStairs extends BlockCustomStairs
@@ -15,7 +16,7 @@ public class BlockWoodStairs extends BlockCustomStairs
     public BlockWoodStairs(int id, Block modelBlock, int modelMetadata)
     {
         super(id, modelBlock, modelMetadata);
-        Block.Blocks.fire.setFireInfo(blockID, 5, 20);
+        Blocks.fire.setFireInfo(this, 5, 20);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     

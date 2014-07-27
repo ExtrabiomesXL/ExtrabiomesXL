@@ -41,8 +41,8 @@ public class BlockMachine extends Block {
 
 	static boolean	doingGenesis	= false;
 
-	public BlockMachine(int id) {
-		super(id, Material.iron);
+	public BlockMachine() {
+		super(Material.iron);
 		// setCreativeTab(CreativeTabs.blocks);
 	}
 
@@ -56,7 +56,7 @@ public class BlockMachine extends Block {
 
 	@Override
 	public IIcon getIcon(int side, int metadata) {
-		return blockIIcon;
+		return blockIcon;
 	}
 
 	@Override

@@ -169,8 +169,8 @@ public class ForestryPlugin
         if (soil.isPresent())
         {
             TreeSoilRegistry.addValidSoil(Block.blocksList[soil.get().itemID]);
-            BlockCustomSapling.setForestrySoilID(soil.get().itemID);
-            BlockNewSapling.setForestrySoilID(soil.get().itemID);
+            BlockCustomSapling.setForestrySoil(soil.get().itemID);
+            BlockNewSapling.setForestrySoil(soil.get().itemID);
         }
         
         for (ItemStack sapling : ForestryModHelper.getSaplings())

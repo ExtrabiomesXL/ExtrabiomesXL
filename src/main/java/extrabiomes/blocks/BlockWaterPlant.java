@@ -8,12 +8,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.blocks.BlockNewSapling.BlockType;
 import extrabiomes.helpers.ToolTipStringFormatter;
+import extrabiomes.lib.BlockSettings;
 import extrabiomes.subblocks.SubBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
@@ -22,16 +25,19 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockWaterPlant extends Block {
 	
+	private BlockSettings settings;
 	protected SubBlock[] subBlocks;
 	protected String blockName;
 	
 	//private int renderType;
 	
-	public BlockWaterPlant(int blockID, String name) {
-		super(blockID, Material.water);
+	public BlockWaterPlant(BlockSettings settings, String name) {
+		super(Material.water);
 
         this.setTickRandomly(true);
         this.disableStats();
+        
+        this.settings = settings;
 		
 		// Store the block name
 		blockName = name;
@@ -45,7 +51,7 @@ public class BlockWaterPlant extends Block {
 		if(subBlocks[metaData] != null) throw new Exception("Subblock with metaData: " + metaData + ", already exists for " + blockName + ".");
 		
 		// Tell the child block about itself
-		childBlock.setBlockIds(blockID, metaData);
+		childBlock.setBlock(this, metaData);
 		
 		// Store the Subblock
 		subBlocks[metaData] = childBlock;
@@ -92,7 +98,7 @@ public class BlockWaterPlant extends Block {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList){
+    public void getSubBlocks(Item item, CreativeTabs tab, List itemList){
         for(int i = 0; i < subBlocks.length; i++) {
         	if(subBlocks[i] != null) {
         		itemList.add(new ItemStack(this, 1, i));
@@ -123,20 +129,19 @@ public class BlockWaterPlant extends Block {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int idNeighbor) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor) {
     	final int metaData = world.getBlockMetadata(x, y, z);
     	
     	if(subBlocks[metaData] != null) {
-    		subBlocks[metaData].onNeighborBlockChange(world, x, y, z, idNeighbor, this);
+    		subBlocks[metaData].onNeighborBlockChange(world, x, y, z, neighbor, this);
     	}
     }
 
     @Override
     public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int silkTouch) {
-    	world.setBlock(x, y, z, Block.waterStill);
+    	world.setBlock(x, y, z, Blocks.water);
     }
     
-    @Override
     public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side) {
     	return true;
     }
@@ -146,9 +151,8 @@ public class BlockWaterPlant extends Block {
         return false;
     }
     
-    @Override
     public boolean canPlaceBlockOnSide(World world, int x, int y, int z, int unused, ItemStack item) {
-    	if(item.itemID == blockID) {
+    	if(item.getItem() == settings.getItem()) {
     		if(subBlocks[item.getItemDamage()] == null) {
         		return false;
         	} else {
@@ -159,7 +163,6 @@ public class BlockWaterPlant extends Block {
     	}
     }
     
-    @Override
     public boolean isBlockReplaceable(World world, int x, int y, int z) {
         return false;
     }
@@ -171,7 +174,7 @@ public class BlockWaterPlant extends Block {
 
 	public void addInformation(int metaData, List listOfLines) {
 		if(metaData < subBlocks.length && subBlocks[metaData] != null) {
-			String line = I18n.getString(this.getUnlocalizedName() + "." + subBlocks[metaData].getUnlocalizedName() + ".description");
+			String line = I18n.format(this.getUnlocalizedName() + "." + subBlocks[metaData].getUnlocalizedName() + ".description");
     		
     		if(!line.equals(this.getUnlocalizedName() + "." + subBlocks[metaData].getUnlocalizedName() + ".description")) {
     			if(listOfLines.size() > 0 && ((String)listOfLines.get(0)).length() > 20) {
