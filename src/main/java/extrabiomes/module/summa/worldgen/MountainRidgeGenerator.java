@@ -21,7 +21,7 @@ public class MountainRidgeGenerator implements IWorldGenerator
 {
     
     private static final WorldGenerator oasisGen      = new WorldGenOasis();
-    private static final WorldGenerator silverfishGen = new WorldGenMinable(Block.silverfish.blockID, 8);
+    private static final WorldGenerator silverfishGen = new WorldGenMinable(Block.silverfish, 8);
     
     @Override
     public void generate(Random random, int chunkX, int chunkZ,
@@ -54,8 +54,8 @@ public class MountainRidgeGenerator implements IWorldGenerator
             
             if (id != 0
                     && Block.blocksList[id].isGenMineableReplaceable(
-                            world, x1, y1, z1, Block.stone.blockID))
-                world.setBlock(x1, y1, z1, Block.oreEmerald.blockID);
+                            world, x1, y1, z1, Block.stone))
+                world.setBlock(x1, y1, z1, Block.oreEmerald);
         }
         
         for (int i = 0; i < 7; i++)

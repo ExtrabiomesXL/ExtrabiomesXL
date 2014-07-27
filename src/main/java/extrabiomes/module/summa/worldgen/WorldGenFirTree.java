@@ -120,7 +120,7 @@ public class WorldGenFirTree extends WorldGenerator
             }
         }
         
-        world.setBlock(x, y - 1, z, Block.dirt.blockID);
+        world.setBlock(x, y - 1, z, Block.dirt);
         int l1 = rand.nextInt(2);
         int j2 = 1;
         boolean flag1 = false;

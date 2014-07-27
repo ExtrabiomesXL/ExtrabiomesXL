@@ -67,13 +67,13 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                 int b10 = world.getBlockId(x + 1, y1, z);
                 int b01 = world.getBlockId(x, y1, z + 1);
                 int b11 = world.getBlockId(x + 1, y1, z + 1);
-                if (Block.blocksList[b00] != null && b00 != Block.waterStill.blockID && b00 != Block.waterStill.blockID)
+                if (Block.blocksList[b00] != null && b00 != Block.waterStill && b00 != Block.waterStill)
                     return false;
-                if (Block.blocksList[b10] != null && b10 != Block.waterStill.blockID && b10 != Block.waterStill.blockID)
+                if (Block.blocksList[b10] != null && b10 != Block.waterStill && b10 != Block.waterStill)
                     return false;
-                if (Block.blocksList[b01] != null && b01 != Block.waterStill.blockID && b01 != Block.waterStill.blockID)
+                if (Block.blocksList[b01] != null && b01 != Block.waterStill && b01 != Block.waterStill)
                     return false;
-                if (Block.blocksList[b11] != null && b11 != Block.waterStill.blockID && b11 != Block.waterStill.blockID)
+                if (Block.blocksList[b11] != null && b11 != Block.waterStill && b11 != Block.waterStill)
                     return false;
             }
         }

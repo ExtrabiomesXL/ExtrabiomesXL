@@ -20,7 +20,7 @@ class WorldGenRoot extends WorldGenerator
     
     WorldGenRoot(int blockID, int metadata)
     {
-        this.blockID = blockID;
+        this = blockID;
         this.metadata = metadata;
     }
     

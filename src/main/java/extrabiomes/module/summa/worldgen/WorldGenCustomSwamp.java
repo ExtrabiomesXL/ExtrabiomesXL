@@ -65,8 +65,8 @@ public class WorldGenCustomSwamp extends WorldGenerator
                                     y1, x2))
                         continue;
                     
-                    if (id == Block.waterStill.blockID
-                            || id == Block.waterMoving.blockID)
+                    if (id == Block.waterStill
+                            || id == Block.waterMoving)
                     {
                         if (y1 > y)
                             return false;
@@ -78,11 +78,11 @@ public class WorldGenCustomSwamp extends WorldGenerator
         
         final int id = world.getBlockId(x, y - 1, z);
         
-        if (id != Block.grass.blockID && id != Block.dirt.blockID
+        if (id != Block.grass && id != Block.dirt
                 || y >= 256 - height - 1)
             return false;
         
-        world.setBlock(x, y - 1, z, Block.dirt.blockID);
+        world.setBlock(x, y - 1, z, Block.dirt);
         
         for (int y1 = y - 3 + height; y1 <= y + height; y1++)
         {
@@ -106,7 +106,7 @@ public class WorldGenCustomSwamp extends WorldGenerator
                             && (block == null || block
                                     .canBeReplacedByLeaves(world, x1,
                                             y1, z1)))
-                        world.setBlock(x1, y1, z1, Block.leaves.blockID);
+                        world.setBlock(x1, y1, z1, Block.leaves);
                 }
             }
         }
@@ -117,9 +117,9 @@ public class WorldGenCustomSwamp extends WorldGenerator
             
             if (id2 == 0
                     || Block.blocksList[id2].isLeaves(world, x, y + y1,
-                            z) || id2 == Block.waterMoving.blockID
-                    || id2 == Block.waterStill.blockID)
-                world.setBlock(x, y + y1, z, Block.wood.blockID);
+                            z) || id2 == Block.waterMoving
+                    || id2 == Block.waterStill)
+                world.setBlock(x, y + y1, z, Block.wood);
         }
         
         for (int y1 = y - 3 + height; y1 <= y + height; y1++)
@@ -161,10 +161,10 @@ public class WorldGenCustomSwamp extends WorldGenerator
             int metadata)
     {
         world.setBlock(x, y, z,
-                Block.vine.blockID, metadata, 3);
+                Block.vine, metadata, 3);
         
         for (int i = 4; world.getBlockId(x, --y, z) == 0 && i > 0; i--)
             world.setBlock(x, y, z,
-                    Block.vine.blockID, metadata, 3);
+                    Block.vine, metadata, 3);
     }
 }

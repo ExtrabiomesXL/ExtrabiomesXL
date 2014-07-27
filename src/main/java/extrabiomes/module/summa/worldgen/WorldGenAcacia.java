@@ -110,7 +110,7 @@ public class WorldGenAcacia extends WorldGenerator
                         
                         if (Block.blocksList[id] != null
                                 && !Block.blocksList[id].isLeaves(world, x1, y1, z1)
-                                && id != Block.grass.blockID && id != Block.dirt.blockID
+                                && id != Block.grass && id != Block.dirt
                                 && !Block.blocksList[id].isWood(world, x1, y1, z1))
                             canGrow = false;
                         
@@ -129,7 +129,7 @@ public class WorldGenAcacia extends WorldGenerator
         if (!TreeSoilRegistry.isValidSoil(world.getBlockId(x, y - 1, z)) || y >= 256 - height - 1)
             return false;
         
-        world.setBlock(x, y - 1, z, Block.dirt.blockID);
+        world.setBlock(x, y - 1, z, Block.dirt);
         final byte canopyHeight = 3;
         final int minCanopyRadius = 0;
         

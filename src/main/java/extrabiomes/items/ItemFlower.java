@@ -22,7 +22,7 @@ public class ItemFlower extends MultiItemBlock
 
 		this.group = b.group;
 
-		//LogHelper.finer("ItemFlower - " + id + ", " + ( b != null ? b.blockID : "null" ) + ", group = " + group);
+		//LogHelper.finer("ItemFlower - " + id + ", " + ( b != null ? b : "null" ) + ", group = " + group);
 		
 		max_meta = b.getGroupTypes().size();
     }

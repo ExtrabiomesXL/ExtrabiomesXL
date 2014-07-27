@@ -257,7 +257,7 @@ public class RecipeManager
         recipe = new ShapedOreRecipe(new ItemStack(event.block, 4, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()), new String[] { "rr", "rr" }, 'r', redRockItem.get());
         proxy.addRecipe(recipe);
         
-        proxy.addSmelting(event.block.blockID, BlockRedRock.BlockType.RED_COBBLE.metadata(), redRockItem.get(), 0.1F);
+        proxy.addSmelting(event.block, BlockRedRock.BlockType.RED_COBBLE.metadata(), redRockItem.get(), 0.1F);
     }
     
     @SubscribeEvent

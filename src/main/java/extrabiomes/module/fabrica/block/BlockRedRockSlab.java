@@ -61,12 +61,12 @@ public class BlockRedRockSlab extends BlockSlab
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
-        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");
-        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockslabside");
-        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockslabtop");
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockbrick");
+        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockslabside");
+        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockslabtop");
     }
     
     @Override
@@ -76,7 +76,7 @@ public class BlockRedRockSlab extends BlockSlab
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         metadata &= 7;
         return metadata == BlockType.REDROCK.metadata() ? side < 2 ? textures[3]

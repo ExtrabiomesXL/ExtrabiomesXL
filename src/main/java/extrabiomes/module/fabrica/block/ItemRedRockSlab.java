@@ -26,7 +26,7 @@ public class ItemRedRockSlab extends ItemSlab
     
     public ItemRedRockSlab(int id)
     {
-        super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab.get().blockID);
+        super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab.get());
     }
     
     @Override

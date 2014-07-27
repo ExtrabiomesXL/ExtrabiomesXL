@@ -23,8 +23,8 @@ public class BiomeGlacier extends ExtrabiomeGenBase
     {
 		super(BiomeSettings.GLACIER, Type.FROZEN, Type.WASTELAND, Type.MOUNTAIN);
         spawnableCreatureList.clear();
-        topBlock = (byte) Block.blockSnow.blockID;
-        fillerBlock = (byte) Block.ice.blockID;
+        topBlock = (byte) Block.blockSnow;
+        fillerBlock = (byte) Block.ice;
         setColor(0x77A696);
         setBiomeName("Glacier");
         setEnableSnow();

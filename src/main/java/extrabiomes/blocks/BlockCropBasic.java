@@ -87,7 +87,7 @@ public class BlockCropBasic extends BlockFlower {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIIcons(IIconRegister IIconRegister)
+	public void registerBlockIcons(IIconRegister iconRegister)
 	{
 		ArrayList<IIcon> IIcons = Lists.newArrayListWithCapacity(MAX_GROWTH_STAGE+1);
 		final String name = cropType.name().toLowerCase();
@@ -96,7 +96,7 @@ public class BlockCropBasic extends BlockFlower {
 			int l = (k != (MAX_GROWTH_STAGE - 1)) ? k : k-1;
 			
 			final String texture = "plant_" + name + l;
-			IIcon IIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + texture);
+			IIcon IIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texture);
 			IIcons.add(k, IIcon);
 		}
 		cropType.setStageIIcons(IIcons);
@@ -104,7 +104,7 @@ public class BlockCropBasic extends BlockFlower {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIIcon(int side, int metadata)
+	public IIcon getIcon(int side, int metadata)
 	{
 		if (metadata > MAX_GROWTH_STAGE) metadata = MAX_GROWTH_STAGE;
 		try {
@@ -193,9 +193,9 @@ public class BlockCropBasic extends BlockFlower {
 		final int id_pXnZ = world.getBlockId(x + 1, y, z - 1);
 		final int id_pXpZ = world.getBlockId(x + 1, y, z + 1);
 		final int id_nXpZ = world.getBlockId(x - 1, y, z + 1);
-		final boolean flagX = id_nX == this.blockID || id_pX == this.blockID;
-		final boolean flagZ = id_nZ == this.blockID || id_pZ == this.blockID;
-		final boolean flagD = id_nXnZ == this.blockID || id_pXnZ == this.blockID || id_pXpZ == this.blockID || id_nXpZ == this.blockID;
+		final boolean flagX = id_nX == this || id_pX == this;
+		final boolean flagZ = id_nZ == this || id_pZ == this;
+		final boolean flagD = id_nXnZ == this || id_pXnZ == this || id_pXpZ == this || id_nXpZ == this;
 		
 		// bonus for nearby soil
 		for (int i = x - 1; i <= x + 1; ++i) {

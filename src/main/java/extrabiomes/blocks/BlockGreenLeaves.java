@@ -161,20 +161,20 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfancy");
-        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfast");
-        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfancy");
-        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfast");
-        textures[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafancy");
-        textures[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafast");
-        textures[6] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfancy");
-        textures[7] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfast");
-        textures[8] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesfir");
-        textures[9] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredwood");
-        textures[10] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesacacia");
-        textures[11] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavescypress");
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfancy");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfast");
+        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfancy");
+        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfast");
+        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafancy");
+        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafast");
+        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfancy");
+        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfast");
+        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesfir");
+        textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredwood");
+        textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesacacia");
+        textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavescypress");
     }
     
     @Override
@@ -269,18 +269,18 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
     
     // Return your Better Leaves IIcon
-    public IIcon getIIconBetterLeaves(int metadata, float randomIndex)
+    public IIcon getIconBetterLeaves(int metadata, float randomIndex)
     {
         return textures[8 + unmarkedMetadata(metadata)];
     }
     
-    public IIcon getIIconFallingLeaves(int metadata)
+    public IIcon getIconFallingLeaves(int metadata)
     {
         return textures[(unmarkedMetadata(metadata) * 2) + 1];
     }
@@ -336,7 +336,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     public int idDropped(int metadata, Random rand, int par3)
     {
         final Optional<BlockType> type = Optional.fromNullable(BlockType.fromMetadata(metadata));
-        return type.isPresent() ? type.get().getSaplingID() : Block.sapling.blockID;
+        return type.isPresent() ? type.get().getSaplingID() : Block.sapling;
     }
     
     @Override

@@ -61,10 +61,10 @@ public class ItemCustomFood extends ItemFood {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIIcons(IIconRegister IIconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		for (FoodType type : FoodType.values()) {
 			final String IIconPath = Extrabiomes.TEXTURE_PATH + type.texture;
-			type.IIcon = IIconRegister.registerIIcon(IIconPath);
+			type.IIcon = iconRegister.registerIcon(IIconPath);
 		}
 	}
 
@@ -74,7 +74,7 @@ public class ItemCustomFood extends ItemFood {
 	}
 
 	@Override
-	public IIcon getIIconFromDamage(int meta) {
+	public IIcon getIconFromDamage(int meta) {
 		return getFoodType(meta).IIcon;
 	}
 

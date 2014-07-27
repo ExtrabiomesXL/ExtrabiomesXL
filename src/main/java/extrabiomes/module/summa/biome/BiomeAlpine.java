@@ -25,8 +25,8 @@ public class BiomeAlpine extends ExtrabiomeGenBase
     public BiomeAlpine()
     {
 		super(BiomeSettings.ALPINE, Type.FROZEN, Type.MOUNTAIN);
-        topBlock = (byte) Block.stone.blockID;
-        fillerBlock = (byte) Block.stone.blockID;
+        topBlock = (byte) Block.stone;
+        fillerBlock = (byte) Block.stone;
         setColor(0x8DACC4);
         setEnableSnow();
         setBiomeName("Alpine");

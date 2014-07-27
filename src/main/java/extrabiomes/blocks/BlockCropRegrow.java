@@ -130,6 +130,6 @@ public class BlockCropRegrow extends BlockCropBasic {
 	 */
 	public void doRegrow(World world, int x, int y, int z, int meta) {
 		final int newMeta = meta > REGROW_META ? REGROW_META : meta;
-		world.setBlock(x, y, z, blockID, newMeta, 3);
+		world.setBlock(x, y, z, this, newMeta, 3);
 	}
 }

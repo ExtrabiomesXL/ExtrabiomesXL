@@ -108,13 +108,13 @@ public class BlockNewSapling extends BlockFlower
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegistry)
+    public void registerBlockIcons(IIconRegister IIconRegistry)
     {
-        textures[0] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingbaldcypress");
-        textures[1] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingjapanesemaple");
-        textures[2] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingjapanesemapleshrub");
-        textures[3] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingrainboweucalyptus");
-        textures[4] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingsakura");
+        textures[0] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingbaldcypress");
+        textures[1] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingjapanesemaple");
+        textures[2] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingjapanesemapleshrub");
+        textures[3] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingrainboweucalyptus");
+        textures[4] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingsakura");
     }
     
     private void attemptGrowTree(World world, int x, int y, int z, Random rand)
@@ -147,7 +147,7 @@ public class BlockNewSapling extends BlockFlower
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         metadata = unmarkedMetadata(metadata);
         
@@ -257,14 +257,14 @@ public class BlockNewSapling extends BlockFlower
             else if (isForestryFarmed)
                 if (isHuge)
                 {
-                    world.setBlock(x + x1, y - 1, z + z1, Block.sand.blockID);
-                    world.setBlock(x + x1 + 1, y - 1, z + z1, Block.sand.blockID);
-                    world.setBlock(x + x1, y - 1, z + z1 + 1, Block.sand.blockID);
-                    world.setBlock(x + x1 + 1, y - 1, z + z1 + 1, Block.sand.blockID);
+                    world.setBlock(x + x1, y - 1, z + z1, Block.sand);
+                    world.setBlock(x + x1 + 1, y - 1, z + z1, Block.sand);
+                    world.setBlock(x + x1, y - 1, z + z1 + 1, Block.sand);
+                    world.setBlock(x + x1 + 1, y - 1, z + z1 + 1, Block.sand);
                 }
                 else
                 {
-                    world.setBlock(x, y - 1, z, Block.sand.blockID);
+                    world.setBlock(x, y - 1, z, Block.sand);
                 }
         }//*/
     }

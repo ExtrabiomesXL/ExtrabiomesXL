@@ -26,7 +26,7 @@ public class ItemNewWoodSlab extends ItemSlab
     
     public ItemNewWoodSlab(int id)
     {
-        super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab.get().blockID);
+        super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab.get());
     }
     
     @Override

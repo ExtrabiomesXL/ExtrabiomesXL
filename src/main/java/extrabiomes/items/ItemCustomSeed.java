@@ -48,10 +48,10 @@ public class ItemCustomSeed extends Item implements IPlantable {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIIcons(IIconRegister IIconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		for (SeedType type : SeedType.values()) {
 			final String IIconPath = Extrabiomes.TEXTURE_PATH + "seed_" + type.name().toLowerCase();
-			type.IIcon = IIconRegister.registerIIcon(IIconPath);
+			type.IIcon = iconRegister.registerIcon(IIconPath);
 		}
 	}
 
@@ -61,7 +61,7 @@ public class ItemCustomSeed extends Item implements IPlantable {
 	}
 
 	@Override
-	public IIcon getIIconFromDamage(int meta) {
+	public IIcon getIconFromDamage(int meta) {
 		return getSeedType(meta).IIcon;
 	}
 
@@ -100,7 +100,7 @@ public class ItemCustomSeed extends Item implements IPlantable {
 				
 				final SeedType seed = getSeedType(itemStack.getItemDamage()); 
 				
-				world.setBlock(x, y + 1, z, seed.cropType.blockID);
+				world.setBlock(x, y + 1, z, seed.cropType);
 				--itemStack.stackSize;
 				return true;
 			} else {

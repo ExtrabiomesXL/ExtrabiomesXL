@@ -37,7 +37,7 @@ public class SubBlockWaterPlant extends SubBlock {
 		groundBlocks = new LinkedList();
 	
 		// Add dirt by default
-		groundBlocks.add((Object)Block.dirt.blockID);
+		groundBlocks.add((Object)Block.dirt);
 	}
 	
     @Override
@@ -50,7 +50,7 @@ public class SubBlockWaterPlant extends SubBlock {
     	// We need to be under water
     	if(maxHeight > 1 && topId == parentId && this.metaData == world.getBlockMetadata(x, y + 1, z)){
     		
-    	} else if(topId != Block.waterStill.blockID && topId != Block.waterStill.blockID) { 
+    	} else if(topId != Block.waterStill && topId != Block.waterStill) { 
     		return false;
     	}
     	
@@ -72,7 +72,7 @@ public class SubBlockWaterPlant extends SubBlock {
 	@Override
     public void onNeighborBlockChange(World world, int x, int y, int z, int idNeighbor, Block block) {
     	if (parentId != idNeighbor && !canBlockStay(world, x, y, z)) {
-        	world.setBlock(x, y, z, Block.waterStill.blockID);
+        	world.setBlock(x, y, z, Block.waterStill);
         	block.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
         }
     }

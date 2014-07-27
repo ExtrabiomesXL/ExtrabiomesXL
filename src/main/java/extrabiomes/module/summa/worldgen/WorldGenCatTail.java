@@ -20,7 +20,7 @@ class WorldGenCatTail extends WorldGenerator
     
     WorldGenCatTail(int blockID)
     {
-        this.blockID = blockID;
+        this = blockID;
     }
     
     @Override

@@ -24,7 +24,7 @@ public class SaplingBonemealEventHandler
     @SubscribeEvent
     public void onBonemealEvent(BonemealEvent e)
     {
-        if (e.getResult() == Result.DEFAULT && e.ID == sapling.blockID)
+        if (e.getResult() == Result.DEFAULT && e.ID == sapling)
         {
             if (!e.world.isRemote)
             {

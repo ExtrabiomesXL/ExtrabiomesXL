@@ -171,9 +171,9 @@ public class WorldGenNewRedwood extends WorldGenerator
                     }
 
                     if(world.getBlockId(x + j1, y, z + j2) != 0) {
-                        setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.dirt.blockID, 0);
+                        setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.dirt, 0);
                     } else {
-                        setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.grass.blockID, 0);
+                        setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.grass, 0);
                     }
                 }
             }
@@ -253,7 +253,7 @@ public class WorldGenNewRedwood extends WorldGenerator
 	                    setBlockAndMetadata(world, x + j1, y, z + j2, 0, 0);
 	                }
 	
-	                setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.dirt.blockID, 0);
+	                setBlockAndMetadata(world, x + j1, y - 1, z + j2, Block.dirt, 0);
 	
 	                int id = world.getBlockId(x + j1, y, z + j2);
 	                if(Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x + j1, y, z + j2))

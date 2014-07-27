@@ -106,7 +106,7 @@ public class ItemCustomDye extends Item {
 	/**
 	 * Gets an IIcon index based on an item's damage value
 	 */
-	public IIcon getIIconFromDamage(int meta) {
+	public IIcon getIconFromDamage(int meta) {
 		int j = MathHelper.clamp_int(meta, 0, Color.values().length);
 		return this.dyeIIcons[j];
 	}
@@ -136,14 +136,14 @@ public class ItemCustomDye extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIIcons(IIconRegister IIconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		final Color[] colors = Color.values();
 		this.dyeIIcons = new IIcon[colors.length];
 
 		for (int i = 0; i < colors.length; ++i) {
 			final String IIconPath = Extrabiomes.TEXTURE_PATH + "dye_" + colors[i].name;
 			// LogHelper.info("Registering " + IIconPath);
-			this.dyeIIcons[i] = IIconRegister.registerIIcon(IIconPath);
+			this.dyeIIcons[i] = iconRegister.registerIcon(IIconPath);
 		}
 	}
 }

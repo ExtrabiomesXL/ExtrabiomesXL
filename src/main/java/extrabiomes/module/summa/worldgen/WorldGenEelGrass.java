@@ -21,7 +21,7 @@ class WorldGenEelGrass extends WorldGenerator
     private final int metaData;
     
     WorldGenEelGrass(int blockID, int metaData) {
-        this.blockID = blockID;
+        this = blockID;
         this.metaData = metaData;
     }
     
@@ -33,7 +33,7 @@ class WorldGenEelGrass extends WorldGenerator
             y--;
         }
         
-        while(((i = world.getBlockId(x, y, z)) == Block.waterMoving.blockID || i == Block.waterStill.blockID) && y > 0 && maxDepth > 0) {
+        while(((i = world.getBlockId(x, y, z)) == Block.waterMoving || i == Block.waterStill) && y > 0 && maxDepth > 0) {
         	y--;
         	maxDepth--;
         }

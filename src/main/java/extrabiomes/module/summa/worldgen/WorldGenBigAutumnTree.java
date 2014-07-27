@@ -15,14 +15,14 @@ import net.minecraft.world.World;
 public class WorldGenBigAutumnTree extends WorldGenAutumnTree
 {
     
-    private static int          trunkBlock      = Block.wood.blockID;
+    private static int          trunkBlock      = Block.wood;
     private static int          trunkMetadata   = 0;
     
     private static final byte[] otherCoordPairs = new byte[] { (byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };
     
     public static void setTrunkBlock(Block block, int metadata)
     {
-        WorldGenBigAutumnTree.trunkBlock = block.blockID;
+        WorldGenBigAutumnTree.trunkBlock = block;
         WorldGenBigAutumnTree.trunkMetadata = metadata;
     }
     

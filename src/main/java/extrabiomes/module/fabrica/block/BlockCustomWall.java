@@ -50,9 +50,9 @@ public class BlockCustomWall extends BlockWall
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        texture = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
+        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
     }
     
     @Override
@@ -62,7 +62,7 @@ public class BlockCustomWall extends BlockWall
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         return texture;
     }

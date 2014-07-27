@@ -16,7 +16,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -107,20 +107,20 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfancy");
-        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfast");
-        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfancy");
-        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfast");
-        textures[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfancy");
-        textures[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfast");
-        textures[6] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfancy");
-        textures[7] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfast");
-        textures[8] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbrownautumn");
-        textures[9] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesorangeautumn");
-        textures[10] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredautumn");
-        textures[11] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavesyellowautumn");
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfancy");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfast");
+        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfancy");
+        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfast");
+        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfancy");
+        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfast");
+        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfancy");
+        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfast");
+        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbrownautumn");
+        textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesorangeautumn");
+        textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredautumn");
+        textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesyellowautumn");
     }
     
     private static final int METADATA_BITMASK       = 0x3;
@@ -204,7 +204,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
         final int idDropped = idDropped(metadata, world.rand, par7);
         if (idDropped > 0)
         {
-            dropBlockAsItem_do(world, x, y, z, new ItemStack(idDropped(metadata, world.rand, par7), 1, damageDropped(metadata)));
+            dropBlockAsItem(world, x, y, z, new ItemStack(idDropped(metadata, world.rand, par7), 1, damageDropped(metadata)));
         }
     }
     
@@ -221,23 +221,22 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
         
         if (world.rand.nextInt(200) == 0)
         {
-            dropBlockAsItem_do(world, x, y, z, new ItemStack(Item.appleRed, 1, 0));
+            dropBlockAsItem(world, x, y, z, new ItemStack(Items.apple, 1, 0));
         }
     }
     
-    @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
     
     // Return your Better Leaves IIcon
-    public IIcon getIIconBetterLeaves(int metadata, float randomIndex)
+    public IIcon getIconBetterLeaves(int metadata, float randomIndex)
     {
         return textures[8 + unmarkedMetadata(metadata)];
     }
     
-    public IIcon getIIconFallingLeaves(int metadata)
+    public IIcon getIconFallingLeaves(int metadata)
     {
         return textures[(unmarkedMetadata(metadata) * 2) + 1];
     }
@@ -262,7 +261,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     public int idDropped(int metadata, Random rand, int par3)
     {
         final Optional<BlockType> type = Optional.fromNullable(BlockType.fromMetadata(metadata));
-        return type.isPresent() ? type.get().getSaplingID() : Block.sapling.blockID;
+        return type.isPresent() ? type.get().getSaplingID() : Block.sapling;
     }
     
     @Override

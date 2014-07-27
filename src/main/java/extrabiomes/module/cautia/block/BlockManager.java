@@ -44,9 +44,9 @@ public enum BlockManager
             proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
             proxy.registerBlock(thisBlock, Reference.MOD_ID + ":" + "extrabiomes.quicksand");
             
-            FacadeHelper.addBuildcraftFacade(thisBlock.blockID);
+            FacadeHelper.addBuildcraftFacade(thisblock);
             
-            proxy.registerWorldGenerator(new QuicksandGenerator(thisBlock.blockID));
+            proxy.registerWorldGenerator(new QuicksandGenerator(thisblock));
         }
     };
     

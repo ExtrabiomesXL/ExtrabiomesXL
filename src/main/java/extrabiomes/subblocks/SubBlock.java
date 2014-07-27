@@ -26,11 +26,11 @@ public class SubBlock {
 	}
 	
 	@SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister) {
-        texture = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + textureName);
+    public void registerIcons(IIconRegister iconRegister) {
+        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + textureName);
     }
     
-    public IIcon getIIcon(int side, int metaData) {
+    public IIcon getIcon(int side, int metaData) {
         return texture;
     }
     

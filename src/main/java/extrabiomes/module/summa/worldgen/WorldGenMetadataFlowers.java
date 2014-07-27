@@ -20,7 +20,7 @@ class WorldGenMetadataFlowers extends WorldGenerator
     
     WorldGenMetadataFlowers(int blockId, int metadata)
     {
-        this.blockId = blockId;
+        this = blockId;
         this.metadata = metadata;
     }
     
@@ -34,7 +34,7 @@ class WorldGenMetadataFlowers extends WorldGenerator
             final int z1 = z + rand.nextInt(8) - rand.nextInt(8);
             
             final boolean isAir = world.isAirBlock(x1, y1, z1);
-            final boolean isSnow = (world.getBlockId(x1, y1, z) == Block.snow.blockID);
+            final boolean isSnow = (world.getBlockId(x1, y1, z) == Block.snow);
             
             try {
 	            if ((isAir || isSnow) && Block.blocksList[blockId].canBlockStay(world, x1, y1, z1)) {

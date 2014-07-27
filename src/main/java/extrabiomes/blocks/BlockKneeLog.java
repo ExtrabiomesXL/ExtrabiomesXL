@@ -52,25 +52,25 @@ public class BlockKneeLog extends BlockLog
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         
-        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee1");
-        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee2");
-        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee3");
-        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee4");
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee1");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee2");
+        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee3");
+        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "knee4");
         
-        textures[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "side1");
-        textures[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "side2");
-        textures[6] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "top");
-        textures[7] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "top");
+        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "side1");
+        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "side2");
+        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "top");
+        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "log" + treeType + "top");
         
-        textures[8] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "todo");
+        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "todo");
         
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         final int orientation = metadata;
         

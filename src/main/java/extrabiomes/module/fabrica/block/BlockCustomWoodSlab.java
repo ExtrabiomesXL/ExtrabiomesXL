@@ -12,6 +12,7 @@ import java.util.Random;
 import net.minecraft.block.BlockWoodSlab;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -55,24 +56,24 @@ public class BlockCustomWoodSlab extends BlockWoodSlab
             singleSlabID = id;
         setHardness(2.0F);
         setResistance(5.0F);
-        setStepSound(soundWoodFootstep);
-        setBurnProperties(blockID, 5, 20);
+        setStepSound(soundTypeWood);
+        Blocks.fire.setFireInfo(this, 5, 20);
         setLightOpacity(0);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "planksredwood");
-        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "planksfir");
-        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "planksacacia");
-        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "plankscypress");
-        textures[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "planksjapanesemaple");
-        textures[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "planksrainboweucalyptus");
-        textures[6] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "planksautumn");
-        textures[7] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "planksbaldcypress");
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksredwood");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksfir");
+        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksacacia");
+        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "plankscypress");
+        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksjapanesemaple");
+        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksrainboweucalyptus");
+        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksautumn");
+        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksbaldcypress");
     }
     
     @Override
@@ -82,7 +83,7 @@ public class BlockCustomWoodSlab extends BlockWoodSlab
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         return textures[metadata & 7];
     }

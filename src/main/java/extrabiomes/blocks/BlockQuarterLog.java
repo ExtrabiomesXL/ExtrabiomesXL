@@ -98,42 +98,42 @@ public class BlockQuarterLog extends BlockLog
     {
         super(id);
         this.barkOnSides = barkOnSides;
-        barkOnSides.blockID = blockID;
+        barkOnSides = blockID;
         this.index = index;
         textures = new HashMap<Integer, IIcon>();
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         
-        textureArray[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideleft");
-        textureArray[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideright");
-        textureArray[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodtopleft");
-        textureArray[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodtopright");
-        textureArray[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodbottomleft");
-        textureArray[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodbottomright");
-        textureArray[6] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodsideleft");
-        textureArray[7] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "redwoodsideright");
+        textureArray[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideleft");
+        textureArray[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideright");
+        textureArray[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodtopleft");
+        textureArray[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodtopright");
+        textureArray[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodbottomleft");
+        textureArray[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodbottomright");
+        textureArray[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodsideleft");
+        textureArray[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redwoodsideright");
         
-        textureArray[8] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logfirsideleft");
-        textureArray[9] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logfirsideright");
-        textureArray[10] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firtopleft");
-        textureArray[11] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firtopright");
-        textureArray[12] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firbottomleft");
-        textureArray[13] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firbottomright");
-        textureArray[14] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firsideleft");
-        textureArray[15] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "firsideright");
+        textureArray[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirsideleft");
+        textureArray[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirsideright");
+        textureArray[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firtopleft");
+        textureArray[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firtopright");
+        textureArray[12] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firbottomleft");
+        textureArray[13] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firbottomright");
+        textureArray[14] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firsideleft");
+        textureArray[15] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "firsideright");
         
-        textureArray[16] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logoaksideleft");
-        textureArray[17] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logoaksideright");
-        textureArray[18] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oaktopleft");
-        textureArray[19] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oaktopright");
-        textureArray[20] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oakbottomleft");
-        textureArray[21] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oakbottomright");
-        textureArray[22] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oaksideleft");
-        textureArray[23] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "oaksideright");
+        textureArray[16] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logoaksideleft");
+        textureArray[17] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logoaksideright");
+        textureArray[18] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oaktopleft");
+        textureArray[19] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oaktopright");
+        textureArray[20] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oakbottomleft");
+        textureArray[21] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oakbottomright");
+        textureArray[22] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oaksideleft");
+        textureArray[23] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "oaksideright");
         
         setupTextures(index);
     }
@@ -177,7 +177,7 @@ public class BlockQuarterLog extends BlockLog
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         final int orientation = metadata & 12;
         int type = metadata & 3;
@@ -271,13 +271,13 @@ public class BlockQuarterLog extends BlockLog
     private int getNextBlockID()
     {
         //LogHelper.info(Integer.toString(blockID));
-        if (blockID == BarkOn.SW.blockID)
-            return BarkOn.NE.blockID;
-        if (blockID == BarkOn.NE.blockID)
-            return BarkOn.NW.blockID;
-        if (blockID == BarkOn.NW.blockID)
-            return BarkOn.SE.blockID;
-        return BarkOn.SW.blockID;
+        if (blockID == BarkOn.SW)
+            return BarkOn.NE;
+        if (blockID == BarkOn.NE)
+            return BarkOn.NW;
+        if (blockID == BarkOn.NW)
+            return BarkOn.SE;
+        return BarkOn.SW;
     }
     
     private int getNWTextureOffset(int side, final int orientation)
@@ -360,7 +360,7 @@ public class BlockQuarterLog extends BlockLog
 	    		pickMeta = BlockNewLog.BlockType.REDWOOD.metadata();
 	    		break;
 	    	case 2:
-	    		pickID = Block.wood.blockID;
+	    		pickID = Block.wood;
 	    		pickMeta = 0;
 	    		break;
     		default:
@@ -371,7 +371,7 @@ public class BlockQuarterLog extends BlockLog
     	
     	
         final ItemStack itemstack = new ItemStack(pickID, 1, pickMeta);//super.getPickBlock(target, world, x, y, z);
-        //itemstack.itemID = BarkOn.SE.blockID;
+        //itemstack.itemID = BarkOn.SE;
         return itemstack;
     }
     
@@ -534,12 +534,12 @@ public class BlockQuarterLog extends BlockLog
 	    	case 1:
     			return BlockSettings.CUSTOMLOG.getID();
 	    	case 2:
-	    		return Block.wood.blockID;
+	    		return Block.wood;
     		default:
 	    		return BlockSettings.NEWLOG.getID();
     	}
     	
-        //return BarkOn.SE.blockID;
+        //return BarkOn.SE;
     }
         
     @Override
@@ -578,53 +578,53 @@ public class BlockQuarterLog extends BlockLog
             
             if (thisMeta == northMeta)
             {
-                if (northID == BarkOn.NW.blockID)
+                if (northID == BarkOn.NW)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
                     return;
                 }
-                if (northID == BarkOn.NE.blockID)
+                if (northID == BarkOn.NE)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == eastMeta)
             {
-                if (eastID == BarkOn.NE.blockID)
+                if (eastID == BarkOn.NE)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
                     return;
                 }
-                if (eastID == BarkOn.SE.blockID)
+                if (eastID == BarkOn.SE)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == southMeta)
             {
-                if (southID == BarkOn.SW.blockID)
+                if (southID == BarkOn.SW)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
                     return;
                 }
-                if (southID == BarkOn.SE.blockID)
+                if (southID == BarkOn.SE)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == westMeta)
             {
-                if (westID == BarkOn.NW.blockID)
+                if (westID == BarkOn.NW)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
                     return;
                 }
-                if (westID == BarkOn.SW.blockID)
+                if (westID == BarkOn.SW)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
                     return;
                 }
             }
@@ -645,53 +645,53 @@ public class BlockQuarterLog extends BlockLog
             
             if (thisMeta == upMeta)
             {
-                if (upID == BarkOn.NW.blockID)
+                if (upID == BarkOn.NW)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
                     return;
                 }
-                if (upID == BarkOn.NE.blockID)
+                if (upID == BarkOn.NE)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == eastMeta)
             {
-                if (eastID == BarkOn.NE.blockID)
+                if (eastID == BarkOn.NE)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
                     return;
                 }
-                if (eastID == BarkOn.SE.blockID)
+                if (eastID == BarkOn.SE)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == downMeta)
             {
-                if (downID == BarkOn.SW.blockID)
+                if (downID == BarkOn.SW)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
                     return;
                 }
-                if (downID == BarkOn.SE.blockID)
+                if (downID == BarkOn.SE)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == westMeta)
             {
-                if (westID == BarkOn.NW.blockID)
+                if (westID == BarkOn.NW)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
                     return;
                 }
-                if (westID == BarkOn.SW.blockID)
+                if (westID == BarkOn.SW)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
                     return;
                 }
             }
@@ -712,53 +712,53 @@ public class BlockQuarterLog extends BlockLog
             
             if (thisMeta == northMeta)
             {
-                if (northID == BarkOn.SW.blockID)
+                if (northID == BarkOn.SW)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
                     return;
                 }
-                if (northID == BarkOn.NE.blockID)
+                if (northID == BarkOn.NE)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == upMeta)
             {
-                if (upID == BarkOn.NW.blockID)
+                if (upID == BarkOn.NW)
                 {
-                    world.setBlock(x, y, z, BarkOn.SE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SE, thisMeta, 3);
                     return;
                 }
-                if (upID == BarkOn.NE.blockID)
+                if (upID == BarkOn.NE)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == southMeta)
             {
-                if (southID == BarkOn.SE.blockID)
+                if (southID == BarkOn.SE)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.SW, thisMeta, 3);
                     return;
                 }
-                if (southID == BarkOn.NW.blockID)
+                if (southID == BarkOn.NW)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
                     return;
                 }
             }
             if (thisMeta == downMeta)
             {
-                if (downID == BarkOn.SW.blockID)
+                if (downID == BarkOn.SW)
                 {
-                    world.setBlock(x, y, z, BarkOn.NE.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NE, thisMeta, 3);
                     return;
                 }
-                if (downID == BarkOn.SE.blockID)
+                if (downID == BarkOn.SE)
                 {
-                    world.setBlock(x, y, z, BarkOn.NW.blockID, thisMeta, 3);
+                    world.setBlock(x, y, z, BarkOn.NW, thisMeta, 3);
                     return;
                 }
             }

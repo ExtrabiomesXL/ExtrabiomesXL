@@ -42,15 +42,15 @@ public class PluginThaumcraft4 {
 		ThaumcraftApi.registerObjectTag(Element.RED_COBBLE.get().itemID, Element.RED_COBBLE.get().getItemDamage(), (new AspectList()).add(Aspect.STONE, 1).add(Aspect.ENTROPY, 1).add(Aspect.FIRE, 1));
 		ThaumcraftApi.registerObjectTag(Element.RED_ROCK.get().itemID, Element.RED_ROCK.get().getItemDamage(), (new AspectList()).add(Aspect.STONE, 2).add(Aspect.FIRE, 1));
 		ThaumcraftApi.registerObjectTag(Element.RED_ROCK_BRICK.get().itemID, Element.RED_ROCK_BRICK.get().getItemDamage(), (new AspectList()).add(Aspect.STONE, 2).add(Aspect.FIRE, 1));
-		ThaumcraftApi.registerObjectTag(Stuff.slabRedRock.get().blockID, -1, (new AspectList()).add(Aspect.STONE, 1).add(Aspect.FIRE, 1));
-		ThaumcraftApi.registerObjectTag(Stuff.slabRedRockDouble.get().blockID, -1, (new AspectList()).add(Aspect.STONE, 1).add(Aspect.FIRE, 1));
-		ThaumcraftApi.registerObjectTag(Stuff.stairsRedCobble.get().blockID, -1, (new AspectList()).add(Aspect.STONE, 1).add(Aspect.FIRE, 1));
-		ThaumcraftApi.registerObjectTag(Stuff.stairsRedRockBrick.get().blockID, -1, (new AspectList()).add(Aspect.STONE, 1).add(Aspect.FIRE, 1));
-		ThaumcraftApi.registerObjectTag(Stuff.wall.get().blockID, -1, (new AspectList()).add(Aspect.STONE, 1).add(Aspect.FIRE, 1));
+		ThaumcraftApi.registerObjectTag(Stuff.slabRedRock.get(), -1, (new AspectList()).add(Aspect.STONE, 1).add(Aspect.FIRE, 1));
+		ThaumcraftApi.registerObjectTag(Stuff.slabRedRockDouble.get(), -1, (new AspectList()).add(Aspect.STONE, 1).add(Aspect.FIRE, 1));
+		ThaumcraftApi.registerObjectTag(Stuff.stairsRedCobble.get(), -1, (new AspectList()).add(Aspect.STONE, 1).add(Aspect.FIRE, 1));
+		ThaumcraftApi.registerObjectTag(Stuff.stairsRedRockBrick.get(), -1, (new AspectList()).add(Aspect.STONE, 1).add(Aspect.FIRE, 1));
+		ThaumcraftApi.registerObjectTag(Stuff.wall.get(), -1, (new AspectList()).add(Aspect.STONE, 1).add(Aspect.FIRE, 1));
 		
 		ThaumcraftApi.registerObjectTag(Stuff.paste.get().itemID, -1, (new AspectList()).add(Aspect.SENSES, 1));
 		ThaumcraftApi.registerObjectTag(Stuff.scarecrow.get().itemID, -1, (new AspectList()).add(Aspect.CROP, 4).add(Aspect.HUNGER, 2));
-		ThaumcraftApi.registerObjectTag(Stuff.quickSand.get().blockID, -1, (new AspectList()).add(Aspect.WATER, 2).add(Aspect.EARTH, 3).add(Aspect.TRAP, 1));
+		ThaumcraftApi.registerObjectTag(Stuff.quickSand.get(), -1, (new AspectList()).add(Aspect.WATER, 2).add(Aspect.EARTH, 3).add(Aspect.TRAP, 1));
 		ThaumcraftApi.registerObjectTag(Element.CRACKEDSAND.get().itemID, Element.CRACKEDSAND.get().getItemDamage(), (new AspectList()).add(Aspect.EARTH, 1).add(Aspect.ENTROPY, 1).add(Aspect.DARKNESS, 1));
 		
 		

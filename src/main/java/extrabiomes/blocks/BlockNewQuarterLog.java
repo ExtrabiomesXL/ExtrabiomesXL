@@ -54,25 +54,25 @@ public class BlockNewQuarterLog extends BlockLog
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         
-        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + treeType + "top1");
-        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + treeType + "top2");
-        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + treeType + "top3");
-        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + treeType + "top4");
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top1");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top2");
+        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top3");
+        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "top4");
         
-        textures[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + treeType + "log1");
-        textures[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + treeType + "log2");
-        textures[6] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + treeType + "side1");
-        textures[7] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + treeType + "side2");
+        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "log1");
+        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "log2");
+        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "side1");
+        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + treeType + "side2");
         
-        //textures[8] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "todo");
+        //textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "todo");
         
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         final int orientation = metadata;
         
@@ -328,7 +328,7 @@ public class BlockNewQuarterLog extends BlockLog
     	} else if(blockID == BlockSettings.FIRQUARTERLOG.getID()) {
     		return BlockSettings.CUSTOMLOG.getID();
     	} else if(blockID == BlockSettings.OAKQUARTERLOG.getID()) {
-    		return Block.wood.blockID;
+    		return Block.wood;
     	} else if(blockID == BlockSettings.NEWQUARTERLOG.getID()) {
     		return BlockSettings.NEWLOG.getID();
     	}
@@ -347,7 +347,7 @@ public class BlockNewQuarterLog extends BlockLog
     	} else if(blockID == BlockSettings.FIRQUARTERLOG.getID()) {
     		return BlockCustomLog.BlockType.FIR.metadata();
     	} else if(blockID == BlockSettings.OAKQUARTERLOG.getID()) {
-    		return Block.wood.blockID;
+    		return Block.wood;
     	} else if(blockID == BlockSettings.NEWQUARTERLOG.getID()) {
     		return BlockNewLog.BlockType.BALD_CYPRESS.metadata();
     	}

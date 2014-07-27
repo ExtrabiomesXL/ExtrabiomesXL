@@ -41,7 +41,7 @@ public class OilGenerator implements IWorldGenerator
                 final int id = world.getBlockId(i, j, k);
                 if (id != 0)
                 {
-                    if (id == Block.sand.blockID
+                    if (id == Block.sand
                             || (BiomeSettings.WASTELAND.getBiome().isPresent() && (byte) id == BiomeSettings.WASTELAND.getBiome().get().topBlock))
                         api.generateSurfaceDeposit(world, rand, i, j, k, 3);
                     

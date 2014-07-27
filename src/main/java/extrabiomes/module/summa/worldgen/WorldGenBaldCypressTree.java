@@ -68,7 +68,7 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase
         for (int yy = y - 1; yy > y - 6; yy--)
         {
             int blockId = world.getBlockId(x, yy, z);
-            if (blockId != Block.waterStill.blockID && blockId != Block.waterStill.blockID)
+            if (blockId != Block.waterStill && blockId != Block.waterStill)
                 break;
             waterLevel++;
         }
@@ -93,7 +93,7 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase
         for (int yy = y - 1; yy > y - 6; yy--)
         {
             int blockId = world.getBlockId(x, yy, z);
-            if (blockId != Block.waterStill.blockID && blockId != Block.waterStill.blockID)
+            if (blockId != Block.waterStill && blockId != Block.waterStill)
                 break;
             waterLevel++;
         }

@@ -24,7 +24,7 @@ public class CropBonemealEventHandler
     @SubscribeEvent
     public void onBonemealEvent(BonemealEvent e)
     {
-		if (e.getResult() == Result.DEFAULT && e.ID == crop.blockID)
+		if (e.getResult() == Result.DEFAULT && e.ID == crop)
         {
             if (!e.world.isRemote)
             {

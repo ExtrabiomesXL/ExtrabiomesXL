@@ -44,9 +44,9 @@ public class ItemBlockWaterPlant extends ItemBlock
     
     @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIIconFromDamage(int md)
+    public IIcon getIconFromDamage(int md)
     {
-        return getBlock().getIIcon(0, md);
+        return getBlock().getIcon(0, md);
     }
     
     @Override

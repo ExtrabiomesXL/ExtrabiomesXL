@@ -24,8 +24,8 @@ public class BiomeIceWasteland extends ExtrabiomeGenBase
 		super(BiomeSettings.ICEWASTELAND, Type.FROZEN, Type.WASTELAND);
         
         spawnableCreatureList.clear();
-        topBlock = (byte) Block.blockSnow.blockID;
-        fillerBlock = (byte) Block.blockSnow.blockID;
+        topBlock = (byte) Block.blockSnow;
+        fillerBlock = (byte) Block.blockSnow;
         setEnableSnow();
         setColor(0x7DA0B5);
         setBiomeName("Ice Wasteland");

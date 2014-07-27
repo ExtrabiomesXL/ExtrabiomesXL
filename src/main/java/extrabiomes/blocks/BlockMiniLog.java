@@ -57,21 +57,21 @@ public class BlockMiniLog extends BlockLog
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logsakuraside");
-        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logsakuraside");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
         
-        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logautumnside");
-        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
+        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logautumnside");
+        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
         
-        textures[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logautumnside");
-        textures[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
+        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logautumnside");
+        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logsakuratop");
         
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         final int orientation = metadata & 12;
         int type = metadata & 3;
@@ -113,12 +113,6 @@ public class BlockMiniLog extends BlockLog
     public boolean isOpaqueCube()
     {
         return false;
-    }
-    
-    @Override
-    public int idDropped(int metadata, Random rand, int unused)
-    {
-        return blockID;
     }
     
     @SubscribeEvent

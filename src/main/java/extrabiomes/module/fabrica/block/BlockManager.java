@@ -61,7 +61,7 @@ public enum BlockManager
             proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class, thisBlock.getUnlocalizedName() + ":" + thisBlock.getClass().getName());
             for (final BlockCustomWood.BlockType type : BlockCustomWood.BlockType.values())
             {
-                FacadeHelper.addBuildcraftFacade(thisBlock.blockID, type.metadata());
+                FacadeHelper.addBuildcraftFacade(thisblock, type.metadata());
             }
             
             proxy.registerOreInAllSubblocks("plankWood", thisBlock);
@@ -92,7 +92,7 @@ public enum BlockManager
             thisBlock.setBlockName("extrabiomes.woodslab");
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
             
-            proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisBlock.blockID));
+            proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisblock));
             Extrabiomes.postInitEvent(new NewWoodSlabActiveEvent(thisBlock));
         }
     },
@@ -150,7 +150,7 @@ public enum BlockManager
             thisBlock.setBlockName("extrabiomes.woodslab");
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
             
-            proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisBlock.blockID));
+            proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisblock));
             Extrabiomes.postInitEvent(new WoodSlabActiveEvent(thisBlock));
         }
     },

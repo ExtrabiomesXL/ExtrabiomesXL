@@ -48,14 +48,14 @@ public class BlockMachine extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIIcons(IIconRegister IIconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		System.out.println("Registering IIcon for " + getClass().getName());
-		blockIIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH
+		blockIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH
 				+ "genesis");
 	}
 
 	@Override
-	public IIcon getIIcon(int side, int metadata) {
+	public IIcon getIcon(int side, int metadata) {
 		return blockIIcon;
 	}
 

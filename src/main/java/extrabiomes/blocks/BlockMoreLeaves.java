@@ -155,11 +155,11 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafancy");
-        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafast");
-        textures[8] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "better_leavessakura");
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafancy");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafast");
+        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavessakura");
     }
     
     @Override
@@ -244,18 +244,18 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
     }
     
     // Return your Better Leaves IIcon
-    public IIcon getIIconBetterLeaves(int metadata, float randomIndex)
+    public IIcon getIconBetterLeaves(int metadata, float randomIndex)
     {
         return textures[8 + unmarkedMetadata(metadata)];
     }
     
-    public IIcon getIIconFallingLeaves(int metadata)
+    public IIcon getIconFallingLeaves(int metadata)
     {
         return textures[(unmarkedMetadata(metadata) * 2) + 1];
     }
@@ -318,7 +318,7 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
     public int idDropped(int metadata, Random rand, int par3)
     {
         final Optional<BlockType> type = Optional.fromNullable(BlockType.fromMetadata(metadata));
-        return type.isPresent() ? type.get().getSaplingID() : Block.sapling.blockID;
+        return type.isPresent() ? type.get().getSaplingID() : Block.sapling;
     }
     
     @Override

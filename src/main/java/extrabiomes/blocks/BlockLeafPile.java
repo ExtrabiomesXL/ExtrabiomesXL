@@ -25,7 +25,7 @@ public class BlockLeafPile extends Block
     
     static private boolean canThisPlantGrowOnThisBlockID(int blockId)
     {
-        return blockId == Block.grass.blockID || blockId == Block.dirt.blockID;
+        return blockId == Block.grass || blockId == Block.dirt;
     }
     
     private IIcon texture;
@@ -40,14 +40,14 @@ public class BlockLeafPile extends Block
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-        texture = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "leafpile");
+        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leafpile");
     }
     
     @Override
     //Change this to more appropriate method
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         return texture;
     }

@@ -26,14 +26,14 @@ public class WorldGenCustomVine extends WorldGenerator
         for (int _z = z; y < 128; ++y)
         {
         	final int targetBlockID = world.getBlockId(x, y, z);
-            if (world.isAirBlock(x, y, z) || (targetBlockID == Block.vine.blockID) )
+            if (world.isAirBlock(x, y, z) || (targetBlockID == Block.vine) )
             {
                 for (int j = 2; j <= 5; ++j)
                 {
                     if (block.canPlaceBlockOnSide(world, x, y, z, j))
                     {
                     	//LogHelper.info("Gloriosa placing at "+x+","+y+","+z);
-                        world.setBlock(x, y, z, block.blockID, 1 << Direction.facingToDirection[Facing.oppositeSide[j]], 2);
+                        world.setBlock(x, y, z, block, 1 << Direction.facingToDirection[Facing.oppositeSide[j]], 2);
                         break;
                     }
                 }

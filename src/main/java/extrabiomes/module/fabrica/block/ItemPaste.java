@@ -20,9 +20,9 @@ public class ItemPaste extends Item
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        itemIIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "cactuspaste");
+        itemIIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cactuspaste");
     }
 
     @Override

@@ -14,6 +14,7 @@ import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -112,16 +113,16 @@ public class BlockCustomSapling extends BlockFlower
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegistry)
+    public void registerBlockIcons(IIconRegister IIconRegistry)
     {
-        textures[0] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingbrownautumn");
-        textures[1] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingorangeautumn");
-        textures[2] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingredautumn");
-        textures[3] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingyellowautumn");
-        textures[4] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingfir");
-        textures[5] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingredwood");
-        textures[6] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingacacia");
-        textures[7] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "saplingcypress");
+        textures[0] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingbrownautumn");
+        textures[1] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingorangeautumn");
+        textures[2] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingredautumn");
+        textures[3] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingyellowautumn");
+        textures[4] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingfir");
+        textures[5] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingredwood");
+        textures[6] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingacacia");
+        textures[7] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "saplingcypress");
     }
     
     private void attemptGrowTree(World world, int x, int y, int z, Random rand)
@@ -142,7 +143,7 @@ public class BlockCustomSapling extends BlockFlower
     }
     
     @Override
-    protected boolean canThisPlantGrowOnThisBlockID(int id)
+    protected boolean canThisPlantGrowOnThisBlock(int id)
     {
         return TreeSoilRegistry.isValidSoil(id);
     }
@@ -154,7 +155,7 @@ public class BlockCustomSapling extends BlockFlower
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         metadata = unmarkedMetadata(metadata);
         
@@ -302,42 +303,42 @@ public class BlockCustomSapling extends BlockFlower
         {
             if (isHuge)
             {
-                world.setBlock(x + x1, y, z + z1, 0);
-                world.setBlock(x + x1 + 1, y, z + z1, 0);
-                world.setBlock(x + x1, y, z + z1 + 1, 0);
-                world.setBlock(x + x1 + 1, y, z + z1 + 1, 0);
+                world.setBlock(x + x1, y, z + z1, Blocks.air);
+                world.setBlock(x + x1 + 1, y, z + z1, Blocks.air);
+                world.setBlock(x + x1, y, z + z1 + 1, Blocks.air);
+                world.setBlock(x + x1 + 1, y, z + z1 + 1, Blocks.air);
             }
             else
-                world.setBlock(x, y, z, 0);
+                world.setBlock(x, y, z, Blocks.air);
             
             if (!tree.generate(world, rand, x + x1 + offset, y, z + z1 + offset))
             {
                 if (isHuge)
                 {
-                    world.setBlock(x + x1, y, z + z1, blockID, metadata, 3);
-                    world.setBlock(x + x1 + 1, y, z + z1, blockID, metadata, 3);
-                    world.setBlock(x + x1, y, z + z1 + 1, blockID, metadata, 3);
-                    world.setBlock(x + x1 + 1, y, z + z1 + 1, blockID, metadata, 3);
+                    world.setBlock(x + x1, y, z + z1, this, metadata, 3);
+                    world.setBlock(x + x1 + 1, y, z + z1, this, metadata, 3);
+                    world.setBlock(x + x1, y, z + z1 + 1, this, metadata, 3);
+                    world.setBlock(x + x1 + 1, y, z + z1 + 1, this, metadata, 3);
                 }
                 else
-                    world.setBlock(x, y, z, blockID, metadata, 3);
+                    world.setBlock(x, y, z, this, metadata, 3);
             }
             else if (isForestryFarmed)
                 if (isHuge)
                 {
-                    world.setBlock(x + x1, y - 1, z + z1, Block.sand.blockID);
-                    world.setBlock(x + x1 + 1, y - 1, z + z1, Block.sand.blockID);
-                    world.setBlock(x + x1, y - 1, z + z1 + 1, Block.sand.blockID);
-                    world.setBlock(x + x1 + 1, y - 1, z + z1 + 1, Block.sand.blockID);
+                    world.setBlock(x + x1, y - 1, z + z1, Blocks.sand);
+                    world.setBlock(x + x1 + 1, y - 1, z + z1, Blocks.sand);
+                    world.setBlock(x + x1, y - 1, z + z1 + 1, Blocks.sand);
+                    world.setBlock(x + x1 + 1, y - 1, z + z1 + 1, Blocks.sand);
                 }
                 else
-                    world.setBlock(x, y - 1, z, Block.sand.blockID);
+                    world.setBlock(x, y - 1, z, Blocks.sand);
         }
     }
     
     public boolean isSameSapling(World world, int x, int y, int z, int metadata)
     {
-        return world.getBlockId(x, y, z) == blockID && unmarkedMetadata(world.getBlockMetadata(x, y, z)) == metadata;
+        return world.getBlock(x, y, z) == this && unmarkedMetadata(world.getBlockMetadata(x, y, z)) == metadata;
     }
     
     @Override

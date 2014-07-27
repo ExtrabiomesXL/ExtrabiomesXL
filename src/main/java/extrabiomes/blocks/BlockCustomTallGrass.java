@@ -57,13 +57,13 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegistry)
+    public void registerBlockIcons(IIconRegister IIconRegistry)
     {
-        textures[0] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "browngrasstall");
-        textures[1] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "browngrassshort");
-        textures[2] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "deadgrassshort");
-        textures[3] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "deadgrasstall");
-        textures[4] = IIconRegistry.registerIIcon(Extrabiomes.TEXTURE_PATH + "deadgrassyellow");
+        textures[0] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "browngrasstall");
+        textures[1] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "browngrassshort");
+        textures[2] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "deadgrassshort");
+        textures[3] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "deadgrasstall");
+        textures[4] = IIconRegistry.registerIcon(Extrabiomes.TEXTURE_PATH + "deadgrassyellow");
     }
     
     @Override
@@ -104,7 +104,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         // Ensure that the metadata stays in proper range and we return a valid texture
         if (metadata < 0 || metadata > 4)

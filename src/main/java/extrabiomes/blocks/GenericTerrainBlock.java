@@ -30,13 +30,13 @@ public class GenericTerrainBlock extends Block
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-        texture = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + texturePath);
+        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texturePath);
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         return texture;
     }

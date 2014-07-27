@@ -14,6 +14,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -54,19 +56,19 @@ public class BlockCustomLog extends BlockLog
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-        textures[0] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logfirside");
-        textures[1] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logfirtop");
+        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirside");
+        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logfirtop");
         
-        textures[2] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logacaciaside");
-        textures[3] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logacaciatop");
+        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciaside");
+        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logacaciatop");
         
-        textures[4] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logcypressside");
-        textures[5] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logcypresstop");
+        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logcypressside");
+        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logcypresstop");
         
-        textures[6] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logjapanesemapleside");
-        textures[7] = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "logjapanesemapletop");
+        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logjapanesemapleside");
+        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logjapanesemapletop");
         
         setupTextures(index);
     }
@@ -88,7 +90,7 @@ public class BlockCustomLog extends BlockLog
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         final int orientation = metadata & 12;
         int type = metadata & 3;
@@ -105,28 +107,22 @@ public class BlockCustomLog extends BlockLog
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int blockID, CreativeTabs par2CreativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List list)
     {
         for (final BlockType type : BlockType.values())
-            list.add(new ItemStack(blockID, 1, type.metadata()));
-    }
-    
-    @Override
-    public int idDropped(int metadata, Random rand, int unused)
-    {
-        return blockID;
+            list.add(new ItemStack(item, 1, type.metadata()));
     }
     
     @SubscribeEvent
     public void onUseLogTurnerEvent(UseLogTurnerEvent event)
     {
-        final int id = event.world.getBlockId(event.x, event.y, event.z);
+        final Block block = event.world.getBlock(event.x, event.y, event.z);
         
-        if (id == blockID)
+        if (block == this)
         {
-            final Block wood = Block.wood;
+            final Block wood = Blocks.log;
             event.world.playSoundEffect(event.x + 0.5F, event.y + 0.5F, event.z + 0.5F,
-                    wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F,
+                    wood.stepSound.soundName, (wood.stepSound.getVolume() + 1.0F) / 2.0F,
                     wood.stepSound.getPitch() * 1.55F);
             
             if (!event.world.isRemote)
@@ -136,14 +132,13 @@ public class BlockCustomLog extends BlockLog
                 final int type = metadata & 3;
                 
                 orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
-                event.world.setBlock(event.x, event.y, event.z, blockID, type
+                event.world.setBlock(event.x, event.y, event.z, block, type
                         | orientation, 3);
             }
             event.setHandled();
         }
     }
     
-    @Override
     public boolean canSustainLeaves(World world, int x, int y, int z)
     {
         return true;

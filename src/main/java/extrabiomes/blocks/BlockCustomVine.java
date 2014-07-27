@@ -22,10 +22,10 @@ public class BlockCustomVine extends BlockVine {
 	}
 	
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
     	final String IIconPath = Extrabiomes.TEXTURE_PATH + "vine_" + type.toString().toLowerCase();
-		this.blockIIcon = IIconRegister.registerIIcon(IIconPath);
+		this.blockIcon = iconRegister.registerIcon(IIconPath);
     }
 
     /*

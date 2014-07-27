@@ -19,7 +19,7 @@ class WorldGenLeafPile extends WorldGenerator
     
     WorldGenLeafPile(int blockID)
     {
-        this.blockID = blockID;
+        this = blockID;
     }
     
     @Override

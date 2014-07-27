@@ -73,8 +73,8 @@ public class EntityScarecrow extends EntityGolem
     protected void dropFewItems(boolean par1, int par2)
     {
         dropItem(Item.stick.itemID, 3);
-        dropItem(Block.melon.blockID, 1);
-        dropItem(Block.pumpkin.blockID, 1);
+        dropItem(Block.melon, 1);
+        dropItem(Block.pumpkin, 1);
     }
     
     @Override

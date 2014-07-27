@@ -8,6 +8,7 @@ package extrabiomes.handlers;
 
 import java.util.Collection;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
@@ -44,7 +45,6 @@ import extrabiomes.items.ItemNewQuarterLog;
 import extrabiomes.items.ItemOldQuarterLog;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
-import extrabiomes.lib.Blocks;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
@@ -71,12 +71,12 @@ public abstract class BlockHandler
             return;
 
         final BlockAutumnLeaves block = new BlockAutumnLeaves(blockID, 3, Material.leaves, false);
-        block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
-        proxy.setBurnProperties(block.blockID, 30, 60);
+        proxy.Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAVES_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.UMBER.metadata()));
         Element.LEAVES_AUTUMN_ORANGE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.GOLDENROD.metadata()));
@@ -114,17 +114,17 @@ public abstract class BlockHandler
         
     	final BlockWaterPlant waterPlantBlock = new BlockWaterPlant(blockID, "waterPlant");
     	
-    	waterPlantBlock.setBlockName("extrabiomes.waterplant").setHardness(0.01F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+    	waterPlantBlock.setBlockName("extrabiomes.waterplant").setHardness(0.01F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
     	
     	// Add the subblocks
-    	waterPlantBlock.registerSubBlock(new SubBlockWaterPlant("eelgrass").addPlaceableBlock(Block.grass.blockID).addPlaceableBlock(Block.sand.blockID).addPlaceableBlock(Block.gravel.blockID).addPlaceableBlock(Block.blockClay.blockID), 0);
+    	waterPlantBlock.registerSubBlock(new SubBlockWaterPlant("eelgrass").addPlaceableBlock(Blocks.grass).addPlaceableBlock(Blocks.sand).addPlaceableBlock(Blocks.gravel).addPlaceableBlock(Blocks.clay), 0);
     	
     	final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(waterPlantBlock, extrabiomes.items.ItemBlockWaterPlant.class, "extrabiomesxl:waterplant1");
         
         Element.WATERPLANT.set(new ItemStack(waterPlantBlock, 1, 0));
         
-        proxy.registerWorldGenerator(new EelGrassGenerator(waterPlantBlock.blockID, 0));
+        proxy.registerWorldGenerator(new EelGrassGenerator(waterPlantblock, 0));
     }
 
     private static void createCattail()
@@ -134,7 +134,7 @@ public abstract class BlockHandler
             return;
 
         final BlockCatTail block = new BlockCatTail(blockID, 79, Material.plants);
-        block.setBlockName("extrabiomes.cattail").setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.cattail").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCatTail.class, "extrabiomesxl:plants4");
@@ -142,7 +142,7 @@ public abstract class BlockHandler
 
         Element.CATTAIL.set(new ItemStack(block));
 
-        proxy.registerWorldGenerator(new CatTailGenerator(block.blockID));
+        proxy.registerWorldGenerator(new CatTailGenerator(block));
     }
 
     private static void createCrackedSand()
@@ -152,7 +152,7 @@ public abstract class BlockHandler
             return;
 
         final GenericTerrainBlock block = new GenericTerrainBlock(blockID, 0, Material.rock);
-        block.setBlockName("extrabiomes.crackedsand").setHardness(1.2F).setStepSound(Block.soundStoneFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.crackedsand").setHardness(1.2F).setStepSound(Block.soundTypeStone).setCreativeTab(Extrabiomes.tabsEBXL);
 
         block.texturePath = "crackedsand";
 
@@ -165,10 +165,10 @@ public abstract class BlockHandler
         final ItemStack stack = new ItemStack(block);
         Element.CRACKEDSAND.set(stack);
 
-        BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.WASTELAND, block.blockID, block.blockID);
+        BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.WASTELAND, block, block);
 
         ForestryModHelper.addToDiggerBackpack(stack);
-        FacadeHelper.addBuildcraftFacade(block.blockID);
+        FacadeHelper.addBuildcraftFacade(block);
     }
 
 	private static void createFlowers()
@@ -189,7 +189,7 @@ public abstract class BlockHandler
 			block.setBlockName(
 					"extrabiomes.flower")
 					.setTickRandomly(true).setHardness(0.0F)
-					.setStepSound(Block.soundGrassFootstep)
+					.setStepSound(Block.soundTypeGrass)
 					.setCreativeTab(Extrabiomes.tabsEBXL);
 			proxy.registerBlock(
 					block,
@@ -293,11 +293,11 @@ public abstract class BlockHandler
             return;
 
         final BlockCustomTallGrass block = new BlockCustomTallGrass(blockID, 48, Material.vine);
-        block.setBlockName("extrabiomes.tallgrass").setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.tallgrass").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemGrass.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
-        proxy.setBurnProperties(block.blockID, 60, 100);
+        proxy.Blocks.fire.setFireInfo(block, 60, 100);
 
         Element.GRASS_BROWN.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.BROWN.metadata()));
         Element.GRASS_DEAD.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD.metadata()));
@@ -325,12 +325,12 @@ public abstract class BlockHandler
             return;
 
         final BlockNewLeaves block = new BlockNewLeaves(blockID, Material.leaves, false);
-        block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomNewLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
-        proxy.setBurnProperties(block.blockID, 30, 60);
+        proxy.Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAVES_BALD_CYPRESS.set(new ItemStack(block, 1, BlockNewLeaves.BlockType.BALD_CYPRESS.metadata()));
         Element.LEAVES_JAPANESE_MAPLE.set(new ItemStack(block, 1, BlockNewLeaves.BlockType.JAPANESE_MAPLE.metadata()));
@@ -349,12 +349,12 @@ public abstract class BlockHandler
             return;
 
         final BlockMoreLeaves block = new BlockMoreLeaves(blockID, Material.leaves, false);
-        block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomMoreLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
-        proxy.setBurnProperties(block.blockID, 30, 60);
+        proxy.Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAVES_SAKURA_BLOSSOM.set(new ItemStack(block, 1, BlockMoreLeaves.BlockType.SAKURA_BLOSSOM.metadata()));
 
@@ -370,12 +370,12 @@ public abstract class BlockHandler
             return;
 
         final BlockGreenLeaves block = new BlockGreenLeaves(blockID, Material.leaves, false);
-        block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomGreenLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
-        proxy.setBurnProperties(block.blockID, 30, 60);
+        proxy.Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAVES_ACACIA.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.ACACIA.metadata()));
         Element.LEAVES_FIR.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.FIR.metadata()));
@@ -394,15 +394,15 @@ public abstract class BlockHandler
             return;
 
         final BlockLeafPile block = new BlockLeafPile(blockID, 64, Material.vine);
-        block.setBlockName("extrabiomes.leafpile").setHardness(0.0F).setTickRandomly(true).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.leafpile").setHardness(0.0F).setTickRandomly(true).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, block.getUnlocalizedName() + ":" + block.getClass().getName());
-        proxy.setBurnProperties(block.blockID, 30, 60);
+        proxy.Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAFPILE.set(new ItemStack(block));
 
-        proxy.registerWorldGenerator(new LeafPileGenerator(block.blockID));
+        proxy.registerWorldGenerator(new LeafPileGenerator(block));
     }
 
     private static void createLogs()
@@ -421,15 +421,15 @@ public abstract class BlockHandler
             return;
 
         final BlockMiniLog block = new BlockMiniLog(blockID);
-        Blocks.BLOCK_LOG_SAKURA_GROVE.set(block);
-        block.setBlockName("extrabiomes.log").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        extrabiomes.lib.Blocks.BLOCK_LOG_SAKURA_GROVE.set(block);
+        block.setBlockName("extrabiomes.log").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
         proxy.registerBlock(block, extrabiomes.items.ItemCustomMiniLog.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
-        proxy.setBurnProperties(block.blockID, 5, 5);
+        proxy.Blocks.fire.setFireInfo(block, 5, 5);
 
         Element.LOG_SAKURA_BLOSSOM.set(new ItemStack(block, 1, BlockMiniLog.BlockType.SAKURA_BLOSSOM.metadata()));
 
@@ -444,7 +444,7 @@ public abstract class BlockHandler
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.KNEELOG.getID() <= 0)
             return;
 
-        block.setBlockName("extrabiomes.cypresskneelog").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.cypresskneelog").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
@@ -452,30 +452,30 @@ public abstract class BlockHandler
         proxy.registerBlock(block, ItemKneeLog.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
-        proxy.setBurnProperties(block.blockID, 5, 5);
+        proxy.Blocks.fire.setFireInfo(block, 5, 5);
 
         final BlockKneeLog block2 = new BlockKneeLog(BlockSettings.RAINBOWKNEELOG.getID(), "rainboweucalyptus");
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.RAINBOWKNEELOG.getID() <= 0)
             return;
 
-        block2.setBlockName("extrabiomes.rainbowkneelog").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block2.setBlockName("extrabiomes.rainbowkneelog").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block2, "axe", 0);
         proxy.registerBlock(block2, ItemKneeLog.class, block2.getUnlocalizedName() + ":" + block2.getClass().getName());
         proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
-        proxy.setBurnProperties(block2.blockID, 5, 5);
+        proxy.Blocks.fire.setFireInfo(block2, 5, 5);
 
         Element.LOG_KNEE_BALD_CYPRESS.set(new ItemStack(block, 1, Short.MAX_VALUE));
         Element.LOG_KNEE_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, Short.MAX_VALUE));
 
         BlockKneeLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderKneeLog()));
 
-        ForestryModHelper.addToForesterBackpack(new ItemStack(block.blockID, 1, Short.MAX_VALUE));
-        ForestryModHelper.addToForesterBackpack(new ItemStack(block2.blockID, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block2, 1, Short.MAX_VALUE));
 
-        FacadeHelper.addBuildcraftFacade(block.blockID);
-        FacadeHelper.addBuildcraftFacade(block2.blockID);
+        FacadeHelper.addBuildcraftFacade(block);
+        FacadeHelper.addBuildcraftFacade(block2);
 
     }
 
@@ -488,62 +488,62 @@ public abstract class BlockHandler
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.NEWQUARTERLOG.getID() <= 0)
             return;
 
-        block.setBlockName("extrabiomes.baldcypressquarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.baldcypressquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block, "axe", 0);
         proxy.registerBlock(block, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_baldcypress");
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
-        proxy.setBurnProperties(block.blockID, 5, 5);
+        proxy.Blocks.fire.setFireInfo(block, 5, 5);
 
         final BlockNewQuarterLog block2 = new BlockNewQuarterLog(BlockSettings.RAINBOWQUARTERLOG.getID(), "rainboweucalyptus");
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.RAINBOWQUARTERLOG.getID() <= 0)
             return;
 
-        block2.setBlockName("extrabiomes.rainboweucalyptusquarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block2.setBlockName("extrabiomes.rainboweucalyptusquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block2, "axe", 0);
         proxy.registerBlock(block2, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_rainboweucalyptus");
         proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
-        proxy.setBurnProperties(block2.blockID, 5, 5);
+        proxy.Blocks.fire.setFireInfo(block2, 5, 5);
 
         final BlockNewQuarterLog block3 = new BlockNewQuarterLog(BlockSettings.OAKQUARTERLOG.getID(), "oak");
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.OAKQUARTERLOG.getID() <= 0)
             return;
 
-        block3.setBlockName("extrabiomes.oakquarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block3.setBlockName("extrabiomes.oakquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block3, "axe", 0);
         proxy.registerBlock(block3, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_oak");
         proxy.registerOreInAllSubblocks("logWood", block3);
         proxy.registerEventHandler(block3);
-        proxy.setBurnProperties(block3.blockID, 5, 5);
+        proxy.Blocks.fire.setFireInfo(block3, 5, 5);
 
         final BlockNewQuarterLog block4 = new BlockNewQuarterLog(BlockSettings.FIRQUARTERLOG.getID(), "fir");
         if (!ModuleControlSettings.SUMMA.isEnabled() && BlockSettings.FIRQUARTERLOG.getID() <= 0)
             return;
 
-        block4.setBlockName("extrabiomes.firquarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block4.setBlockName("extrabiomes.firquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block4, "axe", 0);
         proxy.registerBlock(block4, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_fir");
         proxy.registerOreInAllSubblocks("logWood", block4);
         proxy.registerEventHandler(block4);
-        proxy.setBurnProperties(block4.blockID, 5, 5);
+        proxy.Blocks.fire.setFireInfo(block4, 5, 5);
 
         final BlockNewQuarterLog block5 = new BlockNewQuarterLog(BlockSettings.REDWOODQUARTERLOG.getID(), "redwood");
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.REDWOODQUARTERLOG.getID() <= 0)
             return;
 
-        block5.setBlockName("extrabiomes.redwoodquarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block5.setBlockName("extrabiomes.redwoodquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
         //block5.setRenderId(renderId);
 
         proxy.setBlockHarvestLevel(block5, "axe", 0);
         proxy.registerBlock(block5, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_redwood");
         proxy.registerOreInAllSubblocks("logWood", block5);
         proxy.registerEventHandler(block5);
-        proxy.setBurnProperties(block5.blockID, 5, 5);
+        proxy.Blocks.fire.setFireInfo(block5, 5, 5);
 
 
         Element.LOG_QUARTER_BALD_CYPRESS.set(new ItemStack(block, 1, Short.MAX_VALUE));
@@ -554,16 +554,16 @@ public abstract class BlockHandler
 
         //BlockNewQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderNewQuarterLog()));
 
-        ForestryModHelper.addToForesterBackpack(new ItemStack(block.blockID, 1, Short.MAX_VALUE));
-        ForestryModHelper.addToForesterBackpack(new ItemStack(block2.blockID, 1, Short.MAX_VALUE));
-        ForestryModHelper.addToForesterBackpack(new ItemStack(block3.blockID, 1, Short.MAX_VALUE));
-        ForestryModHelper.addToForesterBackpack(new ItemStack(block4.blockID, 1, Short.MAX_VALUE));
-        ForestryModHelper.addToForesterBackpack(new ItemStack(block5.blockID, 1, Short.MAX_VALUE));
-        FacadeHelper.addBuildcraftFacade(block.blockID);
-        FacadeHelper.addBuildcraftFacade(block2.blockID);
-        FacadeHelper.addBuildcraftFacade(block3.blockID);
-        FacadeHelper.addBuildcraftFacade(block4.blockID);
-        FacadeHelper.addBuildcraftFacade(block5.blockID);
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block2, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block3, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block4, 1, Short.MAX_VALUE));
+        ForestryModHelper.addToForesterBackpack(new ItemStack(block5, 1, Short.MAX_VALUE));
+        FacadeHelper.addBuildcraftFacade(block);
+        FacadeHelper.addBuildcraftFacade(block2);
+        FacadeHelper.addBuildcraftFacade(block3);
+        FacadeHelper.addBuildcraftFacade(block4);
+        FacadeHelper.addBuildcraftFacade(block5);
 
     }
 
@@ -583,14 +583,14 @@ public abstract class BlockHandler
 
         for (final BlockQuarterLog block : new BlockQuarterLog[] { blockNW, blockNE, blockSW, blockSE })
         {
-            block.setBlockName("extrabiomes.log.quarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F); //*/.setCreativeTab(Extrabiomes.tabsEBXL);
+            block.setBlockName("extrabiomes.log.quarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F); //*/.setCreativeTab(Extrabiomes.tabsEBXL);
 
             final CommonProxy proxy = Extrabiomes.proxy;
             proxy.setBlockHarvestLevel(block, "axe", 0);
             proxy.registerBlock(block, ItemOldQuarterLog.class, block.getUnlocalizedName() + ":" + block.getBarkOnSides().toString() + ":" + block.getClass().getName());
             proxy.registerOreInAllSubblocks("logWood", block);
             proxy.registerEventHandler(block);
-            proxy.setBurnProperties(block.blockID, 5, 5);
+            proxy.Blocks.fire.setFireInfo(block, 5, 5);
         }
 
         Element.LOG_HUGE_FIR_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.FIR.metadata()));
@@ -612,7 +612,7 @@ public abstract class BlockHandler
 
         for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType.values())
         {
-            FacadeHelper.addBuildcraftFacade(blockSE.blockID, type.metadata());
+            FacadeHelper.addBuildcraftFacade(blockSE, type.metadata());
         }
     }
 
@@ -634,12 +634,12 @@ public abstract class BlockHandler
         Element.RED_ROCK_BRICK.set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()));
 
         Extrabiomes.postInitEvent(new RedRockActiveEvent(block));
-        BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.MOUNTAINRIDGE, block.blockID, block.blockID);
+        BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.MOUNTAINRIDGE, block, block);
 
         ForestryModHelper.addToDiggerBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
         for (final BlockRedRock.BlockType type : BlockRedRock.BlockType.values())
         {
-            FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
+            FacadeHelper.addBuildcraftFacade(block, type.metadata());
         }
     }
 
@@ -650,7 +650,7 @@ public abstract class BlockHandler
             return;
 
         final BlockCustomSapling block = new BlockCustomSapling(blockID, 16);
-        block.setBlockName("extrabiomes.sapling").setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.sapling").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemSapling.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
@@ -687,7 +687,7 @@ public abstract class BlockHandler
         }
 
         proxy.registerEventHandler(new SaplingBonemealEventHandler(block));
-        proxy.registerFuelHandler(new SaplingFuelHandler(block.blockID));
+        proxy.registerFuelHandler(new SaplingFuelHandler(block));
     }
 
     private static void createNewSapling()
@@ -697,7 +697,7 @@ public abstract class BlockHandler
             return;
 
         final BlockNewSapling block = new BlockNewSapling(blockID);
-        block.setBlockName("extrabiomes.sapling").setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.sapling").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemNewSapling.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
@@ -728,7 +728,7 @@ public abstract class BlockHandler
         }
 
         proxy.registerEventHandler(new SaplingBonemealNewEventHandler(block));
-        proxy.registerFuelHandler(new SaplingFuelHandler(block.blockID));
+        proxy.registerFuelHandler(new SaplingFuelHandler(block));
     }
 
     private static void createWood()
@@ -738,14 +738,14 @@ public abstract class BlockHandler
             return;
 
         final BlockCustomLog block = new BlockCustomLog(blockID);
-        block.setBlockName("extrabiomes.log").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.log").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
         proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class, "extrabiomesxl:log1");
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
-        proxy.setBurnProperties(block.blockID, 5, 5);
+        proxy.Blocks.fire.setFireInfo(block, 5, 5);
 
         Element.LOG_ACACIA.set(new ItemStack(block, 1, BlockCustomLog.BlockType.ACACIA.metadata()));
         Element.LOG_FIR.set(new ItemStack(block, 1, BlockCustomLog.BlockType.FIR.metadata()));
@@ -755,7 +755,7 @@ public abstract class BlockHandler
         ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
         for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType.values())
         {
-            FacadeHelper.addBuildcraftFacade(block.blockID, type.metadata());
+            FacadeHelper.addBuildcraftFacade(block, type.metadata());
         }
 
         final int newblockID = BlockSettings.NEWLOG.getID();
@@ -763,13 +763,13 @@ public abstract class BlockHandler
             return;
 
         final BlockNewLog block2 = new BlockNewLog(newblockID);
-        block2.setBlockName("extrabiomes.newlog").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block2.setBlockName("extrabiomes.newlog").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block2, "axe", 0);
         proxy.registerBlock(block2, extrabiomes.utility.MultiItemBlock.class, "extrabiomesxl:log2");
         proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
-        proxy.setBurnProperties(block2.blockID, 5, 5);
+        proxy.Blocks.fire.setFireInfo(block2, 5, 5);
 
         Element.LOG_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, BlockNewLog.BlockType.RAINBOW_EUCALYPTUS.metadata()));
         Element.LOG_AUTUMN.set(new ItemStack(block2, 1, BlockNewLog.BlockType.AUTUMN.metadata()));
@@ -779,7 +779,7 @@ public abstract class BlockHandler
         ForestryModHelper.addToForesterBackpack(new ItemStack(block2, 1, Short.MAX_VALUE));
         for (final BlockNewLog.BlockType type : BlockNewLog.BlockType.values())
         {
-            FacadeHelper.addBuildcraftFacade(block2.blockID, type.metadata());
+            FacadeHelper.addBuildcraftFacade(block2, type.metadata());
         }
     }
 

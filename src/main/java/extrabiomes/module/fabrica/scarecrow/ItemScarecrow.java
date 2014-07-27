@@ -46,9 +46,9 @@ public class ItemScarecrow extends Item
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        itemIIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "scarecrow");
+        itemIIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "scarecrow");
     }
     
     public ItemScarecrow(int id)
@@ -72,7 +72,7 @@ public class ItemScarecrow extends Item
             z += Facing.offsetsZForSide[side];
             double yOffsetForFence = 0.0D;
             
-            if (side == 1 && targetBlockId == Block.fence.blockID || targetBlockId == Block.netherFence.blockID)
+            if (side == 1 && targetBlockId == Block.fence || targetBlockId == Block.netherFence)
             {
                 yOffsetForFence = 0.5D;
             }

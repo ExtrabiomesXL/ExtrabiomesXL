@@ -113,13 +113,13 @@ public class BlockCustomFlower extends Block implements IPlantable
         }
 
 		private IIcon	IIcon;
-		public IIcon getIIcon() {
+		public IIcon getIcon() {
 			return IIcon;
 		}
 
 		@SideOnly(Side.CLIENT)
-		public IIcon registerIIcon(IIconRegister IIconRegister) {
-			IIcon = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + this.texture);
+		public IIcon registerIcon(IIconRegister iconRegister) {
+			IIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + this.texture);
 			return IIcon;
 		}
         
@@ -161,11 +161,11 @@ public class BlockCustomFlower extends Block implements IPlantable
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-		LogHelper.fine(this.toString() + ": registerIIcons");
+		LogHelper.fine(this.toString() + ": registerIcons");
 		for (BlockType type : groupMap.values()) {
-			final IIcon IIcon = type.registerIIcon(IIconRegister);
+			final IIcon IIcon = type.registerIcon(iconRegister);
 			if (IIcon == null)
 				LogHelper.warning("No IIcon found for " + type+" (" + type.group + "," + type.metadata + ")");
 			else
@@ -189,7 +189,7 @@ public class BlockCustomFlower extends Block implements IPlantable
     private boolean canThisPlantGrowOnThisBlockID(int id)
     {
 		// TODO: separate rules for edge cases (like cactus)
-        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID || id == Block.sand.blockID || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock);
+        return id == Block.grass || id == Block.dirt || id == Block.tilledField || id == Block.sand || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock);
     }
     
     private void checkFlowerChange(World world, int x, int y, int z)
@@ -209,11 +209,11 @@ public class BlockCustomFlower extends Block implements IPlantable
     
     @Override
 	@SideOnly(Side.CLIENT)
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
 		BlockType type = groupMap.get(metadata);
 		if( type != null ) {
-			return type.getIIcon();
+			return type.getIcon();
 		} else {
 			return null;
 		}
@@ -226,9 +226,9 @@ public class BlockCustomFlower extends Block implements IPlantable
     }
     
     @Override
-    public int getPlantID(World world, int x, int y, int z)
+    public Block getPlantID(World world, int x, int y, int z)
     {
-        return blockID;
+        return this;
     }
     
     @Override

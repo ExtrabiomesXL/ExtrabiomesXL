@@ -31,13 +31,13 @@ public class BlockCatTail extends BlockFlower
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-        texture = IIconRegister.registerIIcon(Extrabiomes.TEXTURE_PATH + "cattail");
+        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cattail");
     }
     
     @Override
-    public IIcon getIIcon(int side, int metadata)
+    public IIcon getIcon(int side, int metadata)
     {
         return texture;
     }
@@ -53,7 +53,7 @@ public class BlockCatTail extends BlockFlower
     {
         final int blockId = world.getBlockId(x, y - 1, z);
         
-        if (blockId != Block.grass.blockID && blockId != Block.dirt.blockID)
+        if (blockId != Block.grass && blockId != Block.dirt)
             return false;
         
         y--;

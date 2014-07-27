@@ -29,8 +29,8 @@ public class BiomeMountainDesert extends ExtrabiomeGenBase
         rainfall = BiomeGenBase.desertHills.rainfall;
         minHeight = 0.4F;
         maxHeight = 1.4F;
-        topBlock = (byte) Block.sand.blockID;
-        fillerBlock = (byte) Block.sand.blockID;
+        topBlock = (byte) Block.sand;
+        fillerBlock = (byte) Block.sand;
         spawnableCreatureList.clear();
         setDisableRain();
     }

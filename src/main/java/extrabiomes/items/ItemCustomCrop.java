@@ -58,10 +58,10 @@ public class ItemCustomCrop extends ItemFood {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIIcons(IIconRegister IIconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		for (CropType type : CropType.values()) {
 			final String IIconPath = Extrabiomes.TEXTURE_PATH + type.name().toLowerCase();
-			type.IIcon = IIconRegister.registerIIcon(IIconPath);
+			type.IIcon = iconRegister.registerIcon(IIconPath);
 		}
 	}
 
@@ -71,7 +71,7 @@ public class ItemCustomCrop extends ItemFood {
 	}
 
 	@Override
-	public IIcon getIIconFromDamage(int meta) {
+	public IIcon getIconFromDamage(int meta) {
 		return getCropType(meta).IIcon;
 	}
 

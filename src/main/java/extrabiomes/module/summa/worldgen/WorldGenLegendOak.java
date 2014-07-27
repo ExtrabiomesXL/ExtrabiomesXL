@@ -126,10 +126,10 @@ public class WorldGenLegendOak extends WorldGenerator
     
     protected void growTree(World world, Random random, int x, int y, int z, int height, int leaflessHeight, int leafWidth)
     {
-        world.setBlock(x, y - 1, z, Block.dirt.blockID);
-        world.setBlock(x - 1, y - 1, z, Block.dirt.blockID);
-        world.setBlock(x, y - 1, z - 1, Block.dirt.blockID);
-        world.setBlock(x - 1, y - 1, z - 1, Block.dirt.blockID);
+        world.setBlock(x, y - 1, z, Block.dirt);
+        world.setBlock(x - 1, y - 1, z, Block.dirt);
+        world.setBlock(x, y - 1, z - 1, Block.dirt);
+        world.setBlock(x - 1, y - 1, z - 1, Block.dirt);
         
         growTrunk(world, random, x, y, z, height);
         

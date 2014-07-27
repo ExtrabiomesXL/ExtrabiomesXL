@@ -71,9 +71,9 @@ public class BiomeManagerImpl extends BiomeManager
     private static final WorldGenerator                                               BIG_OAK_TREE_GEN          = new WorldGenBigTree(false);
     private static final WorldGenerator                                               BIRCH_TREE_GEN            = new WorldGenForest(false, false);
     private static final WorldGenerator                                               CUSTOM_SWAMP_TREE_GEN     = new WorldGenCustomSwamp();
-    private static final WorldGenerator                                               FERN_GEN                  = new WorldGenTallGrass(Blocks.tallgrass.blockID, 2);
+    private static final WorldGenerator                                               FERN_GEN                  = new WorldGenTallGrass(Blocks.tallgrass, 2);
     private static final WorldGenerator                                               FIR_TREE_GEN              = new WorldGenFirTree(false);
-    private static final WorldGenerator                                               GRASS_GEN                 = new WorldGenTallGrass(Blocks.tallgrass.blockID, 1);
+    private static final WorldGenerator                                               GRASS_GEN                 = new WorldGenTallGrass(Blocks.tallgrass, 1);
     private static final WorldGenerator                                               LEGACY_REDWOOD_GEN        = new WorldGenRedwood(false);
     private static final WorldGenerator                                               OAK_TREE_GEN              = new WorldGenTrees(false);
     private static final WorldGenerator                                               REDWOOD_TREE_GEN          = new WorldGenNewRedwood(false);

@@ -55,18 +55,18 @@ public class BlockWaterPlant extends Block {
 	
 	@Override
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister IIconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
 		for(int i = 0; i < subBlocks.length; i++) {
 			if(subBlocks[i] != null) {
-				subBlocks[i].registerIIcons(IIconRegister);
+				subBlocks[i].registerIcons(iconRegister);
 			}
 		}
     }
     
     @Override
-    public IIcon getIIcon(int side, int metaData) {
+    public IIcon getIcon(int side, int metaData) {
     	if(subBlocks[metaData] != null) {
-    		return subBlocks[metaData].getIIcon(side, metaData);
+    		return subBlocks[metaData].getIcon(side, metaData);
     	}
     	
         return null;
@@ -133,7 +133,7 @@ public class BlockWaterPlant extends Block {
 
     @Override
     public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int silkTouch) {
-    	world.setBlock(x, y, z, Block.waterStill.blockID);
+    	world.setBlock(x, y, z, Block.waterStill);
     }
     
     @Override
