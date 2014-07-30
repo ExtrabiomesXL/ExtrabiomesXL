@@ -10,13 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerGrass;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
@@ -48,9 +52,9 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     
     private IIcon[] textures = { null, null, null, null, null };
     
-    public BlockCustomTallGrass(int id, int index, Material material)
+    public BlockCustomTallGrass(int index, Material material)
     {
-        super(id, material);
+        super(0);
         final float var3 = 0.4F;
         setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.8F, 0.5F + var3);
     }
@@ -67,12 +71,12 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     }
     
     @Override
-    protected boolean canThisPlantGrowOnThisBlockID(int id)
+    protected boolean canThisPlantGrowOnThisBlock(Block block)
     {
         
-        return (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock)
-                || (BiomeSettings.WASTELAND.getBiome().isPresent() && (byte) id == BiomeSettings.WASTELAND.getBiome().get().topBlock)
-                || super.canThisPlantGrowOnThisBlockID(id);
+        return (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && block.equals(BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock))
+                || (BiomeSettings.WASTELAND.getBiome().isPresent() && block.equals(BiomeSettings.WASTELAND.getBiome().get().topBlock))
+                || super.canThisPlantGrowOnThisBlock(block);
     }
     
     @Override
@@ -85,7 +89,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     }
     
     @Override
-    public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata,
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata,
             int fortune)
     {
         final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
@@ -115,7 +119,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList)
+    public void getSubBlocks(Item id, CreativeTabs tab, List itemList)
     {
         for (final BlockType type : BlockType.values())
             itemList.add(new ItemStack(this, 1, type.metadata()));
@@ -124,7 +128,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     @Override
     public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return 0;
+        return null;
     }
     
     @Override
@@ -134,19 +138,19 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     }
     
     @Override
-    public boolean isBlockReplaceable(World world, int x, int y, int z)
+    public boolean isReplaceable(IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
     
     @Override
-    public boolean isShearable(ItemStack item, World world, int x, int y, int z)
+    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
     
     @Override
-    public ArrayList<ItemStack> onSheared(ItemStack item, World world, int x, int y, int z,
+    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z,
             int fortune)
     {
         final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();

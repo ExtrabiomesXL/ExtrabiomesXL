@@ -24,13 +24,13 @@ public class CropBonemealEventHandler
     @SubscribeEvent
     public void onBonemealEvent(BonemealEvent e)
     {
-		if (e.getResult() == Result.DEFAULT && e.ID == crop)
+		if (e.getResult() == Result.DEFAULT && e.block.equals(crop))
         {
             if (!e.world.isRemote)
             {
                 if (e.world.rand.nextFloat() < 0.45D)
                 {
-					crop.markOrGrowMarked(e.world, e.X, e.Y, e.Z, e.world.rand);
+					crop.markOrGrowMarked(e.world, e.x, e.y, e.z, e.world.rand);
                 }
                 
                 e.setResult(Result.ALLOW);

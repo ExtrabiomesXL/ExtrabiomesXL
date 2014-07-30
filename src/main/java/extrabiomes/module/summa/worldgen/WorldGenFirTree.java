@@ -142,7 +142,7 @@ public class WorldGenFirTree extends WorldGenerator
                     
                     if ((Math.abs(k4) != l1 || Math.abs(i5) != l1 || l1 <= 0) && (block == null || block.canBeReplacedByLeaves(world, i4, k3, l4)))
                     {
-                        setBlockAndMetadata(world, i4, k3, l4, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
+                        setBlockAndMetadata(world, i4, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                     }
                 }
             }

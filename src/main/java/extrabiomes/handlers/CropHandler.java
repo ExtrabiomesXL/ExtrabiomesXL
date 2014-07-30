@@ -61,7 +61,7 @@ public class CropHandler {
     			continue;
 			}
 
-			final ItemStack crop_item = new ItemStack(item.itemID, 1, type.meta);
+			final ItemStack crop_item = new ItemStack(item, 1, type.meta);
 			element.set(crop_item);
 			OreDictionary.registerOre(
 					"crop" + StringUtils.capitalize(type.name().toLowerCase()),

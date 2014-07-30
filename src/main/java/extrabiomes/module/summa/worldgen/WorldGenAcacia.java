@@ -156,7 +156,7 @@ public class WorldGenAcacia extends WorldGenerator
                     
                     if ((Math.abs(xOnRadius) != canopyRadius || Math.abs(zOnRadius) != canopyRadius || rand.nextInt(2) != 0 && distanceFromTop != 0) && (block == null || block.canBeReplacedByLeaves(world, x1, y1, z1)))
                     {
-                        setBlockAndNotifyAdequately(world, x1, y1, z1, TreeBlocks.leaves.getBlock(), TreeBlocks.leaves.getMetadata());
+                        setBlockAndNotifyAdequately(world, x1, y1, z1, TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                     }
                 }
             }

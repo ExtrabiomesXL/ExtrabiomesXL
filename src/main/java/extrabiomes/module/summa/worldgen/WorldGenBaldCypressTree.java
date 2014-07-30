@@ -193,7 +193,7 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase
             generateBranches(world, rand, x, y, z, height, width, waterLevel);
             
             // Place the topper leaves
-            generateLeafCluster(world, x, (int) (height * TRUNK_HEIGHT_PERCENT) + y, z, 4 + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), 4 + rand.nextInt(CLUSTER_DIAMATER_VARIANCE), TreeBlocks.leaves.get());
+            generateLeafCluster(world, x, (int) (height * TRUNK_HEIGHT_PERCENT) + y, z, 4 + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), 4 + rand.nextInt(CLUSTER_DIAMATER_VARIANCE), TreeBlock.LEAVES.get());
             
             // We generated a tree
             return true;
@@ -344,7 +344,7 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase
         while (itt.hasNext())
         {
             int[] cluster = itt.next();
-            generateLeafCluster(world, cluster[0], cluster[1], cluster[2], CLUSTER_HEIGHT + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), CLUSTER_DIAMATER + rand.nextInt(CLUSTER_DIAMATER_VARIANCE), TreeBlocks.leaves.get());
+            generateLeafCluster(world, cluster[0], cluster[1], cluster[2], CLUSTER_HEIGHT + rand.nextInt(CLUSTER_HEIGHT_VARIANCE), CLUSTER_DIAMATER + rand.nextInt(CLUSTER_DIAMATER_VARIANCE), TreeBlock.LEAVES.get());
         }
     }
     

@@ -225,7 +225,7 @@ public class WorldGenJapaneseMapleShrub extends WorldGenNewTreeBase
         while (itt.hasNext())
         {
             int[] cluster = itt.next();
-            generateLeafCluster(world, cluster[0], cluster[1], cluster[2], 1 + rand.nextInt(2), 2, TreeBlocks.leaves.get());
+            generateLeafCluster(world, cluster[0], cluster[1], cluster[2], 1 + rand.nextInt(2), 2, TreeBlock.LEAVES.get());
         }
         
         // Calculate the center position
@@ -234,7 +234,7 @@ public class WorldGenJapaneseMapleShrub extends WorldGenNewTreeBase
         average[2] /= branchCount;
         
         // Generate the canopy
-        generateCanopy(world, rand, average[0] + x, y, average[2] + z, radius, height, TreeBlocks.leaves.get());
+        generateCanopy(world, rand, average[0] + x, y, average[2] + z, radius, height, TreeBlock.LEAVES.get());
         
     }
     

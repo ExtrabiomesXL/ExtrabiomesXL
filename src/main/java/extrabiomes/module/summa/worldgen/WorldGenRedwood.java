@@ -158,25 +158,25 @@ public class WorldGenRedwood extends WorldGenerator
                         int blockID = world.getBlock(x1, y1, z1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1, y1, z1))
                         {
-                            setBlockAndMetadata(world, x1, y1, z1, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
+                            setBlockAndMetadata(world, x1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                         
                         blockID = world.getBlock(x1 - 1, y1, z1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1 - 1, y1, z1))
                         {
-                            setBlockAndMetadata(world, x1 - 1, y1, z1, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
+                            setBlockAndMetadata(world, x1 - 1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                         
                         blockID = world.getBlock(x1, y1, z1 - 1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1, y1, z1 - 1))
                         {
-                            setBlockAndMetadata(world, x1, y1, z1 - 1, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
+                            setBlockAndMetadata(world, x1, y1, z1 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                         
                         blockID = world.getBlock(x1 - 1, y1, z1 - 1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1 - 1, y1, z1 - 1))
                         {
-                            setBlockAndMetadata(world, x1 - 1, y1, z1 - 1, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
+                            setBlockAndMetadata(world, x1 - 1, y1, z1 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                     }
                 }

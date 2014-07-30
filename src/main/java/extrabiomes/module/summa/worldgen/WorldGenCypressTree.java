@@ -154,7 +154,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase
                 double offset2 = offset * offset;
                 double offset3 = offset2 * offset;
                 double r1 = radius * ((0.00142 * offset3) - (0.0517 * offset2) + (0.5085 * offset) - 0.4611);
-                placeLeavesCircle(x, layer + start + y, z, r1, TreeBlocks.leaves.get(), world);
+                placeLeavesCircle(x, layer + start + y, z, r1, TreeBlock.LEAVES.get(), world);
             }
             
             return true;

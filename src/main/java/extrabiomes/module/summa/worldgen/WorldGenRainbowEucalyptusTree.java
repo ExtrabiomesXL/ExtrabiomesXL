@@ -412,7 +412,7 @@ public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase
     {
         for (int layer = -height; layer <= height; layer++)
         {
-            this.placeLeavesCircle(x, y + layer, z, radius * Math.cos(layer / (height / 1.3)), TreeBlocks.leaves.get(), world);
+            this.placeLeavesCircle(x, y + layer, z, radius * Math.cos(layer / (height / 1.3)), TreeBlock.LEAVES.get(), world);
         }
     }
     
