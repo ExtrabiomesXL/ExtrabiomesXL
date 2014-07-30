@@ -9,6 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -45,11 +46,11 @@ public class WorldGenRedwood extends WorldGenerator
             this.stack = stack;
         }
         
-        public int getID()
+        public Block getBlock()
         {
             if (!loadedCustomBlocks)
                 loadCustomBlocks();
-            return stack.itemID;
+            return Block.getBlockFromItem(stack.getItem());
         }
         
         public int getMetadata()
@@ -118,10 +119,10 @@ public class WorldGenRedwood extends WorldGenerator
                 {
                     if (y1 >= 0 && y1 < 256)
                     {
-                        final int id = world.getBlock(x1, y1, z1);
+                        final Block block = world.getBlock(x1, y1, z1);
                         
-                        if (Block.blocksList[id] != null
-                                && Block.blocksList[id].isLeaves(world, x1, y1,
+                        if (block != null
+                                && block.isLeaves(world, x1, y1,
                                         z1))
                             return false;
                     }
@@ -133,10 +134,10 @@ public class WorldGenRedwood extends WorldGenerator
             }
         }
         
-        world.setBlock(x, y - 1, z, Block.dirt);
-        world.setBlock(x - 1, y - 1, z, Block.dirt);
-        world.setBlock(x, y - 1, z - 1, Block.dirt);
-        world.setBlock(x - 1, y - 1, z - 1, Block.dirt);
+        world.setBlock(x, y - 1, z, Blocks.dirt);
+        world.setBlock(x - 1, y - 1, z, Blocks.dirt);
+        world.setBlock(x, y - 1, z - 1, Blocks.dirt);
+        world.setBlock(x - 1, y - 1, z - 1, Blocks.dirt);
         int l1 = rand.nextInt(2);
         int j2 = 1;
         boolean flag1 = false;
@@ -155,28 +156,28 @@ public class WorldGenRedwood extends WorldGenerator
                     
                     if (Math.abs(k4) != l1 || Math.abs(i5) != l1 || l1 <= 0)
                     {
-                        int blockID = world.getBlock(x1, y1, z1);
-                        if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1, y1, z1))
+                        Block block = world.getBlock(x1, y1, z1);
+                        if (block.isAir(world, x1, y1, z1) || block.canBeReplacedByLeaves(world, x1, y1, z1))
                         {
-                            setBlockAndNotifyAdequately(world, x1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockAndNotifyAdequately(world, x1, y1, z1, TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                         }
                         
-                        blockID = world.getBlock(x1 - 1, y1, z1);
-                        if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1 - 1, y1, z1))
+                        block = world.getBlock(x1 - 1, y1, z1);
+                        if (block.isAir(world, x1 - 1, y1, z1) || block.canBeReplacedByLeaves(world, x1 - 1, y1, z1))
                         {
-                            setBlockAndNotifyAdequately(world, x1 - 1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockAndNotifyAdequately(world, x1 - 1, y1, z1, TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                         }
                         
-                        blockID = world.getBlock(x1, y1, z1 - 1);
-                        if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1, y1, z1 - 1))
+                        block = world.getBlock(x1, y1, z1 - 1);
+                        if (block.isAir(world, x1, y1, z1 - 1) || block.canBeReplacedByLeaves(world, x1, y1, z1 - 1))
                         {
-                            setBlockAndNotifyAdequately(world, x1, y1, z1 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockAndNotifyAdequately(world, x1, y1, z1 - 1, TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                         }
                         
-                        blockID = world.getBlock(x1 - 1, y1, z1 - 1);
-                        if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1 - 1, y1, z1 - 1))
+                        block = world.getBlock(x1 - 1, y1, z1 - 1);
+                        if (block.isAir(world, x1 - 1, y1, z1 - 1) || block.canBeReplacedByLeaves(world, x1 - 1, y1, z1 - 1))
                         {
-                            setBlockAndNotifyAdequately(world, x1 - 1, y1, z1 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockAndNotifyAdequately(world, x1 - 1, y1, z1 - 1, TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                         }
                     }
                 }
@@ -202,15 +203,15 @@ public class WorldGenRedwood extends WorldGenerator
         
         for (int y1 = 0; y1 < height - j3; y1++)
         {
-            final int j4 = world.getBlock(x, y + y1, z);
+            final Block j4 = world.getBlock(x, y + y1, z);
             
-            if (Block.blocksList[j4] == null || Block.blocksList[j4].isLeaves(world, x, y + y1, z))
+            if (j4 == null || j4.isLeaves(world, x, y + y1, z))
             {
 
-            	setBlockAndNotifyAdequately(world, x, y + y1, z, TreeBlock.TRUNK.getID(), 2);
-                setBlockAndNotifyAdequately(world, x - 1, y + y1, z, TreeBlock.TRUNK.getID(), 3);
-                setBlockAndNotifyAdequately(world, x, y + y1, z - 1, TreeBlock.TRUNK.getID(), 1);
-                setBlockAndNotifyAdequately(world, x - 1, y + y1, z - 1, TreeBlock.TRUNK.getID(), 0);
+            	setBlockAndNotifyAdequately(world, x, y + y1, z, TreeBlock.TRUNK.getBlock(), 2);
+                setBlockAndNotifyAdequately(world, x - 1, y + y1, z, TreeBlock.TRUNK.getBlock(), 3);
+                setBlockAndNotifyAdequately(world, x, y + y1, z - 1, TreeBlock.TRUNK.getBlock(), 1);
+                setBlockAndNotifyAdequately(world, x - 1, y + y1, z - 1, TreeBlock.TRUNK.getBlock(), 0);
                 
             }
         }

@@ -9,6 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -45,11 +46,11 @@ public class WorldGenFirTreeHuge extends WorldGenerator
             this.stack = stack;
         }
         
-        public int getID()
+        public Block getBlock()
         {
             if (!loadedCustomBlocks)
                 loadCustomBlocks();
-            return stack.itemID;
+            return Block.getBlockFromItem(stack.getItem());
         }
         
         public int getMetadata()
@@ -61,13 +62,13 @@ public class WorldGenFirTreeHuge extends WorldGenerator
         
     }
     
-    private static void setBlockandMetadataIfChunkExists(World world, int x, int y, int z, int blockId, int metadata)
+    private static void setBlockandMetadataIfChunkExists(World world, int x, int y, int z, Block block, int metadata)
     {
         if (world.getChunkProvider().chunkExists(x >> 4, z >> 4))
         {
             try
             {
-                world.setBlock(x, y, z, blockId, metadata, 3);
+                world.setBlock(x, y, z, block, metadata, 3);
             }
             catch (Exception e)
             {
@@ -136,9 +137,9 @@ public class WorldGenFirTreeHuge extends WorldGenerator
                     if (!world.getChunkProvider().chunkExists(x1 >> 4, z1 >> 4))
                         return false;
                     
-                    final int id = world.getBlock(x1, y1, z1);
+                    final Block block = world.getBlock(x1, y1, z1);
                     
-                    if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x1, y1, z1))
+                    if (block != null && !block.isLeaves(world, x1, y1, z1))
                         return false;
                 }
             }
@@ -147,10 +148,10 @@ public class WorldGenFirTreeHuge extends WorldGenerator
         if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)) || y >= 256 - height - 1)
             return false;
         
-        world.setBlock(x, y - 1, z, Block.dirt);
-        world.setBlock(x - 1, y - 1, z, Block.dirt);
-        world.setBlock(x, y - 1, z - 1, Block.dirt);
-        world.setBlock(x - 1, y - 1, z - 1, Block.dirt);
+        world.setBlock(x, y - 1, z, Blocks.dirt);
+        world.setBlock(x - 1, y - 1, z, Blocks.dirt);
+        world.setBlock(x, y - 1, z - 1, Blocks.dirt);
+        world.setBlock(x - 1, y - 1, z - 1, Blocks.dirt);
         int l1 = rand.nextInt(2);
         int j2 = 1;
         boolean flag1 = false;
@@ -168,28 +169,28 @@ public class WorldGenFirTreeHuge extends WorldGenerator
                     final int i5 = l4 - z;
                     if (Math.abs(k4) != l1 || Math.abs(i5) != l1 || l1 <= 0)
                     {
-                        int blockID = world.getBlock(i4, k3, l4);
-                        if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4, k3, l4))
+                        Block block = world.getBlock(i4, k3, l4);
+                        if (block.isAir(world, i4, k3, l4) || block.canBeReplacedByLeaves(world, i4, k3, l4))
                         {
-                            setBlockandMetadataIfChunkExists(world, i4, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockandMetadataIfChunkExists(world, i4, k3, l4, TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                         }
                         
-                        blockID = world.getBlock(i4 - 1, k3, l4);
-                        if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4 - 1, k3, l4))
+                        block = world.getBlock(i4 - 1, k3, l4);
+                        if (block.isAir(world, i4 - 1, k3, l4) || block.canBeReplacedByLeaves(world, i4 - 1, k3, l4))
                         {
-                            setBlockandMetadataIfChunkExists(world, i4 - 1, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockandMetadataIfChunkExists(world, i4 - 1, k3, l4, TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                         }
                         
-                        blockID = world.getBlock(i4, k3, l4 - 1);
-                        if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4, k3, l4 - 1))
+                        block = world.getBlock(i4, k3, l4 - 1);
+                        if (block.isAir(world, i4, k3, l4 - 1) || block.canBeReplacedByLeaves(world, i4, k3, l4 - 1))
                         {
-                            setBlockandMetadataIfChunkExists(world, i4, k3, l4 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockandMetadataIfChunkExists(world, i4, k3, l4 - 1, TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                         }
                         
-                        blockID = world.getBlock(i4 - 1, k3, l4 - 1);
-                        if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4 - 1, k3, l4 - 1))
+                        block = world.getBlock(i4 - 1, k3, l4 - 1);
+                        if (block.isAir(world, i4 - 1, k3, l4 - 1) || block.canBeReplacedByLeaves(world, i4 - 1, k3, l4 - 1))
                         {
-                            setBlockandMetadataIfChunkExists(world, i4 - 1, k3, l4 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockandMetadataIfChunkExists(world, i4 - 1, k3, l4 - 1, TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                         }
                     }
                 }
@@ -215,15 +216,15 @@ public class WorldGenFirTreeHuge extends WorldGenerator
         
         for (int l3 = 0; l3 < height - j3; l3++)
         {
-            final int id = world.getBlock(x, y + l3, z);
+            final Block block = world.getBlock(x, y + l3, z);
             
-            if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + l3, z))
+            if (block == null || block.isLeaves(world, x, y + l3, z))
             {
             	
-            	setBlockAndNotifyAdequately(world, x, y + l3, z, TreeBlock.TRUNK.getID(), 2);
-                setBlockAndNotifyAdequately(world, x - 1, y + l3, z, TreeBlock.TRUNK.getID(), 3);
-                setBlockAndNotifyAdequately(world, x, y + l3, z - 1, TreeBlock.TRUNK.getID(), 1);
-                setBlockAndNotifyAdequately(world, x - 1, y + l3, z - 1, TreeBlock.TRUNK.getID(), 0);
+            	setBlockAndNotifyAdequately(world, x, y + l3, z, TreeBlock.TRUNK.getBlock(), 2);
+                setBlockAndNotifyAdequately(world, x - 1, y + l3, z, TreeBlock.TRUNK.getBlock(), 3);
+                setBlockAndNotifyAdequately(world, x, y + l3, z - 1, TreeBlock.TRUNK.getBlock(), 1);
+                setBlockAndNotifyAdequately(world, x - 1, y + l3, z - 1, TreeBlock.TRUNK.getBlock(), 0);
                 
             }
         }

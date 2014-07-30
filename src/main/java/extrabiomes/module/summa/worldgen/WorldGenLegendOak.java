@@ -9,6 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -49,11 +50,11 @@ public class WorldGenLegendOak extends WorldGenerator
             this.stack = stack;
         }
         
-        public int getID()
+        public Block getBlock()
         {
             if (!loadedCustomBlocks)
                 loadCustomBlocks();
-            return stack.itemID;
+            return Block.getBlockFromItem(stack.getItem());
         }
         
         public int getMetadata()
@@ -94,19 +95,19 @@ public class WorldGenLegendOak extends WorldGenerator
                         && (Math.abs(xOffset) != 3 || Math.abs(zOffset) != 2)
                         && (Math.abs(xOffset) != 2 || Math.abs(zOffset) != 3)
                         && (xOffset != 0 || zOffset != 0))
-                    if (world.getBlock(x + xOffset, y, z + zOffset) == 0)
+                    if (world.isAirBlock(x + xOffset, y, z + zOffset))
                         setBlockAndNotifyAdequately(world, x + xOffset, y, z + zOffset,
-                                TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                                TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                 if (Math.abs(xOffset) >= 3 || Math.abs(zOffset) >= 3 || Math.abs(xOffset) == 2
                         && Math.abs(zOffset) == 2)
                     continue;
-                if (world.getBlock(x + xOffset, y - 1, z + zOffset) == 0)
+                if (world.isAirBlock(x + xOffset, y - 1, z + zOffset))
                     setBlockAndNotifyAdequately(world, x + xOffset, y - 1, z + zOffset,
-                            TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
-                if (world.getBlock(x + xOffset, y + 1, z + zOffset) != 0)
+                            TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
+                if (!world.isAirBlock(x + xOffset, y + 1, z + zOffset))
                     continue;
                 setBlockAndNotifyAdequately(world, x + xOffset, y + 1, z + zOffset,
-                        TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                        TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
             }
     }
     
@@ -126,10 +127,10 @@ public class WorldGenLegendOak extends WorldGenerator
     
     protected void growTree(World world, Random random, int x, int y, int z, int height, int leaflessHeight, int leafWidth)
     {
-        world.setBlock(x, y - 1, z, Block.dirt);
-        world.setBlock(x - 1, y - 1, z, Block.dirt);
-        world.setBlock(x, y - 1, z - 1, Block.dirt);
-        world.setBlock(x - 1, y - 1, z - 1, Block.dirt);
+        world.setBlock(x, y - 1, z, Blocks.dirt);
+        world.setBlock(x - 1, y - 1, z, Blocks.dirt);
+        world.setBlock(x, y - 1, z - 1, Blocks.dirt);
+        world.setBlock(x - 1, y - 1, z - 1, Blocks.dirt);
         
         growTrunk(world, random, x, y, z, height);
         
@@ -142,10 +143,10 @@ public class WorldGenLegendOak extends WorldGenerator
         
         for (int yOffset = 0; yOffset < height + 1; yOffset++)
         {
-        	setBlockAndNotifyAdequately(world, x, y + yOffset, z, TreeBlock.TRUNK.getID(), 2);
-            setBlockAndNotifyAdequately(world, x - 1, y + yOffset, z, TreeBlock.TRUNK.getID(), 3);
-            setBlockAndNotifyAdequately(world, x, y + yOffset, z - 1, TreeBlock.TRUNK.getID(), 1);
-            setBlockAndNotifyAdequately(world, x - 1, y + yOffset, z - 1, TreeBlock.TRUNK.getID(), 0);
+        	setBlockAndNotifyAdequately(world, x, y + yOffset, z, TreeBlock.TRUNK.getBlock(), 2);
+            setBlockAndNotifyAdequately(world, x - 1, y + yOffset, z, TreeBlock.TRUNK.getBlock(), 3);
+            setBlockAndNotifyAdequately(world, x, y + yOffset, z - 1, TreeBlock.TRUNK.getBlock(), 1);
+            setBlockAndNotifyAdequately(world, x - 1, y + yOffset, z - 1, TreeBlock.TRUNK.getBlock(), 0);
             
         }
         
@@ -156,7 +157,7 @@ public class WorldGenLegendOak extends WorldGenerator
         int length = 0;
         while (length < 2 * size / 3)
         {
-            setBlockAndNotifyAdequately(world, x, y, z, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
+            setBlockAndNotifyAdequately(world, x, y, z, TreeBlock.BRANCH.getBlock(), TreeBlock.BRANCH.getMetadata());
             if (random.nextInt(3) == 0 || length == 2 * size / 3 - 1)
                 growLeafNode(world, x, y, z);
             switch (xDirection)
@@ -193,7 +194,7 @@ public class WorldGenLegendOak extends WorldGenerator
         int length = 0;
         while (length < size / 3)
         {
-            setBlockAndNotifyAdequately(world, x, y, z, TreeBlock.BRANCH.getID(),
+            setBlockAndNotifyAdequately(world, x, y, z, TreeBlock.BRANCH.getBlock(),
                     TreeBlock.BRANCH.getMetadata());
             if (random.nextInt(3) == 0 || length == size / 3 - 1)
                 growLeafNode(world, x, y, z);
@@ -253,7 +254,7 @@ public class WorldGenLegendOak extends WorldGenerator
                 case TIGHT:
                     y++;
             }
-            setBlockAndNotifyAdequately(world, x, y, z, TreeBlock.BRANCH.getID(),
+            setBlockAndNotifyAdequately(world, x, y, z, TreeBlock.BRANCH.getBlock(),
                     TreeBlock.BRANCH.getMetadata());
             if (random.nextInt(3) == 0 || length == size - 1)
                 growLeafNode(world, x, y, z);
@@ -301,7 +302,7 @@ public class WorldGenLegendOak extends WorldGenerator
             {
                 if (random.nextInt(2) == 0)
                     y1++;
-                setBlockAndNotifyAdequately(world, x1, y1, z1, TreeBlock.BRANCH.getID(),
+                setBlockAndNotifyAdequately(world, x1, y1, z1, TreeBlock.BRANCH.getBlock(),
                         TreeBlock.BRANCH.getMetadata());
                 if (random.nextInt(4) == 0 || length == size - 1)
                     growLeafNode(world, x1, y1, z1);

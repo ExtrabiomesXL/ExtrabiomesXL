@@ -42,11 +42,11 @@ public class WorldGenFirTree extends WorldGenerator
             this.stack = stack;
         }
         
-        public int getID()
+        public Block getBlock()
         {
             if (!loadedCustomBlocks)
                 loadCustomBlocks();
-            return stack.itemID;
+            return Block.getBlockFromItem(stack.getItem());
         }
         
         public int getMetadata()
@@ -85,10 +85,10 @@ public class WorldGenFirTree extends WorldGenerator
     
     private boolean generateTree(World world, Random rand, int x, int y, int z)
     {
-        final int below = world.getBlock(x, y - 1, z);
+        final Block below = world.getBlock(x, y - 1, z);
         final int height = rand.nextInt(8) + 24;
         
-        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(below)) || y >= 256 - height - 1)
+        if (!TreeSoilRegistry.isValidSoil(below) || y >= 256 - height - 1)
             return false;
         
         if (y < 1 || y + height + 1 > 256)
@@ -113,15 +113,15 @@ public class WorldGenFirTree extends WorldGenerator
             {
                 for (int z1 = z - k1; z1 <= z + k1; z1++)
                 {
-                    final int id = world.getBlock(x1, i1, z1);
+                    final Block block = world.getBlock(x1, i1, z1);
                     
-                    if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x1, i1, z1))
+                    if (block != null && !block.isLeaves(world, x1, i1, z1))
                         return false;
                 }
             }
         }
         
-        world.setBlock(x, y - 1, z, Block.dirt);
+        world.setBlock(x, y - 1, z, Blocks.dirt);
         int l1 = rand.nextInt(2);
         int j2 = 1;
         boolean flag1 = false;
@@ -138,11 +138,11 @@ public class WorldGenFirTree extends WorldGenerator
                 {
                     final int i5 = l4 - z;
                     
-                    final Block block = Block.blocksList[world.getBlock(i4, k3, l4)];
+                    final Block block = world.getBlock(i4, k3, l4);
                     
                     if ((Math.abs(k4) != l1 || Math.abs(i5) != l1 || l1 <= 0) && (block == null || block.canBeReplacedByLeaves(world, i4, k3, l4)))
                     {
-                        setBlockAndNotifyAdequately(world, i4, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                        setBlockAndNotifyAdequately(world, i4, k3, l4, TreeBlock.LEAVES.getBlock(), TreeBlock.LEAVES.getMetadata());
                     }
                 }
             }
@@ -165,11 +165,11 @@ public class WorldGenFirTree extends WorldGenerator
         
         for (int l3 = 0; l3 < height - j3; l3++)
         {
-            final int id = world.getBlock(x, y + l3, z);
+            final Block block = world.getBlock(x, y + l3, z);
             
-            if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + l3, z))
+            if (block == null || block.isLeaves(world, x, y + l3, z))
             {
-                setBlockAndNotifyAdequately(world, x, y + l3, z, TreeBlock.TRUNK.getID(), TreeBlock.TRUNK.getMetadata());
+                setBlockAndNotifyAdequately(world, x, y + l3, z, TreeBlock.TRUNK.getBlock(), TreeBlock.TRUNK.getMetadata());
             }
         }
         

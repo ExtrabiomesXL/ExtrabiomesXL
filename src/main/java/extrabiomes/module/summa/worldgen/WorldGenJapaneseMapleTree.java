@@ -6,6 +6,7 @@ import java.util.Queue;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import extrabiomes.helpers.LogHelper;
@@ -97,7 +98,7 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase
         final int chunkCheck = (int) Math.ceil(radius) + 5;
         
         // Make sure that a tree can grow on the soil
-        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x, y - 1, z))))
+        if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)))
             return false;
         
         // make sure that we have room to grow the tree
@@ -129,7 +130,7 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase
         final int chunkCheck = (int) Math.ceil(radius) + 1;
         
         // Make sure that a tree can grow on the soil
-        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x, y - 1, z))))
+        if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)))
             return false;
         
         // make sure that we have room to grow the tree
@@ -326,7 +327,7 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase
             	Block block;
             	
             	try {
-            		block = Block.blocksList[world.getBlock((int) (x1 + x), (int) y, (int) (z1 + z))];
+            		block = world.getBlock((int) (x1 + x), (int) y, (int) (z1 + z));
             	} catch (Exception e) {
             		LogHelper.info("Japanese Maple tree tried to generate in an ungenerated chunk.");
             		return false;
@@ -354,7 +355,7 @@ public class WorldGenJapaneseMapleTree extends WorldGenNewTreeBase
         {
             for (int x1 = (int) -radius; x1 < (radius + 1); x1++)
             {
-                final Block block = Block.blocksList[world.getBlock((int) (x1 + x), (int) y, (int) (z1 + z))];
+                final Block block = world.getBlock((int) (x1 + x), (int) y, (int) (z1 + z));
                 
                 if ((((x1 * x1) + (z1 * z1)) <= maxDist) && (((x1 * x1) + (z1 * z1)) >= minDist))
                 {

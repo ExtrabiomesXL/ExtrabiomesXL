@@ -14,22 +14,22 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 class WorldGenLeafPile extends WorldGenerator
 {
+    private final Block block;
     
-    private final int blockID;
-    
-    WorldGenLeafPile(int blockID)
+    WorldGenLeafPile(Block block)
     {
-        this = blockID;
+        this.block = block;
     }
     
     @Override
     public boolean generate(World world, Random rand, int x, int y,
             int z)
     {
-        int i;
-        while ((Block.blocksList[i = world.getBlock(x, y, z)] == null || Block.blocksList[i]
-                .isLeaves(world, x, y, z)) && y > 0)
+        Block b = world.getBlock(x, y, z);
+        while ((b == null || b.isLeaves(world, x, y, z)) && y > 0) {
             y--;
+            b = world.getBlock(x, y, z);
+        }
         
         for (int j = 0; j < 128; j++)
         {
@@ -38,9 +38,8 @@ class WorldGenLeafPile extends WorldGenerator
             final int z1 = z + rand.nextInt(8) - rand.nextInt(8);
             
             if (world.isAirBlock(x1, y1, z1)
-                    && Block.blocksList[blockID].canBlockStay(world,
-                            x1, y1, z1))
-                world.setBlock(x1, y1, z1, blockID);
+                    && block.canBlockStay(world, x1, y1, z1))
+                world.setBlock(x1, y1, z1, block);
         }
         
         return true;

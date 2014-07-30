@@ -14,12 +14,12 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WorldGenWastelandGrass extends WorldGenerator
 {
-    private final int grassID;
+    private final Block grassBlock;
     private final int grassMeta;
     
-    public WorldGenWastelandGrass(int grassID, int grassMeta)
+    public WorldGenWastelandGrass(Block grassBlock, int grassMeta)
     {
-        this.grassID = grassID;
+        this.grassBlock = grassBlock;
         this.grassMeta = grassMeta;
     }
     
@@ -37,7 +37,7 @@ public class WorldGenWastelandGrass extends WorldGenerator
             int y1 = world.getHeightValue(x1, z1);
             while (y1 > 0)
             {
-                block = Block.blocksList[world.getBlock(x1, y1, z1)];
+                block = world.getBlock(x1, y1, z1);
                 if (block != null && block.isOpaqueCube())
                     break;
                 y1--;
@@ -45,9 +45,8 @@ public class WorldGenWastelandGrass extends WorldGenerator
             y1++;
             
             if (world.isAirBlock(x1, y1, z1)
-                    && Block.blocksList[grassID].canBlockStay(world,
-                            x1, y1, z1))
-                world.setBlock(x1, y1, z1, grassID,
+                    && grassBlock.canBlockStay(world, x1, y1, z1))
+                world.setBlock(x1, y1, z1, grassBlock,
                         grassMeta, 2);
         }
         
