@@ -6,26 +6,22 @@
 
 package extrabiomes.module.amica.buildcraft;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
 public abstract class FacadeHelper
 {
     
-    public static void addBuildcraftFacade(int blockID)
-    {
-        addBuildcraftFacade(blockID, 0);
-    }
-    
-    public static void addBuildcraftFacade(int blockID, int metadata)
+    public static void addBuildcraftFacade(Block block, int metadata)
     {
         FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade",
-                String.format("%d@%d", blockID, metadata));
+                String.format("%d@%d", Block.blockRegistry.getNameForObject(block), metadata));
     }
     
-    public static void addBuildcraftFacade(ItemStack stack)
+    public static void addBuildcraftFacade(Block block)
     {
-        addBuildcraftFacade(stack.itemID, stack.getItemDamage());
+        addBuildcraftFacade(block, 0);
     }
     
 }

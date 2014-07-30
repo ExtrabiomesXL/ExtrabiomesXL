@@ -14,7 +14,7 @@ public class WorldGenNewRedwood extends WorldGenerator
 
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves)), TRUNK(new ItemStack(Block.wood, 1, 1)), BRANCH(new ItemStack(Block.wood, 1, 1));
+        LEAVES(new ItemStack(Blocks.leaves)), TRUNK(new ItemStack(Blocks.log, 1, 1)), BRANCH(new ItemStack(Blocks.log, 1, 1));
 
         private ItemStack      stack;
 
@@ -164,7 +164,7 @@ public class WorldGenNewRedwood extends WorldGenerator
                         blockID = world.getBlock(x + j1, y + j3, z + j2);
                         if (!(j3 < height / 2) && (Block.blocksList[blockID] == null || Block.blocksList[blockID].canBeReplacedByLeaves(world, x + j1, y + j3, z + j2)))
                         {
-                            //setBlockAndMetadata(world, x + j1, y + j3, z + j2, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            //setBlockAndMetadata(world, x + j1, y + j3, z + j2, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                         }
 
 
@@ -192,7 +192,7 @@ public class WorldGenNewRedwood extends WorldGenerator
                     for (int j4 = height / 2; j4 <= height; j4++)
                     {
                         if ((rand.nextInt(1) == 0) && (world.getBlock(x + k1, y + j4, z + k2) == 0)) {
-                            //setBlockAndMetadata(world, x + k1, y + j4, z + k2, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            //setBlockAndMetadata(world, x + k1, y + j4, z + k2, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                         }
                     }
                 }
@@ -380,7 +380,7 @@ public class WorldGenNewRedwood extends WorldGenerator
                     blockID = world.getBlock(x + i, y, z + j);
                     if(Block.blocksList[blockID] == null || Block.blocksList[blockID].canBeReplacedByLeaves(world, x + i, y, z + j))
                     {
-                        setBlockAndMetadata(world, x + i, y, z + j, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                        setBlockAndMetadata(world, x + i, y, z + j, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                     }
                 }
 
@@ -390,13 +390,13 @@ public class WorldGenNewRedwood extends WorldGenerator
                 blockID = world.getBlock(x + i, y + 1, z + j);
                 if(Block.blocksList[blockID] == null || Block.blocksList[blockID].canBeReplacedByLeaves(world, x + i, y + 1, z + j))
                 {
-                    setBlockAndMetadata(world, x + i, y + 1, z + j, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                    setBlockAndMetadata(world, x + i, y + 1, z + j, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                 }
 
                 blockID = world.getBlock(x + i, y - 1, z + j);
                 if(Block.blocksList[blockID] == null || Block.blocksList[blockID].canBeReplacedByLeaves(world, x + i, y - 1, z + j))
                 {
-                    setBlockAndMetadata(world, x + i, y - 1, z + j, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                    setBlockAndMetadata(world, x + i, y - 1, z + j, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                 }
             }
         }

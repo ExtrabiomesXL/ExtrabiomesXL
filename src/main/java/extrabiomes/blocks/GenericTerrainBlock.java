@@ -19,9 +19,9 @@ import extrabiomes.utility.IDRestrictionAnnotation;
 public class GenericTerrainBlock extends Block
 {
     
-    public GenericTerrainBlock(int id, int index, Material material)
+    public GenericTerrainBlock(int index, Material material)
     {
-        super(id, material);
+        super(material);
     }
     
     public IIcon   texture;

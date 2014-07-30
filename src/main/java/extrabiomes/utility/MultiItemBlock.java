@@ -7,6 +7,7 @@
 package extrabiomes.utility;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -15,10 +16,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class MultiItemBlock extends ItemBlock
 {
+    private Block block;
     
-    public MultiItemBlock(int id)
+    public MultiItemBlock(Block block)
     {
-        super(id);
+        super(block);
         setMaxDamage(0);
         setHasSubtypes(true);
     }
@@ -26,7 +28,7 @@ public class MultiItemBlock extends ItemBlock
     @SideOnly(Side.CLIENT)
     private Block getBlock()
     {
-        return Block.blocksList[getBlockID()];
+        return this.block;
     }
     
     @SideOnly(Side.CLIENT)

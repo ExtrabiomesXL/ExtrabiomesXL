@@ -30,7 +30,7 @@ public class WorldGenLegendOak extends WorldGenerator
     
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves)), BRANCH(new ItemStack(Block.wood)), TRUNK(new ItemStack(Block.wood));
+        LEAVES(new ItemStack(Blocks.leaves)), BRANCH(new ItemStack(Blocks.log)), TRUNK(new ItemStack(Blocks.log));
         
         private ItemStack      stack;
         
@@ -96,17 +96,17 @@ public class WorldGenLegendOak extends WorldGenerator
                         && (xOffset != 0 || zOffset != 0))
                     if (world.getBlock(x + xOffset, y, z + zOffset) == 0)
                         setBlockAndMetadata(world, x + xOffset, y, z + zOffset,
-                                TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                                TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                 if (Math.abs(xOffset) >= 3 || Math.abs(zOffset) >= 3 || Math.abs(xOffset) == 2
                         && Math.abs(zOffset) == 2)
                     continue;
                 if (world.getBlock(x + xOffset, y - 1, z + zOffset) == 0)
                     setBlockAndMetadata(world, x + xOffset, y - 1, z + zOffset,
-                            TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                 if (world.getBlock(x + xOffset, y + 1, z + zOffset) != 0)
                     continue;
                 setBlockAndMetadata(world, x + xOffset, y + 1, z + zOffset,
-                        TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                        TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
             }
     }
     

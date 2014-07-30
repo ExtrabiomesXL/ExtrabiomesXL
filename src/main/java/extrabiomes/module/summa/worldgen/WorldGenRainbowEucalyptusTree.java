@@ -16,7 +16,7 @@ public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase
     
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK(new ItemStack(Block.wood, 1, 1)), KNEE_LOG(new ItemStack(Block.wood, 1, 1)), KNEE(new ItemStack(Block.wood, 1, 1));
+        LEAVES(new ItemStack(Blocks.leaves, 1, 1)), TRUNK(new ItemStack(Blocks.log, 1, 1)), KNEE_LOG(new ItemStack(Blocks.log, 1, 1)), KNEE(new ItemStack(Blocks.log, 1, 1));
         
         private ItemStack      stack;
         private static boolean loadedCustomBlocks = false;
@@ -412,7 +412,7 @@ public class WorldGenRainbowEucalyptusTree extends WorldGenNewTreeBase
     {
         for (int layer = -height; layer <= height; layer++)
         {
-            this.placeLeavesCircle(x, y + layer, z, radius * Math.cos(layer / (height / 1.3)), TreeBlock.LEAVES.get(), world);
+            this.placeLeavesCircle(x, y + layer, z, radius * Math.cos(layer / (height / 1.3)), TreeBlocks.leaves.get(), world);
         }
     }
     

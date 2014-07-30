@@ -3,6 +3,7 @@ package extrabiomes.module.amica.buildcraft;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -38,11 +39,11 @@ public class OilGenerator implements IWorldGenerator
                 final int i = startX + x;
                 final int k = startZ + z;
                 
-                final int id = world.getBlock(i, j, k);
-                if (id != 0)
+                final Block block = world.getBlock(i, j, k);
+                if (!block.isAir(world, i, j, k))
                 {
-                    if (id == Block.sand
-                            || (BiomeSettings.WASTELAND.getBiome().isPresent() && (byte) id == BiomeSettings.WASTELAND.getBiome().get().topBlock))
+                    if (block.equals(Blocks.sand)
+                            || (BiomeSettings.WASTELAND.getBiome().isPresent() && block.equals(BiomeSettings.WASTELAND.getBiome().get().topBlock)))
                         api.generateSurfaceDeposit(world, rand, i, j, k, 3);
                     
                     break;

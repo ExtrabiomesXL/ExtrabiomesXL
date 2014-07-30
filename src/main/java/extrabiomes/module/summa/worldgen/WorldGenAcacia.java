@@ -9,6 +9,8 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -20,7 +22,7 @@ public class WorldGenAcacia extends WorldGenerator
     
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves)), TRUNK(new ItemStack(Block.wood));
+        LEAVES(new ItemStack(Blocks.leaves)), TRUNK(new ItemStack(Blocks.log));
         
         private ItemStack      stack;
         
@@ -40,12 +42,16 @@ public class WorldGenAcacia extends WorldGenerator
         {
             this.stack = stack;
         }
-        
-        public int getID()
+
+        public Item getItem()
         {
             if (!loadedCustomBlocks)
                 loadCustomBlocks();
-            return stack.itemID;
+            return stack.getItem();
+        }
+        
+        public Block getBlock() {
+        	return Block.getBlockFromItem(getItem());
         }
         
         public int getMetadata()
@@ -106,12 +112,12 @@ public class WorldGenAcacia extends WorldGenerator
                 {
                     if (y1 >= 0 && y1 < 256)
                     {
-                        final int id = world.getBlock(x1, y1, z1);
+                        final Block block = world.getBlock(x1, y1, z1);
                         
-                        if (Block.blocksList[id] != null
-                                && !Block.blocksList[id].isLeaves(world, x1, y1, z1)
-                                && id != Block.grass && id != Block.dirt
-                                && !Block.blocksList[id].isWood(world, x1, y1, z1))
+                        if (block != null
+                                && !block.isLeaves(world, x1, y1, z1)
+                                && !block.equals(Blocks.grass) && !block.equals(Blocks.dirt)
+                                && !block.isWood(world, x1, y1, z1))
                             canGrow = false;
                         
                     }
@@ -129,7 +135,7 @@ public class WorldGenAcacia extends WorldGenerator
         if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)) || y >= 256 - height - 1)
             return false;
         
-        world.setBlock(x, y - 1, z, Block.dirt);
+        world.setBlock(x, y - 1, z, Blocks.dirt);
         final byte canopyHeight = 3;
         final int minCanopyRadius = 0;
         
@@ -146,11 +152,11 @@ public class WorldGenAcacia extends WorldGenerator
                 {
                     final int zOnRadius = z1 - z;
                     
-                    final Block block = Block.blocksList[world.getBlock(x1, y1, z1)];
+                    final Block block = world.getBlock(x1, y1, z1);
                     
                     if ((Math.abs(xOnRadius) != canopyRadius || Math.abs(zOnRadius) != canopyRadius || rand.nextInt(2) != 0 && distanceFromTop != 0) && (block == null || block.canBeReplacedByLeaves(world, x1, y1, z1)))
                     {
-                        setBlockAndMetadata(world, x1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                        setBlockAndNotifyAdequately(world, x1, y1, z1, TreeBlocks.leaves.getBlock(), TreeBlocks.leaves.getMetadata());
                     }
                 }
             }
@@ -158,14 +164,14 @@ public class WorldGenAcacia extends WorldGenerator
         
         for (int y1 = 0; y1 < height; y1++)
         {
-            final int id = world.getBlock(x, y + y1, z);
+            final Block block = world.getBlock(x, y + y1, z);
             
-            if (Block.blocksList[id] != null && !Block.blocksList[id].isLeaves(world, x, y + y1, z))
+            if (block != null && !block.isLeaves(world, x, y + y1, z))
             {
                 continue;
             }
             
-            setBlockAndMetadata(world, x, y + y1, z, TreeBlock.TRUNK.getID(), TreeBlock.TRUNK.getMetadata());
+            setBlockAndNotifyAdequately(world, x, y + y1, z, TreeBlock.TRUNK.getBlock(), TreeBlock.TRUNK.getMetadata());
             
         }
         

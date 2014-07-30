@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 public class WorldGenBigAutumnTree extends WorldGenAutumnTree
 {
     
-    private static int          trunkBlock      = Block.wood;
+    private static int          trunkBlock      = Blocks.log;
     private static int          trunkMetadata   = 0;
     
     private static final byte[] otherCoordPairs = new byte[] { (byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };

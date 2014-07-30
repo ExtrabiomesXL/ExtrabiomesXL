@@ -68,7 +68,7 @@ public class LogTurner extends ItemTool
         
         if (oreId != logOreId)
             return false;
-        final Block wood = Block.wood;
+        final Block wood = Blocks.log;
         
         world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F, wood.stepSound.getPitch() * 1.55F);
         

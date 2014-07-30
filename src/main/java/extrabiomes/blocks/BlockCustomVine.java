@@ -16,8 +16,8 @@ public class BlockCustomVine extends BlockVine {
 
 	public final BlockType	type;
 
-	public BlockCustomVine(int blockID, BlockType type) {
-		super(blockID);
+	public BlockCustomVine(BlockType type) {
+		super();
 		this.type = type;
 	}
 	

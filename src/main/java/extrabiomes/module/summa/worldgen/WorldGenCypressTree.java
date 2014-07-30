@@ -3,6 +3,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import extrabiomes.lib.Element;
@@ -13,7 +14,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase
     
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK(new ItemStack(Block.wood, 1, 1));
+        LEAVES(new ItemStack(Blocks.leaves, 1, 1)), TRUNK(new ItemStack(Blocks.log, 1, 1));
         
         private ItemStack      stack;
         private static boolean loadedCustomBlocks = false;
@@ -153,7 +154,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase
                 double offset2 = offset * offset;
                 double offset3 = offset2 * offset;
                 double r1 = radius * ((0.00142 * offset3) - (0.0517 * offset2) + (0.5085 * offset) - 0.4611);
-                placeLeavesCircle(x, layer + start + y, z, r1, TreeBlock.LEAVES.get(), world);
+                placeLeavesCircle(x, layer + start + y, z, r1, TreeBlocks.leaves.get(), world);
             }
             
             return true;

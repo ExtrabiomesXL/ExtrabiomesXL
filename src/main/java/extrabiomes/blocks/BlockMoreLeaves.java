@@ -17,6 +17,8 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerFoliage;
@@ -300,7 +302,7 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList)
+    public void getSubBlocks(Item id, CreativeTabs tab, List itemList)
     {
         for (final BlockType blockType : BlockType.values())
         {
@@ -322,7 +324,7 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public boolean isLeaves(World world, int x, int y, int z)
+    public boolean isLeaves(IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
@@ -330,7 +332,7 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
     @Override
     public boolean isOpaqueCube()
     {
-        return Block.leaves.isOpaqueCube();
+        return Blocks.leaves.isOpaqueCube();
     }
     
     @Override
@@ -368,7 +370,7 @@ public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
     @Override
     public boolean shouldSideBeRendered(IBlockAccess par1iBlockAccess, int par2, int par3, int par4, int par5)
     {
-        graphicsLevel = !Block.leaves.isOpaqueCube(); // fix leaf render
+        graphicsLevel = !Blocks.leaves.isOpaqueCube(); // fix leaf render
                                                       // bug
         return super.shouldSideBeRendered(par1iBlockAccess, par2, par3, par4, par5);
     }

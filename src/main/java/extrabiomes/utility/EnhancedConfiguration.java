@@ -13,7 +13,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 /**
- * Addes functionality to the Forge {@link net.minecraftforge.common.config.Configuration Configuration} class
+ * Adds functionality to the Forge {@link net.minecraftforge.common.config.Configuration Configuration} class
  * 
  */
 public class EnhancedConfiguration extends Configuration

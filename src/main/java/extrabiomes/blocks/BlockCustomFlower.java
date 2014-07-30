@@ -17,9 +17,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
@@ -132,9 +135,9 @@ public class BlockCustomFlower extends Block implements IPlantable
 
 	public final int						group;
 	private final Map<Integer, BlockType>	groupMap;
-	public BlockCustomFlower(int id, int group, Material material)
+	public BlockCustomFlower(int group, Material material)
     {
-        super(id, material);
+        super(material);
         
         final float offset = 0.2F;
         setBlockBounds(0.5F - offset, 0.0F, 0.5F - offset, 0.5F + offset, offset * 3.0F, 0.5F + offset);
@@ -177,19 +180,23 @@ public class BlockCustomFlower extends Block implements IPlantable
     public boolean canBlockStay(World world, int x, int y, int z)
     {
         return (world.getFullBlockLightValue(x, y, z) >= 8 || world.canBlockSeeTheSky(x, y, z))
-                && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z));
+                && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z));
     }
     
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z)
     {
-        return super.canPlaceBlockAt(world, x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z));
+        return super.canPlaceBlockAt(world, x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z));
     }
     
-    private boolean canThisPlantGrowOnThisBlockID(int id)
+    private boolean canThisPlantGrowOnThisBlock(Block block)
     {
 		// TODO: separate rules for edge cases (like cactus)
-        return id == Block.grass || id == Block.dirt || id == Block.tilledField || id == Block.sand || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock);
+    	return block.equals(Blocks.grass)
+    			|| block.equals(Blocks.dirt)
+    			|| block.equals(Blocks.farmland)
+    			|| block.equals(Blocks.sand)
+    			|| (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && block.equals(BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock));
     }
     
     private void checkFlowerChange(World world, int x, int y, int z)
@@ -197,7 +204,7 @@ public class BlockCustomFlower extends Block implements IPlantable
         if (!canBlockStay(world, x, y, z))
         {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlock(x, y, z, 0);
+            world.setBlock(x, y, z, Blocks.air);
         }
     }
     
@@ -226,19 +233,19 @@ public class BlockCustomFlower extends Block implements IPlantable
     }
     
     @Override
-    public Block getPlantID(World world, int x, int y, int z)
+    public Block getPlant(IBlockAccess world, int x, int y, int z)
     {
         return this;
     }
     
     @Override
-    public int getPlantMetadata(World world, int x, int y, int z)
+    public int getPlantMetadata(IBlockAccess world, int x, int y, int z)
     {
         return world.getBlockMetadata(x, y, z);
     }
     
     @Override
-    public EnumPlantType getPlantType(World world, int x, int y, int z)
+    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
     {
         final int metadata = world.getBlockMetadata(x, y, z);
         if (metadata == BlockType.TINY_CACTUS.metadata())
@@ -261,14 +268,14 @@ public class BlockCustomFlower extends Block implements IPlantable
         if (metadata == BlockType.TINY_CACTUS.metadata())
             return super.getSelectedBoundingBoxFromPool(world, x, y, z);
         
-        return AxisAlignedBB.getAABBPool().getAABB(x, y, z, x + 1, y + maxY, z + 1);
+        return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + maxY, z + 1);
         
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList)
+    public void getSubBlocks(Item id, CreativeTabs tab, List itemList)
     {
         for (final BlockType type : groupMap.values()) {
         	// Don't show the Shrub and the Root in the creative menu
@@ -285,7 +292,7 @@ public class BlockCustomFlower extends Block implements IPlantable
     }
     
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int id)
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor)
     {
         checkFlowerChange(world, x, y, z);
     }

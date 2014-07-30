@@ -17,6 +17,8 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerFoliage;
@@ -154,9 +156,9 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     
     private IIcon[] textures = { null, null, null, null, null, null, null, null, null, null, null, null };
     
-    public BlockGreenLeaves(int id, Material material, boolean useFastGraphics)
+    public BlockGreenLeaves(Material material, boolean useFastGraphics)
     {
-        super(id, material, useFastGraphics);
+        super(material, useFastGraphics);
     }
     
     @Override
@@ -184,7 +186,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public void breakBlock(World world, int x, int y, int z, int BlockID, int metadata)
+    public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
     {
         final int leafDecayRadius = 1;
         
@@ -198,11 +200,11 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
             {
                 for (int z1 = -leafDecayRadius; z1 <= leafDecayRadius; ++z1)
                 {
-                    final int id = world.getBlock(x + x1, y + y1, z + z1);
+                    final Block tblock = world.getBlock(x + x1, y + y1, z + z1);
                     
-                    if (Block.blocksList[id] != null)
+                    if (tblock != null)
                     {
-                        Block.blocksList[id].beginLeavesDecay(world, x + x1, y + y1, z + z1);
+                        tblock.beginLeavesDecay(world, x + x1, y + y1, z + z1);
                     }
                 }
             }
@@ -229,9 +231,9 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     
     private void doSaplingDrop(World world, int x, int y, int z, int metadata, int par7)
     {
-        final int idDropped = idDropped(metadata, world.rand, par7);
+        final Item itemDropped = getItemDropped(metadata, world.rand, par7);
         final int damageDropped = damageDropped(metadata);
-        dropBlockAsItem_do(world, x, y, z, new ItemStack(idDropped, 1, damageDropped));
+        this.dropBlockAsItem(world, x, y, z, new ItemStack(itemDropped, 1, damageDropped));
     }
     
     @Override
@@ -318,7 +320,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList)
+    public void getSubBlocks(Item id, CreativeTabs tab, List itemList)
     {
         for (final BlockType blockType : BlockType.values())
         {
@@ -340,7 +342,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public boolean isLeaves(World world, int x, int y, int z)
+    public boolean isLeaves(IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
@@ -348,7 +350,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     @Override
     public boolean isOpaqueCube()
     {
-        return Block.leaves.isOpaqueCube();
+        return Blocks.leaves.isOpaqueCube();
     }
     
     @Override
@@ -386,7 +388,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     @Override
     public boolean shouldSideBeRendered(IBlockAccess par1iBlockAccess, int par2, int par3, int par4, int par5)
     {
-        graphicsLevel = !Block.leaves.isOpaqueCube(); // fix leaf render
+        this.field_150121_P = !Blocks.leaves.isOpaqueCube(); // fix leaf render
                                                       // bug
         return super.shouldSideBeRendered(par1iBlockAccess, par2, par3, par4, par5);
     }
@@ -419,9 +421,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
                 {
                     for (int var14 = -rangeWood; var14 <= rangeWood; ++var14)
                     {
-                        final int id = world.getBlock(x + var12, y + var13, z + var14);
-                        
-                        final Block block = Block.blocksList[id];
+                        final Block block = world.getBlock(x + var12, y + var13, z + var14);
                         
                         if (block != null && block.canSustainLeaves(world, x + var12, y + var13, z + var14))
                         {

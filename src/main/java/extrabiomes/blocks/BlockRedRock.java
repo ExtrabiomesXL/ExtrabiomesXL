@@ -15,6 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -46,9 +47,9 @@ public class BlockRedRock extends Block
     
     private final IIcon[] textures = { null, null, null };
     
-    public BlockRedRock(int id, int index, Material material)
+    public BlockRedRock(int index, Material material)
     {
-        super(id, material);
+        super(material);
     }
     
     @Override
@@ -92,7 +93,7 @@ public class BlockRedRock extends Block
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList)
+    public void getSubBlocks(Item id, CreativeTabs tab, List itemList)
     {
         for (final BlockType blockType : BlockType.values())
             itemList.add(new ItemStack(this, 1, blockType.metadata()));

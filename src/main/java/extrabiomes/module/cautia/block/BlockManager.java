@@ -25,13 +25,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.quickSand = Optional.of(new BlockQuicksand(getSettings().getID()));
-        }
-        
-        @Override
-        protected BlockSettings getSettings()
-        {
-            return BlockSettings.QUICKSAND;
+            Stuff.quickSand = Optional.of(new BlockQuicksand());
         }
         
         @Override
@@ -44,16 +38,20 @@ public enum BlockManager
             proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
             proxy.registerBlock(thisBlock, Reference.MOD_ID + ":" + "extrabiomes.quicksand");
             
-            FacadeHelper.addBuildcraftFacade(thisblock);
+            FacadeHelper.addBuildcraftFacade(thisBlock);
             
-            proxy.registerWorldGenerator(new QuicksandGenerator(thisblock));
+            proxy.registerWorldGenerator(new QuicksandGenerator(thisBlock));
         }
+
+		@Override
+		protected BlockSettings getSettings() {
+			return BlockSettings.QUICKSAND;
+		}
     };
     
     private static void createBlocks() throws Exception
     {
         for (final BlockManager block : BlockManager.values())
-            if (block.getSettings().getID() > 0)
             {
                 try
                 {

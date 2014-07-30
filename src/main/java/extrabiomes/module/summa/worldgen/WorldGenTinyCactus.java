@@ -9,6 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import extrabiomes.lib.BiomeSettings;
@@ -16,12 +17,12 @@ import extrabiomes.lib.BiomeSettings;
 class WorldGenTinyCactus extends WorldGenerator
 {
     
-    private final int blockID;
+    private final Block block;
     private final int metadata;
     
-    WorldGenTinyCactus(int blockID, int metadata)
+    WorldGenTinyCactus(Block block, int metadata)
     {
-        this = blockID;
+        this.block = block;
         this.metadata = metadata;
     }
     
@@ -41,10 +42,10 @@ class WorldGenTinyCactus extends WorldGenerator
             
             for (int y2 = 0; y2 < i1; y2++)
             {
-                final int id = world.getBlock(x1, y1 + y2 - 1, z1);
-                if (id == Block.sand
-                        || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && (byte) id == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock))
-                    world.setBlock(x1, y1 + y2, z1, blockID, metadata, 2);
+                final Block block = world.getBlock(x1, y1 + y2 - 1, z1);
+                if (block.equals(Blocks.sand)
+                        || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && block.equals(BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock)))
+                    world.setBlock(x1, y1 + y2, z1, block, metadata, 2);
             }
         }
         

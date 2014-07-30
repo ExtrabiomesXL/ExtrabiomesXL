@@ -12,12 +12,11 @@ public class CreativeTab extends CreativeTabs
     {
         super(par2Str);
     }
+
+	@Override
+	public Item getTabIconItem() {
+		if(Stuff.scarecrow.isPresent()) return Stuff.scarecrow.get();
+		else return null;
+	}
     
-    @SideOnly(Side.CLIENT)
-    public Item getTabIIconItem()
-    {
-        if (!Stuff.scarecrow.isPresent())
-            return Item.itemsList[this.getTabIIconItemIndex()];
-        return Stuff.scarecrow.get();
-    }
 }

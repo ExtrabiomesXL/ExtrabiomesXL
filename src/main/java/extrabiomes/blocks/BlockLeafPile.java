@@ -11,6 +11,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerFoliage;
@@ -23,16 +24,16 @@ import extrabiomes.Extrabiomes;
 public class BlockLeafPile extends Block
 {
     
-    static private boolean canThisPlantGrowOnThisBlockID(int blockId)
+    static private boolean canThisPlantGrowOnThisBlock(Block block)
     {
-        return blockId == Block.grass || blockId == Block.dirt;
+        return block.equals(Blocks.grass) || block.equals(Blocks.dirt);
     }
     
     private IIcon texture;
     
-    public BlockLeafPile(int id, int index, Material material)
+    public BlockLeafPile(int index, Material material)
     {
-        super(id, material);
+        super(material);
         final float f = 0.5F;
         final float f1 = 0.015625F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f1, 0.5F + f);
@@ -55,13 +56,13 @@ public class BlockLeafPile extends Block
     @Override
     public boolean canBlockStay(World world, int x, int y, int z)
     {
-        return canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z));
+        return canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z));
     }
     
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z)
     {
-        return super.canPlaceBlockAt(world, x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z));
+        return super.canPlaceBlockAt(world, x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z));
     }
     
     private void checkFlowerChange(World world, int x, int y, int z)
@@ -69,7 +70,7 @@ public class BlockLeafPile extends Block
         if (!canBlockStay(world, x, y, z))
         {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlock(x, y, z, 0);
+            world.setBlock(x, y, z, Blocks.air);
         }
     }
     
@@ -77,7 +78,7 @@ public class BlockLeafPile extends Block
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess iBlockAccess, int x, int y, int z)
     {
-        return iBlockAccess.getBiomeGenForCoords(x, z).getBiomeFoliageColor();
+        return iBlockAccess.getBiomeGenForCoords(x, z).getBiomeFoliageColor(x, y, z);
     }
     
     @Override
@@ -101,7 +102,7 @@ public class BlockLeafPile extends Block
     }
     
     @Override
-    public boolean isBlockReplaceable(World world, int x, int y, int z)
+    public boolean isReplaceable(IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
@@ -113,9 +114,9 @@ public class BlockLeafPile extends Block
     }
     
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int neigborId)
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor)
     {
-        super.onNeighborBlockChange(world, x, y, z, neigborId);
+        super.onNeighborBlockChange(world, x, y, z, neighbor);
         checkFlowerChange(world, x, y, z);
     }
     

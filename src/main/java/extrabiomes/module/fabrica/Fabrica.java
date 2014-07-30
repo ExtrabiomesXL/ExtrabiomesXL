@@ -8,6 +8,8 @@ package extrabiomes.module.fabrica;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -47,7 +49,7 @@ public class Fabrica
             Extrabiomes.proxy.registerEntityID(EntityScarecrow.class, ItemScarecrow.NAME, scarecrowEntityID);
             Extrabiomes.proxy.registerEntity(EntityScarecrow.class, ItemScarecrow.NAME, Extrabiomes.instance, scarecrowEntityID, 300, 2, true);
             
-            final IRecipe recipe = new ShapedOreRecipe(Stuff.scarecrow.get(), new String[] { " p ", "sms", " s " }, 'p', Block.pumpkin, 'm', Block.melon, 's', Item.stick);
+            final IRecipe recipe = new ShapedOreRecipe(Stuff.scarecrow.get(), new String[] { " p ", "sms", " s " }, 'p', Blocks.pumpkin, 'm', Blocks.melon_block, 's', Items.stick);
             Extrabiomes.proxy.addRecipe(recipe);
         }
         
@@ -55,13 +57,13 @@ public class Fabrica
         {
             if (Element.TINY_CACTUS.isPresent())
             {
-                IRecipe recipe = new ShapelessOreRecipe(Stuff.paste.get(), Block.cactus);
+                IRecipe recipe = new ShapelessOreRecipe(Stuff.paste.get(), Blocks.cactus);
                 Extrabiomes.proxy.addRecipe(recipe);
                 
                 recipe = new ShapelessOreRecipe(Stuff.paste.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get());
                 Extrabiomes.proxy.addRecipe(recipe);
                 
-                Extrabiomes.proxy.addSmelting(Stuff.paste.get().itemID, 0, new ItemStack(Item.dyePowder, 1, 2), 0.2F);
+                Extrabiomes.proxy.addSmelting(Stuff.paste.get(), 0, new ItemStack(Items.dye, 1, 2), 0.2F);
             }
         }
     }

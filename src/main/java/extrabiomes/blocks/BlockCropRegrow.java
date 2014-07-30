@@ -63,7 +63,7 @@ public class BlockCropRegrow extends BlockCropBasic {
 	}
 
 	@Override
-	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y,
+	public ArrayList<ItemStack> getDrops(World world, int x, int y,
 			int z, int meta, int fortune) {
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
@@ -71,7 +71,7 @@ public class BlockCropRegrow extends BlockCropBasic {
 		if (meta >= MAX_GROWTH_STAGE) {
 			ret.add(new ItemStack(this.getCropItem(), 1, 0));
 		} else {
-			ret.add(new ItemStack(this.getSeedItem(), 1, 0));
+			ret.add(this.getSeedItem());
 		}
 
 		return ret;

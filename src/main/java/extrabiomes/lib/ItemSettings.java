@@ -39,11 +39,11 @@ public enum ItemSettings
     }
     
     public void load(EnhancedConfiguration configuration, boolean update) {
-    	if(update || itemID == 0) {
+    /*	if(update || itemID == 0) {
     		itemID = configuration.get(Configuration.CATEGORY_ITEM, toString() + ".id", itemID).getInt(0);
     	} else {
     		itemID = configuration.getItem(toString() + ".id", itemID).getInt(0);
-    	}
+    	}*/
     }
     
     @Override

@@ -9,30 +9,30 @@ package extrabiomes.module.cautia.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 class WorldGenQuicksand extends WorldGenerator
 {
     
-    private final int quicksandID;
+    private final Block quicksand;
     
-    WorldGenQuicksand(int quicksandID)
+    WorldGenQuicksand(Block quicksand)
     {
-        this.quicksandID = quicksandID;
+        this.quicksand = quicksand;
     }
     
     @Override
     public boolean generate(World world, Random rand, int x, int y,
             int z)
     {
-        while ((world.isAirBlock(x, y, z) || !Block.isNormalCube(world
-                .getBlockId(x, y, z))) && y > 2)
+        while ((world.isAirBlock(x, y, z) || !world
+                .getBlock(x, y, z).isNormalCube(world, x, y, z)) && y > 2)
             y--;
         
-        final int blockID = world.getBlock(x, y, z);
-        if (blockID != Block.grass
-                && blockID != Block.sand)
+        final Block block = world.getBlock(x, y, z);
+        if (!block.equals(Blocks.grass) && !block.equals(Blocks.sand))
             return false;
         
         for (int x1 = -2; x1 <= 2; x1++)
@@ -44,7 +44,7 @@ class WorldGenQuicksand extends WorldGenerator
         for (int x1 = -1; x1 <= 1; x1++)
             for (int z1 = -1; z1 <= 1; z1++)
                 for (int y1 = -2; y1 <= 0; y1++)
-                    world.setBlock(x + x1, y + y1, z + z1, quicksandID);
+                    world.setBlock(x + x1, y + y1, z + z1, quicksand);
         
         return true;
     }

@@ -10,17 +10,18 @@ import java.util.Random;
 
 import extrabiomes.helpers.LogHelper;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 class WorldGenMetadataFlowers extends WorldGenerator
 {
-    private final int blockId;
+    private final Block block;
     private final int metadata;
     
-    WorldGenMetadataFlowers(int blockId, int metadata)
+    WorldGenMetadataFlowers(Block block, int metadata)
     {
-        this = blockId;
+        this.block = block;
         this.metadata = metadata;
     }
     
@@ -34,18 +35,17 @@ class WorldGenMetadataFlowers extends WorldGenerator
             final int z1 = z + rand.nextInt(8) - rand.nextInt(8);
             
             final boolean isAir = world.isAirBlock(x1, y1, z1);
-            final boolean isSnow = (world.getBlock(x1, y1, z) == Block.snow);
+            final boolean isSnow = (world.getBlock(x1, y1, z) == Blocks.snow);
             
             try {
-	            if ((isAir || isSnow) && Block.blocksList[blockId].canBlockStay(world, x1, y1, z1)) {
-	                world.setBlock(x1, y1, z1, blockId, metadata, 2);
+	            if ((isAir || isSnow) && block.canBlockStay(world, x1, y1, z1)) {
+	                world.setBlock(x1, y1, z1, block, metadata, 2);
 	            }
             } catch (Exception e) {
             	LogHelper.severe("We stopped a crash in the flower generator.");
-            	LogHelper.severe("BlockID: %d, World: %s, BlockList[BlockId]: %s, Line: %d",
-            		blockId,
-            		(world == null) ? "null" : world.toString(), 
-            		(Block.blocksList[blockId] == null) ? "null": Block.blocksList[blockId].toString(),
+            	LogHelper.severe("BlockName: %d, World: %s, Line: %d",
+            		block.getUnlocalizedName(),
+            		(world == null) ? "null" : world.toString(),
             		e.getStackTrace()[0].getLineNumber()
             	);
             }

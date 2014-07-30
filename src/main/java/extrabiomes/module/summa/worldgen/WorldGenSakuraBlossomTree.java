@@ -17,7 +17,7 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase
     
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK(new ItemStack(Block.wood, 1, 1));
+        LEAVES(new ItemStack(Blocks.leaves, 1, 1)), TRUNK(new ItemStack(Blocks.log, 1, 1));
         
         private ItemStack      stack;
         private static boolean loadedCustomBlocks = false;
@@ -260,7 +260,7 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase
         while (itt.hasNext())
         {
             int[] cluster = itt.next();
-            generateLeafCluster(world, cluster[0], cluster[1], cluster[2], 2, 2, TreeBlock.LEAVES.get());
+            generateLeafCluster(world, cluster[0], cluster[1], cluster[2], 2, 2, TreeBlocks.leaves.get());
         }
         
         // Calculate the center position
@@ -269,10 +269,10 @@ public class WorldGenSakuraBlossomTree extends WorldGenNewTreeBase
         average[2] /= branchCount;
         
         // Generate the canopy
-        generateCanopy(world, rand, average[0] + x, y, average[2] + z, radius, height, TreeBlock.LEAVES.get());
+        generateCanopy(world, rand, average[0] + x, y, average[2] + z, radius, height, TreeBlocks.leaves.get());
         
         // Generate the center cone
-        generateVerticalCone(world, x, y, z, height - 1, .75, 2, TreeBlock.LEAVES.get());
+        generateVerticalCone(world, x, y, z, height - 1, .75, 2, TreeBlocks.leaves.get());
         
     }
     

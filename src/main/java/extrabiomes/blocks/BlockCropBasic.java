@@ -12,6 +12,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraft.util.Direction;
 
 import com.google.common.collect.Lists;
@@ -79,7 +80,7 @@ public class BlockCropBasic extends BlockFlower {
 		super(blockID);
 		cropType = type;
 		// TODO: set creative tab
-		this.setStepSound(Block.soundGrassFootstep);
+		this.setStepSound(Block.soundTypeGrass);
 		
 		final float offset = 0.2F;
 		setBlockBounds(0.5F - offset, 0.0F, 0.5F - offset, 0.5F + offset, offset * 3.0F, 0.5F + offset);
@@ -114,11 +115,6 @@ public class BlockCropBasic extends BlockFlower {
 					+ " @ " + metadata);
 			return null;
 		}
-	}
-
-	@Override
-	public EnumPlantType getPlantType(World world, int x, int y, int z) {
-		return EnumPlantType.Crop;
 	}
 	
 	/*
@@ -185,14 +181,14 @@ public class BlockCropBasic extends BlockFlower {
 	private float getGrowthRate(World world, int x, int y, int z)
 	{
 		float rate = 1.0F;
-		final int id_nZ = world.getBlock(x, y, z - 1);
-		final int id_pZ = world.getBlock(x, y, z + 1);
-		final int id_nX = world.getBlock(x - 1, y, z);
-		final int id_pX = world.getBlock(x + 1, y, z);
-		final int id_nXnZ = world.getBlock(x - 1, y, z - 1);
-		final int id_pXnZ = world.getBlock(x + 1, y, z - 1);
-		final int id_pXpZ = world.getBlock(x + 1, y, z + 1);
-		final int id_nXpZ = world.getBlock(x - 1, y, z + 1);
+		final Block id_nZ = world.getBlock(x, y, z - 1);
+		final Block id_pZ = world.getBlock(x, y, z + 1);
+		final Block id_nX = world.getBlock(x - 1, y, z);
+		final Block id_pX = world.getBlock(x + 1, y, z);
+		final Block id_nXnZ = world.getBlock(x - 1, y, z - 1);
+		final Block id_pXnZ = world.getBlock(x + 1, y, z - 1);
+		final Block id_pXpZ = world.getBlock(x + 1, y, z + 1);
+		final Block id_nXpZ = world.getBlock(x - 1, y, z + 1);
 		final boolean flagX = id_nX == this || id_pX == this;
 		final boolean flagZ = id_nZ == this || id_pZ == this;
 		final boolean flagD = id_nXnZ == this || id_pXnZ == this || id_pXpZ == this || id_nXpZ == this;
@@ -200,13 +196,13 @@ public class BlockCropBasic extends BlockFlower {
 		// bonus for nearby soil
 		for (int i = x - 1; i <= x + 1; ++i) {
 			for (int j = z - 1; j <= z + 1; ++j) {
-				final int id_ground = world.getBlock(i, y - 1, j);
+				final Block id_ground = world.getBlock(i, y - 1, j);
 				float bonus = 0.0F;
 				
-				if (blocksList[id_ground] != null && blocksList[id_ground].canSustainPlant(world, i, y - 1, j, ForgeDirection.UP, this)) {
+				if (id_ground != null && id_ground.canSustainPlant(world, i, y - 1, j, ForgeDirection.UP, this)) {
 					bonus = 1.0F;
 					
-					if (blocksList[id_ground].isFertile(world, i, y - 1, j)) {
+					if (id_ground.isFertile(world, i, y - 1, j)) {
 						bonus = 3.0F;
 					}
 				}
@@ -231,13 +227,13 @@ public class BlockCropBasic extends BlockFlower {
 	 * Currently borrowed directly from vanilla crops, will improve.
 	 */
 	@Override
-	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune) {
-		ArrayList<ItemStack> ret = super.getBlockDropped(world, x, y, z, metadata, fortune);
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+		ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
 
 		if (metadata >= MAX_GROWTH_STAGE) {
 			for (int n = 0; n < 3 + fortune; n++) {
 				if (world.rand.nextInt(15) <= metadata) {
-					ret.add(new ItemStack(this.getSeedItem(), 1, 0));
+					ret.add(this.getSeedItem());
 				}
 			}
 		}
@@ -247,7 +243,7 @@ public class BlockCropBasic extends BlockFlower {
 
 	@Override
 	public Item getItemDropped(int meta, Random rand, int fortune) {
-		return meta >= MAX_GROWTH_STAGE ? this.getCropItem() : this.getSeedItem();
+		return meta >= MAX_GROWTH_STAGE ? this.getCropItem() : this.getSeedItem().getItem();
 	}
 	@Override
 	public int quantityDropped(Random random) {
@@ -259,11 +255,11 @@ public class BlockCropBasic extends BlockFlower {
 		return cropType.getRenderType();
 	}
 	
-	public int getSeedItem() {
-		return cropType.getSeedItem().itemID;
+	public ItemStack getSeedItem() {
+		return cropType.getSeedItem();
 	}
-	public int getCropItem() {
-		return cropType.getCropItem().itemID;
+	public Item getCropItem() {
+		return cropType.getCropItem();
 	}
 	public void setSeedItem(ItemStack seed) {
 		cropType.setSeedItem(seed);

@@ -16,7 +16,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -37,7 +39,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
         UMBER(0), GOLDENROD(1), VERMILLION(2), CITRINE(3);
         
         private final int      metadata;
-        private ItemStack      sapling            = new ItemStack(Block.sapling);
+        private ItemStack      sapling            = new ItemStack(Blocks.sapling);
         private static boolean loadedCustomBlocks = false;
         
         static BlockType fromMetadata(int metadata)
@@ -83,11 +85,11 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
             this.metadata = metadata;
         }
         
-        int getSaplingID()
+        Block getSaplingBlock()
         {
             if (!loadedCustomBlocks)
                 loadCustomBlocks();
-            return sapling.itemID;
+            return Block.getBlockFromItem(sapling.getItem());
         }
         
         int getSaplingMetadata()
@@ -155,9 +157,9 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     
     int[] adjacentTreeBlocks;
     
-    public BlockAutumnLeaves(int id, int index, Material material, boolean useFastGraphics)
+    public BlockAutumnLeaves(int index, Material material, boolean useFastGraphics)
     {
-        super(id, material, useFastGraphics);
+        super(material, useFastGraphics);
     }
     
     @Override
@@ -167,7 +169,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public void breakBlock(World world, int x, int y, int z, int blockID, int metadata)
+    public void breakBlock(World world, int x, int y, int z, Block block,int metadata)
     {
         final int leafDecayRadius = 1;
         final int chuckCheckRadius = leafDecayRadius + 1;
@@ -181,11 +183,11 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
             {
                 for (int z1 = -leafDecayRadius; z1 <= leafDecayRadius; ++z1)
                 {
-                    final int id = world.getBlock(x + x1, y + y1, z + z1);
+                    final Block tblock = world.getBlock(x + x1, y + y1, z + z1);
                     
-                    if (Block.blocksList[id] != null)
+                    if (tblock != null)
                     {
-                        Block.blocksList[id].beginLeavesDecay(world, x + x1, y + y1, z + z1);
+                        tblock.beginLeavesDecay(world, x + x1, y + y1, z + z1);
                     }
                 }
             }
@@ -201,10 +203,10 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     
     private void doSaplingDrop(World world, int x, int y, int z, int metadata, int par7)
     {
-        final int idDropped = idDropped(metadata, world.rand, par7);
-        if (idDropped > 0)
+        final Item itemDropped = getItemDropped(metadata, world.rand, par7);
+        if (itemDropped != null)
         {
-            dropBlockAsItem(world, x, y, z, new ItemStack(idDropped(metadata, world.rand, par7), 1, damageDropped(metadata)));
+            dropBlockAsItem(world, x, y, z, new ItemStack(itemDropped, 1, damageDropped(metadata)));
         }
     }
     
@@ -249,7 +251,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList)
+    public void getSubBlocks(Item id, CreativeTabs tab, List itemList)
     {
         for (final BlockType blockType : BlockType.values())
         {
@@ -261,11 +263,11 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     public Item getItemDropped(int metadata, Random rand, int par3)
     {
         final Optional<BlockType> type = Optional.fromNullable(BlockType.fromMetadata(metadata));
-        return type.isPresent() ? type.get().getSaplingID() : Block.sapling;
+        return Item.getItemFromBlock(type.isPresent() ? type.get().getSaplingBlock() : Blocks.sapling);
     }
     
     @Override
-    public boolean isLeaves(World world, int x, int y, int z)
+    public boolean isLeaves(IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
@@ -273,11 +275,11 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     @Override
     public boolean isOpaqueCube()
     {
-        return Block.leaves.isOpaqueCube();
+        return Blocks.leaves.isOpaqueCube();
     }
     
     @Override
-    public boolean isShearable(ItemStack item, World world, int x, int y, int z)
+    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
@@ -289,7 +291,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public ArrayList<ItemStack> onSheared(ItemStack item, World world, int x, int y, int z, int fortune)
+    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune)
     {
         final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
         ret.add(new ItemStack(this, 1, unmarkedMetadata(world.getBlockMetadata(x, y, z))));
@@ -311,7 +313,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
     @Override
     public boolean shouldSideBeRendered(IBlockAccess par1iBlockAccess, int par2, int par3, int par4, int par5)
     {
-        graphicsLevel = !Block.leaves.isOpaqueCube(); // fix leaf render
+        this.field_150121_P = !Blocks.leaves.isOpaqueCube(); // fix leaf render
                                                       // bug
         return super.shouldSideBeRendered(par1iBlockAccess, par2, par3, par4, par5);
     }
@@ -344,13 +346,13 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
                 {
                     for (int var14 = -rangeWood; var14 <= rangeWood; ++var14)
                     {
-                        final int id = world.getBlock(x + var12, y + var13, z + var14);
+                        final Block block = world.getBlock(x + var12, y + var13, z + var14);
                         
-                        if (Block.blocksList[id] != null && Block.blocksList[id].isWood(world, x + var12, y + var13, z + var14))
+                        if (block != null && block.isWood(world, x + var12, y + var13, z + var14))
                         {
                             adjacentTreeBlocks[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = 0;
                         }
-                        else if (Block.blocksList[id] != null && Block.blocksList[id].isLeaves(world, x + var12, y + var13, z + var14))
+                        else if (block != null && block.isLeaves(world, x + var12, y + var13, z + var14))
                         {
                             adjacentTreeBlocks[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = -2;
                         }

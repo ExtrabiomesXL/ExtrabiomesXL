@@ -10,7 +10,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.logging.Logger;
+
+import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -59,14 +60,14 @@ public class CommonProxy
         CraftingManager.getInstance().getRecipeList().add(0, recipe);
     }
 
-    public void addSmelting(int itemID, int metadata, ItemStack itemstack, float experience)
+    public void addSmelting(Item item, int metadata, ItemStack itemstack, float experience)
     {
-        FurnaceRecipes.smelting().addSmelting(itemID, metadata, itemstack, experience);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(item, 1, metadata), itemstack, experience);
     }
 
     public void addSmelting(ItemStack input, ItemStack output, float experience)
     {
-        FurnaceRecipes.smelting().addSmelting(input.itemID, output, experience);
+        FurnaceRecipes.smelting().func_151394_a(input, output, experience);
     }
 
     public int findGlobalUniqueEntityId()

@@ -9,6 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -20,7 +21,7 @@ public class WorldGenFirTree extends WorldGenerator
     
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK(new ItemStack(Block.wood, 1, 1));
+        LEAVES(new ItemStack(Blocks.leaves, 1, 1)), TRUNK(new ItemStack(Blocks.log, 1, 1));
         
         private ItemStack      stack;
         
@@ -141,7 +142,7 @@ public class WorldGenFirTree extends WorldGenerator
                     
                     if ((Math.abs(k4) != l1 || Math.abs(i5) != l1 || l1 <= 0) && (block == null || block.canBeReplacedByLeaves(world, i4, k3, l4)))
                     {
-                        setBlockAndMetadata(world, i4, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                        setBlockAndMetadata(world, i4, k3, l4, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                     }
                 }
             }

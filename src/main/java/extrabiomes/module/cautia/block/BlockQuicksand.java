@@ -20,11 +20,11 @@ import extrabiomes.Extrabiomes;
 class BlockQuicksand extends Block
 {
     
-    BlockQuicksand(int id)
+    BlockQuicksand()
     {
-        super(id, Material.sand);
+        super(Material.sand);
         setHardness(4.0F);
-        setStepSound(Block.soundSandFootstep);
+        setStepSound(Block.soundTypeSand);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     
@@ -32,7 +32,7 @@ class BlockQuicksand extends Block
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "quicksand");
     }

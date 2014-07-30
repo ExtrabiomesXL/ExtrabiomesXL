@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -66,7 +67,7 @@ public class BlockCustomSapling extends BlockFlower
         }
     }
     
-    int                      saplingID        = 0;
+    Block sapling;
     static int               saplingLifespan  = 5000;
     
     private IIcon[]           textures         = { null, null, null, null, null, null, null, null };
@@ -74,7 +75,7 @@ public class BlockCustomSapling extends BlockFlower
     private static final int METADATA_BITMASK = 0x7;
     private static final int METADATA_MARKBIT = 0x8;
     
-    private static int       forestrySoilID   = 0;
+    private static Block       forestrySoil;
     
     private static boolean isEnoughLightToGrow(World world, int x, int y, int z)
     {
@@ -91,9 +92,9 @@ public class BlockCustomSapling extends BlockFlower
         return metadata | METADATA_MARKBIT;
     }
     
-    public static void setForestrySoilID(int soilID)
+    public static void setForestrySoil(Block soil)
     {
-        forestrySoilID = soilID;
+        forestrySoil = soil;
     }
     
     private static int unmarkedMetadata(int metadata)
@@ -101,13 +102,13 @@ public class BlockCustomSapling extends BlockFlower
         return metadata & METADATA_BITMASK;
     }
     
-    public BlockCustomSapling(int id, int index)
+    public BlockCustomSapling(Block sapling, int index)
     {
-        super(id);
+        super(0);
         final float var3 = 0.4F;
         setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
         
-        saplingID = id;
+        this.sapling = sapling;
         MinecraftForge.EVENT_BUS.register(this);
     }
     
@@ -143,9 +144,9 @@ public class BlockCustomSapling extends BlockFlower
     }
     
     @Override
-    protected boolean canThisPlantGrowOnThisBlock(int id)
+    protected boolean canThisPlantGrowOnThisBlock(Block block)
     {
-        return TreeSoilRegistry.isValidSoil(id);
+        return TreeSoilRegistry.isValidSoil(block);
     }
     
     @Override
@@ -181,7 +182,7 @@ public class BlockCustomSapling extends BlockFlower
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList)
+    public void getSubBlocks(Item id, CreativeTabs tab, List itemList)
     {
         for (final BlockType blockType : BlockType.values())
             itemList.add(new ItemStack(this, 1, blockType.metadata()));
@@ -196,7 +197,7 @@ public class BlockCustomSapling extends BlockFlower
         boolean isHuge = false;
         int offset = 0;
         
-        final boolean isForestryFarmed = world.getBlock(x, y - 1, z) == forestrySoilID;
+        final boolean isForestryFarmed = world.getBlock(x, y - 1, z) == forestrySoil;
         
         if (metadata == BlockType.UMBER.metadata())
         {
@@ -204,13 +205,13 @@ public class BlockCustomSapling extends BlockFlower
             {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
                 
-                WorldGenBigAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
             }
             else
             {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.BROWN);
                 
-                WorldGenAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
             }
         }
         else if (metadata == BlockType.GOLDENROD.metadata())
@@ -219,13 +220,13 @@ public class BlockCustomSapling extends BlockFlower
             {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
                 
-                WorldGenBigAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
             }
             else
             {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.ORANGE);
                 
-                WorldGenAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
             }
         }
         else if (metadata == BlockType.VERMILLION.metadata())
@@ -234,13 +235,13 @@ public class BlockCustomSapling extends BlockFlower
             {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
                 
-                WorldGenBigAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
             }
             else
             {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.PURPLE);
                 
-                WorldGenAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
             }
         }
         else if (metadata == BlockType.CITRINE.metadata())
@@ -249,13 +250,13 @@ public class BlockCustomSapling extends BlockFlower
             {
                 tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
                 
-                WorldGenBigAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
             }
             else
             {
                 tree = new WorldGenAutumnTree(true, AutumnTreeType.YELLOW);
                 
-                WorldGenAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
             }
         }
         else if (metadata == BlockType.ACACIA.metadata())
@@ -364,7 +365,7 @@ public class BlockCustomSapling extends BlockFlower
     @SubscribeEvent
     public void itemExpiring(ItemExpireEvent event)
     {
-        if (event.entityItem.getEntityItem().itemID == saplingID)
+        if (event.entityItem.getEntityItem().getItem().equals(Item.getItemFromBlock(sapling)))
         {
             int metadata = unmarkedMetadata(event.entityItem.getEntityItem().getItemDamage());
             int posX = (int) Math.floor(event.entityItem.lastTickPosX);
@@ -373,22 +374,22 @@ public class BlockCustomSapling extends BlockFlower
             double chance = event.entityItem.worldObj.rand.nextDouble() * 100;
             
             //event.entityItem
-            if (canThisPlantGrowOnThisBlockID(event.entityItem.worldObj.getBlockId(posX, posY - 1, posZ)))
+            if (canThisPlantGrowOnThisBlock(event.entityItem.worldObj.getBlock(posX, posY - 1, posZ)))
             {
                 double ratio = ((!GeneralSettings.bigTreeSaplingDropModifier) ? 1.0D : 4.0D);
                 
                 // Determine if the sapling should despawn
                 if (event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.ACACIA.metadata() && chance <= SaplingSettings.ACACIA.chance())
                 {
-                    event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+                    event.entityItem.worldObj.setBlock(posX, posY, posZ, sapling, metadata, 2);
                 }
                 else if (event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.UMBER.metadata() && chance <= SaplingSettings.UMBER.chance())
                 {
-                    event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+                    event.entityItem.worldObj.setBlock(posX, posY, posZ, sapling, metadata, 2);
                 }
                 else if (event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.CYPRESS.metadata() && chance <= SaplingSettings.CYPRESS.chance())
                 {
-                    event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+                    event.entityItem.worldObj.setBlock(posX, posY, posZ, sapling, metadata, 2);
                 }
                 else if (metadata == BlockType.FIR.metadata() && chance <= SaplingSettings.FIR.chance() * ratio)
                 {
@@ -396,11 +397,11 @@ public class BlockCustomSapling extends BlockFlower
                 }
                 else if (event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.GOLDENROD.metadata() && chance <= SaplingSettings.GOLDENROD.chance())
                 {
-                    event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+                    event.entityItem.worldObj.setBlock(posX, posY, posZ, sapling, metadata, 2);
                 }
                 else if (event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.VERMILLION.metadata() && chance <= SaplingSettings.VERMILLION.chance())
                 {
-                    event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+                    event.entityItem.worldObj.setBlock(posX, posY, posZ, sapling, metadata, 2);
                 }
                 else if (metadata == BlockType.REDWOOD.metadata() && chance <= SaplingSettings.REDWOOD.chance() * ratio)
                 {
@@ -408,7 +409,7 @@ public class BlockCustomSapling extends BlockFlower
                 }
                 else if (event.entityItem.worldObj.isAirBlock(posX, posY, posZ) && metadata == BlockType.CITRINE.metadata() && chance <= SaplingSettings.CITRINE.chance())
                 {
-                    event.entityItem.worldObj.setBlock(posX, posY, posZ, saplingID, metadata, 2);
+                    event.entityItem.worldObj.setBlock(posX, posY, posZ, sapling, metadata, 2);
                 }
             }
         }
@@ -421,12 +422,12 @@ public class BlockCustomSapling extends BlockFlower
         // check station one blocks for validity
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x + 1, y, z) || isSameSaplingBlock(x + 1, y, z, world, sapling)) && (world.isAirBlock(x + 1, y, z + 1) || isSameSaplingBlock(x + 1, y, z + 1, world, sapling)) && (world.isAirBlock(x, y, z + 1) || isSameSaplingBlock(x, y, z + 1, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x + 1, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x + 1, y - 1, z + 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z + 1)))
+            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x + 1, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x + 1, y - 1, z + 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z + 1)))
             {
-                world.setBlock(x, y, z, saplingID, metadata, 2);
-                world.setBlock(x + 1, y, z, saplingID, metadata, 2);
-                world.setBlock(x + 1, y, z + 1, saplingID, metadata, 2);
-                world.setBlock(x, y, z + 1, saplingID, metadata, 2);
+                world.setBlock(x, y, z, this.sapling, metadata, 2);
+                world.setBlock(x + 1, y, z, this.sapling, metadata, 2);
+                world.setBlock(x + 1, y, z + 1, this.sapling, metadata, 2);
+                world.setBlock(x, y, z + 1, this.sapling, metadata, 2);
                 return;
             }
         }
@@ -434,12 +435,12 @@ public class BlockCustomSapling extends BlockFlower
         // check station 2
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x, y, z + 1) || isSameSaplingBlock(x, y, z + 1, world, sapling)) && (world.isAirBlock(x - 1, y, z + 1) || isSameSaplingBlock(x - 1, y, z + 1, world, sapling)) && (world.isAirBlock(x - 1, y, z) || isSameSaplingBlock(x - 1, y, z, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z + 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x - 1, y - 1, z + 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x - 1, y - 1, z)))
+            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z + 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x - 1, y - 1, z + 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x - 1, y - 1, z)))
             {
-                world.setBlock(x, y, z, saplingID, metadata, 2);
-                world.setBlock(x, y, z + 1, saplingID, metadata, 2);
-                world.setBlock(x - 1, y, z + 1, saplingID, metadata, 2);
-                world.setBlock(x - 1, y, z, saplingID, metadata, 2);
+                world.setBlock(x, y, z, this.sapling, metadata, 2);
+                world.setBlock(x, y, z + 1, this.sapling, metadata, 2);
+                world.setBlock(x - 1, y, z + 1, this.sapling, metadata, 2);
+                world.setBlock(x - 1, y, z, this.sapling, metadata, 2);
                 return;
             }
         }
@@ -447,12 +448,12 @@ public class BlockCustomSapling extends BlockFlower
         // Check station 3
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x - 1, y, z) || isSameSaplingBlock(x - 1, y, z, world, sapling)) && (world.isAirBlock(x - 1, y, z - 1) || isSameSaplingBlock(x - 1, y, z - 1, world, sapling)) && (world.isAirBlock(x, y, z - 1) || isSameSaplingBlock(x, y, z - 1, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x - 1, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x - 1, y - 1, z - 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z - 1)))
+            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x - 1, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x - 1, y - 1, z - 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z - 1)))
             {
-                world.setBlock(x, y, z, saplingID, metadata, 2);
-                world.setBlock(x - 1, y, z, saplingID, metadata, 2);
-                world.setBlock(x - 1, y, z - 1, saplingID, metadata, 2);
-                world.setBlock(x, y, z - 1, saplingID, metadata, 2);
+                world.setBlock(x, y, z, this.sapling, metadata, 2);
+                world.setBlock(x - 1, y, z, this.sapling, metadata, 2);
+                world.setBlock(x - 1, y, z - 1, this.sapling, metadata, 2);
+                world.setBlock(x, y, z - 1, this.sapling, metadata, 2);
                 return;
             }
         }
@@ -460,12 +461,12 @@ public class BlockCustomSapling extends BlockFlower
         // Check station 4
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x, y, z - 1) || isSameSaplingBlock(x, y, z - 1, world, sapling)) && (world.isAirBlock(x + 1, y, z - 1) || isSameSaplingBlock(x + 1, y, z - 1, world, sapling)) && (world.isAirBlock(x + 1, y, z) || isSameSaplingBlock(x + 1, y, z, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlockID(world.getBlock(x, y - 1, z - 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x + 1, y - 1, z - 1)) && canThisPlantGrowOnThisBlockID(world.getBlock(x + 1, y - 1, z)))
+            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z - 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x + 1, y - 1, z - 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x + 1, y - 1, z)))
             {
-                world.setBlock(x, y, z, saplingID, metadata, 2);
-                world.setBlock(x, y, z - 1, saplingID, metadata, 2);
-                world.setBlock(x + 1, y, z - 1, saplingID, metadata, 2);
-                world.setBlock(x + 1, y, z, saplingID, metadata, 2);
+                world.setBlock(x, y, z, this.sapling, metadata, 2);
+                world.setBlock(x, y, z - 1, this.sapling, metadata, 2);
+                world.setBlock(x + 1, y, z - 1, this.sapling, metadata, 2);
+                world.setBlock(x + 1, y, z, this.sapling, metadata, 2);
                 return;
             }
         }
@@ -473,9 +474,9 @@ public class BlockCustomSapling extends BlockFlower
     
     private boolean isSameSaplingBlock(int x, int y, int z, World world, ItemStack sapling)
     {
-        int id = world.getBlock(x, y, z);
+        Block block = world.getBlock(x, y, z);
         int metadata = world.getBlockMetadata(x, y, z);
-        return id != 0 && Block.blocksList[id] != null && sapling.itemID == id && sapling.getItemDamage() == metadata;
+        return !block.isAir(world, x, y, z) && block != null && sapling.getItem().equals(Item.getItemFromBlock(block)) && sapling.getItemDamage() == metadata;
     }
     
     @SubscribeEvent
@@ -483,7 +484,7 @@ public class BlockCustomSapling extends BlockFlower
     {
         if (event.entity instanceof EntityItem && !event.world.isRemote)
         {
-            if (((EntityItem) event.entity).getEntityItem().itemID == saplingID)
+            if (((EntityItem) event.entity).getEntityItem().getItem().equals(Item.getItemFromBlock(sapling)))
             {
                 ((EntityItem) event.entity).lifespan = saplingLifespan;
             }

@@ -148,9 +148,8 @@ public class RenderKneeLog implements ISimpleBlockRenderingHandler
     }
     
     @Override
-    public boolean shouldRender3DInInventory()
+    public boolean shouldRender3DInInventory(int modelId)
     {
         return true;
     }
-    
 }

@@ -106,7 +106,7 @@ public class WorldGenCustomSwamp extends WorldGenerator
                             && (block == null || block
                                     .canBeReplacedByLeaves(world, x1,
                                             y1, z1)))
-                        world.setBlock(x1, y1, z1, Block.leaves);
+                        world.setBlock(x1, y1, z1, Blocks.leaves);
                 }
             }
         }
@@ -119,7 +119,7 @@ public class WorldGenCustomSwamp extends WorldGenerator
                     || Block.blocksList[id2].isLeaves(world, x, y + y1,
                             z) || id2 == Block.waterMoving
                     || id2 == Block.waterStill)
-                world.setBlock(x, y + y1, z, Block.wood);
+                world.setBlock(x, y + y1, z, Blocks.log);
         }
         
         for (int y1 = y - 3 + height; y1 <= y + height; y1++)

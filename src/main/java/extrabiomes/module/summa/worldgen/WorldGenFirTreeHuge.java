@@ -20,7 +20,7 @@ public class WorldGenFirTreeHuge extends WorldGenerator
     
     private enum TreeBlock
     {
-        LEAVES(new ItemStack(Block.leaves, 1, 1)), TRUNK(new ItemStack(Block.wood, 1, 1));
+        LEAVES(new ItemStack(Blocks.leaves, 1, 1)), TRUNK(new ItemStack(Blocks.log, 1, 1));
         
         private ItemStack      stack;
         
@@ -171,25 +171,25 @@ public class WorldGenFirTreeHuge extends WorldGenerator
                         int blockID = world.getBlock(i4, k3, l4);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4, k3, l4))
                         {
-                            setBlockandMetadataIfChunkExists(world, i4, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockandMetadataIfChunkExists(world, i4, k3, l4, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                         }
                         
                         blockID = world.getBlock(i4 - 1, k3, l4);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4 - 1, k3, l4))
                         {
-                            setBlockandMetadataIfChunkExists(world, i4 - 1, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockandMetadataIfChunkExists(world, i4 - 1, k3, l4, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                         }
                         
                         blockID = world.getBlock(i4, k3, l4 - 1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4, k3, l4 - 1))
                         {
-                            setBlockandMetadataIfChunkExists(world, i4, k3, l4 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockandMetadataIfChunkExists(world, i4, k3, l4 - 1, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                         }
                         
                         blockID = world.getBlock(i4 - 1, k3, l4 - 1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, i4 - 1, k3, l4 - 1))
                         {
-                            setBlockandMetadataIfChunkExists(world, i4 - 1, k3, l4 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockandMetadataIfChunkExists(world, i4 - 1, k3, l4 - 1, TreeBlocks.leaves.getID(), TreeBlocks.leaves.getMetadata());
                         }
                     }
                 }

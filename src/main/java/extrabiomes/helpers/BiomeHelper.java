@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.minecraft.block.Block;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -31,13 +32,13 @@ public abstract class BiomeHelper
     
     private static Optional<? extends ArrayList<BiomeGenBase>> activeBiomes = Optional.absent();
     
-    public static void addTerrainBlockstoBiome(BiomeSettings biome, int topBlockID, int fillerBlockID)
+    public static void addTerrainBlockstoBiome(BiomeSettings biome, Block topBlock, Block fillerBlock)
     {
         if (!biome.getBiome().isPresent())
             return;
         final BiomeGenBase baseBiome = biome.getBiome().get();
-        baseBiome.topBlock = (byte) topBlockID;
-        baseBiome.fillerBlock = (byte) fillerBlockID;
+        baseBiome.topBlock = topBlock;
+        baseBiome.fillerBlock = fillerBlock;
     }
     
     /**

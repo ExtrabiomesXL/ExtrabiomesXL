@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -21,9 +22,9 @@ public class BlockCatTail extends BlockFlower
     
     private IIcon texture;
     
-    public BlockCatTail(int id, int index, Material material)
+    public BlockCatTail(int index, Material material)
     {
-        super(id, material);
+        super(0);
         disableStats();
         final float f = 0.375F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F, 0.5F + f);
@@ -51,16 +52,16 @@ public class BlockCatTail extends BlockFlower
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z)
     {
-        final int blockId = world.getBlock(x, y - 1, z);
+        final Block block = world.getBlock(x, y - 1, z);
         
-        if (blockId != Block.grass && blockId != Block.dirt)
+        if (!block.equals(Blocks.grass) && !block.equals(Blocks.dirt))
             return false;
         
         y--;
         
         for (int offset = -1; offset < 2; offset += 2)
-            if (world.getBlockMaterial(x + offset, y, z) == Material.water
-                    || world.getBlockMaterial(x, y, z + offset) == Material.water)
+            if (world.getBlock(x + offset, y, z).getMaterial() == Material.water
+                    || world.getBlock(x, y, z + offset).getMaterial() == Material.water)
                 return true;
         
         return false;
@@ -73,12 +74,12 @@ public class BlockCatTail extends BlockFlower
     }
     
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int idNeighbor)
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor)
     {
         if (!canBlockStay(world, x, y, z))
         {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlock(x, y, z, 0);
+            world.setBlock(x, y, z, Blocks.air);
         }
     }
 }

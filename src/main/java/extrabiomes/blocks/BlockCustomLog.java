@@ -48,9 +48,9 @@ public class BlockCustomLog extends BlockLog
     private HashMap<Integer, IIcon> texturesMap;
     private int                    index    = 97;
     
-    public BlockCustomLog(int id)
+    public BlockCustomLog()
     {
-        super(id);
+        super();
         texturesMap = new HashMap<Integer, IIcon>();
     }
     

@@ -147,7 +147,7 @@ public abstract class RecipeHandler
             return;
         
         // leafPile x 9 = leafBlock
-        final IRecipe recipe = new ShapedOreRecipe(Block.leaves,
+        final IRecipe recipe = new ShapedOreRecipe(Blocks.leaves,
                 new String[] { "lll", "lll", "lll" }, 'l', Element.LEAFPILE.get());
         Extrabiomes.proxy.addRecipe(recipe);
     }
@@ -195,8 +195,8 @@ public abstract class RecipeHandler
             proxy.addRecipe(new ShapelessOreRecipe(new ItemStack(Element.LOG_QUARTER_OAK.get().getItem().itemID, 1, 0), Element.LOG_HUGE_OAK_SE.get()));
     	}
     	if(Element.LOG_QUARTER_OAK.isPresent()) {
-    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Block.wood, 4, 0), new String[] { "ll","ll" }, 'l', Element.LOG_QUARTER_OAK.get()));
-    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_QUARTER_OAK.get().getItem().itemID, 4, 0), new String[] { "ll","ll" }, 'l', new ItemStack(Block.wood, 1, 0)));
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.log, 4, 0), new String[] { "ll","ll" }, 'l', Element.LOG_QUARTER_OAK.get()));
+    		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_QUARTER_OAK.get().getItem().itemID, 4, 0), new String[] { "ll","ll" }, 'l', new ItemStack(Blocks.log, 1, 0)));
 		}
     }
     
@@ -250,7 +250,7 @@ public abstract class RecipeHandler
         
         if(Element.LOG_HUGE_OAK_NW.isPresent() && Element.LOG_HUGE_OAK_NE.isPresent() && Element.LOG_HUGE_OAK_SW.isPresent() && Element.LOG_HUGE_OAK_SE.isPresent()) {
 	        for (final ItemStack itemstack : new ItemStack[] { Element.LOG_HUGE_OAK_NW.get(), Element.LOG_HUGE_OAK_NE.get(), Element.LOG_HUGE_OAK_SW.get(), Element.LOG_HUGE_OAK_SE.get() }) {
-	    		final IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Block.wood), itemstack);
+	    		final IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Blocks.log), itemstack);
 	            Extrabiomes.proxy.addRecipe(recipe);
 	    	}
         }

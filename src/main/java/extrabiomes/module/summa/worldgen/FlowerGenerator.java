@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -210,19 +211,19 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.WOODLANDS, BlockType.TULIP);
     }
     
-	public void registerBlock(int blockID, Collection<BlockType> types) {
+	public void registerBlock(Block block, Collection<BlockType> types) {
 		for( BlockCustomFlower.BlockType type : types ) {
 			// special cases
 			final WorldGenerator gen;
 			switch( type ) {
 				case ROOT:
-					gen = new WorldGenRoot(blockID, type.metadata());
+					gen = new WorldGenRoot(block, type.metadata());
 					break;
 				case TINY_CACTUS:
-					gen = new WorldGenTinyCactus(blockID, type.metadata());
+					gen = new WorldGenTinyCactus(block, type.metadata());
 					break;
 				default:
-					gen = new WorldGenMetadataFlowers(blockID, type.metadata());
+					gen = new WorldGenMetadataFlowers(block, type.metadata());
 			}
 			flowerGens.put(type, gen);
 		}
@@ -232,7 +233,7 @@ public class FlowerGenerator implements IWorldGenerator
 	public void registerCrop(Element element) {
 		if (element.isPresent()) {
 			final WorldGenerator gen = new WorldGenMetadataFlowers(
-					element.get().itemID, BlockCropBasic.MAX_GROWTH_STAGE);
+					Block.getBlockFromItem(element.get().getItem()), BlockCropBasic.MAX_GROWTH_STAGE);
 			cropGens.put(element, gen);
 		}
 	}
