@@ -10,6 +10,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import extrabiomes.lib.BiomeSettings;
@@ -23,7 +24,7 @@ class WorldGenOasis extends WorldGenerator
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
         
-        if (world.getBlockMaterial(x, y, z) != Material.water)
+        if (world.getBlock(x, y, z).getMaterial() != Material.water)
             return false;
         
         final int xzRadius = rand.nextInt(AVERAGE_OASIS - 2) + 2;
@@ -40,13 +41,13 @@ class WorldGenOasis extends WorldGenerator
                 
                 for (int y1 = y - yRadius; y1 <= y + yRadius; y1++)
                 {
-                    final int blocktoReplace = world.getBlock(x1, y1, z1);
+                    final Block blocktoReplace = world.getBlock(x1, y1, z1);
                     
-                    if (blocktoReplace == Block.stone
-                            || blocktoReplace == Block.sand
-                            || blocktoReplace == Block.sandStone
+                    if (blocktoReplace.equals(Blocks.stone)
+                            || blocktoReplace.equals(Blocks.sand)
+                            || blocktoReplace.equals(Blocks.sandstone)
                             || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && blocktoReplace == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock))
-                        world.setBlock(x1, y1, z1, Block.grass);
+                        world.setBlock(x1, y1, z1, Blocks.grass);
                 }
             }
         

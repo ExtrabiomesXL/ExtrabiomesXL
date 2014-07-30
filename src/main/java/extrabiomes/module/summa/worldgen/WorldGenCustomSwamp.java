@@ -10,6 +10,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -31,7 +32,7 @@ public class WorldGenCustomSwamp extends WorldGenerator
             int z)
     {
         
-        while (world.getBlockMaterial(x, y - 1, z) == Material.water)
+        while (world.getBlock(x, y - 1, z).getMaterial() == Material.water)
             y--;
         
         final int height = rand.nextInt(4) + 10;
@@ -58,15 +59,15 @@ public class WorldGenCustomSwamp extends WorldGenerator
                 for (int x2 = z - clearanceNeededAroundTrunk; x2 <= z
                         + clearanceNeededAroundTrunk; x2++)
                 {
-                    final int id = world.getBlock(x1, y1, x2);
+                    final Block block = world.getBlock(x1, y1, x2);
                     
-                    if (Block.blocksList[id] == null
-                            || Block.blocksList[id].isLeaves(world, x1,
+                    if (block == null
+                            || block.isLeaves(world, x1,
                                     y1, x2))
                         continue;
                     
-                    if (id == Block.waterStill
-                            || id == Block.waterMoving)
+                    if (block.equals(Blocks.water)
+                            || block.equals(Blocks.flowing_water))
                     {
                         if (y1 > y)
                             return false;
@@ -76,13 +77,13 @@ public class WorldGenCustomSwamp extends WorldGenerator
                 }
         }
         
-        final int id = world.getBlock(x, y - 1, z);
+        final Block block = world.getBlock(x, y - 1, z);
         
-        if (id != Block.grass && id != Block.dirt
+        if (!block.equals(Blocks.grass) && !block.equals(Blocks.dirt)
                 || y >= 256 - height - 1)
             return false;
         
-        world.setBlock(x, y - 1, z, Block.dirt);
+        world.setBlock(x, y - 1, z, Blocks.dirt);
         
         for (int y1 = y - 3 + height; y1 <= y + height; y1++)
         {
@@ -96,14 +97,13 @@ public class WorldGenCustomSwamp extends WorldGenerator
                 for (int z1 = z - canopyRadius; z1 <= z + canopyRadius; z1++)
                 {
                     final int zOnRadius = z1 - z;
-                    
-                    final Block block = Block.blocksList[world
-                            .getBlockId(x1, y1, z1)];
+
+                    final Block block2 = world.getBlock(x1, y1, z1);
                     
                     if ((Math.abs(xOnRadius) != canopyRadius
                             || Math.abs(zOnRadius) != canopyRadius || rand
                             .nextInt(2) != 0 && posTrunk != 0)
-                            && (block == null || block
+                            && (block2 == null || block2
                                     .canBeReplacedByLeaves(world, x1,
                                             y1, z1)))
                         world.setBlock(x1, y1, z1, Blocks.leaves);
@@ -113,12 +113,12 @@ public class WorldGenCustomSwamp extends WorldGenerator
         
         for (int y1 = 0; y1 < height; y1++)
         {
-            final int id2 = world.getBlock(x, y + y1, z);
+            final Block block2 = world.getBlock(x, y + y1, z);
             
-            if (id2 == 0
-                    || Block.blocksList[id2].isLeaves(world, x, y + y1,
-                            z) || id2 == Block.waterMoving
-                    || id2 == Block.waterStill)
+            if (block2 == null || block2.isAir(world, x, y + y1, z)
+                    || block2.isLeaves(world, x, y + y1,
+                            z) || block2.equals(Blocks.flowing_water)
+                    || block2.equals(Blocks.water))
                 world.setBlock(x, y + y1, z, Blocks.log);
         }
         
@@ -130,26 +130,25 @@ public class WorldGenCustomSwamp extends WorldGenerator
             for (int x1 = x - canopyRadius; x1 <= x + canopyRadius; x1++)
                 for (int z1 = z - canopyRadius; z1 <= z + canopyRadius; z1++)
                 {
-                    final int id2 = world.getBlock(x1, y1, z1);
-                    if (id2 == 0
-                            || !Block.blocksList[id2].isLeaves(world,
+                    final Block block2 = world.getBlock(x1, y1, z1);
+                    if (block2 == null || !block2.isLeaves(world,
                                     x1, y1, z1))
                         continue;
                     
                     if (rand.nextInt(4) == 0
-                            && world.getBlock(x1 - 1, y1, z1) == 0)
+                            && world.isAirBlock(x1 - 1, y1, z1))
                         generateVines(world, x1 - 1, y1, z1, 8);
                     
                     if (rand.nextInt(4) == 0
-                            && world.getBlock(x1 + 1, y1, z1) == 0)
+                            && world.isAirBlock(x1 + 1, y1, z1))
                         generateVines(world, x1 + 1, y1, z1, 2);
                     
                     if (rand.nextInt(4) == 0
-                            && world.getBlock(x1, y1, z1 - 1) == 0)
+                            && world.isAirBlock(x1, y1, z1 - 1))
                         generateVines(world, x1, y1, z1 - 1, 1);
                     
                     if (rand.nextInt(4) == 0
-                            && world.getBlock(x1, y1, z1 + 1) == 0)
+                            && world.isAirBlock(x1, y1, z1 + 1))
                         generateVines(world, x1, y1, z1 + 1, 4);
                 }
         }
@@ -161,10 +160,10 @@ public class WorldGenCustomSwamp extends WorldGenerator
             int metadata)
     {
         world.setBlock(x, y, z,
-                Block.vine, metadata, 3);
+                Blocks.vine, metadata, 3);
         
-        for (int i = 4; world.getBlock(x, --y, z) == 0 && i > 0; i--)
+        for (int i = 4; world.isAirBlock(x, --y, z) && i > 0; i--)
             world.setBlock(x, y, z,
-                    Block.vine, metadata, 3);
+                    Blocks.vine, metadata, 3);
     }
 }

@@ -8,6 +8,7 @@ package extrabiomes.module.summa.worldgen;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -20,9 +21,9 @@ public class CatTailGenerator implements IWorldGenerator
     
     private final WorldGenerator catTailGen;
     
-    public CatTailGenerator(int blockID)
+    public CatTailGenerator(Block block)
     {
-        catTailGen = new WorldGenCatTail(blockID);
+        catTailGen = new WorldGenCatTail(block);
     }
     
     @Override

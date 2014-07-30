@@ -86,7 +86,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase
     
     private boolean checkTree(World world, Random rand, int x, int y, int z)
     {
-        final int below = world.getBlock(x, y - 1, z);
+        final Block below = world.getBlock(x, y - 1, z);
         final int height = rand.nextInt(BASE_HEIGHT_VARIANCE) + BASE_HEIGHT;
         int start = CANOPY_START_HEIGHT + (int) ((rand.nextDouble() * CANOPY_START_VARIANCE) - (CANOPY_START_VARIANCE / 2));
         double radius = (CANOPY_RADIUS + ((rand.nextDouble() * CANOPY_RADIUS_VARIANCE) + (CANOPY_RADIUS_VARIANCE / 2)));
@@ -94,7 +94,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase
         final int chunkCheck = (int) Math.ceil(radius) + 1;
         
         // Make sure that a tree can grow on the soil
-        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(below)) || y >= 256 - height - 4)
+        if (!TreeSoilRegistry.isValidSoil(below) || y >= 256 - height - 4)
             return false;
         
         // Make sure that the tree can fit in the world
@@ -125,7 +125,7 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase
     
     private boolean generateTree(World world, Random rand, int x, int y, int z)
     {
-        final int below = world.getBlock(x, y - 1, z);
+        final Block below = world.getBlock(x, y - 1, z);
         final int height = rand.nextInt(BASE_HEIGHT_VARIANCE) + BASE_HEIGHT;
         int start = CANOPY_START_HEIGHT + (int) ((rand.nextDouble() * CANOPY_START_VARIANCE) - (CANOPY_START_VARIANCE / 2));
         double radius = (CANOPY_RADIUS + ((rand.nextDouble() * CANOPY_RADIUS_VARIANCE) + (CANOPY_RADIUS_VARIANCE / 2)));
@@ -133,14 +133,14 @@ public class WorldGenCypressTree extends WorldGenNewTreeBase
         final int chunkCheck = (int) Math.ceil(radius) + 1;
         
         // Make sure that a tree can grow on the soil
-        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(below)) || y >= 256 - height - 4)
+        if (!TreeSoilRegistry.isValidSoil(below) || y >= 256 - height - 4)
             return false;
         
         // Make sure that the tree can fit in the world
         if (y < 1 || y + height + 4 > 256)
             return false;
         
-        // Make sure the cunks are loaded
+        // Make sure the chunks are loaded
         if (!world.checkChunksExist(x - chunkCheck, y - chunkCheck, z - chunkCheck, x + chunkCheck, y + chunkCheck, z + chunkCheck))
             return false;
         

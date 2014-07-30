@@ -9,13 +9,14 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class WorldGenBigAutumnTree extends WorldGenAutumnTree
 {
     
-    private static int          trunkBlock      = Blocks.log;
+    private static Block          trunkBlock      = Blocks.log;
     private static int          trunkMetadata   = 0;
     
     private static final byte[] otherCoordPairs = new byte[] { (byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };
@@ -23,12 +24,6 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
     public static void setTrunkBlock(Block block, int metadata)
     {
         WorldGenBigAutumnTree.trunkBlock = block;
-        WorldGenBigAutumnTree.trunkMetadata = metadata;
-    }
-    
-    public static void setTrunkBlock(int blockID, int metadata)
-    {
-        WorldGenBigAutumnTree.trunkBlock = blockID;
         WorldGenBigAutumnTree.trunkMetadata = metadata;
     }
     
@@ -90,9 +85,9 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
                 coord[var5] = par1ArrayOfInteger[var5] + var14;
                 coord[var6] = MathHelper.floor_double(par1ArrayOfInteger[var6] + var14 * var9);
                 coord[var7] = MathHelper.floor_double(par1ArrayOfInteger[var7] + var14 * var11);
-                final int id = world.getBlock(coord[0], coord[1], coord[2]);
+                final Block block = world.getBlock(coord[0], coord[1], coord[2]);
                 
-                if (id != 0 && !Block.blocksList[id].isLeaves(world, coord[0], coord[1], coord[2]))
+                if (!block.isAir(world, coord[0], coord[1], coord[2]) && !block.isLeaves(world, coord[0], coord[1], coord[2]))
                 {
                     break;
                 }
@@ -138,25 +133,25 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
             return false;
         
         generateLeafNodeList();
-        generateLeaves(type.getID(), type.getMetadata());
+        generateLeaves(type.getBlock(), type.getMetadata());
         generateTrunk(trunkBlock, trunkMetadata);
         generateLeafNodeBases(trunkBlock, trunkMetadata);
         
         return true;
     }
     
-    private void generateLeafNode(int x, int y, int z, int leafID, int leafMeta)
+    private void generateLeafNode(int x, int y, int z, Block leaf, int leafMeta)
     {
         int y1 = y;
         
         for (final int heightLimit = y + leafDistanceLimit; y1 < heightLimit; ++y1)
         {
             final float size = leafSize(y1 - y);
-            genTreeLayer(x, y1, z, size, (byte) 1, leafID, leafMeta);
+            genTreeLayer(x, y1, z, size, (byte) 1, leaf, leafMeta);
         }
     }
     
-    private void generateLeafNodeBases(int woodID, int woodMeta)
+    private void generateLeafNodeBases(Block wood, int woodMeta)
     {
         int var1 = 0;
         final int var2 = leafNodes.length;
@@ -169,7 +164,7 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
             final int var6 = var3[1] - basePos[1];
             
             if (leafNodeNeedsBase(var6))
-                placeBlockLine(var3, var5, woodID, woodMeta);
+                placeBlockLine(var3, var5, wood, woodMeta);
         }
     }
     
@@ -255,17 +250,17 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
         System.arraycopy(var2, 0, leafNodes, 0, var4);
     }
     
-    private void generateLeaves(int leafID, int leafMeta)
+    private void generateLeaves(Block leaf, int leafMeta)
     {
         int node = 0;
         
         for (final int length = leafNodes.length; node < length; ++node)
         {
-            generateLeafNode(leafNodes[node][0], leafNodes[node][1], leafNodes[node][2], leafID, leafMeta);
+            generateLeafNode(leafNodes[node][0], leafNodes[node][1], leafNodes[node][2], leaf, leafMeta);
         }
     }
     
-    private void generateTrunk(int woodID, int woodMeta)
+    private void generateTrunk(Block wood, int woodMeta)
     {
         final int var1 = basePos[0];
         final int var2 = basePos[1];
@@ -273,10 +268,10 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
         final int var4 = basePos[2];
         final int[] var5 = new int[] { var1, var2, var4 };
         final int[] var6 = new int[] { var1, var3, var4 };
-        placeBlockLine(var5, var6, woodID, woodMeta);
+        placeBlockLine(var5, var6, wood, woodMeta);
     }
     
-    private void genTreeLayer(int x, int y, int z, float size, byte par5, int leafBlockID, int leafBlockMeta)
+    private void genTreeLayer(int x, int y, int z, float size, byte par5, Block leafBlock, int leafBlockMeta)
     {
         final int var7 = (int) (size + 0.618D);
         final byte var8 = otherCoordPairs[par5];
@@ -302,17 +297,17 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
                 else
                 {
                     var11[var9] = var10[var9] + var13;
-                    final int blockID = world.getBlock(var11[0], var11[1], var11[2]);
+                    final Block block = world.getBlock(var11[0], var11[1], var11[2]);
                     
-                    if (blockID != 0 && !Block.blocksList[blockID].isLeaves(world, var11[0], var11[1], var11[2]))
+                    if (block != null && block.isLeaves(world, var11[0], var11[1], var11[2]))
                     {
                         ++var13;
                     }
                     else
                     {
-                        if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, var11[0], var11[1], var11[2]))
+                        if (block == null || block.canBeReplacedByLeaves(world, var11[0], var11[1], var11[2]))
                         {
-                            setBlockAndMetadata(world, var11[0], var11[1], var11[2], leafBlockID, leafBlockMeta);
+                            setBlockAndNotifyAdequately(world, var11[0], var11[1], var11[2], leafBlock, leafBlockMeta);
                         }
                         
                         ++var13;
@@ -357,7 +352,7 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
         return par1 >= 0 && par1 < leafDistanceLimit ? par1 != 0 && par1 != leafDistanceLimit - 1 ? 3.0F : 2.0F : -1.0F;
     }
     
-    private void placeBlockLine(int[] par1ArrayOfInteger, int[] par2ArrayOfInteger, int woodID, int woodMeta)
+    private void placeBlockLine(int[] par1ArrayOfInteger, int[] par2ArrayOfInteger, Block wood, int woodMeta)
     {
         final int[] var4 = new int[] { 0, 0, 0 };
         byte var5 = 0;
@@ -413,7 +408,7 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
                         woodMetaWithDirection |= 8;
                     }
                 
-                setBlockAndMetadata(world, var14[0], var14[1], var14[2], woodID,
+                setBlockAndNotifyAdequately(world, var14[0], var14[1], var14[2], wood,
                         woodMetaWithDirection);
             }
         }
@@ -435,9 +430,9 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
     {
         final int[] var1 = new int[] { basePos[0], basePos[1], basePos[2] };
         final int[] var2 = new int[] { basePos[0], basePos[1] + heightLimit - 1, basePos[2] };
-        final int var3 = world.getBlock(basePos[0], basePos[1] - 1, basePos[2]);
+        final Block var3 = world.getBlock(basePos[0], basePos[1] - 1, basePos[2]);
         
-        if (var3 != 2 && var3 != 3)
+        if (!var3.equals(Blocks.grass) && !var3.equals(Blocks.dirt))
             return false;
         else
         {

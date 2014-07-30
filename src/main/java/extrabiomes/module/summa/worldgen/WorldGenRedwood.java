@@ -158,25 +158,25 @@ public class WorldGenRedwood extends WorldGenerator
                         int blockID = world.getBlock(x1, y1, z1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1, y1, z1))
                         {
-                            setBlockAndMetadata(world, x1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockAndNotifyAdequately(world, x1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                         
                         blockID = world.getBlock(x1 - 1, y1, z1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1 - 1, y1, z1))
                         {
-                            setBlockAndMetadata(world, x1 - 1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockAndNotifyAdequately(world, x1 - 1, y1, z1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                         
                         blockID = world.getBlock(x1, y1, z1 - 1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1, y1, z1 - 1))
                         {
-                            setBlockAndMetadata(world, x1, y1, z1 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockAndNotifyAdequately(world, x1, y1, z1 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                         
                         blockID = world.getBlock(x1 - 1, y1, z1 - 1);
                         if (blockID == 0 || Block.blocksList[blockID].canBeReplacedByLeaves(world, x1 - 1, y1, z1 - 1))
                         {
-                            setBlockAndMetadata(world, x1 - 1, y1, z1 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                            setBlockAndNotifyAdequately(world, x1 - 1, y1, z1 - 1, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                         }
                     }
                 }
@@ -207,10 +207,10 @@ public class WorldGenRedwood extends WorldGenerator
             if (Block.blocksList[j4] == null || Block.blocksList[j4].isLeaves(world, x, y + y1, z))
             {
 
-            	setBlockAndMetadata(world, x, y + y1, z, TreeBlock.TRUNK.getID(), 2);
-                setBlockAndMetadata(world, x - 1, y + y1, z, TreeBlock.TRUNK.getID(), 3);
-                setBlockAndMetadata(world, x, y + y1, z - 1, TreeBlock.TRUNK.getID(), 1);
-                setBlockAndMetadata(world, x - 1, y + y1, z - 1, TreeBlock.TRUNK.getID(), 0);
+            	setBlockAndNotifyAdequately(world, x, y + y1, z, TreeBlock.TRUNK.getID(), 2);
+                setBlockAndNotifyAdequately(world, x - 1, y + y1, z, TreeBlock.TRUNK.getID(), 3);
+                setBlockAndNotifyAdequately(world, x, y + y1, z - 1, TreeBlock.TRUNK.getID(), 1);
+                setBlockAndNotifyAdequately(world, x - 1, y + y1, z - 1, TreeBlock.TRUNK.getID(), 0);
                 
             }
         }

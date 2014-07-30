@@ -142,7 +142,7 @@ public class WorldGenFirTree extends WorldGenerator
                     
                     if ((Math.abs(k4) != l1 || Math.abs(i5) != l1 || l1 <= 0) && (block == null || block.canBeReplacedByLeaves(world, i4, k3, l4)))
                     {
-                        setBlockAndMetadata(world, i4, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
+                        setBlockAndNotifyAdequately(world, i4, k3, l4, TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                     }
                 }
             }
@@ -169,7 +169,7 @@ public class WorldGenFirTree extends WorldGenerator
             
             if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + l3, z))
             {
-                setBlockAndMetadata(world, x, y + l3, z, TreeBlock.TRUNK.getID(), TreeBlock.TRUNK.getMetadata());
+                setBlockAndNotifyAdequately(world, x, y + l3, z, TreeBlock.TRUNK.getID(), TreeBlock.TRUNK.getMetadata());
             }
         }
         

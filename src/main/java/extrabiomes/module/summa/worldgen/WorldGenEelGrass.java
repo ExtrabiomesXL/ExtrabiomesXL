@@ -11,37 +11,39 @@ import java.util.Random;
 import extrabiomes.helpers.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 class WorldGenEelGrass extends WorldGenerator
 {
     
-    private final int blockID;
+    private final Block block;
     private final int metaData;
     
-    WorldGenEelGrass(int blockID, int metaData) {
-        this = blockID;
+    WorldGenEelGrass(Block block, int metaData) {
+        this.block = block;
         this.metaData = metaData;
     }
     
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
-        int i;
         int maxDepth = 4;
-        while ((Block.blocksList[i = world.getBlock(x, y, z)] == null) && y > 0) {
+        while (world.isAirBlock(x, y, z) && y > 0) {
             y--;
         }
-        
-        while(((i = world.getBlock(x, y, z)) == Block.waterMoving || i == Block.waterStill) && y > 0 && maxDepth > 0) {
+
+        Block b = world.getBlock(x, y, z);
+        while((b.equals(Blocks.water) || b.equals(Blocks.flowing_water)) && y > 0 && maxDepth > 0) {
         	y--;
         	maxDepth--;
+            b = world.getBlock(x, y, z);
         }
         
         y++;
         
-        if (Block.blocksList[blockID].canBlockStay(world, x, y, z)) {
-        	world.setBlock(x, y, z, blockID);
+        if (block.canBlockStay(world, x, y, z)) {
+        	world.setBlock(x, y, z, block);
         } 
 
         return true;

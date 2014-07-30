@@ -9,6 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -25,9 +26,9 @@ class WorldGenMelon extends WorldGenerator
             final int z1 = z + rand.nextInt(8) - rand.nextInt(8);
             
             if (world.isAirBlock(x1, y1, z1)
-                    && world.getBlock(x1, y1 - 1, z1) == Block.grass
-                    && Block.pumpkin.canPlaceBlockAt(world, x1, y1, z1))
-                world.setBlock(x1, y1, z1, Block.melon);
+                    && world.getBlock(x1, y1 - 1, z1) == Blocks.grass
+                    && Blocks.pumpkin.canPlaceBlockAt(world, x1, y1, z1))
+                world.setBlock(x1, y1, z1, Blocks.melon_block);
         }
         
         return true;

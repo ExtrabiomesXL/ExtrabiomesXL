@@ -6,6 +6,7 @@ import java.util.Queue;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import extrabiomes.lib.Element;
@@ -67,8 +68,8 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase
         int waterLevel = 0;
         for (int yy = y - 1; yy > y - 6; yy--)
         {
-            int blockId = world.getBlock(x, yy, z);
-            if (blockId != Block.waterStill && blockId != Block.waterStill)
+            Block block = world.getBlock(x, yy, z);
+            if (!block.equals(Blocks.water))
                 break;
             waterLevel++;
         }
@@ -92,8 +93,8 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase
         int waterLevel = 0;
         for (int yy = y - 1; yy > y - 6; yy--)
         {
-            int blockId = world.getBlock(x, yy, z);
-            if (blockId != Block.waterStill && blockId != Block.waterStill)
+            Block block = world.getBlock(x, yy, z);
+            if (!block.equals(Blocks.water))
                 break;
             waterLevel++;
         }
@@ -131,7 +132,7 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase
         final int chunkCheck = width + 1;
         
         // Make sure that a tree can grow on the soil
-        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x + 1, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x, y - 1, z + 1))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x + 1, y - 1, z + 1))))
+        if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)) || !TreeSoilRegistry.isValidSoil(world.getBlock(x + 1, y - 1, z)) || !TreeSoilRegistry.isValidSoil(world.getBlock(x + 1, y - 1, z + 1)))
             return false;
         
         // make sure that we have room to grow the tree
@@ -168,7 +169,7 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase
         final int chunkCheck = width + 1;
         
         // Make sure that a tree can grow on the soil
-        if (!TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x + 1, y - 1, z))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x, y - 1, z + 1))) || !TreeSoilRegistry.isValidSoil(Integer.valueOf(world.getBlock(x + 1, y - 1, z + 1))))
+        if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)) || !TreeSoilRegistry.isValidSoil(world.getBlock(x + 1, y - 1, z)) || !TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z + 1)) || !TreeSoilRegistry.isValidSoil(world.getBlock(x + 1, y - 1, z + 1)))
             return false;
         
         // make sure that we have room to grow the tree
@@ -292,10 +293,10 @@ public class WorldGenBaldCypressTree extends WorldGenNewTreeBase
         Queue<int[]> branches = new LinkedList<int[]>();
         
         //generate the corner markers
-        //setBlockAndMetadata(world, x-width, y + 10, z-width, TreeBlock.TRUNK.getID(), 0);
-        //setBlockAndMetadata(world, x-width, y + 10, z+width, TreeBlock.TRUNK.getID(), 0);
-        //setBlockAndMetadata(world, x+width, y + 10, z-width, TreeBlock.TRUNK.getID(), 0);
-        //setBlockAndMetadata(world, x+width, y + 10, z+width, TreeBlock.TRUNK.getID(), 0);
+        //setBlockAndNotifyAdequately(world, x-width, y + 10, z-width, TreeBlock.TRUNK.getID(), 0);
+        //setBlockAndNotifyAdequately(world, x-width, y + 10, z+width, TreeBlock.TRUNK.getID(), 0);
+        //setBlockAndNotifyAdequately(world, x+width, y + 10, z-width, TreeBlock.TRUNK.getID(), 0);
+        //setBlockAndNotifyAdequately(world, x+width, y + 10, z+width, TreeBlock.TRUNK.getID(), 0);
         
         // Generate some test branches
         for (int branch = 0; branch < branchCount; branch++)

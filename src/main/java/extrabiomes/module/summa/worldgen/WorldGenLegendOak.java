@@ -95,17 +95,17 @@ public class WorldGenLegendOak extends WorldGenerator
                         && (Math.abs(xOffset) != 2 || Math.abs(zOffset) != 3)
                         && (xOffset != 0 || zOffset != 0))
                     if (world.getBlock(x + xOffset, y, z + zOffset) == 0)
-                        setBlockAndMetadata(world, x + xOffset, y, z + zOffset,
+                        setBlockAndNotifyAdequately(world, x + xOffset, y, z + zOffset,
                                 TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                 if (Math.abs(xOffset) >= 3 || Math.abs(zOffset) >= 3 || Math.abs(xOffset) == 2
                         && Math.abs(zOffset) == 2)
                     continue;
                 if (world.getBlock(x + xOffset, y - 1, z + zOffset) == 0)
-                    setBlockAndMetadata(world, x + xOffset, y - 1, z + zOffset,
+                    setBlockAndNotifyAdequately(world, x + xOffset, y - 1, z + zOffset,
                             TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
                 if (world.getBlock(x + xOffset, y + 1, z + zOffset) != 0)
                     continue;
-                setBlockAndMetadata(world, x + xOffset, y + 1, z + zOffset,
+                setBlockAndNotifyAdequately(world, x + xOffset, y + 1, z + zOffset,
                         TreeBlock.LEAVES.getID(), TreeBlock.LEAVES.getMetadata());
             }
     }
@@ -142,10 +142,10 @@ public class WorldGenLegendOak extends WorldGenerator
         
         for (int yOffset = 0; yOffset < height + 1; yOffset++)
         {
-        	setBlockAndMetadata(world, x, y + yOffset, z, TreeBlock.TRUNK.getID(), 2);
-            setBlockAndMetadata(world, x - 1, y + yOffset, z, TreeBlock.TRUNK.getID(), 3);
-            setBlockAndMetadata(world, x, y + yOffset, z - 1, TreeBlock.TRUNK.getID(), 1);
-            setBlockAndMetadata(world, x - 1, y + yOffset, z - 1, TreeBlock.TRUNK.getID(), 0);
+        	setBlockAndNotifyAdequately(world, x, y + yOffset, z, TreeBlock.TRUNK.getID(), 2);
+            setBlockAndNotifyAdequately(world, x - 1, y + yOffset, z, TreeBlock.TRUNK.getID(), 3);
+            setBlockAndNotifyAdequately(world, x, y + yOffset, z - 1, TreeBlock.TRUNK.getID(), 1);
+            setBlockAndNotifyAdequately(world, x - 1, y + yOffset, z - 1, TreeBlock.TRUNK.getID(), 0);
             
         }
         
@@ -156,7 +156,7 @@ public class WorldGenLegendOak extends WorldGenerator
         int length = 0;
         while (length < 2 * size / 3)
         {
-            setBlockAndMetadata(world, x, y, z, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
+            setBlockAndNotifyAdequately(world, x, y, z, TreeBlock.BRANCH.getID(), TreeBlock.BRANCH.getMetadata());
             if (random.nextInt(3) == 0 || length == 2 * size / 3 - 1)
                 growLeafNode(world, x, y, z);
             switch (xDirection)
@@ -193,7 +193,7 @@ public class WorldGenLegendOak extends WorldGenerator
         int length = 0;
         while (length < size / 3)
         {
-            setBlockAndMetadata(world, x, y, z, TreeBlock.BRANCH.getID(),
+            setBlockAndNotifyAdequately(world, x, y, z, TreeBlock.BRANCH.getID(),
                     TreeBlock.BRANCH.getMetadata());
             if (random.nextInt(3) == 0 || length == size / 3 - 1)
                 growLeafNode(world, x, y, z);
@@ -253,7 +253,7 @@ public class WorldGenLegendOak extends WorldGenerator
                 case TIGHT:
                     y++;
             }
-            setBlockAndMetadata(world, x, y, z, TreeBlock.BRANCH.getID(),
+            setBlockAndNotifyAdequately(world, x, y, z, TreeBlock.BRANCH.getID(),
                     TreeBlock.BRANCH.getMetadata());
             if (random.nextInt(3) == 0 || length == size - 1)
                 growLeafNode(world, x, y, z);
@@ -301,7 +301,7 @@ public class WorldGenLegendOak extends WorldGenerator
             {
                 if (random.nextInt(2) == 0)
                     y1++;
-                setBlockAndMetadata(world, x1, y1, z1, TreeBlock.BRANCH.getID(),
+                setBlockAndNotifyAdequately(world, x1, y1, z1, TreeBlock.BRANCH.getID(),
                         TreeBlock.BRANCH.getMetadata());
                 if (random.nextInt(4) == 0 || length == size - 1)
                     growLeafNode(world, x1, y1, z1);

@@ -9,6 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Facing;
 import net.minecraft.world.World;
@@ -36,14 +37,14 @@ class WorldGenMarshGrass extends WorldGenerator
                     if (side > 5)
                         continue label0;
                     
-                    if (Block.dirt.canPlaceBlockOnSide(world, x1, y1,
+                    if (Blocks.dirt.canPlaceBlockOnSide(world, x1, y1,
                             z1, side))
                     {
                         world.setBlock(
                                 x1,
                                 y1,
                                 z1,
-                                Block.grass,
+                                Blocks.grass,
                                 1 << Direction.facingToDirection[Facing.oppositeSide[side]], 3);
                         continue label0;
                     }

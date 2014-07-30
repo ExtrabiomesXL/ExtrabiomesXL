@@ -220,10 +220,10 @@ public class WorldGenFirTreeHuge extends WorldGenerator
             if (Block.blocksList[id] == null || Block.blocksList[id].isLeaves(world, x, y + l3, z))
             {
             	
-            	setBlockAndMetadata(world, x, y + l3, z, TreeBlock.TRUNK.getID(), 2);
-                setBlockAndMetadata(world, x - 1, y + l3, z, TreeBlock.TRUNK.getID(), 3);
-                setBlockAndMetadata(world, x, y + l3, z - 1, TreeBlock.TRUNK.getID(), 1);
-                setBlockAndMetadata(world, x - 1, y + l3, z - 1, TreeBlock.TRUNK.getID(), 0);
+            	setBlockAndNotifyAdequately(world, x, y + l3, z, TreeBlock.TRUNK.getID(), 2);
+                setBlockAndNotifyAdequately(world, x - 1, y + l3, z, TreeBlock.TRUNK.getID(), 3);
+                setBlockAndNotifyAdequately(world, x, y + l3, z - 1, TreeBlock.TRUNK.getID(), 1);
+                setBlockAndNotifyAdequately(world, x - 1, y + l3, z - 1, TreeBlock.TRUNK.getID(), 0);
                 
             }
         }

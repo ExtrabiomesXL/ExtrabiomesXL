@@ -15,22 +15,22 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 class WorldGenCatTail extends WorldGenerator
 {
+    private final Block block;
     
-    private final int blockID;
-    
-    WorldGenCatTail(int blockID)
+    WorldGenCatTail(Block block)
     {
-        this = blockID;
+        this.block = block;
     }
     
     @Override
     public boolean generate(World world, Random rand, int x, int y,
             int z)
     {
-        int i;
-        while ((Block.blocksList[i = world.getBlock(x, y, z)] == null || Block.blocksList[i]
-                .isLeaves(world, x, y, z)) && y > 0)
+        Block b = world.getBlock(x, y, z);
+        while(y > 0 && (b == null || b.isLeaves(world, x, y, z) || b.isAir(world, x, y, z))) {
             y--;
+            b = world.getBlock(x, y, z);
+        }
         
         y++;
         
@@ -39,18 +39,18 @@ class WorldGenCatTail extends WorldGenerator
             final int x1 = x + rand.nextInt(4) - rand.nextInt(4);
             final int z1 = z + rand.nextInt(4) - rand.nextInt(4);
             if (!world.isAirBlock(x1, y, z1)
-                    || world.getBlockMaterial(x1 - 1, y - 1, z1) != Material.water
-                    && world.getBlockMaterial(x1 + 1, y - 1, z1) != Material.water
-                    && world.getBlockMaterial(x1, y - 1, z1 - 1) != Material.water
-                    && world.getBlockMaterial(x1, y - 1, z1 + 1) != Material.water)
+                    || world.getBlock(x1 - 1, y - 1, z1).getMaterial() != Material.water
+                    && world.getBlock(x1 + 1, y - 1, z1).getMaterial() != Material.water
+                    && world.getBlock(x1, y - 1, z1 - 1).getMaterial() != Material.water
+                    && world.getBlock(x1, y - 1, z1 + 1).getMaterial() != Material.water)
                 continue;
             
             final int i1 = 1 + rand.nextInt(rand.nextInt(1) + 1);
             
-            for (i = 0; i < i1; i++)
-                if (Block.blocksList[blockID].canBlockStay(world, x1,
+            for (int i = 0; i < i1; i++)
+                if (block.canBlockStay(world, x1,
                         y + i, z1))
-                    world.setBlock(x1, y + i, z1, blockID);
+                    world.setBlock(x1, y + i, z1, block);
         }
         
         return true;

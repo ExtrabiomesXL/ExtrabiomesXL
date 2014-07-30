@@ -8,6 +8,7 @@ package extrabiomes.module.summa.worldgen;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -20,9 +21,9 @@ public class EelGrassGenerator implements IWorldGenerator
     
     private final WorldGenerator eelGrassGen;
     
-    public EelGrassGenerator(int blockID, int metaData)
+    public EelGrassGenerator(Block block, int metaData)
     {
-        eelGrassGen = new WorldGenEelGrass(blockID, metaData);
+        eelGrassGen = new WorldGenEelGrass(block, metaData);
     }
     
     @Override
