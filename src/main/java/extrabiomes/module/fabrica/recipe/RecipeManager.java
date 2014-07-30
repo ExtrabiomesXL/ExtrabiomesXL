@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -251,7 +252,7 @@ public class RecipeManager
         redCobbleItem = Optional.of(new ItemStack(event.block, 1, BlockRedRock.BlockType.RED_COBBLE.metadata()));
         redRockBrickItem = Optional.of(new ItemStack(event.block, 1, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()));
         
-        IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Item.clay, 4), redCobbleItem.get(), Item.bucketWater, Item.bucketWater, Item.bucketWater);
+        IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Items.clay_ball, 4), redCobbleItem.get(), Items.water_bucket, Item.water_bucket, Item.water_bucket);
         proxy.addRecipe(recipe);
         
         recipe = new ShapedOreRecipe(new ItemStack(event.block, 4, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()), new String[] { "rr", "rr" }, 'r', redRockItem.get());

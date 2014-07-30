@@ -7,6 +7,7 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
@@ -24,8 +25,8 @@ public class BiomeIceWasteland extends ExtrabiomeGenBase
 		super(BiomeSettings.ICEWASTELAND, Type.FROZEN, Type.WASTELAND);
         
         spawnableCreatureList.clear();
-        topBlock = (byte) Block.blockSnow;
-        fillerBlock = (byte) Block.blockSnow;
+        topBlock = Blocks.snow;
+        fillerBlock = Blocks.snow;
         setEnableSnow();
         setColor(0x7DA0B5);
         setBiomeName("Ice Wasteland");

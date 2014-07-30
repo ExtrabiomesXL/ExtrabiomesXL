@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -158,7 +159,7 @@ public class ForestryPlugin
         
         if (carpenterAddRecipe.isPresent() && Element.RED_COBBLE.isPresent())
         {
-            carpenterAddRecipe.get().invoke(carpenterManager, 10, getFluidStack("water", 3000), null, new ItemStack(Item.clay, 4), new Object[] { "#", Character.valueOf('#'), Element.RED_COBBLE.get() });
+            carpenterAddRecipe.get().invoke(carpenterManager, 10, getFluidStack("water", 3000), null, new ItemStack(Items.clay_ball, 4), new Object[] { "#", Character.valueOf('#'), Element.RED_COBBLE.get() });
         }
     }
     

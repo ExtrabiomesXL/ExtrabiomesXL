@@ -1,6 +1,8 @@
 package extrabiomes.handlers;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -41,7 +43,7 @@ public abstract class RecipeHandler
     private static void writeWaterPantRecipes() {
     	if(!Element.WATERPLANT.isPresent()) return;
     	
-    	final IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Item.dyePowder, 1, 2), Element.WATERPLANT.get());
+    	final IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Items.dye, 1, 2), Element.WATERPLANT.get());
     	Extrabiomes.proxy.addRecipe(recipe);
     }
     
@@ -73,8 +75,8 @@ public abstract class RecipeHandler
             return;
         
         // crackedSand + water = sand
-        final IRecipe recipe = new ShapelessOreRecipe(Block.sand, Element.CRACKEDSAND.get(),
-                Item.bucketWater);
+        final IRecipe recipe = new ShapelessOreRecipe(Blocks.sand, Element.CRACKEDSAND.get(),
+                Items.water_bucket);
         Extrabiomes.proxy.addRecipe(recipe);
     }
     
@@ -109,7 +111,7 @@ public abstract class RecipeHandler
 						dye = Element.DYE_WHITE.get();
 						break;
 					default:
-						dye = new ItemStack(Item.dyePowder, 1, color);
+						dye = new ItemStack(Items.dye, 1, color);
 				}
 				final IRecipe recipe = new ShapelessOreRecipe(dye, element.get());
 				proxy.addRecipe(recipe);
@@ -118,7 +120,7 @@ public abstract class RecipeHandler
 
 		if (Element.VINE_GLORIOSA.isPresent()) {
 			final ItemStack gloriosa = Element.VINE_GLORIOSA.get();
-			final ItemStack dye = new ItemStack(Item.dyePowder, 1, 1);
+			final ItemStack dye = new ItemStack(Items.dye, 1, 1);
 			final IRecipe recipe = new ShapelessOreRecipe(dye, gloriosa);
 			proxy.addRecipe(recipe);
 		}
@@ -128,11 +130,11 @@ public abstract class RecipeHandler
             final ItemStack toadstool = Element.TOADSTOOL.get();
             
             // emptyBowl + redMushroom + 2 toadstools = soup
-            IRecipe recipe = new ShapelessOreRecipe(Item.bowlSoup, Block.mushroomBrown, toadstool, toadstool, Item.bowlEmpty);
+            IRecipe recipe = new ShapelessOreRecipe(Items.mushroom_stew, Blocks.brown_mushroom, toadstool, toadstool, Items.bowl);
             proxy.addRecipe(recipe);
             
             // emptyBowl + brownMushroom + 2 toadstools = soup
-            recipe = new ShapelessOreRecipe(Item.bowlSoup, Block.mushroomRed, toadstool, toadstool, Item.bowlEmpty);
+            recipe = new ShapelessOreRecipe(Items.mushroom_stew, Blocks.red_mushroom, toadstool, toadstool, Items.bowl);
             proxy.addRecipe(recipe);
 
 			// toadstool = brown dye
@@ -207,7 +209,7 @@ public abstract class RecipeHandler
         
         final CommonProxy proxy = Extrabiomes.proxy;
         final Block block = Stuff.planks.get();
-        final ItemStack charcoal = new ItemStack(Item.coal, 1, 1);
+        final ItemStack charcoal = new ItemStack(Items.coal, 1, 1);
         
         if (Element.LOG_ACACIA.isPresent())
         {
@@ -393,8 +395,8 @@ public abstract class RecipeHandler
     	final CommonProxy proxy = Extrabiomes.proxy;
     	
     	final ItemStack chocolate = new ItemStack(foodID, 1, ItemCustomFood.FoodType.CHOCOLATE.meta);
-    	final ItemStack cocoa_powder = new ItemStack(Item.dyePowder, 1, 3);
-    	IRecipe recipe = new ShapelessOreRecipe(chocolate, cocoa_powder, Item.sugar, Item.bucketMilk);
+    	final ItemStack cocoa_powder = new ItemStack(Items.dye, 1, 3);
+    	IRecipe recipe = new ShapelessOreRecipe(chocolate, cocoa_powder, Items.sugar, Items.milk_bucket);
     	proxy.addRecipe(recipe);
     	
     	final ItemStack choco_strawberry = new ItemStack(foodID, 1, ItemCustomFood.FoodType.CHOCOLATE_STRAWBERRY.meta);

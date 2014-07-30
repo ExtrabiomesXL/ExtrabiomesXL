@@ -14,6 +14,7 @@ import java.util.Collection;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -204,9 +205,9 @@ public class CommonProxy
         MinecraftForge.setBlockHarvestLevel(block, toolClass, harvestLevel);
     }
 
-    public void Blocks.fire.setFireInfo(int id, int encouragement, int flammability)
+    public void setFireInfo(Block block, int encouragement, int flammability)
     {
-        Block.Blocks.fire.setFireInfo(id, encouragement, flammability);
+        Blocks.fire.setFireInfo(block, encouragement, flammability);
     }
 
 }

@@ -10,6 +10,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.SpawnerAnimals;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -48,7 +49,7 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 		final ChunkProviderServer parent = (ChunkProviderServer) _world.getChunkProvider();
 		parent.unloadChunksIfNotNearSpawn(chunkX, chunkZ);
 	}
-
+/*
 	@Override
 	public Chunk provideChunk(int i, int j) {
 		//LogHelper.info("Genesis - provide chunk @ " + i + "," + j + ", biomeId = " + _biome.biomeID);
@@ -100,7 +101,7 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 			k1 = k + rand.nextInt(16) + 8;
 			l1 = rand.nextInt(128);
 			i2 = l + rand.nextInt(16) + 8;
-			(new WorldGenLakes(Block.waterStill)).generate(this._world, rand, k1, l1, i2);
+			(new WorldGenLakes(Blocks.water)).generate(this._world, rand, k1, l1, i2);
 		}
 
 		if (TerrainGen.populate(this, _world, rand, i, j, flag, LAVA) && !flag && rand.nextInt(8) == 0) {
@@ -109,7 +110,7 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 			i2 = l + rand.nextInt(16) + 8;
 
 			if (l1 < 63 || rand.nextInt(10) == 0) {
-				(new WorldGenLakes(Block.lavaStill)).generate(this._world, rand, k1, l1, i2);
+				(new WorldGenLakes(Blocks.lava)).generate(this._world, rand, k1, l1, i2);
 			}
 		}
 
@@ -132,11 +133,11 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 				i2 = this._world.getPrecipitationHeight(k + k1, l + l1);
 
 				if (this._world.isBlockFreezable(k1 + k, i2 - 1, l1 + l)) {
-					this._world.setBlock(k1 + k, i2 - 1, l1 + l, Block.ice, 0, 2);
+					this._world.setBlock(k1 + k, i2 - 1, l1 + l, Blocks.ice, 0, 2);
 				}
 
 				if (this._world.canSnowAt(k1 + k, i2, l1 + l)) {
-					this._world.setBlock(k1 + k, i2, l1 + l, Block.snow, 0, 2);
+					this._world.setBlock(k1 + k, i2, l1 + l, Blocks.snow, 0, 2);
 				}
 			}
 		}
@@ -145,5 +146,5 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 
 		BlockSand.fallInstantly = false;
 	}
-
+*/
 }

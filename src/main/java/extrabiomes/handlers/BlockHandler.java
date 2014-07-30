@@ -76,7 +76,7 @@ public abstract class BlockHandler
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
-        proxy.Blocks.fire.setFireInfo(block, 30, 60);
+        Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAVES_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.UMBER.metadata()));
         Element.LEAVES_AUTUMN_ORANGE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.GOLDENROD.metadata()));
@@ -297,7 +297,7 @@ public abstract class BlockHandler
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemGrass.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
-        proxy.Blocks.fire.setFireInfo(block, 60, 100);
+        Blocks.fire.setFireInfo(block, 60, 100);
 
         Element.GRASS_BROWN.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.BROWN.metadata()));
         Element.GRASS_DEAD.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD.metadata()));
@@ -330,7 +330,7 @@ public abstract class BlockHandler
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomNewLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
-        proxy.Blocks.fire.setFireInfo(block, 30, 60);
+        Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAVES_BALD_CYPRESS.set(new ItemStack(block, 1, BlockNewLeaves.BlockType.BALD_CYPRESS.metadata()));
         Element.LEAVES_JAPANESE_MAPLE.set(new ItemStack(block, 1, BlockNewLeaves.BlockType.JAPANESE_MAPLE.metadata()));
@@ -354,7 +354,7 @@ public abstract class BlockHandler
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomMoreLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
-        proxy.Blocks.fire.setFireInfo(block, 30, 60);
+        Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAVES_SAKURA_BLOSSOM.set(new ItemStack(block, 1, BlockMoreLeaves.BlockType.SAKURA_BLOSSOM.metadata()));
 
@@ -375,7 +375,7 @@ public abstract class BlockHandler
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, extrabiomes.items.ItemCustomGreenLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
-        proxy.Blocks.fire.setFireInfo(block, 30, 60);
+        Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAVES_ACACIA.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.ACACIA.metadata()));
         Element.LEAVES_FIR.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.FIR.metadata()));
@@ -398,7 +398,7 @@ public abstract class BlockHandler
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.registerBlock(block, block.getUnlocalizedName() + ":" + block.getClass().getName());
-        proxy.Blocks.fire.setFireInfo(block, 30, 60);
+        Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAFPILE.set(new ItemStack(block));
 
@@ -429,7 +429,7 @@ public abstract class BlockHandler
         proxy.registerBlock(block, extrabiomes.items.ItemCustomMiniLog.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
-        proxy.Blocks.fire.setFireInfo(block, 5, 5);
+        Blocks.fire.setFireInfo(block, 5, 5);
 
         Element.LOG_SAKURA_BLOSSOM.set(new ItemStack(block, 1, BlockMiniLog.BlockType.SAKURA_BLOSSOM.metadata()));
 
@@ -452,7 +452,7 @@ public abstract class BlockHandler
         proxy.registerBlock(block, ItemKneeLog.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
-        proxy.Blocks.fire.setFireInfo(block, 5, 5);
+        Blocks.fire.setFireInfo(block, 5, 5);
 
         final BlockKneeLog block2 = new BlockKneeLog(BlockSettings.RAINBOWKNEELOG.getID(), "rainboweucalyptus");
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.RAINBOWKNEELOG.getID() <= 0)
@@ -464,7 +464,7 @@ public abstract class BlockHandler
         proxy.registerBlock(block2, ItemKneeLog.class, block2.getUnlocalizedName() + ":" + block2.getClass().getName());
         proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
-        proxy.Blocks.fire.setFireInfo(block2, 5, 5);
+        Blocks.fire.setFireInfo(block2, 5, 5);
 
         Element.LOG_KNEE_BALD_CYPRESS.set(new ItemStack(block, 1, Short.MAX_VALUE));
         Element.LOG_KNEE_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, Short.MAX_VALUE));
@@ -494,7 +494,7 @@ public abstract class BlockHandler
         proxy.registerBlock(block, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_baldcypress");
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
-        proxy.Blocks.fire.setFireInfo(block, 5, 5);
+        Blocks.fire.setFireInfo(block, 5, 5);
 
         final BlockNewQuarterLog block2 = new BlockNewQuarterLog(BlockSettings.RAINBOWQUARTERLOG.getID(), "rainboweucalyptus");
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.RAINBOWQUARTERLOG.getID() <= 0)
@@ -506,7 +506,7 @@ public abstract class BlockHandler
         proxy.registerBlock(block2, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_rainboweucalyptus");
         proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
-        proxy.Blocks.fire.setFireInfo(block2, 5, 5);
+        Blocks.fire.setFireInfo(block2, 5, 5);
 
         final BlockNewQuarterLog block3 = new BlockNewQuarterLog(BlockSettings.OAKQUARTERLOG.getID(), "oak");
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.OAKQUARTERLOG.getID() <= 0)
@@ -518,7 +518,7 @@ public abstract class BlockHandler
         proxy.registerBlock(block3, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_oak");
         proxy.registerOreInAllSubblocks("logWood", block3);
         proxy.registerEventHandler(block3);
-        proxy.Blocks.fire.setFireInfo(block3, 5, 5);
+        Blocks.fire.setFireInfo(block3, 5, 5);
 
         final BlockNewQuarterLog block4 = new BlockNewQuarterLog(BlockSettings.FIRQUARTERLOG.getID(), "fir");
         if (!ModuleControlSettings.SUMMA.isEnabled() && BlockSettings.FIRQUARTERLOG.getID() <= 0)
@@ -530,7 +530,7 @@ public abstract class BlockHandler
         proxy.registerBlock(block4, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_fir");
         proxy.registerOreInAllSubblocks("logWood", block4);
         proxy.registerEventHandler(block4);
-        proxy.Blocks.fire.setFireInfo(block4, 5, 5);
+        Blocks.fire.setFireInfo(block4, 5, 5);
 
         final BlockNewQuarterLog block5 = new BlockNewQuarterLog(BlockSettings.REDWOODQUARTERLOG.getID(), "redwood");
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.REDWOODQUARTERLOG.getID() <= 0)
@@ -543,7 +543,7 @@ public abstract class BlockHandler
         proxy.registerBlock(block5, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_redwood");
         proxy.registerOreInAllSubblocks("logWood", block5);
         proxy.registerEventHandler(block5);
-        proxy.Blocks.fire.setFireInfo(block5, 5, 5);
+        Blocks.fire.setFireInfo(block5, 5, 5);
 
 
         Element.LOG_QUARTER_BALD_CYPRESS.set(new ItemStack(block, 1, Short.MAX_VALUE));
@@ -590,7 +590,7 @@ public abstract class BlockHandler
             proxy.registerBlock(block, ItemOldQuarterLog.class, block.getUnlocalizedName() + ":" + block.getBarkOnSides().toString() + ":" + block.getClass().getName());
             proxy.registerOreInAllSubblocks("logWood", block);
             proxy.registerEventHandler(block);
-            proxy.Blocks.fire.setFireInfo(block, 5, 5);
+            Blocks.fire.setFireInfo(block, 5, 5);
         }
 
         Element.LOG_HUGE_FIR_NW.set(new ItemStack(blockNW, 1, BlockQuarterLog.BlockType.FIR.metadata()));
@@ -745,7 +745,7 @@ public abstract class BlockHandler
         proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class, "extrabiomesxl:log1");
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
-        proxy.Blocks.fire.setFireInfo(block, 5, 5);
+        Blocks.fire.setFireInfo(block, 5, 5);
 
         Element.LOG_ACACIA.set(new ItemStack(block, 1, BlockCustomLog.BlockType.ACACIA.metadata()));
         Element.LOG_FIR.set(new ItemStack(block, 1, BlockCustomLog.BlockType.FIR.metadata()));
@@ -769,7 +769,7 @@ public abstract class BlockHandler
         proxy.registerBlock(block2, extrabiomes.utility.MultiItemBlock.class, "extrabiomesxl:log2");
         proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
-        proxy.Blocks.fire.setFireInfo(block2, 5, 5);
+        Blocks.fire.setFireInfo(block2, 5, 5);
 
         Element.LOG_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, BlockNewLog.BlockType.RAINBOW_EUCALYPTUS.metadata()));
         Element.LOG_AUTUMN.set(new ItemStack(block2, 1, BlockNewLog.BlockType.AUTUMN.metadata()));

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 
 public enum TreeSoilRegistry
 {
@@ -20,9 +21,9 @@ public enum TreeSoilRegistry
     static
     {
         validSoil = new ArrayList<Block>();
-        addValidSoil(Block.grass);
-        addValidSoil(Block.dirt);
-        addValidSoil(Block.tilledField);
+        addValidSoil(Blocks.grass);
+        addValidSoil(Blocks.dirt);
+        addValidSoil(Blocks.farmland);
     }
     
     public static void addValidSoil(Block soilBlock)

@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Facing;
@@ -66,13 +67,13 @@ public class ItemScarecrow extends Item
         }
         else
         {
-            final int targetBlockId = world.getBlock(x, y, z);
+            final Block targetBlock = world.getBlock(x, y, z);
             x += Facing.offsetsXForSide[side];
             y += Facing.offsetsYForSide[side];
             z += Facing.offsetsZForSide[side];
             double yOffsetForFence = 0.0D;
             
-            if (side == 1 && targetBlockId == Block.fence || targetBlockId == Block.netherFence)
+            if (side == 1 && targetBlock == Blocks.fence || targetBlock == Blocks.nether_brick_fence)
             {
                 yOffsetForFence = 0.5D;
             }
