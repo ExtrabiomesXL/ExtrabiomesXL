@@ -105,7 +105,7 @@ public class BiomeManagerImpl extends BiomeManager
         
         /*
          * tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
-         * ((WorldGenBigAutumnTree)tree).setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+         * ((WorldGenBigAutumnTree)tree).setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
          */
         
         addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
@@ -114,7 +114,7 @@ public class BiomeManagerImpl extends BiomeManager
             public boolean generate(World world, Random rand, int x, int y, int z)
             {
                 final WorldGenAutumnTree worldGen = new WorldGenAutumnTree(false, BROWN);
-                WorldGenAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 10);
@@ -124,7 +124,7 @@ public class BiomeManagerImpl extends BiomeManager
             public boolean generate(World world, Random rand, int x, int y, int z)
             {
                 final WorldGenBigAutumnTree worldGen = new WorldGenBigAutumnTree(false, BROWN);
-                WorldGenBigAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 90);
@@ -134,7 +134,7 @@ public class BiomeManagerImpl extends BiomeManager
             public boolean generate(World world, Random rand, int x, int y, int z)
             {
                 final WorldGenAutumnTree worldGen = new WorldGenAutumnTree(false, ORANGE);
-                WorldGenAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 10);
@@ -144,7 +144,7 @@ public class BiomeManagerImpl extends BiomeManager
             public boolean generate(World world, Random rand, int x, int y, int z)
             {
                 final WorldGenBigAutumnTree worldGen = new WorldGenBigAutumnTree(false, ORANGE);
-                WorldGenBigAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 90);
@@ -154,7 +154,7 @@ public class BiomeManagerImpl extends BiomeManager
             public boolean generate(World world, Random rand, int x, int y, int z)
             {
                 final WorldGenAutumnTree worldGen = new WorldGenAutumnTree(false, PURPLE);
-                WorldGenAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 10);
@@ -164,7 +164,7 @@ public class BiomeManagerImpl extends BiomeManager
             public boolean generate(World world, Random rand, int x, int y, int z)
             {
                 final WorldGenBigAutumnTree worldGen = new WorldGenBigAutumnTree(false, PURPLE);
-                WorldGenBigAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 90);
@@ -174,7 +174,7 @@ public class BiomeManagerImpl extends BiomeManager
             public boolean generate(World world, Random rand, int x, int y, int z)
             {
                 final WorldGenAutumnTree worldGen = new WorldGenAutumnTree(false, YELLOW);
-                WorldGenAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 10);
@@ -184,7 +184,7 @@ public class BiomeManagerImpl extends BiomeManager
             public boolean generate(World world, Random rand, int x, int y, int z)
             {
                 final WorldGenBigAutumnTree worldGen = new WorldGenBigAutumnTree(false, YELLOW);
-                WorldGenBigAutumnTree.setTrunkBlock(Element.LOG_AUTUMN.get().itemID, Element.LOG_AUTUMN.get().getItemDamage());
+                WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 90);

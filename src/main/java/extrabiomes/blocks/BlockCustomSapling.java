@@ -102,13 +102,13 @@ public class BlockCustomSapling extends BlockFlower
         return metadata & METADATA_BITMASK;
     }
     
-    public BlockCustomSapling(Block sapling, int index)
+    public BlockCustomSapling(int index)
     {
         super(0);
         final float var3 = 0.4F;
         setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
         
-        this.sapling = sapling;
+        this.sapling = this; // TODO: ???
         MinecraftForge.EVENT_BUS.register(this);
     }
     

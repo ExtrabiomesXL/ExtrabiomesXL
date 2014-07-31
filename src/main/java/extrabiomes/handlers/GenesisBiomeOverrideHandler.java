@@ -54,7 +54,7 @@ public class GenesisBiomeOverrideHandler extends GenLayer{
 		
 		
 		if(INSTANCE.replaceBiome != -1){
-			LogHelper.info("Overriding @ " + x + "," + z + " x " + width + "," + depth + " = " +  BiomeGenBase.biomeList[INSTANCE.replaceBiome].biomeName);
+			LogHelper.info("Overriding @ " + x + "," + z + " x " + width + "," + depth + " = " +  BiomeGenBase.getBiomeGenArray()[INSTANCE.replaceBiome].biomeName);
 			ints = IntCache.getIntCache(width * depth);
 			for(int i = 0; i < (width * depth); i++) {
 				//LogHelper.info("Genesis X: %d, Z: %d, width: %d, depth: %d", x, z, width, depth);

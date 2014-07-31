@@ -6,23 +6,25 @@
 
 package extrabiomes.handlers;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
 public class SaplingFuelHandler implements IFuelHandler
 {
     
-    private final int saplingID;
+    private final Block saplingBlock;
     
-    public SaplingFuelHandler(int saplingID)
+    public SaplingFuelHandler(Block sb)
     {
-        this.saplingID = saplingID;
+        this.saplingBlock = sb;
     }
     
     @Override
     public int getBurnTime(ItemStack fuel)
     {
-        if (fuel.itemID == saplingID)
+        if (fuel.getItem().equals(Item.getItemFromBlock(this.saplingBlock)))
             return 100;
         return 0;
     }

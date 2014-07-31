@@ -76,8 +76,8 @@ public class BlockCropBasic extends BlockFlower {
 	}
 	
 	public final ICropType cropType;
-	protected BlockCropBasic(int blockID, ICropType type) {
-		super(blockID);
+	protected BlockCropBasic(ICropType type) {
+		super(0);
 		cropType = type;
 		// TODO: set creative tab
 		this.setStepSound(Block.soundTypeGrass);

@@ -42,7 +42,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
         FIR(0), REDWOOD(1), ACACIA(2), CYPRESS(3);
         
         private final int      metadata;
-        private ItemStack      sapling            = new ItemStack(Block.sapling);
+        private ItemStack      sapling            = new ItemStack(Blocks.sapling);
         private static boolean loadedCustomBlocks = false;
         
         static BlockType fromMetadata(int metadata)
@@ -76,15 +76,19 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
             this.metadata = metadata;
         }
         
-        int getSaplingID()
+       Item getSaplingItem()
         {
             if (!loadedCustomBlocks)
             {
                 loadCustomBlocks();
             }
             
-            return sapling.itemID;
+            return sapling.getItem();
         }
+       
+       Block getSaplingBlock() {
+    	   return Block.getBlockFromItem(getSaplingItem());
+       }
         
         int getSaplingMetadata()
         {
@@ -117,7 +121,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
         {
             for (int x1 = -1; x1 <= 1; ++x1)
             {
-                final int foliageColor = iBlockAccess.getBiomeGenForCoords(x + x1, z + z1).getBiomeFoliageColor();
+                final int foliageColor = iBlockAccess.getBiomeGenForCoords(x + x1, z + z1).getBiomeFoliageColor(x + x1, 96, z + z1);
                 red += (foliageColor & 16711680) >> 16;
                 green += (foliageColor & 65280) >> 8;
                 blue += foliageColor & 255;
@@ -338,7 +342,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     public Item getItemDropped(int metadata, Random rand, int par3)
     {
         final Optional<BlockType> type = Optional.fromNullable(BlockType.fromMetadata(metadata));
-        return type.isPresent() ? type.get().getSaplingID() : Block.sapling;
+        return type.isPresent() ? type.get().getSaplingItem() : Item.getItemFromBlock(Blocks.sapling);
     }
     
     @Override
@@ -354,7 +358,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public boolean isShearable(ItemStack item, World world, int x, int y, int z)
+    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
@@ -366,7 +370,7 @@ public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public ArrayList<ItemStack> onSheared(ItemStack item, World world, int x, int y, int z, int fortune)
+    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune)
     {
         final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
         ret.add(new ItemStack(this, 1, unmarkedMetadata(world.getBlockMetadata(x, y, z))));

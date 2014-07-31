@@ -18,6 +18,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerFoliage;
@@ -41,7 +42,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
         BALD_CYPRESS(0), JAPANESE_MAPLE(1), JAPANESE_MAPLE_SHRUB(2), RAINBOW_EUCALYPTUS(3);
         
         private final int      metadata;
-        private ItemStack      sapling            = new ItemStack(Block.sapling);
+        private ItemStack      sapling            = new ItemStack(Blocks.sapling);
         private static boolean loadedCustomBlocks = false;
         
         static BlockType fromMetadata(int metadata)
@@ -75,14 +76,18 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
             this.metadata = metadata;
         }
         
-        int getSaplingID()
+        Item getSaplingItem()
         {
             if (!loadedCustomBlocks)
             {
                 loadCustomBlocks();
             }
             
-            return sapling.itemID;
+            return sapling.getItem();
+        }
+        
+        Block getSaplingBlock() {
+        	return Block.getBlockFromItem(sapling.getItem());
         }
         
         int getSaplingMetadata()
@@ -116,7 +121,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
         {
             for (int x1 = -1; x1 <= 1; ++x1)
             {
-                final int foliageColor = iBlockAccess.getBiomeGenForCoords(x + x1, z + z1).getBiomeFoliageColor();
+                final int foliageColor = iBlockAccess.getBiomeGenForCoords(x + x1, z + z1).getBiomeFoliageColor(x + x1, 96, z + z1);
                 red += (foliageColor & 16711680) >> 16;
                 green += (foliageColor & 65280) >> 8;
                 blue += foliageColor & 255;
@@ -155,9 +160,9 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
     
     private IIcon[] textures = { null, null, null, null, null, null, null, null, null, null, null, null };
     
-    public BlockNewLeaves(int id, Material material, boolean useFastGraphics)
+    public BlockNewLeaves(Material material, boolean useFastGraphics)
     {
-        super(id, material, useFastGraphics);
+        super(material, useFastGraphics);
     }
     
     @Override
@@ -185,7 +190,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public void breakBlock(World world, int x, int y, int z, int BlockID, int metadata)
+    public void breakBlock(World world, int x, int y, int z, Block _block, int metadata)
     {
         final int leafDecayRadius = 1;
         
@@ -199,11 +204,11 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
             {
                 for (int z1 = -leafDecayRadius; z1 <= leafDecayRadius; ++z1)
                 {
-                    final int id = world.getBlock(x + x1, y + y1, z + z1);
+                    final Block block = world.getBlock(x + x1, y + y1, z + z1);
                     
-                    if (Block.blocksList[id] != null)
+                    if (block != null)
                     {
-                        Block.blocksList[id].beginLeavesDecay(world, x + x1, y + y1, z + z1);
+                        block.beginLeavesDecay(world, x + x1, y + y1, z + z1);
                     }
                 }
             }
@@ -231,9 +236,9 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
     
     private void doSaplingDrop(World world, int x, int y, int z, int metadata, int par7)
     {
-        final int idDropped = idDropped(metadata, world.rand, par7);
+        final Item itemDropped = getItemDropped(metadata, world.rand, par7);
         final int damageDropped = damageDropped(metadata);
-        dropBlockAsItem_do(world, x, y, z, new ItemStack(idDropped, 1, damageDropped));
+        dropBlockAsItem(world, x, y, z, new ItemStack(itemDropped, 1, damageDropped));
     }
     
     @Override
@@ -326,7 +331,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList)
+    public void getSubBlocks(Item id, CreativeTabs tab, List itemList)
     {
         for (final BlockType blockType : BlockType.values())
         {
@@ -344,7 +349,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
     public Item getItemDropped(int metadata, Random rand, int par3)
     {
         final Optional<BlockType> type = Optional.fromNullable(BlockType.fromMetadata(metadata));
-        return type.isPresent() ? type.get().getSaplingID() : Block.sapling;
+        return type.isPresent() ? type.get().getSaplingItem() : Item.getItemFromBlock(Blocks.sapling);
     }
     
     @Override
@@ -360,7 +365,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public boolean isShearable(ItemStack item, World world, int x, int y, int z)
+    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
@@ -372,7 +377,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
     }
     
     @Override
-    public ArrayList<ItemStack> onSheared(ItemStack item, World world, int x, int y, int z, int fortune)
+    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune)
     {
         final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
         ret.add(new ItemStack(this, 1, unmarkedMetadata(world.getBlockMetadata(x, y, z))));
@@ -394,7 +399,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
     @Override
     public boolean shouldSideBeRendered(IBlockAccess par1iBlockAccess, int par2, int par3, int par4, int par5)
     {
-        graphicsLevel = !Blocks.leaves.isOpaqueCube(); // fix leaf render
+        this.field_150121_P = !Blocks.leaves.isOpaqueCube(); // fix leaf render
                                                       // bug
         return super.shouldSideBeRendered(par1iBlockAccess, par2, par3, par4, par5);
     }
@@ -431,9 +436,7 @@ public class BlockNewLeaves extends BlockLeavesBase implements IShearable
                 {
                     for (int var14 = -rangeWood; var14 <= rangeWood; ++var14)
                     {
-                        final int id = world.getBlock(x + var12, y + var13, z + var14);
-                        
-                        final Block block = Block.blocksList[id];
+                        final Block block = world.getBlock(x + var12, y + var13, z + var14);
                         
                         if (block != null && block.canSustainLeaves(world, x + var12, y + var13, z + var14))
                         {

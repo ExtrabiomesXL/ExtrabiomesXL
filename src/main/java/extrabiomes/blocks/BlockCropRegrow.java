@@ -58,8 +58,8 @@ public class BlockCropRegrow extends BlockCropBasic {
 		}
 	}
 	
-	public BlockCropRegrow(int blockID, CropType type) {
-		super(blockID, type);
+	public BlockCropRegrow(CropType type) {
+		super(type);
 	}
 
 	@Override

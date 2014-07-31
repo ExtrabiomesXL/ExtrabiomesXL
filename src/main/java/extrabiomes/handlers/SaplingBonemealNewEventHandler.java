@@ -24,13 +24,13 @@ public class SaplingBonemealNewEventHandler
     @SubscribeEvent
     public void onBonemealEvent(BonemealEvent e)
     {
-        if (e.getResult() == Result.DEFAULT && e.ID == sapling)
+        if (e.getResult() == Result.DEFAULT && e.block.equals(sapling))
         {
             if (!e.world.isRemote)
             {
                 if (e.world.rand.nextFloat() < 0.45D)
                 {
-                    sapling.markOrGrowMarked(e.world, e.X, e.Y, e.Z, e.world.rand);
+                    sapling.markOrGrowMarked(e.world, e.x, e.y, e.z, e.world.rand);
                 }
                 
                 e.setResult(Result.ALLOW);

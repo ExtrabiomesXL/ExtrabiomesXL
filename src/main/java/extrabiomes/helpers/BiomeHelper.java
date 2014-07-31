@@ -53,9 +53,9 @@ public abstract class BiomeHelper
      */
     public static void createBiome(BiomeSettings setting) throws Exception
     {
-        if (BiomeGenBase.biomeList[setting.getID()] != null)
+        if (BiomeGenBase.getBiomeGenArray()[setting.getID()] != null)
         {
-            throw new IllegalArgumentException(String.format("Biome id %d is already in use by %s when adding %s. Please review the configuration file.", setting.getID(), BiomeGenBase.biomeList[setting.getID()].biomeName, setting.toString()));
+            throw new IllegalArgumentException(String.format("Biome id %d is already in use by %s when adding %s. Please review the configuration file.", setting.getID(), BiomeGenBase.getBiomeGenArray()[setting.getID()].biomeName, setting.toString()));
         }
         
         setting.createBiome();

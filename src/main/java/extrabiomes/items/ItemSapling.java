@@ -3,6 +3,7 @@ package extrabiomes.items;
 import java.util.List;
 import java.util.Locale;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockCustomSapling;
@@ -11,9 +12,9 @@ import extrabiomes.utility.MultiItemBlock;
 public class ItemSapling extends MultiItemBlock
 {
     
-    public ItemSapling(int id)
+    public ItemSapling(Block block)
     {
-        super(id);
+        super(block);
     }
     
     private static int unmarkedMetadata(int metadata)

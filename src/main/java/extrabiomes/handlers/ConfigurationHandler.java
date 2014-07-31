@@ -60,7 +60,6 @@ public abstract class ConfigurationHandler
 			configVersion.comment = "To help ebxl in updating the config file in the future.";
 
 			// for future use - are we upgrading between config versions?
-			@SuppressWarnings("unused")
 			final boolean isNewVersion = !configVersion.getString().equals(Reference.CONFIG_VERSION);
 			configVersion.set(Reference.CONFIG_VERSION);
 

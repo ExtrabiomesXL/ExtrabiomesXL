@@ -71,7 +71,7 @@ public class CropHandler {
 
 	private static void createSeedItems() {
 		final ItemSettings settings = ItemSettings.SEED;
-		ItemCustomSeed item = new ItemCustomSeed(settings.getID());
+		ItemCustomSeed item = new ItemCustomSeed();
 		Stuff.seed = Optional.of(item);
 		GameRegistry.registerItem(item, "extrabiomes.seed", Reference.MOD_ID);
 
@@ -86,11 +86,11 @@ public class CropHandler {
 				continue;
 			}
 
-			final ItemStack seed_item = new ItemStack(item.itemID, 1, type.meta);
+			final ItemStack seed_item = new ItemStack(item, 1, type.meta);
 			seed_element.set(seed_item);
 			// and associate with our target block
 			if (plant_element != null && plant_element.isPresent()) {
-				final BlockFlower block = (BlockFlower) Block.blocksList[plant_element.get().itemID];
+				final BlockFlower block = (BlockFlower) Block.getBlockFromItem(plant_element.get().getItem());
 				type.cropType = block;
 				if(block instanceof BlockCropBasic) {
 					( (BlockCropBasic) block ).setSeedItem(seed_item);
@@ -121,7 +121,7 @@ public class CropHandler {
     		try {
     			plant_settings = BlockSettings.valueOf(name);
     			
-        		if(plant_settings.getID() == 0) continue;
+        		if(!plant_settings.getEnabled()) continue;
     			
 				plant_element = Element.valueOf("PLANT_" + name);
 				crop_element = Element.valueOf("CROP_" + name);
@@ -130,7 +130,7 @@ public class CropHandler {
     			continue;
     		}
     		
-    		final BlockCropRegrow block = new BlockCropRegrow(plant_settings.getID(), type);
+    		final BlockCropRegrow block = new BlockCropRegrow(type);
 			plant_element.set(new ItemStack(block));
 			block.setCropItem(crop_element.get().getItem());
 			block.setBlockName("extrabiomes.crop." + name.toLowerCase());
