@@ -73,7 +73,7 @@ public abstract class BlockHandler
         block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemCustomLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomLeaves.class,  block.getUnlocalizedName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
         Blocks.fire.setFireInfo(block, 30, 60);
 
@@ -118,7 +118,7 @@ public abstract class BlockHandler
     	waterPlantBlock.registerSubBlock(new SubBlockWaterPlant("eelgrass").addPlaceableBlock(Blocks.grass).addPlaceableBlock(Blocks.sand).addPlaceableBlock(Blocks.gravel).addPlaceableBlock(Blocks.clay), 0);
     	
     	final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(waterPlantBlock, extrabiomes.items.ItemBlockWaterPlant.class, "extrabiomesxl:waterplant1");
+        proxy.registerBlock(waterPlantBlock, extrabiomes.items.ItemBlockWaterPlant.class, "waterplant1");
         
         Element.WATERPLANT.set(new ItemStack(waterPlantBlock, 1, 0));
         
@@ -134,7 +134,7 @@ public abstract class BlockHandler
         block.setBlockName("extrabiomes.cattail").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemCatTail.class, "extrabiomesxl:plants4");
+        proxy.registerBlock(block, extrabiomes.items.ItemCatTail.class, "plants4");
         proxy.registerOre("reedTypha", block);
 
         Element.CATTAIL.set(new ItemStack(block));
@@ -154,7 +154,7 @@ public abstract class BlockHandler
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "pickaxe", 0);
-        proxy.registerBlock(block, "extrabiomesxl:terrain_blocks2");
+        proxy.registerBlock(block, "terrain_blocks2");
 
         proxy.registerOre("sandCracked", block);
 
@@ -188,7 +188,7 @@ public abstract class BlockHandler
 					.setCreativeTab(Extrabiomes.tabsEBXL);
 			proxy.registerBlock(
 					block,
-					extrabiomes.items.ItemFlower.class, "extrabiomesxl:flower" + (group+1));
+					extrabiomes.items.ItemFlower.class, "flower" + (group+1));
 
 			Collection<BlockType> types = block.getGroupTypes();
 			for (BlockType type : types) {
@@ -248,8 +248,7 @@ public abstract class BlockHandler
 					"extrabiomes.vine." + blockType.name().toLowerCase())
 					.setCreativeTab(Extrabiomes.tabsEBXL);
 			proxy.registerBlock(block, ItemBlock.class,
-					block.getUnlocalizedName() + ":"
-							+ block.getClass().getName());
+					block.getUnlocalizedName());
 
 			final Element element;
 			try {
@@ -289,7 +288,7 @@ public abstract class BlockHandler
         block.setBlockName("extrabiomes.tallgrass").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemGrass.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, extrabiomes.items.ItemGrass.class,  block.getUnlocalizedName());
         Blocks.fire.setFireInfo(block, 60, 100);
 
         Element.GRASS_BROWN.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.BROWN.metadata()));
@@ -320,7 +319,7 @@ public abstract class BlockHandler
         block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemCustomNewLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomNewLeaves.class,  block.getUnlocalizedName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
         Blocks.fire.setFireInfo(block, 30, 60);
 
@@ -343,7 +342,7 @@ public abstract class BlockHandler
         block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemCustomMoreLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomMoreLeaves.class,  block.getUnlocalizedName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
         Blocks.fire.setFireInfo(block, 30, 60);
 
@@ -363,7 +362,7 @@ public abstract class BlockHandler
         block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemCustomGreenLeaves.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomGreenLeaves.class,  block.getUnlocalizedName());
         proxy.registerOreInAllSubblocks("treeLeaves", block);
         Blocks.fire.setFireInfo(block, 30, 60);
 
@@ -386,7 +385,7 @@ public abstract class BlockHandler
         block.setBlockName("extrabiomes.leafpile").setHardness(0.0F).setTickRandomly(true).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block,  block.getUnlocalizedName());
         Blocks.fire.setFireInfo(block, 30, 60);
 
         Element.LEAFPILE.set(new ItemStack(block));
@@ -414,7 +413,7 @@ public abstract class BlockHandler
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
-        proxy.registerBlock(block, extrabiomes.items.ItemCustomMiniLog.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, extrabiomes.items.ItemCustomMiniLog.class,  block.getUnlocalizedName());
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
         Blocks.fire.setFireInfo(block, 5, 5);
@@ -437,7 +436,7 @@ public abstract class BlockHandler
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
         //proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class);
-        proxy.registerBlock(block, ItemKneeLog.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, ItemKneeLog.class,  block.getUnlocalizedName());
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
         Blocks.fire.setFireInfo(block, 5, 5);
@@ -449,7 +448,7 @@ public abstract class BlockHandler
         block2.setBlockName("extrabiomes.rainbowkneelog").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block2, "axe", 0);
-        proxy.registerBlock(block2, ItemKneeLog.class, block2.getUnlocalizedName() + ":" + block2.getClass().getName());
+        proxy.registerBlock(block2, ItemKneeLog.class, block2.getUnlocalizedName());
         proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
         Blocks.fire.setFireInfo(block2, 5, 5);
@@ -479,7 +478,7 @@ public abstract class BlockHandler
         block.setBlockName("extrabiomes.baldcypressquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block, "axe", 0);
-        proxy.registerBlock(block, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_baldcypress");
+        proxy.registerBlock(block, ItemNewQuarterLog.class, "cornerlog_baldcypress");
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
         Blocks.fire.setFireInfo(block, 5, 5);
@@ -491,7 +490,7 @@ public abstract class BlockHandler
         block2.setBlockName("extrabiomes.rainboweucalyptusquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block2, "axe", 0);
-        proxy.registerBlock(block2, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_rainboweucalyptus");
+        proxy.registerBlock(block2, ItemNewQuarterLog.class, "cornerlog_rainboweucalyptus");
         proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
         Blocks.fire.setFireInfo(block2, 5, 5);
@@ -503,7 +502,7 @@ public abstract class BlockHandler
         block3.setBlockName("extrabiomes.oakquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block3, "axe", 0);
-        proxy.registerBlock(block3, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_oak");
+        proxy.registerBlock(block3, ItemNewQuarterLog.class, "cornerlog_oak");
         proxy.registerOreInAllSubblocks("logWood", block3);
         proxy.registerEventHandler(block3);
         Blocks.fire.setFireInfo(block3, 5, 5);
@@ -515,7 +514,7 @@ public abstract class BlockHandler
         block4.setBlockName("extrabiomes.firquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block4, "axe", 0);
-        proxy.registerBlock(block4, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_fir");
+        proxy.registerBlock(block4, ItemNewQuarterLog.class, "cornerlog_fir");
         proxy.registerOreInAllSubblocks("logWood", block4);
         proxy.registerEventHandler(block4);
         Blocks.fire.setFireInfo(block4, 5, 5);
@@ -528,7 +527,7 @@ public abstract class BlockHandler
         //block5.setRenderId(renderId);
 
         proxy.setBlockHarvestLevel(block5, "axe", 0);
-        proxy.registerBlock(block5, ItemNewQuarterLog.class, "extrabiomesxl:cornerlog_redwood");
+        proxy.registerBlock(block5, ItemNewQuarterLog.class, "cornerlog_redwood");
         proxy.registerOreInAllSubblocks("logWood", block5);
         proxy.registerEventHandler(block5);
         Blocks.fire.setFireInfo(block5, 5, 5);
@@ -575,7 +574,7 @@ public abstract class BlockHandler
 
             final CommonProxy proxy = Extrabiomes.proxy;
             proxy.setBlockHarvestLevel(block, "axe", 0);
-            proxy.registerBlock(block, ItemOldQuarterLog.class, block.getUnlocalizedName() + ":" + block.getBarkOnSides().toString() + ":" + block.getClass().getName());
+            proxy.registerBlock(block, ItemOldQuarterLog.class,  block.getBarkOnSides().toString() + ":" + block.getUnlocalizedName());
             proxy.registerOreInAllSubblocks("logWood", block);
             proxy.registerEventHandler(block);
             Blocks.fire.setFireInfo(block, 5, 5);
@@ -614,7 +613,7 @@ public abstract class BlockHandler
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "pickaxe", 0);
-        proxy.registerBlock(block, extrabiomes.items.ItemRedRock.class, "extrabiomesxl:terrain_blocks1");
+        proxy.registerBlock(block, extrabiomes.items.ItemRedRock.class, "terrain_blocks1");
 
         Element.RED_ROCK.set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_ROCK.metadata()));
         Element.RED_COBBLE.set(new ItemStack(block, 1, BlockRedRock.BlockType.RED_COBBLE.metadata()));
@@ -639,7 +638,7 @@ public abstract class BlockHandler
         block.setBlockName("extrabiomes.sapling").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemSapling.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, extrabiomes.items.ItemSapling.class,  block.getUnlocalizedName());
         proxy.registerOreInAllSubblocks("treeSapling", block);
 
         Element.SAPLING_ACACIA.set(new ItemStack(block, 1, BlockCustomSapling.BlockType.ACACIA.metadata()));
@@ -685,7 +684,7 @@ public abstract class BlockHandler
         block.setBlockName("extrabiomes.sapling").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
-        proxy.registerBlock(block, extrabiomes.items.ItemNewSapling.class, block.getUnlocalizedName() + ":" + block.getClass().getName());
+        proxy.registerBlock(block, extrabiomes.items.ItemNewSapling.class,  block.getUnlocalizedName());
         proxy.registerOreInAllSubblocks("treeSapling", block);
 
         Element.SAPLING_BALD_CYPRESS.set(new ItemStack(block, 1, BlockNewSapling.BlockType.BALD_CYPRESS.metadata()));
@@ -726,7 +725,7 @@ public abstract class BlockHandler
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
-        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class, "extrabiomesxl:log1");
+        proxy.registerBlock(block, extrabiomes.utility.MultiItemBlock.class, "log1");
         proxy.registerOreInAllSubblocks("logWood", block);
         proxy.registerEventHandler(block);
         Blocks.fire.setFireInfo(block, 5, 5);
@@ -749,7 +748,7 @@ public abstract class BlockHandler
         block2.setBlockName("extrabiomes.newlog").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         proxy.setBlockHarvestLevel(block2, "axe", 0);
-        proxy.registerBlock(block2, extrabiomes.utility.MultiItemBlock.class, "extrabiomesxl:log2");
+        proxy.registerBlock(block2, extrabiomes.utility.MultiItemBlock.class, "log2");
         proxy.registerOreInAllSubblocks("logWood", block2);
         proxy.registerEventHandler(block2);
         Blocks.fire.setFireInfo(block2, 5, 5);
