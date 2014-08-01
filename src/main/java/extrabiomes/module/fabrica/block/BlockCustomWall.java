@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockWall;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -42,15 +43,15 @@ public class BlockCustomWall extends BlockWall
     
     private IIcon texture;
     
-    public BlockCustomWall(int id)
+    public BlockCustomWall()
     {
-        super(id, Block.blocksList[Element.RED_COBBLE.get().itemID]);
+        super(Block.getBlockFromItem(Element.RED_COBBLE.get().getItem()));
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "redrockcobble");
     }
@@ -70,7 +71,7 @@ public class BlockCustomWall extends BlockWall
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int id, CreativeTabs tab, List itemList)
+    public void getSubBlocks(Item item, CreativeTabs tab, List itemList)
     {
         for (final BlockType blockType : BlockType.values())
             itemList.add(new ItemStack(this, 1, blockType.metadata()));

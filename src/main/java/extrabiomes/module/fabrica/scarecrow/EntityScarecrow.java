@@ -15,6 +15,8 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
@@ -72,9 +74,9 @@ public class EntityScarecrow extends EntityGolem
     @Override
     protected void dropFewItems(boolean par1, int par2)
     {
-        dropItem(Item.stick.itemID, 3);
-        dropItem(Block.melon, 1);
-        dropItem(Block.pumpkin, 1);
+        dropItem(Items.stick, 3);
+        dropItem(Item.getItemFromBlock(Blocks.melon_block), 1);
+        dropItem(Item.getItemFromBlock(Blocks.pumpkin), 1);
     }
     
     @Override

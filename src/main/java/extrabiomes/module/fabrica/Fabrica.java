@@ -72,19 +72,17 @@ public class Fabrica
     public void preInit(ModulePreInitEvent event) throws Exception
     {
         BlockManager.preInit();
-        scarecrowID = ItemSettings.SCARECROW.getID();
-        pasteID = ItemSettings.PASTE.getID();
         
-        if (scarecrowID > 0)
+        if (ItemSettings.SCARECROW.getEnabled())
         {
             Extrabiomes.proxy.registerScarecrowRendering();
-            Stuff.scarecrow = Optional.of(new ItemScarecrow(scarecrowID).setUnlocalizedName(ItemScarecrow.NAME));
+            Stuff.scarecrow = Optional.of(new ItemScarecrow().setUnlocalizedName(ItemScarecrow.NAME));
             GameRegistry.registerItem(Stuff.scarecrow.get(), ItemScarecrow.NAME, Reference.MOD_ID);
         }
         
-        if (pasteID > 0)
+        if (ItemSettings.PASTE.getEnabled())
         {
-            Stuff.paste = Optional.of(new ItemPaste(pasteID).setUnlocalizedName("extrabiomes.paste").setCreativeTab(Extrabiomes.tabsEBXL));
+            Stuff.paste = Optional.of(new ItemPaste().setUnlocalizedName("extrabiomes.paste").setCreativeTab(Extrabiomes.tabsEBXL));
             GameRegistry.registerItem(Stuff.paste.get(), "extrabiomes.paste", Reference.MOD_ID);
         }
     }

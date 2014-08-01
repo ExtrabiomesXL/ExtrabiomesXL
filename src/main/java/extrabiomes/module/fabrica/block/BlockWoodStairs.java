@@ -13,9 +13,9 @@ import extrabiomes.Extrabiomes;
 public class BlockWoodStairs extends BlockCustomStairs
 {
     
-    public BlockWoodStairs(int id, Block modelBlock, int modelMetadata)
+    public BlockWoodStairs(Block modelBlock, int modelMetadata)
     {
-        super(id, modelBlock, modelMetadata);
+        super(modelBlock, modelMetadata);
         Blocks.fire.setFireInfo(this, 5, 20);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }

@@ -218,7 +218,6 @@ public class ATGPluginImpl
             ATGBiomes.addBiome(BiomeType.COAST, group, BiomeSettings.GREENSWAMP.getBiome().get(), 0.05);
     }
     
-    @SuppressWarnings("unused")
     private void addBeachBiomes()
     {
         String group = "Beach";

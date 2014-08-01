@@ -8,6 +8,7 @@ package extrabiomes.items;
 
 import java.util.Locale;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.utility.MultiItemBlock;
@@ -40,9 +41,9 @@ public class ItemCustomLeaves extends MultiItemBlock
         return metadata | METADATA_USERPLACEDBIT;
     }
     
-    public ItemCustomLeaves(final int id)
+    public ItemCustomLeaves(final Block block)
     {
-        super(id);
+        super(block);
     }
     
     @Override

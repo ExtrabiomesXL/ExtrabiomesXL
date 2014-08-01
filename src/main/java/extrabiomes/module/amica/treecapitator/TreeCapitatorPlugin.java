@@ -21,7 +21,8 @@ public class TreeCapitatorPlugin
         if (Loader.isModLoaded("TreeCapitator"))
         {
             LogHelper.info("Initializing TreeCapitator support...");
-            NBTTagCompound tpModCfg = new NBTTagCompound();
+            LogHelper.warning("TreeCapitator support is TODO!");
+            /*NBTTagCompound tpModCfg = new NBTTagCompound();
             tpModCfg.setString("modID", Reference.MOD_ID);
             
             NBTTagList treeList = new NBTTagList();
@@ -118,7 +119,7 @@ public class TreeCapitatorPlugin
             tpModCfg.setTag("trees", treeList);
             
             FMLInterModComms.sendMessage("TreeCapitator", "ThirdPartyModConfig", tpModCfg);
-            LogHelper.info("TreeCapitator IMC message sent.");
+            LogHelper.info("TreeCapitator IMC message sent.");*/
         }
     }
 }

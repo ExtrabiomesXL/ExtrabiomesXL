@@ -34,22 +34,21 @@ public class BiomeForestedIsland extends ExtrabiomeGenBase
         setBiomeName("Forested Island");
         temperature = BiomeGenBase.forest.temperature + 0.1F;
         rainfall = BiomeGenBase.forest.rainfall;
-        minHeight = -0.8F;
-        maxHeight = 0.8F;
+        this.setHeight(new Height(-0.8F, 0.8F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor()
+    public int getBiomeFoliageColor(int x, int y, int z)
     {
         return ColorizerFoliage.getFoliageColor(0.4F, 0.7F);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor()
+    public int getBiomeGrassColor(int x, int y, int z)
     {
         return ColorizerGrass.getGrassColor(0.4F, 0.7F);
     }

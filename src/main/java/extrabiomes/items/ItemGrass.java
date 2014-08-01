@@ -1,14 +1,15 @@
 package extrabiomes.items;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import extrabiomes.utility.MultiItemBlock;
 
 public class ItemGrass extends MultiItemBlock
 {
     
-    public ItemGrass(int id)
+    public ItemGrass(Block block)
     {
-        super(id);
+        super(block);
     }
     
     @Override

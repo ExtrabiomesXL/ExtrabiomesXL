@@ -37,7 +37,7 @@ public class RenderScarecrow extends RenderLiving
     }
     
     @Override
-    public void doRenderLiving(EntityLiving entityliving, double d, double d1, double d2, float f, float f1)
+    public void doRender(EntityLiving entityliving, double d, double d1, double d2, float f, float f1)
     {
         renderScarecrow((EntityScarecrow) entityliving, d, d1, d2, f, f1);
     }
@@ -56,7 +56,7 @@ public class RenderScarecrow extends RenderLiving
     public void renderScarecrow(EntityScarecrow entityScarecrow,
             double d, double d1, double d2, float f, float f1)
     {
-        super.doRenderLiving(entityScarecrow, d, d1, d2, f, f1);
+        super.doRender(entityScarecrow, d, d1, d2, f, f1);
     }
     
     @Override

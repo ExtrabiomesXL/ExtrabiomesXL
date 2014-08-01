@@ -8,6 +8,7 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
@@ -25,15 +26,14 @@ public class BiomeAlpine extends ExtrabiomeGenBase
     public BiomeAlpine()
     {
 		super(BiomeSettings.ALPINE, Type.FROZEN, Type.MOUNTAIN);
-        topBlock = (byte) Block.stone;
-        fillerBlock = (byte) Block.stone;
+        topBlock = Blocks.stone;
+        fillerBlock = Blocks.stone;
         setColor(0x8DACC4);
         setEnableSnow();
         setBiomeName("Alpine");
         temperature = 0.0F;
         rainfall = 0.1F;
-        minHeight = 1.3F;
-        maxHeight = 2.1F;
+        this.setHeight(new Height(1.3F, 2.1F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 8, 4, 4));
     }

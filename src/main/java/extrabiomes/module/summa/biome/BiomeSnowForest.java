@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
@@ -32,8 +33,7 @@ public class BiomeSnowForest extends ExtrabiomeGenBase
         setBiomeName("Snow Forest");
         temperature = BiomeGenBase.taigaHills.temperature;
         rainfall = BiomeGenBase.taigaHills.rainfall;
-        minHeight = 0.1F;
-        maxHeight = 0.5F;
+        this.setHeight(new Height(0.1F, 0.5F));
         setEnableSnow();
         
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
@@ -41,14 +41,14 @@ public class BiomeSnowForest extends ExtrabiomeGenBase
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor()
+    public int getBiomeFoliageColor(int x, int y, int z)
     {
         return ColorizerFoliage.getFoliageColor(0.0F, 0.2F);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor()
+    public int getBiomeGrassColor(int x, int y, int z)
     {
         return ColorizerGrass.getGrassColor(0.0F, 0.2F);
     }

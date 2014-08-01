@@ -34,22 +34,21 @@ public class BiomeForestedHills extends ExtrabiomeGenBase
         
         temperature = BiomeGenBase.forest.temperature - 0.1F;
         rainfall = BiomeGenBase.forest.rainfall;
-        minHeight = 0.2F;
-        maxHeight = 1.8F;
+        this.setHeight(new Height(0.2F, 1.8F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor()
+    public int getBiomeFoliageColor(int x, int y, int z)
     {
         return ColorizerFoliage.getFoliageColor(0.8F, 1.0F);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor()
+    public int getBiomeGrassColor(int x, int y, int z)
     {
         return ColorizerGrass.getGrassColor(0.8F, 1.0F);
     }

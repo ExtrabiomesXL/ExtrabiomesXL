@@ -7,6 +7,7 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
@@ -27,8 +28,7 @@ public class BiomeWasteland extends ExtrabiomeGenBase
         setBiomeName("Wasteland");
         temperature = BiomeGenBase.desert.temperature;
         rainfall = BiomeGenBase.desert.rainfall;
-        minHeight = 0.0F;
-        maxHeight = 0.0F;
+        this.setHeight(new Height(0.0F, 0.0F));
         waterColorMultiplier = 0xF08000;
         
         spawnableCreatureList.clear();

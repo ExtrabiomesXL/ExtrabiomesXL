@@ -8,6 +8,7 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
@@ -29,8 +30,7 @@ public class BiomeMountainRidge extends ExtrabiomeGenBase
 		setBiomeName("Mountain Ridge");
         temperature = BiomeGenBase.desert.temperature;
         rainfall = BiomeGenBase.desert.rainfall;
-        minHeight = 1.7F;
-        maxHeight = 1.7F;
+        this.setHeight(new Height(1.7F, 1.7F));
         setDisableRain();
         spawnableCreatureList.clear();
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 1, 3));

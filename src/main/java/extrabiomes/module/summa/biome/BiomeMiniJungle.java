@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
@@ -30,8 +31,7 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase
         setBiomeName("Mini Jungle");
         temperature = BiomeGenBase.jungle.temperature;
         rainfall = BiomeGenBase.jungle.rainfall;
-        minHeight = 0.2F;
-        maxHeight = 0.6F;
+        this.setHeight(new Height(0.2F, 0.6F));
         waterColorMultiplier = 0x24b01c;
         
         spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));

@@ -22,37 +22,33 @@ import extrabiomes.helpers.LogHelper;
 
 public class ItemBlockWaterPlant extends ItemBlock
 {
-    
-    public ItemBlockWaterPlant(int id)
+	private Block block;
+    public ItemBlockWaterPlant(Block block)
     {
-        super(id);
+        super(block);
+        this.block = block;
         setMaxDamage(0);
         setHasSubtypes(true);
     }
 
-    private Block getBlock()
-    {
-        return Block.blocksList[getBlockID()];
-    }
-    
     @SideOnly(Side.CLIENT)
     @Override
     public int getColorFromItemStack(ItemStack itemstack, int par2)
     {
-        return getBlock().getRenderColor(itemstack.getItemDamage());
+        return block.getRenderColor(itemstack.getItemDamage());
     }
     
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int md)
     {
-        return getBlock().getIcon(0, md);
+        return block.getIcon(0, md);
     }
     
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        return ((BlockWaterPlant) getBlock()).getLocalizedName(itemStack.getItemDamage());
+        return ((BlockWaterPlant) block).getLocalizedName(itemStack.getItemDamage());
     }
     
     @Override
@@ -63,6 +59,6 @@ public class ItemBlockWaterPlant extends ItemBlock
 
     @Override
     public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
-    	((BlockWaterPlant)Block.blocksList[itemForTooltip.itemID]).addInformation(itemForTooltip.getItemDamage(), listOfLines);
+    	((BlockWaterPlant)Block.getBlockFromItem(itemForTooltip.getItem())).addInformation(itemForTooltip.getItemDamage(), listOfLines);
     }
 }

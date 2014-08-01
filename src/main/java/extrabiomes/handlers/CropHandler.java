@@ -48,7 +48,7 @@ public class CropHandler {
 
 	private static void createCropItems() {
 		final ItemSettings settings = ItemSettings.CROP;
-		ItemCustomCrop item = new ItemCustomCrop(settings.getID());
+		ItemCustomCrop item = new ItemCustomCrop();
 		Stuff.crop = Optional.of(item);
 		GameRegistry.registerItem(item, "extrabiomes.crop", Reference.MOD_ID);
 

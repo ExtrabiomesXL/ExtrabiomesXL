@@ -9,6 +9,7 @@ package extrabiomes.items;
 import java.util.List;
 import java.util.Locale;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -18,9 +19,9 @@ import extrabiomes.utility.MultiItemBlock;
 
 public class ItemNewQuarterLog extends ItemBlock
 {    
-    public ItemNewQuarterLog(final int id)
+    public ItemNewQuarterLog(final Block block)
     {
-        super(id);
+        super(block);
         this.setHasSubtypes(false);
         this.setMaxDamage(0);
     }

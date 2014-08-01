@@ -50,8 +50,8 @@ public class ItemCustomDye extends Item {
     @SideOnly(Side.CLIENT)
     private IIcon[] dyeIIcons;
 	
-	public ItemCustomDye(int id) {
-		super(id);
+	public ItemCustomDye() {
+		super();
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
 
@@ -86,7 +86,7 @@ public class ItemCustomDye extends Item {
 			final EntitySheep sheep = (EntitySheep) target;
 			final int damage = itemStack.getItemDamage();
 			final Color color = Color.values()[damage];
-			final int i = BlockColored.getBlockFromDye(color.mcDamage);
+			final int i = BlockColored.func_150031_c(color.mcDamage);
 
 			LogHelper.info("Dying sheep " + damage + "/" + color + " = " + i);
 
@@ -128,7 +128,7 @@ public class ItemCustomDye extends Item {
 	/**
 	 * returns a list of items with the same ID, but different meta (eg: vanilla dye returns 16 items)
 	 */
-	public void getSubItems(int itemID, CreativeTabs tab, List list) {
+	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (int j = 0; j < elements.length; ++j) {
 			list.add(elements[j].get());
 		}

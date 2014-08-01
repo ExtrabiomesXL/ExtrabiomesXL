@@ -8,6 +8,7 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
@@ -32,8 +33,7 @@ public class BiomeIceWasteland extends ExtrabiomeGenBase
         setBiomeName("Ice Wasteland");
         temperature = 0.0F;
         rainfall = 0.1F;
-        minHeight = 0.3F;
-        maxHeight = 0.4F;
+        this.setHeight(new Height(0.3F, 0.4F));
     }
     
 }

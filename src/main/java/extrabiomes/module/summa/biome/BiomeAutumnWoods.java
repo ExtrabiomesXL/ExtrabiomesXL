@@ -33,22 +33,21 @@ public class BiomeAutumnWoods extends ExtrabiomeGenBase
         setBiomeName("Autumn Woods");
         temperature = BiomeGenBase.forest.temperature;
         rainfall = BiomeGenBase.forest.rainfall;
-        minHeight = 0.2F;
-        maxHeight = 0.8F;
+        this.setHeight(new Height(0.2F, 0.8F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor()
+    public int getBiomeFoliageColor(int x, int y, int z)
     {
         return ColorizerFoliage.getFoliageColor(1.0F, 0.1F);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor()
+    public int getBiomeGrassColor(int x, int y, int z)
     {
         return ColorizerGrass.getGrassColor(1.0F, 0.1F);
     }

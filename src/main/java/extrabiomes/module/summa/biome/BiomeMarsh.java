@@ -7,6 +7,7 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
@@ -27,8 +28,7 @@ public class BiomeMarsh extends ExtrabiomeGenBase
         setBiomeName("Marsh");
         temperature = BiomeGenBase.swampland.temperature;
         rainfall = BiomeGenBase.swampland.rainfall;
-        minHeight = -0.4F;
-        maxHeight = 0.0F;
+        this.setHeight(new Height(-0.4F, 0.0F));
     }
     
 }

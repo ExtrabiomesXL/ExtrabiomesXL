@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
@@ -33,22 +34,21 @@ public class BiomePineForest extends ExtrabiomeGenBase
         setBiomeName("Pine Forest");
         temperature = BiomeGenBase.forest.temperature;
         rainfall = BiomeGenBase.forest.rainfall;
-        minHeight = 0.1F;
-        maxHeight = 0.3F;
+        this.setHeight(new Height(0.1F, 0.3F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor()
+    public int getBiomeFoliageColor(int x, int y, int z)
     {
         return ColorizerFoliage.getFoliageColor(0.4F, 0.6F);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor()
+    public int getBiomeGrassColor(int x, int y, int z)
     {
         return ColorizerGrass.getGrassColor(0.4F, 0.6F);
     }

@@ -1,14 +1,15 @@
 package extrabiomes.items;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import extrabiomes.utility.MultiItemBlock;
 
 public class ItemRedRock extends MultiItemBlock
 {
     
-    public ItemRedRock(int id)
+    public ItemRedRock(Block block)
     {
-        super(id);
+        super(block);
     }
     
     @Override

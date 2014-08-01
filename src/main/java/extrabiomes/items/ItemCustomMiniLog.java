@@ -8,6 +8,7 @@ package extrabiomes.items;
 
 import java.util.Locale;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockMiniLog;
@@ -21,9 +22,9 @@ public class ItemCustomMiniLog extends ItemBlock
         return super.getUnlocalizedName() + "." + BlockMiniLog.BlockType.values()[0].toString().toLowerCase(Locale.ENGLISH);
     }
     
-    public ItemCustomMiniLog(final int id)
+    public ItemCustomMiniLog(final Block block)
     {
-        super(id);
+        super(block);
     }
     
 }

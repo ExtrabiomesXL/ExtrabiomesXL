@@ -6,6 +6,7 @@
 
 package extrabiomes.module.fabrica.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
@@ -24,15 +25,15 @@ public class ItemRedRockSlab extends ItemSlab
         ItemRedRockSlab.doubleSlab = Optional.of(doubleSlab);
     }
     
-    public ItemRedRockSlab(int id)
+    public ItemRedRockSlab(Block block)
     {
-        super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab.get());
+        super(block, singleSlab.get(), doubleSlab.get(), block.equals(doubleSlab.get()));
     }
     
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        return singleSlab.get().getFullSlabName(itemStack.getItemDamage());
+        return singleSlab.get().func_150002_b(itemStack.getItemDamage());
     }
     
 }

@@ -6,6 +6,7 @@
 
 package extrabiomes.module.summa.biome;
 
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
@@ -25,7 +26,6 @@ public class BiomeTundra extends ExtrabiomeGenBase
         setBiomeName("Tundra");
         temperature = 0.0F;
         rainfall = 0.0F;
-        minHeight = 0.0F;
-        maxHeight = 0.2F;
+        this.setHeight(new Height(0.0F, 0.2F));
     }
 }

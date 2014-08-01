@@ -6,6 +6,7 @@
 
 package extrabiomes.module.summa.biome;
 
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
@@ -25,7 +26,6 @@ public class BiomeRedwoodForest extends ExtrabiomeGenBase
         setBiomeName("Redwood Forest");
         temperature = 1.1F;
         rainfall = 1.4F;
-        minHeight = 0.9F;
-        maxHeight = 1.5F;
+        this.setHeight(new Height(0.9F, 1.5F));
     }
 }

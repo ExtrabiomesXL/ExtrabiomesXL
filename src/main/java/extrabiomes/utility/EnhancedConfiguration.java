@@ -23,7 +23,7 @@ public class EnhancedConfiguration extends Configuration
     public static final String CATEGORY_DECORATION = "decoration";
     public static final String CATEGORY_NEWDAWN    = "newdawn";
     public static final String CATEGORY_VERSION    = "version";
-    private final boolean[]    configBiomes        = new boolean[BiomeGenBase.biomeList.length];
+    private final boolean[]    configBiomes        = new boolean[BiomeGenBase.getBiomeGenArray().length];
     
     public EnhancedConfiguration(File file)
     {
@@ -49,7 +49,7 @@ public class EnhancedConfiguration extends Configuration
             return prop;
         }
         
-        if (BiomeGenBase.biomeList[defaultID] == null && !configBiomes[defaultID])
+        if (BiomeGenBase.getBiomeGenArray()[defaultID] == null && !configBiomes[defaultID])
         {
             prop.set(Integer.toString(defaultID));
             configBiomes[defaultID] = true;
@@ -57,7 +57,7 @@ public class EnhancedConfiguration extends Configuration
         }
         
         for (int j = configBiomes.length - 1; j > 0; j--)
-            if (BiomeGenBase.biomeList[j] == null && !configBiomes[j])
+            if (BiomeGenBase.getBiomeGenArray()[j] == null && !configBiomes[j])
             {
                 prop.set(Integer.toString(j));
                 configBiomes[j] = true;

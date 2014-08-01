@@ -144,7 +144,7 @@ public class BlockCustomSapling extends BlockFlower
     }
     
     @Override
-    protected boolean canThisPlantGrowOnThisBlock(Block block)
+    protected boolean canPlaceBlockOn(Block block)
     {
         return TreeSoilRegistry.isValidSoil(block);
     }
@@ -374,7 +374,7 @@ public class BlockCustomSapling extends BlockFlower
             double chance = event.entityItem.worldObj.rand.nextDouble() * 100;
             
             //event.entityItem
-            if (canThisPlantGrowOnThisBlock(event.entityItem.worldObj.getBlock(posX, posY - 1, posZ)))
+            if (canPlaceBlockOn(event.entityItem.worldObj.getBlock(posX, posY - 1, posZ)))
             {
                 double ratio = ((!GeneralSettings.bigTreeSaplingDropModifier) ? 1.0D : 4.0D);
                 
@@ -422,7 +422,7 @@ public class BlockCustomSapling extends BlockFlower
         // check station one blocks for validity
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x + 1, y, z) || isSameSaplingBlock(x + 1, y, z, world, sapling)) && (world.isAirBlock(x + 1, y, z + 1) || isSameSaplingBlock(x + 1, y, z + 1, world, sapling)) && (world.isAirBlock(x, y, z + 1) || isSameSaplingBlock(x, y, z + 1, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x + 1, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x + 1, y - 1, z + 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z + 1)))
+            if (world.isAirBlock(x, y, z) && canPlaceBlockOn(world.getBlock(x, y - 1, z)) && canPlaceBlockOn(world.getBlock(x + 1, y - 1, z)) && canPlaceBlockOn(world.getBlock(x + 1, y - 1, z + 1)) && canPlaceBlockOn(world.getBlock(x, y - 1, z + 1)))
             {
                 world.setBlock(x, y, z, this.sapling, metadata, 2);
                 world.setBlock(x + 1, y, z, this.sapling, metadata, 2);
@@ -435,7 +435,7 @@ public class BlockCustomSapling extends BlockFlower
         // check station 2
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x, y, z + 1) || isSameSaplingBlock(x, y, z + 1, world, sapling)) && (world.isAirBlock(x - 1, y, z + 1) || isSameSaplingBlock(x - 1, y, z + 1, world, sapling)) && (world.isAirBlock(x - 1, y, z) || isSameSaplingBlock(x - 1, y, z, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z + 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x - 1, y - 1, z + 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x - 1, y - 1, z)))
+            if (world.isAirBlock(x, y, z) && canPlaceBlockOn(world.getBlock(x, y - 1, z)) && canPlaceBlockOn(world.getBlock(x, y - 1, z + 1)) && canPlaceBlockOn(world.getBlock(x - 1, y - 1, z + 1)) && canPlaceBlockOn(world.getBlock(x - 1, y - 1, z)))
             {
                 world.setBlock(x, y, z, this.sapling, metadata, 2);
                 world.setBlock(x, y, z + 1, this.sapling, metadata, 2);
@@ -448,7 +448,7 @@ public class BlockCustomSapling extends BlockFlower
         // Check station 3
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x - 1, y, z) || isSameSaplingBlock(x - 1, y, z, world, sapling)) && (world.isAirBlock(x - 1, y, z - 1) || isSameSaplingBlock(x - 1, y, z - 1, world, sapling)) && (world.isAirBlock(x, y, z - 1) || isSameSaplingBlock(x, y, z - 1, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x - 1, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x - 1, y - 1, z - 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z - 1)))
+            if (world.isAirBlock(x, y, z) && canPlaceBlockOn(world.getBlock(x, y - 1, z)) && canPlaceBlockOn(world.getBlock(x - 1, y - 1, z)) && canPlaceBlockOn(world.getBlock(x - 1, y - 1, z - 1)) && canPlaceBlockOn(world.getBlock(x, y - 1, z - 1)))
             {
                 world.setBlock(x, y, z, this.sapling, metadata, 2);
                 world.setBlock(x - 1, y, z, this.sapling, metadata, 2);
@@ -461,7 +461,7 @@ public class BlockCustomSapling extends BlockFlower
         // Check station 4
         if ((world.isAirBlock(x, y, z) || isSameSaplingBlock(x, y, z, world, sapling)) && (world.isAirBlock(x, y, z - 1) || isSameSaplingBlock(x, y, z - 1, world, sapling)) && (world.isAirBlock(x + 1, y, z - 1) || isSameSaplingBlock(x + 1, y, z - 1, world, sapling)) && (world.isAirBlock(x + 1, y, z) || isSameSaplingBlock(x + 1, y, z, world, sapling)))
         {
-            if (world.isAirBlock(x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z)) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z - 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x + 1, y - 1, z - 1)) && canThisPlantGrowOnThisBlock(world.getBlock(x + 1, y - 1, z)))
+            if (world.isAirBlock(x, y, z) && canPlaceBlockOn(world.getBlock(x, y - 1, z)) && canPlaceBlockOn(world.getBlock(x, y - 1, z - 1)) && canPlaceBlockOn(world.getBlock(x + 1, y - 1, z - 1)) && canPlaceBlockOn(world.getBlock(x + 1, y - 1, z)))
             {
                 world.setBlock(x, y, z, this.sapling, metadata, 2);
                 world.setBlock(x, y, z - 1, this.sapling, metadata, 2);

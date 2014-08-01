@@ -2,15 +2,16 @@ package extrabiomes.items;
 
 import java.util.Locale;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockNewLeaves;
 
 public class ItemCustomNewLeaves extends ItemCustomLeaves
 {
     
-    public ItemCustomNewLeaves(int id)
+    public ItemCustomNewLeaves(Block block)
     {
-        super(id);
+        super(block);
     }
     
     @Override

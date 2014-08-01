@@ -70,6 +70,8 @@ public abstract class ExtrabiomeGenBase extends BiomeGenBase
         return super.getRandomWorldGenForGrass(rand);
     }
     
+    // TODO: check what changed
+    /*
     @Override
     public WorldGenerator getRandomWorldGenForTrees(Random rand)
     {
@@ -79,4 +81,5 @@ public abstract class ExtrabiomeGenBase extends BiomeGenBase
             return treeGen.get();
         return super.getRandomWorldGenForTrees(rand);
     }
+    */
 }

@@ -46,13 +46,16 @@ public class CommonProxy
 
     public void addBiome(Collection<WorldType> worldTypes, BiomeGenBase biome)
     {
-        for (final WorldType worldType : worldTypes)
-            worldType.addNewBiome(biome);
+    	// TODO
+        /*for (final WorldType worldType : worldTypes)
+            worldType.addNewBiome(biome);*/
     }
 
     public void addGrassPlant(Block block, int metadata, int weight)
     {
-        MinecraftForge.addGrassPlant(block, metadata, weight);
+    	for(BiomeGenBase b: BiomeGenBase.getBiomeGenArray()) {
+    		if(b != null) b.addFlower(block, metadata, weight);
+    	}
     }
 
     @SuppressWarnings("unchecked")
@@ -183,16 +186,18 @@ public class CommonProxy
 
     public void registerWorldGenerator(IWorldGenerator worldGenerator)
     {
-        GameRegistry.registerWorldGenerator(worldGenerator);
+    	// TODO: check correct weight
+        GameRegistry.registerWorldGenerator(worldGenerator, 50);
     }
-
+    
     public void removeBiome(BiomeGenBase biome)
     {
         if (biome != null)
         {
-        	LogHelper.fine("Removing biome %s",biome.toString());
+        	LogHelper.severe("REMOVING BIOMES NOT IMPLEMENTED IN DEV BUILD, TODO!");
+        	/*LogHelper.fine("Removing biome %s",biome.toString());
             WorldType.DEFAULT.removeBiome(checkNotNull(biome));
-            WorldType.LARGE_BIOMES.removeBiome(biome);
+            WorldType.LARGE_BIOMES.removeBiome(biome);*/
         }
         else
         {
@@ -202,7 +207,7 @@ public class CommonProxy
 
     public void setBlockHarvestLevel(Block block, String toolClass, int harvestLevel)
     {
-        MinecraftForge.setBlockHarvestLevel(block, toolClass, harvestLevel);
+        block.setHarvestLevel(toolClass, harvestLevel);
     }
 
     public void setFireInfo(Block block, int encouragement, int flammability)

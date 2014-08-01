@@ -12,9 +12,9 @@ import extrabiomes.utility.MultiItemBlock;
 public class ItemNewSapling extends MultiItemBlock
 {
     
-    public ItemNewSapling(int id)
+    public ItemNewSapling(Block block)
     {
-        super(id);
+        super(block);
     }
     
     private static int unmarkedMetadata(int metadata)

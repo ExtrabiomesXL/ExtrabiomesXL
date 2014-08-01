@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -46,8 +47,8 @@ public class ItemCustomCrop extends ItemFood {
 
 	private final int	NUM_CROPS;
 
-	public ItemCustomCrop(int itemID) {
-		super(itemID, DEFAULT_HUNGER, DEFAULT_SATURATION, false);
+	public ItemCustomCrop() {
+		super(DEFAULT_HUNGER, DEFAULT_SATURATION, false);
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setUnlocalizedName("extrabiomes.crop");
@@ -88,9 +89,9 @@ public class ItemCustomCrop extends ItemFood {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(int itemID, CreativeTabs tabs, List list) {
+	public void getSubItems(Item item, CreativeTabs tabs, List list) {
 		for (CropType type : CropType.values()) {
-			list.add(new ItemStack(itemID, 1, type.meta));
+			list.add(new ItemStack(item, 1, type.meta));
 		}
 	}
 

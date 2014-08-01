@@ -8,8 +8,9 @@
 
 package extrabiomes.helpers;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.common.base.Optional;
 
@@ -39,7 +40,7 @@ public enum LogHelper
      */
     public static void fine(String format, Object... args)
     {
-        INSTANCE.log(Level.FINE, format, args);
+        INSTANCE.log(Level.DEBUG, format, args);
     }
     
     /**
@@ -58,7 +59,7 @@ public enum LogHelper
      */
     public static void finer(String format, Object... args)
     {
-        INSTANCE.log(Level.FINER, format, args);
+        INSTANCE.log(Level.DEBUG, format, args);
     }
     
     /**
@@ -77,7 +78,7 @@ public enum LogHelper
      */
     public static void finest(String format, Object... data)
     {
-        INSTANCE.log(Level.FINEST, format, data);
+        INSTANCE.log(Level.DEBUG, format, data);
     }
     
     /**
@@ -137,7 +138,7 @@ public enum LogHelper
      */
     public static void severe(String format, Object... args)
     {
-        INSTANCE.log(Level.SEVERE, format, args);
+        INSTANCE.log(Level.FATAL, format, args);
     }
     
     /**
@@ -156,7 +157,7 @@ public enum LogHelper
      */
     public static void warning(String format, Object... args)
     {
-        INSTANCE.log(Level.WARNING, format, args);
+        INSTANCE.log(Level.WARN, format, args);
     }
     
     private Optional<Logger> logger = Optional.absent();
@@ -174,8 +175,8 @@ public enum LogHelper
         if (logger.isPresent())
             return;
         
-        logger = Optional.of(Logger.getLogger(Reference.MOD_ID));
-        logger.get().setParent(Extrabiomes.proxy.getFMLLogger());
+        logger = Optional.of(LogManager.getLogger(Reference.MOD_ID));
+        //logger.get().setParent(Extrabiomes.proxy.getFMLLogger());
     }
     
     private void log(Level level, String format, Object... data)

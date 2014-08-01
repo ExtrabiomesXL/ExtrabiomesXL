@@ -25,16 +25,15 @@ import extrabiomes.api.UseLogTurnerEvent;
 
 public class LogTurner extends ItemTool
 {
-    
-    public LogTurner(int id)
+    public LogTurner()
     {
-        super(id, ToolMaterial.WOOD, Sets.newHashSet());
+        super(0.0f, ToolMaterial.WOOD, Sets.newHashSet());
     }
     
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
-        itemIIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logturner");
+        itemIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logturner");
     }
     
     @Override
@@ -61,18 +60,25 @@ public class LogTurner extends ItemTool
         if (event.isHandled())
             return true;
         
-        final int blockID = world.getBlock(x, y, z);
+        final Block block = world.getBlock(x, y, z);
         final int metadata = world.getBlockMetadata(x, y, z);
         
-        final ItemStack is = new ItemStack(item, 1, metadata);
-        final int oreId = OreDictionary.getOreID(is);
+        final ItemStack is = new ItemStack(block, 1, metadata);
+        final int[] oreId = OreDictionary.getOreIDs(is);
         final int logOreId = OreDictionary.getOreID("logWood");
         
-        if (oreId != logOreId)
-            return false;
+        boolean containsLogOreId = false;
+        for(int id : oreId) {
+        	if(id == logOreId) {
+        		containsLogOreId = true;
+        		break;
+        	}
+        }
+        if(!containsLogOreId) return false;
+        
         final Block wood = Blocks.log;
         
-        world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, wood.stepSound.getStepSound(), (wood.stepSound.getVolume() + 1.0F) / 2.0F, wood.stepSound.getPitch() * 1.55F);
+        world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, wood.stepSound.getStepResourcePath(), (wood.stepSound.getVolume() + 1.0F) / 2.0F, wood.stepSound.getPitch() * 1.55F);
         
         if (!world.isRemote)
         {
@@ -80,7 +86,7 @@ public class LogTurner extends ItemTool
             final int type = metadata & 3;
             
             orientation = orientation == 0 ? 4 : orientation == 4 ? 8 : 0;
-            world.setBlock(x, y, z, blockID, type | orientation, 3);
+            world.setBlock(x, y, z, block, type | orientation, 3);
         }
         return true;
     }

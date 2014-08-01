@@ -33,11 +33,10 @@ public abstract class ItemHandler
     
     private static void createLogTurner()
     {
-        final int itemID = ItemSettings.LOGTURNER.getID();
-        if (!ModuleControlSettings.SUMMA.isEnabled() || itemID <= 0)
+        if (!ModuleControlSettings.SUMMA.isEnabled() || !ItemSettings.LOGTURNER.getEnabled())
             return;
         
-        final LogTurner logTurner = new LogTurner(itemID);
+        final LogTurner logTurner = new LogTurner();
         
         Stuff.logTurner = Optional.of(logTurner);
         
@@ -49,10 +48,9 @@ public abstract class ItemHandler
     }
     
 	private static void createDye() {
-		final int itemID = ItemSettings.DYE.getID();
-		if (itemID <= 0) return;
+		if (!ItemSettings.DYE.getEnabled()) return;
 
-		final ItemCustomDye dye = new ItemCustomDye(itemID);
+		final ItemCustomDye dye = new ItemCustomDye();
 		Stuff.dye = Optional.of(dye);
 		dye.setUnlocalizedName("extrabiomes.dye").setCreativeTab(Extrabiomes.tabsEBXL);
 		GameRegistry.registerItem(dye, "extrabiomes.dye", Reference.MOD_ID);
@@ -61,10 +59,9 @@ public abstract class ItemHandler
 	}
 	
 	private static void createFoods() {
-		final int itemID = ItemSettings.FOOD.getID();
-		if( itemID <= 0) return;
+		if(!ItemSettings.FOOD.getEnabled()) return;
 		
-		final ItemCustomFood food = new ItemCustomFood(itemID);
+		final ItemCustomFood food = new ItemCustomFood();
 		Stuff.food = Optional.of(food);
 		GameRegistry.registerItem(food, "extrabiomes.food", Reference.MOD_ID);
 	}

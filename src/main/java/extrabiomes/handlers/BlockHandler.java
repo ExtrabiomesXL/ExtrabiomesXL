@@ -108,10 +108,9 @@ public abstract class BlockHandler
     }
     
     private static void createWaterPlants() throws Exception {
-        final int blockID = BlockSettings.WATERPLANT.getEnabled();
-        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0) return;
+        if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.WATERPLANT.getEnabled()) return;
         
-    	final BlockWaterPlant waterPlantBlock = new BlockWaterPlant(blockID, "waterPlant");
+    	final BlockWaterPlant waterPlantBlock = new BlockWaterPlant(BlockSettings.WATERPLANT, "waterPlant");
     	
     	waterPlantBlock.setBlockName("extrabiomes.waterplant").setHardness(0.01F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
     	
@@ -123,16 +122,15 @@ public abstract class BlockHandler
         
         Element.WATERPLANT.set(new ItemStack(waterPlantBlock, 1, 0));
         
-        proxy.registerWorldGenerator(new EelGrassGenerator(waterPlantblock, 0));
+        proxy.registerWorldGenerator(new EelGrassGenerator(waterPlantBlock, 0));
     }
 
     private static void createCattail()
     {
-        final int blockID = BlockSettings.CATTAIL.getEnabled();
-        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0)
+        if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.CATTAIL.getEnabled())
             return;
 
-        final BlockCatTail block = new BlockCatTail(blockID, 79, Material.plants);
+        final BlockCatTail block = new BlockCatTail(79, Material.plants);
         block.setBlockName("extrabiomes.cattail").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;
@@ -146,11 +144,10 @@ public abstract class BlockHandler
 
     private static void createCrackedSand()
     {
-        final int blockID = BlockSettings.CRACKEDSAND.getEnabled();
-        if (!ModuleControlSettings.SUMMA.isEnabled() || blockID <= 0)
+        if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.CRACKEDSAND.getEnabled())
             return;
 
-        final GenericTerrainBlock block = new GenericTerrainBlock(blockID, 0, Material.rock);
+        final GenericTerrainBlock block = new GenericTerrainBlock(0, Material.rock);
         block.setBlockName("extrabiomes.crackedsand").setHardness(1.2F).setStepSound(Block.soundTypeStone).setCreativeTab(Extrabiomes.tabsEBXL);
 
         block.texturePath = "crackedsand";
@@ -174,17 +171,16 @@ public abstract class BlockHandler
     {
 		if (!ModuleControlSettings.SUMMA.isEnabled()) return;
 
-		final int blockIDs[] = { BlockSettings.FLOWER.getEnabled(),
+		final boolean enableds[] = { BlockSettings.FLOWER.getEnabled(),
 				BlockSettings.FLOWER2.getEnabled(), BlockSettings.FLOWER3.getEnabled() };
 		
 		final CommonProxy proxy = Extrabiomes.proxy;
 		final FlowerGenerator generator = FlowerGenerator.getInstance();
 		
-		for (int group = 0; group < blockIDs.length; ++group) {
-			final int blockID = blockIDs[group];
-			if (blockID <= 0) continue;
+		for (int group = 0; group < enableds.length; ++group) {
+			if (!enableds[group]) continue;
 
-	        final BlockCustomFlower block = new BlockCustomFlower(blockID, group, Material.plants);
+	        final BlockCustomFlower block = new BlockCustomFlower(group, Material.plants);
 			block.setBlockName(
 					"extrabiomes.flower")
 					.setTickRandomly(true).setHardness(0.0F)
@@ -209,7 +205,7 @@ public abstract class BlockHandler
 
 			}
 	
-			generator.registerBlock(blockID, types);
+			generator.registerBlock(block, types);
 	        ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
 		}
 		

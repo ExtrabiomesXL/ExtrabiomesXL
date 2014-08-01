@@ -29,6 +29,7 @@ import net.minecraftforge.common.IPlantable;
 
 import com.google.common.collect.Maps;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -313,7 +314,7 @@ public class BlockCustomFlower extends Block implements IPlantable
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void addInformation(int metaData, List listOfLines) {
 		if(groupMap.containsKey(metaData)) {
-    		String line = I18n.getString(this.getUnlocalizedName() + "." + groupMap.get(metaData).name().toLowerCase(Locale.ENGLISH) + ".description");
+    		String line = LanguageRegistry.instance().getStringLocalization(this.getUnlocalizedName() + "." + groupMap.get(metaData).name().toLowerCase(Locale.ENGLISH) + ".description");
     		
     		if(!line.equals(this.getUnlocalizedName() + "." + groupMap.get(metaData).name().toLowerCase(Locale.ENGLISH) + ".description")) {
     			if(listOfLines.size() > 0 && ((String)listOfLines.get(0)).length() > 20) {

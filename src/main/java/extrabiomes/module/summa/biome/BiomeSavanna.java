@@ -8,6 +8,7 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
@@ -29,8 +30,7 @@ public class BiomeSavanna extends ExtrabiomeGenBase
         setBiomeName("Savanna");
         temperature = BiomeGenBase.desert.temperature;
         rainfall = BiomeGenBase.desert.rainfall;
-        minHeight = 0.0F;
-        maxHeight = 0.1F;
+        this.setHeight(new Height(0.0F, 0.1F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 2, 4));
     }

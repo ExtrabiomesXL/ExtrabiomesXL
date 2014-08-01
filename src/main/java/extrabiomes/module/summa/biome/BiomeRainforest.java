@@ -6,6 +6,7 @@
 
 package extrabiomes.module.summa.biome;
 
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
@@ -25,7 +26,6 @@ public class BiomeRainforest extends ExtrabiomeGenBase
         setBiomeName("Rainforest");
         temperature = 1.1F;
         rainfall = 1.4F;
-        minHeight = 0.4F;
-        maxHeight = 1.3F;
+        this.setHeight(new Height(0.4F, 1.3F));
     }
 }

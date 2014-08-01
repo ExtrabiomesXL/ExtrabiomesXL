@@ -8,6 +8,7 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
@@ -30,8 +31,7 @@ public class BiomeGreenSwamp extends ExtrabiomeGenBase
         setBiomeName("Green Swamplands");
         temperature = BiomeGenBase.swampland.temperature - 0.1F;
         rainfall = BiomeGenBase.swampland.rainfall;
-        minHeight = -0.2F;
-        maxHeight = 0.1F;
+        this.setHeight(new Height(-0.2F, 0.1F));
         spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 1, 1, 1));
     }
     

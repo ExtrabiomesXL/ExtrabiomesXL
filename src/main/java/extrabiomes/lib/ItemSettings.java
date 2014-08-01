@@ -14,28 +14,29 @@ import extrabiomes.utility.EnhancedConfiguration;
 public enum ItemSettings
 {
 	// @formatter:off
-    LOGTURNER			(12870),
-    SCARECROW			(12871),
-    PASTE				(12872),
-    DYE					(12873),
-    SEED				(12874),
-    CROP				(12875),
-    FOOD				(12876);
+    LOGTURNER,
+    SCARECROW,
+    PASTE,
+    DYE,
+    SEED,
+    CROP,
+    FOOD;
     // @formatter:on
     
-    private final int defaultID;
+    private boolean enabled;
     
-    private int       itemID;
-    
-    private ItemSettings(int defaultID)
+    private ItemSettings()
     {
-        this.defaultID = defaultID;
-        itemID = this.defaultID;
+    	this.enabled = true;
+    }
+    private ItemSettings(boolean enabled)
+    {
+        this.enabled = enabled;
     }
     
-    public int getID()
+    public boolean getEnabled()
     {
-        return itemID;
+        return enabled;
     }
     
     public void load(EnhancedConfiguration configuration, boolean update) {

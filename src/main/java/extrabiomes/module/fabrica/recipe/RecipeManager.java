@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -158,7 +159,7 @@ public class RecipeManager
         
         plankFirItem = Optional.of(new ItemStack(event.block, 1, BlockCustomWood.BlockType.FIR.metadata()));
         
-        planks = new ItemStack(Block.planks, 4);
+        planks = new ItemStack(Blocks.planks, 4);
         for (final ItemStack itemstack : oakLogs)
         {
             final IRecipe recipe = new ShapelessOreRecipe(planks, itemstack);
@@ -252,13 +253,13 @@ public class RecipeManager
         redCobbleItem = Optional.of(new ItemStack(event.block, 1, BlockRedRock.BlockType.RED_COBBLE.metadata()));
         redRockBrickItem = Optional.of(new ItemStack(event.block, 1, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()));
         
-        IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Items.clay_ball, 4), redCobbleItem.get(), Items.water_bucket, Item.water_bucket, Item.water_bucket);
+        IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Items.clay_ball, 4), redCobbleItem.get(), Items.water_bucket, Items.water_bucket, Items.water_bucket);
         proxy.addRecipe(recipe);
         
         recipe = new ShapedOreRecipe(new ItemStack(event.block, 4, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()), new String[] { "rr", "rr" }, 'r', redRockItem.get());
         proxy.addRecipe(recipe);
         
-        proxy.addSmelting(event.block, BlockRedRock.BlockType.RED_COBBLE.metadata(), redRockItem.get(), 0.1F);
+        proxy.addSmelting(Item.getItemFromBlock(event.block), BlockRedRock.BlockType.RED_COBBLE.metadata(), redRockItem.get(), 0.1F);
     }
     
     @SubscribeEvent

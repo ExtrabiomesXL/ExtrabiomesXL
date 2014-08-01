@@ -13,16 +13,16 @@ import extrabiomes.Extrabiomes;
 public class ItemPaste extends Item
 {
     
-    public ItemPaste(int par1)
+    public ItemPaste()
     {
-        super(par1);
+        super();
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
-        itemIIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cactuspaste");
+        itemIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cactuspaste");
     }
 
     @Override

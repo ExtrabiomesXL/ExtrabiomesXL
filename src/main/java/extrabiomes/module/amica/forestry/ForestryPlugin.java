@@ -143,7 +143,8 @@ public class ForestryPlugin
         final Collection<ItemStack> items = ForestryModHelper.getLeaves();
         for (final ItemStack item : items)
         {
-            leafBlockIds.add(item.itemID);
+        	// TODO
+            //leafBlockIds.add(item.itemID);
         }
     }
     
@@ -169,14 +170,15 @@ public class ForestryPlugin
         final Optional<ItemStack> soil = Optional.fromNullable(getBlock("soil"));
         if (soil.isPresent())
         {
-            TreeSoilRegistry.addValidSoil(Block.blocksList[soil.get().itemID]);
-            BlockCustomSapling.setForestrySoil(soil.get().itemID);
-            BlockNewSapling.setForestrySoil(soil.get().itemID);
+        	Block soilBlock = Block.getBlockFromItem(soil.get().getItem());
+            TreeSoilRegistry.addValidSoil(soilBlock);
+            BlockCustomSapling.setForestrySoil(soilBlock);
+            BlockNewSapling.setForestrySoil(soilBlock);
         }
         
         for (ItemStack sapling : ForestryModHelper.getSaplings())
         {
-            FMLInterModComms.sendMessage("Forestry", "add-farmable-sapling", String.format("farmArboreal@%s.%s", sapling.itemID, sapling.getItemDamage()));
+            FMLInterModComms.sendMessage("Forestry", "add-farmable-sapling", String.format("farmArboreal@%s.%s", sapling.getUnlocalizedName(), sapling.getItemDamage()));
         }
     }
     
@@ -234,9 +236,10 @@ public class ForestryPlugin
             fld = cls.getField("plainFlowers");
             plainFlowers = (ArrayList) fld.get(null);
             
-            cls = Class.forName("forestry.api.core.GlobalManager");
+            // TODO
+            /*cls = Class.forName("forestry.api.core.GlobalManager");
             fld = cls.getField("leafBlockIds");
-            leafBlockIds = (ArrayList) fld.get(null);
+            leafBlockIds = (ArrayList) fld.get(null);*/
             
             cls = Class.forName("forestry.api.storage.BackpackManager");
             fld = cls.getField("backpackItems");

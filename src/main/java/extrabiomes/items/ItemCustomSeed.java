@@ -76,12 +76,11 @@ public class ItemCustomSeed extends Item implements IPlantable {
 		return super.getUnlocalizedName() + "." + seed.name().toLowerCase();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(int itemID, CreativeTabs tabs, List list) {
+	public void getSubItems(Item item, CreativeTabs tabs, List list) {
 		for (SeedType type : SeedType.values()) {
-			list.add(new ItemStack(itemID, 1, type.meta));
+			list.add(new ItemStack(item, 1, type.meta));
 		}
 	}
 

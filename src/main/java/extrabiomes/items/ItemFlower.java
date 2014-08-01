@@ -14,27 +14,28 @@ public class ItemFlower extends MultiItemBlock
 {
 	public final int	group;
 	public final int	max_meta;
-
-    public ItemFlower(int id)
+	private final BlockCustomFlower block;
+	
+    public ItemFlower(Block block)
     {
-        super(id);
-		BlockCustomFlower b = (BlockCustomFlower) Block.blocksList[id + 256];
+        super(block);
+		this.block = (BlockCustomFlower)block;
 
-		this.group = b.group;
+		this.group = this.block.group;
 
 		//LogHelper.finer("ItemFlower - " + id + ", " + ( b != null ? b : "null" ) + ", group = " + group);
 		
-		max_meta = b.getGroupTypes().size();
+		max_meta = this.block.getGroupTypes().size();
     }
     
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
-    	return ((BlockCustomFlower)Block.blocksList[itemstack.itemID]).getUnlocalizedName(itemstack.getItemDamage());
+    	return block.getUnlocalizedName(itemstack.getItemDamage());
     }
 
     @Override
     public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
-    	((BlockCustomFlower)Block.blocksList[itemForTooltip.itemID]).addInformation(itemForTooltip.getItemDamage(), listOfLines);
+    	block.addInformation(itemForTooltip.getItemDamage(), listOfLines);
     }
     
 }

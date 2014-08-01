@@ -35,9 +35,4 @@ public enum TreeSoilRegistry
     {
         return validSoil.contains(soil);
     }
-    
-    public static boolean isValidSoil(int blockID)
-    {
-        return isValidSoil(Block.blocksList[blockID]);
-    }
 }

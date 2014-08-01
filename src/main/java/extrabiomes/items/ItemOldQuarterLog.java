@@ -12,14 +12,14 @@ import extrabiomes.utility.MultiItemBlock;
 public class ItemOldQuarterLog extends MultiItemBlock
 {
     
-    public ItemOldQuarterLog(int id)
+    public ItemOldQuarterLog(Block block)
     {
-        super(id);
+        super(block);
     }
     
     @Override
     public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
-    	listOfLines.add("§o§lNo longer Used§r");
+    	listOfLines.add("ï¿½oï¿½lNo longer Usedï¿½r");
     	listOfLines.add("");
     	listOfLines.add("Place in crafting grid to");
     	listOfLines.add("convert to normal logs.");

@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -49,8 +50,8 @@ public class ItemCustomFood extends ItemFood {
 
 	private final int	NUM_FOODS;
 
-	public ItemCustomFood(int itemID) {
-		super(itemID, DEFAULT_HUNGER, DEFAULT_SATURATION, false);
+	public ItemCustomFood() {
+		super(DEFAULT_HUNGER, DEFAULT_SATURATION, false);
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setUnlocalizedName("extrabiomes.food");
@@ -91,9 +92,9 @@ public class ItemCustomFood extends ItemFood {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(int itemID, CreativeTabs tabs, List list) {
+	public void getSubItems(Item item, CreativeTabs tabs, List list) {
 		for (FoodType type : FoodType.values()) {
-			list.add(new ItemStack(itemID, 1, type.meta));
+			list.add(new ItemStack(item, 1, type.meta));
 		}
 	}
 

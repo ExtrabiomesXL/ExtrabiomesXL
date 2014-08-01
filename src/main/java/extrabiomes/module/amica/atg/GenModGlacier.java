@@ -2,12 +2,14 @@ package extrabiomes.module.amica.atg;
 
 import java.util.Random;
 
+import net.minecraft.world.World;
 import ttftcuts.atg.api.IGenMod;
 
 public class GenModGlacier implements IGenMod
 {
     @Override
-    public int modify(int height, Random random, double rawHeight)
+    public int modify(World world, int height, Random random, double rawHeight,
+    		int x, int z)
     {
         return height + 3;
     }

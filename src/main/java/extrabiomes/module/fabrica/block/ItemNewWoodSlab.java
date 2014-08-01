@@ -24,15 +24,15 @@ public class ItemNewWoodSlab extends ItemSlab
         ItemNewWoodSlab.doubleSlab = Optional.of(doubleSlab);
     }
     
-    public ItemNewWoodSlab(int id)
+    public ItemNewWoodSlab(BlockSlab block)
     {
-        super(id, singleSlab.get(), doubleSlab.get(), id == doubleSlab.get());
+        super(block, singleSlab.get(), doubleSlab.get(), block.equals(doubleSlab.get()));
     }
     
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        return singleSlab.get().getFullSlabName(itemStack.getItemDamage());
+        return singleSlab.get().func_150002_b(itemStack.getItemDamage());
     }
     
 }

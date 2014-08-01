@@ -28,8 +28,7 @@ public class BiomeBirchForest extends ExtrabiomeGenBase
         setBiomeName("Birch Forest");
         temperature = 0.4F;
         rainfall = 0.7F;
-        minHeight = 0.0F;
-        maxHeight = 0.4F;
+        this.setHeight(new Height(0.0F, 0.4F));
         
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }

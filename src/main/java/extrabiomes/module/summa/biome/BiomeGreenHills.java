@@ -9,6 +9,7 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,20 +32,19 @@ public class BiomeGreenHills extends ExtrabiomeGenBase
         setBiomeName("Green Hills");
         temperature = BiomeGenBase.forest.temperature - 0.1F;
         rainfall = BiomeGenBase.forest.rainfall + 0.1F;
-        minHeight = 0.6F;
-        maxHeight = 1.2F;
+        this.setHeight(new Height(0.6F, 1.2F));
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeFoliageColor()
+    public int getBiomeFoliageColor(int x, int y, int z)
     {
         return ColorizerFoliage.getFoliageColor(0.7F, 0.8F);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public int getBiomeGrassColor()
+    public int getBiomeGrassColor(int x, int y, int z)
     {
         return ColorizerGrass.getGrassColor(0.7F, 0.8F);
     }

@@ -49,12 +49,12 @@ public class ItemScarecrow extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
-        itemIIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "scarecrow");
+        itemIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "scarecrow");
     }
     
-    public ItemScarecrow(int id)
+    public ItemScarecrow()
     {
-        super(id);
+        super();
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     

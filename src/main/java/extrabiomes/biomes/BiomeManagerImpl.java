@@ -25,6 +25,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenForest;
 import net.minecraft.world.gen.feature.WorldGenHugeTrees;
+import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraft.world.gen.feature.WorldGenSwamp;
 import net.minecraft.world.gen.feature.WorldGenTaiga1;
@@ -226,7 +227,8 @@ public class BiomeManagerImpl extends BiomeManager
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
             {
-                final WorldGenerator worldGen = new WorldGenHugeTrees(false, 10 + rand.nextInt(20), 3, 3);
+            	// TODO: Check correct generation
+                final WorldGenerator worldGen = new WorldGenMegaJungle(false, 10 + rand.nextInt(20), 0, 3, 3);
                 return worldGen.generate(world, rand, x, y, z);
             }
             

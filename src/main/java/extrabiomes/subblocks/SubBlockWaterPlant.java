@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class SubBlockWaterPlant extends SubBlock {
 	private int maxHeight;
 	
-	private List groundBlocks;
+	private List<Block> groundBlocks;
 
 	/**
      * Creates an underwater plant subblock with a max height of one block.
@@ -35,10 +35,10 @@ public class SubBlockWaterPlant extends SubBlock {
 		super(name);
 		maxHeight = height;
 		
-		groundBlocks = new LinkedList();
+		groundBlocks = new LinkedList<Block>();
 	
 		// Add dirt by default
-		groundBlocks.add((Object)Blocks.dirt);
+		groundBlocks.add(Blocks.dirt);
 	}
 	
     @Override
@@ -78,14 +78,14 @@ public class SubBlockWaterPlant extends SubBlock {
         }
     }
 	
-	public SubBlockWaterPlant addPlaceableBlock(int newBlock) {
-		groundBlocks.add((Object)newBlock);
+	public SubBlockWaterPlant addPlaceableBlock(Block newBlock) {
+		groundBlocks.add(newBlock);
 		
 		return this;
 	}
 	
-	public SubBlockWaterPlant removePlaceableBlock(int newBlock) {
-		groundBlocks.remove((Object)newBlock);
+	public SubBlockWaterPlant removePlaceableBlock(Block newBlock) {
+		groundBlocks.remove(newBlock);
 		
 		return this;
 	}

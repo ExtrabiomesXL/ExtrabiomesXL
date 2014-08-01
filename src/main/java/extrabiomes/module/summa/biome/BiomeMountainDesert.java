@@ -7,7 +7,9 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
@@ -27,10 +29,9 @@ public class BiomeMountainDesert extends ExtrabiomeGenBase
         setBiomeName("Mountainous Desert");
         temperature = BiomeGenBase.desertHills.temperature;
         rainfall = BiomeGenBase.desertHills.rainfall;
-        minHeight = 0.4F;
-        maxHeight = 1.4F;
-        topBlock = (byte) Block.sand;
-        fillerBlock = (byte) Block.sand;
+        this.setHeight(new Height(0.4F, 1.4F));
+        topBlock = Blocks.sand;
+        fillerBlock = Blocks.sand;
         spawnableCreatureList.clear();
         setDisableRain();
     }

@@ -13,9 +13,9 @@ import extrabiomes.Extrabiomes;
 public class BlockCustomStairs extends BlockStairs
 {
     
-    public BlockCustomStairs(int blockID, Block modelBlock, int modelMetadata)
+    public BlockCustomStairs(Block modelBlock, int modelMetadata)
     {
-        super(blockID, modelBlock, modelMetadata);
+        super(modelBlock, modelMetadata);
         setLightOpacity(0);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }

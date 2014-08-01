@@ -124,7 +124,7 @@ public abstract class ConfigurationHandler
         }
         catch (final Exception e)
         {
-            LogHelper.log(Level.SEVERE, e, "%s had had a problem loading its configuration", Reference.MOD_NAME);
+            LogHelper.severe("%s had had a problem loading its configuration", Reference.MOD_NAME);
         }
         finally
         {

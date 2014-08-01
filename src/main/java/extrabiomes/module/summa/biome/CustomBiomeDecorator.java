@@ -170,12 +170,13 @@ class CustomBiomeDecorator extends BiomeDecorator
     
     private CustomBiomeDecorator()
     {
-        super(null);
+        super();
     }
     
     private CustomBiomeDecorator(Builder builder)
     {
-        super(builder.biome);
+        //super(builder.biome);
+        super();
         
         waterlilyPerChunk = builder.waterlilyPerChunk;
         treesPerChunk = builder.treesPerChunk;

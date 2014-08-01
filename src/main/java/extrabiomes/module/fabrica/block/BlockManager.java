@@ -41,7 +41,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.planks = Optional.of(new BlockCustomWood(getSettings().getID()));
+            Stuff.planks = Optional.of(new BlockCustomWood());
         }
         
         @Override
@@ -61,7 +61,7 @@ public enum BlockManager
             proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class, thisBlock.getUnlocalizedName() + ":" + thisBlock.getClass().getName());
             for (final BlockCustomWood.BlockType type : BlockCustomWood.BlockType.values())
             {
-                FacadeHelper.addBuildcraftFacade(thisblock, type.metadata());
+                FacadeHelper.addBuildcraftFacade(thisBlock, type.metadata());
             }
             
             proxy.registerOreInAllSubblocks("plankWood", thisBlock);
@@ -74,7 +74,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.newslabWood = Optional.of(new BlockNewWoodSlab(getSettings().getID(), false));
+            Stuff.newslabWood = Optional.of(new BlockNewWoodSlab(getSettings(), false));
         }
         
         @Override
@@ -92,7 +92,7 @@ public enum BlockManager
             thisBlock.setBlockName("extrabiomes.woodslab");
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
             
-            proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisblock));
+            proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisBlock));
             Extrabiomes.postInitEvent(new NewWoodSlabActiveEvent(thisBlock));
         }
     },
@@ -101,7 +101,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.newslabWoodDouble = Optional.of(new BlockNewWoodSlab(getSettings().getID(), true));
+            Stuff.newslabWoodDouble = Optional.of(new BlockNewWoodSlab(getSettings(), true));
         }
         
         @Override
@@ -132,7 +132,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.slabWood = Optional.of(new BlockCustomWoodSlab(getSettings().getID(), false));
+            Stuff.slabWood = Optional.of(new BlockCustomWoodSlab(getSettings(), false));
         }
         
         @Override
@@ -150,7 +150,7 @@ public enum BlockManager
             thisBlock.setBlockName("extrabiomes.woodslab");
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
             
-            proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisblock));
+            proxy.registerFuelHandler(new FuelHandlerWoodSlabs(thisBlock));
             Extrabiomes.postInitEvent(new WoodSlabActiveEvent(thisBlock));
         }
     },
@@ -159,7 +159,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.slabWoodDouble = Optional.of(new BlockCustomWoodSlab(getSettings().getID(), true));
+            Stuff.slabWoodDouble = Optional.of(new BlockCustomWoodSlab(getSettings(), true));
         }
         
         @Override
@@ -190,7 +190,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsRedwood = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.REDWOOD.metadata()));
+            Stuff.stairsRedwood = Optional.of(new BlockWoodStairs(Stuff.planks.get(), BlockCustomWood.BlockType.REDWOOD.metadata()));
         }
         
         @Override
@@ -218,7 +218,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsFir = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.FIR.metadata()));
+            Stuff.stairsFir = Optional.of(new BlockWoodStairs(Stuff.planks.get(), BlockCustomWood.BlockType.FIR.metadata()));
         }
         
         @Override
@@ -246,7 +246,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsAcacia = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.ACACIA.metadata()));
+            Stuff.stairsAcacia = Optional.of(new BlockWoodStairs(Stuff.planks.get(), BlockCustomWood.BlockType.ACACIA.metadata()));
         }
         
         @Override
@@ -274,7 +274,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsRainbowEucalyptus = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.metadata()));
+            Stuff.stairsRainbowEucalyptus = Optional.of(new BlockWoodStairs(Stuff.planks.get(), BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.metadata()));
         }
         
         @Override
@@ -302,7 +302,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsCypress = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.CYPRESS.metadata()));
+            Stuff.stairsCypress = Optional.of(new BlockWoodStairs(Stuff.planks.get(), BlockCustomWood.BlockType.CYPRESS.metadata()));
         }
         
         @Override
@@ -330,7 +330,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsBaldCypress = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.BALD_CYPRESS.metadata()));
+            Stuff.stairsBaldCypress = Optional.of(new BlockWoodStairs(Stuff.planks.get(), BlockCustomWood.BlockType.BALD_CYPRESS.metadata()));
         }
         
         @Override
@@ -358,7 +358,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsJapaneseMaple = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.JAPANESE_MAPLE.metadata()));
+            Stuff.stairsJapaneseMaple = Optional.of(new BlockWoodStairs(Stuff.planks.get(), BlockCustomWood.BlockType.JAPANESE_MAPLE.metadata()));
         }
         
         @Override
@@ -386,7 +386,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsAutumn = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.AUTUMN.metadata()));
+            Stuff.stairsAutumn = Optional.of(new BlockWoodStairs(Stuff.planks.get(), BlockCustomWood.BlockType.AUTUMN.metadata()));
         }
         
         @Override
@@ -414,7 +414,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsSakuraBlossom = Optional.of(new BlockWoodStairs(getSettings().getID(), Stuff.planks.get(), BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata()));
+            Stuff.stairsSakuraBlossom = Optional.of(new BlockWoodStairs(Stuff.planks.get(), BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata()));
         }
         
         @Override
@@ -442,7 +442,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.slabRedRock = Optional.of(new BlockRedRockSlab(getSettings().getID(), false));
+            Stuff.slabRedRock = Optional.of(new BlockRedRockSlab(false));
         }
         
         @Override
@@ -468,7 +468,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.slabRedRockDouble = Optional.of(new BlockRedRockSlab(getSettings().getID(), true));
+            Stuff.slabRedRockDouble = Optional.of(new BlockRedRockSlab(true));
         }
         
         @Override
@@ -495,7 +495,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsRedCobble = Optional.of(new BlockCustomStairs(getSettings().getID(), Block.blocksList[Element.RED_COBBLE.get().itemID], Element.RED_COBBLE.get().getItemDamage()));
+            Stuff.stairsRedCobble = Optional.of(new BlockCustomStairs(Block.getBlockFromItem(Element.RED_COBBLE.get().getItem()), Element.RED_COBBLE.get().getItemDamage()));
         }
         
         @Override
@@ -522,7 +522,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.stairsRedRockBrick = Optional.of(new BlockCustomStairs(getSettings().getID(), Block.blocksList[Element.RED_ROCK_BRICK.get().itemID], Element.RED_ROCK_BRICK .get().getItemDamage()));
+            Stuff.stairsRedRockBrick = Optional.of(new BlockCustomStairs(Block.getBlockFromItem(Element.RED_ROCK_BRICK.get().getItem()), Element.RED_ROCK_BRICK .get().getItemDamage()));
         }
         
         @Override
@@ -549,7 +549,7 @@ public enum BlockManager
         @Override
         protected void create()
         {
-            Stuff.wall = Optional.of(new BlockCustomWall(getSettings().getID()));
+            Stuff.wall = Optional.of(new BlockCustomWall());
         }
         
         @Override
@@ -576,7 +576,7 @@ public enum BlockManager
     private static void createBlocks() throws Exception
     {
         for (final BlockManager block : BlockManager.values())
-            if (block.getSettings().getID() > 0)
+            if (block.getSettings().getEnabled())
             {
                 try
                 {

@@ -71,12 +71,12 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
     }
     
     @Override
-    protected boolean canThisPlantGrowOnThisBlock(Block block)
+    protected boolean canPlaceBlockOn(Block block)
     {
         
         return (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && block.equals(BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock))
                 || (BiomeSettings.WASTELAND.getBiome().isPresent() && block.equals(BiomeSettings.WASTELAND.getBiome().get().topBlock))
-                || super.canThisPlantGrowOnThisBlock(block);
+                || super.canPlaceBlockOn(block);
     }
     
     @Override

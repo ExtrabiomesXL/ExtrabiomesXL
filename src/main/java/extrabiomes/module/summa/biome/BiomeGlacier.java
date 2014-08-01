@@ -31,8 +31,7 @@ public class BiomeGlacier extends ExtrabiomeGenBase
         setEnableSnow();
         temperature = 0.0F;
         rainfall = 0.0F;
-        minHeight = 1.4F;
-        maxHeight = 2.1F;
+        this.setHeight(new Height(1.4F, 2.1F));
     }
     
 }
