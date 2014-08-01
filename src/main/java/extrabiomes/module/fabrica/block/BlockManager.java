@@ -6,6 +6,7 @@
 
 package extrabiomes.module.fabrica.block;
 
+import extrabiomes.helpers.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 
@@ -33,10 +34,11 @@ import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.proxy.CommonProxy;
+import net.minecraft.init.Blocks;
 
 public enum BlockManager
 {
-    PLANKS
+    PLANKS(Stuff.planks, true)
     {
         @Override
         protected void create()
@@ -69,7 +71,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new PlankActiveEvent(thisBlock));
         }
     },
-    NEWWOODSLAB
+    NEWWOODSLAB(Stuff.newslabWood, true)
     {
         @Override
         protected void create()
@@ -96,7 +98,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new NewWoodSlabActiveEvent(thisBlock));
         }
     },
-    NEWDOUBLEWOODSLAB
+    NEWDOUBLEWOODSLAB(Stuff.newslabWoodDouble, true)
     {
         @Override
         protected void create()
@@ -127,7 +129,7 @@ public enum BlockManager
             proxy.registerOreInAllSubblocks("slabWood", Stuff.newslabWood.get());
         }
     },
-    WOODSLAB
+    WOODSLAB(Stuff.slabWood, true)
     {
         @Override
         protected void create()
@@ -154,7 +156,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new WoodSlabActiveEvent(thisBlock));
         }
     },
-    DOUBLEWOODSLAB
+    DOUBLEWOODSLAB(Stuff.slabWoodDouble, true)
     {
         @Override
         protected void create()
@@ -185,7 +187,7 @@ public enum BlockManager
             proxy.registerOreInAllSubblocks("slabWood", Stuff.slabWood.get());
         }
     },
-    REDWOODSTAIRS
+    REDWOODSTAIRS(Stuff.stairsRedwood, true)
     {
         @Override
         protected void create()
@@ -213,7 +215,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new RedwoodStairsActiveEvent(thisBlock));
         }
     },
-    FIRSTAIRS
+    FIRSTAIRS(Stuff.stairsFir, true)
     {
         @Override
         protected void create()
@@ -241,7 +243,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new FirStairsActiveEvent(thisBlock));
         }
     },
-    ACACIASTAIRS
+    ACACIASTAIRS(Stuff.stairsAcacia, true)
     {
         @Override
         protected void create()
@@ -269,7 +271,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new AcaciaStairsActiveEvent(thisBlock));
         }
     },
-    RAINBOWEUCALYPTUSSTAIRS
+    RAINBOWEUCALYPTUSSTAIRS(Stuff.stairsRainbowEucalyptus, true)
     {
         @Override
         protected void create()
@@ -297,7 +299,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new RainbowEucalyptusStairsActiveEvent(thisBlock));
         }
     },
-    CYPRESSSTAIRS
+    CYPRESSSTAIRS(Stuff.stairsCypress, true)
     {
         @Override
         protected void create()
@@ -325,7 +327,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new CypressStairsActiveEvent(thisBlock));
         }
     },
-    BALDCYPRESSSTAIRS
+    BALDCYPRESSSTAIRS(Stuff.stairsBaldCypress, true)
     {
         @Override
         protected void create()
@@ -353,7 +355,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new BaldCypressStairsActiveEvent(thisBlock));
         }
     },
-    JAPANESEMAPLESTAIRS
+    JAPANESEMAPLESTAIRS(Stuff.stairsJapaneseMaple, true)
     {
         @Override
         protected void create()
@@ -381,7 +383,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new JapaneseMapleStairsActiveEvent(thisBlock));
         }
     },
-    AUTUMNSTAIRS
+    AUTUMNSTAIRS(Stuff.stairsAutumn, true)
     {
         @Override
         protected void create()
@@ -409,7 +411,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new AutumnStairsActiveEvent(thisBlock));
         }
     },
-    SAKURABLOSSOMSTAIRS
+    SAKURABLOSSOMSTAIRS(Stuff.stairsSakuraBlossom, true)
     {
         @Override
         protected void create()
@@ -437,7 +439,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new SakuraBlossomStairsActiveEvent(thisBlock));
         }
     },
-    REDROCKSLAB
+    REDROCKSLAB(Stuff.slabRedRock, false)
     {
         @Override
         protected void create()
@@ -463,7 +465,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new RedRockSlabActiveEvent(thisBlock));
         }
     },
-    DOUBLEREDROCKSLAB
+    DOUBLEREDROCKSLAB(Stuff.slabRedRockDouble, false)
     {
         @Override
         protected void create()
@@ -490,7 +492,7 @@ public enum BlockManager
             proxy.registerBlock(thisBlock, extrabiomes.module.fabrica.block.ItemRedRockSlab.class, thisBlock.getUnlocalizedName() + ":double:" + thisBlock.getClass().getName());
         }
     },
-    REDCOBBLESTAIRS
+    REDCOBBLESTAIRS(Stuff.stairsRedCobble, false)
     {
         @Override
         protected void create()
@@ -517,7 +519,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new RedCobbleStairsActiveEvent(thisBlock));
         }
     },
-    REDROCKBRICKSTAIRS
+    REDROCKBRICKSTAIRS(Stuff.stairsRedRockBrick, false)
     {
         @Override
         protected void create()
@@ -536,7 +538,7 @@ public enum BlockManager
         {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.stairsRedRockBrick.get();
-            
+
             thisBlock.setBlockName("extrabiomes.stairs.redrockbrick");
             proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
             proxy.registerBlock(thisBlock, thisBlock.getUnlocalizedName() + ":" + thisBlock.getClass().getName());
@@ -544,7 +546,7 @@ public enum BlockManager
             Extrabiomes.postInitEvent(new RedRockBrickStairsActiveEvent(thisBlock));
         }
     },
-    WALL
+    WALL(Stuff.wall, false)
     {
         @Override
         protected void create()
@@ -563,7 +565,7 @@ public enum BlockManager
         {
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.wall.get();
-            
+
             thisBlock.setBlockName("extrabiomes.wall");
             proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
             proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class,
@@ -594,8 +596,18 @@ public enum BlockManager
     {
         for (final BlockManager block : values())
         {
-            if (block.blockCreated)
+            if (block.blockCreated) {
                 block.prepare();
+                if( block._flammable && block._stuff.isPresent() ) {
+                    try {
+                        block._block = (Block)block._stuff.get();
+                        Blocks.fire.setFireInfo(block._block, 5, 20);
+                    } catch(ArrayIndexOutOfBoundsException e) {
+                        LogHelper.severe("Unable to set "+block+" flammable", e);
+                        block._flammable = false;
+                    }
+                }
+            }
         }
     }
     
@@ -605,10 +617,18 @@ public enum BlockManager
     }
     
     private boolean blockCreated = false;
-    
-    protected abstract void create();
-    
+
+    private Block _block = null;
+    private boolean _flammable = false;
+    private Optional _stuff = null;
+
+    private BlockManager(Optional stuff, boolean flammable) {
+        _stuff = stuff;
+        _flammable = flammable;
+    }
+
     protected abstract BlockSettings getSettings();
-    
+
+    protected abstract void create();
     protected abstract void prepare();
 }

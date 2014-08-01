@@ -18,6 +18,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import net.minecraft.world.IBlockAccess;
 
 public class BlockCustomWood extends BlockWood
 {
@@ -46,7 +47,7 @@ public class BlockCustomWood extends BlockWood
         setStepSound(soundTypeWood);
         setHardness(2.0F);
         setResistance(5.0F);
-        Blocks.fire.setFireInfo(this, 5, 20);
+        //Blocks.fire.setFireInfo(this, 5, 20);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     
@@ -83,5 +84,11 @@ public class BlockCustomWood extends BlockWood
         {
             list.add(new ItemStack(item, 1, type.metadata()));
         }
+    }
+
+    @Override
+    public boolean isWood(IBlockAccess world, int x, int y, int z)
+    {
+        return true;
     }
 }

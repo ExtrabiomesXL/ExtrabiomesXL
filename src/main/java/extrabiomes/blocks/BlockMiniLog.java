@@ -145,8 +145,15 @@ public class BlockMiniLog extends BlockLog
             event.setHandled();
         }
     }
-    
-    public boolean canSustainLeaves(World world, int x, int y, int z)
+
+    @Override
+    public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isWood(IBlockAccess world, int x, int y, int z)
     {
         return true;
     }

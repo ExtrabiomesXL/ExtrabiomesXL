@@ -2,6 +2,7 @@ package extrabiomes.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -90,9 +91,11 @@ public class CropHandler {
 			seed_element.set(seed_item);
 			// and associate with our target block
 			if (plant_element != null && plant_element.isPresent()) {
-				final BlockFlower block = (BlockFlower) Block.getBlockFromItem(plant_element.get().getItem());
-				type.cropType = block;
-				if(block instanceof BlockCropBasic) {
+				final Block block = Block.getBlockFromItem(plant_element.get().getItem());
+                if(block == Blocks.air) {
+                    LogHelper.severe("Unable to get plant back from element for " + type);
+                } else if(block instanceof BlockCropBasic) {
+                    type.cropType = (BlockCropBasic) block;
 					( (BlockCropBasic) block ).setSeedItem(seed_item);
 				} else {
 					LogHelper.severe("Unable to set seed item for " + type);
