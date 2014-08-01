@@ -106,12 +106,12 @@ public class CommonProxy
 
     public void registerBlock(Block block, String uniqueName)
     {
-        GameRegistry.registerBlock(block, ItemBlock.class, uniqueName, Reference.MOD_ID);
+        GameRegistry.registerBlock(block, ItemBlock.class, uniqueName);
     }
 
     public void registerBlock(Block block, Class<? extends ItemBlock> itemclass, String uniqueName)
     {
-        GameRegistry.registerBlock(block, itemclass, uniqueName, Reference.MOD_ID);
+        GameRegistry.registerBlock(block, itemclass, uniqueName);
     }
 
     public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
