@@ -44,7 +44,7 @@ public class ToolTipStringFormatter {
   public static void Format(String text, List lines, int targetLength) {
     String format = "7";
     
-    if(text.charAt(0) == 92){
+    if(text.length() > 0 && text.charAt(0) == 92){
       format = String.valueOf(text.charAt(1));
       text = text.substring(2);
     }

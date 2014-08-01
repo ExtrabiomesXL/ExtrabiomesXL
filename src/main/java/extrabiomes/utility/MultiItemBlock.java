@@ -15,9 +15,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class MultiItemBlock extends ItemBlock
-{
-    private Block block;
-    
+{   
     public MultiItemBlock(Block block)
     {
         super(block);
@@ -28,7 +26,7 @@ public class MultiItemBlock extends ItemBlock
     @SideOnly(Side.CLIENT)
     private Block getBlock()
     {
-        return this.block;
+        return this.field_150939_a;
     }
     
     @SideOnly(Side.CLIENT)

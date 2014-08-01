@@ -6,11 +6,16 @@
 
 package extrabiomes.blocks;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -35,6 +40,13 @@ public class BlockCatTail extends BlockFlower
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "cattail");
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
+    {
+        p_149666_3_.add(new ItemStack(p_149666_1_, 1, 0));
     }
     
     @Override

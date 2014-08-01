@@ -6,6 +6,7 @@
 
 package extrabiomes.module.fabrica.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
@@ -24,7 +25,7 @@ public class ItemNewWoodSlab extends ItemSlab
         ItemNewWoodSlab.doubleSlab = Optional.of(doubleSlab);
     }
     
-    public ItemNewWoodSlab(BlockSlab block)
+    public ItemNewWoodSlab(Block block)
     {
         super(block, singleSlab.get(), doubleSlab.get(), block.equals(doubleSlab.get()));
     }
