@@ -1,8 +1,10 @@
 MisterFiber - Original developer, concept.
 ScottKillen - Saviour of original mod, master coder, technical support, buddy.
 JLBShecky - Lead developer.
+allaryin - Other lead developer.
 
 Shout out to:
+asie - Significant help with the port from 1.6 to 1.7
 TDWP_FTW - Some graphics, many ideas, blocks, some biomes.
 BlacksWhites - Idea for Wasteland.
 MindKrafter - Idea for Marsh.
