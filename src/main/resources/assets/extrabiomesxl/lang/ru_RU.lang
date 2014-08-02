@@ -32,6 +32,8 @@ log.message.plugin.error=Невозможно связаться с %s. Откл
 module.status.enabled=Модуль %s включён.
 module.status.disabled=Модуль %s отключён, пропуск.
 
+tile.extrabiomes.crop.strawberry.name=Клубника
+
 tile.extrabiomes.leaves.umber.name=Коричневая осенняя листва
 tile.extrabiomes.leaves.goldenrod.name=Золотистая осенняя листва
 tile.extrabiomes.leaves.vermillion.name=Алая осенняя листва
