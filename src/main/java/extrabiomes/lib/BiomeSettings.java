@@ -10,6 +10,7 @@ import java.util.Locale;
 
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.config.Property;
 
 import com.google.common.base.Optional;
@@ -139,6 +140,23 @@ public enum BiomeSettings
             final ExtrabiomeGenBase egb = (ExtrabiomeGenBase) biome.get();
             BiomeDictionary.registerBiomeType(egb, egb.getBiomeTypeFlags());
             LogHelper.fine("registering " + this.name() + " with dictionary");
+
+            // register ourselves with teh vanilla biome manager
+            BiomeManager.BiomeEntry entry = new BiomeManager.BiomeEntry(egb, 10);
+            if( egb.temperature > 0.5f ) {
+                if (egb.isHighHumidity()) {
+                    BiomeManager.warmBiomes.add(entry);
+                } else {
+                    BiomeManager.desertBiomes.add(entry);
+                }
+            } else {
+                if( egb.getEnableSnow() ) {
+                    BiomeManager.icyBiomes.add(entry);
+                } else {
+                    BiomeManager.coolBiomes.add(entry);
+                }
+            }
+
         } else {
             LogHelper.fine("NOT registering " + this.name() + " with dictionary, biome = " + biome);
         }
