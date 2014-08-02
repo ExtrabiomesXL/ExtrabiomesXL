@@ -44,6 +44,7 @@ import extrabiomes.module.summa.biome.BiomeWasteland;
 import extrabiomes.module.summa.biome.BiomeWoodlands;
 import extrabiomes.module.summa.biome.ExtrabiomeGenBase;
 import extrabiomes.utility.EnhancedConfiguration;
+import extrabiomes.helpers.LogHelper;
 
 public enum BiomeSettings
 {
@@ -132,7 +133,17 @@ public enum BiomeSettings
             biome = Optional.of(biomeClass.get().newInstance());
         }
     }
-    
+
+    public void postLoad() {
+        if( !isVanilla() && biome.isPresent() ) {
+            final ExtrabiomeGenBase egb = (ExtrabiomeGenBase) biome.get();
+            BiomeDictionary.registerBiomeType(egb, egb.getBiomeTypeFlags());
+            LogHelper.fine("registering " + this.name() + " with dictionary");
+        } else {
+            LogHelper.fine("NOT registering " + this.name() + " with dictionary, biome = " + biome);
+        }
+    }
+
     public Optional<? extends BiomeGenBase> getBiome()
     {
         return biome;
@@ -189,11 +200,6 @@ public enum BiomeSettings
         }
         enabled = property.getBoolean(false);
 		if (enabled) {
-			if (!isVanilla() && biome.isPresent()) {
-				final ExtrabiomeGenBase egb = (ExtrabiomeGenBase) biome.get();
-				BiomeDictionary.registerBiomeType(egb, egb.getBiomeTypeFlags());
-			}
-			
 			property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), allowVillages);
 			if (!isVanilla() && biomeID == 0) {
 				property.set(Boolean.toString(false));

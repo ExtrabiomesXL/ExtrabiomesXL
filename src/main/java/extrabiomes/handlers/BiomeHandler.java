@@ -73,6 +73,7 @@ public enum BiomeHandler
             if (biome.getID() > 0 && biome.isEnabled())
             {
                 BiomeHelper.createBiome(biome);
+                biome.postLoad();
             }
         }
         
