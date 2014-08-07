@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import extrabiomes.Extrabiomes;
+import extrabiomes.proxy.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -240,6 +242,11 @@ public class FlowerGenerator implements IWorldGenerator
 
 	protected void registerFlower(BiomeSettings settings, BlockType type) {
 		if (!settings.getBiome().isPresent()) return;
+
+        BiomeGenBase biome = settings.getBiome().get();
+        final CommonProxy proxy = Extrabiomes.proxy;
+        proxy.addGrassPlant(type.block(), type.metadata(), type.weight(), biome);
+
 		final List<BlockType> list;
 		if (flowerMaps.containsKey(settings)) {
 			list = flowerMaps.get(settings);

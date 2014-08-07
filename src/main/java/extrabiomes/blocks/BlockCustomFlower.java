@@ -87,7 +87,8 @@ public class BlockCustomFlower extends Block implements IPlantable
 		// group 2 cont - added in 3.15.2
 		BELLADONNA(2, 12, "belladonna", 3, 4, new String[] {}),
 		BLUE_POPPY(2, 13, "himalayanbluepoppy", 3, 6, new String[] {});	// only cyan dye
-        
+
+        private Block           block;
 		private final int		group;
 		private final int		metadata;
 		private final int		weight;
@@ -131,7 +132,10 @@ public class BlockCustomFlower extends Block implements IPlantable
         	return toolTipText;
         }
 		
-		
+		public Block block() { return block; }
+        public void setBlock(Block block) { this.block = block; }
+
+        public int weight() { return weight; }
     }
 
 	public final int						group;

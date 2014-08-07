@@ -51,11 +51,15 @@ public class CommonProxy
             worldType.addNewBiome(biome);*/
     }
 
+    public void addGrassPlant(Block block, int metadata, int weight, BiomeGenBase biome)
+    {
+    	if(biome != null) biome.addFlower(block, metadata, weight);
+    }
     public void addGrassPlant(Block block, int metadata, int weight)
     {
-    	for(BiomeGenBase b: BiomeGenBase.getBiomeGenArray()) {
-    		if(b != null) b.addFlower(block, metadata, weight);
-    	}
+        for(BiomeGenBase biome: BiomeGenBase.getBiomeGenArray()) {
+            addGrassPlant(block, metadata, weight, biome);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -143,16 +147,19 @@ public class CommonProxy
         GameRegistry.registerFuelHandler(checkNotNull(fuelHandler));
     }
 
+    @Deprecated
     public void registerOre(int id, Block ore)
     {
         OreDictionary.registerOre(id, new ItemStack(ore));
     }
 
+    @Deprecated
     public void registerOre(int id, Item ore)
     {
         OreDictionary.registerOre(id, new ItemStack(ore));
     }
 
+    @Deprecated
     public void registerOre(int id, ItemStack ore)
     {
         OreDictionary.registerOre(id, ore);

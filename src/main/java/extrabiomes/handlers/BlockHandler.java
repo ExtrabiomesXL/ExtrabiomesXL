@@ -199,10 +199,10 @@ public abstract class BlockHandler
 					LogHelper.warning("No element found for flower " + type);
 					continue;
 				}
+                type.setBlock(block);
 				ItemStack item = new ItemStack(block, 1, type.metadata());
 				element.set(item);
 				ForestryModHelper.registerBasicFlower(item);
-
 			}
 	
 			generator.registerBlock(block, types);
