@@ -115,7 +115,7 @@ public class WorldGenFirTree extends WorldGenerator
                 {
                     final Block block = world.getBlock(x1, i1, z1);
                     
-                    if (block != null && !block.isLeaves(world, x1, i1, z1))
+                    if (block != null && !block.isReplaceable(world, x1, i1, z1))
                         return false;
                 }
             }
@@ -167,7 +167,7 @@ public class WorldGenFirTree extends WorldGenerator
         {
             final Block block = world.getBlock(x, y + l3, z);
             
-            if (block == null || block.isLeaves(world, x, y + l3, z))
+            if (block == null || block.isLeaves(world, x, y + l3, z) || block.isAir(world, x, y + l3, z) )
             {
                 setBlockAndNotifyAdequately(world, x, y + l3, z, TreeBlock.TRUNK.getBlock(), TreeBlock.TRUNK.getMetadata());
             }
