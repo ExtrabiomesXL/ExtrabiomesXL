@@ -69,13 +69,13 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                 Block b10 = world.getBlock(x + 1, y1, z);
                 Block b01 = world.getBlock(x, y1, z + 1);
                 Block b11 = world.getBlock(x + 1, y1, z + 1);
-                if (b00 != null && !b00.equals(Blocks.water))
+                if (b00 != null && !b00.equals(Blocks.water) && !b00.isReplaceable(world, x, y1, z))
                     return false;
-                if (b01 != null && !b01.equals(Blocks.water))
+                if (b01 != null && !b01.equals(Blocks.water) && !b01.isReplaceable(world, x + 1, y1, z))
                     return false;
-                if (b10 != null && !b10.equals(Blocks.water))
+                if (b10 != null && !b10.equals(Blocks.water) && !b10.isReplaceable(world, x, y1, z + 1))
                     return false;
-                if (b11 != null && !b11.equals(Blocks.water))
+                if (b11 != null && !b11.equals(Blocks.water) && !b11.isReplaceable(world, x + 1, y1, z + 1))
                     return false;
             }
         }
@@ -83,13 +83,13 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
         {
             for (int y1 = y + 1; y1 < y + height; y1++)
             {
-                if (world.getBlock(x, y1, z) != null)
+                if (!world.isAirBlock(x, y1, z))
                     return false;
-                if (world.getBlock(x + 1, y1, z) != null)
+                if (!world.isAirBlock(x + 1, y1, z))
                     return false;
-                if (world.getBlock(x, y1, z + 1) != null)
+                if (!world.isAirBlock(x, y1, z + 1))
                     return false;
-                if (world.getBlock(x + 1, y1, z + 1) != null)
+                if (!world.isAirBlock(x + 1, y1, z + 1))
                     return false;
             }
         }
@@ -166,7 +166,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) != null)
+                    if (!world.isAirBlock(x, y, z))
                         return false;
                 }
             }
@@ -177,7 +177,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) != null)
+                    if (!world.isAirBlock(x, y, z))
                         return false;
                 }
             }
@@ -192,7 +192,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) != null)
+                    if (!world.isAirBlock(x, y, z))
                         return false;
                 }
             }
@@ -203,7 +203,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) != null)
+                    if (!world.isAirBlock(x, y, z))
                         return false;
                 }
             }
@@ -218,7 +218,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (world.getBlock(x, y, z) != null)
+                    if (!world.isAirBlock(x, y, z))
                         return false;
                 }
             }
@@ -229,7 +229,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (world.getBlock(x, y, z) != null)
+                    if (!world.isAirBlock(x, y, z))
                         return false;
                 }
             }
@@ -261,7 +261,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage() | 8);
                 }
             }
@@ -272,7 +272,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage() | 8);
                 }
             }
@@ -287,7 +287,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage() | 4);
                 }
             }
@@ -298,7 +298,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage() | 4);
                 }
             }
@@ -313,7 +313,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage());
                 }
             }
@@ -324,7 +324,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage());
                 }
             }
@@ -357,7 +357,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage() | 8);
                     
                     // Detect the distance
@@ -393,7 +393,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage() | 8);
                     
                     // Detect the distance
@@ -433,7 +433,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage() | 4);
                     
                     // Detect the distance
@@ -468,7 +468,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage() | 4);
                     
                     // Detect the distance
@@ -507,7 +507,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage());
                     
                     // Detect the distance
@@ -542,7 +542,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (world.getBlock(x, y, z) == null)
+                    if (world.isAirBlock(x, y, z))
                         setBlockAndNotifyAdequately(world, x, y, z, logBlock, logs.getItemDamage());
                     
                     // Detect the distance
@@ -590,7 +590,7 @@ public abstract class WorldGenNewTreeBase extends WorldGenerator
                 
                 if (((x1 * x1) + (z1 * z1)) <= dist)
                 {
-                    if (block != null)
+                    if (block != null && !block.isAir(world, x2, y, z2))
                         return false;
                 }
             }

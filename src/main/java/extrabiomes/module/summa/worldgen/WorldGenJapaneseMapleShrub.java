@@ -280,7 +280,7 @@ public class WorldGenJapaneseMapleShrub extends WorldGenNewTreeBase
                 
                 if ((((x1 * x1) + (z1 * z1)) <= maxDist) && (((x1 * x1) + (z1 * z1)) >= minDist))
                 {
-                    if (block != null)
+                    if (block != null || !block.isReplaceable(world, (int)(x1 + x), (int)y, (int)(z1 + z)))
                     {
                         return false;
                     }

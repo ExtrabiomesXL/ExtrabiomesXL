@@ -97,7 +97,11 @@ public class WorldGenAutumnTree extends WorldGenerator
                 {
                     final Block block = world.getBlock(x1, i, z1);
                     
-                    if (block != null && !block.isLeaves(world, x1, i, z1) && !block.equals(Blocks.grass) && !block.isWood(world, x1, i, z1))
+                    if (block != null
+                            && !block.isLeaves(world, x1, i, z1)
+                            && !block.equals(Blocks.grass)
+                            && !block.isWood(world, x1, i, z1)
+                            && !block.isReplaceable(world, x1, i, z1))
                         return false;
                 }
             }
@@ -194,7 +198,7 @@ public class WorldGenAutumnTree extends WorldGenerator
         {
             final Block block = world.getBlock(x, y + y1, z);
             
-            if (block == null || block.isLeaves(world, x, y + y1, z))
+            if (block == null || block.isReplaceable(world, x, y + y1, z) || block.isLeaves(world, x, y + y1, z))
             {
                 setBlockAndNotifyAdequately(world, x, y + y1, z, wood, woodMeta);
             }

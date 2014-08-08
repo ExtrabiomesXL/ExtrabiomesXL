@@ -117,7 +117,8 @@ public class WorldGenAcacia extends WorldGenerator
                         if (block != null
                                 && !block.isLeaves(world, x1, y1, z1)
                                 && !block.equals(Blocks.grass) && !block.equals(Blocks.dirt)
-                                && !block.isWood(world, x1, y1, z1))
+                                && !block.isWood(world, x1, y1, z1)
+                                && !block.isReplaceable(world, x1, y1, z1))
                             canGrow = false;
                         
                     }
@@ -166,7 +167,7 @@ public class WorldGenAcacia extends WorldGenerator
         {
             final Block block = world.getBlock(x, y + y1, z);
             
-            if (block != null && !block.isLeaves(world, x, y + y1, z))
+            if (block != null && !block.isLeaves(world, x, y + y1, z) && !block.isAir(world, x, y + y1, z))
             {
                 continue;
             }

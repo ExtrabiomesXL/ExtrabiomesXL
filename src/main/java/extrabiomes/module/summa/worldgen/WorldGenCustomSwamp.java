@@ -62,8 +62,7 @@ public class WorldGenCustomSwamp extends WorldGenerator
                     final Block block = world.getBlock(x1, y1, x2);
                     
                     if (block == null
-                            || block.isLeaves(world, x1,
-                                    y1, x2))
+                            || block.isLeaves(world, x1, y1, x2))
                         continue;
                     
                     if (block.equals(Blocks.water)
