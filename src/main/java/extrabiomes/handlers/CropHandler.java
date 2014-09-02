@@ -91,7 +91,8 @@ public class CropHandler {
 			seed_element.set(seed_item);
 			// and associate with our target block
 			if (plant_element != null && plant_element.isPresent()) {
-				final Block block = Block.getBlockFromItem(plant_element.get().getItem());
+                final ItemStack plant_stack = plant_element.get();
+				final Block block = Block.getBlockFromItem(plant_stack.getItem());
                 if(block == Blocks.air) {
                     LogHelper.severe("Unable to get plant back from element for " + type);
                 } else if(block instanceof BlockCropBasic) {
@@ -134,11 +135,13 @@ public class CropHandler {
     		}
     		
     		final BlockCropRegrow block = new BlockCropRegrow(type);
-			plant_element.set(new ItemStack(block));
-			block.setCropItem(crop_element.get().getItem());
-			block.setBlockName("extrabiomes.crop." + name.toLowerCase());
-			proxy.registerEventHandler(new CropBonemealEventHandler(block));
-			proxy.registerBlock(block, block.getUnlocalizedName());
+            block.setCropItem(crop_element.get().getItem());
+            block.setBlockName("extrabiomes.crop." + name.toLowerCase());
+            proxy.registerEventHandler(new CropBonemealEventHandler(block));
+            proxy.registerBlock(block, block.getUnlocalizedName());
+
+            final ItemStack plant_stack = new ItemStack(block);
+			plant_element.set(plant_stack);
     	}
     }
 

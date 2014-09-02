@@ -2,6 +2,7 @@ package extrabiomes.items;
 
 import java.util.List;
 
+import extrabiomes.helpers.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -98,16 +99,16 @@ public class ItemCustomSeed extends Item implements IPlantable {
 					&& world.isAirBlock(x, y + 1, z)) {
 				
 				final SeedType seed = getSeedType(itemStack.getItemDamage()); 
-				
-				world.setBlock(x, y + 1, z, seed.cropType);
-				--itemStack.stackSize;
-				return true;
-			} else {
-				return false;
+				if( seed == null || seed.cropType == null ) {
+                    LogHelper.severe("Got NULL seed type or crop when planting " + itemStack);
+                } else {
+                    world.setBlock(x, y + 1, z, seed.cropType);
+                    --itemStack.stackSize;
+                    return true;
+                }
 			}
-		} else {
-			return false;
 		}
+        return false;
 	}
 
 	@Override
