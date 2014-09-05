@@ -10,6 +10,7 @@ import java.util.Random;
 
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
@@ -38,7 +39,7 @@ public abstract class ExtrabiomeGenBase extends BiomeGenBase
 		 * because of how the vanilla parent class's constructor works :(
 		 */
     }
-	
+
 	public BiomeSettings getBiomeSettings() {
 		return biomeSettings;
 	}
@@ -48,7 +49,7 @@ public abstract class ExtrabiomeGenBase extends BiomeGenBase
 	}
 
 	abstract public DecorationSettings getDecorationSettings();
-	
+
     @Override
     public BiomeDecorator createBiomeDecorator()
     {
@@ -59,7 +60,7 @@ public abstract class ExtrabiomeGenBase extends BiomeGenBase
 			return null;
 		}
     }
-    
+
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
@@ -69,17 +70,17 @@ public abstract class ExtrabiomeGenBase extends BiomeGenBase
             return grassGen.get();
         return super.getRandomWorldGenForGrass(rand);
     }
-    
-    // TODO: check what changed
-    /*
+
+
+    //public WorldGenerator getRandomWorldGenForTrees(Random rand)
     @Override
-    public WorldGenerator getRandomWorldGenForTrees(Random rand)
+    public WorldGenAbstractTree func_150567_a(Random rand)
     {
         final Optional<? extends WorldGenerator> treeGen = BiomeManager
                 .chooseRandomTreeGenforBiome(rand, this);
-        if (treeGen.isPresent())
-            return treeGen.get();
-        return super.getRandomWorldGenForTrees(rand);
+        if (treeGen.isPresent() && treeGen.get() instanceof WorldGenAbstractTree) {
+            return (WorldGenAbstractTree)treeGen.get();
+        }
+        return super.func_150567_a(rand);
     }
-    */
 }

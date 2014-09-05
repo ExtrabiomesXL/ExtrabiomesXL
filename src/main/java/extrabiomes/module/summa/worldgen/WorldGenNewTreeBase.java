@@ -10,9 +10,10 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public abstract class WorldGenNewTreeBase extends WorldGenerator
+public abstract class WorldGenNewTreeBase extends WorldGenAbstractTree
 {
     
     int leafCount = 0;
