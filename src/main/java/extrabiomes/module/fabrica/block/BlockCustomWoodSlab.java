@@ -93,7 +93,9 @@ public class BlockCustomWoodSlab extends BlockWoodSlab
         return textures[metadata & 7];
     }
     
-    public String getFullSlabName(int metadata)
+    @Override
+    /* Deobf name: getFullSlabName */
+    public String func_150002_b(int metadata)
     {
         String woodType;
         switch (metadata & 7)
