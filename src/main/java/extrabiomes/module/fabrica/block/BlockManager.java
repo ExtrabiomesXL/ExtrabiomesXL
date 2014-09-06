@@ -126,7 +126,7 @@ public enum BlockManager
             proxy.registerOreInAllSubblocks("slabWood", Stuff.newslabWood.get());
             
             // We can not create the slab reciepe till after we have created both the single and double slabs
-            Extrabiomes.postInitEvent(new NewWoodSlabActiveEvent(thisBlock));
+            Extrabiomes.postInitEvent(new NewWoodSlabActiveEvent(Stuff.newslabWood.get()));
         }
     },
     WOODSLAB(Stuff.slabWood, true)
@@ -186,7 +186,7 @@ public enum BlockManager
             proxy.registerOreInAllSubblocks("slabWood", Stuff.slabWood.get());
             
             // We can not create the slab reciepe till after we have created both the single and double slabs
-            Extrabiomes.postInitEvent(new WoodSlabActiveEvent(thisBlock));
+            Extrabiomes.postInitEvent(new WoodSlabActiveEvent(Stuff.slabWood.get()));
         }
     },
     REDWOODSTAIRS(Stuff.stairsRedwood, true)
