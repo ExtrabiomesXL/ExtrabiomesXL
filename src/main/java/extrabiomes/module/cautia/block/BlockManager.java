@@ -36,7 +36,7 @@ public enum BlockManager
             
             thisBlock.setBlockName("extrabiomes.quicksand");
             proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
-            proxy.registerBlock(thisBlock, Reference.MOD_ID + ":" + "extrabiomes.quicksand");
+            proxy.registerBlock(thisBlock, "quicksand");
             
             FacadeHelper.addBuildcraftFacade(thisBlock);
             
