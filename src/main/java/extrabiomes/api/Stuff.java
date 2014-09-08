@@ -20,11 +20,21 @@ public enum Stuff
     public static Optional<? extends Item>  scarecrow               = Optional.absent();
     public static Optional<? extends Item>  paste                   = Optional.absent();
     public static Optional<? extends Item>  logTurner               = Optional.absent();
-    public static Optional<? extends Item>	dye						= Optional.absent();
-    public static Optional<? extends Item>	crop					= Optional.absent();
-    public static Optional<? extends Item>	seed					= Optional.absent();
-    public static Optional<? extends Item>	food					= Optional.absent();
-    
+    public static Optional<? extends Item>	dye						          = Optional.absent();
+    public static Optional<? extends Item>	crop					          = Optional.absent();
+    public static Optional<? extends Item>	seed					          = Optional.absent();
+    public static Optional<? extends Item>	food					          = Optional.absent();
+    public static Optional<? extends Item>	doorAcaciaItem			    = Optional.absent();
+    public static Optional<? extends Item>  doorAutumnItem          = Optional.absent();
+    public static Optional<? extends Item>	doorBaldcypressItem     = Optional.absent();
+    public static Optional<? extends Item>	doorCypressItem         = Optional.absent();
+    public static Optional<? extends Item>	doorFirItem    		      = Optional.absent();
+    public static Optional<? extends Item>	doorJapaneseMapleItem		= Optional.absent();
+    public static Optional<? extends Item>	doorRainbowEucalyptusItem	= Optional.absent();
+    public static Optional<? extends Item>	doorRedwoodItem			    = Optional.absent();
+    public static Optional<? extends Item>	doorSakuraItem			    = Optional.absent();
+
+    public static Optional<? extends Block> fence                   = Optional.absent();
     public static Optional<? extends Block> planks                  = Optional.absent();
     public static Optional<? extends Block> quickSand               = Optional.absent();
     public static Optional<? extends Block> slabRedRock             = Optional.absent();
@@ -44,5 +54,25 @@ public enum Stuff
     public static Optional<? extends Block> stairsJapaneseMaple     = Optional.absent();
     public static Optional<? extends Block> stairsRainbowEucalyptus = Optional.absent();
     public static Optional<? extends Block> stairsAutumn            = Optional.absent();
-    public static Optional<? extends Block> stairsSakuraBlossom     = Optional.absent();	
+    public static Optional<? extends Block> stairsSakuraBlossom     = Optional.absent();
+
+    public static Optional<? extends Block> doorAcacia              = Optional.absent();
+    public static Optional<? extends Block> doorAutumn              = Optional.absent();
+    public static Optional<? extends Block> doorBaldcypress         = Optional.absent();
+    public static Optional<? extends Block> doorCypress             = Optional.absent();
+    public static Optional<? extends Block> doorFir                 = Optional.absent();
+    public static Optional<? extends Block> doorJapaneseMaple       = Optional.absent();
+    public static Optional<? extends Block> doorRainbowEucalyptus   = Optional.absent();
+    public static Optional<? extends Block> doorRedwood             = Optional.absent();
+    public static Optional<? extends Block> doorSakura              = Optional.absent();
+
+    public static Optional<? extends Block> gateAcacia              = Optional.absent();
+    public static Optional<? extends Block> gateAutumn              = Optional.absent();
+    public static Optional<? extends Block> gateBaldcypress         = Optional.absent();
+    public static Optional<? extends Block> gateCypress             = Optional.absent();
+    public static Optional<? extends Block> gateFir                 = Optional.absent();
+    public static Optional<? extends Block> gateJapaneseMaple       = Optional.absent();
+    public static Optional<? extends Block> gateRainbowEucalyptus   = Optional.absent();
+    public static Optional<? extends Block> gateRedwood             = Optional.absent();
+    public static Optional<? extends Block> gateSakura              = Optional.absent();
 }

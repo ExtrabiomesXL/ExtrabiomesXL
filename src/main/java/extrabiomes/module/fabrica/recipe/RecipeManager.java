@@ -8,6 +8,7 @@ package extrabiomes.module.fabrica.recipe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -22,11 +23,16 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
+import extrabiomes.api.Stuff;
+import extrabiomes.blocks.BlockCustomFence;
 import extrabiomes.blocks.BlockRedRock;
+import extrabiomes.blocks.BlockCustomFence.BlockType;
 import extrabiomes.events.BlockActiveEvent.AcaciaStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.AutumnStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.BaldCypressStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.CypressStairsActiveEvent;
+import extrabiomes.events.BlockActiveEvent.FenceActiveEvent;
+import extrabiomes.events.BlockActiveEvent.FenceGateActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FirStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.JapaneseMapleStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.NewWoodSlabActiveEvent;
@@ -39,6 +45,7 @@ import extrabiomes.events.BlockActiveEvent.RedRockSlabActiveEvent;
 import extrabiomes.events.BlockActiveEvent.RedwoodStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.SakuraBlossomStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WallActiveEvent;
+import extrabiomes.events.BlockActiveEvent.WoodDoorActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WoodSlabActiveEvent;
 import extrabiomes.module.fabrica.block.BlockCustomWall;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
@@ -308,6 +315,28 @@ public class RecipeManager
     }
     
     @SubscribeEvent
+    public void fenceRecipeHandler(FenceActiveEvent event) {
+      ItemStack sticks = new ItemStack(Items.stick, 1);
+      ItemStack planks;
+      ItemStack fences;
+      for(int i = 0; i < BlockCustomFence.BlockType.values().length; i++) {
+        planks = new ItemStack(Stuff.planks.get(), 1, BlockCustomFence.BlockType.values()[i].metadata());
+        fences = new ItemStack(event.block, 3, i);
+        
+        final IRecipe recipe = new ShapedOreRecipe(fences, new String[] { "psp","psp" }, 'p', planks, 's', sticks);
+        Extrabiomes.proxy.addRecipe(recipe);
+        //blockType.texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planks" + blockType.name().toLowerCase(Locale.ENGLISH));
+      }
+    }
+    
+    @SubscribeEvent
+    public void fenceGateRecipeHandler(FenceGateActiveEvent event) {
+      final IRecipe recipe = new ShapedOreRecipe(event.gate, new String[] { "sps","sps" }, 'p', event.wood, 's', new ItemStack(Items.stick, 1));
+      Extrabiomes.proxy.addRecipe(recipe);
+      
+    }
+    
+    @SubscribeEvent
     public void newWoodSlabRecipeHandler(NewWoodSlabActiveEvent event)
     {
         if (plankSakuraBlossomItem.isPresent())
@@ -368,5 +397,11 @@ public class RecipeManager
             final IRecipe recipe = new ShapedOreRecipe(new ItemStack(event.block, 6, BlockCustomWoodSlab.BlockType.RAINBOW_EUCALYPTUS.metadata()), new String[] { "ppp" }, 'p', plankRainbowEucalyptusItem.get());
             Extrabiomes.proxy.addRecipe(recipe);
         }
+    }
+    
+    @SubscribeEvent
+    public void woodDoorRecipeHandler(WoodDoorActiveEvent event) {
+    	final IRecipe recipe = new ShapedOreRecipe(event.door, new String[] { "pp","pp","pp" }, 'p', event.wood);
+      Extrabiomes.proxy.addRecipe(recipe);
     }
 }

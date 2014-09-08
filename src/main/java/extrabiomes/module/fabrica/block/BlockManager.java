@@ -7,13 +7,19 @@
 package extrabiomes.module.fabrica.block;
 
 import extrabiomes.helpers.LogHelper;
+import extrabiomes.items.ItemCustomDoor;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.block.material.Material;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
+import extrabiomes.blocks.BlockCustomFence;
+import extrabiomes.blocks.BlockCustomFenceGate;
 import extrabiomes.events.BlockActiveEvent.AcaciaStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.AutumnStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.BaldCypressStairsActiveEvent;
@@ -30,11 +36,19 @@ import extrabiomes.events.BlockActiveEvent.RedwoodStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.SakuraBlossomStairsActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WallActiveEvent;
 import extrabiomes.events.BlockActiveEvent.WoodSlabActiveEvent;
+import extrabiomes.events.BlockActiveEvent.WoodDoorActiveEvent;
+import extrabiomes.events.BlockActiveEvent.FenceActiveEvent;
+import extrabiomes.events.BlockActiveEvent.FenceGateActiveEvent;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
+import extrabiomes.lib.Reference;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
+import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.proxy.CommonProxy;
+import extrabiomes.renderers.CustomFenceRender;
+import extrabiomes.renderers.RenderKneeLog;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 
 public enum BlockManager
 {
@@ -573,6 +587,546 @@ public enum BlockManager
             proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class, "wall");
             
             Extrabiomes.postInitEvent(new WallActiveEvent(thisBlock));
+        }
+    },
+    FENCE(Stuff.fence, false)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.fence = Optional.of(new BlockCustomFence());
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.WALL;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.fence.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, extrabiomes.items.ItemCustomFence.class, "fence");
+            ((BlockCustomFence)thisBlock).setRenderId(Extrabiomes.proxy.registerBlockHandler(new CustomFenceRender()));
+            Extrabiomes.postInitEvent(new FenceActiveEvent(thisBlock));
+        }
+    },
+    ACACIADOOR(Stuff.doorAcacia, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.doorAcacia = Optional.of(new BlockCustomWoodDoor("acacia"));
+            Stuff.doorAcaciaItem = Optional.of(new ItemCustomDoor(Stuff.doorAcacia.get()));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.ACACIADOOR;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.doorAcacia.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "door_acacia");
+            proxy.registerItem(Stuff.doorAcaciaItem.get(), "item_door_acacia");
+            
+            // Add the recipe for the door
+            //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorAcaciaItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.ACACIA.metadata())));
+        }
+    },
+    AUTUMNDOOR(Stuff.doorAutumn, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.doorAutumn = Optional.of(new BlockCustomWoodDoor("autumn"));
+            Stuff.doorAutumnItem = Optional.of(new ItemCustomDoor(Stuff.doorAutumn.get()));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.AUTUMNDOOR;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.doorAutumn.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "door_autumn");
+            proxy.registerItem(Stuff.doorAutumnItem.get(), "item_door_autumn");
+            
+            // Add the recipe for the door
+            //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorAutumnItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.AUTUMN.metadata())));
+        }
+    },
+    BALDCYPRESSDOOR(Stuff.doorBaldcypress, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.doorBaldcypress = Optional.of(new BlockCustomWoodDoor("baldcypress"));
+            Stuff.doorBaldcypressItem = Optional.of(new ItemCustomDoor(Stuff.doorBaldcypress.get()));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.BALDCYPRESSDOOR;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.doorBaldcypress.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "door_baldcypress");
+            proxy.registerItem(Stuff.doorBaldcypressItem.get(), "item_door_baldcypress");
+            
+            // Add the recipe for the door
+            //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorBaldcypressItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.BALD_CYPRESS.metadata())));
+        }
+    },
+    CYPRESSDOOR(Stuff.doorCypress, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.doorCypress = Optional.of(new BlockCustomWoodDoor("cypress"));
+            Stuff.doorCypressItem = Optional.of(new ItemCustomDoor(Stuff.doorCypress.get()));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.CYPRESSDOOR;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.doorCypress.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "door_cypress");
+            proxy.registerItem(Stuff.doorCypressItem.get(), "item_door_cypress");
+            
+            // Add the recipe for the door
+            //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorCypressItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.CYPRESS.metadata())));
+        }
+    },
+    FIRDOOR(Stuff.doorFir, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.doorFir = Optional.of(new BlockCustomWoodDoor("fir"));
+            Stuff.doorFirItem = Optional.of(new ItemCustomDoor(Stuff.doorFir.get()));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.FIRDOOR;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.doorFir.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "door_fir");
+            proxy.registerItem(Stuff.doorFirItem.get(), "item_door_fir");
+            
+            // Add the recipe for the door
+            //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorFirItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.FIR.metadata())));
+        }
+    },
+    JAPANESEMAPLEDOOR(Stuff.doorJapaneseMaple, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.doorJapaneseMaple = Optional.of(new BlockCustomWoodDoor("japanesemaple"));
+            Stuff.doorJapaneseMapleItem = Optional.of(new ItemCustomDoor(Stuff.doorJapaneseMaple.get()));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.JAPANESEMAPLEDOOR;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.doorJapaneseMaple.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "door_japanesemaple");
+            proxy.registerItem(Stuff.doorJapaneseMapleItem.get(), "item_door_japanesemaple");
+            
+            // Add the recipe for the door
+            //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorJapaneseMapleItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.JAPANESE_MAPLE.metadata())));
+        }
+    },
+    RAINBOWEUCALYPTUSDOOR(Stuff.doorRainbowEucalyptus, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.doorRainbowEucalyptus = Optional.of(new BlockCustomWoodDoor("rainboweucalyptus"));
+            Stuff.doorRainbowEucalyptusItem = Optional.of(new ItemCustomDoor(Stuff.doorRainbowEucalyptus.get()));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.RAINBOWEUCALYPTUSDOOR;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.doorRainbowEucalyptus.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "door_rainboweucalyptus");
+            proxy.registerItem(Stuff.doorRainbowEucalyptusItem.get(), "item_door_rainboweucalyptus");
+            
+            // Add the recipe for the door
+            //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorRainbowEucalyptusItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.metadata())));
+        }
+    },
+    REDWOODDOOR(Stuff.doorRedwood, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.doorRedwood = Optional.of(new BlockCustomWoodDoor("redwood"));
+            Stuff.doorRedwoodItem = Optional.of(new ItemCustomDoor(Stuff.doorRedwood.get()));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.REDWOODDOOR;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.doorRedwood.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "door_redwood");
+            proxy.registerItem(Stuff.doorRedwoodItem.get(), "item_door_redwood");
+            //GameRegistry.registerItem(Stuff.paste.get(), "extrabiomes.paste", Reference.MOD_ID);
+            
+            // Add the recipe for the door
+            //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorRedwoodItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.REDWOOD.metadata())));
+        }
+    },
+    SAKURADOOR(Stuff.doorSakura, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.doorSakura = Optional.of(new BlockCustomWoodDoor("sakura"));
+            Stuff.doorSakuraItem = Optional.of(new ItemCustomDoor(Stuff.doorSakura.get()));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.SAKURABLOSSOMDOOR;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.doorSakura.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "door_sakura");
+            proxy.registerItem(Stuff.doorSakuraItem.get(), "item_door_sakura");
+            
+            // Add the recipe for the door
+            //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorSakuraItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata())));
+        }
+    },
+    ACACIAGATE(Stuff.gateAcacia, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.gateAcacia = Optional.of(new BlockCustomFenceGate("acacia"));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.SAKURABLOSSOMGATE;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.gateAcacia.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "fencegate_acacia");
+            
+            // Add the recipe for the gate
+            Extrabiomes.postInitEvent(new FenceGateActiveEvent(new ItemStack(Stuff.gateAcacia.get(), 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.ACACIA.metadata())));
+        }
+    },
+    AUTUMNGATE(Stuff.gateAutumn, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.gateAutumn = Optional.of(new BlockCustomFenceGate("autumn"));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.SAKURABLOSSOMGATE;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.gateAutumn.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "fencegate_autumn");
+            
+            // Add the recipe for the gate
+            Extrabiomes.postInitEvent(new FenceGateActiveEvent(new ItemStack(Stuff.gateAutumn.get(), 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.AUTUMN.metadata())));
+        }
+    },
+    BALDCYPRESSGATE(Stuff.gateSakura, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.gateBaldcypress = Optional.of(new BlockCustomFenceGate("baldcypress"));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.SAKURABLOSSOMGATE;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.gateBaldcypress.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "fencegate_baldcypress");
+            
+            // Add the recipe for the gate
+            Extrabiomes.postInitEvent(new FenceGateActiveEvent(new ItemStack(Stuff.gateBaldcypress.get(), 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.BALD_CYPRESS.metadata())));
+        }
+    },
+    CYPRESSGATE(Stuff.gateCypress, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.gateCypress = Optional.of(new BlockCustomFenceGate("cypress"));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.SAKURABLOSSOMGATE;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.gateCypress.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "fencegate_cypress");
+            
+            // Add the recipe for the gate
+            Extrabiomes.postInitEvent(new FenceGateActiveEvent(new ItemStack(Stuff.gateCypress.get(), 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.CYPRESS.metadata())));
+        }
+    },
+    FIRGATE(Stuff.gateFir, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.gateFir = Optional.of(new BlockCustomFenceGate("fir"));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.SAKURABLOSSOMGATE;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.gateFir.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "fencegate_fir");
+            
+            // Add the recipe for the gate
+            Extrabiomes.postInitEvent(new FenceGateActiveEvent(new ItemStack(Stuff.gateFir.get(), 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.FIR.metadata())));
+        }
+    },
+    JAPANESEMAPLEGATE(Stuff.gateJapaneseMaple, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.gateJapaneseMaple = Optional.of(new BlockCustomFenceGate("japanesemaple"));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.SAKURABLOSSOMGATE;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.gateJapaneseMaple.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "fencegate_japanesemaple");
+            
+            // Add the recipe for the gate
+            Extrabiomes.postInitEvent(new FenceGateActiveEvent(new ItemStack(Stuff.gateJapaneseMaple.get(), 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.JAPANESE_MAPLE.metadata())));
+        }
+    },
+    RAINBOWEUCALYPTUSGATE(Stuff.gateRainbowEucalyptus, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.gateRainbowEucalyptus = Optional.of(new BlockCustomFenceGate("rainboweucalyptus"));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.SAKURABLOSSOMGATE;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.gateRainbowEucalyptus.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "fencegate_rainboweucalyptus");
+            
+            // Add the recipe for the gate
+            Extrabiomes.postInitEvent(new FenceGateActiveEvent(new ItemStack(Stuff.gateRainbowEucalyptus.get(), 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.metadata())));
+        }
+    },
+    REDWOODGATE(Stuff.gateRedwood, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.gateRedwood = Optional.of(new BlockCustomFenceGate("redwood"));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.SAKURABLOSSOMGATE;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.gateRedwood.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "fencegate_redwood");
+            
+            // Add the recipe for the gate
+            Extrabiomes.postInitEvent(new FenceGateActiveEvent(new ItemStack(Stuff.gateRedwood.get(), 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.REDWOOD.metadata())));
+        }
+    },
+    SAKURAGATE(Stuff.gateSakura, true)
+    {
+        @Override
+        protected void create()
+        {
+            Stuff.gateSakura = Optional.of(new BlockCustomFenceGate("sakura"));
+        }
+        
+        @Override
+        protected BlockSettings getSettings()
+        {
+            return BlockSettings.SAKURABLOSSOMGATE;
+        }
+        
+        @Override
+        protected void prepare()
+        {
+            final CommonProxy proxy = Extrabiomes.proxy;
+            final Block thisBlock = Stuff.gateSakura.get();
+
+            proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
+            proxy.registerBlock(thisBlock, "fencegate_sakura");
+            
+            // Add the recipe for the gate
+            Extrabiomes.postInitEvent(new FenceGateActiveEvent(new ItemStack(Stuff.gateSakura.get(), 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata())));
         }
     };
     

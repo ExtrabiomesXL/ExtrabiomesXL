@@ -7,6 +7,7 @@
 package extrabiomes.events;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.eventhandler.Event;
 
 public abstract class BlockActiveEvent extends Event
@@ -146,6 +147,37 @@ public abstract class BlockActiveEvent extends Event
         {
             super(block);
         }
+    }
+    
+    public static class FenceActiveEvent extends BlockActiveEvent
+    {
+        public FenceActiveEvent(Block block)
+        {
+            super(block);
+        }
+    }
+    
+    public static class FenceGateActiveEvent extends Event
+    {
+      public final ItemStack gate;
+      public final ItemStack wood;
+
+      public FenceGateActiveEvent(ItemStack gate, ItemStack wood) {
+        this.gate = gate;
+        this.wood = wood;
+      }
+    }
+    
+    public static class WoodDoorActiveEvent extends Event {
+    	public final ItemStack wood;
+    	public final ItemStack door;
+
+  		public WoodDoorActiveEvent(ItemStack door, ItemStack wood) {
+  			//super(door);
+  			this.door = door;
+  			this.wood = wood;
+  		}
+    	
     }
     
     public final Block block;

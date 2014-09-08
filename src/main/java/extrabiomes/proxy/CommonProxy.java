@@ -38,6 +38,7 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.eventhandler.Event;
+import extrabiomes.api.Stuff;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Reference;
 
@@ -145,6 +146,11 @@ public class CommonProxy
     public void registerFuelHandler(IFuelHandler fuelHandler)
     {
         GameRegistry.registerFuelHandler(checkNotNull(fuelHandler));
+    }
+    
+    public void registerItem(Item item, String name) {
+    	GameRegistry.registerItem(item, name, Reference.MOD_ID);
+    	
     }
 
     @Deprecated

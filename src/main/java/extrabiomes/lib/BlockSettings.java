@@ -81,7 +81,19 @@ public enum BlockSettings
     BALDCYPRESSSTAIRS,
     SAKURABLOSSOMSTAIRS,
 
-    WALL;
+    WALL,    
+
+    REDWOODDOOR,
+    FIRDOOR,
+    ACACIADOOR,
+    CYPRESSDOOR,
+    JAPANESEMAPLEDOOR,
+    RAINBOWEUCALYPTUSDOOR,
+    AUTUMNDOOR,
+    BALDCYPRESSDOOR,
+    SAKURABLOSSOMDOOR,
+    
+    SAKURABLOSSOMGATE;
     
     private boolean			enabled;
     private Item			item;
