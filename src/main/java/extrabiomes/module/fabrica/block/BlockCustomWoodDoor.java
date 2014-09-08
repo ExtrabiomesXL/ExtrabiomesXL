@@ -26,9 +26,9 @@ public class BlockCustomWoodDoor extends BlockDoor {
 		super(Material.wood);
 
 		// Default Settings
-		setBlockName("extrabiomes.door_" + doorType);
-        //setCreativeTab(Extrabiomes.tabsEBXL);
-        setBlockTextureName("door_" + doorType);
+		setBlockName("extrabiomes.door." + doorType);
+    //setCreativeTab(Extrabiomes.tabsEBXL);
+    setBlockTextureName("door_" + doorType);
 		setHardness(3.0F);
 		setStepSound(soundTypeWood);
 		disableStats();

@@ -181,3 +181,33 @@ tile.extrabiomes.woodslab.sakura_blossom.name=Sakura Slab
 
 tile.extrabiomes.waterplant.eelgrass.name=Eelgrass
 tile.extrabiomes.waterplant.eelgrass.description=This grass is found growing under water. It's name is due to the long thin leaves that resemble eels. \2\oCactus Green Dye\r can be made from this grass.
+
+tile.extrabiomes.door.acacia.name=Acacia Door
+tile.extrabiomes.door.autumn.name=Autumn Door
+tile.extrabiomes.door.baldcypress.name=Baldcypress Door
+tile.extrabiomes.door.cypress.name=Cypress Door
+tile.extrabiomes.door.fir.name=Fir Door
+tile.extrabiomes.door.japanesemaple.name=Japanese Maple Door
+tile.extrabiomes.door.rainboweucalyptus.name=Rainbow Eucalyptus Door
+tile.extrabiomes.door.redwood.name=Redwood Door
+tile.extrabiomes.door.sakura.name=Sakura Door
+
+tile.extrabiomes.fence.acacia.name=Acacia Fence
+tile.extrabiomes.fence.autumn.name=Autumn Fence
+tile.extrabiomes.fence.baldcypress.name=Baldcypress Fence
+tile.extrabiomes.fence.cypress.name=Cypress Fence
+tile.extrabiomes.fence.fir.name=Fir Fence
+tile.extrabiomes.fence.japanesemaple.name=Japanese Maple Fence
+tile.extrabiomes.fence.rainboweucalyptus.name=Rainbow Eucalyptus Fence
+tile.extrabiomes.fence.redwood.name=Redwood Fence
+tile.extrabiomes.fence.sakura.name=Sakura Fence
+
+tile.extrabiomes.fencegate.acacia.name=Acacia Fence Gate
+tile.extrabiomes.fencegate.autumn.name=Autumn Fence Gate
+tile.extrabiomes.fencegate.baldcypress.name=Baldcypress Fence Gate
+tile.extrabiomes.fencegate.cypress.name=Cypress Fence Gate
+tile.extrabiomes.fencegate.fir.name=Fir Fence Gate
+tile.extrabiomes.fencegate.japanesemaple.name=Japanese Maple Fence Gate
+tile.extrabiomes.fencegate.rainboweucalyptus.name=Rainbow Eucalyptus Fence Gate
+tile.extrabiomes.fencegate.redwood.name=Redwood Fence Gate
+tile.extrabiomes.fencegate.sakura.name=Sakura Fence Gate
