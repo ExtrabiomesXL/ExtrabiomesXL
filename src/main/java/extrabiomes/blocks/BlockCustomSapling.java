@@ -7,6 +7,7 @@
 package extrabiomes.blocks;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -22,11 +23,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import extrabiomes.helpers.ToolTipStringFormatter;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.SaplingSettings;
@@ -509,9 +512,9 @@ public class BlockCustomSapling extends BlockFlower
     		}
     		
     		if(lines[0] != "") {
-    			listOfLines.add("\u00A7oPlanting Guide:\u00A7r");
-        		listOfLines.add(lines[0]);
-			}
+    		  ToolTipStringFormatter.Format(LanguageRegistry.instance().getStringLocalization("extrabiomes.planting_guide") , listOfLines);
+    			listOfLines.add(lines[0]);
+    		}
     	}
     }
 }

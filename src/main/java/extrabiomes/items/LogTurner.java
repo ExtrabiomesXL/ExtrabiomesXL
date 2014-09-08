@@ -11,6 +11,7 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.UseLogTurnerEvent;
+import extrabiomes.helpers.ToolTipStringFormatter;
 
 public class LogTurner extends ItemTool
 {
@@ -93,7 +95,14 @@ public class LogTurner extends ItemTool
     
     @Override
     public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
-    	listOfLines.add("Use this to change the");
-    	listOfLines.add("orientation of logs.");
+      String line = LanguageRegistry.instance().getStringLocalization(this.getUnlocalizedName() + ".description");
+      
+      if(!line.equals(this.getUnlocalizedName() + ".description")) {
+        if(listOfLines.size() > 0 && ((String)listOfLines.get(0)).length() > 20) {
+          ToolTipStringFormatter.Format(line, listOfLines, ((String)listOfLines.get(0)).length() + 5);
+        } else {
+          ToolTipStringFormatter.Format(line, listOfLines);
+        }
+      }
     }
 }

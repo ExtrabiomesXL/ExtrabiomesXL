@@ -12,8 +12,11 @@ item.extrabiomes.dye.blue.name=Blue Dye
 item.extrabiomes.dye.brown.name=Brown Dye
 item.extrabiomes.dye.white.name=White Dye
 item.extrabiomes.logturner.name=Log Turner
+item.extrabiomes.logturner.description=Use this to change the orientation of logs.
 item.extrabiomes.paste.name=Cactus Paste
+item.extrabiomes.paste.description=This green paste made from 4 \oTiny Cacti\r can be smelted into \2\oCactus Green\r.
 item.extrabiomes.scarecrow.name=Scarecrow
+item.extrabiomes.scarecrow.description=Keeps your garden free of most creatures.
 
 item.extrabiomes.crop.strawberry.name=Strawberry
 
@@ -21,6 +24,9 @@ item.extrabiomes.seed.strawberry.name=Strawberry Seeds
 
 item.extrabiomes.food.chocolate.name=Chocolate
 item.extrabiomes.food.chocolate_strawberry.name=Chocolate Covered Strawberry
+
+
+extrabiomes.planting_guide=\oPlanting Guide:\r
 
 entity.extrabiomes.scarecrow.name=Scarecrow
 
@@ -211,3 +217,6 @@ tile.extrabiomes.fencegate.japanesemaple.name=Japanese Maple Fence Gate
 tile.extrabiomes.fencegate.rainboweucalyptus.name=Rainbow Eucalyptus Fence Gate
 tile.extrabiomes.fencegate.redwood.name=Redwood Fence Gate
 tile.extrabiomes.fencegate.sakura.name=Sakura Fence Gate
+
+extrabiomes.elbow.crafting=Can be crafted to/from normal logs and back via a 2x2 "L" in a crafting table.
+extrabiomes.cornerlog.crafting=Can be crafted to/from normal logs and back via a 2x2 square in a crafting table.

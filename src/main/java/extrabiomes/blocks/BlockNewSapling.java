@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -29,6 +30,7 @@ import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import extrabiomes.helpers.ToolTipStringFormatter;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.SaplingSettings;
 import extrabiomes.module.summa.TreeSoilRegistry;
@@ -434,9 +436,9 @@ public class BlockNewSapling extends BlockFlower
     		}
     		
     		if(lines[0] != "") {
-    			listOfLines.add("\u00A7oPlanting Guide:\u00A7r");
-        		listOfLines.add(lines[0]);
-			}
+    		  ToolTipStringFormatter.Format(LanguageRegistry.instance().getStringLocalization("extrabiomes.planting_guide") , listOfLines);
+        	listOfLines.add(lines[0]);
+    		}
     	}
     }
 }

@@ -9,12 +9,14 @@ package extrabiomes.items;
 import java.util.List;
 import java.util.Locale;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockMiniLog;
+import extrabiomes.helpers.ToolTipStringFormatter;
 import extrabiomes.utility.MultiItemBlock;
 
 public class ItemNewQuarterLog extends ItemBlock
@@ -28,9 +30,15 @@ public class ItemNewQuarterLog extends ItemBlock
 
     @Override
     public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
-    	listOfLines.add("Can be crafted to/from normal");
-    	listOfLines.add("logs and back via a 2x2 square");
-    	listOfLines.add("in a crafting table.");
+      String line = LanguageRegistry.instance().getStringLocalization("extrabiomes.cornerlog.crafting");
+      
+      if(!line.equals("extrabiomes.cornerlog.crafting")) {
+        if(listOfLines.size() > 0 && ((String)listOfLines.get(0)).length() > 20) {
+          ToolTipStringFormatter.Format(line, listOfLines, ((String)listOfLines.get(0)).length() + 5);
+        } else {
+          ToolTipStringFormatter.Format(line, listOfLines);
+        }
+      }
     }
     
 }
