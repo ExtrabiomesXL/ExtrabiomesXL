@@ -2,7 +2,7 @@
 config.amica.comment=Установите "amica" на "true", чтобы включить поддержку других модов.
 config.block.terraingen.comment=%s используется в генерации мира. Его id должен быть меньше, чем 256.
 config.cautia.comment=Установите "cautia" на "true", чтобы добавить опасности.
-config.fabrica.comment=Установите "fabrica" на "true", чтобы включить крафт предметов.
+config.fabrica.comment=Установите "fabrica" на "true", чтобы включить создание предметов.
 config.summa.comment=Установите "summa" на "false", чтобы отключить мод.
 
 itemGroup.extrabiomesTab=ExtrabiomesXL
@@ -12,8 +12,11 @@ item.extrabiomes.dye.blue.name=Синий краситель
 item.extrabiomes.dye.brown.name=Коричневый краситель
 item.extrabiomes.dye.white.name=Белый краситель
 item.extrabiomes.logturner.name=Переворачиватель брёвен
+item.extrabiomes.logturner.description=Используйте его, чтобы изменить направленность брёвен.
 item.extrabiomes.paste.name=Кактусовая паста
+item.extrabiomes.paste.description=Эта зелёная паста, сделанная из 4 \oКрошечных кактусов\r, может быть переработана в \2\oКактусовый зелёный краситель\r.
 item.extrabiomes.scarecrow.name=Пугало
+item.extrabiomes.scarecrow.description=Охраняет Ваш сад от большинства существ.
 
 item.extrabiomes.crop.strawberry.name=Клубника
 
@@ -21,6 +24,9 @@ item.extrabiomes.seed.strawberry.name=Семена клубники
 
 item.extrabiomes.food.chocolate.name=Шоколад
 item.extrabiomes.food.chocolate_strawberry.name=Клубника в шоколаде
+
+
+extrabiomes.planting_guide=\oРуководство по посадке:\r
 
 entity.extrabiomes.scarecrow.name=Пугало
 
@@ -102,13 +108,13 @@ tile.extrabiomes.leaves.bald_cypress.name=Листва болотного кип
 tile.extrabiomes.leaves.japanese_maple.name=Листва японского клёна
 tile.extrabiomes.leaves.japanese_maple_shrub.name=Листва кустарника японского клёна
 tile.extrabiomes.leaves.rainbow_eucalyptus.name=Листва радужного эвкалипта
-tile.extrabiomes.leaves.sakura_blossom.name=Листва цветущей сакуры
+tile.extrabiomes.leaves.sakura_blossom.name=Листва сакуры
 tile.extrabiomes.leafpile.name=Опавшие листья
 tile.extrabiomes.log.0.name=Древесина пихты
 tile.extrabiomes.log.1.name=Древесина акации
 tile.extrabiomes.log.2.name=Древесина кипариса
 tile.extrabiomes.log.3.name=Древесина японского клёна
-tile.extrabiomes.log.sakura_blossom.name=Древесина цветущей сакуры
+tile.extrabiomes.log.sakura_blossom.name=Древесина сакуры
 tile.extrabiomes.cypresskneelog.name=Локоть древесины болотного кипариса
 tile.extrabiomes.rainbowkneelog.name=Локоть древесины радужного эвкалипта
 tile.extrabiomes.newlog.0.name=Древесина радужного эвкалипта
@@ -123,7 +129,7 @@ tile.extrabiomes.baldcypressquarter.name=Четверть древесины б�
 tile.extrabiomes.redwoodquarter.name=Четверть древесины красного дерева
 tile.extrabiomes.firquarter.name=Четверть древесины пихты
 tile.extrabiomes.oakquarter.name=Четверть древесины дуба
-tile.extrabiomes.planks.0.name=Доски из древесины красного дерева
+tile.extrabiomes.planks.0.name=Доски из красного дерева
 tile.extrabiomes.planks.1.name=Доски из древесины пихты
 tile.extrabiomes.planks.2.name=Доски из древесины акации
 tile.extrabiomes.planks.3.name=Доски из древесины кипариса
@@ -131,7 +137,7 @@ tile.extrabiomes.planks.4.name=Доски из древесины японско
 tile.extrabiomes.planks.5.name=Доски из древесины радужного кипариса
 tile.extrabiomes.planks.6.name=Доски из древесины осеннего дерева
 tile.extrabiomes.planks.7.name=Доски из древесины болотного кипариса
-tile.extrabiomes.planks.8.name=Доски из древесины цветущей сакуры
+tile.extrabiomes.planks.8.name=Доски из древесины сакуры
 tile.extrabiomes.quicksand.name=Зыбучий песок
 tile.extrabiomes.redrock.0.name=Красный камень
 tile.extrabiomes.redrock.1.name=Красный булыжник
@@ -151,18 +157,18 @@ tile.extrabiomes.sapling.bald_cypress.name=Саженец болотного к�
 tile.extrabiomes.sapling.japanese_maple.name=Саженец японского клёна
 tile.extrabiomes.sapling.japanese_maple_shrub.name=Саженец кустарника японского клёна
 tile.extrabiomes.sapling.rainbow_eucalyptus.name=Саженец радужного эвкалипта
-tile.extrabiomes.sapling.sakura_blossom.name=Саженец цветущей сакуры
+tile.extrabiomes.sapling.sakura_blossom.name=Саженец сакуры
 tile.extrabiomes.stairs.acacia.name=Ступеньки из древесины акации
 tile.extrabiomes.stairs.fir.name=Ступеньки из древесины пихты
 tile.extrabiomes.stairs.redcobble.name=Ступеньки из красного булыжника
 tile.extrabiomes.stairs.redrockbrick.name=Ступеньки из красного кирпича
-tile.extrabiomes.stairs.redwood.name=Ступеньки из древесины красного дерева
-tile.extrabiomes.stairs.japanesemaple.name=Ступеньки из древесины японского клёна
-tile.extrabiomes.stairs.cypress.name=Ступеньки из древесины кипариса
-tile.extrabiomes.stairs.baldcypress.name=Ступеньки из древесины болотного кипариса
-tile.extrabiomes.stairs.autumn.name=Ступеньки из древесины осеннего дерева
-tile.extrabiomes.stairs.rainboweucalyptus.name=Ступеньки из древесины радужного эвкалипта
-tile.extrabiomes.stairs.sakurablossom.name=Ступеньки из древесины цветущей сакуры
+tile.extrabiomes.stairs.redwood.name=Ступеньки из красного дерева
+tile.extrabiomes.stairs.japanesemaple.name=Ступеньки из японского клёна
+tile.extrabiomes.stairs.cypress.name=Ступеньки из кипариса
+tile.extrabiomes.stairs.baldcypress.name=Ступеньки из болотного кипариса
+tile.extrabiomes.stairs.autumn.name=Ступеньки из осеннего дерева
+tile.extrabiomes.stairs.rainboweucalyptus.name=Ступеньки из радужного эвкалипта
+tile.extrabiomes.stairs.sakurablossom.name=Ступеньки из сакуры
 tile.extrabiomes.tallgrass.0.name=Коричневая трава
 tile.extrabiomes.tallgrass.1.name=Низкая коричневая трава
 tile.extrabiomes.tallgrass.2.name=Мёртвая трава
@@ -171,13 +177,46 @@ tile.extrabiomes.tallgrass.4.name=Мёртвая жёлтая трава
 tile.extrabiomes.wall.0.name=Стена из красного булыжника
 tile.extrabiomes.woodslab.acacia.name=Плита из древесины акации
 tile.extrabiomes.woodslab.fir.name=Плита из древесины пихты
-tile.extrabiomes.woodslab.redwood.name=Плита из древесины красного дерева
-tile.extrabiomes.woodslab.japanese_maple.name=Плита из древесины японского клёна
-tile.extrabiomes.woodslab.cypress.name=Плита из древесины кипариса
-tile.extrabiomes.woodslab.rainbow_eucalyptus.name=Плита из древесины радужного эвкалипта
-tile.extrabiomes.woodslab.autumn.name=Плита из древесины осеннего дерева
-tile.extrabiomes.woodslab.bald_cypress.name=Плита из древесины болотного кипариса
-tile.extrabiomes.woodslab.sakura_blossom.name=Плита из древесины цветущей сакуры
+tile.extrabiomes.woodslab.redwood.name=Плита из красного дерева
+tile.extrabiomes.woodslab.japanese_maple.name=Плита из японского клёна
+tile.extrabiomes.woodslab.cypress.name=Плита из кипариса
+tile.extrabiomes.woodslab.rainbow_eucalyptus.name=Плита из радужного эвкалипта
+tile.extrabiomes.woodslab.autumn.name=Плита из осеннего дерева
+tile.extrabiomes.woodslab.bald_cypress.name=Плита из болотного кипариса
+tile.extrabiomes.woodslab.sakura_blossom.name=Плита из сакуры
 
 tile.extrabiomes.waterplant.eelgrass.name=Зостера
 tile.extrabiomes.waterplant.eelgrass.description=Эта трава растёт под водой. Это название связано с длинными тонкими листьями, которые напоминают угрей. \2\oКактусовый зелёный краситель\r может быть получен из этой травы.
+
+tile.extrabiomes.door.acacia.name=Дверь из акации
+tile.extrabiomes.door.autumn.name=Дверь из осеннего дерева
+tile.extrabiomes.door.baldcypress.name=Дверь из болотного кипариса
+tile.extrabiomes.door.cypress.name=Дверь из кипариса
+tile.extrabiomes.door.fir.name=Дверь из пихты
+tile.extrabiomes.door.japanesemaple.name=Дверь из японского клёна
+tile.extrabiomes.door.rainboweucalyptus.name=Дверь из радужного эвкалипта
+tile.extrabiomes.door.redwood.name=Дверь из красного дерева
+tile.extrabiomes.door.sakura.name=Дверь из сакуры
+
+tile.extrabiomes.fence.acacia.name=Забор из акации
+tile.extrabiomes.fence.autumn.name=Забор из осеннего дерева
+tile.extrabiomes.fence.baldcypress.name=Забор из болотного кипариса
+tile.extrabiomes.fence.cypress.name=Забор из кипариса
+tile.extrabiomes.fence.fir.name=Забор из пихты
+tile.extrabiomes.fence.japanesemaple.name=Забор из японского клёна
+tile.extrabiomes.fence.rainboweucalyptus.name=Забор из радужного эвкалипта
+tile.extrabiomes.fence.redwood.name=Забор из красного дерева
+tile.extrabiomes.fence.sakura.name=Забор из сакуры
+
+tile.extrabiomes.fencegate.acacia.name=Калитка из акации
+tile.extrabiomes.fencegate.autumn.name=Калитка из осеннего дерева
+tile.extrabiomes.fencegate.baldcypress.name=Калитка из болотного кипариса
+tile.extrabiomes.fencegate.cypress.name=Калитка из кипариса
+tile.extrabiomes.fencegate.fir.name=Калитка из пихты
+tile.extrabiomes.fencegate.japanesemaple.name=Калитка из японского клёна
+tile.extrabiomes.fencegate.rainboweucalyptus.name=Калитка из радужного эвкалипта
+tile.extrabiomes.fencegate.redwood.name=Калитка из красного дерева
+tile.extrabiomes.fencegate.sakura.name=Калитка из сакуры
+
+extrabiomes.elbow.crafting=Может быть изменён в обычную древесину и наоборот с помощью рецепта 2x2 "L" в верстаке.
+extrabiomes.cornerlog.crafting=Может быть изменена в обычную древесину и наоборот с помощью рецепта 2x2 (квадрат) в верстаке.
