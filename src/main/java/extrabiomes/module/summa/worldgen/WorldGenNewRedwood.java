@@ -103,6 +103,11 @@ public class WorldGenNewRedwood extends WorldGenerator
         if (!world.checkChunksExist(x - chunkCheck, y - chunkCheck, z - chunkCheck, x + chunkCheck, y + chunkCheck, z + chunkCheck))
             return false;
 
+        // Draw the main trunk
+        if (!check2x2Trunk(x, y, z, height + 1, world, false)) {
+          return false;
+        }
+
         /*
         if (rand.nextInt(4) == 0)
         {
@@ -406,5 +411,37 @@ public class WorldGenNewRedwood extends WorldGenerator
     public static long getLastSeed()
     {
         return lastSeed;
+    }
+    
+    public boolean check2x2Trunk(int x, int y, int z, int height, World world, boolean inWater) {
+        if (inWater) {
+            for (int y1 = y + 1; y1 < y + height; y1++) {
+                Block b00 = world.getBlock(x, y1, z);
+                Block b10 = world.getBlock(x + 1, y1, z);
+                Block b01 = world.getBlock(x, y1, z + 1);
+                Block b11 = world.getBlock(x + 1, y1, z + 1);
+                if (b00 != null && !b00.equals(Blocks.water) && !b00.isReplaceable(world, x, y1, z))
+                    return false;
+                if (b01 != null && !b01.equals(Blocks.water) && !b01.isReplaceable(world, x + 1, y1, z))
+                    return false;
+                if (b10 != null && !b10.equals(Blocks.water) && !b10.isReplaceable(world, x, y1, z + 1))
+                    return false;
+                if (b11 != null && !b11.equals(Blocks.water) && !b11.isReplaceable(world, x + 1, y1, z + 1))
+                    return false;
+            }
+        } else {
+            for (int y1 = y + 1; y1 < y + height; y1++) {
+                if (!world.isAirBlock(x, y1, z))
+                    return false;
+                if (!world.isAirBlock(x + 1, y1, z))
+                    return false;
+                if (!world.isAirBlock(x, y1, z + 1))
+                    return false;
+                if (!world.isAirBlock(x + 1, y1, z + 1))
+                    return false;
+            }
+        }
+
+        return true;
     }
 }
