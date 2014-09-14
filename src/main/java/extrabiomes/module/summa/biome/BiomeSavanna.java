@@ -30,7 +30,7 @@ public class BiomeSavanna extends ExtrabiomeGenBase
         setBiomeName("Savanna");
         temperature = BiomeGenBase.desert.temperature;
         rainfall = BiomeGenBase.desert.rainfall;
-        this.setHeight(new Height(0.0F, 0.1F));
+        this.setHeight(new Height(0.1F, 0.05F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 2, 4));
     }

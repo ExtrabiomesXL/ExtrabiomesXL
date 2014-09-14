@@ -28,7 +28,7 @@ public class BiomeTemporateRainforest extends ExtrabiomeGenBase
         setBiomeName("Temperate Rainforest");
         temperature = 0.6F;
         rainfall = 0.9F;
-        this.setHeight(new Height(0.4F, 1.5F));
+        this.setHeight(new Height(0.95F, 0.55F));
         
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }

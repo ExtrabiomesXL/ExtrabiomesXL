@@ -24,13 +24,14 @@ public class BiomeMountainRidge extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeMountainRidge()
     {
-		super(BiomeSettings.MOUNTAINRIDGE, Type.MOUNTAIN, Type.DESERT);
+		super(BiomeSettings.MOUNTAINRIDGE, Type.MOUNTAIN, Type.SANDY);
         
         setColor(0xC4722F);
 		setBiomeName("Mountain Ridge");
         temperature = BiomeGenBase.desert.temperature;
         rainfall = BiomeGenBase.desert.rainfall;
-        this.setHeight(new Height(1.7F, 1.7F));
+        // TODO: Check height
+        this.setHeight(new Height(1.7F, 0.0F));
         setDisableRain();
         spawnableCreatureList.clear();
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 1, 3));

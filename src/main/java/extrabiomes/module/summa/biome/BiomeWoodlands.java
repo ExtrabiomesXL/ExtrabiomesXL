@@ -34,7 +34,7 @@ public class BiomeWoodlands extends ExtrabiomeGenBase
         setBiomeName("Woodlands");
         temperature = BiomeGenBase.forest.temperature;
         rainfall = BiomeGenBase.forest.rainfall;
-        this.setHeight(new Height(0.2F, 0.4F));
+        this.setHeight(new Height(0.3F, 0.1F));
         
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }

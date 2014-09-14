@@ -28,7 +28,7 @@ public class BiomeWasteland extends ExtrabiomeGenBase
         setBiomeName("Wasteland");
         temperature = BiomeGenBase.desert.temperature;
         rainfall = BiomeGenBase.desert.rainfall;
-        this.setHeight(new Height(0.0F, 0.0F));
+        this.setHeight(new Height(0.1F, 0.0F));
         waterColorMultiplier = 0xF08000;
         
         spawnableCreatureList.clear();

@@ -31,7 +31,7 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase
         setBiomeName("Mini Jungle");
         temperature = BiomeGenBase.jungle.temperature;
         rainfall = BiomeGenBase.jungle.rainfall;
-        this.setHeight(new Height(0.2F, 0.6F));
+        this.setHeight(new Height(0.4F, 0.2F));
         waterColorMultiplier = 0x24b01c;
         
         spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));

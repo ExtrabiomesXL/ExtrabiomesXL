@@ -26,6 +26,6 @@ public class BiomeRedwoodLush extends ExtrabiomeGenBase
         setBiomeName("Lush Redwoods");
         temperature = 1.1F;
         rainfall = 1.4F;
-        this.setHeight(new Height(0.9F, 1.5F));
+        this.setHeight(new Height(1.2F, 0.3F));
     }
 }

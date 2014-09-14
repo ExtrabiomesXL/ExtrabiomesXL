@@ -34,7 +34,7 @@ public class BiomePineForest extends ExtrabiomeGenBase
         setBiomeName("Pine Forest");
         temperature = BiomeGenBase.forest.temperature;
         rainfall = BiomeGenBase.forest.rainfall;
-        this.setHeight(new Height(0.1F, 0.3F));
+        this.setHeight(new Height(0.2F, 0.1F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }

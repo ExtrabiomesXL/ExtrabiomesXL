@@ -28,7 +28,7 @@ public class BiomeMarsh extends ExtrabiomeGenBase
         setBiomeName("Marsh");
         temperature = BiomeGenBase.swampland.temperature;
         rainfall = BiomeGenBase.swampland.rainfall;
-        this.setHeight(new Height(-0.4F, 0.0F));
+        this.setHeight(new Height(-0.2F, 0.2F));
     }
     
 }

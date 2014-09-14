@@ -34,7 +34,7 @@ public class BiomeForestedHills extends ExtrabiomeGenBase
         
         temperature = BiomeGenBase.forest.temperature - 0.1F;
         rainfall = BiomeGenBase.forest.rainfall;
-        this.setHeight(new Height(0.2F, 1.8F));
+        this.setHeight(new Height(1.0F, 0.8F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }

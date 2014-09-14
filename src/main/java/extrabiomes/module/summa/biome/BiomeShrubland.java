@@ -29,7 +29,7 @@ public class BiomeShrubland extends ExtrabiomeGenBase
         setBiomeName("Shrubland");
         temperature = 0.4F;
         rainfall = 0.6F;
-        this.setHeight(new Height(0.1F, 0.3F));
+        this.setHeight(new Height(0.2F, 0.1F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 6, 1, 5));
     }

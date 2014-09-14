@@ -30,7 +30,8 @@ public class BiomeExtremeJungle extends ExtrabiomeGenBase
         setBiomeName("Extreme Jungle");
         temperature = BiomeGenBase.jungle.temperature;
         rainfall = BiomeGenBase.jungle.rainfall;
-        this.setHeight(new Height(2.1F, 2.3F));
+        // TODO: Check This new height
+        this.setHeight(new Height(1.2F, 0.1F));
         
         spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));
         spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));

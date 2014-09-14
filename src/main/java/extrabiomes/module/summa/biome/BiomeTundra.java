@@ -26,6 +26,6 @@ public class BiomeTundra extends ExtrabiomeGenBase
         setBiomeName("Tundra");
         temperature = 0.0F;
         rainfall = 0.0F;
-        this.setHeight(new Height(0.0F, 0.2F));
+        this.setHeight(new Height(0.1F, 0.1F));
     }
 }

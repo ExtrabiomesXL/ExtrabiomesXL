@@ -25,7 +25,7 @@ public class BiomeAlpine extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeAlpine()
     {
-		super(BiomeSettings.ALPINE, Type.FROZEN, Type.MOUNTAIN);
+		super(BiomeSettings.ALPINE, Type.SNOWY, Type.MOUNTAIN);
         topBlock = Blocks.stone;
         fillerBlock = Blocks.stone;
         setColor(0x8DACC4);
@@ -33,7 +33,7 @@ public class BiomeAlpine extends ExtrabiomeGenBase
         setBiomeName("Alpine");
         temperature = 0.0F;
         rainfall = 0.1F;
-        this.setHeight(new Height(1.3F, 2.1F));
+        this.setHeight(new Height(1.7F, 0.4F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 8, 4, 4));
     }

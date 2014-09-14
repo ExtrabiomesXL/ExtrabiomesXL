@@ -33,7 +33,7 @@ public class BiomeSnowRainforest extends ExtrabiomeGenBase
         setBiomeName("Snowy Rainforest");
         temperature = BiomeGenBase.taigaHills.temperature;
         rainfall = 1.3F;
-        this.setHeight(new Height(0.4F, 1.5F));
+        this.setHeight(new Height(0.95F, 0.55F));
         setEnableSnow();
         
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));

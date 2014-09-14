@@ -26,6 +26,6 @@ public class BiomeRainforest extends ExtrabiomeGenBase
         setBiomeName("Rainforest");
         temperature = 1.1F;
         rainfall = 1.4F;
-        this.setHeight(new Height(0.4F, 1.3F));
+        this.setHeight(new Height(0.85F, 0.45F));
     }
 }

@@ -33,7 +33,7 @@ public class BiomeIceWasteland extends ExtrabiomeGenBase
         setBiomeName("Ice Wasteland");
         temperature = 0.0F;
         rainfall = 0.1F;
-        this.setHeight(new Height(0.3F, 0.4F));
+        this.setHeight(new Height(0.35F, 0.05F));
     }
     
 }
