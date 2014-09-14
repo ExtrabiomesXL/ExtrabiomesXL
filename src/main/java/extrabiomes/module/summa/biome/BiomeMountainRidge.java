@@ -31,7 +31,7 @@ public class BiomeMountainRidge extends ExtrabiomeGenBase {
   public BiomeMountainRidge() {
     super(BiomeSettings.MOUNTAINRIDGE, Type.MOUNTAIN, Type.SANDY);
     setColor(0xC4722F);
-    setBiomeName("Mountain Ridge");
+    setBiomeName("Red Rock Mountains");
     temperature = BiomeGenBase.desert.temperature;
     rainfall = BiomeGenBase.desert.rainfall;
     // TODO: Check height
