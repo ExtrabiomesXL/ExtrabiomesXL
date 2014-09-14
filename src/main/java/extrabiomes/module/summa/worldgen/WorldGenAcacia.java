@@ -13,11 +13,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import extrabiomes.lib.Element;
 import extrabiomes.module.summa.TreeSoilRegistry;
 
-public class WorldGenAcacia extends WorldGenerator
+public class WorldGenAcacia extends WorldGenAbstractTree
 {
     
     private enum TreeBlock
