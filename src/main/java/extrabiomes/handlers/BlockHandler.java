@@ -608,7 +608,7 @@ public abstract class BlockHandler
         if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.REDROCK.getEnabled())
             return;
 
-        final BlockRedRock block = new BlockRedRock(2, Material.rock);
+        final BlockRedRock block = new BlockRedRock();
         block.setBlockName("extrabiomes.redrock").setHardness(1.5F).setResistance(2.0F).setCreativeTab(Extrabiomes.tabsEBXL);
 
         final CommonProxy proxy = Extrabiomes.proxy;

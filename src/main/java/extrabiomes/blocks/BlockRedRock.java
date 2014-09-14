@@ -47,9 +47,9 @@ public class BlockRedRock extends Block
     
     private final IIcon[] textures = { null, null, null };
     
-    public BlockRedRock(int index, Material material)
+    public BlockRedRock()
     {
-        super(material);
+        super(Material.rock);
     }
     
     @Override
