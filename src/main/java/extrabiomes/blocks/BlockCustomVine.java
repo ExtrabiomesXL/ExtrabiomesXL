@@ -19,6 +19,8 @@ public class BlockCustomVine extends BlockVine {
 	public BlockCustomVine(BlockType type) {
 		super();
 		this.type = type;
+		setHardness(0.2F);
+		setStepSound(soundTypeGrass);
 	}
 	
     @SideOnly(Side.CLIENT)
