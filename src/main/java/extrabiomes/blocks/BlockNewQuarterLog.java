@@ -27,28 +27,11 @@ import extrabiomes.lib.BlockSettings;
 
 public class BlockNewQuarterLog extends BlockLog
 {
-    
-    public enum BlockType
-    {
-        BALD_CYPRESS(0);
-        
-        private final int metadata;
-        
-        BlockType(int metadata)
-        {
-            this.metadata = metadata;
-        }
-        
-        public int metadata()
-        {
-            return metadata;
-        }
-    }
-    
     private BlockSettings settings;
     private final IIcon[]     textures = { null, null, null, null, null, null, null, null, null };
     private static int renderId = 32;
     private String     treeType = "quarter";
+    private ItemStack droppedItem;
     
     public BlockNewQuarterLog(BlockSettings settings, String treeType)
     {
@@ -317,46 +300,33 @@ public class BlockNewQuarterLog extends BlockLog
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List list)
     {
-        for (final BlockType type : BlockType.values())
-        {
-            list.add(new ItemStack(item, 1, type.metadata()));
-        }
+      list.add(new ItemStack(item, 1, 0));
+    }
+    
+    public BlockNewQuarterLog setDroppedItemStack(ItemStack stack) {
+      this.droppedItem = stack;
+      
+      return this;
     }
     
     @Override
     public Item getItemDropped(int metadata, Random rand, int unused)
     {
-    	if(settings == BlockSettings.REDWOODQUARTERLOG) {
-    		return BlockSettings.NEWLOG.getItem();
-    	} else if(settings == BlockSettings.RAINBOWQUARTERLOG) {
-    		return BlockSettings.NEWLOG.getItem();
-    	} else if(settings == BlockSettings.FIRQUARTERLOG) {
-    		return BlockSettings.CUSTOMLOG.getItem();
-    	} else if(settings == BlockSettings.OAKQUARTERLOG) {
-    		return ItemBlock.getItemFromBlock(Blocks.log);
-    	} else if(settings == BlockSettings.NEWQUARTERLOG) {
-    		return BlockSettings.NEWLOG.getItem();
-    	}
-    	
-    	//LogHelper.info("BlockID: %d, unused: %d", blockID, unused);
-        return settings.getItem();
+      if(this.droppedItem != null) {
+        return this.droppedItem.getItem();
+      } else {
+        return Item.getItemFromBlock(this);
+      }
     }
     
     @Override
     public int damageDropped(int metadata)
     {
-    	if(settings == BlockSettings.REDWOODQUARTERLOG) {
-    		return BlockNewLog.BlockType.REDWOOD.metadata();
-    	} else if(settings == BlockSettings.RAINBOWQUARTERLOG) {
-    		return BlockNewLog.BlockType.RAINBOW_EUCALYPTUS.metadata();
-    	} else if(settings == BlockSettings.FIRQUARTERLOG) {
-    		return BlockCustomLog.BlockType.FIR.metadata();
-    	} else if(settings == BlockSettings.OAKQUARTERLOG) {
-    		return 0;
-    	} else if(settings == BlockSettings.NEWQUARTERLOG) {
-    		return BlockNewLog.BlockType.BALD_CYPRESS.metadata();
-    	}
+      if(this.droppedItem != null) {
+        return this.droppedItem.getItemDamage();
+      } else {
         return 0;
+      }
     }
     
     @SubscribeEvent

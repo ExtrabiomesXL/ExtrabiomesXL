@@ -11,6 +11,7 @@ import java.util.Collection;
 import net.minecraft.init.Blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
@@ -431,7 +432,8 @@ public abstract class BlockHandler
         if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.KNEELOG.getEnabled())
             return;
 
-        block.setBlockName("extrabiomes.cypresskneelog").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block.setBlockName("extrabiomes.cypresskneelog");
+        ((BlockKneeLog) block).setDroppedItemStack(Element.LOG_BALD_CYPRESS.get());
 
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.setBlockHarvestLevel(block, "axe", 0);
@@ -445,7 +447,8 @@ public abstract class BlockHandler
         if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.RAINBOWKNEELOG.getEnabled())
             return;
 
-        block2.setBlockName("extrabiomes.rainbowkneelog").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        block2.setBlockName("extrabiomes.rainbowkneelog");
+        ((BlockKneeLog) block2).setDroppedItemStack(Element.LOG_RAINBOW_EUCALYPTUS.get());
 
         proxy.setBlockHarvestLevel(block2, "axe", 0);
         proxy.registerBlock(block2, ItemKneeLog.class, block2.getUnlocalizedName() + "." + block2.getClass().getName());
@@ -476,6 +479,7 @@ public abstract class BlockHandler
             return;
 
         block.setBlockName("extrabiomes.baldcypressquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        ((BlockNewQuarterLog) block).setDroppedItemStack(Element.LOG_BALD_CYPRESS.get());
 
         proxy.setBlockHarvestLevel(block, "axe", 0);
         proxy.registerBlock(block, ItemNewQuarterLog.class, "cornerlog_baldcypress");
@@ -488,6 +492,7 @@ public abstract class BlockHandler
             return;
 
         block2.setBlockName("extrabiomes.rainboweucalyptusquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        ((BlockNewQuarterLog) block2).setDroppedItemStack(Element.LOG_RAINBOW_EUCALYPTUS.get());
 
         proxy.setBlockHarvestLevel(block2, "axe", 0);
         proxy.registerBlock(block2, ItemNewQuarterLog.class, "cornerlog_rainboweucalyptus");
@@ -500,6 +505,7 @@ public abstract class BlockHandler
             return;
 
         block3.setBlockName("extrabiomes.oakquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        ((BlockNewQuarterLog) block3).setDroppedItemStack(new ItemStack(Item.getItemFromBlock(Blocks.log), 1, 0));
 
         proxy.setBlockHarvestLevel(block3, "axe", 0);
         proxy.registerBlock(block3, ItemNewQuarterLog.class, "cornerlog_oak");
@@ -512,6 +518,7 @@ public abstract class BlockHandler
             return;
 
         block4.setBlockName("extrabiomes.firquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        ((BlockNewQuarterLog) block4).setDroppedItemStack(Element.LOG_FIR.get());
 
         proxy.setBlockHarvestLevel(block4, "axe", 0);
         proxy.registerBlock(block4, ItemNewQuarterLog.class, "cornerlog_fir");
@@ -524,6 +531,7 @@ public abstract class BlockHandler
             return;
 
         block5.setBlockName("extrabiomes.redwoodquarter").setStepSound(Block.soundTypeWood).setHardness(2.0F).setResistance(Blocks.log.getExplosionResistance(null) * 5.0F).setCreativeTab(Extrabiomes.tabsEBXL);
+        ((BlockNewQuarterLog) block5).setDroppedItemStack(Element.LOG_REDWOOD.get());
         //block5.setRenderId(renderId);
 
         proxy.setBlockHarvestLevel(block5, "axe", 0);

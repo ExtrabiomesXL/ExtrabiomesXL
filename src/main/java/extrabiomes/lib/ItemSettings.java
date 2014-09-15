@@ -23,7 +23,7 @@ public enum ItemSettings
     FOOD;
     // @formatter:on
     
-    private boolean enabled;
+    private boolean enabled = true;
     
     private ItemSettings()
     {
@@ -45,6 +45,8 @@ public enum ItemSettings
     	} else {
     		itemID = configuration.getItem(toString() + ".id", itemID).getInt(0);
     	}*/
+      
+      this.enabled = configuration.get("item", toString() + ".enabled", this.enabled).getBoolean();
     }
     
     @Override

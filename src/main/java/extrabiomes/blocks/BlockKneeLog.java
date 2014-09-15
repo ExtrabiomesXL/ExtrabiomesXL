@@ -23,30 +23,13 @@ import extrabiomes.api.UseLogTurnerEvent;
 import extrabiomes.lib.BlockSettings;
 
 public class BlockKneeLog extends BlockLog
-{
-    
-    public enum BlockType
-    {
-        CYPRESS(0);
-        
-        private final int metadata;
-        
-        BlockType(int metadata)
-        {
-            this.metadata = metadata;
-        }
-        
-        public int metadata()
-        {
-            return metadata;
-        }
-    }
-    
+{   
     private BlockSettings settings;
     
     private IIcon[]     textures = { null, null, null, null, null, null, null, null, null };
     private static int renderId = 32;
     private String     treeType = "knee";
+    private ItemStack droppedItem;
     
     public BlockKneeLog(BlockSettings settings, String treeType)
     {
@@ -54,6 +37,10 @@ public class BlockKneeLog extends BlockLog
         
         this.settings = settings;
         this.treeType = treeType;
+        setStepSound(Block.soundTypeWood);
+        setHardness(2.0F);
+        setResistance(Blocks.log.getExplosionResistance(null) * 5.0F);
+        setCreativeTab(Extrabiomes.tabsEBXL);
     }
     
     @Override
@@ -315,37 +302,32 @@ public class BlockKneeLog extends BlockLog
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List list)
     {
-        for (final BlockType type : BlockType.values())
-        {
-            list.add(new ItemStack(item, 1, type.metadata()));
-        }
+      list.add(new ItemStack(item, 1, 0));
+    }
+    
+    public BlockKneeLog setDroppedItemStack(ItemStack stack) {
+      this.droppedItem = stack;
+      
+      return this;
     }
     
     @Override
-    public Item getItemDropped(int metadata, Random rand, int unused)
-    {
-    	/*
-    	if(blockID == BlockSettings.RAINBOWKNEELOG.getID()) {
-    		return BlockSettings.NEWLOG.getID();
-    	} else if(blockID == BlockSettings.KNEELOG.getID()) {
-    		return BlockSettings.NEWLOG.getID();
-    	}
-    	*/
-    	
-    	//LogHelper.info("BlockID: %d, unused: %d", blockID, unused);
-        return BlockSettings.NEWLOG.getItem();
+    public Item getItemDropped(int metadata, Random rand, int unused) {
+      if(this.droppedItem != null) {
+        return this.droppedItem.getItem();
+      } else {
+        return Item.getItemFromBlock(this);
+      }
     }
     
     @Override
     public int damageDropped(int metadata)
     {
-    	if(settings == BlockSettings.RAINBOWKNEELOG) {
-    		return BlockNewLog.BlockType.RAINBOW_EUCALYPTUS.metadata();
-    	} else if(settings == BlockSettings.KNEELOG) {
-    		return BlockNewLog.BlockType.BALD_CYPRESS.metadata();
-    	}
-
+      if(this.droppedItem != null) {
+        return this.droppedItem.getItemDamage();
+      } else {
         return 0;
+      }
     }
     
     @SubscribeEvent
