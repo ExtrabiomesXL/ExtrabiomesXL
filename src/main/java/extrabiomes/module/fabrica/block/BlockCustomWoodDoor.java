@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockCustomWoodDoor extends BlockDoor {
+    private static int blockId;
     @SideOnly(Side.CLIENT)
     private IIcon[] icon_upper;
     @SideOnly(Side.CLIENT)
@@ -27,7 +28,6 @@ public class BlockCustomWoodDoor extends BlockDoor {
 
 		// Default Settings
 		setBlockName("extrabiomes.door." + doorType);
-    //setCreativeTab(Extrabiomes.tabsEBXL);
     setBlockTextureName("door_" + doorType);
 		setHardness(3.0F);
 		setStepSound(soundTypeWood);
@@ -119,5 +119,17 @@ public class BlockCustomWoodDoor extends BlockDoor {
     @Override
     public Item getItem(World world, int x, int y, int z) {
         return item;
+    }
+
+    public static void setRenderId(int registerBlockHandler) {
+      blockId = registerBlockHandler;
+    }
+    
+    /**
+     * The type of render function that is called for this block
+     */
+    @Override
+    public int getRenderType() {
+        return blockId;
     }
 }

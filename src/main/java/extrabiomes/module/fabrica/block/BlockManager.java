@@ -45,8 +45,8 @@ import extrabiomes.lib.Reference;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.proxy.CommonProxy;
+import extrabiomes.renderers.CustomDoorRender;
 import extrabiomes.renderers.CustomFenceRender;
-import extrabiomes.renderers.RenderKneeLog;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
@@ -1169,6 +1169,7 @@ public enum BlockManager
     public static void preInit() throws Exception
     {
         createBlocks();
+        BlockCustomWoodDoor.setRenderId(Extrabiomes.proxy.registerBlockHandler(new CustomDoorRender()));
     }
     
     private boolean blockCreated = false;
