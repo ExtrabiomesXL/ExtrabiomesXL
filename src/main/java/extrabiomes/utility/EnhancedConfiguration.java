@@ -43,9 +43,9 @@ public class EnhancedConfiguration extends Configuration
     {
         final Property prop = get(category, key, -1);
         
-        if (prop.getInt() != -1)
+        if (prop.getInt() == -1)
         {
-            configBiomes[prop.getInt()] = true;
+            //configBiomes[prop.getInt()] = true;
             return prop;
         }
         
@@ -56,7 +56,7 @@ public class EnhancedConfiguration extends Configuration
             return prop;
         }
         
-        for (int j = configBiomes.length - 1; j > 0; j--)
+        for (int j = 40; j < configBiomes.length - 1; j++)
             if (BiomeGenBase.getBiomeGenArray()[j] == null && !configBiomes[j])
             {
                 prop.set(Integer.toString(j));
