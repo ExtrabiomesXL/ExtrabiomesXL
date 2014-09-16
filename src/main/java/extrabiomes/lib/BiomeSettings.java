@@ -88,6 +88,7 @@ public enum BiomeSettings {
   private final int defaultID;
 
   private int biomeID = 0;
+  private int weight = 10;
   private boolean enabled = true;
   private boolean allowVillages = true;
   private final Optional<? extends Class<? extends BiomeGenBase>> biomeClass;
@@ -99,13 +100,20 @@ public enum BiomeSettings {
 
   private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass) {
     this.defaultID = defaultID;
-    biomeID = this.defaultID;
+    this.biomeID = this.defaultID;
     this.biomeClass = Optional.fromNullable(biomeClass);
+  }
+
+  private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass, int defaultWeight) {
+    this.defaultID = defaultID;
+    this.biomeID = this.defaultID;
+    this.biomeClass = Optional.fromNullable(biomeClass);
+    this.weight = defaultWeight;
   }
 
   private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass, boolean defaultGen) {
     this.defaultID = defaultID;
-    biomeID = this.defaultID;
+    this.biomeID = this.defaultID;
     this.biomeClass = Optional.fromNullable(biomeClass);
     this.enabled = defaultGen;
   }
@@ -135,7 +143,7 @@ public enum BiomeSettings {
       LogHelper.fine("registering " + this.name() + " with dictionary");
 
       // register ourselves with teh vanilla biome manager
-      BiomeManager.BiomeEntry entry = new BiomeManager.BiomeEntry(egb, 10);
+      BiomeManager.BiomeEntry entry = new BiomeManager.BiomeEntry(egb, weight);
       if (egb.temperature > 0.5f) {
         if (egb.isHighHumidity()) {
           BiomeManager.warmBiomes.add(entry);
@@ -171,6 +179,10 @@ public enum BiomeSettings {
     return !biomeClass.isPresent();
   }
 
+  private String keyWeight() {
+    return keyVanillaPrefix() + toString() + ".weight";
+  }
+
   private String keyAllowVillages() {
     return keyVanillaPrefix() + toString() + ".allowvillages";
   }
@@ -196,14 +208,19 @@ public enum BiomeSettings {
     }
 
     property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyEnabled(), enabled);
-    if (!isVanilla() && biomeID == 0) {
+    if (!isVanilla() && biomeID < 1) {
       property.set(Boolean.toString(false));
     }
     enabled = property.getBoolean(false);
+
+    if (!isVanilla() && biomeID > -1) {
+      property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyWeight(), weight);
+      weight = property.getInt(10);
+    }
     
     if (enabled) {
       property = configuration.get(EnhancedConfiguration.CATEGORY_BIOME, keyAllowVillages(), allowVillages);
-      if (!isVanilla() && biomeID == 0) {
+      if (!isVanilla() && biomeID < 1) {
         property.set(Boolean.toString(false));
       }
       allowVillages = property.getBoolean(false);
