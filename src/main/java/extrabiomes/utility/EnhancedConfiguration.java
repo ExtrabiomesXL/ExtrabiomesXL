@@ -41,7 +41,7 @@ public class EnhancedConfiguration extends Configuration
      */
     public Property getBiome(String category, String key, int defaultID)
     {
-        final Property prop = get(category, key, -1);
+        final Property prop = get(category, key, defaultID);
         
         if (prop.getInt() == -1)
         {
