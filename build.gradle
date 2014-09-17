@@ -61,7 +61,7 @@ processResources
         if (System.env.GIT_BRANCH)
         {
           tstbranch = System.env.GIT_BRANCH.tokenize('/')
-          expand'branch', tstbranch.pop()
+          expand 'branch', tstbranch.pop()
         }
         
     }
