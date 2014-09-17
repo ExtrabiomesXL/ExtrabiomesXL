@@ -80,7 +80,7 @@ public class ForestryPlugin {
   }
     
   public static void postInit() {
-    LogHelper.info("Placeholder forestry api stuff.");
+    if(!isEnabled()) return;
     
     // Add forestry soils
     addForestrySoils();

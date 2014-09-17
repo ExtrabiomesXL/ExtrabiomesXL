@@ -201,13 +201,6 @@ public abstract class BlockHandler {
     }
 
     proxy.registerWorldGenerator(generator);
-
-    // TODO: register other flowers with forestry
-
-    // ForestryModHelper.registerBasicFlower(Element.HYDRANGEA.get());
-    // ForestryModHelper.registerBasicFlower(Element.BUTTERCUP.get());
-    // ForestryModHelper.registerBasicFlower(Element.LAVENDER.get());
-    // ForestryModHelper.registerBasicFlower(Element.CALLA_WHITE.get());
   }
 
   private static void createVines() {
