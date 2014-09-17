@@ -56,14 +56,16 @@ processResources
         exclude 'version.properties'
 
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-        
-        if (System.env.GIT_BRANCH)
-        {
-          tstbranch = System.env.GIT_BRANCH.tokenize('/')
-          expand 'branch', tstbranch.pop()
-        }
-        
+        expand 'version':project.version, 'mcversion':project.minecraft.version        
+    }
+    
+    from(sourceSets.main.java.extrabiomes.lib.srcDirs) {
+      include 'Referance.java'
+      
+      if (System.env.GIT_BRANCH) {
+        tstbranch = System.env.GIT_BRANCH.tokenize('/')
+        expand 'branch', tstbranch.pop()
+      }
     }
     
     // copy everything else, thats not the mcmod.info
