@@ -73,6 +73,7 @@ jar {
 	exclude 'ttftcuts'
 	exclude 'thaumcraft'
 	exclude 'two'
+	exclude 'forestry'
 	exclude 'version.properties'
 }
 
