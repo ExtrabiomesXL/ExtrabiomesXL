@@ -19,7 +19,6 @@ import cpw.mods.fml.common.eventhandler.EventBus;
 
 import com.google.common.base.Optional;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
@@ -43,6 +42,7 @@ import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.Reference;
 import extrabiomes.module.amica.treecapitator.TreeCapitatorPlugin;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
+import extrabiomes.plugins.ForestryPlugin;
 import extrabiomes.plugins.PluginThaumcraft4;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
@@ -73,6 +73,9 @@ public class Extrabiomes
     {
         proxy.registerRenderInformation();
         TreeCapitatorPlugin.init();
+        ForestryPlugin.init();
+        
+        
     }
 
     @Mod.EventHandler
@@ -83,11 +86,17 @@ public class Extrabiomes
         initBus = Optional.absent();
         Module.releaseStaticResources();
 
-        if (Loader.isModLoaded("Thaumcraft")) {
-                try {
-                	PluginThaumcraft4.PostInit();
-                }
-                catch (Exception e) {}
+        if (PluginThaumcraft4.isEnabled()) {
+          try {
+          	PluginThaumcraft4.postInit();
+          }
+          catch (Exception e) {
+            LogHelper.warning("ExtrabiomesXL's Thaumcraft API implementaion is most likely out of date. Fell free to let us know.");
+          }
+        }
+        
+        if (ForestryPlugin.isEnabled()) {
+          ForestryPlugin.postInit();
         }
 
         LogHelper.info("Successfully Loaded.");
