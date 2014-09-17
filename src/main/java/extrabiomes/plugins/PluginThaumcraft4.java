@@ -1,6 +1,7 @@
 package extrabiomes.plugins;
 
 import net.minecraft.item.ItemStack;
+import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.lib.Element;
 import extrabiomes.module.fabrica.scarecrow.ItemScarecrow;
@@ -13,11 +14,15 @@ public class PluginThaumcraft4 {
 		
 	}
 	
-	public static void Init() {
+	public static boolean isEnabled() {
+	  return Extrabiomes.proxy.isModLoaded("Thaumcraft");
+	}
+	
+	public static void init() {
 	
 	}
 	
-	public static void PostInit() {
+	public static void postInit() {
 		// Add our logs
 		ThaumcraftApi.registerObjectTag(Element.AUTUMN_SHRUB.get(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.AIR, 1));
 		ThaumcraftApi.registerObjectTag(Element.CATTAIL.get(), (new AspectList()).add(Aspect.PLANT, 1).add(Aspect.AIR, 1));
