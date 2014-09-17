@@ -57,7 +57,16 @@ processResources
 
         // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
+        
+        if (System.env.GIT_BRANCH)
+        {
+          expand'branch', System.env.GIT_BRANCH.tokenize('/')
+        }
+        
     }
+    
+    
+    print System.env
     
     // copy everything else, thats not the mcmod.info
     //from(sourceSets.main.resources.srcDirs) {
