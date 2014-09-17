@@ -26,7 +26,7 @@ public class Amica
     public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException
     {
         Api.registerPlugin(new BuildcraftPlugin());
-        Api.registerPlugin(new ForestryPlugin());
+        //Api.registerPlugin(new ForestryPlugin());
         Api.registerPlugin(new IC2Plugin());
         Api.registerPlugin(new ATGPlugin());
         Api.registerPlugin(new NewDawnPlugin());
