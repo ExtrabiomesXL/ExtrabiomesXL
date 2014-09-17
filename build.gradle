@@ -60,13 +60,10 @@ processResources
         
         if (System.env.GIT_BRANCH)
         {
-          expand'branch', System.env.GIT_BRANCH.tokenize('/')
+          expand'branch', System.env.GIT_BRANCH.tokenize('/').pop()
         }
         
     }
-    
-    
-    print System.env
     
     // copy everything else, thats not the mcmod.info
     //from(sourceSets.main.resources.srcDirs) {
