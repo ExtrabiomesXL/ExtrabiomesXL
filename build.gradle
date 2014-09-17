@@ -59,8 +59,8 @@ processResources
         expand 'version':project.version, 'mcversion':project.minecraft.version        
     }
     
-    from(sourceSets.main.java.extrabiomes.lib.srcDirs) {
-      include 'Referance.java'
+    from(sourceSets.main.java.srcDirs) {
+      include 'extrabiomes/lib/Referance.java'
       
       if (System.env.GIT_BRANCH) {
         tstbranch = System.env.GIT_BRANCH.tokenize('/')
