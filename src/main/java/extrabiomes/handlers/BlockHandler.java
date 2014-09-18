@@ -161,7 +161,7 @@ public abstract class BlockHandler {
     BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.WASTELAND, block, block);
 
     ForestryModHelper.addToDiggerBackpack(stack);
-    FacadeHelper.addBuildcraftFacade(block);
+    //FacadeHelper.addBuildcraftFacade(block);
   }
 
   private static void createFlowers() {
@@ -523,11 +523,11 @@ public abstract class BlockHandler {
     ForestryModHelper.addToForesterBackpack(new ItemStack(block3, 1, Short.MAX_VALUE));
     ForestryModHelper.addToForesterBackpack(new ItemStack(block4, 1, Short.MAX_VALUE));
     ForestryModHelper.addToForesterBackpack(new ItemStack(block5, 1, Short.MAX_VALUE));
-    FacadeHelper.addBuildcraftFacade(block);
-    FacadeHelper.addBuildcraftFacade(block2);
-    FacadeHelper.addBuildcraftFacade(block3);
-    FacadeHelper.addBuildcraftFacade(block4);
-    FacadeHelper.addBuildcraftFacade(block5);
+    //FacadeHelper.addBuildcraftFacade(block, i);
+    //FacadeHelper.addBuildcraftFacade(block2, i);
+    //FacadeHelper.addBuildcraftFacade(block3, i);
+    //FacadeHelper.addBuildcraftFacade(block4, i);
+    //FacadeHelper.addBuildcraftFacade(block5, i);
 
   }
 
@@ -597,7 +597,7 @@ public abstract class BlockHandler {
 
     ForestryModHelper.addToDiggerBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
     for (final BlockRedRock.BlockType type : BlockRedRock.BlockType.values()) {
-      FacadeHelper.addBuildcraftFacade(block, type.metadata());
+      //FacadeHelper.addBuildcraftFacade(block, type.metadata());
     }
   }
 
@@ -708,7 +708,7 @@ public abstract class BlockHandler {
 
     ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
     for (final BlockCustomLog.BlockType type : BlockCustomLog.BlockType.values()) {
-      FacadeHelper.addBuildcraftFacade(block, type.metadata());
+      //FacadeHelper.addBuildcraftFacade(block, type.metadata());
     }
 
     if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.NEWLOG.getEnabled())
@@ -730,7 +730,7 @@ public abstract class BlockHandler {
 
     ForestryModHelper.addToForesterBackpack(new ItemStack(block2, 1, Short.MAX_VALUE));
     for (final BlockNewLog.BlockType type : BlockNewLog.BlockType.values()) {
-      FacadeHelper.addBuildcraftFacade(block2, type.metadata());
+      //FacadeHelper.addBuildcraftFacade(block2, type.metadata());
     }
   }
 }

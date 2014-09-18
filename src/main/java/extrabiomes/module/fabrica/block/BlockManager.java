@@ -77,7 +77,7 @@ public enum BlockManager
             proxy.registerBlock(thisBlock, extrabiomes.utility.MultiItemBlock.class, "planks");
             for (final BlockCustomWood.BlockType type : BlockCustomWood.BlockType.values())
             {
-                FacadeHelper.addBuildcraftFacade(thisBlock, type.metadata());
+                //FacadeHelper.addBuildcraftFacade(thisBlock, type.metadata());
             }
             
             proxy.registerOreInAllSubblocks("plankWood", thisBlock);

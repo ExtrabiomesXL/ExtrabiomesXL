@@ -15,8 +15,7 @@ public abstract class FacadeHelper
     
     public static void addBuildcraftFacade(Block block, int metadata)
     {
-        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade",
-                String.format("%s@%d", Block.blockRegistry.getNameForObject(block), metadata));
+        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", String.format("%s@%d", Block.blockRegistry.getNameForObject(block), metadata));
     }
     
     public static void addBuildcraftFacade(Block block)

@@ -38,7 +38,7 @@ public enum BlockManager
             proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
             proxy.registerBlock(thisBlock, "quicksand");
             
-            FacadeHelper.addBuildcraftFacade(thisBlock);
+            //FacadeHelper.addBuildcraftFacade(thisBlock);
             
             proxy.registerWorldGenerator(new QuicksandGenerator(thisBlock));
         }
