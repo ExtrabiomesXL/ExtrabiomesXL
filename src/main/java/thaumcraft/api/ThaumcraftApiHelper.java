@@ -140,7 +140,8 @@ public class ThaumcraftApiHelper {
         {
             return false;
         }
-        return (target.getItem() == input.getItem() && ((target.getItemDamage() == OreDictionary.WILDCARD_VALUE && !strict) || target.getItemDamage() == input.getItemDamage()));
+        return (target.getItem() == input.getItem() && 
+        		((target.getItemDamage() == OreDictionary.WILDCARD_VALUE && !strict) || target.getItemDamage() == input.getItemDamage()));
     }
     
     
@@ -264,5 +265,29 @@ public class ThaumcraftApiHelper {
 	    	FMLLog.warning("[Thaumcraft API] Could not invoke thaumcraft.common.items.wands.WandManager method consumeVisFromInventory");
 	    }
 		return ot;
+	}
+	
+	
+	static Method addWarpToPlayer;
+	/**
+	 * This adds permanents or temporary warp to a player. It will automatically be synced clientside
+	 * @param player the player using the wand
+	 * @param amount how much warp to add 
+	 * @param amount how much warp to add. Negative amounts are only valid for temporary warp
+	 * @param temporary add temporary warp instead of permanent
+	 * @param amount how much warp to add
+	 */
+	public static void addWarpToPlayer(EntityPlayer player, int amount, boolean temporary) {
+		boolean ot = false;
+	    try {
+	        if(addWarpToPlayer == null) {
+	            Class fake = Class.forName("thaumcraft.common.Thaumcraft");
+	            addWarpToPlayer = fake.getMethod("addWarpToPlayer", 
+	            		EntityPlayer.class, int.class, boolean.class);
+	        }
+	        addWarpToPlayer.invoke(null, player, amount, temporary);
+	    } catch(Exception ex) { 
+	    	FMLLog.warning("[Thaumcraft API] Could not invoke thaumcraft.common.Thaumcraft method addWarpToPlayer");
+	    }
 	}
 }

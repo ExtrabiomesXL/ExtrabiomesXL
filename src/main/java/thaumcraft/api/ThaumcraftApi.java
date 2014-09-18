@@ -40,9 +40,13 @@ public class ThaumcraftApi {
 	
 	//Materials	
 	public static ToolMaterial toolMatThaumium = EnumHelper.addToolMaterial("THAUMIUM", 3, 400, 7F, 2, 22);
+	public static ToolMaterial toolMatVoid = EnumHelper.addToolMaterial("VOID", 4, 150, 8F, 3, 10);
 	public static ToolMaterial toolMatElemental = EnumHelper.addToolMaterial("THAUMIUM_ELEMENTAL", 3, 1500, 10F, 3, 18);
 	public static ArmorMaterial armorMatThaumium = EnumHelper.addArmorMaterial("THAUMIUM", 25, new int[] { 2, 6, 5, 2 }, 25);
 	public static ArmorMaterial armorMatSpecial = EnumHelper.addArmorMaterial("SPECIAL", 25, new int[] { 1, 3, 2, 1 }, 25);
+	public static ArmorMaterial armorMatThaumiumFortress = EnumHelper.addArmorMaterial("FORTRESS", 40, new int[] { 3, 7, 6, 3 }, 25);
+	public static ArmorMaterial armorMatVoid = EnumHelper.addArmorMaterial("VOID", 10, new int[] { 3, 7, 6, 3 }, 10);
+	public static ArmorMaterial armorMatVoidFortress = EnumHelper.addArmorMaterial("VOIDFORTRESS", 18, new int[] { 4, 8, 7, 4 }, 10);
 	
 	//Enchantment references
 	public static int enchantFrugal;
@@ -258,6 +262,20 @@ public class ThaumcraftApi {
 	}
 	
 	/**
+	 * @param hash the unique recipe code
+	 * @return the recipe
+	 */
+	public static CrucibleRecipe getCrucibleRecipeFromHash(int hash) {
+		for (Object r:getCraftingRecipes()) {
+			if (r instanceof CrucibleRecipe) {
+				if (((CrucibleRecipe)r).hash==hash)
+					return (CrucibleRecipe)r;
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * Used by the thaumonomicon drilldown feature.
 	 * @param stack the item
 	 * @return the thaumcraft recipe key that produces that item. 
@@ -278,6 +296,16 @@ public class ThaumcraftApi {
 				if (ri.getPages()==null) continue;
 				for (int a=0;a<ri.getPages().length;a++) {
 					ResearchPage page = ri.getPages()[a];
+					if (page.recipe!=null && page.recipe instanceof CrucibleRecipe[]) {
+						CrucibleRecipe[] crs = (CrucibleRecipe[]) page.recipe;
+						for (CrucibleRecipe cr:crs) {
+							if (cr.getRecipeOutput().isItemEqual(stack)) {
+								keyCache.put(key,new Object[] {ri.key,a});
+								if (ThaumcraftApiHelper.isResearchComplete(player.getCommandSenderName(), ri.key))
+									return new Object[] {ri.key,a};
+							}
+						}
+					} else
 					if (page.recipeOutput!=null && stack !=null && page.recipeOutput.isItemEqual(stack)) {
 						keyCache.put(key,new Object[] {ri.key,a});
 						if (ThaumcraftApiHelper.isResearchComplete(player.getCommandSenderName(), ri.key))
@@ -369,6 +397,7 @@ public class ThaumcraftApi {
 	 * Attempts to automatically generate aspect tags by checking registered recipes.
 	 * Here is an example of the declaration for pistons:<p>
 	 * <i>ThaumcraftApi.registerComplexObjectTag(new ItemStack(Blocks.cobblestone), (new AspectList()).add(Aspect.MECHANISM, 2).add(Aspect.MOTION, 4));</i>
+	 * IMPORTANT - this should only be used if you are not happy with the default aspects the object would be assigned.
 	 * @param item, pass OreDictionary.WILDCARD_VALUE to meta if all damage values of this item/block should have the same aspects
 	 * @param aspects A ObjectTags object of the associated aspects
 	 */
@@ -389,6 +418,43 @@ public class ThaumcraftApi {
 			registerObjectTag(item,tmp);
 		}
 	}
+	
+	//WARP ///////////////////////////////////////////////////////////////////////////////////////
+		private static HashMap<Object,Integer> warpMap = new HashMap<Object,Integer>();
+		
+		/**
+		 * This method is used to determine how much warp is gained if the item is crafted
+		 * @param craftresult The item crafted
+		 * @param amount how much warp is gained
+		 */
+		public static void addWarpToItem(ItemStack craftresult, int amount) {
+			warpMap.put(Arrays.asList(craftresult.getItem(),craftresult.getItemDamage()),amount);
+		}
+		
+		/**
+		 * This method is used to determine how much warp is gained if the sent item is crafted
+		 * @param in The item crafted
+		 * @param amount how much warp is gained
+		 */
+		public static void addWarpToResearch(String research, int amount) {
+			warpMap.put(research, amount);
+		}
+		
+		/**
+		 * Returns how much warp is gained from the item or research passed in
+		 * @param in itemstack or string
+		 * @return how much warp it will give
+		 */
+		public static int getWarp(Object in) {
+			if (in==null) return 0;
+			if (in instanceof ItemStack && warpMap.containsKey(Arrays.asList(((ItemStack)in).getItem(),((ItemStack)in).getItemDamage()))) {
+				return warpMap.get(Arrays.asList(((ItemStack)in).getItem(),((ItemStack)in).getItemDamage()));
+			} else
+			if (in instanceof String && warpMap.containsKey((String)in)) {
+				return warpMap.get((String)in);
+			}
+			return 0;
+		}
 		
 	//CROPS //////////////////////////////////////////////////////////////////////////////////////////
 	
