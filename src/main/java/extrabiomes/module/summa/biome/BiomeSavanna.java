@@ -24,7 +24,7 @@ public class BiomeSavanna extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeSavanna()
     {
-		super(BiomeSettings.SAVANNA, Type.PLAINS, Type.DESERT);
+		super(BiomeSettings.SAVANNA, Type.PLAINS, Type.SANDY);
         
         setColor(0xBFA243);
         setBiomeName("Savanna");

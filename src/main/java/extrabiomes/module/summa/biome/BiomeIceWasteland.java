@@ -23,7 +23,7 @@ public class BiomeIceWasteland extends ExtrabiomeGenBase
 
     public BiomeIceWasteland()
     {
-		super(BiomeSettings.ICEWASTELAND, Type.FROZEN, Type.WASTELAND);
+		super(BiomeSettings.ICEWASTELAND, Type.SNOWY, Type.WASTELAND);
         
         spawnableCreatureList.clear();
         topBlock = Blocks.snow;

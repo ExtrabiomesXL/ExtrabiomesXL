@@ -24,7 +24,7 @@ public class BiomeMountainTaiga extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeMountainTaiga()
     {
-		super(BiomeSettings.MOUNTAINTAIGA, Type.MOUNTAIN, Type.FROZEN, Type.FOREST);
+		super(BiomeSettings.MOUNTAINTAIGA, Type.MOUNTAIN, Type.SNOWY, Type.FOREST);
         
         setColor(0xB6659);
         setBiomeName("Mountain Taiga");

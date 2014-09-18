@@ -20,7 +20,7 @@ public class BiomeTundra extends ExtrabiomeGenBase
 
     public BiomeTundra()
     {
-		super(BiomeSettings.TUNDRA, Type.FROZEN, Type.DESERT);
+		super(BiomeSettings.TUNDRA, Type.SNOWY, Type.SANDY);
         
         setColor(0x305A85);
         setBiomeName("Tundra");

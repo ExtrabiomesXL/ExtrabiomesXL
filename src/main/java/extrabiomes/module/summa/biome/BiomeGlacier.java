@@ -22,7 +22,7 @@ public class BiomeGlacier extends ExtrabiomeGenBase
 
     public BiomeGlacier()
     {
-		super(BiomeSettings.GLACIER, Type.FROZEN, Type.WASTELAND, Type.MOUNTAIN);
+		super(BiomeSettings.GLACIER, Type.SNOWY, Type.WASTELAND, Type.MOUNTAIN);
         spawnableCreatureList.clear();
         topBlock = Blocks.snow;
         fillerBlock = Blocks.ice;

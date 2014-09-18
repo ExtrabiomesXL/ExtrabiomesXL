@@ -27,7 +27,7 @@ public class BiomeSnowForest extends ExtrabiomeGenBase
     @SuppressWarnings("unchecked")
     public BiomeSnowForest()
     {
-		super(BiomeSettings.SNOWYFOREST, Type.FOREST, Type.FROZEN);
+		super(BiomeSettings.SNOWYFOREST, Type.FOREST, Type.SNOWY);
         
         setColor(0x5BA68D);
         setBiomeName("Snow Forest");
