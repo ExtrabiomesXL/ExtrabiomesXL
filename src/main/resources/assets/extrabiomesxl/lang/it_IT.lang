@@ -12,8 +12,11 @@ item.extrabiomes.dye.blue.name=Tintura blu
 item.extrabiomes.dye.brown.name=Tintura marrone
 item.extrabiomes.dye.white.name=Tintura bianca
 item.extrabiomes.logturner.name=Gira-tronchi
+item.extrabiomes.logturner.description=Usalo per cambiare l'orientamento dei tronchi.
 item.extrabiomes.paste.name=Impasto di cactus
+item.extrabiomes.paste.description=Questo impasto verde fatto con  4 \oPiantine grasse\r può essere cotto in \2\oVerde cactus\r.
 item.extrabiomes.scarecrow.name=Spaventapasseri
++item.extrabiomes.scarecrow.description=Allontana i mostri dal tuo giardino.
 
 item.extrabiomes.crop.strawberry.name=Fragole
 
@@ -21,6 +24,9 @@ item.extrabiomes.seed.strawberry.name=Semi di fragola
 
 item.extrabiomes.food.chocolate.name=Cioccolato
 item.extrabiomes.food.chocolate_strawberry.name=Fragole coperte di cioccolato
+
+
+extrabiomes.planting_guide=\oGuida per piantare:\r
 
 entity.extrabiomes.scarecrow.name=Spaventapasseri
 
@@ -181,3 +187,36 @@ tile.extrabiomes.woodslab.sakura_blossom.name=Lastra di ciliegio
 
 tile.extrabiomes.waterplant.eelgrass.name=Zostera
 tile.extrabiomes.waterplant.eelgrass.description=Questa erba si trova sott'acqua. Quest'erba può creare della \2\oTintura verde\r.
+
+tile.extrabiomes.door.acacia.name=Porta d'acacia
+tile.extrabiomes.door.autumn.name=Porta di legno autunnale
+tile.extrabiomes.door.baldcypress.name=Porta di cipresso spoglio
+tile.extrabiomes.door.cypress.name=Porta di cipresso
+tile.extrabiomes.door.fir.name=Porta d'abete verde
+tile.extrabiomes.door.japanesemaple.name=Porta d'acero giapponese
+tile.extrabiomes.door.rainboweucalyptus.name=Porta d'eucalipto
+tile.extrabiomes.door.redwood.name=Porta di redwood
+tile.extrabiomes.door.sakura.name=Porta di ciliegio
+
+tile.extrabiomes.fence.acacia.name=Staccionata d'acacia
+tile.extrabiomes.fence.autumn.name=Staccionata di legno autunnale
+tile.extrabiomes.fence.baldcypress.name=Staccionata di cipresso spoglio
+tile.extrabiomes.fence.cypress.name=Staccionata di cipresso
+tile.extrabiomes.fence.fir.name=Staccionata d'abete verde
+tile.extrabiomes.fence.japanesemaple.name=Staccionata d'acero giapponese
+tile.extrabiomes.fence.rainboweucalyptus.name=Staccionata d'eucalipto
+tile.extrabiomes.fence.redwood.name=Staccionata di redwood
+tile.extrabiomes.fence.sakura.name=Staccionata di ciliegio
+
+tile.extrabiomes.fencegate.acacia.name=Cancelletto d'acacia
+tile.extrabiomes.fencegate.autumn.name=Cancelletto di legno autunnale
+tile.extrabiomes.fencegate.baldcypress.name=Cancelletto di cipresso spoglio
+tile.extrabiomes.fencegate.cypress.name=Cancelletto di cipresso
+tile.extrabiomes.fencegate.fir.name=Cancelletto d'abete verde
+tile.extrabiomes.fencegate.japanesemaple.name=Cancelletto d'acero giapponese
+tile.extrabiomes.fencegate.rainboweucalyptus.name=Cancelletto d'eucalipto
+tile.extrabiomes.fencegate.redwood.name=Cancelletto di redwood
+tile.extrabiomes.fencegate.sakura.name=Cancelletto di ciliegio
+
+extrabiomes.elbow.crafting=Può essere creato con tronchi normali e viceversa mettendoli in una griglia di fabbricazione in una formazione a L in un 2x2.
+extrabiomes.cornerlog.crafting=Può essere creato con tronchi normali e viceversa mettendoli in una griglia di fabbricazione in una formazione a quadrato 2x2.
