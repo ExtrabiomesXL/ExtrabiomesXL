@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -266,6 +267,11 @@ public class BlockCropBasic extends BlockFlower {
 	public int getRenderType() {
 		return cropType.getRenderType();
 	}
+
+    @Override
+    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
+        return EnumPlantType.Crop;
+    }
 	
 	public ItemStack getSeedItem() {
 		return cropType.getSeedItem();
