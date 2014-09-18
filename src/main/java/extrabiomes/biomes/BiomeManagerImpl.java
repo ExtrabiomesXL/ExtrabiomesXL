@@ -22,6 +22,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenForest;
 import net.minecraft.world.gen.feature.WorldGenHugeTrees;
@@ -109,7 +110,7 @@ public class BiomeManagerImpl extends BiomeManager
          * ((WorldGenBigAutumnTree)tree).setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
          */
         
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
@@ -119,7 +120,7 @@ public class BiomeManagerImpl extends BiomeManager
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 10);
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
@@ -129,7 +130,7 @@ public class BiomeManagerImpl extends BiomeManager
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 90);
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
@@ -139,7 +140,7 @@ public class BiomeManagerImpl extends BiomeManager
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 10);
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
@@ -149,7 +150,7 @@ public class BiomeManagerImpl extends BiomeManager
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 90);
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
@@ -159,7 +160,7 @@ public class BiomeManagerImpl extends BiomeManager
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 10);
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
@@ -169,7 +170,7 @@ public class BiomeManagerImpl extends BiomeManager
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 90);
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
@@ -179,7 +180,7 @@ public class BiomeManagerImpl extends BiomeManager
                 return worldGen.generate(world, rand, x, y, z);
             }
         }, 10);
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
@@ -222,7 +223,7 @@ public class BiomeManagerImpl extends BiomeManager
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 4);
         addWeightedTreeGenForBiome(biome.get(), SHRUB_GEN, 18);
         addWeightedTreeGenForBiome(biome.get(), RAINBOW_EUCALYPTUS_GEN, 20);
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
@@ -233,7 +234,7 @@ public class BiomeManagerImpl extends BiomeManager
             }
             
         }, 6);
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
@@ -326,7 +327,7 @@ public class BiomeManagerImpl extends BiomeManager
         if (!biome.isPresent())
             return;
         
-        addWeightedTreeGenForBiome(biome.get(), new WorldGenerator()
+        addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
             public boolean generate(World world, Random rand, int x, int y, int z)
