@@ -148,12 +148,13 @@ public class BlockCustomWoodSlab extends BlockWoodSlab
         return ItemBlock.getItemFromBlock(singleSlab);
     }
     
-    @SideOnly(Side.CLIENT)
+
     /**
-     * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
+     * Gets an item for the block being called on. Args: world, x, y, z
      */
-    public Block getPickBlock(World par1World, int par2, int par3, int par4)
-    {
-        return singleSlab;
+    @SideOnly(Side.CLIENT)
+    @Override
+    public Item getItem(World world, int x, int y, int z) {
+      return Item.getItemFromBlock(this);
     }
 }
