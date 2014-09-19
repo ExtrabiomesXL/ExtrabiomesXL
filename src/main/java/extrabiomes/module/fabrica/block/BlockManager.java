@@ -621,7 +621,6 @@ public enum BlockManager
         protected void create()
         {
             Stuff.doorAcacia = Optional.of(new BlockCustomWoodDoor("acacia"));
-            Stuff.doorAcaciaItem = Optional.of(new ItemCustomDoor(Stuff.doorAcacia.get()));
         }
         
         @Override
@@ -637,12 +636,12 @@ public enum BlockManager
             final Block thisBlock = Stuff.doorAcacia.get();
 
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-            proxy.registerBlock(thisBlock, "door_acacia");
-            proxy.registerItem(Stuff.doorAcaciaItem.get(), "item_door_acacia");
+            proxy.registerBlock(thisBlock, extrabiomes.items.ItemCustomDoor.class, "door_acacia");
+            //proxy.registerItem(Stuff.doorAcaciaItem.get(), "item_door_acacia");
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorAcaciaItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.ACACIA.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorAcacia.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.ACACIA.metadata())));
         }
     },
     AUTUMNDOOR(Stuff.doorAutumn, true)
@@ -651,7 +650,6 @@ public enum BlockManager
         protected void create()
         {
             Stuff.doorAutumn = Optional.of(new BlockCustomWoodDoor("autumn"));
-            Stuff.doorAutumnItem = Optional.of(new ItemCustomDoor(Stuff.doorAutumn.get()));
         }
         
         @Override
@@ -667,12 +665,12 @@ public enum BlockManager
             final Block thisBlock = Stuff.doorAutumn.get();
 
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-            proxy.registerBlock(thisBlock, "door_autumn");
-            proxy.registerItem(Stuff.doorAutumnItem.get(), "item_door_autumn");
+            proxy.registerBlock(thisBlock, extrabiomes.items.ItemCustomDoor.class, "door_autumn");
+            //proxy.registerItem(Stuff.doorAutumnItem.get(), "item_door_autumn");
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorAutumnItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.AUTUMN.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorAutumn.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.AUTUMN.metadata())));
         }
     },
     BALDCYPRESSDOOR(Stuff.doorBaldcypress, true)
@@ -681,7 +679,6 @@ public enum BlockManager
         protected void create()
         {
             Stuff.doorBaldcypress = Optional.of(new BlockCustomWoodDoor("baldcypress"));
-            Stuff.doorBaldcypressItem = Optional.of(new ItemCustomDoor(Stuff.doorBaldcypress.get()));
         }
         
         @Override
@@ -697,12 +694,12 @@ public enum BlockManager
             final Block thisBlock = Stuff.doorBaldcypress.get();
 
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-            proxy.registerBlock(thisBlock, "door_baldcypress");
-            proxy.registerItem(Stuff.doorBaldcypressItem.get(), "item_door_baldcypress");
+            proxy.registerBlock(thisBlock, extrabiomes.items.ItemCustomDoor.class, "door_baldcypress");
+            //proxy.registerItem(Stuff.doorBaldcypressItem.get(), "item_door_baldcypress");
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorBaldcypressItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.BALD_CYPRESS.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorBaldcypress.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.BALD_CYPRESS.metadata())));
         }
     },
     CYPRESSDOOR(Stuff.doorCypress, true)
@@ -711,7 +708,6 @@ public enum BlockManager
         protected void create()
         {
             Stuff.doorCypress = Optional.of(new BlockCustomWoodDoor("cypress"));
-            Stuff.doorCypressItem = Optional.of(new ItemCustomDoor(Stuff.doorCypress.get()));
         }
         
         @Override
@@ -727,12 +723,12 @@ public enum BlockManager
             final Block thisBlock = Stuff.doorCypress.get();
 
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-            proxy.registerBlock(thisBlock, "door_cypress");
-            proxy.registerItem(Stuff.doorCypressItem.get(), "item_door_cypress");
+            proxy.registerBlock(thisBlock, extrabiomes.items.ItemCustomDoor.class, "door_cypress");
+            //proxy.registerItem(Stuff.doorCypressItem.get(), "item_door_cypress");
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorCypressItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.CYPRESS.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorCypress.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.CYPRESS.metadata())));
         }
     },
     FIRDOOR(Stuff.doorFir, true)
@@ -741,7 +737,6 @@ public enum BlockManager
         protected void create()
         {
             Stuff.doorFir = Optional.of(new BlockCustomWoodDoor("fir"));
-            Stuff.doorFirItem = Optional.of(new ItemCustomDoor(Stuff.doorFir.get()));
         }
         
         @Override
@@ -757,12 +752,12 @@ public enum BlockManager
             final Block thisBlock = Stuff.doorFir.get();
 
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-            proxy.registerBlock(thisBlock, "door_fir");
-            proxy.registerItem(Stuff.doorFirItem.get(), "item_door_fir");
+            proxy.registerBlock(thisBlock, extrabiomes.items.ItemCustomDoor.class, "door_fir");
+            //proxy.registerItem(Stuff.doorFirItem.get(), "item_door_fir");
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorFirItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.FIR.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorFir.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.FIR.metadata())));
         }
     },
     JAPANESEMAPLEDOOR(Stuff.doorJapaneseMaple, true)
@@ -771,7 +766,6 @@ public enum BlockManager
         protected void create()
         {
             Stuff.doorJapaneseMaple = Optional.of(new BlockCustomWoodDoor("japanesemaple"));
-            Stuff.doorJapaneseMapleItem = Optional.of(new ItemCustomDoor(Stuff.doorJapaneseMaple.get()));
         }
         
         @Override
@@ -787,12 +781,12 @@ public enum BlockManager
             final Block thisBlock = Stuff.doorJapaneseMaple.get();
 
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-            proxy.registerBlock(thisBlock, "door_japanesemaple");
-            proxy.registerItem(Stuff.doorJapaneseMapleItem.get(), "item_door_japanesemaple");
+            proxy.registerBlock(thisBlock, extrabiomes.items.ItemCustomDoor.class, "door_japanesemaple");
+            //proxy.registerItem(Stuff.doorJapaneseMapleItem.get(), "item_door_japanesemaple");
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorJapaneseMapleItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.JAPANESE_MAPLE.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorJapaneseMaple.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.JAPANESE_MAPLE.metadata())));
         }
     },
     RAINBOWEUCALYPTUSDOOR(Stuff.doorRainbowEucalyptus, true)
@@ -801,7 +795,6 @@ public enum BlockManager
         protected void create()
         {
             Stuff.doorRainbowEucalyptus = Optional.of(new BlockCustomWoodDoor("rainboweucalyptus"));
-            Stuff.doorRainbowEucalyptusItem = Optional.of(new ItemCustomDoor(Stuff.doorRainbowEucalyptus.get()));
         }
         
         @Override
@@ -817,12 +810,12 @@ public enum BlockManager
             final Block thisBlock = Stuff.doorRainbowEucalyptus.get();
 
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-            proxy.registerBlock(thisBlock, "door_rainboweucalyptus");
-            proxy.registerItem(Stuff.doorRainbowEucalyptusItem.get(), "item_door_rainboweucalyptus");
+            proxy.registerBlock(thisBlock, extrabiomes.items.ItemCustomDoor.class, "door_rainboweucalyptus");
+            //proxy.registerItem(Stuff.doorRainbowEucalyptusItem.get(), "item_door_rainboweucalyptus");
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorRainbowEucalyptusItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorRainbowEucalyptus.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.metadata())));
         }
     },
     REDWOODDOOR(Stuff.doorRedwood, true)
@@ -831,7 +824,6 @@ public enum BlockManager
         protected void create()
         {
             Stuff.doorRedwood = Optional.of(new BlockCustomWoodDoor("redwood"));
-            Stuff.doorRedwoodItem = Optional.of(new ItemCustomDoor(Stuff.doorRedwood.get()));
         }
         
         @Override
@@ -847,13 +839,13 @@ public enum BlockManager
             final Block thisBlock = Stuff.doorRedwood.get();
 
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-            proxy.registerBlock(thisBlock, "door_redwood");
-            proxy.registerItem(Stuff.doorRedwoodItem.get(), "item_door_redwood");
+            proxy.registerBlock(thisBlock, extrabiomes.items.ItemCustomDoor.class, "door_redwood");
+            //proxy.registerItem(Stuff.doorRedwoodItem.get(), "item_door_redwood");
             //GameRegistry.registerItem(Stuff.paste.get(), "extrabiomes.paste", Reference.MOD_ID);
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorRedwoodItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.REDWOOD.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorRedwood.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.REDWOOD.metadata())));
         }
     },
     SAKURADOOR(Stuff.doorSakura, true)
@@ -862,7 +854,6 @@ public enum BlockManager
         protected void create()
         {
             Stuff.doorSakura = Optional.of(new BlockCustomWoodDoor("sakura"));
-            Stuff.doorSakuraItem = Optional.of(new ItemCustomDoor(Stuff.doorSakura.get()));
         }
         
         @Override
@@ -878,12 +869,12 @@ public enum BlockManager
             final Block thisBlock = Stuff.doorSakura.get();
 
             proxy.setBlockHarvestLevel(thisBlock, "axe", 0);
-            proxy.registerBlock(thisBlock, "door_sakura");
-            proxy.registerItem(Stuff.doorSakuraItem.get(), "item_door_sakura");
+            proxy.registerBlock(thisBlock, extrabiomes.items.ItemCustomDoor.class, "door_sakura");
+            //proxy.registerItem(Stuff.doorSakuraItem.get(), "item_door_sakura");
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorSakuraItem.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorSakura.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata())));
         }
     },
     ACACIAGATE(Stuff.gateAcacia, true)

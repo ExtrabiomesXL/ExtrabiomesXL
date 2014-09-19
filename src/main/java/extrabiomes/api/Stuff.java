@@ -24,15 +24,6 @@ public enum Stuff
     public static Optional<? extends Item>	crop					          = Optional.absent();
     public static Optional<? extends Item>	seed					          = Optional.absent();
     public static Optional<? extends Item>	food					          = Optional.absent();
-    public static Optional<? extends Item>	doorAcaciaItem			    = Optional.absent();
-    public static Optional<? extends Item>  doorAutumnItem          = Optional.absent();
-    public static Optional<? extends Item>	doorBaldcypressItem     = Optional.absent();
-    public static Optional<? extends Item>	doorCypressItem         = Optional.absent();
-    public static Optional<? extends Item>	doorFirItem    		      = Optional.absent();
-    public static Optional<? extends Item>	doorJapaneseMapleItem		= Optional.absent();
-    public static Optional<? extends Item>	doorRainbowEucalyptusItem	= Optional.absent();
-    public static Optional<? extends Item>	doorRedwoodItem			    = Optional.absent();
-    public static Optional<? extends Item>	doorSakuraItem			    = Optional.absent();
 
     public static Optional<? extends Block> fence                   = Optional.absent();
     public static Optional<? extends Block> planks                  = Optional.absent();
