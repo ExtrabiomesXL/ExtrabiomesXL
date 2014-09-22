@@ -12,7 +12,7 @@ desktop.ini
 /build
 /eclipse
 /run
-/.classpath
+/*.class*
 /.project
 /gradle
 /gradlew
