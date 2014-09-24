@@ -41,6 +41,7 @@ import extrabiomes.events.BlockActiveEvent.FenceActiveEvent;
 import extrabiomes.events.BlockActiveEvent.FenceGateActiveEvent;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
+import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.Reference;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
@@ -641,7 +642,7 @@ public enum BlockManager
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorAcacia.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.ACACIA.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorAcacia.get(), GeneralSettings.useMC18Doors ? 3 : 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.ACACIA.metadata())));
         }
     },
     AUTUMNDOOR(Stuff.doorAutumn, true)
@@ -670,7 +671,7 @@ public enum BlockManager
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorAutumn.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.AUTUMN.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorAutumn.get(), GeneralSettings.useMC18Doors ? 3 : 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.AUTUMN.metadata())));
         }
     },
     BALDCYPRESSDOOR(Stuff.doorBaldcypress, true)
@@ -699,7 +700,7 @@ public enum BlockManager
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorBaldcypress.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.BALD_CYPRESS.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorBaldcypress.get(), GeneralSettings.useMC18Doors ? 3 : 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.BALD_CYPRESS.metadata())));
         }
     },
     CYPRESSDOOR(Stuff.doorCypress, true)
@@ -728,7 +729,7 @@ public enum BlockManager
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorCypress.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.CYPRESS.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorCypress.get(), GeneralSettings.useMC18Doors ? 3 : 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.CYPRESS.metadata())));
         }
     },
     FIRDOOR(Stuff.doorFir, true)
@@ -757,7 +758,7 @@ public enum BlockManager
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorFir.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.FIR.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorFir.get(), GeneralSettings.useMC18Doors ? 3 : 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.FIR.metadata())));
         }
     },
     JAPANESEMAPLEDOOR(Stuff.doorJapaneseMaple, true)
@@ -786,7 +787,7 @@ public enum BlockManager
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorJapaneseMaple.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.JAPANESE_MAPLE.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorJapaneseMaple.get(), GeneralSettings.useMC18Doors ? 3 : 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.JAPANESE_MAPLE.metadata())));
         }
     },
     RAINBOWEUCALYPTUSDOOR(Stuff.doorRainbowEucalyptus, true)
@@ -815,7 +816,7 @@ public enum BlockManager
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorRainbowEucalyptus.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorRainbowEucalyptus.get(), GeneralSettings.useMC18Doors ? 3 : 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.metadata())));
         }
     },
     REDWOODDOOR(Stuff.doorRedwood, true)
@@ -845,7 +846,7 @@ public enum BlockManager
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorRedwood.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.REDWOOD.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorRedwood.get(), GeneralSettings.useMC18Doors ? 3 : 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.REDWOOD.metadata())));
         }
     },
     SAKURADOOR(Stuff.doorSakura, true)
@@ -874,7 +875,7 @@ public enum BlockManager
             
             // Add the recipe for the door
             //ItemStack stack =  new ItemStack(Stuff.planks.get(), 3, BlockCustomWood.BlockType.REDWOOD.metadata());
-            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorSakura.get(), 3), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata())));
+            Extrabiomes.postInitEvent(new WoodDoorActiveEvent(new ItemStack(Stuff.doorSakura.get(), GeneralSettings.useMC18Doors ? 3 : 1), new ItemStack(Stuff.planks.get(), 1, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata())));
         }
     },
     ACACIAGATE(Stuff.gateAcacia, true)

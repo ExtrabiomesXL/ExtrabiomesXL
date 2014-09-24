@@ -118,6 +118,10 @@ public abstract class ConfigurationHandler
             Property useLegacyRedwoods = configuration.get(Configuration.CATEGORY_GENERAL, "UseLegacyRedwoods", autoUpgrade ? true : GeneralSettings.useLegacyRedwoods);
             useLegacyRedwoods.comment = "Set to true to enable old redwood tree generation.";
             GeneralSettings.useLegacyRedwoods = useLegacyRedwoods.getBoolean(false);
+
+            Property useMC18Doors = configuration.get(Configuration.CATEGORY_GENERAL, "UseMC18Doors", GeneralSettings.useMC18Doors);
+            useMC18Doors.comment = "Allow EbXL doors to stack like in MC 1.8 and be crafted in stacks of 3.";
+            GeneralSettings.useMC18Doors = useMC18Doors.getBoolean(true);
             
             //GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
             

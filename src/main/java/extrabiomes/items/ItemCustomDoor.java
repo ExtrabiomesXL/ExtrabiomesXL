@@ -3,6 +3,7 @@ package extrabiomes.items;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
+import extrabiomes.lib.GeneralSettings;
 import extrabiomes.module.fabrica.block.BlockCustomWoodDoor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -19,6 +20,7 @@ import net.minecraft.world.World;
 public class ItemCustomDoor extends ItemBlock {
   public ItemCustomDoor(Block block) {
     super(block);
+    this.maxStackSize = GeneralSettings.useMC18Doors ? 64 : 1;
   }
 
   /**
