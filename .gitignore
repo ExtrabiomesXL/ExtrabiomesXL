@@ -4,6 +4,7 @@
 #Windows thumbnail cache trash
 Thumbs.db
 *.jar
+*.class
 desktop.ini
 /bin
 /.gradle
