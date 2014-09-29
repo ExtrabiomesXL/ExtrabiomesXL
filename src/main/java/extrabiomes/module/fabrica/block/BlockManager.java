@@ -479,7 +479,6 @@ public enum BlockManager
             thisBlock.setBlockName("extrabiomes.redrockslab");
             proxy.setBlockHarvestLevel(thisBlock, "pickaxe", 0);
             
-            Extrabiomes.postInitEvent(new RedRockSlabActiveEvent(thisBlock));
         }
     },
     DOUBLEREDROCKSLAB(Stuff.slabRedRockDouble, false)
@@ -507,6 +506,8 @@ public enum BlockManager
             ItemRedRockSlab.setSlabs((BlockSlab) Stuff.slabRedRock.get(), (BlockSlab) Stuff.slabRedRockDouble.get());
             proxy.registerBlock(Stuff.slabRedRock.get(), extrabiomes.module.fabrica.block.ItemRedRockSlab.class, "slabRedRock");
             proxy.registerBlock(thisBlock, extrabiomes.module.fabrica.block.ItemRedRockSlab.class, "double_slabRedRock");
+            
+            Extrabiomes.postInitEvent(new RedRockSlabActiveEvent(Stuff.slabRedRock.get()));
         }
     },
     REDCOBBLESTAIRS(Stuff.stairsRedCobble, false)
