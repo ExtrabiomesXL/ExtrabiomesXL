@@ -43,7 +43,7 @@ public class Fabrica
     {
         BlockManager.init();
         
-        if (scarecrowID > 0)
+        if (ItemSettings.SCARECROW.getEnabled())
         {
             final int scarecrowEntityID = Extrabiomes.proxy.findGlobalUniqueEntityId();
             Extrabiomes.proxy.registerEntityID(EntityScarecrow.class, ItemScarecrow.NAME, scarecrowEntityID);
@@ -53,7 +53,7 @@ public class Fabrica
             Extrabiomes.proxy.addRecipe(recipe);
         }
         
-        if (pasteID > 0)
+        if (ItemSettings.PASTE.getEnabled())
         {
             if (Element.TINY_CACTUS.isPresent())
             {
