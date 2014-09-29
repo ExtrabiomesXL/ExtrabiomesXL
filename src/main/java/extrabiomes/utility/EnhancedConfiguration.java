@@ -8,6 +8,7 @@ package extrabiomes.utility;
 
 import java.io.File;
 
+import extrabiomes.helpers.LogHelper;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -49,20 +50,29 @@ public class EnhancedConfiguration extends Configuration
             return prop;
         }
         
-        if (BiomeGenBase.getBiomeGenArray()[defaultID] == null && !configBiomes[defaultID])
+        if (BiomeGenBase.getBiomeGenArray()[prop.getInt()] == null && !configBiomes[prop.getInt()])
         {
-            prop.set(Integer.toString(defaultID));
-            configBiomes[defaultID] = true;
+            prop.set(Integer.toString(prop.getInt()));
+            configBiomes[prop.getInt()] = true;
             return prop;
         }
         
-        for (int j = 40; j < configBiomes.length - 1; j++)
-            if (BiomeGenBase.getBiomeGenArray()[j] == null && !configBiomes[j])
-            {
+        if(configBiomes[prop.getInt()]) {
+          LogHelper.warning("Warning two of Extrabiomes were set to Biome ID #%d in your config file.", prop.getInt());
+        } else if(prop.getInt() != defaultID) {
+          String msg = "Warning biome ID conflict.\n";
+          msg += "According to ExtrabiomesXL's config file, biome id #%d was used by %s, but it has been overwritten by %s.\n";
+          msg += "Any existing worlds may have incorrect biome information.";
+          LogHelper.warning(msg, prop.getInt(), key, BiomeGenBase.getBiomeGenArray()[prop.getInt()].getBiomeClass().getName() + ":" + BiomeGenBase.getBiomeGenArray()[prop.getInt()].biomeName);
+        }
+        
+        for (int j = 40; j < configBiomes.length - 1; j++) {
+            if (BiomeGenBase.getBiomeGenArray()[j] == null && !configBiomes[j]) {
                 prop.set(Integer.toString(j));
                 configBiomes[j] = true;
                 return prop;
             }
+        }
         
         throw new RuntimeException("No more biome ids available for " + key);
     }
