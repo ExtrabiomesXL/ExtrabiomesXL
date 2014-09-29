@@ -14,7 +14,6 @@ import net.minecraftforge.common.config.Property;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.utility.EnhancedConfiguration;
 
-@SuppressWarnings("unused")
 public enum BlockSettings
 {
     // @formatter:off

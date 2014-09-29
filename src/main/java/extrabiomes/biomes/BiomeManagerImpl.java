@@ -65,7 +65,6 @@ import extrabiomes.module.summa.worldgen.WorldGenSakuraBlossomTree;
 public class BiomeManagerImpl extends BiomeManager
 {
     
-    @SuppressWarnings("unused")
     private static final WorldGenerator                                               CYPRESS_TREE_GEN          = new WorldGenCypressTree(false);
     private static final WorldGenerator                                               ACACIA_TREE_GEN           = new WorldGenAcacia(false);
     private static final WorldGenerator                                               ALT_TAIGA_GEN             = new WorldGenTaiga2(false);

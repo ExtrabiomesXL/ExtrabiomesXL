@@ -1,8 +1,3 @@
-#Macintosh file system junk
-.DS_Store
-
-#Windows thumbnail cache trash
-Thumbs.db
 *.jar
 *.class
 desktop.ini
@@ -19,7 +14,22 @@ desktop.ini
 /gradlew
 /gradlew.bat
 /mod.properties
+/out
+
+# IDEA project files
 /*.iml
 /*.ipr
 /*.iws
-/out
+
+# Forge/FML stuff
+*-fml.txt
+MinecraftForge-*.txt
+README.txt
+forge-*-changelog.txt
+src/main/java/com/
+
+# Macintosh file system junk
+.DS_Store
+
+# Windows thumbnail cache trash
+Thumbs.db
