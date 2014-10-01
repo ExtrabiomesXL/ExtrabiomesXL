@@ -28,14 +28,21 @@ import extrabiomes.proxy.CommonProxy;
 public class CropHandler {
     public static void createCrops() {
 		// create crops (products) first
-		createCropItems();
-		// then create the plant blocks that create those crops
-    	createBasicCrops();
-    	createRegrowCrops();
-		// finally create the seeds that create the blocks
-		createSeedItems();
-		// register wild crops with worldgen
-		registerWildCrops();
+    	if( ItemSettings.CROP.getEnabled() ) {
+			createCropItems();
+			
+			// then create the plant blocks that create those crops
+	    	createBasicCrops();
+	    	createRegrowCrops();
+	    	
+	    	if( ItemSettings.SEED.getEnabled() ) {
+				// finally create the seeds that create the blocks
+	    		createSeedItems();
+	    	}
+	    	
+			// register wild crops with worldgen
+			registerWildCrops();
+    	}
     }
     
 	private static void registerWildCrops() {
@@ -48,7 +55,6 @@ public class CropHandler {
 	}
 
 	private static void createCropItems() {
-		final ItemSettings settings = ItemSettings.CROP;
 		ItemCustomCrop item = new ItemCustomCrop();
 		Stuff.crop = Optional.of(item);
 		GameRegistry.registerItem(item, "extrabiomes.crop", Reference.MOD_ID);
@@ -71,7 +77,6 @@ public class CropHandler {
 	}
 
 	private static void createSeedItems() {
-		final ItemSettings settings = ItemSettings.SEED;
 		ItemCustomSeed item = new ItemCustomSeed();
 		Stuff.seed = Optional.of(item);
 		GameRegistry.registerItem(item, "extrabiomes.seed", Reference.MOD_ID);
