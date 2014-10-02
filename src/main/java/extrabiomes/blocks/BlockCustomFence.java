@@ -2,6 +2,7 @@ package extrabiomes.blocks;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import com.google.common.base.Optional;
 
@@ -19,6 +20,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemLead;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -56,6 +58,8 @@ public class BlockCustomFence extends BlockFence {
   
   public BlockCustomFence() {
     super("fence", Material.wood);
+    this.setHardness(2.0F);
+    this.setResistance(5.0F);
     this.setBlockName("extrabiomes.fence");
     this.disableStats();
     this.setCreativeTab(Extrabiomes.tabsEBXL);
@@ -109,6 +113,20 @@ public class BlockCustomFence extends BlockFence {
       boolean flag = !(block instanceof BlockFenceGate);
       
       return block != this && flag ? (block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.gourd : false) : true;
+  }
+  
+
+  //public Item getItemDropped(int par1, Random par2Random, int par3)
+  //{
+  //    return ItemBlock.getItemFromBlock(this);
+  //}
+  @Override
+  public int damageDropped(int metaData) {
+    if(BlockType.values().length <= metaData) {
+      return 0;
+    }
+    
+    return metaData;
   }
 
   @SideOnly(Side.CLIENT)
