@@ -26,7 +26,7 @@ public class ItemCustomCrop extends ItemFood {
 		public final int	meta;
 		public final int	hunger;
 		public final float	saturation;
-		public IIcon			IIcon;
+		public IIcon		IIcon;
 		
 		public enum Edible {
 			ALWAYS, YES, NO;
@@ -96,16 +96,18 @@ public class ItemCustomCrop extends ItemFood {
 	}
 
 	@Override
-	public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player) {
-		final CropType crop = getCropType(itemStack.getItemDamage());
+	public int func_150905_g(ItemStack itemStack)
+	{
+		final CropType type = getCropType(itemStack.getItemDamage());
+		return type.hunger;
+	}
 
-		player.getFoodStats().addStats(crop.hunger, crop.saturation);
-		world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-		this.onFoodEaten(itemStack, world, player);
-
-		--itemStack.stackSize;
-		return itemStack;
-    }
+	@Override
+	public float func_150906_h(ItemStack itemStack)
+	{
+		final CropType type = getCropType(itemStack.getItemDamage());
+		return type.saturation;
+	}
 	
     @Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)

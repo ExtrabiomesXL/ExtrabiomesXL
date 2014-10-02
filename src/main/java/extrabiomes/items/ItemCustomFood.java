@@ -30,7 +30,7 @@ public class ItemCustomFood extends ItemFood {
 		public final int	meta;
 		public final int	hunger;
 		public final float	saturation;
-		public IIcon			IIcon;
+		public IIcon		IIcon;
 		public final String texture;
 		
 		public boolean 		alwaysEdible = false;
