@@ -6,7 +6,6 @@ import java.util.Locale;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import extrabiomes.blocks.BlockNewSapling;
 import extrabiomes.utility.MultiItemBlock;
 
 public class ItemOldQuarterLog extends MultiItemBlock

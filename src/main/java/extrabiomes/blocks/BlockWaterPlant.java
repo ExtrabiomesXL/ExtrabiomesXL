@@ -6,7 +6,6 @@ import java.util.Locale;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
-import extrabiomes.blocks.BlockNewSapling.BlockType;
 import extrabiomes.helpers.ToolTipStringFormatter;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.subblocks.SubBlock;
