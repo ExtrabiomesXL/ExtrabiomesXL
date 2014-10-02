@@ -31,6 +31,7 @@ import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.handlers.BiomeHandler;
 import extrabiomes.handlers.BlockHandler;
+import extrabiomes.handlers.CanMobSpawnHandler;
 import extrabiomes.handlers.ConfigurationHandler;
 import extrabiomes.handlers.CropHandler;
 import extrabiomes.handlers.EBXLCommandHandler;
@@ -46,128 +47,122 @@ import extrabiomes.plugins.ForestryPlugin;
 import extrabiomes.plugins.PluginThaumcraft4;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
-//import cpw.mods.fml.common.Loader;
-//import cpw.mods.fml.common.Mod.Init;
-//import cpw.mods.fml.common.Mod.PostInit;
-//import cpw.mods.fml.common.Mod.PreInit;
-//import cpw.mods.fml.common.Mod.ServerStarting;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies="")
-public class Extrabiomes
-{
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies = "")
+public class Extrabiomes {
 
-    @Instance(Reference.MOD_ID)
-    public static Extrabiomes         instance;
+  @Instance(Reference.MOD_ID)
+  public static Extrabiomes instance;
 
-    @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
-    public static CommonProxy         proxy;
+  @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
+  public static CommonProxy proxy;
 
-    public static final CreativeTabs  tabsEBXL     = new CreativeTab("extrabiomesTab");
+  public static final CreativeTabs tabsEBXL = new CreativeTab("extrabiomesTab");
 
-    public static final String        TEXTURE_PATH = Reference.MOD_ID.toLowerCase(Locale.ENGLISH) + ":";
+  public static final String TEXTURE_PATH = Reference.MOD_ID.toLowerCase(Locale.ENGLISH) + ":";
 
-    private static Optional<EventBus> initBus      = Optional.of(new EventBus());
+  private static Optional<EventBus> initBus = Optional.of(new EventBus());
 
-    @Mod.EventHandler
-    public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException
-    {
-        proxy.registerRenderInformation();
-        TreeCapitatorPlugin.init();
-        ForestryPlugin.init();
-        
-        
+  @Mod.EventHandler
+  public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException {
+    proxy.registerRenderInformation();
+    TreeCapitatorPlugin.init();
+    ForestryPlugin.init();
+
+  }
+
+  @Mod.EventHandler
+  public static void postInit(FMLPostInitializationEvent event) {
+    PluginManager.activatePlugins();
+    RecipeHandler.init();
+    initBus = Optional.absent();
+    Module.releaseStaticResources();
+
+    if (PluginThaumcraft4.isEnabled()) {
+      try {
+        PluginThaumcraft4.postInit();
+      } catch (Exception e) {
+        LogHelper.warning("ExtrabiomesXL's Thaumcraft API implementaion is most likely out of date. Fell free to let us know.");
+      }
     }
 
-    @Mod.EventHandler
-    public static void postInit(FMLPostInitializationEvent event)
-    {
-        PluginManager.activatePlugins();
-        RecipeHandler.init();
-        initBus = Optional.absent();
-        Module.releaseStaticResources();
-
-        if (PluginThaumcraft4.isEnabled()) {
-          try {
-          	PluginThaumcraft4.postInit();
-          }
-          catch (Exception e) {
-            LogHelper.warning("ExtrabiomesXL's Thaumcraft API implementaion is most likely out of date. Fell free to let us know.");
-          }
-        }
-        
-        if (ForestryPlugin.isEnabled()) {
-          ForestryPlugin.postInit();
-        }
-
-        LogHelper.info("Successfully Loaded.");
+    if (ForestryPlugin.isEnabled()) {
+      ForestryPlugin.postInit();
     }
 
-    public static boolean postInitEvent(Event event)
-    {
-        return initBus.isPresent() ? initBus.get().post(event) : false;
+    LogHelper.info("Successfully Loaded.");
+  }
+
+  public static boolean postInitEvent(Event event) {
+    return initBus.isPresent() ? initBus.get().post(event) : false;
+  }
+
+  @Mod.EventHandler
+  public static void preInit(FMLPreInitializationEvent event) throws Exception {
+    LogHelper.info("Initializing.");
+
+    MinecraftForge.EVENT_BUS.register(CanMobSpawnHandler.INSTANCE);
+
+    // Handle upgrading
+    File test = new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg");
+    if (test.exists()) {
+      ConfigurationHandler.init(test, true);
+
+      File newFile = new File(event.getModConfigurationDirectory(), "/extrabiomes/oldunusedconfig.cfg");
+
+      if (!newFile.exists()) {
+        test.renameTo(newFile);
+      }
+
+      LogHelper.info("Upgrading Configfile");
     }
 
-    @Mod.EventHandler
-    public static void preInit(FMLPreInitializationEvent event) throws Exception
-    {
-        LogHelper.info("Initializing.");
-        
-		MinecraftForge.TERRAIN_GEN_BUS.register(GenesisBiomeOverrideHandler.INSTANCE);
+    ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "/extrabiomes.cfg"), false);
 
-        // Handle upgrading
-        File test = new File(event.getModConfigurationDirectory(), "/extrabiomes/extrabiomes.cfg");
-        if(test.exists()) {
-        	ConfigurationHandler.init(test, true);
-        	
-        	File newFile = new File(event.getModConfigurationDirectory(), "/extrabiomes/oldunusedconfig.cfg");
-        	
-        	if(!newFile.exists()) {
-        		test.renameTo(newFile);
-        	}
-        	
-        	LogHelper.info("Upgrading Configfile");
-        }
+    BiomeHandler.init();
 
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "/extrabiomes.cfg"), false);
+    // remove after 3.6.0 release
+    BiomeManagerImpl.populateAPIBiomes();
+    new BiomeManagerImpl();
 
-        BiomeHandler.init();
+    Extrabiomes.registerInitEventHandler(new RecipeManager());
 
-        // remove after 3.6.0 release
-        BiomeManagerImpl.populateAPIBiomes();
-        new BiomeManagerImpl();
+    BlockHandler.createBlocks();
+    ItemHandler.createItems();
+    CropHandler.createCrops();
 
-        Extrabiomes.registerInitEventHandler(new RecipeManager());
+    BiomeHandler.registerWorldGenerators();
+    BiomeHandler.enableBiomes();
+    BiomeManagerImpl.buildWeightedFloraLists();
 
-        BlockHandler.createBlocks();
-        ItemHandler.createItems();
-        CropHandler.createCrops();
+    Module.registerModules();
+    Module.postEvent(new ModulePreInitEvent());
+    Module.postEvent(new ModuleInitEvent());
 
-        BiomeHandler.registerWorldGenerators();
-        BiomeHandler.enableBiomes();
-        BiomeManagerImpl.buildWeightedFloraLists();
+  }
 
-        Module.registerModules();
-        Module.postEvent(new ModulePreInitEvent());
-        Module.postEvent(new ModuleInitEvent());
+  @Mod.EventHandler
+  public void serverStart(FMLServerStartingEvent event) {
+    if (GeneralSettings.consoleCommandsDisabled)
+      return;
 
-    }
+    MinecraftServer server = MinecraftServer.getServer(); // Gets current server
+    ICommandManager command = server.getCommandManager(); // Gets the command
+                                                          // manager to use for
+                                                          // server
+    ServerCommandManager serverCommand = ((ServerCommandManager) command); // Turns
+                                                                           // it
+                                                                           // into
+                                                                           // another
+                                                                           // form
+                                                                           // to
+                                                                           // use
 
-    @Mod.EventHandler
-    public void serverStart(FMLServerStartingEvent event)
-    {
-        if (GeneralSettings.consoleCommandsDisabled)
-            return;
+    serverCommand.registerCommand(new EBXLCommandHandler());
+  }
 
-        MinecraftServer server = MinecraftServer.getServer(); //Gets current server
-        ICommandManager command = server.getCommandManager(); //Gets the command manager to use for server
-        ServerCommandManager serverCommand = ((ServerCommandManager) command); //Turns it into another form to use
-
-        serverCommand.registerCommand(new EBXLCommandHandler());
-    }
-
-    public static void registerInitEventHandler(Object target)
-    {
-        if (initBus.isPresent())
-            initBus.get().register(target);
-    }
+  public static void registerInitEventHandler(Object target) {
+    if (initBus.isPresent())
+      initBus.get().register(target);
+  }
 }
