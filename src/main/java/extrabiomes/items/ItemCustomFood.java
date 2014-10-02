@@ -99,16 +99,18 @@ public class ItemCustomFood extends ItemFood {
 	}
 
 	@Override
-	public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player) {
+	public int func_150905_g(ItemStack itemStack)
+	{
 		final FoodType type = getFoodType(itemStack.getItemDamage());
+		return type.hunger;
+	}
 
-		player.getFoodStats().addStats(type.hunger, type.saturation);
-		world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-		this.onFoodEaten(itemStack, world, player);
-
-		--itemStack.stackSize;
-		return itemStack;
-    }
+	@Override
+	public float func_150906_h(ItemStack itemStack)
+	{
+		final FoodType type = getFoodType(itemStack.getItemDamage());
+		return type.saturation;
+	}
 	
     @Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
