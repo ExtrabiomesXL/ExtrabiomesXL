@@ -31,14 +31,14 @@ public class ItemScarecrow extends Item
 {
     
     public static String NAME = "extrabiomes.scarecrow";
+    public static String ID = "ExtrabiomesXL." + NAME;
     
     private static boolean spawnCreature(World world, double x, double y, double z)
     {
         //{
-        final Optional<Entity> entity = Optional.fromNullable(EntityList.createEntityByName(NAME, world));
+        final Optional<Entity> entity = Optional.fromNullable(EntityList.createEntityByName(ID, world));
         
-        if (entity.isPresent())
-        {
+        if (entity.isPresent()) {
             entity.get().setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
             world.spawnEntityInWorld(entity.get());
         }

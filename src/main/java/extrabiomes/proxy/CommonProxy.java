@@ -125,11 +125,8 @@ public class CommonProxy
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void registerEntity(Class entityClass, String entityName, Object mod, int entityID,
-            int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
-    {
-        EntityRegistry.registerModEntity(entityClass, entityName, entityID, mod, trackingRange,
-                updateFrequency, sendsVelocityUpdates);
+    public void registerEntity(Class entityClass, String entityName, Object mod, int entityID, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
+        EntityRegistry.registerModEntity(entityClass, entityName, entityID, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })

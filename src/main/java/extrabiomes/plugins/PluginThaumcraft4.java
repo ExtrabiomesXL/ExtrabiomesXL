@@ -60,7 +60,7 @@ public class PluginThaumcraft4 {
 		ThaumcraftApi.registerObjectTag(Element.CRACKEDSAND.get(), (new AspectList()).add(Aspect.EARTH, 1).add(Aspect.ENTROPY, 1).add(Aspect.DARKNESS, 1));
 		
 		
-		ThaumcraftApi.registerEntityTag(ItemScarecrow.NAME, (new AspectList()).add(Aspect.HARVEST, 5));
+		ThaumcraftApi.registerEntityTag("ExtrabiomesXL." + ItemScarecrow.NAME, (new AspectList()).add(Aspect.HARVEST, 5));
 		
 		//ThaumcraftApi.registerObjectTag(Stuff..get().itemID, Stuff..get().getItemDamage(), (new AspectList()).add(Aspect.PLANT, 4));
 		

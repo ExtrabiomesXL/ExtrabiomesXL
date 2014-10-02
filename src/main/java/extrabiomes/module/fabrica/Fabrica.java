@@ -8,6 +8,7 @@ package extrabiomes.module.fabrica;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -45,9 +46,11 @@ public class Fabrica
         
         if (ItemSettings.SCARECROW.getEnabled())
         {
-            final int scarecrowEntityID = Extrabiomes.proxy.findGlobalUniqueEntityId();
-            Extrabiomes.proxy.registerEntityID(EntityScarecrow.class, ItemScarecrow.NAME, scarecrowEntityID);
-            Extrabiomes.proxy.registerEntity(EntityScarecrow.class, ItemScarecrow.NAME, Extrabiomes.instance, scarecrowEntityID, 300, 2, true);
+            //final int scarecrowEntityID = Extrabiomes.proxy.findGlobalUniqueEntityId();
+            //Extrabiomes.proxy.registerEntityID(EntityScarecrow.class, ItemScarecrow.NAME, scarecrowEntityID);
+            //Extrabiomes.proxy.registerEntity(EntityScarecrow.class, ItemScarecrow.NAME, Extrabiomes.instance, scarecrowEntityID, 300, 2, true);
+            Extrabiomes.proxy.registerEntity(EntityScarecrow.class, ItemScarecrow.NAME, Extrabiomes.instance, 0, 300, 2, true);
+            ItemScarecrow.ID = (String) EntityList.classToStringMapping.get(EntityScarecrow.class);
             
             final IRecipe recipe = new ShapedOreRecipe(Stuff.scarecrow.get(), new String[] { " p ", "sms", " s " }, 'p', Blocks.pumpkin, 'm', Blocks.melon_block, 's', Items.stick);
             Extrabiomes.proxy.addRecipe(recipe);
