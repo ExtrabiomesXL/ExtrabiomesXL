@@ -1,3 +1,6 @@
 [submodule "api/forestry"]
 	path = api/forestry
 	url = git@github.com:ForestryMC/ForestryAPI.git
+[submodule "api/thaumcraft/thaumcraft/api"]
+	path = api/thaumcraft/thaumcraft/api
+	url = https://github.com/Azanor/thaumcraft-api.git
