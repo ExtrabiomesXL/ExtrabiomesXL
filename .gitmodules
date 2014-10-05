@@ -1,0 +1,3 @@
+[submodule "api/forestry"]
+	path = api/forestry
+	url = git@github.com:ForestryMC/ForestryAPI.git
