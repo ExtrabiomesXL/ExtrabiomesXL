@@ -28,75 +28,83 @@ configFile.withReader {
 }
 
 version = config.mod_version
-group= "extrabiomes"
-archivesBaseName = "ExtrabiomesXL"
+group= config.group_name
+archivesBaseName = "[${config.minecraft_version}]${config.mod_id}"
 
 minecraft {
     version = config.minecraft_version + "-" + config.forge_version
-    runDir = "eclipse/assets"
-}
-
-version = "${config.minecraft_version}-${config.mod_version}"
-
-if (System.env.GIT_BRANCH)
-{
-    branch = System.env.GIT_BRANCH.tokenize('/')
-    version = version + "-" + branch.pop()
-}
-if (System.env.BUILD_NUMBER)
-{
-    version = version + "." + System.env.BUILD_NUMBER
+    runDir = "run"
+    replace '@MOD_VERSION@', version
 }
 
 processResources
 {
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-        exclude 'version.properties'
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
 
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version        
+    // replace stuff in the files we want.
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+        include '**/*.properties'
+
+        // replaces
+        expand ([
+                'mod_version': version,
+                'forge_version': config.forge_version,
+                'minecraft_version': config.minecraft_version
+        ])
     }
-    
-    from(sourceSets.main.java.srcDirs) {
-      include 'extrabiomes/lib/Referance.java'
-      
-      if (System.env.GIT_BRANCH) {
-        tstbranch = System.env.GIT_BRANCH.tokenize('/')
-        expand 'branch': tstbranch.pop()
-      }
+
+    // replace stuff in the files we want.
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+        include '**/*.properties'
+
+        // replaces
+        expand ([
+                'mod_version': version,
+                'forge_version': config.forge_version,
+                'minecraft_version': config.minecraft_version
+        ])
     }
-    
-    // copy everything else, thats not the mcmod.info
-    //from(sourceSets.main.resources.srcDirs) {
-    //    exclude '**/mcmod.info'
-    //    exclude '**/version.properties'
-    //}
+
+    // copy everything else, thats we didnt do before
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+        exclude '**/*.properties'
+    }
 }
 
 jar {
-	//appendix = 'universal'
-
-	exclude 'mcp'
-	exclude 'ttftcuts'
-	exclude 'thaumcraft'
-	exclude 'two'
-	exclude 'forestry'
-	exclude 'version.properties'
+    exclude 'forestry'
+    exclude 'thaumcraft'
+    exclude 'ttftcuts'
+    exclude 'two'
 }
 
-//task deobfJar(type: Jar) {
-//	println(sourceSets.main)
-//
-//	from sourceSets.main.output
-//	appendix = 'deobf'
-//	
-//	exclude 'thaumcraft'
-//	exclude 'version.properties'
-//	
-//}
+// add a source jar
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    appendix = 'deobf'
+    classifier = 'src'
+    exclude 'forestry'
+    exclude 'thaumcraft'
+    exclude 'ttftcuts'
+    exclude 'two'
+}
 
-//artifacts {
-//	archives deobfJar
-//}
+// because the normal output has been made to be obfuscated
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    appendix = 'deobf'
+    exclude 'forestry'
+    exclude 'thaumcraft'
+    exclude 'ttftcuts'
+    exclude 'two'
+}
+
+artifacts {
+    archives sourceJar
+    archives deobfJar
+}
