@@ -5,6 +5,7 @@ import java.util.Collection;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameData;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -57,7 +58,7 @@ public class ForestryPlugin {
     }
 
     @Override
-    public boolean plantSaplingAt(ItemStack germling, World world, int x, int y, int z) {
+    public boolean plantSaplingAt(EntityPlayer player, ItemStack germling, World world, int x, int y, int z) {
       return true;
     }
     
