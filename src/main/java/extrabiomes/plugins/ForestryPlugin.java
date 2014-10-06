@@ -59,7 +59,12 @@ public class ForestryPlugin {
 
     @Override
     public boolean plantSaplingAt(EntityPlayer player, ItemStack germling, World world, int x, int y, int z) {
-      return true;
+        return true;
+    }
+
+    @Deprecated
+    public boolean plantSaplingAt(ItemStack germling, World world, int x, int y, int z) {
+        return true;
     }
     
   }
