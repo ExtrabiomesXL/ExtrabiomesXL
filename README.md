@@ -47,6 +47,7 @@ Git is used to clone this repository and update your local copy.
 This section assumes that you're using the command-line version of Git.
 
 1. Open up your command line.
+2. Set up ```ossrhUsername``` and ```ossrhPassword``` per [this](http://central.sonatype.org/pages/gradle.html#credentials). If you to not have a sonatype.org account, just set these to anything.
 2. Navigate to a place where you want to download this project (eg `C:\Github\Development\`) by executing `cd [folder location]`.  This location is known as `mcdev` from now on.
 3. Execute `git clone git@github.com:ExtrabiomesXL/ExtrabiomesXL.git`.  This will download this project into a folder in `mcdev`.
 4. Right now, you should have a directory that looks something like:
