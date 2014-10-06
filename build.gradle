@@ -18,9 +18,11 @@ buildscript {
 }
 
 apply plugin: 'forge'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
-group = "extrabiomes"
-archivesBaseName = "[" + project.mcversion + "]extrabiomesxl"
+group = "net.extrabiomes"
+archivesBaseName = "extrabiomesxl_"+ project.mcversion
 
 ext.apiATG = "./api/atg"
 ext.apiForestry = "./api/forestry"
@@ -146,4 +148,45 @@ artifacts {
     archives apiJar
     archives srcJar
     archives devJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'ExtrabiomesXL'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'The ExtrabiomesXL mod for Minecraft.'
+                url 'http://extrabiomes.net/'
+
+                scm {
+                    connection 'scm:git:git@github.com:ExtrabiomesXL/ExtrabiomesXL.git'
+                    developerConnection 'scm:git:git@github.com:ExtrabiomesXL/ExtrabiomesXL.git'
+                    url 'http://github.com/ExtrabiomesXL/ExtrabiomesXL'
+                }
+
+                licenses {
+                    license {
+                        name 'Creative Commons Attribution-ShareAlike 3.0 Unported License'
+                        url 'http://creativecommons.org/licenses/by-sa/3.0/deed.en_US'
+                    }
+                }
+            }
+        }
+    }
 }
