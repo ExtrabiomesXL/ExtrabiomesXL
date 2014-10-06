@@ -101,10 +101,6 @@ task sourceJar(type: Jar) {
 
 // create a deobfuscated jar for developers
 task devJar(type: Jar) {
-	from(sourceSets.main.allSource) {
-		include '**'
-	}
-
 	from(sourceSets.main.output) {
 		include '**'
 	}
@@ -151,6 +147,7 @@ artifacts {
 }
 
 signing {
+    required { gradle.taskGraph.hasTask(":uploadArchives") }
     sign configurations.archives
 }
 
