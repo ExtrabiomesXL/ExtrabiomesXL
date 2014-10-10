@@ -1,26 +1,26 @@
 [
 {
-    "modid": "ExtrabiomesXL",
-    "name": "ExtrabiomesXL",
-    "description": "ExtrabiomesXL adds new aesthetic content that greatly enhances Minecraft's landscapes and exploration.",
-    "version": "${version}",
-    "url": "http://www.minecraftforum.net/topic/1106178-",
-    "updateUrl": "",
-    "authorList": [
-        "MisterFiber",
-        "ScottKillen",
-        "JLBShecky",
-        "allaryin",
-        "bspkrs"
-    ],
-    "credits": "Concept and original mod created by MisterFiber. Some artwork courtesy of: bonemouse and Delocuro. Code contributors: asie, Eloraam, mistaqur, SirSengir, bolte-17, TDWP_FTW, ExterminatorJeff. Additional help: acmfan",
-    "url": "http://www.minecraftforum.net/topic/1090288-",
-    "logoFile": "eb-logo.png",
-    "screenshots": [
-    ],
-    "parent":"",
-    "dependencies": [
-        "mod_MinecraftForge"
-    ]
+  "modid": "ExtrabiomesXL",
+  "name": "ExtrabiomesXL",
+  "description": "ExtrabiomesXL adds new aesthetic content that greatly enhances Minecraft's landscapes and ploration.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://www.minecraftforum.net/topic/1106178-",
+  "updateUrl": "",
+  "authorList": [
+    "MisterFiber",
+    "ScottKillen",
+    "JLBShecky",
+    "allaryin",
+    "bspkrs"
+  ],
+  "credits": "Concept and original mod created by MisterFiber. Some artwork courtesy of: bonemouse and Delocuro. Code contributors: asie, Eloraam, mistaqur, SirSengir, bolte-17, TDWP_FTW, ExterminatorJeff. Additional help: acmfan",
+  "url": "http://www.minecraftforum.net/topic/1090288-",
+  "logoFile": "eb-logo.png",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
 }
 ]

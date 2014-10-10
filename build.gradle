@@ -1,3 +1,5 @@
+evaluationDependsOn(':version')
+
 buildscript {
     repositories {
         mavenCentral()
@@ -16,87 +18,172 @@ buildscript {
 }
 
 apply plugin: 'forge'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
-// define the properties file
-ext.configFile = file "build.properties"
+group = "net.extrabiomes"
+archivesBaseName = "extrabiomesxl_"+ project.mcversion
 
-configFile.withReader {
-    // read config.  it shall from now on be referenced as simply config or as project.config
-    def prop = new Properties()
-    prop.load(it)
-    project.ext.config = new ConfigSlurper().parse prop
-}
-
-version = config.mod_version
-group= "extrabiomes"
-archivesBaseName = "ExtrabiomesXL"
+ext.apiATG = "./api/atg"
+ext.apiForestry = "./api/forestry"
+ext.apiNewDawn = "./api/newdawn"
+ext.apiThaumcraft = "./api/thaumcraft"
 
 minecraft {
-    version = config.minecraft_version + "-" + config.forge_version
-    runDir = "eclipse/assets"
+    version = project.mcversion + "-" + project.forgeversion
+    runDir = "run"
+    
+    replace '@VERSION@', project.version
 }
 
-version = "${config.minecraft_version}-${config.mod_version}"
-
-if (System.env.GIT_BRANCH)
-{
-    branch = System.env.GIT_BRANCH.tokenize('/')
-    version = version + "-" + branch.pop()
-}
-if (System.env.BUILD_NUMBER)
-{
-    version = version + "." + System.env.BUILD_NUMBER
+sourceSets {
+	main {
+		java {
+			srcDir project.apiATG
+			srcDir project.apiForestry
+			srcDir project.apiNewDawn
+			srcDir project.apiThaumcraft
+			exclude '**/foresty/api/arborculture/**'
+			exclude '**/foresty/api/circuits/**'
+			exclude '**/foresty/api/food/**'
+			exclude '**/foresty/api/fuel/**'
+			exclude '**/foresty/api/lepidopterology/**'
+			exclude '**/foresty/api/mail/**'
+			exclude '**/foresty/api/world/**'
+			exclude '**/thaumcraft/api/damagesource/**'
+			exclude '**/thaumcraft/api/entities/**'
+			exclude '**/thaumcraft/api/nodes/**'
+			exclude '**/thaumcraft/api/potions/**'
+			exclude '**/thaumcraft/api/visnet/**'
+			exclude '**/thaumcraft/api/wands/**'
+		}
+	}
 }
 
 processResources
 {
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-        exclude 'version.properties'
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
 
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version        
+    // replace stuff in the files we want.
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+
+    	expand 'version': project.version, 'mcversion': project.minecraft.version
     }
-    
-    from(sourceSets.main.java.srcDirs) {
-      include 'extrabiomes/lib/Referance.java'
-      
-      if (System.env.GIT_BRANCH) {
-        tstbranch = System.env.GIT_BRANCH.tokenize('/')
-        expand 'branch': tstbranch.pop()
-      }
+
+    // copy everything else, thats we didnt do before
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
     }
-    
-    // copy everything else, thats not the mcmod.info
-    //from(sourceSets.main.resources.srcDirs) {
-    //    exclude '**/mcmod.info'
-    //    exclude '**/version.properties'
-    //}
 }
 
 jar {
-	//appendix = 'universal'
-
-	exclude 'mcp'
-	exclude 'ttftcuts'
-	exclude 'thaumcraft'
-	exclude 'two'
 	exclude 'forestry'
-	exclude 'version.properties'
+    exclude 'thaumcraft'
+	exclude 'ttftcuts'
+	exclude 'two'
+
+	includeEmptyDirs = false
 }
 
-//task deobfJar(type: Jar) {
-//	println(sourceSets.main)
-//
-//	from sourceSets.main.output
-//	appendix = 'deobf'
-//	
-//	exclude 'thaumcraft'
-//	exclude 'version.properties'
-//	
-//}
+// add a source jar
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource 
+    appendix = 'deobf'
+    classifier = 'src'
+    exclude 'forestry/**'
+    exclude 'thaumcraft/**'
+    exclude 'ttftcuts/**'
+    exclude 'two/**'
+}
 
-//artifacts {
-//	archives deobfJar
-//}
+// create a deobfuscated jar for developers
+task devJar(type: Jar) {
+	from(sourceSets.main.output) {
+		include '**'
+	}
+
+	exclude 'forestry'
+    exclude 'thaumcraft'
+	exclude 'ttftcuts'
+	exclude 'two'
+
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	classifier = 'dev'
+}
+
+// create a source jar
+task srcJar(type: Jar) {
+	from(sourceSets.main.allSource) {
+		include '**'
+	}
+
+	exclude 'forestry'
+    exclude 'thaumcraft'
+	exclude 'ttftcuts'
+	exclude 'two'
+
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	classifier = 'src'
+}
+
+// create an api jar for developers
+task apiJar(type: Jar, dependsOn: 'classes') {
+	from (sourceSets.main.output) {
+		include 'extrabiomes/api/**'
+	}
+	extension = 'jar'
+	classifier = 'api'
+}
+
+artifacts {
+    archives apiJar
+    archives srcJar
+    archives devJar
+}
+
+signing {
+    required { gradle.taskGraph.hasTask(":uploadArchives") }
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'ExtrabiomesXL'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'The ExtrabiomesXL mod for Minecraft.'
+                url 'http://extrabiomes.net/'
+
+                scm {
+                    connection 'scm:git:git@github.com:ExtrabiomesXL/ExtrabiomesXL.git'
+                    developerConnection 'scm:git:git@github.com:ExtrabiomesXL/ExtrabiomesXL.git'
+                    url 'http://github.com/ExtrabiomesXL/ExtrabiomesXL'
+                }
+
+                licenses {
+                    license {
+                        name 'Creative Commons Attribution-ShareAlike 3.0 Unported License'
+                        url 'http://creativecommons.org/licenses/by-sa/3.0/deed.en_US'
+                    }
+                }
+            }
+        }
+    }
+}

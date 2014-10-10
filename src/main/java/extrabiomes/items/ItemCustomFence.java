@@ -18,10 +18,8 @@ public class ItemCustomFence extends MultiItemBlock {
   }
   
   private static int unmarkedMetadata(int metadata) {
-      return metadata & METADATA_BITMASK;
+      return metadata < BlockCustomFence.BlockType.values().length ? metadata : 0;
   }
-  
-  private static final int METADATA_BITMASK = 0x7;
   
   @Override
   public String getUnlocalizedName(ItemStack itemstack) {

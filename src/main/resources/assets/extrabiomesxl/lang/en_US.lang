@@ -28,7 +28,7 @@ item.extrabiomes.food.chocolate_strawberry.name=Chocolate Covered Strawberry
 
 extrabiomes.planting_guide=\oPlanting Guide:\r
 
-entity.extrabiomes.scarecrow.name=Scarecrow
+entity.ExtrabiomesXL.scarecrow.name=Scarecrow
 
 log.message.initializing=Intializing.
 log.message.load.success=Successfully Loaded.

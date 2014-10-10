@@ -49,7 +49,7 @@ public class Fabrica
             //final int scarecrowEntityID = Extrabiomes.proxy.findGlobalUniqueEntityId();
             //Extrabiomes.proxy.registerEntityID(EntityScarecrow.class, ItemScarecrow.NAME, scarecrowEntityID);
             //Extrabiomes.proxy.registerEntity(EntityScarecrow.class, ItemScarecrow.NAME, Extrabiomes.instance, scarecrowEntityID, 300, 2, true);
-            Extrabiomes.proxy.registerEntity(EntityScarecrow.class, ItemScarecrow.NAME, Extrabiomes.instance, 0, 300, 2, true);
+            Extrabiomes.proxy.registerEntity(EntityScarecrow.class, "scarecrow", Extrabiomes.instance, 0, 300, 2, true);
             ItemScarecrow.ID = (String) EntityList.classToStringMapping.get(EntityScarecrow.class);
             
             final IRecipe recipe = new ShapedOreRecipe(Stuff.scarecrow.get(), new String[] { " p ", "sms", " s " }, 'p', Blocks.pumpkin, 'm', Blocks.melon_block, 's', Items.stick);
