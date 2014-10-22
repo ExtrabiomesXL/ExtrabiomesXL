@@ -11,6 +11,7 @@ import java.util.Locale;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.common.config.Property;
 
 import com.google.common.base.Optional;
@@ -161,15 +162,15 @@ public enum BiomeSettings {
 			BiomeManager.BiomeEntry entry = new BiomeManager.BiomeEntry(egb, weight);
 			if (egb.temperature > 0.5f) {
 				if (egb.isHighHumidity()) {
-					BiomeManager.warmBiomes.add(entry);
+					BiomeManager.addBiome(BiomeType.WARM, entry);
 				} else {
-					BiomeManager.desertBiomes.add(entry);
+					BiomeManager.addBiome(BiomeType.DESERT, entry);
 				}
 			} else {
 				if (egb.getEnableSnow()) {
-					BiomeManager.icyBiomes.add(entry);
+					BiomeManager.addBiome(BiomeType.ICY, entry);
 				} else {
-					BiomeManager.coolBiomes.add(entry);
+					BiomeManager.addBiome(BiomeType.COOL, entry);
 				}
 			}
 
