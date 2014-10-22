@@ -78,6 +78,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
+/eclipse
 
 # External tool builders
 .externalToolBuilders/
