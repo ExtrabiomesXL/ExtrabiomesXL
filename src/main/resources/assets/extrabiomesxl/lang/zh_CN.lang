@@ -1,4 +1,3 @@
-# Simplified Chinese (zh_CN) Localization File
 config.amica.comment=设置布尔量amica为true以支持其它模组.
 config.block.terraingen.comment=%s用于地形生成, 其ID必须小于256.
 config.cautia.comment=设置布尔量cautia为true来增加危险.
@@ -12,8 +11,11 @@ item.extrabiomes.dye.blue.name=蓝色染料
 item.extrabiomes.dye.brown.name=棕色染料
 item.extrabiomes.dye.white.name=白色染料
 item.extrabiomes.logturner.name=原木调向器
+item.extrabiomes.logturner.description=用它来调整原木的朝向
 item.extrabiomes.paste.name=仙人掌片
+item.extrabiomes.paste.description=这种绿色的叶片是用4 \o仙人球\r来合成的, 烧制可得到\2\o仙人掌绿色染料\r
 item.extrabiomes.scarecrow.name=稻草人
+item.extrabiomes.scarecrow.description=让你的花园不被讨厌的生物入侵
 
 item.extrabiomes.crop.strawberry.name=草莓
 
@@ -21,6 +23,8 @@ item.extrabiomes.seed.strawberry.name=草莓种子
 
 item.extrabiomes.food.chocolate.name=巧克力
 item.extrabiomes.food.chocolate_strawberry.name=巧克力草莓
+
+extrabiomes.planting_guide=\o园艺指南:\r
 
 entity.extrabiomes.scarecrow.name=稻草人
 
@@ -43,27 +47,27 @@ tile.extrabiomes.crackedsand.name=碎沙
 
 tile.extrabiomes.flower.autumn_shrub.name=秋灌木丛
 tile.extrabiomes.flower.hydrangea.name=绣球花
-tile.extrabiomes.flower.hydrangea.description=这些花可以合成 \b\o淡蓝色染料\r.
+tile.extrabiomes.flower.hydrangea.description=这些花可以合成\b\o淡蓝色染料\r
 tile.extrabiomes.flower.buttercup.name=金凤花
-tile.extrabiomes.flower.buttercup.description=这些花可以合成 \6\o黄色染料\r, 也就是说如果你喜欢黄油, 那么当它们长成黄色时你可以用下巴夹住它们.
+tile.extrabiomes.flower.buttercup.description=这些花可以合成\6\o黄色染料\r, 也就是说如果你喜欢黄油, 那么当它们长成黄色时你可以用下巴夹住它们
 tile.extrabiomes.flower.lavender.name=薰衣草
-tile.extrabiomes.flower.lavender.description=除了它引人注目的鲜艳色彩, 它浓郁的芳香也吸引着你. 薰衣草可以合成 \5\o紫色染料\r.
+tile.extrabiomes.flower.lavender.description=除了它引人注目的鲜艳色彩, 它浓郁的芳香也吸引着你. 薰衣草可以合成\5\o紫色染料\r
 tile.extrabiomes.flower.tiny_cactus.name=仙人球
-tile.extrabiomes.flower.tiny_cactus.description=用四个这样不刺手的仙人球可以合成一个 \o仙人球片\r, 仙人球片可以烧制成为 \2\o仙人掌绿色染料\r.
+tile.extrabiomes.flower.tiny_cactus.description=用四个这样不刺手的仙人球可以合成一个\o仙人球片\r, 仙人球片可以烧制成为\2\o仙人掌绿色染料\r
 tile.extrabiomes.flower.root.name=根须
 tile.extrabiomes.flower.toadstool.name=毒菌
 tile.extrabiomes.flower.calla_white.name=白卡拉百合
-tile.extrabiomes.flower.calla_white.description=这种花可以合成 \o浅灰色染料\r, 它们同样也是许多艺术家喜爱的颜料.
+tile.extrabiomes.flower.calla_white.description=这种花可以合成 \o浅灰色染料\r, 它们同样也是许多艺术家喜爱的颜料
 
 tile.extrabiomes.flower.allium.name=大蒜
-tile.extrabiomes.flower.allium.description=这种植物能够合成 \d\o品红色染料\r. 有一些人声称当它开花长出蒜头时可以用来驱逐吸血鬼, 虽然这个说法从未得到证实.
+tile.extrabiomes.flower.allium.description=这种植物能够合成\d\o品红色染料\r. 有一些人声称当它开花长出蒜头时可以用来驱逐吸血鬼, 虽然这个说法从未得到证实
 tile.extrabiomes.flower.amaryllis_pink.name=粉孤挺花
 tile.extrabiomes.flower.amaryllis_red.name=红孤挺花
 tile.extrabiomes.flower.amaryllis_white.name=白孤挺花
 tile.extrabiomes.flower.bachelors_button.name=矢车菊
 tile.extrabiomes.flower.bells_of_ireland.name=雪莲花
 tile.extrabiomes.flower.bluebell.name=风信子
-tile.extrabiomes.flower.bluebell.description=这是种神秘的花朵, 据说当它被雅辛托斯的血浇灌后, 突然迅速的生长并开出了美丽的花朵. \b\o淡蓝色染料 可以由这种花合成得到.
+tile.extrabiomes.flower.bluebell.description=这是种神秘的花朵, 据说当它被雅辛托斯的血浇灌后, 突然迅速的生长并开出了美丽的花朵. \b\o淡蓝色染料 可以由这种花合成得到
 tile.extrabiomes.flower.calla_black.name=黑卡拉百合
 tile.extrabiomes.flower.daisy.name=小雏菊
 tile.extrabiomes.flower.dandelion.name=蒲公英
@@ -77,7 +81,7 @@ tile.extrabiomes.flower.gerbera_yellow.name=黄非洲菊
 tile.extrabiomes.flower.oriental_pink_lily.name=粉东方百合
 tile.extrabiomes.flower.iris_blue.name=蓝鸢尾花
 tile.extrabiomes.flower.iris_purple.name=紫鸢尾花
-tile.extrabiomes.flower.iris_purple.description=鸢尾花的名字来源于古希腊神话中的霓虹女神, 在鸢尾科下可以找到许多不同种类的鸢尾花. 这种鸢尾花可以合成 \5\o紫色染料\r.
+tile.extrabiomes.flower.iris_purple.description=鸢尾花的名字来源于古希腊神话中的霓虹女神, 在鸢尾科下可以找到许多不同种类的鸢尾花. 这种鸢尾花可以合成 \5\o紫色染料\r
 tile.extrabiomes.flower.lily.name=百合花
 tile.extrabiomes.flower.marsh_marigold.name=金盏花
 tile.extrabiomes.flower.pansy.name=三色堇
@@ -89,7 +93,7 @@ tile.extrabiomes.flower.violet.name=紫罗兰
 tile.extrabiomes.flower.yarrow.name=西洋蓍草
 tile.extrabiomes.flower.belladonna.name=美丽翠雀花
 tile.extrabiomes.flower.blue_poppy.name=蓝罂粟
-tile.extrabiomes.flower.blue_poppy.description=这种艳丽的花朵可以合成 \3\o青色染料\r.
+tile.extrabiomes.flower.blue_poppy.description=这种艳丽的花朵可以合成\3\o青色染料\r
 
 tile.extrabiomes.vine.gloriosa.name=嘉兰
 tile.extrabiomes.vine.spanish_moss.name=西班牙苔
@@ -180,4 +184,37 @@ tile.extrabiomes.woodslab.bald_cypress.name=落羽松台阶
 tile.extrabiomes.woodslab.sakura_blossom.name=樱花树台阶
 
 tile.extrabiomes.waterplant.eelgrass.name=鳗草
-tile.extrabiomes.waterplant.eelgrass.description=这种草生长在水下. 其名字的由来是它那又长又细的叶片, 就像是鳗鱼一样. \2\o仙人掌绿色染料\r 可以由这种草合成得到.
+tile.extrabiomes.waterplant.eelgrass.description=这种草生长在水下, 其名字的由来是它那又长又细的叶片, 就像是鳗鱼一样. \2\o仙人掌绿色染料\r可以由这种草合成得到
+
+tile.extrabiomes.door.acacia.name=刺槐木门
+tile.extrabiomes.door.autumn.name=秋树木门
+tile.extrabiomes.door.baldcypress.name=落羽松木门
+tile.extrabiomes.door.cypress.name=柏树木门
+tile.extrabiomes.door.fir.name=冷杉木门
+tile.extrabiomes.door.japanesemaple.name=日本枫树木门
+tile.extrabiomes.door.rainboweucalyptus.name=彩虹桉树木门
+tile.extrabiomes.door.redwood.name=红木门
+tile.extrabiomes.door.sakura.name=樱花树木门
+
+tile.extrabiomes.fence.acacia.name=刺槐栅栏
+tile.extrabiomes.fence.autumn.name=秋树栅栏
+tile.extrabiomes.fence.baldcypress.name=落羽松栅栏
+tile.extrabiomes.fence.cypress.name=柏树栅栏
+tile.extrabiomes.fence.fir.name=冷杉栅栏
+tile.extrabiomes.fence.japanesemaple.name=日本枫树栅栏
+tile.extrabiomes.fence.rainboweucalyptus.name=彩虹桉树栅栏
+tile.extrabiomes.fence.redwood.name=红木栅栏
+tile.extrabiomes.fence.sakura.name=樱花树栅栏
+
+tile.extrabiomes.fencegate.acacia.name=刺槐栅栏门
+tile.extrabiomes.fencegate.autumn.name=秋树栅栏门
+tile.extrabiomes.fencegate.baldcypress.name=落羽松栅栏门
+tile.extrabiomes.fencegate.cypress.name=柏树栅栏门
+tile.extrabiomes.fencegate.fir.name=冷杉栅栏门
+tile.extrabiomes.fencegate.japanesemaple.name=日本枫树栅栏门
+tile.extrabiomes.fencegate.rainboweucalyptus.name=彩虹桉树栅栏门
+tile.extrabiomes.fencegate.redwood.name=红木栅栏门
+tile.extrabiomes.fencegate.sakura.name=樱花树栅栏门
+
+extrabiomes.elbow.crafting=可在工作台中以2x2的"L"形状合成为/合成得到普通原木
+extrabiomes.cornerlog.crafting=可在工作台中以2x2的方型摆放合成为/合成得到普通原木
