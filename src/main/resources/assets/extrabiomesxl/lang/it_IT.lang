@@ -28,7 +28,7 @@ item.extrabiomes.food.chocolate_strawberry.name=Fragole coperte di cioccolato
 
 extrabiomes.planting_guide=\oGuida per piantare:\r
 
-entity.extrabiomes.scarecrow.name=Spaventapasseri
+entity.ExtrabiomesXL.scarecrow.name=Spaventapasseri
 
 log.message.initializing=Avvio.
 log.message.load.success=Caricamento riuscito.
