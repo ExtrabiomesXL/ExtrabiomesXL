@@ -10,9 +10,11 @@ import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Optional;
 
+import cpw.mods.fml.common.registry.GameData;
+
 public enum Element
 {
-	// @formatter:off
+    // @formatter:off
 	ALLIUM,
     AMARYLLIS_PINK,
     AMARYLLIS_RED,
@@ -129,19 +131,33 @@ public enum Element
     PLANT_STRAWBERRY,
     CROP_STRAWBERRY;
     // @formatter:on
-    
+
     private Optional<ItemStack> stack = Optional.absent();
-    
+
     public ItemStack get()
     {
         return stack.get();
     }
-    
+
     public boolean isPresent()
     {
         return stack.isPresent();
     }
-    
+
+    public String getID()
+    {
+        if (isPresent())
+            return GameData.getItemRegistry().getNameForObject(get().getItem());
+        return null;
+    }
+
+    public int getMetadata()
+    {
+        if (isPresent())
+            return get().getItemDamage();
+        return 0;
+    }
+
     public void set(ItemStack stack)
     {
         this.stack = Optional.of(stack);
