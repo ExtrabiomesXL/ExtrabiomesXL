@@ -1,0 +1,224 @@
+# French (CA) Localization File
+# By DragonsLover
+
+config.amica.comment=Mettez amica à "true" pour activer le support pour les autres mods.
+config.block.terraingen.comment=%s est utilisé dans la génération du terrain. Son ID doit être inférieur que 256.
+config.cautia.comment=Mettez cautia à "true" pour ajouter du danger.
+config.fabrica.comment=Mettez fabrica à "true" pour activer les objets fabricables.
+config.summa.comment=Mettez summa à "false" pour désactiver le mod.
+
+itemGroup.extrabiomesTab=ExtrabiomesXL
+
+item.extrabiomes.dye.black.name=Teinture noire
+item.extrabiomes.dye.blue.name=Teinture bleue
+item.extrabiomes.dye.brown.name=Teinture brune
+item.extrabiomes.dye.white.name=Teinture blanche
+item.extrabiomes.logturner.name=Tourne-bûche
+item.extrabiomes.logturner.description=Utilisez ceci pour changer l'orientation des bûches.
+item.extrabiomes.paste.name=Pâte de cactus
+item.extrabiomes.paste.description=Cette pâte verte faite de 4 \ominis cactus\r peut être cuite pour donner du \2\overt de cactus\r.
+item.extrabiomes.scarecrow.name=Épouvantail
+item.extrabiomes.scarecrow.description=Garde votre jardin libre de la plupart des créatures.
+
+item.extrabiomes.crop.strawberry.name=Fraise
+
+item.extrabiomes.seed.strawberry.name=Graines de fraise
+
+item.extrabiomes.food.chocolate.name=Chocolat
+item.extrabiomes.food.chocolate_strawberry.name=Fraise trempée de chocolat
+
+
+extrabiomes.planting_guide=\oGuide de plantation :\r
+
+entity.ExtrabiomesXL.scarecrow.name=Épouvantail
+
+log.message.initializing=Initialisation.
+log.message.load.success=Chargé avec succès.
+log.message.plugin.init=Initialisation du plugin %s.
+log.message.plugin.error=Impossible de communiquer avec %s. Désactivation du plugin.
+
+module.status.enabled=Le module %s est activé.
+module.status.disabled=Le module %s est désactivé, passage à l'étape suivante.
+
+tile.extrabiomes.crop.strawberry.name=Fraises
+
+tile.extrabiomes.leaves.umber.name=Feuilles d'automne ombre
+tile.extrabiomes.leaves.goldenrod.name=Feuilles d'automne solidage
+tile.extrabiomes.leaves.vermillion.name=Feuilles d'automne vermillon
+tile.extrabiomes.leaves.citrine.name=Feuilles d'automne citrine
+tile.extrabiomes.cattail.name=Quenouille
+tile.extrabiomes.crackedsand.name=Sable craquelé
+
+tile.extrabiomes.flower.autumn_shrub.name=Arbuste d'automne
+tile.extrabiomes.flower.hydrangea.name=Hydrangées
+tile.extrabiomes.flower.hydrangea.description=Ces fleurs donnent de la \b\oteinture bleu pâle\r.
+tile.extrabiomes.flower.buttercup.name=Boutons d'or
+tile.extrabiomes.flower.buttercup.description=Ces fleurs donnent de la \6\oteinture jaune\r. On dit que cette fleur fait un reflet jaune sous votre menton si vous aimez le beurre.
+tile.extrabiomes.flower.lavender.name=Lavande
+tile.extrabiomes.flower.lavender.description=En plus d'être valorisée pour ses couleurs vibrantes, mais aussi pour son odeur parfumé, cette fleur donne de la \5\oteinture mauve\r.
+tile.extrabiomes.flower.tiny_cactus.name=Mini cactus
+tile.extrabiomes.flower.tiny_cactus.description=Quatre de ces cactus non-épineux peuvent donner de la \opâte de cactus\r qui peut être cuite pour donner du \2\overt de cactus\r.
+tile.extrabiomes.flower.root.name=Racine
+tile.extrabiomes.flower.toadstool.name=Bolets orangés
+tile.extrabiomes.flower.calla_white.name=Callas blanches
+tile.extrabiomes.flower.calla_white.description=Cette fleur, qui produit de la \oteinture gris pâle\r, était également la favorite de plusieurs peintres dans leurs oeuvres d'art.
+
+tile.extrabiomes.flower.allium.name=Allium
+tile.extrabiomes.flower.allium.description=Cette fleur produit de la \d\oteinture magenta\r. Certains affirment qu'elle peut aussi être utilisée pour éloigner les vampires puisque c'est la partie florale de l'ail, mais cela n'a jamais été prouvé.
+tile.extrabiomes.flower.amaryllis_pink.name=Amaryllis roses
+tile.extrabiomes.flower.amaryllis_red.name=Amaryllis rouges
+tile.extrabiomes.flower.amaryllis_white.name=Amaryllis blanches
+tile.extrabiomes.flower.bachelors_button.name=Centaurées bleuets
+tile.extrabiomes.flower.bells_of_ireland.name=Clochettes d'irlande
+tile.extrabiomes.flower.bluebell.name=Jacinthe sauvage
+tile.extrabiomes.flower.bluebell.description=Selon la mythologie grecque, cette fleur mythique a surgi du sang du prince mourrant Hyacinthe. De la \b\oteinture bleu pâle\r peut être faite de cette fleur.
+tile.extrabiomes.flower.calla_black.name=Callas noires
+tile.extrabiomes.flower.daisy.name=Marguerite
+tile.extrabiomes.flower.dandelion.name=Pissenlits
+tile.extrabiomes.flower.eelgrass.name=Zostères
+tile.extrabiomes.flower.gardenia.name=Gardénias
+tile.extrabiomes.flower.gerbera_orange.name=Gerberas oranges
+tile.extrabiomes.flower.gerbera_pink.name=Gerberas roses
+tile.extrabiomes.flower.gerbera_red.name=Gerberas rouges
+tile.extrabiomes.flower.gerbera_yellow.name=Gerberas jaunes
+
+tile.extrabiomes.flower.oriental_pink_lily.name=Lys rose oriental
+tile.extrabiomes.flower.iris_blue.name=Iris bleue
+tile.extrabiomes.flower.iris_purple.name=Iris mauve
+tile.extrabiomes.flower.iris_purple.description=L'iris prend son nom du mot grec iridos qui signifie "arc-en-ciel", faisant référence à la grande variété de couleurs de fleur trouvées parmi les espèces. Cette fleur produit de la \5\oteinture mauve\r.
+tile.extrabiomes.flower.lily.name=Lys
+tile.extrabiomes.flower.marsh_marigold.name=Populage des marais
+tile.extrabiomes.flower.pansy.name=Pensées
+tile.extrabiomes.flower.poppy.name=Coquelicots
+tile.extrabiomes.flower.redrover.name=Red Rovers
+tile.extrabiomes.flower.snapdragon.name=Gueules de loup
+tile.extrabiomes.flower.tulip.name=Tulipes
+tile.extrabiomes.flower.violet.name=Violettes
+tile.extrabiomes.flower.yarrow.name=Achillées millefeuille
+tile.extrabiomes.flower.belladonna.name=Pieds d'alouette
+tile.extrabiomes.flower.blue_poppy.name=Pavots bleus
+tile.extrabiomes.flower.blue_poppy.description=Cette splendide fleur produit de la \3\oteinture cyan\r.
+
+tile.extrabiomes.vine.gloriosa.name=Gloriosa
+tile.extrabiomes.vine.spanish_moss.name=Mousse espagnole
+
+tile.extrabiomes.leaves.fir.name=Feuilles de sapin
+tile.extrabiomes.leaves.redwood.name=Feuilles de séquoia
+tile.extrabiomes.leaves.acacia.name=Feuilles d'acacia
+tile.extrabiomes.leaves.cypress.name=Feuilles de cyprès
+tile.extrabiomes.leaves.bald_cypress.name=Feuilles de cyprès chauve
+tile.extrabiomes.leaves.japanese_maple.name=Feuilles d'érable japonais
+tile.extrabiomes.leaves.japanese_maple_shrub.name=Feuilles d'arbuste d'érable japonais
+tile.extrabiomes.leaves.rainbow_eucalyptus.name=Feuilles d'eucalyptus arc-en-ciel
+tile.extrabiomes.leaves.sakura_blossom.name=Feuilles de sakura
+tile.extrabiomes.leafpile.name=Tas de feuilles
+tile.extrabiomes.log.0.name=Bois de sapin
+tile.extrabiomes.log.1.name=Bois d'acacia
+tile.extrabiomes.log.2.name=Bois de cyprès
+tile.extrabiomes.log.3.name=Bois d'érable japonais
+tile.extrabiomes.log.sakura_blossom.name=Bois de sakura
+tile.extrabiomes.cypresskneelog.name=Coude de cyprès chauve
+tile.extrabiomes.rainbowkneelog.name=Coude d'eucalyptus arc-en-ciel
+tile.extrabiomes.newlog.0.name=Bois d'eucalyptus arc-en-ciel
+tile.extrabiomes.newlog.1.name=Bois d'automne
+tile.extrabiomes.newlog.2.name=Bois de cyprès chauve
+tile.extrabiomes.newlog.3.name=Bois de séquoia
+tile.extrabiomes.log.quarter.0.name=Quart de bois de vieux séquoia
+tile.extrabiomes.log.quarter.1.name=Quart de bois de vieux sapin
+tile.extrabiomes.log.quarter.2.name=Quart de bois de vieux chêne
+tile.extrabiomes.rainboweucalyptusquarter.name=Quart de bois de vieil eucalyptus
+tile.extrabiomes.baldcypressquarter.name=Quart de bois de vieux cyprès
+tile.extrabiomes.redwoodquarter.name=Quart de bois de séquoia
+tile.extrabiomes.firquarter.name=Quart de bois de sapin
+tile.extrabiomes.oakquarter.name=Quart de bois de chêne
+tile.extrabiomes.planks.0.name=Planches de séquoia
+tile.extrabiomes.planks.1.name=Planches de sapin
+tile.extrabiomes.planks.2.name=Planches d'acacia
+tile.extrabiomes.planks.3.name=Planches de cyprès
+tile.extrabiomes.planks.4.name=Planches d'érable japonais
+tile.extrabiomes.planks.5.name=Planches d'eucalyptus arc-en-ciel
+tile.extrabiomes.planks.6.name=Planches d'automne
+tile.extrabiomes.planks.7.name=Planches de cyprès chauve
+tile.extrabiomes.planks.8.name=Planches de sakura
+tile.extrabiomes.quicksand.name=Sable mouvant
+tile.extrabiomes.redrock.0.name=Roche rouge
+tile.extrabiomes.redrock.1.name=Cobble rouge
+tile.extrabiomes.redrock.2.name=Briques de pierre rouge
+tile.extrabiomes.redrockslab.redcobble.name=Dalle de cobble rouge
+tile.extrabiomes.redrockslab.redrock.name=Dalle de pierre rouge
+tile.extrabiomes.redrockslab.redrockbrick.name=Dalle de briques de pierre rouge
+tile.extrabiomes.sapling.umber.name=Pousse d'arbre d'automne ombre
+tile.extrabiomes.sapling.goldenrod.name=Pousse d'arbre d'automne solidage
+tile.extrabiomes.sapling.vermillion.name=Pousse d'arbre d'automne vermillon
+tile.extrabiomes.sapling.citrine.name=Pousse d'arbre d'automne citrine
+tile.extrabiomes.sapling.fir.name=Pousse de sapin
+tile.extrabiomes.sapling.redwood.name=Pousse de séquoia
+tile.extrabiomes.sapling.acacia.name=Pousse d'acacia
+tile.extrabiomes.sapling.cypress.name=Pousse de cyprès
+tile.extrabiomes.sapling.bald_cypress.name=Pousse de cyprès chauve
+tile.extrabiomes.sapling.japanese_maple.name=Pousse d'érable japonais
+tile.extrabiomes.sapling.japanese_maple_shrub.name=Pousse d'arbuste d'érable japonais
+tile.extrabiomes.sapling.rainbow_eucalyptus.name=Pousse d'eucalyptus arc-en-ciel
+tile.extrabiomes.sapling.sakura_blossom.name=Pousse de sakura
+tile.extrabiomes.stairs.acacia.name=Escaliers en bois d'acacia
+tile.extrabiomes.stairs.fir.name=Escaliers en bois de sapin
+tile.extrabiomes.stairs.redcobble.name=Escaliers en cobble rouge
+tile.extrabiomes.stairs.redrockbrick.name=Escaliers en briques de pierre rouge
+tile.extrabiomes.stairs.redwood.name=Escaliers en bois de séquoia
+tile.extrabiomes.stairs.japanesemaple.name=Escaliers en bois d'érable japonais
+tile.extrabiomes.stairs.cypress.name=Escaliers en bois de cyprès
+tile.extrabiomes.stairs.baldcypress.name=Escaliers en bois de cyprès chauve
+tile.extrabiomes.stairs.autumn.name=Escaliers en bois d'automne
+tile.extrabiomes.stairs.rainboweucalyptus.name=Escaliers en bois d'eucalyptus arc-en-ciel
+tile.extrabiomes.stairs.sakurablossom.name=Escaliers en bois de sakura
+tile.extrabiomes.tallgrass.0.name=Herbe brune
+tile.extrabiomes.tallgrass.1.name=Herbe brune basse
+tile.extrabiomes.tallgrass.2.name=Herbe morte
+tile.extrabiomes.tallgrass.3.name=Hautes herbes mortes
+tile.extrabiomes.tallgrass.4.name=Herbe jaune morte
+tile.extrabiomes.wall.0.name=Muret de cobble rouge
+tile.extrabiomes.woodslab.acacia.name=Dalle en bois d'acacia
+tile.extrabiomes.woodslab.fir.name=Dalle en bois de sapin
+tile.extrabiomes.woodslab.redwood.name=Dalle en bois de séquoia
+tile.extrabiomes.woodslab.japanese_maple.name=Dalle en bois d'érable japonais
+tile.extrabiomes.woodslab.cypress.name=Dalle en bois de cyprès
+tile.extrabiomes.woodslab.rainbow_eucalyptus.name=Dalle en bois d'eucalyptus arc-en-ciel
+tile.extrabiomes.woodslab.autumn.name=Dalle en bois d'automne
+tile.extrabiomes.woodslab.bald_cypress.name=Dalle en bois de cyprès chauve
+tile.extrabiomes.woodslab.sakura_blossom.name=Dalle en bois de sakura
+
+tile.extrabiomes.waterplant.eelgrass.name=Zostères
+tile.extrabiomes.waterplant.eelgrass.description=Cette herbe pousse sous l'eau. Du \2\overt de cactus\r peut en être fait.
+
+tile.extrabiomes.door.acacia.name=Porte en bois d'acacia
+tile.extrabiomes.door.autumn.name=Porte en bois d'automne
+tile.extrabiomes.door.baldcypress.name=Porte en bois de cyprès chauve
+tile.extrabiomes.door.cypress.name=Porte en bois de cyprès
+tile.extrabiomes.door.fir.name=Porte en bois de sapin
+tile.extrabiomes.door.japanesemaple.name=Porte en bois d'érable japonais
+tile.extrabiomes.door.rainboweucalyptus.name=Porte en bois d'eucalyptus arc-en-ciel
+tile.extrabiomes.door.redwood.name=Porte en bois de séquoia
+tile.extrabiomes.door.sakura.name=Porte en bois de sakura
+
+tile.extrabiomes.fence.acacia.name=Clôture en bois d'acacia
+tile.extrabiomes.fence.autumn.name=Clôture en bois d'automne
+tile.extrabiomes.fence.baldcypress.name=Clôture en bois de cyprès chauve
+tile.extrabiomes.fence.cypress.name=Clôture en bois de cyprès
+tile.extrabiomes.fence.fir.name=Clôture en bois de sapin
+tile.extrabiomes.fence.japanesemaple.name=Clôture en bois d'érable japonais
+tile.extrabiomes.fence.rainboweucalyptus.name=Clôture en bois d'eucalyptus arc-en-ciel
+tile.extrabiomes.fence.redwood.name=Clôture en bois de séquoia
+tile.extrabiomes.fence.sakura.name=Clôture en bois de sakura
+
+tile.extrabiomes.fencegate.acacia.name=Porte de clôture en bois d'acacia
+tile.extrabiomes.fencegate.autumn.name=Porte de clôture en bois d'automne
+tile.extrabiomes.fencegate.baldcypress.name=Porte de clôture en bois de cyprès chauve
+tile.extrabiomes.fencegate.cypress.name=Porte de clôture en bois de cyprès
+tile.extrabiomes.fencegate.fir.name=Porte de clôture en bois de sapin
+tile.extrabiomes.fencegate.japanesemaple.name=Porte de clôture en bois d'érable japonais
+tile.extrabiomes.fencegate.rainboweucalyptus.name=Porte de clôture en bois d'eucalyptus arc-en-ciel
+tile.extrabiomes.fencegate.redwood.name=Porte de clôture en bois de séquoia
+tile.extrabiomes.fencegate.sakura.name=Porte de clôture en bois de sakura
+
+extrabiomes.elbow.crafting=Peut devenir du bois normal et vice-versa par un L de taille 2x2 dans une grille de fabrication.
+extrabiomes.cornerlog.crafting=Peut devenir du bois normal et vice-versa par un carré de taille 2x2 dans une grille de fabrication.
