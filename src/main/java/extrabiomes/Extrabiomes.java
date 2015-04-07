@@ -41,7 +41,7 @@ import extrabiomes.handlers.RecipeHandler;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.Reference;
-import extrabiomes.module.amica.treecapitator.TreeCapitatorPlugin;
+import extrabiomes.module.amica.treecapitator.TreecapitatorPlugin;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.plugins.ForestryPlugin;
 import extrabiomes.plugins.PluginThaumcraft4;
@@ -66,7 +66,7 @@ public class Extrabiomes {
   @Mod.EventHandler
   public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException {
     proxy.registerRenderInformation();
-    TreeCapitatorPlugin.init();
+    TreecapitatorPlugin.init();
     ForestryPlugin.init();
 
   }
