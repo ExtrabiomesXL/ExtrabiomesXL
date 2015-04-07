@@ -127,18 +127,22 @@ public class ForestryPlugin {
   }
 
   private static void addBackpaclItems() {
-    Collection<ItemStack> items = ForestryModHelper.getForesterBackPackItems();
-    for (final ItemStack item : items) {
-      forestry.api.storage.BackpackManager.backpackItems[FORESTER].add(item);
-    }
-    
-    items = ForestryModHelper.getDiggerBackPackItems();
-    for (final ItemStack item : items) {
-      forestry.api.storage.BackpackManager.backpackItems[DIGGER].add(item);
-    }
-    
-    if (Stuff.quickSand.isPresent()) {
-      forestry.api.storage.BackpackManager.backpackItems[DIGGER].add(new ItemStack(Stuff.quickSand.get()));
+    try {
+      Collection<ItemStack> items = ForestryModHelper.getForesterBackPackItems();
+      for (final ItemStack item : items) {
+        forestry.api.storage.BackpackManager.backpackItems[FORESTER].add(item);
+      }
+
+      items = ForestryModHelper.getDiggerBackPackItems();
+      for (final ItemStack item : items) {
+        forestry.api.storage.BackpackManager.backpackItems[DIGGER].add(item);
+      }
+
+      if (Stuff.quickSand.isPresent()) {
+        forestry.api.storage.BackpackManager.backpackItems[DIGGER].add(new ItemStack(Stuff.quickSand.get()));
+      }
+    } catch (Exception e) {
+      // The user does not have Forestry Backpacks module loaded.
     }
   }
 

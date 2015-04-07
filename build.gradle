@@ -37,27 +37,27 @@ minecraft {
 }
 
 sourceSets {
-	main {
-		java {
-			srcDir project.apiATG
-			srcDir project.apiForestry
-			srcDir project.apiNewDawn
-			srcDir project.apiThaumcraft
-			exclude '**/foresty/api/arborculture/**'
-			exclude '**/foresty/api/circuits/**'
-			exclude '**/foresty/api/food/**'
-			exclude '**/foresty/api/fuel/**'
-			exclude '**/foresty/api/lepidopterology/**'
-			exclude '**/foresty/api/mail/**'
-			exclude '**/foresty/api/world/**'
-			exclude '**/thaumcraft/api/damagesource/**'
-			exclude '**/thaumcraft/api/entities/**'
-			exclude '**/thaumcraft/api/nodes/**'
-			exclude '**/thaumcraft/api/potions/**'
-			exclude '**/thaumcraft/api/visnet/**'
-			exclude '**/thaumcraft/api/wands/**'
-		}
-	}
+  main {
+    java {
+      srcDir project.apiATG
+      srcDir project.apiForestry
+      srcDir project.apiNewDawn
+      srcDir project.apiThaumcraft
+      exclude '**/foresty/api/arborculture/**'
+      exclude '**/foresty/api/circuits/**'
+      exclude '**/foresty/api/food/**'
+      exclude '**/foresty/api/fuel/**'
+      exclude '**/foresty/api/lepidopterology/**'
+      exclude '**/foresty/api/mail/**'
+      exclude '**/foresty/api/world/**'
+      exclude '**/thaumcraft/api/damagesource/**'
+      exclude '**/thaumcraft/api/entities/**'
+      exclude '**/thaumcraft/api/nodes/**'
+      exclude '**/thaumcraft/api/potions/**'
+      exclude '**/thaumcraft/api/visnet/**'
+      exclude '**/thaumcraft/api/wands/**'
+    }
+  }
 }
 
 processResources
@@ -70,7 +70,7 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
 
-    	expand 'version': project.version, 'mcversion': project.minecraft.version
+      expand 'version': project.version, 'mcversion': project.minecraft.version
     }
 
     // copy everything else, thats we didnt do before
@@ -80,12 +80,12 @@ processResources
 }
 
 jar {
-	exclude 'forestry'
+  exclude 'forestry'
     exclude 'thaumcraft'
-	exclude 'ttftcuts'
-	exclude 'two'
+  exclude 'ttftcuts'
+  exclude 'two'
 
-	includeEmptyDirs = false
+  includeEmptyDirs = false
 }
 
 // add a source jar
@@ -101,43 +101,43 @@ task sourceJar(type: Jar) {
 
 // create a deobfuscated jar for developers
 task devJar(type: Jar) {
-	from(sourceSets.main.output) {
-		include '**'
-	}
+  from(sourceSets.main.output) {
+    include '**'
+  }
 
-	exclude 'forestry'
+  exclude 'forestry'
     exclude 'thaumcraft'
-	exclude 'ttftcuts'
-	exclude 'two'
+  exclude 'ttftcuts'
+  exclude 'two'
 
-	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-	classifier = 'dev'
+  classifier = 'dev'
 }
 
 // create a source jar
 task srcJar(type: Jar) {
-	from(sourceSets.main.allSource) {
-		include '**'
-	}
+  from(sourceSets.main.allSource) {
+    include '**'
+  }
 
-	exclude 'forestry'
+  exclude 'forestry'
     exclude 'thaumcraft'
-	exclude 'ttftcuts'
-	exclude 'two'
+  exclude 'ttftcuts'
+  exclude 'two'
 
-	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-	classifier = 'src'
+  classifier = 'src'
 }
 
 // create an api jar for developers
 task apiJar(type: Jar, dependsOn: 'classes') {
-	from (sourceSets.main.output) {
-		include 'extrabiomes/api/**'
-	}
-	extension = 'jar'
-	classifier = 'api'
+  from (sourceSets.main.output) {
+    include 'extrabiomes/api/**'
+  }
+  extension = 'jar'
+  classifier = 'api'
 }
 
 artifacts {
@@ -149,41 +149,4 @@ artifacts {
 signing {
     required { gradle.taskGraph.hasTask(":uploadArchives") }
     sign configurations.archives
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            pom.project {
-                name 'ExtrabiomesXL'
-                packaging 'jar'
-                // optionally artifactId can be defined here
-                description 'The ExtrabiomesXL mod for Minecraft.'
-                url 'http://extrabiomes.net/'
-
-                scm {
-                    connection 'scm:git:git@github.com:ExtrabiomesXL/ExtrabiomesXL.git'
-                    developerConnection 'scm:git:git@github.com:ExtrabiomesXL/ExtrabiomesXL.git'
-                    url 'http://github.com/ExtrabiomesXL/ExtrabiomesXL'
-                }
-
-                licenses {
-                    license {
-                        name 'Creative Commons Attribution-ShareAlike 3.0 Unported License'
-                        url 'http://creativecommons.org/licenses/by-sa/3.0/deed.en_US'
-                    }
-                }
-            }
-        }
-    }
 }
