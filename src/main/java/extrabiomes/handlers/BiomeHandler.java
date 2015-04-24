@@ -27,6 +27,7 @@ import extrabiomes.module.summa.worldgen.MarshGenerator;
 import extrabiomes.module.summa.worldgen.MountainDesertGenerator;
 import extrabiomes.module.summa.worldgen.MountainRidgeGenerator;
 import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
+import extrabiomes.utility.EnhancedConfiguration;
 
 public enum BiomeHandler
 {
@@ -80,7 +81,7 @@ public enum BiomeHandler
         Api.getExtrabiomesXLEventBus().register(INSTANCE);
     }
     
-    public static void registerWorldGenerators()
+    public static void registerWorldGenerators(EnhancedConfiguration config)
     {
         if (BiomeSettings.MARSH.isEnabled() && BiomeSettings.MARSH.getBiome().isPresent())
         {
@@ -98,7 +99,11 @@ public enum BiomeHandler
         }
         
         Extrabiomes.proxy.registerWorldGenerator(new VanillaFloraGenerator());
-        Extrabiomes.proxy.registerWorldGenerator(new LegendOakGenerator());
+        
+        // allow legendary oaks to be disabled
+        if( config.get(config.CATEGORY_GENERAL, "GenerateLegendOaks", true).getBoolean() ) {
+        	Extrabiomes.proxy.registerWorldGenerator(new LegendOakGenerator());
+        }
     }
     
     @SubscribeEvent

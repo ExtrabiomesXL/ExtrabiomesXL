@@ -37,7 +37,7 @@ public abstract class ConfigurationHandler
 		init(configFile, false);
 	}
 
-	public static void init(File configFile, boolean upgradeOverride)
+	public static EnhancedConfiguration init(File configFile, boolean upgradeOverride)
     {
 		if (upgradeOverride) {
 			LogHelper.info("Overriding upgrade preference");
@@ -132,8 +132,12 @@ public abstract class ConfigurationHandler
         }
         finally
         {
-            if (optionalConfig.isPresent())
-                optionalConfig.get().save();
+            if (optionalConfig.isPresent()) {
+            	final EnhancedConfiguration config = optionalConfig.get();
+            	config.save();
+            	return config;
+            }
         }
+        return null;
     }
 }
