@@ -12,6 +12,7 @@ import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
+import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Reference;
 import extrabiomes.module.amica.buildcraft.FacadeHelper;
@@ -53,6 +54,10 @@ public enum BlockManager
     {
         for (final BlockManager block : BlockManager.values())
             {
+        		if( !block.getSettings().getEnabled() ) {
+        			LogHelper.fine("Skipping registration of disabled block "+block);
+        			continue;
+        		}
                 try
                 {
                     block.create();

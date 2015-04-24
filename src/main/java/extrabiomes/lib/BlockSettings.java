@@ -123,9 +123,9 @@ public enum BlockSettings
     	this.item = item;
     }
     
-    private String idKey()
+    private String enabledKey()
     {
-        return toString() + ".id";
+        return toString() + ".enabled";
     }
     
     private boolean isQuarterLog()
@@ -135,110 +135,17 @@ public enum BlockSettings
     
     public void load(EnhancedConfiguration configuration, boolean update)
     {
-    	// TODO: actually rewrite config loading
-    	/*
-        Property property;
-        switch (this)
-        {
-            case CRACKEDSAND:
-            case REDROCK:
-            	if(update) {
-            		property = configuration.get(Configuration.CATEGORY_BLOCK, idKey(), blockID);
-            	} else {
-            		property = configuration.getTerrainBlock(Configuration.CATEGORY_BLOCK, idKey(), blockID, String.format("%s is used in terrain generation. Its id must be less than 256.", toString()));
-            	}
-                break;
-            default:
-            	if(update) {
-            		property = configuration.get(Configuration.CATEGORY_BLOCK, idKey(), blockID);
-            	} else {
-            		property = configuration.getBlock(idKey(), blockID);
-            	}
-        }
-        
-        blockID = property.getInt(0);
-        
-        if (isQuarterLog())
-        {
-            if (blockID == 0 && !clearedQuarterLogs)
-            {
-                final BlockSettings[] settings = { QUARTERLOG0, QUARTERLOG1, QUARTERLOG2, QUARTERLOG3 };
-                
-                for (final BlockSettings setting : settings)
-                {
-                    setting.setToZero(configuration);
-                }
-                
-                clearedQuarterLogs = true;
-            }
-        }
-        
-        if (this == PLANKS)
-        {
-            if (blockID == 0)
-            {
-                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB, FIRSTAIRS, REDWOODSTAIRS, ACACIASTAIRS };
-                
-                for (final BlockSettings setting : settings)
-                {
-                    setting.setToZero(configuration);
-                }
-            }
-        }
-        
-        if (this == REDROCK)
-        {
-            if (blockID == 0)
-            {
-                final BlockSettings[] settings = { REDROCKSLAB, WALL };
-                
-                for (final BlockSettings setting : settings)
-                {
-                    setting.setToZero(configuration);
-                }
-            }
-        }
-        
-        if (this == WOODSLAB || this == DOUBLEWOODSLAB)
-        {
-            if (blockID == 0 && !clearedWoodSlabs)
-            {
-                final BlockSettings[] settings = { WOODSLAB, DOUBLEWOODSLAB };
-                
-                for (final BlockSettings setting : settings)
-                {
-                    setting.setToZero(configuration);
-                }
-                
-                clearedWoodSlabs = true;
-            }
-        }
-        
-        if (this == REDROCKSLAB || this == DOUBLEREDROCKSLAB)
-        {
-            if (blockID == 0 && !clearedWoodSlabs)
-            {
-                final BlockSettings[] settings = { REDROCKSLAB, DOUBLEREDROCKSLAB };
-                
-                for (final BlockSettings setting : settings)
-                {
-                    setting.setToZero(configuration);
-                }
-                
-                clearedWoodSlabs = true;
-            }
-        }
-        */
+    	switch( this ) {
+    		// case REDROCK:
+	    	case CRACKEDSAND:
+	    	case QUICKSAND:
+	    		final Property property = configuration.get(configuration.CATEGORY_BLOCK, enabledKey(), true);
+	    		this.enabled = property.getBoolean();
+	    		break;
+			default:
+				break;
+    	}
     }
-    
-    /*
-    private void setToZero(EnhancedConfiguration configuration)
-    {	
-        final Property property = configuration.getBlock(idKey(), 0);
-        property.set(Integer.toString(0));
-        blockID = 0;
-    }
-    */
     
     @Override
     public String toString()
