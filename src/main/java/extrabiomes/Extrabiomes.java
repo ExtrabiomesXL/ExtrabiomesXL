@@ -41,9 +41,9 @@ import extrabiomes.handlers.RecipeHandler;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.Reference;
+import extrabiomes.module.amica.forestry.ForestryPlugin;
 import extrabiomes.module.amica.treecapitator.TreecapitatorPlugin;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
-import extrabiomes.plugins.ForestryPlugin;
 import extrabiomes.plugins.PluginThaumcraft4;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
@@ -84,10 +84,6 @@ public class Extrabiomes {
       } catch (Exception e) {
         LogHelper.warning("ExtrabiomesXL's Thaumcraft API implementaion is most likely out of date. Fell free to let us know.");
       }
-    }
-
-    if (ForestryPlugin.isEnabled()) {
-      ForestryPlugin.postInit();
     }
 
     LogHelper.info("Successfully Loaded.");
