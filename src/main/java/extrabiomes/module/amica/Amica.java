@@ -12,7 +12,6 @@ import extrabiomes.api.Api;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.module.amica.atg.ATGPlugin;
 import extrabiomes.module.amica.buildcraft.BuildcraftPlugin;
-import extrabiomes.module.amica.forestry.ForestryPlugin;
 import extrabiomes.module.amica.ic2.IC2Plugin;
 import extrabiomes.module.amica.newdawn.NewDawnPlugin;
 
@@ -26,7 +25,6 @@ public class Amica
     public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException
     {
         Api.registerPlugin(new BuildcraftPlugin());
-        //Api.registerPlugin(new ForestryPlugin());
         Api.registerPlugin(new IC2Plugin());
         Api.registerPlugin(new ATGPlugin());
         Api.registerPlugin(new NewDawnPlugin());
