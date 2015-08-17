@@ -25,7 +25,6 @@ group = "net.extrabiomes"
 archivesBaseName = "extrabiomesxl_"+ project.mcversion
 
 ext.apiATG = "./api/atg"
-ext.apiForestry = "./api/forestry"
 ext.apiNewDawn = "./api/newdawn"
 ext.apiThaumcraft = "./api/thaumcraft"
 
@@ -40,16 +39,8 @@ sourceSets {
   main {
     java {
       srcDir project.apiATG
-      srcDir project.apiForestry
       srcDir project.apiNewDawn
       srcDir project.apiThaumcraft
-      exclude '**/foresty/api/arborculture/**'
-      exclude '**/foresty/api/circuits/**'
-      exclude '**/foresty/api/food/**'
-      exclude '**/foresty/api/fuel/**'
-      exclude '**/foresty/api/lepidopterology/**'
-      exclude '**/foresty/api/mail/**'
-      exclude '**/foresty/api/world/**'
       exclude '**/thaumcraft/api/damagesource/**'
       exclude '**/thaumcraft/api/entities/**'
       exclude '**/thaumcraft/api/nodes/**'
@@ -80,7 +71,6 @@ processResources
 }
 
 jar {
-  exclude 'forestry'
     exclude 'thaumcraft'
   exclude 'ttftcuts'
   exclude 'two'
@@ -93,7 +83,6 @@ task sourceJar(type: Jar) {
     from sourceSets.main.allSource 
     appendix = 'deobf'
     classifier = 'src'
-    exclude 'forestry/**'
     exclude 'thaumcraft/**'
     exclude 'ttftcuts/**'
     exclude 'two/**'
@@ -105,7 +94,6 @@ task devJar(type: Jar) {
     include '**'
   }
 
-  exclude 'forestry'
     exclude 'thaumcraft'
   exclude 'ttftcuts'
   exclude 'two'
@@ -121,7 +109,6 @@ task srcJar(type: Jar) {
     include '**'
   }
 
-  exclude 'forestry'
     exclude 'thaumcraft'
   exclude 'ttftcuts'
   exclude 'two'

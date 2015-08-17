@@ -28,7 +28,7 @@ item.extrabiomes.food.chocolate_strawberry.name=Клубника в шокола
 
 extrabiomes.planting_guide=\oРуководство по посадке:\r
 
-entity.extrabiomes.scarecrow.name=Пугало
+entity.ExtrabiomesXL.scarecrow.name=Пугало
 
 log.message.initializing=Инициализация.
 log.message.load.success=Успешно загружен.
