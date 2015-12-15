@@ -27,11 +27,12 @@ public class ItemCustomLeaves extends MultiItemBlock
     public String getUnlocalizedName(ItemStack itemstack)
     {
         int metadata = unmarkedMetadata(itemstack.getItemDamage());
-        if (metadata > 3)
-            metadata = 3;
+        BlockAutumnLeaves.BlockType[] validTypes = BlockAutumnLeaves.BlockType.values();
+        if (metadata > validTypes.length )
+            metadata = validTypes.length;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
-        return super.getUnlocalizedName() + "." + BlockAutumnLeaves.BlockType.values()[metadata].toString().toLowerCase(Locale.ENGLISH);
+        return super.getUnlocalizedName() + "." + validTypes[metadata].toString().toLowerCase(Locale.ENGLISH);
     }
     
     private static final int METADATA_USERPLACEDBIT = 0x4;
