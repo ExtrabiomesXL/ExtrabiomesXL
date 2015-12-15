@@ -1,6 +1,13 @@
 #Macintosh file system junk
 .DS_Store
 
+#IDEA project
+*.iml
+*.ipr
+*.iws
+
+*.swp
+
 #Windows thumbnail cache trash
 Thumbs.db
 *.jar
