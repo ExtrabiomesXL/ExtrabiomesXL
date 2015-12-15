@@ -8,6 +8,8 @@ package extrabiomes.handlers;
 
 import java.util.Collection;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
@@ -435,7 +437,8 @@ public abstract class BlockHandler
 
         ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
 
-        BlockMiniLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderMiniLog()));
+        if( proxy.isClientProxy() )
+            BlockMiniLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderMiniLog()));
     }
 
     private static void createKneeLogs()
@@ -469,7 +472,8 @@ public abstract class BlockHandler
         Element.LOG_KNEE_BALD_CYPRESS.set(new ItemStack(block, 1, Short.MAX_VALUE));
         Element.LOG_KNEE_RAINBOW_EUCALYPTUS.set(new ItemStack(block2, 1, Short.MAX_VALUE));
 
-        BlockKneeLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderKneeLog()));
+        if( proxy.isClientProxy() )
+            BlockKneeLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderKneeLog()));
 
         ForestryModHelper.addToForesterBackpack(new ItemStack(block.blockID, 1, Short.MAX_VALUE));
         ForestryModHelper.addToForesterBackpack(new ItemStack(block2.blockID, 1, Short.MAX_VALUE));
@@ -482,7 +486,8 @@ public abstract class BlockHandler
     private static void createNewQuarterLogs()
     {
         final CommonProxy proxy = Extrabiomes.proxy;
-    	BlockNewQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderNewQuarterLog()));
+        if( proxy.isClientProxy() )
+    	    BlockNewQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderNewQuarterLog()));
 
         final BlockNewQuarterLog block = new BlockNewQuarterLog(BlockSettings.NEWQUARTERLOG.getID(), "baldcypress");
         if (!ModuleControlSettings.SUMMA.isEnabled() || BlockSettings.NEWQUARTERLOG.getID() <= 0)
@@ -581,11 +586,12 @@ public abstract class BlockHandler
         final BlockQuarterLog blockSW = new BlockQuarterLog(blockIDSW, 144, BlockQuarterLog.BarkOn.SW);
         final BlockQuarterLog blockSE = new BlockQuarterLog(blockIDSE, 144, BlockQuarterLog.BarkOn.SE);
 
+        final CommonProxy proxy = Extrabiomes.proxy;
+
         for (final BlockQuarterLog block : new BlockQuarterLog[] { blockNW, blockNE, blockSW, blockSE })
         {
             block.setUnlocalizedName("extrabiomes.log.quarter").setStepSound(Block.soundWoodFootstep).setHardness(2.0F).setResistance(Block.wood.getExplosionResistance(null) * 5.0F); //*/.setCreativeTab(Extrabiomes.tabsEBXL);
 
-            final CommonProxy proxy = Extrabiomes.proxy;
             proxy.setBlockHarvestLevel(block, "axe", 0);
             proxy.registerBlock(block, ItemOldQuarterLog.class, block.getUnlocalizedName() + ":" + block.getBarkOnSides().toString() + ":" + block.getClass().getName());
             proxy.registerOreInAllSubblocks("logWood", block);
@@ -607,8 +613,9 @@ public abstract class BlockHandler
         Element.LOG_HUGE_REDWOOD_SE.set(new ItemStack(blockSE, 1, BlockQuarterLog.BlockType.REDWOOD.metadata()));
         
         // Create the recipies to update logs
-        
-        BlockQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderQuarterLog()));
+
+        if( proxy.isClientProxy() )
+            BlockQuarterLog.setRenderId(Extrabiomes.proxy.registerBlockHandler(new RenderQuarterLog()));
 
         for (final BlockQuarterLog.BlockType type : BlockQuarterLog.BlockType.values())
         {

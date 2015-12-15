@@ -1,5 +1,7 @@
 package extrabiomes.renderers;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -12,6 +14,7 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import extrabiomes.blocks.BlockMiniLog;
 import extrabiomes.lib.Blocks;
 
+@SideOnly(Side.CLIENT)
 public class RenderMiniLog implements ISimpleBlockRenderingHandler
 {
     

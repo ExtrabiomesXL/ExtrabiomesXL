@@ -41,6 +41,7 @@ import extrabiomes.lib.Reference;
 
 public class CommonProxy
 {
+    public boolean isClientProxy() { return false; }
 
     public void addBiome(Collection<WorldType> worldTypes, BiomeGenBase biome)
     {

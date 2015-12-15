@@ -19,6 +19,9 @@ import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
 public class ClientProxy extends CommonProxy
 {
     @Override
+    public boolean isClientProxy() { return true; }
+
+    @Override
     public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
     {
         final int renderId = RenderingRegistry.getNextAvailableRenderId();
