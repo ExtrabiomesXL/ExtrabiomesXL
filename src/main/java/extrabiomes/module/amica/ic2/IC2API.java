@@ -12,6 +12,8 @@ import net.minecraft.world.biome.BiomeGenBase;
 
 import com.google.common.base.Optional;
 
+import extrabiomes.helpers.LogHelper;
+
 class IC2API
 {
     
@@ -32,7 +34,7 @@ class IC2API
         }
         catch (final Exception e)
         {
-            e.printStackTrace();
+        	LogHelper.fine("Found incompatible IC2 version.", e);
             addBiomeBonus = Optional.absent();
         }
     }
@@ -47,7 +49,7 @@ class IC2API
         {}
         catch (final Exception e)
         {
-            e.printStackTrace();
+        	LogHelper.fine("Found incompatible IC2 version.", e);
         }
     }
     
