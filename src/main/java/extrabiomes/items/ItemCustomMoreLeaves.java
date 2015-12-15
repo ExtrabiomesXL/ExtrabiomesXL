@@ -19,8 +19,8 @@ public class ItemCustomMoreLeaves extends ItemCustomLeaves
     {
         int metadata = unmarkedMetadata(itemstack.getItemDamage());
         BlockMoreLeaves.BlockType[] validTypes = BlockMoreLeaves.BlockType.values();
-        if (metadata > validTypes.length )
-            metadata = validTypes.length;
+        if (metadata >= validTypes.length )
+            metadata = validTypes.length-1;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
         return super.getUnlocalizedName() + "." + validTypes[metadata].toString().toLowerCase(Locale.ENGLISH);

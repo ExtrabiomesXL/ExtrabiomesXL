@@ -28,8 +28,8 @@ public class ItemCustomLeaves extends MultiItemBlock
     {
         int metadata = unmarkedMetadata(itemstack.getItemDamage());
         BlockAutumnLeaves.BlockType[] validTypes = BlockAutumnLeaves.BlockType.values();
-        if (metadata > validTypes.length )
-            metadata = validTypes.length;
+        if (metadata >= validTypes.length )
+            metadata = validTypes.length-1;
         itemstack = itemstack.copy();
         itemstack.setItemDamage(metadata);
         return super.getUnlocalizedName() + "." + validTypes[metadata].toString().toLowerCase(Locale.ENGLISH);
