@@ -48,6 +48,7 @@ public class ItemBlockWaterPlant extends ItemBlock
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
+    	// NB: BlockWaterPlant handles the safety net, so we can't check here
         return ((BlockWaterPlant) block).getLocalizedName(itemStack.getItemDamage());
     }
     

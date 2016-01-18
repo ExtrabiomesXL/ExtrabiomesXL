@@ -77,11 +77,13 @@ public class BlockWaterPlant extends Block {
         return null;
     }
     
-    public String getLocalizedName(int metaData) {
-    	if(subBlocks[metaData] == null) {
+    public String getLocalizedName(int metadata) {
+    	if( metadata < 0 || metadata >= subBlocks.length )
+    		metadata = subBlocks.length-1;
+    	if(subBlocks[metadata] == null) {
     		return "extrabiomes.invaliditem";
     	} else {
-    		return this.getUnlocalizedName() + "." + subBlocks[metaData].getUnlocalizedName();
+    		return this.getUnlocalizedName() + "." + subBlocks[metadata].getUnlocalizedName();
     	}
     }
     
