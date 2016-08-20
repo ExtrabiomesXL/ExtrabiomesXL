@@ -8,6 +8,7 @@ package extrabiomes.handlers;
 
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import extrabiomes.blocks.BlockCropBasic;
 
@@ -24,13 +25,14 @@ public class CropBonemealEventHandler
     @SubscribeEvent
     public void onBonemealEvent(BonemealEvent e)
     {
-		if (e.getResult() == Result.DEFAULT && e.block.equals(crop))
+		if (e.getResult() == Result.DEFAULT && e.getBlock().equals(crop))
         {
-            if (!e.world.isRemote)
+			final World world = e.getWorld();
+            if (!world.isRemote)
             {
-                if (e.world.rand.nextFloat() < 0.45D)
+                if (world.rand.nextFloat() < 0.45D)
                 {
-					crop.markOrGrowMarked(e.world, e.x, e.y, e.z, e.world.rand);
+					crop.markOrGrowMarked(world, e.getPos(), world.rand);
                 }
                 
                 e.setResult(Result.ALLOW);

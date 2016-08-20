@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -139,7 +140,7 @@ public class BlockCropBasic extends BlockFlower {
 		super.updateTick(world, x, y, z, rand);
 		
 		if( world.getBlockLightValue(x, y, z) >= MIN_LIGHT_LEVEL ) {
-			int meta = world.getBlockMetadata(x, y, z);
+			int meta = world.getBlockState(x, y, z);
 
 			if( meta < MAX_GROWTH_STAGE ) {
 				float rate = this.getGrowthRate(world, x, y, z);
@@ -155,8 +156,8 @@ public class BlockCropBasic extends BlockFlower {
 	/**
 	 * Apply bonemeal to the crops.
 	 */
-	public void fertilize(World world, int x, int y, int z) {
-		int meta = world.getBlockMetadata(x, y, z)
+	public void fertilize(World world, BlockPos pos) {
+		int meta = world.getBlockState(pos)
 				+ MathHelper.getRandomIntegerInRange(world.rand, MIN_FERTILIZER, MAX_FERTILIZER);
 		
 		if( meta > MAX_GROWTH_STAGE ) {
@@ -166,8 +167,8 @@ public class BlockCropBasic extends BlockFlower {
 		world.setBlockMetadataWithNotify(x, y, z, meta, 2);
 	}
 	
-	public void markOrGrowMarked(World world, int x, int y, int z, Random rand) {
-		fertilize(world, x, y, z);
+	public void markOrGrowMarked(World world, BlockPos pos, Random rand) {
+		fertilize(world, pos);
 	}
 
 	/*

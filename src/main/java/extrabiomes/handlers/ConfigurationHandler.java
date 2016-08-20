@@ -7,10 +7,6 @@
 package extrabiomes.handlers;
 
 import java.io.File;
-import java.util.logging.Level;
-
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
 
 import com.google.common.base.Optional;
 
@@ -24,6 +20,8 @@ import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.lib.Reference;
 import extrabiomes.lib.SaplingSettings;
 import extrabiomes.utility.EnhancedConfiguration;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 /**
  * Loads configuration data
@@ -56,14 +54,14 @@ public abstract class ConfigurationHandler
 			} else {
 				configVersion = configuration.get(EnhancedConfiguration.CATEGORY_VERSION, "configFileVersion", "");
 			}
-			configVersion.comment = "To help ebxl in updating the config file in the future.";
+			configVersion.setComment("To help ebxl in updating the config file in the future.");
 
 			// for future use - are we upgrading between config versions?
 			final boolean isNewVersion = !configVersion.getString().equals(Reference.CONFIG_VERSION);
 			configVersion.set(Reference.CONFIG_VERSION);
 
 			Property upgradeProp = configuration.get("version", "upgrade", upgradeOverride);
-			upgradeProp.comment = "Should new (game changing) features be automatically enabled?";
+			upgradeProp.setComment("Should new (game changing) features be automatically enabled?");
 			boolean autoUpgrade = upgradeProp.getBoolean(false);
 
 			// load general config settings
@@ -98,28 +96,22 @@ public abstract class ConfigurationHandler
             {
                 setting.load(configuration);
             }
-            
-            configuration.addCustomCategoryComment(EnhancedConfiguration.CATEGORY_NEWDAWN, "New Dawn biome size hints.");
-            for (final NewDawnSettings setting : NewDawnSettings.values())
-            {
-                setting.load(configuration);
-            }
-            
+                        
             Property bigTreeSaplingDropRateProperty = configuration.get(Configuration.CATEGORY_GENERAL, "Relative sapling drops", GeneralSettings.bigTreeSaplingDropModifier);
-            bigTreeSaplingDropRateProperty.comment = "Setting relative sapling drops to true will decrease the amount of saplings dropped by decaying fir and redwood leaf blocks to a more reasonable amount.";
+            bigTreeSaplingDropRateProperty.setComment("Setting relative sapling drops to true will decrease the amount of saplings dropped by decaying fir and redwood leaf blocks to a more reasonable amount.");
             GeneralSettings.bigTreeSaplingDropModifier = bigTreeSaplingDropRateProperty.getBoolean(false);
             
             //
             Property consoleCommandsDisabled = configuration.get(Configuration.CATEGORY_GENERAL, "DisableConsoleCommands", GeneralSettings.consoleCommandsDisabled);
-            consoleCommandsDisabled.comment = "Set to false to enable console commands.";
+            consoleCommandsDisabled.setComment("Set to false to enable console commands.");
             GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
 
             Property useLegacyRedwoods = configuration.get(Configuration.CATEGORY_GENERAL, "UseLegacyRedwoods", autoUpgrade ? true : GeneralSettings.useLegacyRedwoods);
-            useLegacyRedwoods.comment = "Set to true to enable old redwood tree generation.";
+            useLegacyRedwoods.setComment("Set to true to enable old redwood tree generation.");
             GeneralSettings.useLegacyRedwoods = useLegacyRedwoods.getBoolean(false);
 
             Property useMC18Doors = configuration.get(Configuration.CATEGORY_GENERAL, "UseMC18Doors", GeneralSettings.useMC18Doors);
-            useMC18Doors.comment = "Allow EbXL doors to stack like in MC 1.8 and be crafted in stacks of 3.";
+            useMC18Doors.setComment("Allow EbXL doors to stack like in MC 1.8 and be crafted in stacks of 3.");
             GeneralSettings.useMC18Doors = useMC18Doors.getBoolean(true);
             
             //GeneralSettings.consoleCommandsDisabled = consoleCommandsDisabled.getBoolean(true);
