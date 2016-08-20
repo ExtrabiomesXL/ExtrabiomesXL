@@ -9,23 +9,8 @@ package extrabiomes;
 import java.io.File;
 import java.util.Locale;
 
-import net.minecraft.command.ICommandManager;
-import net.minecraft.command.ServerCommandManager;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.eventhandler.Event;
-import net.minecraftforge.fml.common.eventhandler.EventBus;
-
 import com.google.common.base.Optional;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
@@ -35,7 +20,6 @@ import extrabiomes.handlers.CanMobSpawnHandler;
 import extrabiomes.handlers.ConfigurationHandler;
 import extrabiomes.handlers.CropHandler;
 import extrabiomes.handlers.EBXLCommandHandler;
-import extrabiomes.handlers.GenesisBiomeOverrideHandler;
 import extrabiomes.handlers.ItemHandler;
 import extrabiomes.handlers.RecipeHandler;
 import extrabiomes.helpers.LogHelper;
@@ -48,6 +32,17 @@ import extrabiomes.plugins.PluginThaumcraft4;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
 import extrabiomes.utility.EnhancedConfiguration;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.EventBus;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies = "")
 public class Extrabiomes {
@@ -144,20 +139,7 @@ public class Extrabiomes {
   public void serverStart(FMLServerStartingEvent event) {
     if (GeneralSettings.consoleCommandsDisabled)
       return;
-
-    MinecraftServer server = MinecraftServer.getServer(); // Gets current server
-    ICommandManager command = server.getCommandManager(); // Gets the command
-                                                          // manager to use for
-                                                          // server
-    ServerCommandManager serverCommand = ((ServerCommandManager) command); // Turns
-                                                                           // it
-                                                                           // into
-                                                                           // another
-                                                                           // form
-                                                                           // to
-                                                                           // use
-
-    serverCommand.registerCommand(new EBXLCommandHandler());
+    event.registerServerCommand(new EBXLCommandHandler());
   }
 
   public static void registerInitEventHandler(Object target) {
