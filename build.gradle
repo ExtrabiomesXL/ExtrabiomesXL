@@ -1,139 +1,87 @@
-evaluationDependsOn(':version')
-
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
         maven {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven'  
 
-apply plugin: 'forge'
-apply plugin: 'maven'
-apply plugin: 'signing'
-
+version = "3.16.5"
 group = "net.extrabiomes"
-archivesBaseName = "extrabiomesxl_"+ project.mcversion
+archivesBaseName = "extrabiomesxl"
 
-ext.apiATG = "./api/atg"
-ext.apiNewDawn = "./api/newdawn"
-ext.apiThaumcraft = "./api/thaumcraft"
+ext.configFile = file "build.properties"
 
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+task buildInfo() {
+    def cmd = "git rev-parse --short HEAD"
+    def proc = cmd.execute()
+    proc.waitFor()
+    if (proc.exitValue() == 0) {
+        ext.revision = "DEV." + proc.text.trim()
+    } else {
+        ext.revision = "GITBORK"
+    }
+
+    if (System.getenv().BUILD_NUMBER != null) {
+        ext.buildNum = "${System.getenv().BUILD_NUMBER}"
+    } else {
+        ext.buildNum = "${project.buildInfo.revision}"
+    }
+}
+
+ext.artifact_version = 'NFG'
+if (System.getenv().ARTIFACT_VERSION != null) {
+    artifact_version = "${system.getenv().ARTIFACT_VERSION}"
+} else {
+    artifact_version = "${project.buildInfo.buildNum}"
+}
+
+version = "${config.version_major}.${config.version_series}.${config.version_revision}-${artifact_version}"
+print "project.version = ${project.version}"
+    
 minecraft {
-    version = project.mcversion + "-" + project.forgeversion
+    version = "${config.minecraft_version}-${config.forge_version}"
     runDir = "run"
+    mappings = config.mcp_mappings
     
     replace '@VERSION@', project.version
 }
 
-sourceSets {
-  main {
-    java {
-      srcDir project.apiATG
-      srcDir project.apiNewDawn
-      srcDir project.apiThaumcraft
-      exclude '**/thaumcraft/api/damagesource/**'
-      exclude '**/thaumcraft/api/entities/**'
-      exclude '**/thaumcraft/api/nodes/**'
-      exclude '**/thaumcraft/api/potions/**'
-      exclude '**/thaumcraft/api/visnet/**'
-      exclude '**/thaumcraft/api/wands/**'
-    }
-  }
-}
-
-processResources
-{
+processResources {
     // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
+    inputs.property "version", project.artifact_version
     inputs.property "mcversion", project.minecraft.version
 
-    // replace stuff in the files we want.
+    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include '**/*.info'
+        include 'mcmod.info'
 
-      expand 'version': project.version, 'mcversion': project.minecraft.version
+        // replace version and mcversion
+        expand 'version': project.artifact_version, 'mcversion': project.minecraft.version
     }
 
-    // copy everything else, thats we didnt do before
+    // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude '**/*.info'
+        exclude 'mcmod.info'
     }
 }
-
 jar {
     exclude 'thaumcraft'
-  exclude 'ttftcuts'
-  exclude 'two'
+    exclude 'ttftcuts'
+    exclude 'two'
 
-  includeEmptyDirs = false
-}
-
-// add a source jar
-task sourceJar(type: Jar) {
-    from sourceSets.main.allSource 
-    appendix = 'deobf'
-    classifier = 'src'
-    exclude 'thaumcraft/**'
-    exclude 'ttftcuts/**'
-    exclude 'two/**'
-}
-
-// create a deobfuscated jar for developers
-task devJar(type: Jar) {
-  from(sourceSets.main.output) {
-    include '**'
-  }
-
-    exclude 'thaumcraft'
-  exclude 'ttftcuts'
-  exclude 'two'
-
-  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-  classifier = 'dev'
-}
-
-// create a source jar
-task srcJar(type: Jar) {
-  from(sourceSets.main.allSource) {
-    include '**'
-  }
-
-    exclude 'thaumcraft'
-  exclude 'ttftcuts'
-  exclude 'two'
-
-  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-  classifier = 'src'
-}
-
-// create an api jar for developers
-task apiJar(type: Jar, dependsOn: 'classes') {
-  from (sourceSets.main.output) {
-    include 'extrabiomes/api/**'
-  }
-  extension = 'jar'
-  classifier = 'api'
-}
-
-artifacts {
-    archives apiJar
-    archives srcJar
-    archives devJar
-}
-
-signing {
-    required { gradle.taskGraph.hasTask(":uploadArchives") }
-    sign configurations.archives
+    includeEmptyDirs = false
 }
