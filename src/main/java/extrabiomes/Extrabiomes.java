@@ -26,7 +26,6 @@ import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.Reference;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
-import extrabiomes.plugins.PluginThaumcraft4;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.utility.CreativeTab;
 import extrabiomes.utility.EnhancedConfiguration;
@@ -60,9 +59,6 @@ public class Extrabiomes {
   @Mod.EventHandler
   public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException {
     proxy.registerRenderInformation();
-    TreecapitatorPlugin.init();
-    ForestryPlugin.init();
-
   }
 
   @Mod.EventHandler
@@ -71,14 +67,6 @@ public class Extrabiomes {
     RecipeHandler.init();
     initBus = Optional.absent();
     Module.releaseStaticResources();
-
-    if (PluginThaumcraft4.isEnabled()) {
-      try {
-        PluginThaumcraft4.postInit();
-      } catch (Exception e) {
-        LogHelper.warning("ExtrabiomesXL's Thaumcraft API implementaion is most likely out of date. Fell free to let us know.");
-      }
-    }
 
     LogHelper.info("Successfully Loaded.");
   }
