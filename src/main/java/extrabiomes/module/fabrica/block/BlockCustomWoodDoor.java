@@ -2,8 +2,8 @@ package extrabiomes.module.fabrica.block;
 
 import java.util.Random;
 
-import  net.minecraft.fml.relauncher.Side;
-import  net.minecraft.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;

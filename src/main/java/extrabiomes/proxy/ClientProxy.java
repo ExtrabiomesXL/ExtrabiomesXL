@@ -7,10 +7,10 @@
 
 package extrabiomes.proxy;
 
-import  net.minecraft.fml.client.registry.ISimpleBlockRenderingHandler;
-import  net.minecraft.fml.client.registry.RenderingRegistry;
-import  net.minecraft.fml.relauncher.Side;
-import  net.minecraft.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.client.registry.ISimpleBlockRenderingHandler;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ModelScarecrow;
 import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;

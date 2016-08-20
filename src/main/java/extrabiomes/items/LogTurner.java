@@ -11,7 +11,7 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 
-import  net.minecraft.fml.common.registry.LanguageRegistry;
+import net.minecraftforge.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;

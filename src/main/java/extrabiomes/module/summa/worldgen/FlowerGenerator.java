@@ -22,7 +22,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-import  net.minecraft.fml.common.IWorldGenerator;
+import net.minecraftforge.fml.common.IWorldGenerator;
 import extrabiomes.blocks.BlockCropBasic;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomFlower.BlockType;

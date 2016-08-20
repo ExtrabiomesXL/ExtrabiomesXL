@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 import com.google.common.base.Optional;
 
-import  net.minecraft.fml.common.registry.GameData;
+import net.minecraftforge.fml.common.registry.GameData;
 
 public enum Element
 {

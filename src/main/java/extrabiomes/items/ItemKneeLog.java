@@ -9,7 +9,7 @@ package extrabiomes.items;
 import java.util.List;
 import java.util.Locale;
 
-import  net.minecraft.fml.common.registry.LanguageRegistry;
+import net.minecraftforge.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;

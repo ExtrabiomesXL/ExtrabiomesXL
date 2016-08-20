@@ -14,18 +14,18 @@ import net.minecraft.command.ServerCommandManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
-import  net.minecraft.fml.common.eventhandler.Event;
-import  net.minecraft.fml.common.eventhandler.EventBus;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.EventBus;
 
 import com.google.common.base.Optional;
 
-import  net.minecraft.fml.common.Mod;
-import  net.minecraft.fml.common.Mod.Instance;
-import  net.minecraft.fml.common.SidedProxy;
-import  net.minecraft.fml.common.event.FMLInitializationEvent;
-import  net.minecraft.fml.common.event.FMLPostInitializationEvent;
-import  net.minecraft.fml.common.event.FMLPreInitializationEvent;
-import  net.minecraft.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import extrabiomes.biomes.BiomeManagerImpl;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;

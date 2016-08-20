@@ -3,8 +3,8 @@ package extrabiomes.items;
 import java.util.List;
 import java.util.Locale;
 
-import  net.minecraft.fml.relauncher.Side;
-import  net.minecraft.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

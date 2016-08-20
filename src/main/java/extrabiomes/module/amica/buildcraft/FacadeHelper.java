@@ -8,7 +8,7 @@ package extrabiomes.module.amica.buildcraft;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import  net.minecraft.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 
 public abstract class FacadeHelper
 {

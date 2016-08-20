@@ -28,8 +28,8 @@ import net.minecraftforge.common.IShearable;
 
 import com.google.common.base.Optional;
 
-import  net.minecraft.fml.relauncher.Side;
-import  net.minecraft.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.lib.Element;
 

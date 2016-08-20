@@ -29,8 +29,8 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.base.Optional;
 
-import  net.minecraft.fml.relauncher.Side;
-import  net.minecraft.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.handlers.GenesisBiomeOverrideHandler;
 import extrabiomes.helpers.LogHelper;

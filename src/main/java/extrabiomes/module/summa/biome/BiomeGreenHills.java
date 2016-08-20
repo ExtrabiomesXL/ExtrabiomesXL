@@ -11,8 +11,8 @@ import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenBase.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
-import  net.minecraft.fml.relauncher.Side;
-import  net.minecraft.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 

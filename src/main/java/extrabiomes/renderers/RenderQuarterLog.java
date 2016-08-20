@@ -13,7 +13,7 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
-import  net.minecraft.fml.client.registry.ISimpleBlockRenderingHandler;
+import net.minecraftforge.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderQuarterLog implements ISimpleBlockRenderingHandler
 {

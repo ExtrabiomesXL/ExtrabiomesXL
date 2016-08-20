@@ -6,7 +6,7 @@
 
 package extrabiomes.api;
 
-import  net.minecraft.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 /**
  * These events are fired during FML @PostInit to manage plugins

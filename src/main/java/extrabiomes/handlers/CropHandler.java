@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.base.Optional;
 
-import  net.minecraft.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockCropBasic;

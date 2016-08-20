@@ -1,7 +1,7 @@
 package ttftcuts.atg.api.events;
 
 import ttftcuts.atg.api.ATGBiomes.BiomeType;
-import  net.minecraft.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 public class ATGBiomeGroupAddEvent extends Event {
 

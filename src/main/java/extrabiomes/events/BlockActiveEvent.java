@@ -8,7 +8,7 @@ package extrabiomes.events;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import  net.minecraft.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 public abstract class BlockActiveEvent extends Event
 {

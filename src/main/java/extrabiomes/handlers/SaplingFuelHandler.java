@@ -9,7 +9,7 @@ package extrabiomes.handlers;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import  net.minecraft.fml.common.IFuelHandler;
+import net.minecraftforge.fml.common.IFuelHandler;
 
 public class SaplingFuelHandler implements IFuelHandler
 {

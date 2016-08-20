@@ -1,6 +1,6 @@
 package ttftcuts.atg.api.events.listenable;
 
-import  net.minecraft.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 // Listen for this to change the biold group at a point!
 public class ATGBiomeGroupAssignmentEvent extends Event {
