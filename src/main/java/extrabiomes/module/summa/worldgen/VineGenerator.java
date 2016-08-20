@@ -9,7 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -37,7 +37,7 @@ public class VineGenerator implements IWorldGenerator
     	this.biomeList = (biomeList == null ? DEFAULT_BIOME_LIST : biomeList);
     }
     
-    private boolean biomeCheck(BiomeGenBase biome) {
+    private boolean biomeCheck(Biome biome) {
 		final BiomeSettings settings = BiomeSettings.findBiomeSettings(biome.biomeID);    	
 		if( settings != null ) {
 			for( final BiomeSettings goodBiome : biomeList ) {
@@ -55,7 +55,7 @@ public class VineGenerator implements IWorldGenerator
     {
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
-        final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkZ);
+        final Biome biome = world.getBiomeGenForCoords(chunkX, chunkZ);
         
         if( !biomeCheck(biome) ) return;
 

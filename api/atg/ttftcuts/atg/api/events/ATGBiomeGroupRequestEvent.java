@@ -2,15 +2,15 @@ package ttftcuts.atg.api.events;
 
 import java.util.List;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.eventhandler.Event;
 
 public class ATGBiomeGroupRequestEvent extends Event {
 
-	public BiomeGenBase biome;
+	public Biome biome;
 	public List<String> groups;
 	
-	public ATGBiomeGroupRequestEvent(BiomeGenBase biome) {
+	public ATGBiomeGroupRequestEvent(Biome biome) {
 		this.biome = biome;
 		this.groups = null;
 	}

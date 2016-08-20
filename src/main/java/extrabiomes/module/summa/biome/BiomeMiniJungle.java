@@ -8,14 +8,14 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeMiniJungle extends ExtrabiomeGenBase
+public class BiomeMiniJungle extends ExtraBiome
 {
 	@Override
 	public DecorationSettings getDecorationSettings() {
@@ -29,8 +29,8 @@ public class BiomeMiniJungle extends ExtrabiomeGenBase
         
         setColor(0x41D923);
         setBiomeName("Mini Jungle");
-        temperature = BiomeGenBase.jungle.temperature;
-        rainfall = BiomeGenBase.jungle.rainfall;
+        temperature = Biome.jungle.temperature;
+        rainfall = Biome.jungle.rainfall;
         this.setHeight(new Height(0.4F, 0.2F));
         waterColorMultiplier = 0x24b01c;
         

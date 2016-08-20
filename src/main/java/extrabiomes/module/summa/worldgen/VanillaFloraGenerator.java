@@ -9,7 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenVines;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -26,7 +26,7 @@ public class VanillaFloraGenerator implements IWorldGenerator
     {
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
-        final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkZ);
+        final Biome biome = world.getBiomeGenForCoords(chunkX, chunkZ);
         
         final boolean biomeIsExtremeJungle = BiomeSettings.EXTREMEJUNGLE.getBiome().isPresent() && biome == BiomeSettings.EXTREMEJUNGLE.getBiome().get();
         
@@ -38,7 +38,7 @@ public class VanillaFloraGenerator implements IWorldGenerator
         final boolean biomeIsMiniJungle = BiomeSettings.MINIJUNGLE.getBiome().isPresent() && biome == BiomeSettings.MINIJUNGLE.getBiome().get();
         final boolean biomeIsTemperateRainforest = BiomeSettings.TEMPORATERAINFOREST.getBiome().isPresent() && biome == BiomeSettings.TEMPORATERAINFOREST.getBiome().get();
         
-        if (biomeIsExtremeJungle || biomeIsMiniJungle || biomeIsTemperateRainforest || biome == BiomeGenBase.jungle || biome == BiomeGenBase.jungleHills)
+        if (biomeIsExtremeJungle || biomeIsMiniJungle || biomeIsTemperateRainforest || biome == Biome.jungle || biome == Biome.jungleHills)
         {
             if (random.nextInt(48) == 0)
             {

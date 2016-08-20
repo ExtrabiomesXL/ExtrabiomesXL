@@ -9,15 +9,15 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeForestedHills extends ExtrabiomeGenBase
+public class BiomeForestedHills extends ExtraBiome
 {
 
 	@Override
@@ -32,8 +32,8 @@ public class BiomeForestedHills extends ExtrabiomeGenBase
         
         setBiomeName("Forested Hills");
         
-        temperature = BiomeGenBase.forest.temperature - 0.1F;
-        rainfall = BiomeGenBase.forest.rainfall;
+        temperature = Biome.forest.temperature - 0.1F;
+        rainfall = Biome.forest.rainfall;
         this.setHeight(new Height(1.0F, 0.8F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));

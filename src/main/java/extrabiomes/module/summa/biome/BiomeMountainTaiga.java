@@ -7,14 +7,14 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeMountainTaiga extends ExtrabiomeGenBase
+public class BiomeMountainTaiga extends ExtraBiome
 {
 	@Override
 	public DecorationSettings getDecorationSettings() {
@@ -29,7 +29,7 @@ public class BiomeMountainTaiga extends ExtrabiomeGenBase
         setColor(0xB6659);
         setBiomeName("Mountain Taiga");
         temperature = 0.0F;
-        rainfall = BiomeGenBase.taigaHills.rainfall;
+        rainfall = Biome.taigaHills.rainfall;
         this.setHeight(new Height(0.75F, 0.45F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 8, 4, 4));

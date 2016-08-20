@@ -19,7 +19,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.IChunkLoader;
 import net.minecraft.world.gen.ChunkProviderServer;
@@ -117,12 +117,12 @@ public class BlockMachine extends Block {
 		// final BiomeSettings[] biomes = { BiomeSettings.AUTUMNWOODS,
 		// BiomeSettings.DESERT, BiomeSettings.GREENSWAMP };
 
-		final BiomeGenBase oldBiome = world.getBiomeGenForCoords(x, z);
-		BiomeGenBase newBiome = null;
+		final Biome oldBiome = world.getBiomeGenForCoords(x, z);
+		Biome newBiome = null;
 		// newBiome = BiomeSettings.AUTUMNWOODS.getBiome().get();
 
 		do {
-			Optional<? extends BiomeGenBase> opt = biomes[world.rand.nextInt(biomes.length)].getBiome();
+			Optional<? extends Biome> opt = biomes[world.rand.nextInt(biomes.length)].getBiome();
 			if (opt.isPresent()) newBiome = opt.get();
 		} while (oldBiome == newBiome || newBiome == null);
 

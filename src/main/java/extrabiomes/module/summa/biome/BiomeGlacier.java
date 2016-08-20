@@ -12,7 +12,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeGlacier extends ExtrabiomeGenBase
+public class BiomeGlacier extends ExtraBiome
 {
 
 	@Override

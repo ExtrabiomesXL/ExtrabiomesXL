@@ -8,13 +8,13 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeMountainDesert extends ExtrabiomeGenBase
+public class BiomeMountainDesert extends ExtraBiome
 {
 	@Override
 	public DecorationSettings getDecorationSettings() {
@@ -27,8 +27,8 @@ public class BiomeMountainDesert extends ExtrabiomeGenBase
         
         setColor(0xFA9418);
         setBiomeName("Mountainous Desert");
-        temperature = BiomeGenBase.desertHills.temperature;
-        rainfall = BiomeGenBase.desertHills.rainfall;
+        temperature = Biome.desertHills.temperature;
+        rainfall = Biome.desertHills.rainfall;
         this.setHeight(new Height(0.9F, 0.5F));
         topBlock = Blocks.sand;
         fillerBlock = Blocks.sand;

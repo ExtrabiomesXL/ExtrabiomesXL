@@ -9,7 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -28,7 +28,7 @@ public class MarshGenerator implements IWorldGenerator
     {
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
-        final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
+        final Biome biome = world.getBiomeGenForCoords(chunkX,
                 chunkZ);
         
         if (BiomeSettings.MARSH.getBiome().isPresent() && biome == BiomeSettings.MARSH.getBiome().get())

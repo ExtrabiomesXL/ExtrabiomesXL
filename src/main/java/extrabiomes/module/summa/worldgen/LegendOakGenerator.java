@@ -9,7 +9,7 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -31,9 +31,9 @@ public class LegendOakGenerator implements IWorldGenerator
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
         int rarity = 0;
-        final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkX);
+        final Biome biome = world.getBiomeGenForCoords(chunkX, chunkX);
         
-        if (biome == BiomeGenBase.forest || biome == BiomeGenBase.forestHills
+        if (biome == Biome.forest || biome == Biome.forestHills
                 || BiomeSettings.FORESTEDHILLS.getBiome().isPresent() && biome == BiomeSettings.FORESTEDHILLS.getBiome().get()
                 || BiomeSettings.FORESTEDISLAND.getBiome().isPresent() && biome == BiomeSettings.FORESTEDISLAND.getBiome().get()
                 || BiomeSettings.RAINFOREST.getBiome().isPresent() && biome == BiomeSettings.RAINFOREST.getBiome().get())
@@ -41,7 +41,7 @@ public class LegendOakGenerator implements IWorldGenerator
             rarity = 100;
         }
         
-        if (biome == BiomeGenBase.plains || biome == BiomeGenBase.extremeHillsEdge)
+        if (biome == Biome.plains || biome == Biome.extremeHillsEdge)
         {
             rarity = 1000;
         }

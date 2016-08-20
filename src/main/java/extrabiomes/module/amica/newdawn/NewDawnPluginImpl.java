@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import two.newdawn.API.NewDawnBiome;
 import two.newdawn.API.NewDawnBiomeProvider;
@@ -36,7 +36,7 @@ public class NewDawnPluginImpl implements NewDawnBiomeProvider
     
     public static NewDawnBiome getBiomeIfEnabled(BiomeSettings biome) {
     	if( biome != null && biome.isEnabled() ) {
-    		final BiomeGenBase gen;
+    		final Biome gen;
     		try {
     			gen = biome.getBiome().get();
     		} catch( Exception e ) {

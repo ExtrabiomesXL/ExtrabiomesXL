@@ -10,7 +10,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import extrabiomes.lib.BiomeSettings;
@@ -32,7 +32,7 @@ public class QuicksandGenerator implements IWorldGenerator
     {
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
-        final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX,
+        final Biome biome = world.getBiomeGenForCoords(chunkX,
                 chunkZ);
         if (!BiomeSettings.MINIJUNGLE.getBiome().isPresent() || biome != BiomeSettings.MINIJUNGLE.getBiome().get())
             return;

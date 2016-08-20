@@ -8,7 +8,7 @@ package extrabiomes.module.amica.ic2;
 
 import java.util.Collection;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.google.common.base.Optional;
@@ -26,14 +26,14 @@ public class IC2Plugin
     private static final String MOD_NAME = "IndustrialCraft 2";
     private Optional<IC2API>    api      = Optional.absent();
     
-    private void addBiomeBonus(Collection<Optional<? extends BiomeGenBase>> biomes,
+    private void addBiomeBonus(Collection<Optional<? extends Biome>> biomes,
             int humidityBonus, int nutrientsBonus)
     {
-        for (final Optional<? extends BiomeGenBase> biome : biomes)
+        for (final Optional<? extends Biome> biome : biomes)
             addBiomeBonus(biome, humidityBonus, nutrientsBonus);
     }
     
-    private void addBiomeBonus(Optional<? extends BiomeGenBase> biome, int humidityBonus,
+    private void addBiomeBonus(Optional<? extends Biome> biome, int humidityBonus,
             int nutrientsBonus)
     {
         api.get().addBiomeBonus(biome, humidityBonus, nutrientsBonus);

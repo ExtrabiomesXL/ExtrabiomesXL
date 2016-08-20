@@ -11,7 +11,7 @@ import java.util.Set;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
 
 import com.google.common.base.Optional;
@@ -39,7 +39,7 @@ public enum BiomeHandler
         
         for (final BiomeSettings setting : BiomeSettings.values())
         {
-            final Optional<? extends BiomeGenBase> biome = setting.getBiome();
+            final Optional<? extends Biome> biome = setting.getBiome();
             if (!setting.isVanilla())
             {
                 if (setting.isEnabled() && biome.isPresent())
@@ -53,7 +53,7 @@ public enum BiomeHandler
             }
             else if (!setting.isEnabled())
             {
-            	final BiomeGenBase bgb = BiomeHelper.settingToBiomeGenBase(setting);
+            	final Biome bgb = BiomeHelper.settingToBiome(setting);
                 Extrabiomes.proxy.removeBiome(bgb);
                 LogHelper.fine("Vanilla biome %s disabled.", bgb.toString());
             }

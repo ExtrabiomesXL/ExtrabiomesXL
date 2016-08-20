@@ -9,7 +9,7 @@ package extrabiomes.module.summa.biome;
 import java.util.Map;
 
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import extrabiomes.lib.DecorationSettings;
 import extrabiomes.lib.DecorationSettings.Decoration;
 
@@ -20,7 +20,7 @@ class CustomBiomeDecorator extends BiomeDecorator
     {
         
         // required parms
-        private final BiomeGenBase biome;
+        private final Biome biome;
         
         // optional parms - initialized to defaults
         // NB: DecorationSettings populates config files with a copy of this data - but does
@@ -38,7 +38,7 @@ class CustomBiomeDecorator extends BiomeDecorator
         private int                clayPerChunk         = 1;
         private int                bigMushroomsPerChunk = 0;
         
-        Builder(BiomeGenBase biome)
+        Builder(Biome biome)
         {
             this.biome = biome;
         }

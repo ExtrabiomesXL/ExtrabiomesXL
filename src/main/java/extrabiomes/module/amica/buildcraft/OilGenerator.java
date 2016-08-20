@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import extrabiomes.lib.BiomeSettings;
@@ -22,7 +22,7 @@ public class OilGenerator implements IWorldGenerator
     
     private void doPopulate(Random rand, World world, int x, int z)
     {
-        final BiomeGenBase biome = world.getWorldChunkManager()
+        final Biome biome = world.getWorldChunkManager()
                 .getBiomeGenAt(x, z);
         
         if (((BiomeSettings.MOUNTAINDESERT.getBiome().isPresent() && biome == BiomeSettings.MOUNTAINDESERT.getBiome().get())

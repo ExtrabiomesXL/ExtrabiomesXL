@@ -8,16 +8,16 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeSnowRainforest extends ExtrabiomeGenBase
+public class BiomeSnowRainforest extends ExtraBiome
 {
 	@Override
 	public DecorationSettings getDecorationSettings() {
@@ -31,7 +31,7 @@ public class BiomeSnowRainforest extends ExtrabiomeGenBase
         
         setColor(0x338277);
         setBiomeName("Snowy Rainforest");
-        temperature = BiomeGenBase.taigaHills.temperature;
+        temperature = Biome.taigaHills.temperature;
         rainfall = 1.3F;
         this.setHeight(new Height(0.95F, 0.55F));
         setEnableSnow();

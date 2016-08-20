@@ -23,7 +23,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
@@ -45,20 +45,20 @@ import extrabiomes.lib.Reference;
 public class CommonProxy
 {
 
-    public void addBiome(Collection<WorldType> worldTypes, BiomeGenBase biome)
+    public void addBiome(Collection<WorldType> worldTypes, Biome biome)
     {
     	// TODO
         /*for (final WorldType worldType : worldTypes)
             worldType.addNewBiome(biome);*/
     }
 
-    public void addGrassPlant(Block block, int metadata, int weight, BiomeGenBase biome)
+    public void addGrassPlant(Block block, int metadata, int weight, Biome biome)
     {
     	if(biome != null) biome.addFlower(block, metadata, weight);
     }
     public void addGrassPlant(Block block, int metadata, int weight)
     {
-        for(BiomeGenBase biome: BiomeGenBase.getBiomeGenArray()) {
+        for(Biome biome: Biome.getBiomeGenArray()) {
             addGrassPlant(block, metadata, weight, biome);
         }
     }
@@ -200,7 +200,7 @@ public class CommonProxy
         GameRegistry.registerWorldGenerator(worldGenerator, 50);
     }
     
-    public void removeBiome(BiomeGenBase biome)
+    public void removeBiome(Biome biome)
     {
         if (biome != null)
         {

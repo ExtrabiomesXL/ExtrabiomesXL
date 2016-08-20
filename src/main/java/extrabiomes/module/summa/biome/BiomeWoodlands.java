@@ -8,16 +8,16 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeWoodlands extends ExtrabiomeGenBase
+public class BiomeWoodlands extends ExtraBiome
 {
 	@Override
 	public DecorationSettings getDecorationSettings() {
@@ -32,8 +32,8 @@ public class BiomeWoodlands extends ExtrabiomeGenBase
         //setColor(0x056621);
         setColor(0x85B53E);
         setBiomeName("Woodlands");
-        temperature = BiomeGenBase.forest.temperature;
-        rainfall = BiomeGenBase.forest.rainfall;
+        temperature = Biome.forest.temperature;
+        rainfall = Biome.forest.rainfall;
         this.setHeight(new Height(0.3F, 0.1F));
         
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));

@@ -6,13 +6,13 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeMarsh extends ExtrabiomeGenBase
+public class BiomeMarsh extends ExtraBiome
 {
 
 	@Override
@@ -26,8 +26,8 @@ public class BiomeMarsh extends ExtrabiomeGenBase
         
         setColor(255);
         setBiomeName("Marsh");
-        temperature = BiomeGenBase.swampland.temperature;
-        rainfall = BiomeGenBase.swampland.rainfall;
+        temperature = Biome.swampland.temperature;
+        rainfall = Biome.swampland.rainfall;
         this.setHeight(new Height(-0.2F, 0.2F));
     }
     

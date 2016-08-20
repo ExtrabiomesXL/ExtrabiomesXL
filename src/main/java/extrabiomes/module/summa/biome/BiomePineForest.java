@@ -9,16 +9,16 @@ package extrabiomes.module.summa.biome;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomePineForest extends ExtrabiomeGenBase
+public class BiomePineForest extends ExtraBiome
 {
 	@Override
 	public DecorationSettings getDecorationSettings() {
@@ -32,8 +32,8 @@ public class BiomePineForest extends ExtrabiomeGenBase
         
         setColor(0x469C7E);
         setBiomeName("Pine Forest");
-        temperature = BiomeGenBase.forest.temperature;
-        rainfall = BiomeGenBase.forest.rainfall;
+        temperature = Biome.forest.temperature;
+        rainfall = Biome.forest.rainfall;
         this.setHeight(new Height(0.2F, 0.1F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));

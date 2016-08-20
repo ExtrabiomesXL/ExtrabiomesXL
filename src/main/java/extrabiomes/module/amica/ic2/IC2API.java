@@ -8,7 +8,7 @@ package extrabiomes.module.amica.ic2;
 
 import java.lang.reflect.Method;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 
 import com.google.common.base.Optional;
 
@@ -18,7 +18,7 @@ class IC2API
 {
     
     /**
-     * public static void addBiomeBonus(BiomeGenBase biome, int humidityBonus, int nutrientsBonus);
+     * public static void addBiomeBonus(Biome biome, int humidityBonus, int nutrientsBonus);
      */
     private Optional<Method> addBiomeBonus    = Optional.absent();
     private Object           ic2CropsInstance = null;
@@ -30,7 +30,7 @@ class IC2API
         {
             cls = Class.forName("ic2.api.crops.Crops");
             ic2CropsInstance = cls.getField("instance").get(null);
-            addBiomeBonus = Optional.fromNullable(cls.getMethod("addBiomeBonus", BiomeGenBase.class, Integer.TYPE, Integer.TYPE));
+            addBiomeBonus = Optional.fromNullable(cls.getMethod("addBiomeBonus", Biome.class, Integer.TYPE, Integer.TYPE));
         }
         catch (final Exception e)
         {
@@ -39,7 +39,7 @@ class IC2API
         }
     }
     
-    void addBiomeBonus(BiomeGenBase biome, int humidityBonus, int nutrientsBonus)
+    void addBiomeBonus(Biome biome, int humidityBonus, int nutrientsBonus)
     {
         try
         {
@@ -53,7 +53,7 @@ class IC2API
         }
     }
     
-    void addBiomeBonus(Optional<? extends BiomeGenBase> biome, int humidityBonus, int nutrientsBonus)
+    void addBiomeBonus(Optional<? extends Biome> biome, int humidityBonus, int nutrientsBonus)
     {
         if (biome.isPresent())
             addBiomeBonus(biome.get(), humidityBonus, nutrientsBonus);

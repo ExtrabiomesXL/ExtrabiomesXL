@@ -6,13 +6,13 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.BiomeGenBase.Height;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome.Height;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeTemporateRainforest extends ExtrabiomeGenBase
+public class BiomeTemporateRainforest extends ExtraBiome
 {
 	@Override
 	public DecorationSettings getDecorationSettings() {

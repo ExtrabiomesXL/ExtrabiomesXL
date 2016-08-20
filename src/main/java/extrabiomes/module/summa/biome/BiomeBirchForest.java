@@ -6,12 +6,12 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeBirchForest extends ExtrabiomeGenBase
+public class BiomeBirchForest extends ExtraBiome
 {
 
 	@Override

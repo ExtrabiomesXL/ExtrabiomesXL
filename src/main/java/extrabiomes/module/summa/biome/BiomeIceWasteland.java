@@ -8,12 +8,12 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.BiomeGenBase.Height;
+import net.minecraft.world.biome.Biome.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeIceWasteland extends ExtrabiomeGenBase
+public class BiomeIceWasteland extends ExtraBiome
 {
 
 	@Override

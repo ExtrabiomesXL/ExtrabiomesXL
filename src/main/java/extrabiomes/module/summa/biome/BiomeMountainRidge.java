@@ -13,15 +13,15 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeMountainRidge extends ExtrabiomeGenBase {
+public class BiomeMountainRidge extends ExtraBiome {
   @Override
   public DecorationSettings getDecorationSettings() {
   	return DecorationSettings.MOUNTAINRIDGE;
@@ -32,8 +32,8 @@ public class BiomeMountainRidge extends ExtrabiomeGenBase {
     super(BiomeSettings.MOUNTAINRIDGE, Type.MOUNTAIN, Type.SANDY);
     setColor(0xC4722F);
     setBiomeName("Red Rock Mountains");
-    temperature = BiomeGenBase.desert.temperature;
-    rainfall = BiomeGenBase.desert.rainfall;
+    temperature = Biome.desert.temperature;
+    rainfall = Biome.desert.rainfall;
     // TODO: Check height
     this.setHeight(new Height(1.7F, -0.1F));
     setDisableRain();

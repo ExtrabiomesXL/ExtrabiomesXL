@@ -6,7 +6,7 @@
 
 package extrabiomes.api;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 
 import com.google.common.base.Optional;
 
@@ -27,13 +27,13 @@ public abstract class Biomes
      * @param targetBiome The string name of the targertBiome. See {@link GetBiomeIDEvent#targetBiome} for valid values.
      * @return The requested biome. If the biome does not exist, the <code>Optional</code> value will not be present.
      */
-    public static Optional<BiomeGenBase> getBiome(String targetBiome)
+    public static Optional<Biome> getBiome(String targetBiome)
     {
         final GetBiomeIDEvent event = new GetBiomeIDEvent(targetBiome);
         Api.getExtrabiomesXLEventBus().post(event);
-        if (event.biomeID <= 0 || BiomeGenBase.getBiomeGenArray()[event.biomeID] == null)
+        if (event.biomeID <= 0 || Biome.getBiomeGenArray()[event.biomeID] == null)
             return Optional.absent();
-        return Optional.of(BiomeGenBase.getBiomeGenArray()[event.biomeID]);
+        return Optional.of(Biome.getBiomeGenArray()[event.biomeID]);
     }
     
 }

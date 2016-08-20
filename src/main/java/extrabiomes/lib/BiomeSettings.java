@@ -8,7 +8,7 @@ package extrabiomes.lib;
 
 import java.util.Locale;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeType;
@@ -44,7 +44,7 @@ import extrabiomes.module.summa.biome.BiomeTemporateRainforest;
 import extrabiomes.module.summa.biome.BiomeTundra;
 import extrabiomes.module.summa.biome.BiomeWasteland;
 import extrabiomes.module.summa.biome.BiomeWoodlands;
-import extrabiomes.module.summa.biome.ExtrabiomeGenBase;
+import extrabiomes.module.summa.biome.ExtraBiome;
 import extrabiomes.utility.EnhancedConfiguration;
 import extrabiomes.helpers.LogHelper;
 
@@ -88,8 +88,8 @@ public enum BiomeSettings {
 	private boolean enabled = true;
 	private boolean allowVillages = true;
 	
-	private final Optional<? extends Class<? extends BiomeGenBase>> biomeClass;
-	private Optional<? extends BiomeGenBase> biome = Optional.absent();
+	private final Optional<? extends Class<? extends Biome>> biomeClass;
+	private Optional<? extends Biome> biome = Optional.absent();
 
 	static {
 		EXTREMEJUNGLE.allowVillages = false;
@@ -115,18 +115,18 @@ public enum BiomeSettings {
 		this(0, null);
 	}
 
-	private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass) {
+	private BiomeSettings(int defaultID, Class<? extends Biome> biomeClass) {
 		this.defaultID = defaultID;
 		this.biomeID = this.defaultID;
 		this.biomeClass = Optional.fromNullable(biomeClass);
 	}
 
-	private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass, Weights defaultWeight) {
+	private BiomeSettings(int defaultID, Class<? extends Biome> biomeClass, Weights defaultWeight) {
 		this(defaultID, biomeClass);
 		this.weight = defaultWeight.value;
 	}
 
-	private BiomeSettings(int defaultID, Class<? extends BiomeGenBase> biomeClass, boolean defaultGen) {
+	private BiomeSettings(int defaultID, Class<? extends Biome> biomeClass, boolean defaultGen) {
 		this(defaultID, biomeClass);
 		this.enabled = defaultGen;
 		if (!this.enabled) {
@@ -154,7 +154,7 @@ public enum BiomeSettings {
 
 	public void postLoad() {
 		if (!isVanilla() && biome.isPresent()) {
-			final ExtrabiomeGenBase egb = (ExtrabiomeGenBase) biome.get();
+			final ExtraBiome egb = (ExtraBiome) biome.get();
 			BiomeDictionary.registerBiomeType(egb, egb.getBiomeTypeFlags());
 			LogHelper.fine("registering " + this.name() + " with dictionary");
 
@@ -179,7 +179,7 @@ public enum BiomeSettings {
 		}
 	}
 
-	public Optional<? extends BiomeGenBase> getBiome() {
+	public Optional<? extends Biome> getBiome() {
 		return biome;
 	}
 

@@ -7,14 +7,14 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeSavanna extends ExtrabiomeGenBase
+public class BiomeSavanna extends ExtraBiome
 {
 	@Override
 	public DecorationSettings getDecorationSettings() {
@@ -28,8 +28,8 @@ public class BiomeSavanna extends ExtrabiomeGenBase
         
         setColor(0xBFA243);
         setBiomeName("Savanna");
-        temperature = BiomeGenBase.desert.temperature;
-        rainfall = BiomeGenBase.desert.rainfall;
+        temperature = Biome.desert.temperature;
+        rainfall = Biome.desert.rainfall;
         this.setHeight(new Height(0.1F, 0.05F));
         
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 2, 4));

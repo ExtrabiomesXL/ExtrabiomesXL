@@ -1,9 +1,9 @@
 package extrabiomes.handlers;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import extrabiomes.module.summa.biome.ExtrabiomeGenBase;
+import extrabiomes.module.summa.biome.ExtraBiome;
 
 public class CanMobSpawnHandler {
 
@@ -11,12 +11,12 @@ public class CanMobSpawnHandler {
   
   @SubscribeEvent
   public void canSpawnEvent(CheckSpawn event) {
-    BiomeGenBase biome = event.world.getBiomeGenForCoords((int)event.x, (int)event.z);
+    Biome biome = event.world.getBiomeGenForCoords((int)event.x, (int)event.z);
     
-    if(!(biome instanceof ExtrabiomeGenBase)) {
+    if(!(biome instanceof ExtraBiome)) {
       return;
     }
     
-    ((ExtrabiomeGenBase) biome).canSpawnEvent(event);
+    ((ExtraBiome) biome).canSpawnEvent(event);
   }
 }

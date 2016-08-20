@@ -15,7 +15,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.proxy.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -30,7 +30,7 @@ import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings.Decoration;
 import extrabiomes.lib.Element;
-import extrabiomes.module.summa.biome.ExtrabiomeGenBase;
+import extrabiomes.module.summa.biome.ExtraBiome;
 
 public class FlowerGenerator implements IWorldGenerator
 {
@@ -243,7 +243,7 @@ public class FlowerGenerator implements IWorldGenerator
 	protected void registerFlower(BiomeSettings settings, BlockType type) {
 		if (!settings.getBiome().isPresent()) return;
 
-        BiomeGenBase biome = settings.getBiome().get();
+        Biome biome = settings.getBiome().get();
         final CommonProxy proxy = Extrabiomes.proxy;
         proxy.addGrassPlant(type.block(), type.metadata(), type.weight(), biome);
 
@@ -290,7 +290,7 @@ public class FlowerGenerator implements IWorldGenerator
 	}
 
 
-	protected boolean biomeCheck(BiomeSettings settings, BiomeGenBase biome) {
+	protected boolean biomeCheck(BiomeSettings settings, Biome biome) {
 		return settings.getBiome().isPresent()
 				&& biome == settings.getBiome().get();
 	}
@@ -300,11 +300,11 @@ public class FlowerGenerator implements IWorldGenerator
     {
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
-        final BiomeGenBase biome = world.getBiomeGenForCoords(chunkX, chunkZ);
+        final Biome biome = world.getBiomeGenForCoords(chunkX, chunkZ);
         
 		final BiomeSettings settings = BiomeSettings.findBiomeSettings(biome.biomeID);
 		if (settings != null && biomeCheck(settings, biome) && flowerMaps.containsKey(settings)) {
-			final ExtrabiomeGenBase eBiome = (ExtrabiomeGenBase)biome; 
+			final ExtraBiome eBiome = (ExtraBiome)biome; 
 			final int maxFlowers = eBiome.getDecorationSettings().getSetting(Decoration.NEW_FLOWERS);
 			if( maxFlowers > 0 ) {
 				List<BlockType> map = flowerMaps.get(settings);

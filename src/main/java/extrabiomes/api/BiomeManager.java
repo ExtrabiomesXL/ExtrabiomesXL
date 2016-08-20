@@ -12,7 +12,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collection;
 import java.util.Random;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.google.common.base.Optional;
@@ -38,34 +38,34 @@ public abstract class BiomeManager
         TREE, GRASS;
     }
     
-    public static Optional<? extends BiomeGenBase>    alpine              = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    autumnwoods         = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    birchforest         = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    extremejungle       = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    forestedisland      = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    forestedhills       = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    glacier             = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    greenhills          = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    icewasteland        = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    greenswamp          = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    marsh               = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    meadow              = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    minijungle          = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    mountaindesert      = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    mountainridge       = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    mountaintaiga       = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    pineforest          = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    rainforest          = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    redwoodforest       = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    redwoodlush         = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    savanna             = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    shrubland           = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    snowforest          = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    snowyrainforest     = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    temperaterainforest = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    tundra              = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    wasteland           = Optional.absent();
-    public static Optional<? extends BiomeGenBase>    woodlands           = Optional.absent();
+    public static Optional<? extends Biome>    alpine              = Optional.absent();
+    public static Optional<? extends Biome>    autumnwoods         = Optional.absent();
+    public static Optional<? extends Biome>    birchforest         = Optional.absent();
+    public static Optional<? extends Biome>    extremejungle       = Optional.absent();
+    public static Optional<? extends Biome>    forestedisland      = Optional.absent();
+    public static Optional<? extends Biome>    forestedhills       = Optional.absent();
+    public static Optional<? extends Biome>    glacier             = Optional.absent();
+    public static Optional<? extends Biome>    greenhills          = Optional.absent();
+    public static Optional<? extends Biome>    icewasteland        = Optional.absent();
+    public static Optional<? extends Biome>    greenswamp          = Optional.absent();
+    public static Optional<? extends Biome>    marsh               = Optional.absent();
+    public static Optional<? extends Biome>    meadow              = Optional.absent();
+    public static Optional<? extends Biome>    minijungle          = Optional.absent();
+    public static Optional<? extends Biome>    mountaindesert      = Optional.absent();
+    public static Optional<? extends Biome>    mountainridge       = Optional.absent();
+    public static Optional<? extends Biome>    mountaintaiga       = Optional.absent();
+    public static Optional<? extends Biome>    pineforest          = Optional.absent();
+    public static Optional<? extends Biome>    rainforest          = Optional.absent();
+    public static Optional<? extends Biome>    redwoodforest       = Optional.absent();
+    public static Optional<? extends Biome>    redwoodlush         = Optional.absent();
+    public static Optional<? extends Biome>    savanna             = Optional.absent();
+    public static Optional<? extends Biome>    shrubland           = Optional.absent();
+    public static Optional<? extends Biome>    snowforest          = Optional.absent();
+    public static Optional<? extends Biome>    snowyrainforest     = Optional.absent();
+    public static Optional<? extends Biome>    temperaterainforest = Optional.absent();
+    public static Optional<? extends Biome>    tundra              = Optional.absent();
+    public static Optional<? extends Biome>    wasteland           = Optional.absent();
+    public static Optional<? extends Biome>    woodlands           = Optional.absent();
     
     protected static Optional<? extends BiomeManager> instance            = Optional.absent();
     
@@ -77,7 +77,7 @@ public abstract class BiomeManager
      * @param weight the relative probabilty of picking this grass to generate. To establish a relative priority, some function should be
      *            applied to the current total weight for a biome.
      */
-    public static void addWeightedGrassGenForBiome(BiomeGenBase biome, WorldGenerator grassGen, int weight)
+    public static void addWeightedGrassGenForBiome(Biome biome, WorldGenerator grassGen, int weight)
     {
         checkArgument(instance.isPresent(), "Cannot add weighted grass gens until after API is initialized.");
         checkNotNull(biome, "Biome is required.");
@@ -94,7 +94,7 @@ public abstract class BiomeManager
      * @param weight the relative probabilty of picking this tree to generate. To establish a relative priority, some function should be
      *            applied to the current total weight for a biome.
      */
-    public static void addWeightedTreeGenForBiome(BiomeGenBase biome, WorldGenerator treeGen, int weight)
+    public static void addWeightedTreeGenForBiome(Biome biome, WorldGenerator treeGen, int weight)
     {
         checkArgument(instance.isPresent(), "Cannot add weighted tree gens until after API is initialized.");
         checkNotNull(biome, "Biome is required.");
@@ -109,7 +109,7 @@ public abstract class BiomeManager
      * @param biome The biome for which to select a grass gen
      * @return the selected grass generator.
      */
-    public static Optional<? extends WorldGenerator> chooseRandomGrassGenforBiome(Random rand, BiomeGenBase biome)
+    public static Optional<? extends WorldGenerator> chooseRandomGrassGenforBiome(Random rand, Biome biome)
     {
         return instance.get().chooseBiomeRandomGen(GenType.GRASS, rand,
                 biome);
@@ -121,7 +121,7 @@ public abstract class BiomeManager
      * @param biome The biome for which to select a tree gen
      * @return the selected tree generator.
      */
-    public static Optional<? extends WorldGenerator> chooseRandomTreeGenforBiome(Random rand, BiomeGenBase biome)
+    public static Optional<? extends WorldGenerator> chooseRandomTreeGenforBiome(Random rand, Biome biome)
     {
         return instance.get().chooseBiomeRandomGen(GenType.TREE, rand, biome);
     }
@@ -129,7 +129,7 @@ public abstract class BiomeManager
     /**
      * @return An immutable collection of this mod's biomes.
      */
-    public static Collection<BiomeGenBase> getBiomes()
+    public static Collection<Biome> getBiomes()
     {
         checkArgument(instance.isPresent(), "Biome list not available until after API is initialized.");
         return instance.get().getBiomeCollection();
@@ -139,7 +139,7 @@ public abstract class BiomeManager
      * @param biome The biome for which to calculate the total weight.
      * @return the total weight of all grassGen choices for a given biome
      */
-    public static int getTotalGrassWeightForBiome(BiomeGenBase biome)
+    public static int getTotalGrassWeightForBiome(Biome biome)
     {
         checkNotNull(biome, "Biome is required.");
         return instance.get().getBiomeTotalWeight(GenType.GRASS, biome);
@@ -149,7 +149,7 @@ public abstract class BiomeManager
      * @param biome The biome for which to calculate the total weight.
      * @return the total weight of all treeGen choices for a given biome
      */
-    public static int getTotalTreeWeightForBiome(BiomeGenBase biome)
+    public static int getTotalTreeWeightForBiome(Biome biome)
     {
         checkNotNull(biome, "Biome is required.");
         return instance.get().getBiomeTotalWeight(GenType.TREE, biome);
@@ -160,11 +160,11 @@ public abstract class BiomeManager
         return instance.isPresent();
     }
     
-    protected abstract void addBiomeGen(GenType genType, BiomeGenBase biome, WorldGenerator treeGen, int weight);
+    protected abstract void addBiomeGen(GenType genType, Biome biome, WorldGenerator treeGen, int weight);
     
-    protected abstract Optional<? extends WorldGenerator> chooseBiomeRandomGen(GenType genType, Random rand, BiomeGenBase biome);
+    protected abstract Optional<? extends WorldGenerator> chooseBiomeRandomGen(GenType genType, Random rand, Biome biome);
     
-    protected abstract Collection<BiomeGenBase> getBiomeCollection();
+    protected abstract Collection<Biome> getBiomeCollection();
     
-    protected abstract int getBiomeTotalWeight(GenType genType, BiomeGenBase biome);
+    protected abstract int getBiomeTotalWeight(GenType genType, Biome biome);
 }

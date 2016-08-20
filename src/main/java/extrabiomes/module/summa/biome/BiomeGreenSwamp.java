@@ -11,16 +11,16 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeGreenSwamp extends ExtrabiomeGenBase {
+public class BiomeGreenSwamp extends ExtraBiome {
 
   @Override
   public DecorationSettings getDecorationSettings() {
@@ -33,8 +33,8 @@ public class BiomeGreenSwamp extends ExtrabiomeGenBase {
 
     setColor(0x68C474);
     setBiomeName("Green Swamplands");
-    temperature = BiomeGenBase.swampland.temperature - 0.1F;
-    rainfall = BiomeGenBase.swampland.rainfall;
+    temperature = Biome.swampland.temperature - 0.1F;
+    rainfall = Biome.swampland.rainfall;
     this.setHeight(new Height(-0.05F, 0.15F));
     spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 1, 1, 1));
   }

@@ -8,15 +8,15 @@ package extrabiomes.module.summa.biome;
 
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeGreenHills extends ExtrabiomeGenBase
+public class BiomeGreenHills extends ExtraBiome
 {
 
 	@Override
@@ -30,8 +30,8 @@ public class BiomeGreenHills extends ExtrabiomeGenBase
         
         setColor(0x68C474);
         setBiomeName("Green Hills");
-        temperature = BiomeGenBase.forest.temperature - 0.1F;
-        rainfall = BiomeGenBase.forest.rainfall + 0.1F;
+        temperature = Biome.forest.temperature - 0.1F;
+        rainfall = Biome.forest.rainfall + 0.1F;
         this.setHeight(new Height(0.9F, 0.3F));
     }
     

@@ -5,7 +5,7 @@ package two.newdawn.API;
 import java.util.Arrays;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import two.newdawn.API.noise.SimplexNoise;
 
 /**
@@ -32,12 +32,12 @@ public class NewDawnBiome {
    * @param vanillaBiome the vanilla biome to copy.
    * @return a NewDawnBiome which is an exact copy of a vanilla biome.
    */
-  public static NewDawnBiome copyVanilla(final BiomeGenBase vanillaBiome) {
+  public static NewDawnBiome copyVanilla(final Biome vanillaBiome) {
     return new NewDawnBiome(vanillaBiome, vanillaBiome.topBlock, vanillaBiome.fillerBlock, Blocks.stone);
   }
 
   /* The vanilla biome set during world creation */
-  public final BiomeGenBase vanillaBiome;
+  public final Biome vanillaBiome;
   /* The top block used for this biome during generation */
   public final Block topBlock;
   /* The filler block used for this biome during generation (between ground and top block) */
@@ -52,7 +52,7 @@ public class NewDawnBiome {
    * @param topBlock the top block used for this biome during generation.
    * @param fillerBlock the filler block used for this biome during generation (between ground and top block).
    */
-  public NewDawnBiome(final BiomeGenBase vanillaBiome, final Block topBlock, final Block fillerBlock) {
+  public NewDawnBiome(final Biome vanillaBiome, final Block topBlock, final Block fillerBlock) {
     this(vanillaBiome, topBlock, fillerBlock, Blocks.stone);
   }
 
@@ -64,7 +64,7 @@ public class NewDawnBiome {
    * @param fillerBlock the filler block used for this biome during generation (between ground and top block).
    * @param groundBlock the ground block used for this biome during generation (below filler block).
    */
-  public NewDawnBiome(final BiomeGenBase vanillaBiome, final Block topBlock, final Block fillerBlock, final Block groundBlock) {
+  public NewDawnBiome(final Biome vanillaBiome, final Block topBlock, final Block fillerBlock, final Block groundBlock) {
     this.vanillaBiome = vanillaBiome;
     this.topBlock = topBlock;
     this.fillerBlock = fillerBlock;

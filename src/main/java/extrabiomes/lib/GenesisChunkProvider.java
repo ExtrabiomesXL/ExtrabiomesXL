@@ -13,7 +13,7 @@ import net.minecraft.block.BlockSand;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.SpawnerAnimals;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.chunk.storage.IChunkLoader;
@@ -26,10 +26,10 @@ import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class GenesisChunkProvider extends ChunkProviderGenerate {
-	private final BiomeGenBase	_biome;
+	private final Biome	_biome;
 	private final World			_world;
 
-	public GenesisChunkProvider(World world, BiomeGenBase biome) {
+	public GenesisChunkProvider(World world, Biome biome) {
 		super(world, world.getSeed(), false);
 		_world = world;
 		_biome = biome;
@@ -60,7 +60,7 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 		byte[] terrain = new byte[32768];
 		this.generateTerrain(i, j, terrain);
 
-		BiomeGenBase[] biomeArray = new BiomeGenBase[256];
+		Biome[] biomeArray = new Biome[256];
 		Arrays.fill(biomeArray, _biome);
 		this.replaceBlocksForBiome(i, j, terrain, biomeArray);
 
@@ -97,7 +97,7 @@ public class GenesisChunkProvider extends ChunkProviderGenerate {
 		int l1;
 		int i2;
 
-		if (_biome != BiomeGenBase.desert && _biome != BiomeGenBase.desertHills && !flag && rand.nextInt(4) == 0 && TerrainGen.populate(this, _world, rand, i, j, flag, LAKE)) {
+		if (_biome != Biome.desert && _biome != Biome.desertHills && !flag && rand.nextInt(4) == 0 && TerrainGen.populate(this, _world, rand, i, j, flag, LAKE)) {
 			k1 = k + rand.nextInt(16) + 8;
 			l1 = rand.nextInt(128);
 			i2 = l + rand.nextInt(16) + 8;

@@ -6,13 +6,13 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.Height;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
 
-public class BiomeWasteland extends ExtrabiomeGenBase
+public class BiomeWasteland extends ExtraBiome
 {
     
 	@Override
@@ -26,8 +26,8 @@ public class BiomeWasteland extends ExtrabiomeGenBase
         
         setColor(0x9E7C41);
         setBiomeName("Wasteland");
-        temperature = BiomeGenBase.desert.temperature;
-        rainfall = BiomeGenBase.desert.rainfall;
+        temperature = Biome.desert.temperature;
+        rainfall = Biome.desert.rainfall;
         this.setHeight(new Height(0.1F, 0.0F));
         waterColorMultiplier = 0xF08000;
         

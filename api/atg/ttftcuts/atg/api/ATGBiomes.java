@@ -6,7 +6,7 @@ import ttftcuts.atg.api.events.*;
 import ttftcuts.atg.api.events.listenable.ATGBiomeGroupAssignmentEvent.ATGGroupActivationEvent;
 
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.google.common.base.Optional;
@@ -30,7 +30,7 @@ public abstract class ATGBiomes {
 	 * 
 	 * @return the corresponding biome.
 	 */
-	public static BiomeGenBase getBiome(String biomeName) {
+	public static Biome getBiome(String biomeName) {
 		final ATGBiomeRequestEvent event = new ATGBiomeRequestEvent(biomeName);
 		MinecraftForge.EVENT_BUS.post(event);
 		if ( !event.biome.isPresent() ) {
@@ -47,7 +47,7 @@ public abstract class ATGBiomes {
 	 * 
 	 * @return a list of names of containing Biome Groups.
 	 */
-	public static List<String> getGroupFromBiome(BiomeGenBase biome) {
+	public static List<String> getGroupFromBiome(Biome biome) {
 		final ATGBiomeGroupRequestEvent event = new ATGBiomeGroupRequestEvent(biome);
 		MinecraftForge.EVENT_BUS.post(event);
 		return event.groups;
@@ -161,7 +161,7 @@ public abstract class ATGBiomes {
 	 * @param weight
 	 * 			Generation weight for this biome. All vanilla biomes are weighted 1.0 except mushroom island.
 	 */
-	public static void addBiome(BiomeType type, String group, BiomeGenBase biome, double weight) {
+	public static void addBiome(BiomeType type, String group, Biome biome, double weight) {
 		ATGBiomeEvent event = new ATGBiomeEvent( type, group, biome, null, weight);
 		MinecraftForge.EVENT_BUS.post(event);
 	}
@@ -185,7 +185,7 @@ public abstract class ATGBiomes {
 	 * @param weight
 	 * 			Generation weight for the replacement biome.
 	 */
-	public static void replaceBiome(BiomeType type, String group, BiomeGenBase toReplace, BiomeGenBase replacement, double weight) {
+	public static void replaceBiome(BiomeType type, String group, Biome toReplace, Biome replacement, double weight) {
 		ATGBiomeEvent event = new ATGBiomeEvent( type, group, replacement, toReplace, weight );
 		MinecraftForge.EVENT_BUS.post(event);
 	}
@@ -203,7 +203,7 @@ public abstract class ATGBiomes {
 	 * @param weight
 	 * 			Generation weight for the sub-biome. The parent biome is always weighted at 1.0, so a 1.0 weight here with a single sub-biome would be a 50/50 split.
 	 */
-	public static void addSubBiome(BiomeGenBase biome, BiomeGenBase subBiome, double weight) {
+	public static void addSubBiome(Biome biome, Biome subBiome, double weight) {
 		ATGBiomeModEvent event = new ATGBiomeModEvent(ATGBiomeModEvent.EventType.SUBBIOME, biome, null, subBiome, weight);
 		MinecraftForge.EVENT_BUS.post(event);
 	}
@@ -218,7 +218,7 @@ public abstract class ATGBiomes {
 	 * @param mod
 	 * 			IGenMod object that will modify the biome.
 	 */
-	public static void addGenMod(BiomeGenBase biome, IGenMod mod) {
+	public static void addGenMod(Biome biome, IGenMod mod) {
 		ATGBiomeModEvent event = new ATGBiomeModEvent(ATGBiomeModEvent.EventType.GENMOD, biome, mod, null, 0);
 		MinecraftForge.EVENT_BUS.post(event);
 	}
@@ -231,7 +231,7 @@ public abstract class ATGBiomes {
 	 * 
 	 * @return an Optional corresponding to the IGenMod for the biome, or Optional.absent.
 	 */
-	public static Optional<IGenMod> getGenMod(BiomeGenBase biome) {
+	public static Optional<IGenMod> getGenMod(Biome biome) {
 		ATGBiomeModRequestEvent event = new ATGBiomeModRequestEvent(biome);
 		MinecraftForge.EVENT_BUS.post(event);
 		return event.mod;
@@ -253,7 +253,7 @@ public abstract class ATGBiomes {
 	 * @param rocksPerChunk
 	 * 			rockChance will be checked rocksPerChunk times per chunk.
 	 */
-	public static void setBiomeRocks(BiomeGenBase biome, int rockChance, int bigRockChance, int rocksPerChunk) {
+	public static void setBiomeRocks(Biome biome, int rockChance, int bigRockChance, int rocksPerChunk) {
 		ATGBiomeRocksEvent event = new ATGBiomeRocksEvent(biome, rockChance, bigRockChance, rocksPerChunk);
 		MinecraftForge.EVENT_BUS.post(event);
 	}

@@ -13,7 +13,7 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeManager;
 
@@ -30,13 +30,13 @@ public abstract class BiomeHelper
     
     private static final Set<WorldType>                        worldTypes   = new HashSet<WorldType>();
     
-    private static Optional<? extends ArrayList<BiomeGenBase>> activeBiomes = Optional.absent();
+    private static Optional<? extends ArrayList<Biome>> activeBiomes = Optional.absent();
     
     public static void addTerrainBlockstoBiome(BiomeSettings biome, Block topBlock, Block fillerBlock)
     {
         if (!biome.getBiome().isPresent())
             return;
-        final BiomeGenBase baseBiome = biome.getBiome().get();
+        final Biome baseBiome = biome.getBiome().get();
         baseBiome.topBlock = topBlock;
         baseBiome.fillerBlock = fillerBlock;
     }
@@ -53,9 +53,9 @@ public abstract class BiomeHelper
      */
     public static void createBiome(BiomeSettings setting) throws Exception
     {
-        if (BiomeGenBase.getBiomeGenArray()[setting.getID()] != null)
+        if (Biome.getBiomeGenArray()[setting.getID()] != null)
         {
-            throw new IllegalArgumentException(String.format("Biome id %d is already in use by %s when adding %s. Please review the configuration file.", setting.getID(), BiomeGenBase.getBiomeGenArray()[setting.getID()].biomeName, setting.toString()));
+            throw new IllegalArgumentException(String.format("Biome id %d is already in use by %s when adding %s. Please review the configuration file.", setting.getID(), Biome.getBiomeGenArray()[setting.getID()].biomeName, setting.toString()));
         }
         
         setting.createBiome();
@@ -85,27 +85,27 @@ public abstract class BiomeHelper
     
     /**
      * <pre>
-     * static void enableBiome(BiomeGenBase biome);
+     * static void enableBiome(Biome biome);
      * </pre>
      * 
      * enable a custom biome.
      * <p>
      * 
      * @param worldTypes - a collection of worldTypes in which to enable these biomes
-     * @param biome - the BiomeGenBase to add
+     * @param biome - the Biome to add
      */
-    public static void enableBiome(Set<WorldType> worldTypes, BiomeGenBase biome)
+    public static void enableBiome(Set<WorldType> worldTypes, Biome biome)
     {
         Extrabiomes.proxy.addBiome(worldTypes, biome);
         BiomeManager.addSpawnBiome(biome);
         BiomeManager.addStrongholdBiome(biome);
     }
     
-    public static Collection<BiomeGenBase> getActiveBiomes()
+    public static Collection<Biome> getActiveBiomes()
     {
         if (!activeBiomes.isPresent())
         {
-            activeBiomes = Optional.of(new ArrayList<BiomeGenBase>(BiomeSettings.values().length));
+            activeBiomes = Optional.of(new ArrayList<Biome>(BiomeSettings.values().length));
             for (final BiomeSettings setting : BiomeSettings.values())
             {
                 if (setting.getBiome().isPresent() && !setting.isVanilla())
@@ -118,26 +118,26 @@ public abstract class BiomeHelper
         return ImmutableSet.copyOf(activeBiomes.get());
     }
     
-    public static BiomeGenBase settingToBiomeGenBase(BiomeSettings setting)
+    public static Biome settingToBiome(BiomeSettings setting)
     {
         switch (setting)
         {
             case DESERT:
-                return BiomeGenBase.desert;
+                return Biome.desert;
             case EXTREMEHILLS:
-                return BiomeGenBase.extremeHills;
+                return Biome.extremeHills;
             case FOREST:
-                return BiomeGenBase.forest;
+                return Biome.forest;
             case JUNGLE:
-                return BiomeGenBase.jungle;
+                return Biome.jungle;
             case SWAMPLAND:
-                return BiomeGenBase.swampland;
+                return Biome.swampland;
             case TAIGA:
-                return BiomeGenBase.taiga;
+                return Biome.taiga;
             case PLAINS:
-                return BiomeGenBase.plains;
+                return Biome.plains;
 			case OCEAN:
-				return BiomeGenBase.ocean;
+				return Biome.ocean;
             default:
             	if (setting.getBiome().isPresent()) {
             		return setting.getBiome().get();
@@ -147,7 +147,7 @@ public abstract class BiomeHelper
     }
     
     @SuppressWarnings("deprecation")
-    public static void addWeightedGrassGen(Optional<? extends BiomeGenBase> biome,
+    public static void addWeightedGrassGen(Optional<? extends Biome> biome,
             WorldGenerator grassGen, int weight)
     {
         if (!biome.isPresent())

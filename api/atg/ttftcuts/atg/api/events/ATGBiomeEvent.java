@@ -2,7 +2,7 @@ package ttftcuts.atg.api.events;
 
 import ttftcuts.atg.api.ATGBiomes.BiomeType;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.eventhandler.Event;
 
 public class ATGBiomeEvent extends Event {
@@ -12,11 +12,11 @@ public class ATGBiomeEvent extends Event {
 	public BiomeType type;
 	public ResponseType response;
 	public String group;
-	public BiomeGenBase biome;
-	public BiomeGenBase replaced;
+	public Biome biome;
+	public Biome replaced;
 	public double weight;
 	
-	public ATGBiomeEvent(BiomeType type, String group, BiomeGenBase biome, BiomeGenBase replaced, double weight) {
+	public ATGBiomeEvent(BiomeType type, String group, Biome biome, Biome replaced, double weight) {
 		this.type = type;
 		this.group = group;
 		this.biome = biome;

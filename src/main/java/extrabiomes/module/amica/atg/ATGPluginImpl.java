@@ -15,43 +15,43 @@ public class ATGPluginImpl
     
     private void addSubBiomes()
     {
-        /*BiomeGenBase parent = null;
+        /*Biome parent = null;
         
         // icePlains
-        parent = BiomeGenBase.icePlains;
+        parent = Biome.icePlains;
         if (BiomeSettings.ICEWASTELAND.isEnabled() && BiomeSettings.ICEWASTELAND.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.ICEWASTELAND.getBiome().get(), 0.25);
         if (BiomeSettings.GLACIER.isEnabled() && BiomeSettings.GLACIER.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.GLACIER.getBiome().get(), 0.75);
         
         // iceMountains
-        parent = BiomeGenBase.iceMountains;
+        parent = Biome.iceMountains;
         if (BiomeSettings.ALPINE.isEnabled() && BiomeSettings.ALPINE.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.ALPINE.getBiome().get(), 0.5);
         if (BiomeSettings.MOUNTAINTAIGA.isEnabled() && BiomeSettings.MOUNTAINTAIGA.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.MOUNTAINTAIGA.getBiome().get(), 0.25);
         
         // taiga
-        parent = BiomeGenBase.taiga;
+        parent = Biome.taiga;
         if (BiomeSettings.SNOWYFOREST.isEnabled() && BiomeSettings.SNOWYFOREST.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.SNOWYFOREST.getBiome().get(), 0.5);
         if (BiomeSettings.SNOWYRAINFOREST.isEnabled() && BiomeSettings.SNOWYRAINFOREST.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.SNOWYRAINFOREST.getBiome().get(), 0.5);
         
         // plains
-        parent = BiomeGenBase.plains;
+        parent = Biome.plains;
         if (BiomeSettings.MEADOW.isEnabled() && BiomeSettings.MEADOW.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.MEADOW.getBiome().get(), 0.75);
         
         // swampland
-        parent = BiomeGenBase.swampland;
+        parent = Biome.swampland;
         if (BiomeSettings.GREENSWAMP.isEnabled() && BiomeSettings.GREENSWAMP.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.GREENSWAMP.getBiome().get(), 0.75);
         if (BiomeSettings.MARSH.isEnabled() && BiomeSettings.MARSH.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.MARSH.getBiome().get(), 0.75);
         
         // forest
-        parent = BiomeGenBase.forest;
+        parent = Biome.forest;
         if (BiomeSettings.AUTUMNWOODS.isEnabled() && BiomeSettings.AUTUMNWOODS.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.AUTUMNWOODS.getBiome().get(), 1.0);
         if (BiomeSettings.BIRCHFOREST.isEnabled() && BiomeSettings.BIRCHFOREST.getBiome().isPresent())
@@ -62,12 +62,12 @@ public class ATGPluginImpl
             ATGBiomes.addSubBiome(parent, BiomeSettings.WOODLANDS.getBiome().get(), 1.0);
         
         // forestHills
-        parent = BiomeGenBase.forestHills;
+        parent = Biome.forestHills;
         if (BiomeSettings.GREENHILLS.isEnabled() && BiomeSettings.GREENHILLS.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.GREENHILLS.getBiome().get(), 1.0);
         
         // ocean
-        parent = BiomeGenBase.ocean;
+        parent = Biome.ocean;
         if (BiomeSettings.FORESTEDISLAND.isEnabled() && BiomeSettings.FORESTEDISLAND.getBiome().isPresent())
             ATGBiomes.addSubBiome(parent, BiomeSettings.FORESTEDISLAND.getBiome().get(), 0.01);*/
         
