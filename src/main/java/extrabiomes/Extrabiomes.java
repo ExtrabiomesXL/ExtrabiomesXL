@@ -25,8 +25,6 @@ import extrabiomes.handlers.RecipeHandler;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.Reference;
-import extrabiomes.module.amica.forestry.ForestryPlugin;
-import extrabiomes.module.amica.treecapitator.TreecapitatorPlugin;
 import extrabiomes.module.fabrica.recipe.RecipeManager;
 import extrabiomes.plugins.PluginThaumcraft4;
 import extrabiomes.proxy.CommonProxy;

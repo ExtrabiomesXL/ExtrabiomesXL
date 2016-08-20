@@ -98,7 +98,7 @@ public class CropHandler {
 			if (plant_element != null && plant_element.isPresent()) {
                 final ItemStack plant_stack = plant_element.get();
 				final Block block = Block.getBlockFromItem(plant_stack.getItem());
-                if(block == Blocks.air) {
+                if(block == Blocks.AIR) {
                     LogHelper.severe("Unable to get plant back from element for " + type);
                 } else if(block instanceof BlockCropBasic) {
                     type.cropType = (BlockCropBasic) block;

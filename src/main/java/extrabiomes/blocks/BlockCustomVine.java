@@ -116,7 +116,7 @@ public class BlockCustomVine extends BlockVine {
 
                     block = world.getBlock(x + Direction.offsetX[k1], y, z + Direction.offsetZ[k1]);
 
-                    if (block.getMaterial() == Material.air)
+                    if (block.getMaterial() == Material.AIR)
                     {
                         l1 = k1 + 1 & 3;
                         i2 = k1 + 3 & 3;
@@ -151,7 +151,7 @@ public class BlockCustomVine extends BlockVine {
                 {
                     block = world.getBlock(x, y - 1, z);
 
-                    if (block.getMaterial() == Material.air)
+                    if (block.getMaterial() == Material.AIR)
                     {
                         l1 = world.rand.nextInt(16) & i1;
 

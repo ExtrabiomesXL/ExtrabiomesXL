@@ -234,14 +234,14 @@ public class BlockNewSapling extends BlockFlower
         {
             if (isHuge)
             {
-                world.setBlock(x + x1, y, z + z1, Blocks.air);
-                world.setBlock(x + x1 + 1, y, z + z1, Blocks.air);
-                world.setBlock(x + x1, y, z + z1 + 1, Blocks.air);
-                world.setBlock(x + x1 + 1, y, z + z1 + 1, Blocks.air);
+                world.setBlock(x + x1, y, z + z1, Blocks.AIR);
+                world.setBlock(x + x1 + 1, y, z + z1, Blocks.AIR);
+                world.setBlock(x + x1, y, z + z1 + 1, Blocks.AIR);
+                world.setBlock(x + x1 + 1, y, z + z1 + 1, Blocks.AIR);
             }
             else
             {
-                world.setBlock(x, y, z, Blocks.air);
+                world.setBlock(x, y, z, Blocks.AIR);
             }
             
             if (!tree.generate(world, rand, x + x1, y, z + z1))
@@ -402,7 +402,7 @@ public class BlockNewSapling extends BlockFlower
     {
         Block block = world.getBlock(x, y, z);
         int metadata = world.getBlockMetadata(x, y, z);
-        return block != null && block != Blocks.air && sapling.getItem() == ItemBlock.getItemFromBlock(this) && sapling.getItemDamage() == metadata;
+        return block != null && block != Blocks.AIR && sapling.getItem() == ItemBlock.getItemFromBlock(this) && sapling.getItemDamage() == metadata;
     }
     
     @SubscribeEvent

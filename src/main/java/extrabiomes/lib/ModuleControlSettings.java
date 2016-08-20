@@ -13,7 +13,7 @@ import extrabiomes.utility.EnhancedConfiguration;
 
 public enum ModuleControlSettings
 {
-    SUMMA, CAUTIA, FABRICA, AMICA;
+    SUMMA, CAUTIA, FABRICA;
     
     private static final String CATEGORY_MODULE_CONTROL = "module_control";
     
@@ -21,11 +21,7 @@ public enum ModuleControlSettings
     
     private String commentLangKey()
     {
-        if (toString() == "amica")
-        {
-            return "Set amica to true to enable support for other mods.";
-        }
-        else if (toString() == "cautia")
+    	if (toString() == "cautia")
         {
             return "Set cautia to true to add danger.";
         }

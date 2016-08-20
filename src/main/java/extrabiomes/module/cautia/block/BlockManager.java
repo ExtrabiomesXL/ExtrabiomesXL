@@ -15,7 +15,6 @@ import extrabiomes.api.Stuff;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Reference;
-import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.cautia.worldgen.QuicksandGenerator;
 import extrabiomes.proxy.CommonProxy;
 

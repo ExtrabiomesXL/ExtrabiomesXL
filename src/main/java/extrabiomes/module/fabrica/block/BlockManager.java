@@ -43,7 +43,6 @@ import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.lib.Reference;
-import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.fabrica.block.BlockCustomWood;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.renderers.CustomDoorRender;

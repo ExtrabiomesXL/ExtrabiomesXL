@@ -307,13 +307,13 @@ public class BlockCustomSapling extends BlockFlower
         {
             if (isHuge)
             {
-                world.setBlock(x + x1, y, z + z1, Blocks.air);
-                world.setBlock(x + x1 + 1, y, z + z1, Blocks.air);
-                world.setBlock(x + x1, y, z + z1 + 1, Blocks.air);
-                world.setBlock(x + x1 + 1, y, z + z1 + 1, Blocks.air);
+                world.setBlock(x + x1, y, z + z1, Blocks.AIR);
+                world.setBlock(x + x1 + 1, y, z + z1, Blocks.AIR);
+                world.setBlock(x + x1, y, z + z1 + 1, Blocks.AIR);
+                world.setBlock(x + x1 + 1, y, z + z1 + 1, Blocks.AIR);
             }
             else
-                world.setBlock(x, y, z, Blocks.air);
+                world.setBlock(x, y, z, Blocks.AIR);
             
             if (!tree.generate(world, rand, x + x1 + offset, y, z + z1 + offset))
             {

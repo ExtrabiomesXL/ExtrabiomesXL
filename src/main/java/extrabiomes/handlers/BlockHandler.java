@@ -48,7 +48,6 @@ import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ModuleControlSettings;
-import extrabiomes.module.amica.buildcraft.FacadeHelper;
 import extrabiomes.module.summa.worldgen.CatTailGenerator;
 import extrabiomes.module.summa.worldgen.EelGrassGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;

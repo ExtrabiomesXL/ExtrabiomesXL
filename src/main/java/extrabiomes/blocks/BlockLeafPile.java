@@ -70,7 +70,7 @@ public class BlockLeafPile extends Block
         if (!canBlockStay(world, x, y, z))
         {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlock(x, y, z, Blocks.air);
+            world.setBlock(x, y, z, Blocks.AIR);
         }
     }
     

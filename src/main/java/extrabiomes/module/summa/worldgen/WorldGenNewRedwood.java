@@ -257,7 +257,7 @@ public class WorldGenNewRedwood extends WorldGenAbstractTree
 	            {
 	                if (j1 == 1)
 	                {
-	                    setBlockAndNotifyAdequately(world, x + j1, y, z + j2, Blocks.air, 0);
+	                    setBlockAndNotifyAdequately(world, x + j1, y, z + j2, Blocks.AIR, 0);
 	                }
 	
 	                setBlockAndNotifyAdequately(world, x + j1, y - 1, z + j2, Blocks.dirt, 0);

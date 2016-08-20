@@ -147,7 +147,7 @@ public enum Element
     public String getID()
     {
         if (isPresent())
-            return GameData.getItemRegistry().getNameForObject(get().getItem());
+            return GameData.getItemRegistry().getNameForObject(get().getItem()).toString();
         return null;
     }
 

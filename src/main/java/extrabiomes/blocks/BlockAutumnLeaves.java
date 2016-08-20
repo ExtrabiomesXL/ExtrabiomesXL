@@ -223,7 +223,7 @@ public class BlockAutumnLeaves extends BlockLeavesBase implements IShearable
         
         if (world.rand.nextInt(200) == 0)
         {
-            dropBlockAsItem(world, x, y, z, new ItemStack(Items.apple, 1, 0));
+            dropBlockAsItem(world, x, y, z, new ItemStack(Items.APPLE, 1, 0));
         }
     }
     

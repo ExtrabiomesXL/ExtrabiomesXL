@@ -160,7 +160,7 @@ public enum BiomeSettings {
 
 			// register ourselves with the biome manager
 			BiomeManager.BiomeEntry entry = new BiomeManager.BiomeEntry(egb, weight);
-			if (egb.temperature > 0.5f) {
+			if (egb.getTemperature() > 0.5f) {
 				if (egb.isHighHumidity()) {
 					BiomeManager.addBiome(BiomeType.WARM, entry);
 				} else {

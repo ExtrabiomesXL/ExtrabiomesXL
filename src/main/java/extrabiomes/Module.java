@@ -13,13 +13,12 @@ import com.google.common.base.Optional;
 
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.ModuleControlSettings;
-import extrabiomes.module.amica.Amica;
 import extrabiomes.module.cautia.Cautia;
 import extrabiomes.module.fabrica.Fabrica;
 
 enum Module
 {
-    CAUTIA(Cautia.class), FABRICA(Fabrica.class), AMICA(Amica.class);
+    CAUTIA(Cautia.class), FABRICA(Fabrica.class);
     
     private static Optional<EventBus> eventBus = Optional.of(new EventBus());
     
@@ -40,9 +39,6 @@ enum Module
                     break;
                 case FABRICA:
                     module.enabled = ModuleControlSettings.FABRICA.isEnabled();
-                    break;
-                case AMICA:
-                    module.enabled = ModuleControlSettings.AMICA.isEnabled();
                     break;
             }
             

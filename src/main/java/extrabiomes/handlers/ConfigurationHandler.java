@@ -23,7 +23,6 @@ import extrabiomes.lib.ItemSettings;
 import extrabiomes.lib.ModuleControlSettings;
 import extrabiomes.lib.Reference;
 import extrabiomes.lib.SaplingSettings;
-import extrabiomes.module.amica.newdawn.NewDawnSettings;
 import extrabiomes.utility.EnhancedConfiguration;
 
 /**

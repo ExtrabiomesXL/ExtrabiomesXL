@@ -46,7 +46,7 @@ public class SubBlock {
     public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor, Block block) {
         if (!canBlockStay(world, x, y, z)) {
         	block.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlock(x, y, z, Blocks.air);
+            world.setBlock(x, y, z, Blocks.AIR);
         }
     }
     
