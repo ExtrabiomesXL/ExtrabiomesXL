@@ -2,7 +2,7 @@
  */
 package two.newdawn.API;
 
-import cpw.mods.fml.common.FMLLog;
+import  net.minecraft.fml.common.FMLLog;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

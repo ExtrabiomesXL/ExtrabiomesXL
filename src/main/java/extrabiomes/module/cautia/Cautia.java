@@ -6,7 +6,7 @@
 
 package extrabiomes.module.cautia;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import  net.minecraft.fml.common.eventhandler.SubscribeEvent;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
 import extrabiomes.module.cautia.block.BlockManager;

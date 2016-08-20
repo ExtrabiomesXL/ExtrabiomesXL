@@ -15,7 +15,7 @@ import net.minecraft.block.material.Material;
 
 import com.google.common.base.Optional;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import  net.minecraft.fml.common.registry.GameRegistry;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.blocks.BlockCustomFence;

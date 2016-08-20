@@ -6,7 +6,7 @@
 
 package extrabiomes.events;
 
-import cpw.mods.fml.common.eventhandler.Event;
+import  net.minecraft.fml.common.eventhandler.Event;
 
 public abstract class ModuleEvent extends Event
 {

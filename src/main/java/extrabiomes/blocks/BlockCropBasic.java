@@ -20,8 +20,8 @@ import net.minecraft.util.Direction;
 
 import com.google.common.collect.Lists;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import  net.minecraft.fml.relauncher.Side;
+import  net.minecraft.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.helpers.LogHelper;
 

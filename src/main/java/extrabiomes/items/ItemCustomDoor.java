@@ -1,7 +1,7 @@
 package extrabiomes.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import  net.minecraft.fml.relauncher.Side;
+import  net.minecraft.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.lib.GeneralSettings;
 import extrabiomes.module.fabrica.block.BlockCustomWoodDoor;

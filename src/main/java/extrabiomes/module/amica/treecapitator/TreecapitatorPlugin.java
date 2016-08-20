@@ -8,8 +8,8 @@ package extrabiomes.module.amica.treecapitator;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInterModComms;
+import  net.minecraft.fml.common.Loader;
+import  net.minecraft.fml.common.event.FMLInterModComms;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.Reference;

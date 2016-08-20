@@ -6,7 +6,7 @@
 
 package extrabiomes.api;
 
-import cpw.mods.fml.common.eventhandler.EventBus;
+import  net.minecraft.fml.common.eventhandler.EventBus;
 
 import com.google.common.base.Optional;
 

@@ -9,7 +9,7 @@ package extrabiomes.module.amica.ic2;
 import java.util.Collection;
 
 import net.minecraft.world.biome.BiomeGenBase;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import  net.minecraft.fml.common.eventhandler.SubscribeEvent;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;

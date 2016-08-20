@@ -6,8 +6,8 @@
 
 package extrabiomes.module.amica;
 
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import  net.minecraft.fml.common.eventhandler.EventPriority;
+import  net.minecraft.fml.common.eventhandler.SubscribeEvent;
 import extrabiomes.api.Api;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.module.amica.atg.ATGPlugin;

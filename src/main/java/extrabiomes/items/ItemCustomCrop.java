@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import  net.minecraft.fml.relauncher.Side;
+import  net.minecraft.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 
 public class ItemCustomCrop extends ItemFood {

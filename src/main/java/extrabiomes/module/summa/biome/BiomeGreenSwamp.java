@@ -6,7 +6,7 @@
 
 package extrabiomes.module.summa.biome;
 
-import cpw.mods.fml.common.eventhandler.Event.Result;
+import  net.minecraft.fml.common.eventhandler.Event.Result;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.util.AxisAlignedBB;

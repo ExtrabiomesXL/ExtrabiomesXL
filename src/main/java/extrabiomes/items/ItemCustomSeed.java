@@ -17,8 +17,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import  net.minecraft.fml.relauncher.Side;
+import  net.minecraft.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 
 public class ItemCustomSeed extends Item implements IPlantable {

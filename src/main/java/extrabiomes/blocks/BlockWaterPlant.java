@@ -3,8 +3,8 @@ package extrabiomes.blocks;
 import java.util.List;
 import java.util.Locale;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import  net.minecraft.fml.relauncher.Side;
+import  net.minecraft.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.helpers.ToolTipStringFormatter;
 import extrabiomes.lib.BlockSettings;

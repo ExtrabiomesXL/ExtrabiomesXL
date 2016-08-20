@@ -1,6 +1,6 @@
 package extrabiomes.module.amica.newdawn;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import  net.minecraft.fml.common.eventhandler.SubscribeEvent;
 
 import com.google.common.base.Optional;
 

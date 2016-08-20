@@ -6,7 +6,7 @@
 
 package extrabiomes.module.fabrica;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import  net.minecraft.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
@@ -14,13 +14,13 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import cpw.mods.fml.common.eventhandler.EventPriority;
+import  net.minecraft.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import com.google.common.base.Optional;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import  net.minecraft.fml.common.registry.GameRegistry;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;

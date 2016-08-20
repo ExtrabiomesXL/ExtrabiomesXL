@@ -30,14 +30,14 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.base.Optional;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.IFuelHandler;
-import cpw.mods.fml.common.IWorldGenerator;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.eventhandler.Event;
+import  net.minecraft.fml.client.registry.ISimpleBlockRenderingHandler;
+import  net.minecraft.fml.common.FMLLog;
+import  net.minecraft.fml.common.IFuelHandler;
+import  net.minecraft.fml.common.IWorldGenerator;
+import  net.minecraft.fml.common.Loader;
+import  net.minecraft.fml.common.registry.EntityRegistry;
+import  net.minecraft.fml.common.registry.GameRegistry;
+import  net.minecraft.fml.common.eventhandler.Event;
 import extrabiomes.api.Stuff;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.Reference;

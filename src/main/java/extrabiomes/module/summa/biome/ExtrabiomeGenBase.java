@@ -17,7 +17,7 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 
 import com.google.common.base.Optional;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import  net.minecraft.fml.common.eventhandler.SubscribeEvent;
 import extrabiomes.api.BiomeManager;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;

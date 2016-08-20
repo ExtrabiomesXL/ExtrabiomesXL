@@ -6,7 +6,7 @@ import java.util.Queue;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import  net.minecraft.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.event.terraingen.WorldTypeEvent.InitBiomeGens;
 import extrabiomes.helpers.LogHelper;
 

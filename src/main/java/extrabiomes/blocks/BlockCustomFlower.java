@@ -29,9 +29,9 @@ import net.minecraftforge.common.IPlantable;
 
 import com.google.common.collect.Maps;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import  net.minecraft.fml.common.registry.LanguageRegistry;
+import  net.minecraft.fml.relauncher.Side;
+import  net.minecraft.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
