@@ -19,12 +19,14 @@ import java.util.Random;
 
 import extrabiomes.lib.GeneralSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockTallGrass;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
-import net.minecraft.world.gen.feature.WorldGenForest;
+import net.minecraft.world.gen.feature.WorldGenBirchTree;
 import net.minecraft.world.gen.feature.WorldGenHugeTrees;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenShrub;
@@ -70,15 +72,15 @@ public class BiomeManagerImpl extends BiomeManager
     private static final WorldGenerator                                               ALT_TAIGA_GEN             = new WorldGenTaiga2(false);
     private static final WorldGenerator                                               BIG_FIR_TREE_GEN          = new WorldGenFirTreeHuge(false);
     private static final WorldGenerator                                               BIG_OAK_TREE_GEN          = new WorldGenBigTree(false);
-    private static final WorldGenerator                                               BIRCH_TREE_GEN            = new WorldGenForest(false, false);
+    private static final WorldGenerator                                               BIRCH_TREE_GEN            = new WorldGenBirchTree(false, false);
     private static final WorldGenerator                                               CUSTOM_SWAMP_TREE_GEN     = new WorldGenCustomSwamp();
-    private static final WorldGenerator                                               FERN_GEN                  = new WorldGenTallGrass(Blocks.tallgrass, 2);
+    private static final WorldGenerator                                               FERN_GEN                  = new WorldGenTallGrass(BlockTallGrass.EnumType.FERN);
     private static final WorldGenerator                                               FIR_TREE_GEN              = new WorldGenFirTree(false);
-    private static final WorldGenerator                                               GRASS_GEN                 = new WorldGenTallGrass(Blocks.tallgrass, 1);
+    private static final WorldGenerator                                               GRASS_GEN                 = new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
     private static final WorldGenerator                                               LEGACY_REDWOOD_GEN        = new WorldGenRedwood(false);
     private static final WorldGenerator                                               OAK_TREE_GEN              = new WorldGenTrees(false);
     private static final WorldGenerator                                               REDWOOD_TREE_GEN          = new WorldGenNewRedwood(false);
-    private static final WorldGenerator                                               SHRUB_GEN                 = new WorldGenShrub(3, 0);
+    private static final WorldGenerator                                               SHRUB_GEN                 = new WorldGenShrub(Blocks.LOG.getStateFromMeta(3), Blocks.LEAVES.getDefaultState());
     private static final WorldGenerator                                               SWAMP_TREE_GEN            = new WorldGenSwamp();
     private static final WorldGenerator                                               TAIGA_GEN                 = new WorldGenTaiga1();
     private static final WorldGenerator                                               JAPANESE_MAPLE_GEN        = new WorldGenJapaneseMapleTree(false);
@@ -112,81 +114,81 @@ public class BiomeManagerImpl extends BiomeManager
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
                 final WorldGenAutumnTree worldGen = new WorldGenAutumnTree(false, BROWN);
                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
-                return worldGen.generate(world, rand, x, y, z);
+                return worldGen.generate(world, rand, pos);
             }
         }, 10);
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
                 final WorldGenBigAutumnTree worldGen = new WorldGenBigAutumnTree(false, BROWN);
                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
-                return worldGen.generate(world, rand, x, y, z);
+                return worldGen.generate(world, rand, pos);
             }
         }, 90);
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
                 final WorldGenAutumnTree worldGen = new WorldGenAutumnTree(false, ORANGE);
                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
-                return worldGen.generate(world, rand, x, y, z);
+                return worldGen.generate(world, rand, pos);
             }
         }, 10);
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
                 final WorldGenBigAutumnTree worldGen = new WorldGenBigAutumnTree(false, ORANGE);
                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
-                return worldGen.generate(world, rand, x, y, z);
+                return worldGen.generate(world, rand, pos);
             }
         }, 90);
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
                 final WorldGenAutumnTree worldGen = new WorldGenAutumnTree(false, PURPLE);
                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
-                return worldGen.generate(world, rand, x, y, z);
+                return worldGen.generate(world, rand, pos);
             }
         }, 10);
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
                 final WorldGenBigAutumnTree worldGen = new WorldGenBigAutumnTree(false, PURPLE);
                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
-                return worldGen.generate(world, rand, x, y, z);
+                return worldGen.generate(world, rand, pos);
             }
         }, 90);
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
                 final WorldGenAutumnTree worldGen = new WorldGenAutumnTree(false, YELLOW);
                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
-                return worldGen.generate(world, rand, x, y, z);
+                return worldGen.generate(world, rand, pos);
             }
         }, 10);
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
                 final WorldGenBigAutumnTree worldGen = new WorldGenBigAutumnTree(false, YELLOW);
                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
-                return worldGen.generate(world, rand, x, y, z);
+                return worldGen.generate(world, rand, pos);
             }
         }, 90);
         addWeightedTreeGenForBiome(biome.get(), OAK_TREE_GEN, 90);
@@ -225,21 +227,21 @@ public class BiomeManagerImpl extends BiomeManager
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
             	// TODO: Check correct generation
-                final WorldGenerator worldGen = new WorldGenMegaJungle(false, 10 + rand.nextInt(20), 0, 3, 3);
-                return worldGen.generate(world, rand, x, y, z);
+                final WorldGenerator worldGen = new WorldGenMegaJungle(false, 10 + rand.nextInt(20), 0, Blocks.LOG.getStateFromMeta(3), Blocks.LEAVES.getStateFromMeta(3));
+                return worldGen.generate(world, rand, pos);
             }
             
         }, 6);
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
-                final WorldGenerator worldGen = new WorldGenTrees(false, 4 + rand.nextInt(7), 3, 3, true);
-                return worldGen.generate(world, rand, x, y, z);
+                final WorldGenerator worldGen = new WorldGenTrees(false, 4 + rand.nextInt(7), Blocks.LOG.getStateFromMeta(3), Blocks.LEAVES.getStateFromMeta(3), true);
+                return worldGen.generate(world, rand, pos);
             }
         }, 12);
     }
@@ -329,10 +331,10 @@ public class BiomeManagerImpl extends BiomeManager
         addWeightedTreeGenForBiome(biome.get(), new WorldGenAbstractTree(false)
         {
             @Override
-            public boolean generate(World world, Random rand, int x, int y, int z)
+            public boolean generate(World world, Random rand, BlockPos pos)
             {
-                final WorldGenerator worldGen = new WorldGenShrub(3, rand.nextInt(3));
-                return worldGen.generate(world, rand, x, y, z);
+                final WorldGenerator worldGen = new WorldGenShrub(Blocks.LOG.getStateFromMeta(3), Blocks.LEAVES.getStateFromMeta(rand.nextInt(3)));
+                return worldGen.generate(world, rand, pos);
             }
         }, 50);
         addWeightedTreeGenForBiome(biome.get(), JAPANESE_MAPLE_SHRUB_GEN, 50);

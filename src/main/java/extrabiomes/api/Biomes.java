@@ -31,9 +31,9 @@ public abstract class Biomes
     {
         final GetBiomeIDEvent event = new GetBiomeIDEvent(targetBiome);
         Api.getExtrabiomesXLEventBus().post(event);
-        if (event.biomeID <= 0 || Biome.getBiomeGenArray()[event.biomeID] == null)
+        if (event.biomeID <= 0 || Biome.getBiome(event.biomeID) == null)
             return Optional.absent();
-        return Optional.of(Biome.getBiomeGenArray()[event.biomeID]);
+        return Optional.of(Biome.getBiome(event.biomeID));
     }
     
 }
