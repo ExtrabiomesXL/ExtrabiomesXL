@@ -380,17 +380,7 @@ public class BiomeManagerImpl extends BiomeManager
         addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 10);
         addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 10);
     }
-    
-    private static void addForestedIsland(Optional<? extends Biome> biome)
-    {
-        if (!biome.isPresent())
-            return;
         
-        addWeightedTreeGenForBiome(biome.get(), OAK_TREE_GEN, 85);
-        addWeightedTreeGenForBiome(biome.get(), BIG_OAK_TREE_GEN, 10);
-        addWeightedTreeGenForBiome(biome.get(), SAKURA_BLOSSOM_GEN, 5);
-    }
-    
     private static void addForestedHills(Optional<? extends Biome> biome)
     {
         if (!biome.isPresent())
@@ -410,12 +400,10 @@ public class BiomeManagerImpl extends BiomeManager
         addGrass(birchforest);
         addGrassandFerns(extremejungle);
         addGrass(forestedhills);
-        addGrass(forestedisland);
         addGrass(glacier);
         addGrass(greenhills);
         addGrass(greenswamp);
         addGrass(icewasteland);
-        addGrass(marsh);
         addGrass(meadow);
         addGrassandFerns(minijungle);
         addGrass(mountaindesert);
@@ -442,12 +430,10 @@ public class BiomeManagerImpl extends BiomeManager
         addBirchForestTrees(birchforest);
         addExtremeJungleTrees(extremejungle);
         addForestedHills(forestedhills);
-        addForestedIsland(forestedisland);
         addDefaultTrees(glacier);
         addGreenHills(greenhills);
         addGreenSwampTrees(greenswamp);
         addDefaultTrees(icewasteland);
-        addDefaultTrees(marsh);
         addDefaultTrees(meadow);
         addMiniJungleTrees(minijungle);
         addDefaultTrees(mountaindesert);
@@ -479,12 +465,10 @@ public class BiomeManagerImpl extends BiomeManager
         birchforest = BiomeSettings.BIRCHFOREST.getBiome();
         extremejungle = BiomeSettings.EXTREMEJUNGLE.getBiome();
         forestedhills = BiomeSettings.FORESTEDHILLS.getBiome();
-        forestedisland = BiomeSettings.FORESTEDISLAND.getBiome();
         glacier = BiomeSettings.GLACIER.getBiome();
         greenhills = BiomeSettings.GREENHILLS.getBiome();
         greenswamp = BiomeSettings.GREENSWAMP.getBiome();
         icewasteland = BiomeSettings.ICEWASTELAND.getBiome();
-        marsh = BiomeSettings.MARSH.getBiome();
         meadow = BiomeSettings.MEADOW.getBiome();
         minijungle = BiomeSettings.MINIJUNGLE.getBiome();
         mountaindesert = BiomeSettings.MOUNTAINDESERT.getBiome();

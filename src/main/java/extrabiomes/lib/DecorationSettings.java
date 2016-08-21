@@ -25,13 +25,11 @@ public enum DecorationSettings
     EXTREMEJUNGLE		(null, 50,   null, 25,   null, null, null, null, null, null, null, null, 7   ), // 1
     FORESTEDHILLS		(null, 7,    null, 5,    null, null, null, null, null, null, null, null, 5   ), // 12
     //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
-    FORESTEDISLAND		(null, 7,    1,    3,    null, null, null, null, null, null, null, null, 6   ), // 8
     GLACIER				(null, null, null, null, null, null, null, null, null, null, null, null, null),
     GREENHILLS			(null, 1,    null, null, null, null, null, null, null, null, null, null, 5   ), // 11
     GREENSWAMP			(4,    4,    null, null, 0,    8,    10,   null, 0,    0,    1,    null, 6   ), // 8
     ICEWASTELAND		(null, 0,    null, null, null, null, null, null, null, null, null, null, null),
     //   				 lily, tree, flow, gras, dead, mush, reed, cact, sand, snd2, clay, bigm, nFlw
-    MARSH				(null, 0,    null, 32,   null, null, 10,   null, null, null, null, null, null),
     MEADOW				(null, 0,    2,    12,   null, null, null, null, null, null, null, null, 8   ), // 12
     MINIJUNGLE			(12,   15,   null, null, null, 2,    70,   null, null, null, 3,    null, 7   ), // 1
     MOUNTAINDESERT		(null, 0,    null, null, 2,    null, 50,   10,   null, null, null, null, null),

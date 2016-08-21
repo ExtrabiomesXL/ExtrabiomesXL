@@ -6,15 +6,14 @@
 
 package extrabiomes.module.summa.biome;
 
+import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
+import net.minecraft.init.Biomes;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.lib.BiomeSettings;
-import extrabiomes.lib.DecorationSettings;
 
 public class BiomeGreenHills extends ExtraBiome
 {
@@ -24,15 +23,19 @@ public class BiomeGreenHills extends ExtraBiome
 		return DecorationSettings.GREENHILLS;
 	}
 
-    public BiomeGreenHills()
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("Green Hills");
+		props.setWaterColor(0x68C474);
+		props.setBaseHeight(0.9F);
+		props.setHeightVariation(0.3F);
+		props.setTemperature(Biomes.FOREST.getTemperature() - 0.1F);
+		props.setRainfall(Biomes.FOREST.getRainfall() + 0.1F);
+		return props;
+	}
+
+	public BiomeGreenHills()
     {
-		super(BiomeSettings.GREENHILLS, Type.HILLS);
-        
-        setColor(0x68C474);
-        setBiomeName("Green Hills");
-        temperature = Biome.forest.temperature - 0.1F;
-        rainfall = Biome.forest.rainfall + 0.1F;
-        this.setHeight(new Height(0.9F, 0.3F));
+		super(getBiomeProperties(), BiomeSettings.GREENHILLS, Type.HILLS);
     }
     
     @Override

@@ -6,11 +6,10 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraft.init.Blocks;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeGlacier extends ExtraBiome
 {
@@ -20,18 +19,23 @@ public class BiomeGlacier extends ExtraBiome
 		return DecorationSettings.GLACIER;
 	}
 
-    public BiomeGlacier()
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("Glacier");
+		props.setWaterColor(0x77A696);
+		props.setBaseHeight(1.75F);
+		props.setHeightVariation(0.35F);
+		props.setTemperature(0.0F);
+		props.setRainfall(0.0F);
+		props.setSnowEnabled();
+		return props;
+	}
+
+	public BiomeGlacier()
     {
-		super(BiomeSettings.GLACIER, Type.SNOWY, Type.WASTELAND, Type.MOUNTAIN);
+		super(getBiomeProperties(), BiomeSettings.GLACIER, Type.SNOWY, Type.WASTELAND, Type.MOUNTAIN);
         spawnableCreatureList.clear();
-        topBlock = Blocks.snow;
-        fillerBlock = Blocks.ice;
-        setColor(0x77A696);
-        setBiomeName("Glacier");
-        setEnableSnow();
-        temperature = 0.0F;
-        rainfall = 0.0F;
-        this.setHeight(new Height(1.75F, 0.35F));
+        topBlock = Blocks.SNOW.getDefaultState();
+        fillerBlock = Blocks.ICE.getDefaultState();
     }
     
 }

@@ -21,12 +21,10 @@ import extrabiomes.module.summa.biome.BiomeAutumnWoods;
 import extrabiomes.module.summa.biome.BiomeBirchForest;
 import extrabiomes.module.summa.biome.BiomeExtremeJungle;
 import extrabiomes.module.summa.biome.BiomeForestedHills;
-import extrabiomes.module.summa.biome.BiomeForestedIsland;
 import extrabiomes.module.summa.biome.BiomeGlacier;
 import extrabiomes.module.summa.biome.BiomeGreenHills;
 import extrabiomes.module.summa.biome.BiomeGreenSwamp;
 import extrabiomes.module.summa.biome.BiomeIceWasteland;
-import extrabiomes.module.summa.biome.BiomeMarsh;
 import extrabiomes.module.summa.biome.BiomeMeadow;
 import extrabiomes.module.summa.biome.BiomeMiniJungle;
 import extrabiomes.module.summa.biome.BiomeMountainDesert;
@@ -56,12 +54,10 @@ public enum BiomeSettings {
 	BIRCHFOREST			(62, BiomeBirchForest.class),
 	EXTREMEJUNGLE		(63, BiomeExtremeJungle.class),
 	FORESTEDHILLS		(64, BiomeForestedHills.class),
-	FORESTEDISLAND		(65, BiomeForestedIsland.class),
 	GLACIER				(66, BiomeGlacier.class,				Weights.LIGHT),
 	GREENHILLS			(67, BiomeGreenHills.class,				Weights.HEAVY),
 	GREENSWAMP			(40, BiomeGreenSwamp.class,				Weights.HEAVY),
 	ICEWASTELAND		(41, BiomeIceWasteland.class),
-	MARSH				(-1, BiomeMarsh.class,					false),
 	MEADOW				(43, BiomeMeadow.class,					Weights.HEAVY),
 	MINIJUNGLE			(44, BiomeMiniJungle.class,				Weights.LIGHT),
 	MOUNTAINDESERT		(45, BiomeMountainDesert.class),

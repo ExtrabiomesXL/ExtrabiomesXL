@@ -6,16 +6,14 @@
 
 package extrabiomes.module.summa.biome;
 
+import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.lib.BiomeSettings;
-import extrabiomes.lib.DecorationSettings;
 
 public class BiomeMeadow extends ExtraBiome
 {
@@ -24,14 +22,16 @@ public class BiomeMeadow extends ExtraBiome
 		return DecorationSettings.MEADOW;
 	}
 
-    @SuppressWarnings("unchecked")
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("Meadow");
+		props.setBaseHeight(0.1F);
+		props.setHeightVariation(0.03125F);
+		return props;
+	}
+
     public BiomeMeadow()
     {
-		super(BiomeSettings.MEADOW, Type.PLAINS);
-		this.setHeight(new Height(0.0F, 0.0F));
-        setBiomeName("Meadow");
-        
-        this.setHeight(new Height(0.1F, 0.03125F));
+		super(getBiomeProperties(), BiomeSettings.MEADOW, Type.PLAINS);
         
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 6, 2, 6));
     }

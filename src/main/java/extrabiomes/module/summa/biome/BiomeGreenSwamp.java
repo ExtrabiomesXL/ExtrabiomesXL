@@ -6,19 +6,15 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
-import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.init.Biomes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 public class BiomeGreenSwamp extends ExtraBiome {
 
@@ -27,24 +23,29 @@ public class BiomeGreenSwamp extends ExtraBiome {
     return DecorationSettings.GREENSWAMP;
   }
 
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("Green Swamplands");
+		props.setWaterColor(0x68C474);
+		props.setBaseHeight(-0.05F);
+		props.setHeightVariation(0.15F);
+		props.setTemperature(Biomes.SWAMPLAND.getTemperature() - 0.1F);
+		props.setRainfall(Biomes.SWAMPLAND.getRainfall());
+		return props;
+	}
+
   @SuppressWarnings("unchecked")
   public BiomeGreenSwamp() {
-    super(BiomeSettings.GREENSWAMP, Type.SWAMP, Type.WATER);
+    super(getBiomeProperties(), BiomeSettings.GREENSWAMP, Type.SWAMP, Type.WATER);
 
-    setColor(0x68C474);
-    setBiomeName("Green Swamplands");
-    temperature = Biome.swampland.temperature - 0.1F;
-    rainfall = Biome.swampland.rainfall;
-    this.setHeight(new Height(-0.05F, 0.15F));
     spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 1, 1, 1));
   }
 
   @Override
   public void canSpawnEvent(CheckSpawn event) {
-    if(event.entity instanceof EntitySlime && event.y > 50.0D && event.y < 70.0D && event.world.rand.nextFloat() < 0.5F && event.world.rand.nextFloat() < event.world.getCurrentMoonPhaseFactor() && event.world.getBlockLightValue(MathHelper.floor_double(event.x), MathHelper.floor_double(event.y), MathHelper.floor_double(event.z)) <= event.world.rand.nextInt(8)) {
-      AxisAlignedBB boundingBox = event.entityLiving.boundingBox;
+    if(event.getEntity() instanceof EntitySlime && event.getY() > 50.0D && event.getY() < 70.0D && event.getWorld().rand.nextFloat() < 0.5F && event.getWorld().rand.nextFloat() < event.getWorld().getCurrentMoonPhaseFactor() && event.getWorld().getBlockLightValue(MathHelper.floor_double(event.getX()), MathHelper.floor_double(event.getY()), MathHelper.floor_double(event.getZ())) <= event.getWorld().rand.nextInt(8)) {
+      AxisAlignedBB boundingBox = event.getEntityLiving().getEntityBoundingBox();
       
-      if(event.world.checkNoEntityCollision(boundingBox) && event.world.getCollidingBoundingBoxes(event.entityLiving, boundingBox).isEmpty() && !event.world.isAnyLiquid(boundingBox)) {
+      if(event.getWorld().checkNoEntityCollision(boundingBox) && event.getWorld().getCollisionBoxes(event.getEntityLiving(), boundingBox).isEmpty() && !event.getWorld().containsAnyLiquid(boundingBox)) {
         // Allow the spawning
         event.setResult(Result.ALLOW);
       }

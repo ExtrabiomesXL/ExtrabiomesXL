@@ -6,10 +6,9 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeBirchForest extends ExtraBiome
 {
@@ -18,18 +17,21 @@ public class BiomeBirchForest extends ExtraBiome
 	public DecorationSettings getDecorationSettings() {
 		return DecorationSettings.BIRCHFOREST;
 	}
+	
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("Birch Forest");
+		props.setWaterColor(0x62BF6C);
+		props.setBaseHeight(0.2F);
+		props.setHeightVariation(0.2F);
+		props.setTemperature(0.4F);
+		props.setRainfall(0.7F);
+		return props;
+	}
 
-    @SuppressWarnings("unchecked")
     public BiomeBirchForest()
     {
-		super(BiomeSettings.BIRCHFOREST, Type.FOREST);
-        
-        setColor(0x62BF6C);
-        setBiomeName("Birch Forest");
-        temperature = 0.4F;
-        rainfall = 0.7F;
-        this.setHeight(new Height(0.2F, 0.2F));
-        
+		super(getBiomeProperties(), BiomeSettings.BIRCHFOREST, Type.FOREST);
+                
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }
     

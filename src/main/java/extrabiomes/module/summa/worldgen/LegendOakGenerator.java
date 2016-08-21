@@ -35,7 +35,6 @@ public class LegendOakGenerator implements IWorldGenerator
         
         if (biome == Biome.forest || biome == Biome.forestHills
                 || BiomeSettings.FORESTEDHILLS.getBiome().isPresent() && biome == BiomeSettings.FORESTEDHILLS.getBiome().get()
-                || BiomeSettings.FORESTEDISLAND.getBiome().isPresent() && biome == BiomeSettings.FORESTEDISLAND.getBiome().get()
                 || BiomeSettings.RAINFOREST.getBiome().isPresent() && biome == BiomeSettings.RAINFOREST.getBiome().get())
         {
             rarity = 100;

@@ -6,14 +6,12 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.init.Biomes;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeMiniJungle extends ExtraBiome
 {
@@ -22,17 +20,20 @@ public class BiomeMiniJungle extends ExtraBiome
 		return DecorationSettings.MINIJUNGLE;
 	}
 
-    @SuppressWarnings("unchecked")
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("Mini Jungle");
+		// waterColorMultiplier = 0x24b01c;
+		props.setWaterColor(0x41D923);
+		props.setBaseHeight(0.4F);
+		props.setHeightVariation(0.2F);
+		props.setTemperature(Biomes.JUNGLE.getTemperature());
+		props.setRainfall(Biomes.JUNGLE.getRainfall());
+		return props;
+	}
+
     public BiomeMiniJungle()
     {
-		super(BiomeSettings.MINIJUNGLE, Type.JUNGLE);
-        
-        setColor(0x41D923);
-        setBiomeName("Mini Jungle");
-        temperature = Biome.jungle.temperature;
-        rainfall = Biome.jungle.rainfall;
-        this.setHeight(new Height(0.4F, 0.2F));
-        waterColorMultiplier = 0x24b01c;
+		super(getBiomeProperties(), BiomeSettings.MINIJUNGLE, Type.JUNGLE);
         
         spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));
         spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));

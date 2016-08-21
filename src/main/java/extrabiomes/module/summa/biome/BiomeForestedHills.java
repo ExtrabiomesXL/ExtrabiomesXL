@@ -6,16 +6,15 @@
 
 package extrabiomes.module.summa.biome;
 
+import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.init.Biomes;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.lib.BiomeSettings;
-import extrabiomes.lib.DecorationSettings;
 
 public class BiomeForestedHills extends ExtraBiome
 {
@@ -24,17 +23,19 @@ public class BiomeForestedHills extends ExtraBiome
 	public DecorationSettings getDecorationSettings() {
 		return DecorationSettings.FORESTEDHILLS;
 	}
+	
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("Forested Hills");
+		props.setBaseHeight(1.0F);
+		props.setHeightVariation(0.8F);
+		props.setTemperature(Biomes.FOREST.getTemperature() - 0.1F);
+		props.setRainfall(Biomes.FOREST.getRainfall());
+		return props;
+	}
 
-    @SuppressWarnings("unchecked")
     public BiomeForestedHills()
     {
-		super(BiomeSettings.FORESTEDHILLS, Type.FOREST, Type.HILLS);
-        
-        setBiomeName("Forested Hills");
-        
-        temperature = Biome.forest.temperature - 0.1F;
-        rainfall = Biome.forest.rainfall;
-        this.setHeight(new Height(1.0F, 0.8F));
+		super(getBiomeProperties(), BiomeSettings.FORESTEDHILLS, Type.FOREST, Type.HILLS);
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }

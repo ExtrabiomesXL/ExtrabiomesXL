@@ -6,13 +6,12 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.init.Biomes;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeExtremeJungle extends ExtraBiome
 {
@@ -21,17 +20,20 @@ public class BiomeExtremeJungle extends ExtraBiome
 	public DecorationSettings getDecorationSettings() {
 		return DecorationSettings.EXTREMEJUNGLE;
 	}
+	
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("Extreme Jungle");
+		props.setWaterColor(0x2c4205);
+		props.setBaseHeight(1.2F);
+		props.setHeightVariation(0.1F);
+		props.setTemperature(Biomes.JUNGLE.getTemperature());
+		props.setRainfall(Biomes.JUNGLE.getRainfall());
+		return props;
+	}
 
-    @SuppressWarnings("unchecked")
     public BiomeExtremeJungle()
     {
-		super(BiomeSettings.EXTREMEJUNGLE, Type.JUNGLE, Type.MOUNTAIN);
-        setColor(0x2c4205);
-        setBiomeName("Extreme Jungle");
-        temperature = Biome.jungle.temperature;
-        rainfall = Biome.jungle.rainfall;
-        // TODO: Check This new height
-        this.setHeight(new Height(1.2F, 0.1F));
+		super(getBiomeProperties(), BiomeSettings.EXTREMEJUNGLE, Type.JUNGLE, Type.MOUNTAIN);
         
         spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));
         spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));

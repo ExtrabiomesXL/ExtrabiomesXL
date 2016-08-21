@@ -89,16 +89,6 @@ public class FlowerGenerator implements IWorldGenerator
 		registerFlower(BiomeSettings.FORESTEDHILLS, BlockType.TULIP);
 		registerFlower(BiomeSettings.FORESTEDHILLS, BlockType.VIOLET);
 
-		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.ALLIUM);
-		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.BLUE_POPPY);
-		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.DAISY);
-		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.DANDELION);
-		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.IRIS_BLUE);
-		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.IRIS_PURPLE);
-		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.LAVENDER);
-		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.LILY);
-		registerFlower(BiomeSettings.FORESTEDISLAND, BlockType.ORIENTAL_PINK_LILY);
-
 		registerFlower(BiomeSettings.GREENHILLS, BlockType.ALLIUM);
 		registerFlower(BiomeSettings.GREENHILLS, BlockType.BACHELORS_BUTTON);
 		registerFlower(BiomeSettings.GREENHILLS, BlockType.BLUEBELL);
@@ -333,7 +323,6 @@ public class FlowerGenerator implements IWorldGenerator
 
 		if (biomeCheck(BiomeSettings.GREENHILLS, biome)
 				|| biomeCheck(BiomeSettings.FORESTEDHILLS, biome)
-				|| biomeCheck(BiomeSettings.FORESTEDISLAND, biome)
 				|| biomeCheck(BiomeSettings.BIRCHFOREST, biome)
 				|| biomeCheck(BiomeSettings.PINEFOREST, biome)
 				|| biomeCheck(BiomeSettings.MEADOW, biome)

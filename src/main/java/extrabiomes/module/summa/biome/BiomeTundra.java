@@ -6,6 +6,7 @@
 
 package extrabiomes.module.summa.biome;
 
+import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraft.world.biome.Biome.Height;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
@@ -16,6 +17,16 @@ public class BiomeTundra extends ExtraBiome
 	@Override
 	public DecorationSettings getDecorationSettings() {
 		return DecorationSettings.TUNDRA;
+	}
+
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("");
+		props.setWaterColor();
+		props.setBaseHeight();
+		props.setHeightVariation();
+		props.setTemperature();
+		props.setRainfall();
+		return props;
 	}
 
     public BiomeTundra()

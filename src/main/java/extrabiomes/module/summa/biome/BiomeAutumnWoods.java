@@ -6,16 +6,15 @@
 
 package extrabiomes.module.summa.biome;
 
+import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.init.Biomes;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.lib.BiomeSettings;
-import extrabiomes.lib.DecorationSettings;
 
 public class BiomeAutumnWoods extends ExtraBiome
 {
@@ -25,15 +24,19 @@ public class BiomeAutumnWoods extends ExtraBiome
 		return DecorationSettings.AUTUMNWOODS;
 	}
 
-    @SuppressWarnings("unchecked")
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("Autumn Woods");
+		props.setWaterColor(0xF29C11);
+		props.setBaseHeight(0.5F);
+		props.setHeightVariation(0.4F);
+		props.setTemperature(Biomes.FOREST.getTemperature());
+		props.setRainfall(Biomes.FOREST.getRainfall());
+		return props;
+	}
+	
     public BiomeAutumnWoods()
     {
-		super(BiomeSettings.AUTUMNWOODS, Type.FOREST);
-        setColor(0xF29C11);
-        setBiomeName("Autumn Woods");
-        temperature = Biome.forest.temperature;
-        rainfall = Biome.forest.rainfall;
-        this.setHeight(new Height(0.5F, 0.4F));
+		super(getBiomeProperties(), BiomeSettings.AUTUMNWOODS, Type.FOREST);
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }

@@ -14,6 +14,7 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraft.world.biome.Biome.Height;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -26,6 +27,16 @@ public class BiomeMountainRidge extends ExtraBiome {
   public DecorationSettings getDecorationSettings() {
   	return DecorationSettings.MOUNTAINRIDGE;
   }
+
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("");
+		props.setWaterColor();
+		props.setBaseHeight();
+		props.setHeightVariation();
+		props.setTemperature();
+		props.setRainfall();
+		return props;
+	}
 
   @SuppressWarnings("unchecked")
   public BiomeMountainRidge() {

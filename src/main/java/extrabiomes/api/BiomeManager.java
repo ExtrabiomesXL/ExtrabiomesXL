@@ -42,13 +42,11 @@ public abstract class BiomeManager
     public static Optional<? extends Biome>    autumnwoods         = Optional.absent();
     public static Optional<? extends Biome>    birchforest         = Optional.absent();
     public static Optional<? extends Biome>    extremejungle       = Optional.absent();
-    public static Optional<? extends Biome>    forestedisland      = Optional.absent();
     public static Optional<? extends Biome>    forestedhills       = Optional.absent();
     public static Optional<? extends Biome>    glacier             = Optional.absent();
     public static Optional<? extends Biome>    greenhills          = Optional.absent();
     public static Optional<? extends Biome>    icewasteland        = Optional.absent();
     public static Optional<? extends Biome>    greenswamp          = Optional.absent();
-    public static Optional<? extends Biome>    marsh               = Optional.absent();
     public static Optional<? extends Biome>    meadow              = Optional.absent();
     public static Optional<? extends Biome>    minijungle          = Optional.absent();
     public static Optional<? extends Biome>    mountaindesert      = Optional.absent();

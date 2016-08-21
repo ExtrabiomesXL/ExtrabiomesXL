@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraft.world.biome.Biome.Height;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -23,6 +24,16 @@ public class BiomePineForest extends ExtraBiome
 	@Override
 	public DecorationSettings getDecorationSettings() {
 		return DecorationSettings.PINEFOREST;
+	}
+
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("");
+		props.setWaterColor();
+		props.setBaseHeight();
+		props.setHeightVariation();
+		props.setTemperature();
+		props.setRainfall();
+		return props;
 	}
 
     @SuppressWarnings("unchecked")

@@ -6,12 +6,10 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraft.init.Blocks;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeIceWasteland extends ExtraBiome
 {
@@ -20,20 +18,25 @@ public class BiomeIceWasteland extends ExtraBiome
 	public DecorationSettings getDecorationSettings() {
 		return DecorationSettings.ICEWASTELAND;
 	}
+	
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("Ice Wasteland");
+		props.setWaterColor(0x7DA0B5);
+		props.setBaseHeight(0.35F);
+		props.setHeightVariation(0.05F);
+		props.setTemperature(0.0F);
+		props.setRainfall(0.1F);
+		props.setSnowEnabled();
+		return props;
+	}
 
     public BiomeIceWasteland()
     {
-		super(BiomeSettings.ICEWASTELAND, Type.SNOWY, Type.WASTELAND);
+		super(getBiomeProperties(), BiomeSettings.ICEWASTELAND, Type.SNOWY, Type.WASTELAND);
         
         spawnableCreatureList.clear();
-        topBlock = Blocks.snow;
-        fillerBlock = Blocks.snow;
-        setEnableSnow();
-        setColor(0x7DA0B5);
-        setBiomeName("Ice Wasteland");
-        temperature = 0.0F;
-        rainfall = 0.1F;
-        this.setHeight(new Height(0.35F, 0.05F));
+        topBlock = Blocks.SNOW.getDefaultState();
+        fillerBlock = Blocks.SNOW.getDefaultState();
     }
     
 }

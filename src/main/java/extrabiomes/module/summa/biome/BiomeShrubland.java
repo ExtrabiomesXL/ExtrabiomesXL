@@ -7,6 +7,7 @@
 package extrabiomes.module.summa.biome;
 
 import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraft.world.biome.Biome.Height;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -18,6 +19,16 @@ public class BiomeShrubland extends ExtraBiome
 	@Override
 	public DecorationSettings getDecorationSettings() {
 		return DecorationSettings.SHRUBLAND;
+	}
+
+	private static BiomeProperties getBiomeProperties() {
+		final BiomeProperties props = new BiomeProperties("");
+		props.setWaterColor();
+		props.setBaseHeight();
+		props.setHeightVariation();
+		props.setTemperature();
+		props.setRainfall();
+		return props;
 	}
 
     @SuppressWarnings("unchecked")

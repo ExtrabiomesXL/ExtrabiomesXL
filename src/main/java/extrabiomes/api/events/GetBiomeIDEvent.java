@@ -26,12 +26,10 @@ public class GetBiomeIDEvent extends Event
      *     BIRCHFOREST
      *     EXTREMEJUNGLE
      *     FORESTEDHILLS
-     *     FORESTEDISLAND
      *     GLACIER
      *     GREENHILLS
      *     GREENSWAMP
      *     ICEWASTELAND
-     *     MARSH
      *     MEADOW
      *     MINIJUNGLE
      *     MOUNTAINDESERT

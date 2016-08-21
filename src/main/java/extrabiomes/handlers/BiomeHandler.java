@@ -23,7 +23,6 @@ import extrabiomes.helpers.BiomeHelper;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.module.summa.worldgen.LegendOakGenerator;
-import extrabiomes.module.summa.worldgen.MarshGenerator;
 import extrabiomes.module.summa.worldgen.MountainDesertGenerator;
 import extrabiomes.module.summa.worldgen.MountainRidgeGenerator;
 import extrabiomes.module.summa.worldgen.VanillaFloraGenerator;
@@ -82,12 +81,7 @@ public enum BiomeHandler
     }
     
     public static void registerWorldGenerators(EnhancedConfiguration config)
-    {
-        if (BiomeSettings.MARSH.isEnabled() && BiomeSettings.MARSH.getBiome().isPresent())
-        {
-            Extrabiomes.proxy.registerWorldGenerator(new MarshGenerator());
-        }
-        
+    {       
         if (BiomeSettings.MOUNTAINDESERT.isEnabled() && BiomeSettings.MOUNTAINDESERT.getBiome().isPresent())
         {
             Extrabiomes.proxy.registerWorldGenerator(new MountainDesertGenerator());
