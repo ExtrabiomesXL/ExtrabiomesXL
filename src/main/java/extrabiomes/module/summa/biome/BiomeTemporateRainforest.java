@@ -6,12 +6,9 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 // TODO: Fix this spelling everywhere :)
 public class BiomeTemporateRainforest extends ExtraBiome
@@ -22,25 +19,18 @@ public class BiomeTemporateRainforest extends ExtraBiome
 	}
 
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Temperate Rainforest");
+		props.setWaterColor(0x338235);
+		props.setBaseHeight(0.95F);
+		props.setHeightVariation(0.55F);
+		props.setTemperature(0.6F);
+		props.setRainfall(0.9F);
 		return props;
 	}
 
-    @SuppressWarnings("unchecked")
-	public BiomeTemporateRainforest()
+    public BiomeTemporateRainforest()
     {
-		super(BiomeSettings.TEMPORATERAINFOREST, Type.FOREST, Type.HILLS);
-        
-        setColor(0x338235);
-        setBiomeName("Temperate Rainforest");
-        temperature = 0.6F;
-        rainfall = 0.9F;
-        this.setHeight(new Height(0.95F, 0.55F));
+		super(getBiomeProperties(), BiomeSettings.TEMPORATERAINFOREST, Type.FOREST, Type.HILLS);
         
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }

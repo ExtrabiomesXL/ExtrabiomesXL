@@ -6,13 +6,10 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeShrubland extends ExtraBiome
 {
@@ -22,25 +19,18 @@ public class BiomeShrubland extends ExtraBiome
 	}
 
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Shrubland");
+		props.setWaterColor(0x51B57D);
+		props.setBaseHeight(0.2F);
+		props.setHeightVariation(0.1F);
+		props.setTemperature(0.4F);
+		props.setRainfall(0.6F);
 		return props;
 	}
 
-    @SuppressWarnings("unchecked")
     public BiomeShrubland()
     {
-		super(BiomeSettings.SHRUBLAND, Type.PLAINS);
-        
-        setColor(0x51B57D);
-        setBiomeName("Shrubland");
-        temperature = 0.4F;
-        rainfall = 0.6F;
-        this.setHeight(new Height(0.2F, 0.1F));
+		super(getBiomeProperties(), BiomeSettings.SHRUBLAND, Type.PLAINS);
         
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 6, 1, 5));
     }
