@@ -6,18 +6,15 @@
 
 package extrabiomes.module.summa.biome;
 
+import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.init.Biomes;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.lib.BiomeSettings;
-import extrabiomes.lib.DecorationSettings;
 
 public class BiomePineForest extends ExtraBiome
 {
@@ -27,26 +24,19 @@ public class BiomePineForest extends ExtraBiome
 	}
 
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Pine Forest");
+		props.setWaterColor(0x469C7E);
+		props.setBaseHeight(0.2F);
+		props.setHeightVariation(0.1F);
+		props.setTemperature(Biomes.FOREST.getTemperature());
+		props.setRainfall(Biomes.FOREST.getRainfall());
 		return props;
 	}
 
-    @SuppressWarnings("unchecked")
     public BiomePineForest()
     {
-		super(BiomeSettings.PINEFOREST, Type.FOREST);
-        
-        setColor(0x469C7E);
-        setBiomeName("Pine Forest");
-        temperature = Biome.forest.temperature;
-        rainfall = Biome.forest.rainfall;
-        this.setHeight(new Height(0.2F, 0.1F));
-        
+		super(getBiomeProperties(), BiomeSettings.PINEFOREST, Type.FOREST);
+                
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
     

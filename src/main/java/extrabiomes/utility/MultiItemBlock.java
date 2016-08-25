@@ -7,12 +7,8 @@
 package extrabiomes.utility;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MultiItemBlock extends ItemBlock
 {   
@@ -21,26 +17,6 @@ public class MultiItemBlock extends ItemBlock
         super(block);
         setMaxDamage(0);
         setHasSubtypes(true);
-    }
-    
-    @SideOnly(Side.CLIENT)
-    private Block getBlock()
-    {
-        return this.field_150939_a;
-    }
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    public int getColorFromItemStack(ItemStack itemstack, int par2)
-    {
-        return getBlock().getRenderColor(itemstack.getItemDamage());
-    }
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIconFromDamage(int md)
-    {
-        return getBlock().getIcon(0, md);
     }
     
     @Override

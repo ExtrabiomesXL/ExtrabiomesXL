@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Biomes;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -37,8 +38,8 @@ public abstract class BiomeHelper
         if (!biome.getBiome().isPresent())
             return;
         final Biome baseBiome = biome.getBiome().get();
-        baseBiome.topBlock = topBlock;
-        baseBiome.fillerBlock = fillerBlock;
+        baseBiome.topBlock = topBlock.getDefaultState();
+        baseBiome.fillerBlock = fillerBlock.getDefaultState();
     }
     
     /**
@@ -53,9 +54,9 @@ public abstract class BiomeHelper
      */
     public static void createBiome(BiomeSettings setting) throws Exception
     {
-        if (Biome.getBiomeGenArray()[setting.getID()] != null)
+        if (Biome.getBiome(setting.getID()) != null)
         {
-            throw new IllegalArgumentException(String.format("Biome id %d is already in use by %s when adding %s. Please review the configuration file.", setting.getID(), Biome.getBiomeGenArray()[setting.getID()].biomeName, setting.toString()));
+            throw new IllegalArgumentException(String.format("Biome id %d is already in use by %s when adding %s. Please review the configuration file.", setting.getID(), Biome.getBiome(setting.getID()).getBiomeName(), setting.toString()));
         }
         
         setting.createBiome();
@@ -123,21 +124,21 @@ public abstract class BiomeHelper
         switch (setting)
         {
             case DESERT:
-                return Biome.desert;
+                return Biomes.DESERT;
             case EXTREMEHILLS:
-                return Biome.extremeHills;
+                return Biomes.EXTREME_HILLS;
             case FOREST:
-                return Biome.forest;
+                return Biomes.FOREST;
             case JUNGLE:
-                return Biome.jungle;
+                return Biomes.JUNGLE;
             case SWAMPLAND:
-                return Biome.swampland;
+                return Biomes.SWAMPLAND;
             case TAIGA:
-                return Biome.taiga;
+                return Biomes.TAIGA;
             case PLAINS:
-                return Biome.plains;
+                return Biomes.PLAINS;
 			case OCEAN:
-				return Biome.ocean;
+				return Biomes.OCEAN;
             default:
             	if (setting.getBiome().isPresent()) {
             		return setting.getBiome().get();

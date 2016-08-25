@@ -6,17 +6,14 @@
 
 package extrabiomes.module.summa.biome;
 
+import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
+import net.minecraft.init.Biomes;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.lib.BiomeSettings;
-import extrabiomes.lib.DecorationSettings;
 
 public class BiomeSnowForest extends ExtraBiome
 {
@@ -26,26 +23,19 @@ public class BiomeSnowForest extends ExtraBiome
 	}
 
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Snow Forest");
+		props.setWaterColor(0x5BA68D);
+		props.setBaseHeight(0.3F);
+		props.setHeightVariation(0.2F);
+		props.setTemperature(Biomes.TAIGA_HILLS.getTemperature());
+		props.setRainfall(Biomes.TAIGA_HILLS.getRainfall());
+		props.setSnowEnabled();
 		return props;
 	}
 
-    @SuppressWarnings("unchecked")
     public BiomeSnowForest()
     {
-		super(BiomeSettings.SNOWYFOREST, Type.FOREST, Type.SNOWY);
-        
-        setColor(0x5BA68D);
-        setBiomeName("Snow Forest");
-        temperature = Biome.taigaHills.temperature;
-        rainfall = Biome.taigaHills.rainfall;
-        this.setHeight(new Height(0.3F, 0.2F));
-        setEnableSnow();
+		super(getBiomeProperties(), BiomeSettings.SNOWYFOREST, Type.FOREST, Type.SNOWY);
         
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }
