@@ -47,7 +47,7 @@ public class BlockCustomWood extends BlockPlanks
         setStepSound(soundTypeWood);
         setHardness(2.0F);
         setResistance(5.0F);
-        //Blocks.fire.setFireInfo(this, 5, 20);
+        //Blocks.FIRE.setFireInfo(this, 5, 20);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     

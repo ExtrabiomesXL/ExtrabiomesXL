@@ -34,7 +34,7 @@ class WorldGenEelGrass extends WorldGenerator
         }
 
         Block b = world.getBlock(x, y, z);
-        while((b.equals(Blocks.water) || b.equals(Blocks.flowing_water)) && y > 0 && maxDepth > 0) {
+        while((b.equals(Blocks.WATER) || b.equals(Blocks.FLOWING_WATER)) && y > 0 && maxDepth > 0) {
         	y--;
         	maxDepth--;
             b = world.getBlock(x, y, z);

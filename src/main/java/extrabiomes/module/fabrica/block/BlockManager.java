@@ -1148,7 +1148,7 @@ public enum BlockManager
                 if( block._flammable && block._stuff.isPresent() ) {
                     try {
                         block._block = (Block)block._stuff.get();
-                        Blocks.fire.setFireInfo(block._block, 5, 20);
+                        Blocks.FIRE.setFireInfo(block._block, 5, 20);
                     } catch(ArrayIndexOutOfBoundsException e) {
                         LogHelper.severe("Unable to set "+block+" flammable", e);
                         block._flammable = false;

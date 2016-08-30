@@ -62,7 +62,7 @@ public class BlockNewWoodSlab extends BlockWoodSlab
         setHardness(2.0F);
         setResistance(5.0F);
         setStepSound(soundTypeWood);
-        //Blocks.fire.setFireInfo(this, 5, 20);
+        //Blocks.FIRE.setFireInfo(this, 5, 20);
         setLightOpacity(0);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }

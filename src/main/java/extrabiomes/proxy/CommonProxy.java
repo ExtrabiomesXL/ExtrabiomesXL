@@ -222,7 +222,7 @@ public class CommonProxy
 
     public void setFireInfo(Block block, int encouragement, int flammability)
     {
-        Blocks.fire.setFireInfo(block, encouragement, flammability);
+        Blocks.FIRE.setFireInfo(block, encouragement, flammability);
     }
 
 }

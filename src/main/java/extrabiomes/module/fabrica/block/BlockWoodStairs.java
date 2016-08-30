@@ -16,7 +16,7 @@ public class BlockWoodStairs extends BlockCustomStairs
     public BlockWoodStairs(Block modelBlock, int modelMetadata)
     {
         super(modelBlock, modelMetadata);
-        //Blocks.fire.setFireInfo(this, 5, 20);
+        //Blocks.FIRE.setFireInfo(this, 5, 20);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     

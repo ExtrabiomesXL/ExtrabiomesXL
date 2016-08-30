@@ -27,7 +27,7 @@ public class WorldGenCustomSwamp extends WorldGenNewTreeBase {
   @Override
   public boolean generate(World world, Random rand, int x, int y, int z) {
 
-    while (world.getBlock(x, y - 1, z).getMaterial() == Material.water)
+    while (world.getBlock(x, y - 1, z).getMaterial() == Material.WATER)
       y--;
 
     final int height = rand.nextInt(4) + 10;
@@ -60,7 +60,7 @@ public class WorldGenCustomSwamp extends WorldGenNewTreeBase {
             continue;
           }
 
-          if (block.equals(Blocks.water) || block.equals(Blocks.flowing_water)) {
+          if (block.equals(Blocks.WATER) || block.equals(Blocks.FLOWING_WATER)) {
             if (y1 > y) {
               return false;
             }
@@ -101,7 +101,7 @@ public class WorldGenCustomSwamp extends WorldGenNewTreeBase {
     for (int y1 = 0; y1 < height; y1++) {
       final Block block2 = world.getBlock(x, y + y1, z);
 
-      if (block2 == null || block2.isAir(world, x, y + y1, z) || block2.isLeaves(world, x, y + y1, z) || block2.equals(Blocks.flowing_water) || block2.equals(Blocks.water)) {
+      if (block2 == null || block2.isAir(world, x, y + y1, z) || block2.isLeaves(world, x, y + y1, z) || block2.equals(Blocks.FLOWING_WATER) || block2.equals(Blocks.WATER)) {
         world.setBlock(x, y + y1, z, Blocks.log);
       }
     }

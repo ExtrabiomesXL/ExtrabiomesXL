@@ -112,7 +112,7 @@ public class BlockCustomFence extends BlockFence {
       
       boolean flag = !(block instanceof BlockFenceGate);
       
-      return block != this && flag ? (block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.gourd : false) : true;
+      return block != this && flag ? (block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.GOURD : false) : true;
   }
   
 
