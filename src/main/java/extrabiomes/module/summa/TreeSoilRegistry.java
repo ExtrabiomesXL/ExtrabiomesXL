@@ -21,9 +21,9 @@ public enum TreeSoilRegistry
     static
     {
         validSoil = new ArrayList<Block>();
-        addValidSoil(Blocks.grass);
-        addValidSoil(Blocks.dirt);
-        addValidSoil(Blocks.farmland);
+        addValidSoil(Blocks.GRASS);
+        addValidSoil(Blocks.DIRT);
+        addValidSoil(Blocks.FARMLAND);
     }
     
     public static void addValidSoil(Block soilBlock)

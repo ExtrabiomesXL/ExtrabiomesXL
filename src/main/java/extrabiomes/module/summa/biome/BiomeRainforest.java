@@ -6,11 +6,9 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeRainforest extends ExtraBiome
 {
@@ -20,23 +18,17 @@ public class BiomeRainforest extends ExtraBiome
 	}
 
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Rainforest");
+		props.setWaterColor(0x0BD626);
+		props.setBaseHeight(0.85F);
+		props.setHeightVariation(0.45F);
+		props.setTemperature(1.1F);
+		props.setRainfall(1.4F);
 		return props;
 	}
 
     public BiomeRainforest()
     {
-		super(BiomeSettings.RAINFOREST, Type.JUNGLE, Type.HILLS);
-        
-        setColor(0x0BD626);
-        setBiomeName("Rainforest");
-        temperature = 1.1F;
-        rainfall = 1.4F;
-        this.setHeight(new Height(0.85F, 0.45F));
+		super(getBiomeProperties(), BiomeSettings.RAINFOREST, Type.JUNGLE, Type.HILLS);
     }
 }

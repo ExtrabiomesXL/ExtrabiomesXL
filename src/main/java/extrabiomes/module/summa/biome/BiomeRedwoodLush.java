@@ -6,11 +6,9 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeRedwoodLush extends ExtraBiome
 {
@@ -20,23 +18,17 @@ public class BiomeRedwoodLush extends ExtraBiome
 	}
 
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Lush Redwoods");
+		props.setWaterColor(0x4AC758);
+		props.setBaseHeight(1.2F);
+		props.setHeightVariation(0.3F);
+		props.setTemperature(1.1F);
+		props.setRainfall(1.4F);
 		return props;
 	}
 
     public BiomeRedwoodLush()
     {
-		super(BiomeSettings.REDWOODLUSH, Type.FOREST, Type.HILLS);
-        
-        setColor(0x4AC758);
-        setBiomeName("Lush Redwoods");
-        temperature = 1.1F;
-        rainfall = 1.4F;
-        this.setHeight(new Height(1.2F, 0.3F));
+		super(getBiomeProperties(), BiomeSettings.REDWOODLUSH, Type.FOREST, Type.HILLS);
     }
 }

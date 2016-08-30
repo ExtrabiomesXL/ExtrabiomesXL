@@ -6,11 +6,9 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeTundra extends ExtraBiome
 {
@@ -20,23 +18,17 @@ public class BiomeTundra extends ExtraBiome
 	}
 
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Tundra");
+		props.setWaterColor(0x305A85);
+		props.setBaseHeight(0.1F);
+		props.setHeightVariation(0.1F);
+		props.setTemperature(0.0F);
+		props.setRainfall(0.0F);
 		return props;
 	}
 
     public BiomeTundra()
     {
-		super(BiomeSettings.TUNDRA, Type.SNOWY, Type.SANDY);
-        
-        setColor(0x305A85);
-        setBiomeName("Tundra");
-        temperature = 0.0F;
-        rainfall = 0.0F;
-        this.setHeight(new Height(0.1F, 0.1F));
+		super(getBiomeProperties(), BiomeSettings.TUNDRA, Type.SNOWY, Type.SANDY);
     }
 }

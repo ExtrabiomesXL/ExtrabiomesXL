@@ -6,12 +6,10 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraft.init.Biomes;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeWasteland extends ExtraBiome
 {
@@ -21,29 +19,22 @@ public class BiomeWasteland extends ExtraBiome
 		return DecorationSettings.WASTELAND;
 	}
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Wasteland");
+		// waterColorMultiplier = 0xF08000;
+		props.setWaterColor(0x9E7C41);
+		props.setBaseHeight(0.1F);
+		props.setHeightVariation(0.0F);
+		props.setTemperature(Biomes.DESERT.getTemperature());
+		props.setRainfall(Biomes.DESERT.getRainfall());
+		props.setRainDisabled();
 		return props;
 	}
 
     public BiomeWasteland()
     {
-		super(BiomeSettings.WASTELAND, Type.WASTELAND);
-        
-        setColor(0x9E7C41);
-        setBiomeName("Wasteland");
-        temperature = Biome.desert.temperature;
-        rainfall = Biome.desert.rainfall;
-        this.setHeight(new Height(0.1F, 0.0F));
-        waterColorMultiplier = 0xF08000;
-        
+		super(getBiomeProperties(), BiomeSettings.WASTELAND, Type.WASTELAND);
+
         spawnableCreatureList.clear();
-        
-        setDisableRain();
     }
     
 }

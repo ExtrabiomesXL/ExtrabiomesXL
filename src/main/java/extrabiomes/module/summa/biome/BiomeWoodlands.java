@@ -6,17 +6,14 @@
 
 package extrabiomes.module.summa.biome;
 
+import extrabiomes.lib.BiomeSettings;
+import extrabiomes.lib.DecorationSettings;
+import net.minecraft.init.Biomes;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.lib.BiomeSettings;
-import extrabiomes.lib.DecorationSettings;
 
 public class BiomeWoodlands extends ExtraBiome
 {
@@ -26,27 +23,18 @@ public class BiomeWoodlands extends ExtraBiome
 	}
     
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Woodlands");
+		props.setWaterColor(0x85B53E);
+		props.setBaseHeight(0.3F);
+		props.setHeightVariation(0.1F);
+		props.setTemperature(Biomes.FOREST.getTemperature());
+		props.setRainfall(Biomes.FOREST.getRainfall());
 		return props;
 	}
 
-    @SuppressWarnings("unchecked")
     public BiomeWoodlands()
     {
-		super(BiomeSettings.WOODLANDS, Type.FOREST);
-        
-        //setColor(0x056621);
-        setColor(0x85B53E);
-        setBiomeName("Woodlands");
-        temperature = Biome.forest.temperature;
-        rainfall = Biome.forest.rainfall;
-        this.setHeight(new Height(0.3F, 0.1F));
-        
+		super(getBiomeProperties(), BiomeSettings.WOODLANDS, Type.FOREST);        
         spawnableCreatureList.add(new SpawnListEntry(net.minecraft.entity.passive.EntityWolf.class, 5, 4, 4));
     }
 

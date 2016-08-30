@@ -6,14 +6,17 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.init.Biomes;
+import net.minecraftforge.common.BiomeDictionary.Type;
+
+/**
+ * NB: Vanilla straight copied this biome from us back in 1.7, I am not 100%
+ *     sure whether to keep this around or just drop it. For now, we're keeping
+ *     it because it IS still prettier than their version.
+ */
 
 public class BiomeSavanna extends ExtraBiome
 {
@@ -23,26 +26,19 @@ public class BiomeSavanna extends ExtraBiome
 	}
 
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Savanna");
+		props.setWaterColor(0xBFA243);
+		props.setBaseHeight(0.1F);
+		props.setHeightVariation(0.05F);
+		props.setTemperature(Biomes.DESERT.getTemperature());
+		props.setRainfall(Biomes.DESERT.getRainfall());
 		return props;
 	}
 
-    @SuppressWarnings("unchecked")
     public BiomeSavanna()
     {
-		super(BiomeSettings.SAVANNA, Type.PLAINS, Type.SANDY);
-        
-        setColor(0xBFA243);
-        setBiomeName("Savanna");
-        temperature = Biome.desert.temperature;
-        rainfall = Biome.desert.rainfall;
-        this.setHeight(new Height(0.1F, 0.05F));
-        
+		super(getBiomeProperties(), BiomeSettings.SAVANNA, Type.PLAINS, Type.SANDY);
+                
         spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 2, 4));
     }
 }

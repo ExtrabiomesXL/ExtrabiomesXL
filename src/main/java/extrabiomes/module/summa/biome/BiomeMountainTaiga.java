@@ -6,14 +6,11 @@
 
 package extrabiomes.module.summa.biome;
 
-import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraftforge.common.BiomeDictionary.Type;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.init.Biomes;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeMountainTaiga extends ExtraBiome
 {
@@ -23,25 +20,18 @@ public class BiomeMountainTaiga extends ExtraBiome
 	}
 
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Mountain Taiga");
+		props.setWaterColor(0xB6659);
+		props.setBaseHeight(0.75F);
+		props.setHeightVariation(0.45F);
+		props.setTemperature(0.0F);
+		props.setRainfall(Biomes.TAIGA_HILLS.getRainfall());
 		return props;
 	}
 
-    @SuppressWarnings("unchecked")
     public BiomeMountainTaiga()
     {
-		super(BiomeSettings.MOUNTAINTAIGA, Type.MOUNTAIN, Type.SNOWY, Type.FOREST);
-        
-        setColor(0xB6659);
-        setBiomeName("Mountain Taiga");
-        temperature = 0.0F;
-        rainfall = Biome.taigaHills.rainfall;
-        this.setHeight(new Height(0.75F, 0.45F));
+		super(getBiomeProperties(), BiomeSettings.MOUNTAINTAIGA, Type.MOUNTAIN, Type.SNOWY, Type.FOREST);
         
         spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 8, 4, 4));
     }

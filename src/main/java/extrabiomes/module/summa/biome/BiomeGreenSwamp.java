@@ -11,6 +11,7 @@ import extrabiomes.lib.DecorationSettings;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
@@ -33,7 +34,6 @@ public class BiomeGreenSwamp extends ExtraBiome {
 		return props;
 	}
 
-  @SuppressWarnings("unchecked")
   public BiomeGreenSwamp() {
     super(getBiomeProperties(), BiomeSettings.GREENSWAMP, Type.SWAMP, Type.WATER);
 
@@ -42,7 +42,7 @@ public class BiomeGreenSwamp extends ExtraBiome {
 
   @Override
   public void canSpawnEvent(CheckSpawn event) {
-    if(event.getEntity() instanceof EntitySlime && event.getY() > 50.0D && event.getY() < 70.0D && event.getWorld().rand.nextFloat() < 0.5F && event.getWorld().rand.nextFloat() < event.getWorld().getCurrentMoonPhaseFactor() && event.getWorld().getBlockLightValue(MathHelper.floor_double(event.getX()), MathHelper.floor_double(event.getY()), MathHelper.floor_double(event.getZ())) <= event.getWorld().rand.nextInt(8)) {
+    if(event.getEntity() instanceof EntitySlime && event.getY() > 50.0D && event.getY() < 70.0D && event.getWorld().rand.nextFloat() < 0.5F && event.getWorld().rand.nextFloat() < event.getWorld().getCurrentMoonPhaseFactor() && event.getWorld().getLight(new BlockPos(MathHelper.floor_double(event.getX()), MathHelper.floor_double(event.getY()), MathHelper.floor_double(event.getZ()))) <= event.getWorld().rand.nextInt(8)) {
       AxisAlignedBB boundingBox = event.getEntityLiving().getEntityBoundingBox();
       
       if(event.getWorld().checkNoEntityCollision(boundingBox) && event.getWorld().getCollisionBoxes(event.getEntityLiving(), boundingBox).isEmpty() && !event.getWorld().containsAnyLiquid(boundingBox)) {

@@ -6,21 +6,11 @@
 
 package extrabiomes.module.summa.biome;
 
-import java.util.Random;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.Height;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
-import net.minecraftforge.common.BiomeDictionary.Type;
-import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.DecorationSettings;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.init.Biomes;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeMountainRidge extends ExtraBiome {
   @Override
@@ -29,25 +19,18 @@ public class BiomeMountainRidge extends ExtraBiome {
   }
 
 	private static BiomeProperties getBiomeProperties() {
-		final BiomeProperties props = new BiomeProperties("");
-		props.setWaterColor();
-		props.setBaseHeight();
-		props.setHeightVariation();
-		props.setTemperature();
-		props.setRainfall();
+		final BiomeProperties props = new BiomeProperties("Red Rock Mountains");
+		props.setWaterColor(0xC4722F);
+		props.setBaseHeight(1.7F);
+		props.setHeightVariation(-0.1F);	// TODO: verify if this is correct
+		props.setTemperature(Biomes.DESERT.getTemperature());
+		props.setRainfall(Biomes.DESERT.getRainfall());
+		props.setRainDisabled();
 		return props;
 	}
 
-  @SuppressWarnings("unchecked")
   public BiomeMountainRidge() {
-    super(BiomeSettings.MOUNTAINRIDGE, Type.MOUNTAIN, Type.SANDY);
-    setColor(0xC4722F);
-    setBiomeName("Red Rock Mountains");
-    temperature = Biome.desert.temperature;
-    rainfall = Biome.desert.rainfall;
-    // TODO: Check height
-    this.setHeight(new Height(1.7F, -0.1F));
-    setDisableRain();
+    super(getBiomeProperties(), BiomeSettings.MOUNTAINRIDGE, Type.MOUNTAIN, Type.SANDY);
     spawnableCreatureList.clear();
     spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 3, 1, 3));
   }
