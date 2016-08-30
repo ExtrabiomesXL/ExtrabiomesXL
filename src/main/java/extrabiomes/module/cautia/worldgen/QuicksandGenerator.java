@@ -11,6 +11,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import extrabiomes.lib.BiomeSettings;
@@ -27,7 +28,7 @@ public class QuicksandGenerator implements IWorldGenerator
     
     @Override
     public void generate(Random random, int chunkX, int chunkZ,
-            World world, IChunkProvider chunkGenerator,
+            World world, IChunkGenerator chunkGenerator,
             IChunkProvider chunkProvider)
     {
         chunkX = chunkX << 4;

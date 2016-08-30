@@ -113,7 +113,7 @@ public abstract class BlockHandler {
     waterPlantBlock.setBlockName("extrabiomes.waterplant").setHardness(0.01F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
 
     // Add the subblocks
-    waterPlantBlock.registerSubBlock(new SubBlockWaterPlant("eelgrass").addPlaceableBlock(Blocks.grass).addPlaceableBlock(Blocks.sand).addPlaceableBlock(Blocks.gravel).addPlaceableBlock(Blocks.clay), 0);
+    waterPlantBlock.registerSubBlock(new SubBlockWaterPlant("eelgrass").addPlaceableBlock(Blocks.GRASS).addPlaceableBlock(Blocks.SAND).addPlaceableBlock(Blocks.GRAVEL).addPlaceableBlock(Blocks.CLAY), 0);
 
     final CommonProxy proxy = Extrabiomes.proxy;
     proxy.registerBlock(waterPlantBlock, extrabiomes.items.ItemBlockWaterPlant.class, "waterplant1");

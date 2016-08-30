@@ -100,7 +100,7 @@ public class WorldGenAutumnTree extends WorldGenAbstractTree
                     
                     if (block != null
                             && !block.isLeaves(world, x1, i, z1)
-                            && !block.equals(Blocks.grass)
+                            && !block.equals(Blocks.GRASS)
                             && !block.isWood(world, x1, i, z1)
                             && !block.isReplaceable(world, x1, i, z1))
                         return false;
@@ -159,7 +159,7 @@ public class WorldGenAutumnTree extends WorldGenAbstractTree
         if (!isRoomToGrow(world, x, y, z, height))
             return false;
         
-        world.setBlock(x, y - 1, z, Blocks.dirt);
+        world.setBlock(x, y - 1, z, Blocks.DIRT);
         growLeaves(world, rand, x, y, z, height, type.getBlock(), type.getMetadata());
         growTrunk(world, x, y, z, height, trunkBlock, trunkMetadata);
         

@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -26,7 +27,7 @@ public class MountainRidgeGenerator implements IWorldGenerator
     
     @Override
     public void generate(Random random, int chunkX, int chunkZ,
-            World world, IChunkProvider chunkGenerator,
+            World world, IChunkGenerator chunkGenerator,
             IChunkProvider chunkProvider)
     {
         chunkX = chunkX << 4;
@@ -55,8 +56,8 @@ public class MountainRidgeGenerator implements IWorldGenerator
             
             if (!block.isAir(world, x1, y1, z1)
                     && block.isReplaceableOreGen(
-                            world, x1, y1, z1, Blocks.stone))
-                world.setBlock(x1, y1, z1, Blocks.emerald_ore);
+                            world, x1, y1, z1, Blocks.STONE))
+                world.setBlock(x1, y1, z1, Blocks.EMERALD_ORE);
         }
         
         for (int i = 0; i < 7; i++)

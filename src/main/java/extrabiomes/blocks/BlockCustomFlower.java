@@ -194,13 +194,14 @@ public class BlockCustomFlower extends Block implements IPlantable
         return super.canPlaceBlockAt(world, x, y, z) && canThisPlantGrowOnThisBlock(world.getBlock(x, y - 1, z));
     }
     
-    private boolean canThisPlantGrowOnThisBlock(Block block)
+    @SuppressWarnings("unused")
+	private boolean canThisPlantGrowOnThisBlock(Block block)
     {
 		// TODO: separate rules for edge cases (like cactus)
-    	return block.equals(Blocks.grass)
-    			|| block.equals(Blocks.dirt)
-    			|| block.equals(Blocks.farmland)
-    			|| block.equals(Blocks.sand)
+    	return block.equals(Blocks.GRASS)
+    			|| block.equals(Blocks.DIRT)
+    			|| block.equals(Blocks.FARMLAND)
+    			|| block.equals(Blocks.SAND)
     			|| (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && block.equals(BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock));
     }
     

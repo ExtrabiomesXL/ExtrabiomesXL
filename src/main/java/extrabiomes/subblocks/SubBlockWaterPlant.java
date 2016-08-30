@@ -38,7 +38,7 @@ public class SubBlockWaterPlant extends SubBlock {
 		groundBlocks = new LinkedList<Block>();
 	
 		// Add dirt by default
-		groundBlocks.add(Blocks.dirt);
+		groundBlocks.add(Blocks.DIRT);
 	}
 	
     @Override

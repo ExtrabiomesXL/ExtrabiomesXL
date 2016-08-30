@@ -10,8 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.google.common.base.Optional;
+
+import extrabiomes.Extrabiomes;
+import extrabiomes.lib.Element;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeavesBase;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,15 +29,10 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-
-import com.google.common.base.Optional;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.Extrabiomes;
-import extrabiomes.lib.Element;
 
-public class BlockMoreLeaves extends BlockLeavesBase implements IShearable
+public class BlockMoreLeaves extends BlockLeaves implements IShearable
 {
     
     public enum BlockType

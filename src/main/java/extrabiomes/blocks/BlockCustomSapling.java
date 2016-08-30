@@ -330,13 +330,13 @@ public class BlockCustomSapling extends BlockFlower
             else if (isForestryFarmed)
                 if (isHuge)
                 {
-                    world.setBlock(x + x1, y - 1, z + z1, Blocks.sand);
-                    world.setBlock(x + x1 + 1, y - 1, z + z1, Blocks.sand);
-                    world.setBlock(x + x1, y - 1, z + z1 + 1, Blocks.sand);
-                    world.setBlock(x + x1 + 1, y - 1, z + z1 + 1, Blocks.sand);
+                    world.setBlock(x + x1, y - 1, z + z1, Blocks.SAND);
+                    world.setBlock(x + x1 + 1, y - 1, z + z1, Blocks.SAND);
+                    world.setBlock(x + x1, y - 1, z + z1 + 1, Blocks.SAND);
+                    world.setBlock(x + x1 + 1, y - 1, z + z1 + 1, Blocks.SAND);
                 }
                 else
-                    world.setBlock(x, y - 1, z, Blocks.sand);
+                    world.setBlock(x, y - 1, z, Blocks.SAND);
         }
     }
     

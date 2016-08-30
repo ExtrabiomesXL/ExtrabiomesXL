@@ -117,7 +117,7 @@ public class WorldGenAcacia extends WorldGenAbstractTree
                         
                         if (block != null
                                 && !block.isLeaves(world, x1, y1, z1)
-                                && !block.equals(Blocks.grass) && !block.equals(Blocks.dirt)
+                                && !block.equals(Blocks.GRASS) && !block.equals(Blocks.DIRT)
                                 && !block.isWood(world, x1, y1, z1)
                                 && !block.isReplaceable(world, x1, y1, z1))
                             canGrow = false;
@@ -137,7 +137,7 @@ public class WorldGenAcacia extends WorldGenAbstractTree
         if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)) || y >= 256 - height - 1)
             return false;
         
-        world.setBlock(x, y - 1, z, Blocks.dirt);
+        world.setBlock(x, y - 1, z, Blocks.DIRT);
         final byte canopyHeight = 3;
         final int minCanopyRadius = 0;
         

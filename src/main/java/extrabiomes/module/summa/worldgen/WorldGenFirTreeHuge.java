@@ -149,10 +149,10 @@ public class WorldGenFirTreeHuge extends WorldGenAbstractTree
         if (!TreeSoilRegistry.isValidSoil(world.getBlock(x, y - 1, z)) || y >= 256 - height - 1)
             return false;
         
-        world.setBlock(x, y - 1, z, Blocks.dirt);
-        world.setBlock(x - 1, y - 1, z, Blocks.dirt);
-        world.setBlock(x, y - 1, z - 1, Blocks.dirt);
-        world.setBlock(x - 1, y - 1, z - 1, Blocks.dirt);
+        world.setBlock(x, y - 1, z, Blocks.DIRT);
+        world.setBlock(x - 1, y - 1, z, Blocks.DIRT);
+        world.setBlock(x, y - 1, z - 1, Blocks.DIRT);
+        world.setBlock(x - 1, y - 1, z - 1, Blocks.DIRT);
         int l1 = rand.nextInt(2);
         int j2 = 1;
         boolean flag1 = false;

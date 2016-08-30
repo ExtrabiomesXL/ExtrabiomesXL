@@ -10,6 +10,7 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -38,7 +39,7 @@ public class VineGenerator implements IWorldGenerator
     }
     
     private boolean biomeCheck(Biome biome) {
-		final BiomeSettings settings = BiomeSettings.findBiomeSettings(biome.biomeID);    	
+		final BiomeSettings settings = BiomeSettings.findBiomeSettings(Biome.getIdForBiome(biome));    	
 		if( settings != null ) {
 			for( final BiomeSettings goodBiome : biomeList ) {
 				if( settings == goodBiome )
@@ -50,7 +51,7 @@ public class VineGenerator implements IWorldGenerator
     
     @Override
     public void generate(Random rand, int chunkX, int chunkZ,
-            World world, IChunkProvider chunkGenerator,
+            World world, IChunkGenerator chunkGenerator,
             IChunkProvider chunkProvider)
     {
         chunkX = chunkX << 4;
@@ -69,4 +70,5 @@ public class VineGenerator implements IWorldGenerator
             vineGen.generate(world, rand, x, y, z);
         }
     }
+
 }

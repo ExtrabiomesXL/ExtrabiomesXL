@@ -26,7 +26,7 @@ public class BlockLeafPile extends Block
     
     static private boolean canThisPlantGrowOnThisBlock(Block block)
     {
-        return block.equals(Blocks.grass) || block.equals(Blocks.dirt);
+        return block.equals(Blocks.GRASS) || block.equals(Blocks.DIRT);
     }
     
     private IIcon texture;

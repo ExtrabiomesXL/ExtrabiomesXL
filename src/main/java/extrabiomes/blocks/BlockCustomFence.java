@@ -57,7 +57,7 @@ public class BlockCustomFence extends BlockFence {
   private int renderId;
   
   public BlockCustomFence() {
-    super("fence", Material.wood);
+    super("fence", Material.WOOD);
     this.setHardness(2.0F);
     this.setResistance(5.0F);
     this.setBlockName("extrabiomes.fence");

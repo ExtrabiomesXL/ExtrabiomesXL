@@ -122,7 +122,7 @@ public class WorldGenFirTree extends WorldGenAbstractTree
             }
         }
         
-        world.setBlock(x, y - 1, z, Blocks.dirt);
+        world.setBlock(x, y - 1, z, Blocks.DIRT);
         int l1 = rand.nextInt(2);
         int j2 = 1;
         boolean flag1 = false;

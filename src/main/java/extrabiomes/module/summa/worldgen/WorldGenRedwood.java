@@ -135,10 +135,10 @@ public class WorldGenRedwood extends WorldGenAbstractTree
             }
         }
         
-        world.setBlock(x, y - 1, z, Blocks.dirt);
-        world.setBlock(x - 1, y - 1, z, Blocks.dirt);
-        world.setBlock(x, y - 1, z - 1, Blocks.dirt);
-        world.setBlock(x - 1, y - 1, z - 1, Blocks.dirt);
+        world.setBlock(x, y - 1, z, Blocks.DIRT);
+        world.setBlock(x - 1, y - 1, z, Blocks.DIRT);
+        world.setBlock(x, y - 1, z - 1, Blocks.DIRT);
+        world.setBlock(x - 1, y - 1, z - 1, Blocks.DIRT);
         int l1 = rand.nextInt(2);
         int j2 = 1;
         boolean flag1 = false;

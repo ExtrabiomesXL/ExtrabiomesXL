@@ -66,7 +66,7 @@ public class BlockCatTail extends BlockFlower
     {
         final Block block = world.getBlock(x, y - 1, z);
         
-        if (!block.equals(Blocks.grass) && !block.equals(Blocks.dirt))
+        if (!block.equals(Blocks.GRASS) && !block.equals(Blocks.DIRT))
             return false;
         
         y--;

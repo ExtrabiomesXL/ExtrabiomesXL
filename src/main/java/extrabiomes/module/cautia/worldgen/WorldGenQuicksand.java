@@ -32,7 +32,7 @@ class WorldGenQuicksand extends WorldGenerator
             y--;
         
         final Block block = world.getBlock(x, y, z);
-        if (!block.equals(Blocks.grass) && !block.equals(Blocks.sand))
+        if (!block.equals(Blocks.GRASS) && !block.equals(Blocks.SAND))
             return false;
         
         for (int x1 = -2; x1 <= 2; x1++)

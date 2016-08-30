@@ -8,7 +8,7 @@ package extrabiomes.module.fabrica.block;
 
 import java.util.List;
 
-import net.minecraft.block.BlockWood;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import net.minecraft.world.IBlockAccess;
 
-public class BlockCustomWood extends BlockWood
+public class BlockCustomWood extends BlockPlanks
 {
     public enum BlockType
     {

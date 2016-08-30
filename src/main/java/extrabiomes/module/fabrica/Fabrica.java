@@ -60,7 +60,7 @@ public class Fabrica
         {
             if (Element.TINY_CACTUS.isPresent())
             {
-                IRecipe recipe = new ShapelessOreRecipe(Stuff.paste.get(), Blocks.cactus);
+                IRecipe recipe = new ShapelessOreRecipe(Stuff.paste.get(), Blocks.CACTUS);
                 Extrabiomes.proxy.addRecipe(recipe);
                 
                 recipe = new ShapelessOreRecipe(Stuff.paste.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get(), Element.TINY_CACTUS.get());

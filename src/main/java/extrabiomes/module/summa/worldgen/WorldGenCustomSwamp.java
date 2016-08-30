@@ -73,11 +73,11 @@ public class WorldGenCustomSwamp extends WorldGenNewTreeBase {
 
     final Block block = world.getBlock(x, y - 1, z);
 
-    if (!block.equals(Blocks.grass) && !block.equals(Blocks.dirt) || y >= 256 - height - 1) {
+    if (!block.equals(Blocks.GRASS) && !block.equals(Blocks.DIRT) || y >= 256 - height - 1) {
       return false;
     }
 
-    world.setBlock(x, y - 1, z, Blocks.dirt);
+    world.setBlock(x, y - 1, z, Blocks.DIRT);
 
     for (int y1 = y - 3 + height; y1 <= y + height; y1++) {
       final int posTrunk = y1 - (y + height);

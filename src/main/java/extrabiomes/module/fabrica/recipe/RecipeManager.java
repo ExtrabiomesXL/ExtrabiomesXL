@@ -166,7 +166,7 @@ public class RecipeManager
         
         plankFirItem = Optional.of(new ItemStack(event.block, 1, BlockCustomWood.BlockType.FIR.metadata()));
         
-        planks = new ItemStack(Blocks.planks, 4);
+        planks = new ItemStack(Blocks.PLANKS, 4);
         for (final ItemStack itemstack : oakLogs)
         {
             final IRecipe recipe = new ShapelessOreRecipe(planks, itemstack);
@@ -260,7 +260,7 @@ public class RecipeManager
         redCobbleItem = Optional.of(new ItemStack(event.block, 1, BlockRedRock.BlockType.RED_COBBLE.metadata()));
         redRockBrickItem = Optional.of(new ItemStack(event.block, 1, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()));
         
-        IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Items.clay_ball, 4), redCobbleItem.get(), Items.water_bucket, Items.water_bucket, Items.water_bucket);
+        IRecipe recipe = new ShapelessOreRecipe(new ItemStack(Items.CLAY_BALL, 4), redCobbleItem.get(), Items.WATER_BUCKET, Items.WATER_BUCKET, Items.WATER_BUCKET);
         proxy.addRecipe(recipe);
         
         recipe = new ShapedOreRecipe(new ItemStack(event.block, 4, BlockRedRock.BlockType.RED_ROCK_BRICK.metadata()), new String[] { "rr", "rr" }, 'r', redRockItem.get());
@@ -316,7 +316,7 @@ public class RecipeManager
     
     @SubscribeEvent
     public void fenceRecipeHandler(FenceActiveEvent event) {
-      ItemStack sticks = new ItemStack(Items.stick, 1);
+      ItemStack sticks = new ItemStack(Items.STICK, 1);
       ItemStack planks;
       ItemStack fences;
       for(int i = 0; i < BlockCustomFence.BlockType.values().length; i++) {

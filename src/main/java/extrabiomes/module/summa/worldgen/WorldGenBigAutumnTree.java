@@ -432,7 +432,7 @@ public class WorldGenBigAutumnTree extends WorldGenAutumnTree
         final int[] var2 = new int[] { basePos[0], basePos[1] + heightLimit - 1, basePos[2] };
         final Block var3 = world.getBlock(basePos[0], basePos[1] - 1, basePos[2]);
         
-        if (!var3.equals(Blocks.grass) && !var3.equals(Blocks.dirt))
+        if (!var3.equals(Blocks.GRASS) && !var3.equals(Blocks.DIRT))
             return false;
         else
         {

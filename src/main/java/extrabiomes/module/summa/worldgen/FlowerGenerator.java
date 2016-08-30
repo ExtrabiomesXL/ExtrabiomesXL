@@ -16,6 +16,7 @@ import extrabiomes.proxy.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -286,13 +287,13 @@ public class FlowerGenerator implements IWorldGenerator
 	}
 
     @Override
-    public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+    public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
         final Biome biome = world.getBiomeGenForCoords(chunkX, chunkZ);
         
-		final BiomeSettings settings = BiomeSettings.findBiomeSettings(biome.biomeID);
+		final BiomeSettings settings = BiomeSettings.findBiomeSettings(Biome.getIdForBiome(biome));
 		if (settings != null && biomeCheck(settings, biome) && flowerMaps.containsKey(settings)) {
 			final ExtraBiome eBiome = (ExtraBiome)biome; 
 			final int maxFlowers = eBiome.getDecorationSettings().getSetting(Decoration.NEW_FLOWERS);

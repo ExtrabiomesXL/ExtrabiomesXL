@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -34,7 +35,7 @@ import extrabiomes.Extrabiomes;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.GeneralSettings;
 
-public class BlockGreenLeaves extends BlockLeavesBase implements IShearable
+public class BlockGreenLeaves extends BlockLeaves implements IShearable
 {
     
     public enum BlockType

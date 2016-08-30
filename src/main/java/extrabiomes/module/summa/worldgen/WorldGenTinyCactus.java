@@ -43,7 +43,7 @@ class WorldGenTinyCactus extends WorldGenerator
             for (int y2 = 0; y2 < i1; y2++)
             {
                 final Block block = world.getBlock(x1, y1 + y2 - 1, z1);
-                if (block.equals(Blocks.sand) || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && block.equals(BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock)))
+                if (block.equals(Blocks.SAND) || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && block.equals(BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock)))
                     world.setBlock(x1, y1 + y2, z1, this.block, this.metadata, 2);
             }
         }

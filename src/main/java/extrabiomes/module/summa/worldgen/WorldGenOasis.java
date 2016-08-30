@@ -43,11 +43,11 @@ class WorldGenOasis extends WorldGenerator
                 {
                     final Block blocktoReplace = world.getBlock(x1, y1, z1);
                     
-                    if (blocktoReplace.equals(Blocks.stone)
-                            || blocktoReplace.equals(Blocks.sand)
-                            || blocktoReplace.equals(Blocks.sandstone)
+                    if (blocktoReplace.equals(Blocks.STONE)
+                            || blocktoReplace.equals(Blocks.SAND)
+                            || blocktoReplace.equals(Blocks.SANDstone)
                             || (BiomeSettings.MOUNTAINRIDGE.getBiome().isPresent() && blocktoReplace == BiomeSettings.MOUNTAINRIDGE.getBiome().get().topBlock))
-                        world.setBlock(x1, y1, z1, Blocks.grass);
+                        world.setBlock(x1, y1, z1, Blocks.GRASS);
                 }
             }
         
