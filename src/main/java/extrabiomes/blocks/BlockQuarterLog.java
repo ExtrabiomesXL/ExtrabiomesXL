@@ -13,14 +13,14 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPistonBase;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -182,6 +182,7 @@ public class BlockQuarterLog extends BlockLog
         textures.put(index + 53, textureArray[23]);
     }
     
+    /*
     @Override
     public IIcon getIcon(int side, int metadata)
     {
@@ -209,6 +210,7 @@ public class BlockQuarterLog extends BlockLog
         }
         return textures.get(index + offset + type * 2);
     }
+    */
     
     private int getNETextureOffset(int side, final int orientation)
     {

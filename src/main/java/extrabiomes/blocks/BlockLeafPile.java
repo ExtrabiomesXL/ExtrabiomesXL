@@ -10,10 +10,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -46,12 +47,14 @@ public class BlockLeafPile extends Block
         texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leafpile");
     }
     
+    /*
     @Override
     //Change this to more appropriate method
     public IIcon getIcon(int side, int metadata)
     {
         return texture;
     }
+    */
     
     @Override
     public boolean canBlockStay(World world, int x, int y, int z)
@@ -108,7 +111,7 @@ public class BlockLeafPile extends Block
     }
     
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }

@@ -7,7 +7,7 @@
 package extrabiomes.items;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.item.ItemBlock;
 import extrabiomes.Extrabiomes;
 

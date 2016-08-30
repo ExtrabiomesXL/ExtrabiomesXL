@@ -14,7 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +24,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemLead;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -80,10 +80,12 @@ public class BlockCustomFence extends BlockFence {
       return true;
   }
   
+  /*
   @Override
   public IIcon getIcon(int side, int metadata) {
       return BlockType.values()[metadata].texture;
   }
+  */
   
   @SuppressWarnings({ "unchecked", "rawtypes" })
   @Override

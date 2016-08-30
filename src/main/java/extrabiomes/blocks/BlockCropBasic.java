@@ -6,11 +6,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -117,6 +117,7 @@ public class BlockCropBasic extends BlockFlower {
         }
     }
     
+	/*
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int metadata)
@@ -130,6 +131,7 @@ public class BlockCropBasic extends BlockFlower {
 			return null;
 		}
 	}
+	*/
 	
 	/*
 	 * (non-Javadoc)

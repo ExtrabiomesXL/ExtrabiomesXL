@@ -17,14 +17,16 @@ import extrabiomes.lib.Element;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -40,7 +42,7 @@ public class BlockMoreLeaves extends BlockLeaves implements IShearable
         SAKURA_BLOSSOM(0);
         
         private final int      metadata;
-        private ItemStack      sapling            = new ItemStack(Blocks.sapling);
+        private ItemStack      sapling            = new ItemStack(Blocks.SAPLING);
         private static boolean loadedCustomBlocks = false;
         
         static BlockType fromMetadata(int metadata)
@@ -167,7 +169,7 @@ public class BlockMoreLeaves extends BlockLeaves implements IShearable
     }
     
     @Override
-    public void beginLeavesDecay(World world, int x, int y, int z)
+    public void beginLeavesDecay(IBlockState state, World world, BlockPos pos)
     {
         world.setBlockMetadataWithNotify(x, y, z, setDecayOnMetadata(world.getBlockMetadata(x, y, z)), 3);
     }
@@ -247,10 +249,11 @@ public class BlockMoreLeaves extends BlockLeaves implements IShearable
         return ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
     }
     
+    /*
     @Override
     public IIcon getIcon(int side, int metadata)
     {
-        return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube() ? 0 : 1)];
+        return textures[unmarkedMetadata(metadata) * 2 + (!isOpaqueCube(IBlockState state) ? 0 : 1)];
     }
     
     // Return your Better Leaves IIcon
@@ -263,6 +266,7 @@ public class BlockMoreLeaves extends BlockLeaves implements IShearable
     {
         return textures[(unmarkedMetadata(metadata) * 2) + 1];
     }
+    */
     
     public float getSpawnChanceFallingLeaves(int metadata)
     {
@@ -322,7 +326,7 @@ public class BlockMoreLeaves extends BlockLeaves implements IShearable
     public Item getItemDropped(int metadata, Random rand, int par3)
     {
         final Optional<BlockType> type = Optional.fromNullable(BlockType.fromMetadata(metadata));
-        return type.isPresent() ? type.get().getSaplingItem() : Item.getItemFromBlock(Blocks.sapling);
+        return type.isPresent() ? type.get().getSaplingItem() : Item.getItemFromBlock(Blocks.SAPLING);
     }
     
     @Override
@@ -332,9 +336,9 @@ public class BlockMoreLeaves extends BlockLeaves implements IShearable
     }
     
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
-        return Blocks.leaves.isOpaqueCube();
+        return Blocks.LEAVES.isOpaqueCube(IBlockState state);
     }
     
     @Override
@@ -344,7 +348,7 @@ public class BlockMoreLeaves extends BlockLeaves implements IShearable
     }
     
     @Override
-    public void onEntityWalking(World world, int x, int y, int z, Entity entity)
+    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
     {
         beginLeavesDecay(world, x, y, z);
     }
@@ -372,7 +376,7 @@ public class BlockMoreLeaves extends BlockLeaves implements IShearable
     @Override
     public boolean shouldSideBeRendered(IBlockAccess par1iBlockAccess, int par2, int par3, int par4, int par5)
     {
-        this.field_150121_P = !Blocks.leaves.isOpaqueCube(); // fix leaf render
+        this.field_150121_P = !Blocks.LEAVES.isOpaqueCube(IBlockState state); // fix leaf render
                                                       // bug
         return super.shouldSideBeRendered(par1iBlockAccess, par2, par3, par4, par5);
     }

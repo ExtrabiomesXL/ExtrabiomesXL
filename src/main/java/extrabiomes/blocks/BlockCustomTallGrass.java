@@ -13,12 +13,12 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -107,6 +107,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
         return ret;
     }
     
+    /*
     @Override
     public IIcon getIcon(int side, int metadata)
     {
@@ -115,6 +116,7 @@ public class BlockCustomTallGrass extends BlockFlower implements IShearable
             metadata = 0;
         return textures[metadata];
     }
+    */
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override

@@ -8,8 +8,8 @@ package extrabiomes.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
+
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
@@ -35,9 +35,11 @@ public class GenericTerrainBlock extends Block
         texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + texturePath);
     }
     
+    /*
     @Override
     public IIcon getIcon(int side, int metadata)
     {
         return texture;
     }
+    */
 }

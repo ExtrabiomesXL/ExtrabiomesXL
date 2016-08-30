@@ -38,7 +38,7 @@ public class WorldGenWastelandGrass extends WorldGenerator
             while (y1 > 0)
             {
                 block = world.getBlock(x1, y1, z1);
-                if (block != null && block.isOpaqueCube())
+                if (block != null && block.isOpaqueCube(IBlockState state))
                     break;
                 y1--;
             }

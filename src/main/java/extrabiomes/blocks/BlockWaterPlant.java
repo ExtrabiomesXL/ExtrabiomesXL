@@ -11,14 +11,15 @@ import extrabiomes.lib.BlockSettings;
 import extrabiomes.subblocks.SubBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -68,6 +69,7 @@ public class BlockWaterPlant extends Block {
 		}
     }
     
+	/*
     @Override
     public IIcon getIcon(int side, int metaData) {
     	if(subBlocks[metaData] != null) {
@@ -76,6 +78,7 @@ public class BlockWaterPlant extends Block {
     	
         return null;
     }
+    */
     
     public String getLocalizedName(int metadata) {
     	if( metadata < 0 || metadata >= subBlocks.length )
@@ -93,7 +96,7 @@ public class BlockWaterPlant extends Block {
     }
     
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
     

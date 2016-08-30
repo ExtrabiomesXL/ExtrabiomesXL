@@ -14,14 +14,15 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -117,6 +118,7 @@ public class BlockCustomFlower extends Block implements IPlantable
             return metadata;
         }
 
+		/*
 		private IIcon	IIcon;
 		public IIcon getIcon() {
 			return IIcon;
@@ -127,6 +129,7 @@ public class BlockCustomFlower extends Block implements IPlantable
 			IIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + this.texture);
 			return IIcon;
 		}
+		*/
         
         public String[] getToolTipText(){
         	return toolTipText;
@@ -220,6 +223,7 @@ public class BlockCustomFlower extends Block implements IPlantable
         return metadata;
     }
     
+    /*
     @Override
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
@@ -231,6 +235,7 @@ public class BlockCustomFlower extends Block implements IPlantable
 			return null;
 		}
     }
+    */
     
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
@@ -292,7 +297,7 @@ public class BlockCustomFlower extends Block implements IPlantable
     }
     
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }

@@ -11,12 +11,12 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -49,11 +49,13 @@ public class BlockCatTail extends BlockFlower
         p_149666_3_.add(new ItemStack(p_149666_1_, 1, 0));
     }
     
+    /*
     @Override
     public IIcon getIcon(int side, int metadata)
     {
         return texture;
     }
+    */
     
     @Override
     public boolean canBlockStay(World world, int x, int y, int z)

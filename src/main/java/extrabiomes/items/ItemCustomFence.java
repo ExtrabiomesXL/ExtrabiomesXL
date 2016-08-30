@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
 import extrabiomes.blocks.BlockCustomFence;
 import extrabiomes.utility.MultiItemBlock;
 

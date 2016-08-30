@@ -12,12 +12,12 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -90,6 +90,7 @@ public class BlockCustomLog extends BlockLog
         
     }
     
+    /*
     @Override
     public IIcon getIcon(int side, int metadata)
     {
@@ -104,6 +105,7 @@ public class BlockCustomLog extends BlockLog
         
         return texturesMap.get(index + type);
     }
+    */
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override

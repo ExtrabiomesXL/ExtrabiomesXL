@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +21,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
@@ -148,6 +148,7 @@ public class BlockNewSapling extends BlockFlower
         return unmarkedMetadata(metadata);
     }
     
+    /*
     @Override
     public IIcon getIcon(int side, int metadata)
     {
@@ -159,6 +160,7 @@ public class BlockNewSapling extends BlockFlower
         
         return textures[metadata];
     }
+    */
     
     public void markOrGrowMarked(World world, int x, int y, int z, Random rand)
     {

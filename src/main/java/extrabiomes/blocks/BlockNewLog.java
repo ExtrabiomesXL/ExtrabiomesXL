@@ -11,12 +11,12 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -72,6 +72,7 @@ public class BlockNewLog extends BlockLog
         textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodtop");
     }
     
+    /*
     @Override
     public IIcon getIcon(int side, int metadata)
     {
@@ -88,6 +89,7 @@ public class BlockNewLog extends BlockLog
         return textures[type * 2];
         //return texturesMap.get(index + type);
     }
+    */
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override

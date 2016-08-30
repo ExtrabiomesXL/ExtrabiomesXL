@@ -13,11 +13,11 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -74,6 +74,7 @@ public class BlockRedRock extends Block
         return meta == RED_COBBLE.metadata() ? 2.0F : blockHardness;
     }
     
+    /*
     @Override
     public IIcon getIcon(int side, int metadata)
     {
@@ -82,6 +83,7 @@ public class BlockRedRock extends Block
         return metadata == RED_ROCK_BRICK.metadata() ? textures[2] : metadata == RED_COBBLE.metadata() ? textures[1]
                 : textures[0];
     }
+    */
     
     @SideOnly(Side.CLIENT)
     @Override

@@ -6,14 +6,14 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPistonBase;
-import net.minecraft.client.renderer.texture.IIconRegister;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -59,6 +59,7 @@ public class BlockNewQuarterLog extends BlockLog
         
     }
     
+    /*
     @Override
     public IIcon getIcon(int side, int metadata)
     {
@@ -83,6 +84,7 @@ public class BlockNewQuarterLog extends BlockLog
         return textures[4];
         
     }
+    */
     
     private int topIIcon(int orientation)
     {
