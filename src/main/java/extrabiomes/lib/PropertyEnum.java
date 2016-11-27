@@ -32,7 +32,7 @@ public class PropertyEnum<T extends Enum<T> & IMetaSerializable> extends net.min
 	
 	public T getForMeta(int meta) {
 		if (meta < 0 || meta > maxSize) {
-			LogHelper.info("Log Property received a higher meta than expected (got: %d, limit: %d)", meta, maxSize);
+			LogHelper.info("Property Enum received a higher meta than expected (got: %d, limit: %d)", meta, maxSize);
 			return getDefault();
 		} else {
 			return values[meta];

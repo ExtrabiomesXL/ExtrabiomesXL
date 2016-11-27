@@ -12,4 +12,8 @@ public interface ILeafSerializable extends IMetaSerializable {
 	Block getSaplingBlock();
     
     int getSaplingMetadata();
+    
+    int getSaplingDropChance();
+    
+    boolean canDropApples();
 }

@@ -41,6 +41,7 @@ public class LogTurner extends ItemTool implements ITextureRegisterer
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerTexture() {
     	ModelUtil.registerTexture(this, "logturner");
     }

@@ -25,6 +25,7 @@ import extrabiomes.blocks.BlockCustomFlower.BlockType;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockCustomTallGrass;
 import extrabiomes.blocks.BlockCustomVine;
+import extrabiomes.blocks.BlockEBXLLeaves;
 import extrabiomes.blocks.BlockEBXLLog;
 import extrabiomes.blocks.BlockGreenLeaves;
 import extrabiomes.blocks.BlockKneeLog;
@@ -39,17 +40,24 @@ import extrabiomes.blocks.BlockRedRock;
 import extrabiomes.blocks.BlockWaterPlant;
 import extrabiomes.blocks.GenericTerrainBlock;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
+import extrabiomes.handlers.BlockHandler.LeafHandler.Autumn_Leaf_Types;
+import extrabiomes.handlers.BlockHandler.LeafHandler.Green_Leaf_Types;
+import extrabiomes.handlers.BlockHandler.LeafHandler.More_Leaf_Types;
+import extrabiomes.handlers.BlockHandler.LeafHandler.New_Leaf_Types;
 import extrabiomes.handlers.BlockHandler.LogHandler.Log_A_Type;
 import extrabiomes.handlers.BlockHandler.LogHandler.Log_B_Type;
 import extrabiomes.helpers.BiomeHelper;
 import extrabiomes.helpers.ForestryModHelper;
 import extrabiomes.helpers.LogHelper;
+import extrabiomes.items.ItemEBXLLeaves;
 import extrabiomes.items.ItemKneeLog;
 import extrabiomes.items.ItemNewQuarterLog;
 import extrabiomes.items.ItemOldQuarterLog;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
+import extrabiomes.lib.GeneralSettings;
+import extrabiomes.lib.ILeafSerializable;
 import extrabiomes.lib.IMetaSerializable;
 import extrabiomes.lib.IQuarterSerializable;
 import extrabiomes.lib.ModuleControlSettings;
@@ -68,309 +76,566 @@ import extrabiomes.subblocks.SubBlockWaterPlant;
 import extrabiomes.utility.MultiItemBlock;
 
 public abstract class BlockHandler {
+	public static void createBlocks() throws Exception {
+		LogHandler.createLogs();
+		LeafHandler.createLeaves();
 
-  private static void createAutumnLeaves() {
-    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.AUTUMNLEAVES.getEnabled())
-      return;
+		createCattail();
+		createCrackedSand();
+		createFlowers();
+		createGrass();
+		createVines();
+		createWaterPlants();
+	}
 
-    final BlockAutumnLeaves block = new BlockAutumnLeaves(3, Material.LEAVES, false);
-    block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
+	private static void createWaterPlants() throws Exception {
+		if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.WATERPLANT.getEnabled())
+			return;
 
-    final CommonProxy proxy = Extrabiomes.proxy;
-    proxy.registerBlock(block, extrabiomes.items.ItemCustomLeaves.class, "leaves_1");
-    proxy.registerOreInAllSubblocks("treeLeaves", block);
-    Blocks.FIRE.setFireInfo(block, 30, 60);
+		final BlockWaterPlant waterPlantBlock = new BlockWaterPlant(BlockSettings.WATERPLANT, "waterPlant");
 
-    Element.LEAVES_AUTUMN_BROWN.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.UMBER.metadata()));
-    Element.LEAVES_AUTUMN_ORANGE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.GOLDENROD.metadata()));
-    Element.LEAVES_AUTUMN_PURPLE.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.VERMILLION.metadata()));
-    Element.LEAVES_AUTUMN_YELLOW.set(new ItemStack(block, 1, BlockAutumnLeaves.BlockType.CITRINE.metadata()));
+		waterPlantBlock.setBlockName("extrabiomes.waterplant").setHardness(0.01F).setStepSound(Block.soundTypeGrass)
+				.setCreativeTab(Extrabiomes.tabsEBXL);
 
-    final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
-    ForestryModHelper.registerLeaves(stack);
-    ForestryModHelper.addToForesterBackpack(stack);
+		// Add the subblocks
+		waterPlantBlock.registerSubBlock(new SubBlockWaterPlant("eelgrass").addPlaceableBlock(Blocks.GRASS)
+				.addPlaceableBlock(Blocks.SAND).addPlaceableBlock(Blocks.GRAVEL).addPlaceableBlock(Blocks.CLAY), 0);
+
+		final CommonProxy proxy = Extrabiomes.proxy;
+		proxy.registerBlock(waterPlantBlock, extrabiomes.items.ItemBlockWaterPlant.class, "waterplant1");
+
+		Element.WATERPLANT.set(new ItemStack(waterPlantBlock, 1, 0));
+
+		proxy.registerWorldGenerator(new EelGrassGenerator(waterPlantBlock, 0));
+	}
+
+	private static void createCattail() {
+		if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.CATTAIL.getEnabled())
+			return;
+
+		final BlockCatTail block = new BlockCatTail(79, Material.plants);
+		block.setBlockName("extrabiomes.cattail").setHardness(0.0F).setStepSound(Block.soundTypeGrass)
+				.setCreativeTab(Extrabiomes.tabsEBXL);
+
+		final CommonProxy proxy = Extrabiomes.proxy;
+		proxy.registerBlock(block, extrabiomes.items.ItemCatTail.class, "plants4");
+		proxy.registerOre("reedTypha", block);
+
+		Element.CATTAIL.set(new ItemStack(block));
+
+		proxy.registerWorldGenerator(new CatTailGenerator(block));
+	}
+
+	private static void createCrackedSand() {
+		if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.CRACKEDSAND.getEnabled())
+			return;
+
+		final GenericTerrainBlock block = new GenericTerrainBlock(0, Material.rock);
+		block.setBlockName("extrabiomes.crackedsand").setHardness(1.2F).setStepSound(Block.soundTypeStone)
+				.setCreativeTab(Extrabiomes.tabsEBXL);
+
+		block.texturePath = "crackedsand";
+
+		final CommonProxy proxy = Extrabiomes.proxy;
+		proxy.setBlockHarvestLevel(block, "pickaxe", 0);
+		proxy.registerBlock(block, "terrain_blocks2");
+
+		proxy.registerOre("sandCracked", block);
+
+		final ItemStack stack = new ItemStack(block);
+		Element.CRACKEDSAND.set(stack);
+
+		BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.WASTELAND, block, block);
+
+		ForestryModHelper.addToDiggerBackpack(stack);
+		// FacadeHelper.addBuildcraftFacade(block);
+	}
+
+	private static void createFlowers() {
+		if (!ModuleControlSettings.SUMMA.isEnabled())
+			return;
+
+		final boolean enableds[] = { BlockSettings.FLOWER.getEnabled(), BlockSettings.FLOWER2.getEnabled(),
+				BlockSettings.FLOWER3.getEnabled() };
+
+		final CommonProxy proxy = Extrabiomes.proxy;
+		final FlowerGenerator generator = FlowerGenerator.getInstance();
+
+		for (int group = 0; group < enableds.length; ++group) {
+			if (!enableds[group])
+				continue;
+
+			final BlockCustomFlower block = new BlockCustomFlower(group, Material.plants);
+			block.setBlockName("extrabiomes.flower").setTickRandomly(true).setHardness(0.0F)
+					.setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
+			proxy.registerBlock(block, extrabiomes.items.ItemFlower.class, "flower" + (group + 1));
+
+			Collection<BlockType> types = block.getGroupTypes();
+			for (BlockType type : types) {
+				final Element element;
+				try {
+					element = Element.valueOf(type.name());
+				} catch (Exception e) {
+					LogHelper.warning("No element found for flower " + type);
+					continue;
+				}
+				type.setBlock(block);
+				ItemStack item = new ItemStack(block, 1, type.metadata());
+				element.set(item);
+				ForestryModHelper.registerBasicFlower(item);
+			}
+
+			generator.registerBlock(block, types);
+			ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
+		}
+
+		proxy.registerWorldGenerator(generator);
+	}
+
+	private static void createVines() {
+		if (!ModuleControlSettings.SUMMA.isEnabled())
+			return;
+
+		final CommonProxy proxy = Extrabiomes.proxy;
+
+		// BlockCustomVine.BlockType[] vines =
+		// BlockCustomVine.BlockType.values();
+		BlockCustomVine.BlockType[] vines = { BlockCustomVine.BlockType.GLORIOSA };
+
+		for (BlockCustomVine.BlockType blockType : vines) {
+			final BlockSettings settings;
+			try {
+				settings = BlockSettings.valueOf(blockType.name());
+			} catch (Exception e) {
+				LogHelper.severe("Unable to find settings for " + blockType);
+				continue;
+			}
+
+			if (!settings.getEnabled())
+				continue;
+
+			/*
+			 * final String shortName = blockType.name()
+			 * .substring(blockType.name().indexOf('_')).toLowerCase();
+			 */
+
+			final BlockCustomVine block = new BlockCustomVine(blockType);
+			block.setBlockName("extrabiomes.vine." + blockType.name().toLowerCase())
+					.setCreativeTab(Extrabiomes.tabsEBXL);
+			proxy.registerBlock(block, ItemBlock.class, "vines");
+
+			final Element element;
+			try {
+				element = Element.valueOf("VINE_" + blockType.name());
+			} catch (Exception e) {
+				LogHelper.warning("No element found for vine " + blockType);
+				continue;
+			}
+			final ItemStack item = new ItemStack(block, 1);
+			element.set(item);
+
+			ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
+
+			final VineGenerator generator;
+			// gloriosa gets a biome list override
+			if (blockType == BlockCustomVine.BlockType.GLORIOSA) {
+				final BiomeSettings[] biomeList = { BiomeSettings.EXTREMEJUNGLE, BiomeSettings.MINIJUNGLE,
+						BiomeSettings.RAINFOREST };
+				generator = new VineGenerator(block, biomeList);
+			} else {
+				generator = new VineGenerator(block);
+			}
+			proxy.registerWorldGenerator(generator);
+		}
+	}
+
+	private static void createGrass() {
+		if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.GRASS.getEnabled())
+			return;
+
+		final BlockCustomTallGrass block = new BlockCustomTallGrass(48, Material.vine);
+		block.setBlockName("extrabiomes.tallgrass").setHardness(0.0F).setStepSound(Block.soundTypeGrass)
+				.setCreativeTab(Extrabiomes.tabsEBXL);
+
+		final CommonProxy proxy = Extrabiomes.proxy;
+		proxy.registerBlock(block, extrabiomes.items.ItemGrass.class, "grass");
+		Blocks.FIRE.setFireInfo(block, 60, 100);
+
+		Element.GRASS_BROWN.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.BROWN.metadata()));
+		Element.GRASS_DEAD.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD.metadata()));
+		Element.GRASS_BROWN_SHORT.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.SHORT_BROWN.metadata()));
+		Element.GRASS_DEAD_TALL.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD_TALL.metadata()));
+		Element.GRASS_DEAD_YELLOW.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD_YELLOW.metadata()));
+
+		ItemStack grassStack = Element.GRASS_BROWN.get();
+		BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(),
+				new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 100);
+		grassStack = Element.GRASS_BROWN_SHORT.get();
+		BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(),
+				new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 100);
+
+		grassStack = Element.GRASS_DEAD.get();
+		BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(),
+				new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 90);
+		grassStack = Element.GRASS_DEAD_YELLOW.get();
+		BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(),
+				new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 90);
+		grassStack = Element.GRASS_DEAD_TALL.get();
+		BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(),
+				new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 35);
+	}
+
+	public static final class LeafHandler {
+		public static enum Autumn_Leaf_Types implements ILeafSerializable {
+			UMBER(0), GOLDENROD(1), VERMILLION(2), CITRINE(3);
+
+			private final String name;
+			private final int metadata;
+			private ItemStack sapling = new ItemStack(Blocks.SAPLING);
+
+			private Autumn_Leaf_Types(int metadata) {
+				this.name = name().toLowerCase(Locale.ENGLISH);
+				this.metadata = metadata;
+			}
+			
+			@Override
+			public String getName() {
+				return name;
+			}
+
+			@Override
+			public int getMetadata() {
+				return metadata;
+			}
+			
+			@Override
+			public Block getSaplingBlock() {
+				return Block.getBlockFromItem(sapling.getItem());
+			}
+
+			@Override
+			public int getSaplingMetadata() {
+				return sapling.getItemDamage();
+			}
+			
+			@Override
+			public int getSaplingDropChance() {
+				return 20;
+			}
+			
+			@Override
+			public boolean canDropApples() {
+				return true;
+			}
+			
+			/* FIXME: Add these textures back
+			textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfancy");
+	        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfast");
+	        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfancy");
+	        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfast");
+	        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfancy");
+	        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfast");
+	        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfancy");
+	        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfast");
+	        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbrownautumn");
+	        textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesorangeautumn");
+	        textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredautumn");
+	        textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesyellowautumn");
+			*/
+		}
+		
+		public static enum New_Leaf_Types implements ILeafSerializable {
+			BALD_CYPRESS(0) {
+				@Override
+				public int getSaplingDropChance() {
+					if (GeneralSettings.bigTreeSaplingDropModifier) {
+						return 90;
+					} else {
+						return super.getSaplingDropChance();
+					}
+				}
+			}, JAPANESE_MAPLE(1), JAPANESE_MAPLE_SHRUB(2), RAINBOW_EUCALYPTUS(3) {
+				@Override
+				public int getSaplingDropChance() {
+					if (GeneralSettings.bigTreeSaplingDropModifier) {
+						return 90;
+					} else {
+						return super.getSaplingDropChance();
+					}
+				}
+			};
+
+			private final String name;
+			private final int metadata;
+			private ItemStack sapling = new ItemStack(Blocks.SAPLING);
+
+			private New_Leaf_Types(int metadata) {
+				this.name = name().toLowerCase(Locale.ENGLISH);
+				this.metadata = metadata;
+			}
+
+			@Override
+			public String getName() {
+				return name;
+			}
+			
+			@Override
+			public int getMetadata() {
+				return metadata;
+			}
+			
+			@Override
+			public Block getSaplingBlock() {
+				return Block.getBlockFromItem(sapling.getItem());
+			}
+
+			@Override
+			public int getSaplingMetadata() {
+				return sapling.getItemDamage();
+			}
+			
+			@Override
+			public int getSaplingDropChance() {
+				return 20;
+			}
+
+			@Override
+			public boolean canDropApples() {
+				return false;
+			}
+			
+			/* FIXME: Add these textures back
+			textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbaldcypressfancy");
+	        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbaldcypressfast");
+	        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemaplefancy");
+	        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemaplefast");
+	        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemapleshrubfancy");
+	        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemapleshrubfast");
+	        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesrainboweucalyptusfancy");
+	        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesrainboweucalyptusfast");
+	        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbaldcypress");
+	        textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesjapanesemaple");
+	        textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesjapanesemapleshrub");
+	        textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesrainboweucalyptus");
+			*/
+		}
+
+		public static enum More_Leaf_Types implements ILeafSerializable {
+			SAKURA_BLOSSOM(0);
+
+			private final String name;
+			private final int metadata;
+			private ItemStack sapling = new ItemStack(Blocks.SAPLING);
+
+			private More_Leaf_Types(int metadata) {
+				this.name = name().toLowerCase(Locale.ENGLISH);
+				this.metadata = metadata;
+			}
+			
+			@Override
+			public String getName() {
+				return name;
+			}
+			
+			@Override
+			public int getMetadata() {
+				return metadata;
+			}
+			
+			@Override
+			public Block getSaplingBlock() {
+				return Block.getBlockFromItem(sapling.getItem());
+			}
+
+			@Override
+			public int getSaplingMetadata() {
+				return sapling.getItemDamage();
+			}
+
+			@Override
+			public int getSaplingDropChance() {
+				return 20;
+			}
+			
+			@Override
+			public boolean canDropApples() {
+				return false;
+			}
+		}
+
+		public static enum Green_Leaf_Types implements ILeafSerializable {
+			FIR(0) {
+				@Override
+				public int getSaplingDropChance() {
+					if (GeneralSettings.bigTreeSaplingDropModifier) {
+						return 90;
+					} else {
+						return super.getSaplingDropChance();
+					}
+				}
+			}, REDWOOD(1) {
+				@Override
+				public int getSaplingDropChance() {
+					if (GeneralSettings.bigTreeSaplingDropModifier) {
+						return 90;
+					} else {
+						return super.getSaplingDropChance();
+					}
+				}
+			}, ACACIA(2), CYPRESS(3);
+
+			private final String name;
+			private final int metadata;
+			private ItemStack sapling = new ItemStack(Blocks.SAPLING);
+
+			private Green_Leaf_Types(int metadata) {
+				this.name = name().toLowerCase(Locale.ENGLISH);
+				this.metadata = metadata;
+			}
+
+			@Override
+			public String getName() {
+				return name;
+			}
+
+			@Override
+			public int getMetadata() {
+				return metadata;
+			}
+			
+			@Override
+			public Block getSaplingBlock() {
+				return Block.getBlockFromItem(sapling.getItem());
+			}
+
+			@Override
+			public int getSaplingMetadata() {
+				return sapling.getItemDamage();
+			}
+
+			@Override
+			public int getSaplingDropChance() {
+				return 20;
+			}
+			
+			@Override
+			public boolean canDropApples() {
+				return false;
+			}
+			
+			/* FIXME: Add these textures back
+			textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfancy");
+	        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfast");
+	        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfancy");
+	        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfast");
+	        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafancy");
+	        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafast");
+	        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfancy");
+	        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfast");
+	        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesfir");
+	        textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredwood");
+	        textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesacacia");
+	        textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavescypress");
+			*/
+		}
+
+		private static void createLeaves() {
+			if (ModuleControlSettings.SUMMA.isEnabled()) {
+				createAutumnLeaves();
+				createNewLeaves();
+				createMoreLeaves();
+				createGreenLeaves();
+				
+				createLeafPile();
+			}
+		}
+		
+		private static <T extends Enum<T> & ILeafSerializable> BlockEBXLLeaves<T> createLeaves(Class<T> type, T defaultType, String name) {
+			final BlockEBXLLeaves<T> block = BlockEBXLLeaves.<T>create(type, defaultType);
+			block.setUnlocalizedName("extrabiomes.leaves");
+
+			final CommonProxy proxy = Extrabiomes.proxy;
+			proxy.registerBlock(block, ItemEBXLLeaves.class, name);
+			proxy.registerOreInAllSubblocks("treeLeaves", block);
+
+			Blocks.FIRE.setFireInfo(block, 30, 60);
+
+			final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
+			ForestryModHelper.registerLeaves(stack);
+			ForestryModHelper.addToForesterBackpack(stack);
+			
+			return block;
+		}
+		
+		private static void createAutumnLeaves() {
+			if (!BlockSettings.AUTUMNLEAVES.getEnabled())
+				return;
+
+			final BlockEBXLLeaves<Autumn_Leaf_Types> block = createLeaves(Autumn_Leaf_Types.class, Autumn_Leaf_Types.UMBER, "leaves_1");
+
+			Element.LEAVES_AUTUMN_BROWN.set(Autumn_Leaf_Types.UMBER.sapling = new ItemStack(block, 1, Autumn_Leaf_Types.UMBER.getMetadata()));
+			Element.LEAVES_AUTUMN_ORANGE.set(Autumn_Leaf_Types.GOLDENROD.sapling = new ItemStack(block, 1, Autumn_Leaf_Types.GOLDENROD.getMetadata()));
+			Element.LEAVES_AUTUMN_PURPLE.set(Autumn_Leaf_Types.VERMILLION.sapling = new ItemStack(block, 1, Autumn_Leaf_Types.VERMILLION.getMetadata()));
+			Element.LEAVES_AUTUMN_YELLOW.set(Autumn_Leaf_Types.CITRINE.sapling = new ItemStack(block, 1, Autumn_Leaf_Types.CITRINE.getMetadata()));
+		}
+	  
+		private static void createNewLeaves() {
+			if (!BlockSettings.NEWLEAVES.getEnabled())
+				return;
+
+			final BlockEBXLLeaves<New_Leaf_Types> block = createLeaves(New_Leaf_Types.class, New_Leaf_Types.BALD_CYPRESS, "leaves_2");
+
+			Element.LEAVES_BALD_CYPRESS.set(New_Leaf_Types.BALD_CYPRESS.sapling =
+					new ItemStack(block, 1, New_Leaf_Types.BALD_CYPRESS.getMetadata()));
+			
+			Element.LEAVES_JAPANESE_MAPLE.set(New_Leaf_Types.JAPANESE_MAPLE.sapling =
+					new ItemStack(block, 1, New_Leaf_Types.JAPANESE_MAPLE.getMetadata()));
+			
+			Element.LEAVES_JAPANESE_MAPLE_SHRUB.set(New_Leaf_Types.JAPANESE_MAPLE_SHRUB.sapling =
+					new ItemStack(block, 1, New_Leaf_Types.JAPANESE_MAPLE_SHRUB.getMetadata()));
+			
+			Element.LEAVES_RAINBOW_EUCALYPTUS.set(New_Leaf_Types.RAINBOW_EUCALYPTUS.sapling =
+					new ItemStack(block, 1, New_Leaf_Types.RAINBOW_EUCALYPTUS.getMetadata()));
+		}
+
+		private static void createMoreLeaves() {
+			if (!BlockSettings.MORELEAVES.getEnabled())
+				return;
+
+			final BlockEBXLLeaves<More_Leaf_Types> block = createLeaves(More_Leaf_Types.class, More_Leaf_Types.SAKURA_BLOSSOM, "leaves_3");
+
+			Element.LEAVES_SAKURA_BLOSSOM.set(More_Leaf_Types.SAKURA_BLOSSOM.sapling = new ItemStack(block, 1, More_Leaf_Types.SAKURA_BLOSSOM.getMetadata()));
+		}
+
+		private static void createGreenLeaves() {
+			if (!BlockSettings.GREENLEAVES.getEnabled())
+				return;
+
+			final BlockEBXLLeaves<Green_Leaf_Types> block = createLeaves(Green_Leaf_Types.class, Green_Leaf_Types.FIR, "leaves_4");
+
+			Element.LEAVES_ACACIA.set(Green_Leaf_Types.ACACIA.sapling = new ItemStack(block, 1, Green_Leaf_Types.ACACIA.getMetadata()));
+			Element.LEAVES_FIR.set(Green_Leaf_Types.FIR.sapling = new ItemStack(block, 1, Green_Leaf_Types.FIR.getMetadata()));
+			Element.LEAVES_REDWOOD.set(Green_Leaf_Types.REDWOOD.sapling = new ItemStack(block, 1, Green_Leaf_Types.REDWOOD.getMetadata()));
+			Element.LEAVES_CYPRESS.set(Green_Leaf_Types.CYPRESS.sapling = new ItemStack(block, 1, Green_Leaf_Types.CYPRESS.getMetadata()));
+		}
+
+		  private static void createLeafPile() {
+		    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.LEAFPILE.getEnabled())
+		      return;
+
+		    final BlockLeafPile block = new BlockLeafPile(64, Material.vine);
+		    block.setBlockName("extrabiomes.leafpile").setHardness(0.0F).setTickRandomly(true).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
+
+		    final CommonProxy proxy = Extrabiomes.proxy;
+		    proxy.registerBlock(block, "leaf_pile");
+		    Blocks.FIRE.setFireInfo(block, 30, 60);
+
+		    Element.LEAFPILE.set(new ItemStack(block));
+
+		    proxy.registerWorldGenerator(new LeafPileGenerator(block));
+		  }
   }
-
-  public static void createBlocks() throws Exception {
-    createAutumnLeaves();
-    createCattail();
-    createCrackedSand();
-    createFlowers();
-    createGrass();
-    createGreenLeaves();
-    createNewLeaves();
-    createMoreLeaves();
-    createLeafPile();
-    createRedRock();
-    createSapling();
-    createNewSapling();
-    LogHandler.createLogs();
-    createVines();
-    createWaterPlants();
-
-  }
-
-  private static void createWaterPlants() throws Exception {
-    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.WATERPLANT.getEnabled())
-      return;
-
-    final BlockWaterPlant waterPlantBlock = new BlockWaterPlant(BlockSettings.WATERPLANT, "waterPlant");
-
-    waterPlantBlock.setBlockName("extrabiomes.waterplant").setHardness(0.01F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
-
-    // Add the subblocks
-    waterPlantBlock.registerSubBlock(new SubBlockWaterPlant("eelgrass").addPlaceableBlock(Blocks.GRASS).addPlaceableBlock(Blocks.SAND).addPlaceableBlock(Blocks.GRAVEL).addPlaceableBlock(Blocks.CLAY), 0);
-
-    final CommonProxy proxy = Extrabiomes.proxy;
-    proxy.registerBlock(waterPlantBlock, extrabiomes.items.ItemBlockWaterPlant.class, "waterplant1");
-
-    Element.WATERPLANT.set(new ItemStack(waterPlantBlock, 1, 0));
-
-    proxy.registerWorldGenerator(new EelGrassGenerator(waterPlantBlock, 0));
-  }
-
-  private static void createCattail() {
-    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.CATTAIL.getEnabled())
-      return;
-
-    final BlockCatTail block = new BlockCatTail(79, Material.plants);
-    block.setBlockName("extrabiomes.cattail").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
-
-    final CommonProxy proxy = Extrabiomes.proxy;
-    proxy.registerBlock(block, extrabiomes.items.ItemCatTail.class, "plants4");
-    proxy.registerOre("reedTypha", block);
-
-    Element.CATTAIL.set(new ItemStack(block));
-
-    proxy.registerWorldGenerator(new CatTailGenerator(block));
-  }
-
-  private static void createCrackedSand() {
-    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.CRACKEDSAND.getEnabled())
-      return;
-
-    final GenericTerrainBlock block = new GenericTerrainBlock(0, Material.rock);
-    block.setBlockName("extrabiomes.crackedsand").setHardness(1.2F).setStepSound(Block.soundTypeStone).setCreativeTab(Extrabiomes.tabsEBXL);
-
-    block.texturePath = "crackedsand";
-
-    final CommonProxy proxy = Extrabiomes.proxy;
-    proxy.setBlockHarvestLevel(block, "pickaxe", 0);
-    proxy.registerBlock(block, "terrain_blocks2");
-
-    proxy.registerOre("sandCracked", block);
-
-    final ItemStack stack = new ItemStack(block);
-    Element.CRACKEDSAND.set(stack);
-
-    BiomeHelper.addTerrainBlockstoBiome(BiomeSettings.WASTELAND, block, block);
-
-    ForestryModHelper.addToDiggerBackpack(stack);
-    //FacadeHelper.addBuildcraftFacade(block);
-  }
-
-  private static void createFlowers() {
-    if (!ModuleControlSettings.SUMMA.isEnabled())
-      return;
-
-    final boolean enableds[] = { BlockSettings.FLOWER.getEnabled(), BlockSettings.FLOWER2.getEnabled(), BlockSettings.FLOWER3.getEnabled() };
-
-    final CommonProxy proxy = Extrabiomes.proxy;
-    final FlowerGenerator generator = FlowerGenerator.getInstance();
-
-    for (int group = 0; group < enableds.length; ++group) {
-      if (!enableds[group])
-        continue;
-
-      final BlockCustomFlower block = new BlockCustomFlower(group, Material.plants);
-      block.setBlockName("extrabiomes.flower").setTickRandomly(true).setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
-      proxy.registerBlock(block, extrabiomes.items.ItemFlower.class, "flower" + (group + 1));
-
-      Collection<BlockType> types = block.getGroupTypes();
-      for (BlockType type : types) {
-        final Element element;
-        try {
-          element = Element.valueOf(type.name());
-        } catch (Exception e) {
-          LogHelper.warning("No element found for flower " + type);
-          continue;
-        }
-        type.setBlock(block);
-        ItemStack item = new ItemStack(block, 1, type.metadata());
-        element.set(item);
-        ForestryModHelper.registerBasicFlower(item);
-      }
-
-      generator.registerBlock(block, types);
-      ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
-    }
-
-    proxy.registerWorldGenerator(generator);
-  }
-
-  private static void createVines() {
-    if (!ModuleControlSettings.SUMMA.isEnabled())
-      return;
-
-    final CommonProxy proxy = Extrabiomes.proxy;
-
-    // BlockCustomVine.BlockType[] vines = BlockCustomVine.BlockType.values();
-    BlockCustomVine.BlockType[] vines = { BlockCustomVine.BlockType.GLORIOSA };
-
-    for (BlockCustomVine.BlockType blockType : vines) {
-      final BlockSettings settings;
-      try {
-        settings = BlockSettings.valueOf(blockType.name());
-      } catch (Exception e) {
-        LogHelper.severe("Unable to find settings for " + blockType);
-        continue;
-      }
-
-      if (!settings.getEnabled())
-        continue;
-
-      /*
-       * final String shortName = blockType.name()
-       * .substring(blockType.name().indexOf('_')).toLowerCase();
-       */
-
-      final BlockCustomVine block = new BlockCustomVine(blockType);
-      block.setBlockName("extrabiomes.vine." + blockType.name().toLowerCase()).setCreativeTab(Extrabiomes.tabsEBXL);
-      proxy.registerBlock(block, ItemBlock.class, "vines");
-
-      final Element element;
-      try {
-        element = Element.valueOf("VINE_" + blockType.name());
-      } catch (Exception e) {
-        LogHelper.warning("No element found for vine " + blockType);
-        continue;
-      }
-      final ItemStack item = new ItemStack(block, 1);
-      element.set(item);
-
-      ForestryModHelper.addToForesterBackpack(new ItemStack(block, 1, Short.MAX_VALUE));
-
-      final VineGenerator generator;
-      // gloriosa gets a biome list override
-      if (blockType == BlockCustomVine.BlockType.GLORIOSA) {
-        final BiomeSettings[] biomeList = { BiomeSettings.EXTREMEJUNGLE, BiomeSettings.MINIJUNGLE, BiomeSettings.RAINFOREST };
-        generator = new VineGenerator(block, biomeList);
-      } else {
-        generator = new VineGenerator(block);
-      }
-      proxy.registerWorldGenerator(generator);
-    }
-  }
-
-  private static void createGrass() {
-    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.GRASS.getEnabled())
-      return;
-
-    final BlockCustomTallGrass block = new BlockCustomTallGrass(48, Material.vine);
-    block.setBlockName("extrabiomes.tallgrass").setHardness(0.0F).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
-
-    final CommonProxy proxy = Extrabiomes.proxy;
-    proxy.registerBlock(block, extrabiomes.items.ItemGrass.class, "grass");
-    Blocks.FIRE.setFireInfo(block, 60, 100);
-
-    Element.GRASS_BROWN.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.BROWN.metadata()));
-    Element.GRASS_DEAD.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD.metadata()));
-    Element.GRASS_BROWN_SHORT.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.SHORT_BROWN.metadata()));
-    Element.GRASS_DEAD_TALL.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD_TALL.metadata()));
-    Element.GRASS_DEAD_YELLOW.set(new ItemStack(block, 1, BlockCustomTallGrass.BlockType.DEAD_YELLOW.metadata()));
-
-    ItemStack grassStack = Element.GRASS_BROWN.get();
-    BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(), new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 100);
-    grassStack = Element.GRASS_BROWN_SHORT.get();
-    BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(), new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 100);
-
-    grassStack = Element.GRASS_DEAD.get();
-    BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 90);
-    grassStack = Element.GRASS_DEAD_YELLOW.get();
-    BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 90);
-    grassStack = Element.GRASS_DEAD_TALL.get();
-    BiomeHelper.addWeightedGrassGen(BiomeSettings.WASTELAND.getBiome(), new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 35);
-  }
-
-  private static void createNewLeaves() {
-    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.NEWLEAVES.getEnabled())
-      return;
-
-    final BlockNewLeaves block = new BlockNewLeaves(Material.LEAVES, false);
-    block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
-
-    final CommonProxy proxy = Extrabiomes.proxy;
-    proxy.registerBlock(block, extrabiomes.items.ItemCustomNewLeaves.class, "leaves_2");
-    proxy.registerOreInAllSubblocks("treeLeaves", block);
-    Blocks.FIRE.setFireInfo(block, 30, 60);
-
-    Element.LEAVES_BALD_CYPRESS.set(new ItemStack(block, 1, BlockNewLeaves.BlockType.BALD_CYPRESS.metadata()));
-    Element.LEAVES_JAPANESE_MAPLE.set(new ItemStack(block, 1, BlockNewLeaves.BlockType.JAPANESE_MAPLE.metadata()));
-    Element.LEAVES_JAPANESE_MAPLE_SHRUB.set(new ItemStack(block, 1, BlockNewLeaves.BlockType.JAPANESE_MAPLE_SHRUB.metadata()));
-    Element.LEAVES_RAINBOW_EUCALYPTUS.set(new ItemStack(block, 1, BlockNewLeaves.BlockType.RAINBOW_EUCALYPTUS.metadata()));
-
-    final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
-    ForestryModHelper.registerLeaves(stack);
-    ForestryModHelper.addToForesterBackpack(stack);
-  }
-
-  private static void createMoreLeaves() {
-    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.MORELEAVES.getEnabled())
-      return;
-
-    final BlockMoreLeaves block = new BlockMoreLeaves(Material.LEAVES, false);
-    block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
-
-    final CommonProxy proxy = Extrabiomes.proxy;
-    proxy.registerBlock(block, extrabiomes.items.ItemCustomMoreLeaves.class, "leaves_3");
-    proxy.registerOreInAllSubblocks("treeLeaves", block);
-    Blocks.FIRE.setFireInfo(block, 30, 60);
-
-    Element.LEAVES_SAKURA_BLOSSOM.set(new ItemStack(block, 1, BlockMoreLeaves.BlockType.SAKURA_BLOSSOM.metadata()));
-
-    final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
-    ForestryModHelper.registerLeaves(stack);
-    ForestryModHelper.addToForesterBackpack(stack);
-  }
-
-  private static void createGreenLeaves() {
-    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.GREENLEAVES.getEnabled())
-      return;
-
-    final BlockGreenLeaves block = new BlockGreenLeaves(Material.LEAVES, false);
-    block.setBlockName("extrabiomes.leaves").setTickRandomly(true).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
-
-    final CommonProxy proxy = Extrabiomes.proxy;
-    proxy.registerBlock(block, extrabiomes.items.ItemCustomGreenLeaves.class, "leaves_4");
-    proxy.registerOreInAllSubblocks("treeLeaves", block);
-    Blocks.FIRE.setFireInfo(block, 30, 60);
-
-    Element.LEAVES_ACACIA.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.ACACIA.metadata()));
-    Element.LEAVES_FIR.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.FIR.metadata()));
-    Element.LEAVES_REDWOOD.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.REDWOOD.metadata()));
-    Element.LEAVES_CYPRESS.set(new ItemStack(block, 1, BlockGreenLeaves.BlockType.CYPRESS.metadata()));
-
-    final ItemStack stack = new ItemStack(block, 1, Short.MAX_VALUE);
-    ForestryModHelper.registerLeaves(stack);
-    ForestryModHelper.addToForesterBackpack(stack);
-  }
-
-  private static void createLeafPile() {
-    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.LEAFPILE.getEnabled())
-      return;
-
-    final BlockLeafPile block = new BlockLeafPile(64, Material.vine);
-    block.setBlockName("extrabiomes.leafpile").setHardness(0.0F).setTickRandomly(true).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
-
-    final CommonProxy proxy = Extrabiomes.proxy;
-    proxy.registerBlock(block, "leaf_pile");
-    Blocks.FIRE.setFireInfo(block, 30, 60);
-
-    Element.LEAFPILE.set(new ItemStack(block));
-
-    proxy.registerWorldGenerator(new LeafPileGenerator(block));
-  }
-
+  
   public static final class LogHandler {
 		/** 4 log types, name open to change **/
 		public static enum Log_A_Type implements IMetaSerializable {
@@ -445,46 +710,42 @@ public abstract class BlockHandler {
 	        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodtop");*/
 		}
 		
-		public enum QuarterLogs_A_Type implements IQuarterSerializable
-	    {
-	        REDWOOD(0, BlockSettings.CUSTOMLOG.getItem(), Log_B_Type.REDWOOD.getMetadata()),
-	        FIR(1, BlockSettings.NEWLOG.getItem(), Log_A_Type.FIR.getMetadata()),
-	        OAK(2, ItemBlock.getItemFromBlock(Blocks.LOG), 0);
-	        
+		public enum QuarterLogs_A_Type implements IQuarterSerializable {
+			REDWOOD(0, BlockSettings.CUSTOMLOG.getItem(), Log_B_Type.REDWOOD.getMetadata()),
+			FIR(1, BlockSettings.NEWLOG.getItem(), Log_A_Type.FIR.getMetadata()),
+			OAK(2, ItemBlock.getItemFromBlock(Blocks.LOG), 0);
+
 			private final Item item;
-	    	private final String name;
-	        private final int metadata, damage;
-	        
-	        QuarterLogs_A_Type(int metadata, Item item, int damage)
-	        {
-	        	this.name = name().toLowerCase(Locale.ENGLISH);
-	            this.metadata = metadata;
-	            
-	            this.item = item;
-	            this.damage = damage;
-	        }
-	        
-	        public String getName()
-	        {
-	        	return name;
-	        }
-	        
-	        @Override
-	        public int getMetadata()
-	        {
-	            return metadata;
-	        }
-	        
-	        @Override
-	        public Item getItem() {
-	        	return item;
-	        }
-	        
-	        @Override
-	        public int getMeta() {
-	        	return damage;
-	        }
-	        
+			private final String name;
+			private final int metadata, damage;
+
+			QuarterLogs_A_Type(int metadata, Item item, int damage) {
+				this.name = name().toLowerCase(Locale.ENGLISH);
+				this.metadata = metadata;
+
+				this.item = item;
+				this.damage = damage;
+			}
+
+			public String getName() {
+				return name;
+			}
+
+			@Override
+			public int getMetadata() {
+				return metadata;
+			}
+
+			@Override
+			public Item getItem() {
+				return item;
+			}
+
+			@Override
+			public int getMeta() {
+				return damage;
+			}
+
 	        /* FIXME: Add these textures back
 	        textureArray[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideleft");
 	        textureArray[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "logredwoodsideright");
@@ -834,7 +1095,6 @@ public abstract class BlockHandler {
 	
 		private static void createWood() {
 			if (BlockSettings.CUSTOMLOG.getEnabled()) {
-
 				final BlockEBXLLog<Log_A_Type> log = BlockEBXLLog.create(Log_A_Type.class, Log_A_Type.FIR);
 				log.setUnlocalizedName("extrabiomes.log");
 

@@ -214,6 +214,9 @@ public class CommonProxy
     {
         Blocks.FIRE.setFireInfo(block, encouragement, flammability);
     }
+    
+    public void onPostInit() {
+    }
 
     @SuppressWarnings("deprecation")
 	public String translate(String key) {

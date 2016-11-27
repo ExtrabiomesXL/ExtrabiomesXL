@@ -64,6 +64,7 @@ public class Extrabiomes {
 
   @Mod.EventHandler
   public static void postInit(FMLPostInitializationEvent event) {
+	  proxy.onPostInit();
     PluginManager.activatePlugins();
     RecipeHandler.init();
     initBus = Optional.absent();
