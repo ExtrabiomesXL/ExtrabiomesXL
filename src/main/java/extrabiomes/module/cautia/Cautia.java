@@ -9,17 +9,19 @@ package extrabiomes.module.cautia;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import extrabiomes.events.ModuleEvent.ModuleInitEvent;
 import extrabiomes.events.ModulePreInitEvent;
+import extrabiomes.module.IModule;
 import extrabiomes.module.cautia.block.BlockManager;
 
-public class Cautia
+public class Cautia implements IModule
 {
-    
+    @Override
     @SubscribeEvent
     public void init(ModuleInitEvent event) throws InstantiationException, IllegalAccessException
     {
         BlockManager.init();
     }
     
+    @Override
     @SubscribeEvent
     public void preInit(ModulePreInitEvent event) throws Exception
     {

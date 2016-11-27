@@ -3,10 +3,11 @@ package extrabiomes.subblocks;
 import java.util.LinkedList;
 import java.util.List;
 
-import extrabiomes.api.events.GetBiomeIDEvent;
-import extrabiomes.helpers.LogHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class SubBlockWaterPlant extends SubBlock {
@@ -42,24 +43,23 @@ public class SubBlockWaterPlant extends SubBlock {
 	}
 	
     @Override
-    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-    	Block base;
-    	int offset = 1;
-    	final Block top = world.getBlock(x, y + 1, z);
-    	//final int curId = world.getBlock(x, y, z);
+    public boolean canPlaceBlockAt(World world, BlockPos pos) {
+    	final IBlockState top = world.getBlockState(pos.up());
         
     	// We need to be under water
-    	if(maxHeight > 1 && top.equals(parent) && this.metaData == world.getBlockMetadata(x, y + 1, z)){
+    	if(maxHeight > 1 && top.equals(parent)){
     		
-    	} else if(!top.equals(Blocks.water)) { 
+    	} else if(top.getMaterial() != Material.WATER) { 
     		return false;
     	}
     	
+    	int offset = 1;
+    	IBlockState base;
     	while(maxHeight >= offset) {
-    		base = world.getBlock(x, y - offset, z);
-    		if(groundBlocks.isEmpty() || groundBlocks.contains((Object)base)) {
+    		base = world.getBlockState(pos.down(offset));
+    		if(groundBlocks.isEmpty() || groundBlocks.contains(base.getBlock())) {
     			return true;
-    		} else if(!base.equals(parent) || this.metaData != world.getBlockMetadata(x, y - offset, z)) {
+    		} else if(!base.equals(parent)) {
     			return false;
     		}
     		
@@ -71,10 +71,10 @@ public class SubBlockWaterPlant extends SubBlock {
     }
 
 	@Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor, Block block) {
-    	if (!neighbor.equals(parent) && !canBlockStay(world, x, y, z)) {
-        	world.setBlock(x, y, z, Blocks.water);
-        	block.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState neighbor, IBlockState block) {
+    	if (!neighbor.equals(parent) && !canBlockStay(world, pos)) {
+        	world.setBlockState(pos, Blocks.WATER.getDefaultState());
+        	block.getBlock().dropBlockAsItem(world, pos, block, 0);
         }
     }
 	

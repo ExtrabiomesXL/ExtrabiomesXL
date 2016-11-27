@@ -364,7 +364,7 @@ public class BlockNewLeaves extends BlockLeaves implements IShearable
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {
-        return Blocks.leaves.isOpaqueCube(IBlockState state);
+        return Blocks.LEAVES.isOpaqueCube(state);
     }
     
     @Override

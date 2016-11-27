@@ -8,6 +8,7 @@ package extrabiomes.api;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -16,23 +17,31 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 public class UseLogTurnerEvent extends PlayerEvent
 {
     
-    public final ItemStack current;
-    public final World     world;
-    public final int       x;
-    public final int       y;
-    public final int       z;
+    private final ItemStack current;
+    private final World     world;
+    private final BlockPos  pos;
     
     private boolean        handled = false;
     
     public UseLogTurnerEvent(EntityPlayer player, ItemStack current,
-            World world, int x, int y, int z)
+            World world, BlockPos pos)
     {
         super(player);
         this.current = current;
         this.world = world;
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.pos = pos;
+    }
+    
+    public World getWorld() {
+    	return world;
+    }
+    
+    public ItemStack getCurrent() {
+    	return current;
+    }
+    
+    public BlockPos getPos() {
+    	return pos;
     }
     
     public boolean isHandled()

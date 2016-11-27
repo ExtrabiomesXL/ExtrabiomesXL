@@ -6,7 +6,7 @@
 
 package extrabiomes.module.fabrica.scarecrow;
 
-import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -43,19 +43,18 @@ public class EntityScarecrow extends EntityGolem
     private class EntityAIScareClosest extends EntityAIWatchClosest
     {
         
-        public EntityAIScareClosest(EntityLiving par1EntityLiving, Class<?> par2Class, float par3)
+        public EntityAIScareClosest(EntityLiving entityliving, Class<? extends Entity> watchTargetClass, float maxDistance)
         {
-            super(par1EntityLiving, par2Class, par3);
+            super(entityliving, watchTargetClass, maxDistance);
         }
         
         @Override
         public void startExecuting()
         {
             super.startExecuting();
+            
             if (closestEntity instanceof EntityCreature && !(closestEntity instanceof EntityGolem))
-            {
-                ((EntityCreature) closestEntity).tasks.addTask(1, new EntityAIAvoidEntity((EntityCreature) closestEntity, EntityScarecrow.class, 10.0F, 0.3F, 0.4F));
-            }
+                ((EntityCreature) closestEntity).tasks.addTask(1, new EntityAIAvoidEntity<EntityScarecrow>((EntityCreature) closestEntity, EntityScarecrow.class, 10.0F, 0.3F, 0.4F));
         }
     }
     
@@ -74,9 +73,9 @@ public class EntityScarecrow extends EntityGolem
     @Override
     protected void dropFewItems(boolean par1, int par2)
     {
-        dropItem(Items.stick, 3);
-        dropItem(Item.getItemFromBlock(Blocks.melon_block), 1);
-        dropItem(Item.getItemFromBlock(Blocks.pumpkin), 1);
+        dropItem(Items.STICK, 3);
+        dropItem(Item.getItemFromBlock(Blocks.MELON_BLOCK), 1);
+        dropItem(Item.getItemFromBlock(Blocks.PUMPKIN), 1);
     }
     
     @Override
@@ -92,8 +91,7 @@ public class EntityScarecrow extends EntityGolem
     }
     
     @Override
-    public boolean isAIEnabled()
-    {
-        return true;
+    public boolean isAIDisabled() {
+    	return false;
     }
 }

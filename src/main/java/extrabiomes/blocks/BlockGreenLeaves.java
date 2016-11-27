@@ -12,7 +12,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 
@@ -359,7 +358,7 @@ public class BlockGreenLeaves extends BlockLeaves implements IShearable
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {
-        return Blocks.leaves.isOpaqueCube(IBlockState state);
+        return Blocks.LEAVES.isOpaqueCube(state);
     }
     
     @Override

@@ -11,11 +11,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -79,7 +77,7 @@ public class ItemCustomSeed extends Item implements IPlantable {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tabs, List list) {
+	public void getSubItems(Item item, CreativeTabs tabs, List<ItemStack> list) {
 		for (SeedType type : SeedType.values()) {
 			list.add(new ItemStack(item, 1, type.meta));
 		}

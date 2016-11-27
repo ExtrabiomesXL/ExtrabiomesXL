@@ -21,7 +21,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockWaterPlant extends Block {
 	
@@ -102,7 +101,7 @@ public class BlockWaterPlant extends Block {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List itemList){
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList){
         for(int i = 0; i < subBlocks.length; i++) {
         	if(subBlocks[i] != null) {
         		itemList.add(new ItemStack(this, 1, i));
@@ -176,13 +175,13 @@ public class BlockWaterPlant extends Block {
         return null;
     }
 
-	public void addInformation(int metaData, List listOfLines) {
+	public void addInformation(int metaData, List<String> listOfLines) {
 		if(metaData < subBlocks.length && subBlocks[metaData] != null) {
 			String line = I18n.format(this.getUnlocalizedName() + "." + subBlocks[metaData].getUnlocalizedName() + ".description");
     		
     		if(!line.equals(this.getUnlocalizedName() + "." + subBlocks[metaData].getUnlocalizedName() + ".description")) {
-    			if(listOfLines.size() > 0 && ((String)listOfLines.get(0)).length() > 20) {
-    				ToolTipStringFormatter.Format(line, listOfLines, ((String)listOfLines.get(0)).length() + 5);
+    			if(listOfLines.size() > 0 && listOfLines.get(0).length() > 20) {
+    				ToolTipStringFormatter.Format(line, listOfLines, listOfLines.get(0).length() + 5);
     			} else {
     				ToolTipStringFormatter.Format(line, listOfLines);
     			}

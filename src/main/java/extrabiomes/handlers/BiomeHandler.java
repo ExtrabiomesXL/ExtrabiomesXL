@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.config.Configuration;
 
 import com.google.common.base.Optional;
 
@@ -95,7 +96,7 @@ public enum BiomeHandler
         Extrabiomes.proxy.registerWorldGenerator(new VanillaFloraGenerator());
         
         // allow legendary oaks to be disabled
-        if( config.get(config.CATEGORY_GENERAL, "GenerateLegendOaks", true).getBoolean() ) {
+        if( config.get(Configuration.CATEGORY_GENERAL, "GenerateLegendOaks", true).getBoolean() ) {
         	Extrabiomes.proxy.registerWorldGenerator(new LegendOakGenerator());
         }
     }

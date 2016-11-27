@@ -14,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.common.base.Optional;
 
-import extrabiomes.Extrabiomes;
 import extrabiomes.lib.Reference;
 
 /**

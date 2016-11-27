@@ -6,11 +6,8 @@
 
 package extrabiomes.handlers;
 
-import net.minecraft.item.ItemStack;
-
 import com.google.common.base.Optional;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.items.ItemCustomDye;
@@ -19,7 +16,7 @@ import extrabiomes.items.LogTurner;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ItemSettings;
 import extrabiomes.lib.ModuleControlSettings;
-import extrabiomes.lib.Reference;
+import net.minecraft.item.ItemStack;
 
 public abstract class ItemHandler
 {
@@ -42,7 +39,7 @@ public abstract class ItemHandler
         
         logTurner.setUnlocalizedName("extrabiomes.logturner").setCreativeTab(Extrabiomes.tabsEBXL);
         
-        GameRegistry.registerItem(logTurner, "extrabiomes.logturner", Reference.MOD_ID);
+        Extrabiomes.proxy.registerItem(logTurner, "extrabiomes.logturner");
         
         Element.LOGTURNER.set(new ItemStack(logTurner));
     }
@@ -53,7 +50,7 @@ public abstract class ItemHandler
 		final ItemCustomDye dye = new ItemCustomDye();
 		Stuff.dye = Optional.of(dye);
 		dye.setUnlocalizedName("extrabiomes.dye").setCreativeTab(Extrabiomes.tabsEBXL);
-		GameRegistry.registerItem(dye, "extrabiomes.dye", Reference.MOD_ID);
+		Extrabiomes.proxy.registerItem(dye, "extrabiomes.dye");
 
 		dye.init();
 	}
@@ -63,6 +60,6 @@ public abstract class ItemHandler
 		
 		final ItemCustomFood food = new ItemCustomFood();
 		Stuff.food = Optional.of(food);
-		GameRegistry.registerItem(food, "extrabiomes.food", Reference.MOD_ID);
+		Extrabiomes.proxy.registerItem(food, "extrabiomes.food");
 	}
 }

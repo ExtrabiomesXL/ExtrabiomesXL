@@ -35,7 +35,7 @@ public class ItemSapling extends MultiItemBlock
     }
     
     @Override
-    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
+    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List<?> listOfLines, boolean sneaking) {
     	BlockCustomSapling.addInformation(itemForTooltip.getItemDamage(), listOfLines);
     }
 }

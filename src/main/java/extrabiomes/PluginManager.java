@@ -10,6 +10,7 @@ import com.google.common.base.Optional;
 
 import extrabiomes.api.Api;
 import extrabiomes.api.PluginEvent;
+import net.minecraftforge.fml.common.eventhandler.EventBus;
 
 class PluginManager extends Api
 {
@@ -18,9 +19,10 @@ class PluginManager extends Api
     {
         if (Api.pluginBus.isPresent())
         {
-            Api.pluginBus.get().post(new PluginEvent.Pre());
-            Api.pluginBus.get().post(new PluginEvent.Init());
-            Api.pluginBus.get().post(new PluginEvent.Post());
+        	EventBus bus = Api.pluginBus.get(); 
+            bus.post(new PluginEvent.Pre());
+            bus.post(new PluginEvent.Init());
+            bus.post(new PluginEvent.Post());
             Api.pluginBus = Optional.absent();
         }
     }

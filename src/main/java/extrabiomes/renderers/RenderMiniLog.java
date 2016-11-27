@@ -1,14 +1,12 @@
 package extrabiomes.renderers;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 
 import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraftforge.fml.client.registry.ISimpleBlockRenderingHandler;
 import extrabiomes.blocks.BlockMiniLog;
 import extrabiomes.lib.Blocks;
 

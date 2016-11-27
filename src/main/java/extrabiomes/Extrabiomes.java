@@ -52,7 +52,8 @@ public class Extrabiomes {
 
   public static final CreativeTabs tabsEBXL = new CreativeTab("extrabiomesTab");
 
-  public static final String TEXTURE_PATH = Reference.MOD_ID.toLowerCase(Locale.ENGLISH) + ":";
+  public static final String RESOURCE_PATH = Reference.MOD_ID.toLowerCase(Locale.ENGLISH);
+  public static final String TEXTURE_PATH = RESOURCE_PATH + ':';
 
   private static Optional<EventBus> initBus = Optional.of(new EventBus());
 

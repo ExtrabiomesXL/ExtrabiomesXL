@@ -7,29 +7,28 @@
 
 package extrabiomes.proxy;
 
-import net.minecraftforge.fml.client.registry.ISimpleBlockRenderingHandler;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ModelScarecrow;
 import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
     @Override
-    public int registerBlockHandler(ISimpleBlockRenderingHandler handler)
-    {
-        final int renderId = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(renderId, handler);
-        return renderId;
-    }
-    
-    @Override
     public void registerScarecrowRendering()
     {
-        RenderingRegistry.registerEntityRenderingHandler(EntityScarecrow.class, new RenderScarecrow(new ModelScarecrow(), 0.4F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityScarecrow.class, new IRenderFactory<EntityScarecrow>() {
+			@Override
+			public Render<? super EntityScarecrow> createRenderFor(RenderManager manager) {
+				return new RenderScarecrow(manager, new ModelScarecrow(), 0.4F);
+			}
+		});
     }
     
 }

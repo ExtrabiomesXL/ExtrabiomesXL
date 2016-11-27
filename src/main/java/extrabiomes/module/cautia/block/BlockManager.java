@@ -6,17 +6,15 @@
 
 package extrabiomes.module.cautia.block;
 
-import net.minecraft.block.Block;
-
 import com.google.common.base.Optional;
 
 import extrabiomes.Extrabiomes;
 import extrabiomes.api.Stuff;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.BlockSettings;
-import extrabiomes.lib.Reference;
 import extrabiomes.module.cautia.worldgen.QuicksandGenerator;
 import extrabiomes.proxy.CommonProxy;
+import net.minecraft.block.Block;
 
 public enum BlockManager
 {
@@ -34,7 +32,7 @@ public enum BlockManager
             final CommonProxy proxy = Extrabiomes.proxy;
             final Block thisBlock = Stuff.quickSand.get();
             
-            thisBlock.setBlockName("extrabiomes.quicksand");
+            thisBlock.setUnlocalizedName("extrabiomes.quicksand");
             proxy.setBlockHarvestLevel(thisBlock, "shovel", 0);
             proxy.registerBlock(thisBlock, "quicksand");
             

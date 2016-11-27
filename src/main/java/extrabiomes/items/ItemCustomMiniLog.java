@@ -12,7 +12,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import extrabiomes.blocks.BlockMiniLog;
-import extrabiomes.utility.MultiItemBlock;
 
 public class ItemCustomMiniLog extends ItemBlock
 {
