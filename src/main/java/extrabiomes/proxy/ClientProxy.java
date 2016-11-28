@@ -16,6 +16,7 @@ import extrabiomes.handlers.BlockHandler.LeafHandler.More_Leaf_Types;
 import extrabiomes.handlers.BlockHandler.LeafHandler.New_Leaf_Types;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
+import extrabiomes.lib.ITextureRegisterer;
 import extrabiomes.module.fabrica.scarecrow.EntityScarecrow;
 import extrabiomes.module.fabrica.scarecrow.ModelScarecrow;
 import extrabiomes.module.fabrica.scarecrow.RenderScarecrow;
@@ -27,6 +28,7 @@ import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -41,6 +43,24 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
+	@Override
+	public void registerBlock(Block block, Class<? extends ItemBlock> itemclass, String uniqueName) {
+		super.registerBlock(block, itemclass, uniqueName);
+		
+		if (block instanceof ITextureRegisterer) {
+			((ITextureRegisterer)block).registerTexture();
+		}
+	}
+	
+	@Override
+	public void registerItem(Item item, String name) {
+		super.registerItem(item, name);
+		
+		if (item instanceof ITextureRegisterer) {
+			((ITextureRegisterer)item).registerTexture();
+		}
+	}
+	
     @Override
     public void registerScarecrowRendering()
     {

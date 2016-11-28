@@ -26,7 +26,7 @@ public class ItemCustomSeed extends Item implements IPlantable {
 
 		public final int		meta;
 		public BlockFlower	cropType;
-		public IIcon				IIcon;
+		//public IIcon				IIcon;
 
 		private SeedType(int meta) {
 			this.meta = meta;
@@ -46,24 +46,24 @@ public class ItemCustomSeed extends Item implements IPlantable {
 		NUM_SEEDS = SeedType.values().length;
 	}
 
-	@Override
+	/*@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
 		for (SeedType type : SeedType.values()) {
 			final String IIconPath = Extrabiomes.TEXTURE_PATH + "seed_" + type.name().toLowerCase();
 			type.IIcon = iconRegister.registerIcon(IIconPath);
 		}
-	}
+	}*/
 
 	@Override
 	public int getMetadata(int meta) {
 		return MathHelper.clamp_int(meta, 0, NUM_SEEDS);
 	}
 
-	@Override
+	/*@Override
 	public IIcon getIconFromDamage(int meta) {
 		return getSeedType(meta).IIcon;
-	}
+	}*/
 
 	public SeedType getSeedType(int meta) {
 		return SeedType.values()[getMetadata(meta)];

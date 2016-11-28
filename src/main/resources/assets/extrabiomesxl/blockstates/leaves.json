@@ -1,0 +1,27 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"transform": "forge:default-block"
+	},
+	"variants": {
+		"type": {
+			"umber": {"model": "extrabiomesxl:leaves/umber"},
+			"goldenrod": {"model": "extrabiomesxl:leaves/goldenrod"},
+			"vermillion": {"model": "extrabiomesxl:leaves/vermillion"},
+			"citrine": {"model": "extrabiomesxl:leaves/citrine"},
+			
+			"bald_cypress": {"model": "extrabiomesxl:leaves/umber"},
+			"japanese_maple": {"model": "extrabiomesxl:leaves/goldenrod"},
+			"japanese_maple_shrub": {"model": "extrabiomesxl:leaves/vermillion"},
+			"rainbow_eucalyptus": {"model": "extrabiomesxl:leaves/citrine"},
+			
+			"sakura_blossom": {"model": "extrabiomesxl:leaves/citrine"},
+			
+			"fir": {"model": "extrabiomesxl:leaves/umber"},
+			"redwood": {"model": "extrabiomesxl:leaves/goldenrod"},
+			"acacia": {"model": "extrabiomesxl:leaves/vermillion"},
+			"cypress": {"model": "extrabiomesxl:leaves/citrine"}
+		},
+		"inventory": [{}]
+	}
+}

@@ -6,8 +6,10 @@
 
 package extrabiomes.blocks;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import extrabiomes.Extrabiomes;
@@ -17,8 +19,13 @@ import extrabiomes.lib.PropertyEnum;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -26,13 +33,48 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockEBXLLeaves<T extends Enum<T> & ILeafSerializable> extends BlockLeaves implements ITextureRegisterer {
+	@SideOnly(Side.CLIENT)
+	private class LeafMapper extends StateMapperBase implements ItemMeshDefinition {
+		@Override
+		protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+			assert state.getBlock() == BlockEBXLLeaves.this;
+			return new ModelResourceLocation(new ResourceLocation(Extrabiomes.RESOURCE_PATH, "leaves"), getPropertyString(state.getProperties()));
+		}
+		
+		protected ResourceLocation[] getVarients() {
+			Collection<ModelResourceLocation> varients = mapStateModelLocations.values(); 
+			return varients.toArray(new ResourceLocation[varients.size()]);
+		}
+		
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			return getModelResourceLocation(getStateFromMeta(stack.getItemDamage()));
+		}
+		
+		@Override
+		public String getPropertyString(Map<IProperty<?>, Comparable<?>> values) {
+			if (values.containsKey(type)) {
+				return type.getName() + '=' + getPropertyName(type, values.get(type))/* + "_leaves"*/;
+			} else {
+				return "normal";
+			}
+		}
+
+		@SuppressWarnings("unchecked")
+		private <N extends Comparable<N>> String getPropertyName(IProperty<N> property, Comparable<?> value) {
+			return property.getName((N) value);
+		}
+	};
+	
 	public static <T extends Enum<T> & ILeafSerializable> BlockEBXLLeaves<T> create(Class<T> types, T defaultType) {
 		//Block needs the type for creating the block state faster than we can normally set it.
 		//But we can cheat using ThreadLocal variables to fetch it during construction.
@@ -76,14 +118,14 @@ public class BlockEBXLLeaves<T extends Enum<T> & ILeafSerializable> extends Bloc
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(type, type.getForMeta(meta))
+		return getDefaultState().withProperty(type, type.getForMeta((meta & 3) % 4))
 				.withProperty(DECAYABLE, Boolean.valueOf((meta & 4) == 0))
 				.withProperty(CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		int meta = state.getValue(type).getMetadata() - 4;
+		int meta = state.getValue(type).getMetadata();
 
 		if (!state.getValue(DECAYABLE)) {
 			meta |= 4;
@@ -95,14 +137,18 @@ public class BlockEBXLLeaves<T extends Enum<T> & ILeafSerializable> extends Bloc
 
 		return meta;
     }
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerTexture() {
-		// TODO Auto-generated method stub
+		final LeafMapper mapper = new LeafMapper();
+		Item item = Item.getItemFromBlock(this);
 		
+		ModelLoader.setCustomStateMapper(this, mapper);
+		ModelLoader.setCustomMeshDefinition(item, mapper);
+		ModelBakery.registerItemVariants(item, mapper.getVarients());
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return Blocks.LEAVES.isOpaqueCube(state);

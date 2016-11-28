@@ -8,15 +8,17 @@ package extrabiomes.items;
 
 import extrabiomes.blocks.BlockEBXLLeaves;
 import extrabiomes.utility.MultiItemBlock;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 public class ItemEBXLLeaves extends MultiItemBlock {
 	protected static final int METADATA_USERPLACEDBIT = 0x4;
 	protected static final int METADATA_BITMASK = 0x3;
 	
-	public ItemEBXLLeaves(BlockEBXLLeaves<?> block) {
+	public ItemEBXLLeaves(Block block) {
 		super(block);
 
+		assert block instanceof BlockEBXLLeaves<?>;
 	}
 
 	@Override

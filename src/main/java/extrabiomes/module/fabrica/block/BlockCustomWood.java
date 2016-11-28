@@ -6,7 +6,6 @@
 
 package extrabiomes.module.fabrica.block;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,9 +14,10 @@ import extrabiomes.lib.IMetaSerializable;
 import extrabiomes.lib.ITextureRegisterer;
 import extrabiomes.lib.PropertyEnum;
 import extrabiomes.utility.ModelUtil;
-import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -29,7 +29,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCustomWood extends BlockPlanks implements ITextureRegisterer
+public class BlockCustomWood extends Block implements ITextureRegisterer
 {
     public enum BlockType implements IMetaSerializable
     {
@@ -62,7 +62,7 @@ public class BlockCustomWood extends BlockPlanks implements ITextureRegisterer
     
     public BlockCustomWood()
     {
-        super();
+        super(Material.WOOD);
         
         setSoundType(SoundType.WOOD);
         setHardness(2.0F);
@@ -76,7 +76,7 @@ public class BlockCustomWood extends BlockPlanks implements ITextureRegisterer
     @SideOnly(Side.CLIENT)
     public void registerTexture()
     {
-    	ModelUtil.registerTextures(this, getTypeStates());
+    	ModelUtil.registerTextures(this, TYPE.getTypeStates(getDefaultState()));
         /*textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksredwood");
         textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksfir");
         textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksacacia");
@@ -87,16 +87,6 @@ public class BlockCustomWood extends BlockPlanks implements ITextureRegisterer
         textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksbaldcypress");
         textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "plankssakura");*/
     }
-   
-    protected final List<IBlockState> getTypeStates() {
-		List<IBlockState> out = new ArrayList<IBlockState>(TYPE.getAllowedValues().size());
-
-		for (BlockType type : TYPE.getAllowedValues()) {
-			out.add(getDefaultState().withProperty(TYPE, type));
-		}
-
-		return out;
-	}
     
     @Override
     protected BlockStateContainer createBlockState()

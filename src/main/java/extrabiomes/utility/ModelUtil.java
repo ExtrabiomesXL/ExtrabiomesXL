@@ -55,9 +55,10 @@ public abstract class ModelUtil {
 		for (IBlockState state : states) {
 			final int meta = block.getMetaFromState(state);
 			
-			ModelResourceLocation location = usingMapper ? locations.get(state) : ModelUtil.getModelLocation(loc, state);
+			ModelResourceLocation location = usingMapper ? locations.get(state) : getModelLocation(loc, state);
 			if (location == null) throw new RuntimeException("No model for state: "+state);
 
+			//System.out.println("Putting "+location+" for "+item+'@'+meta);
 			ModelLoader.setCustomModelResourceLocation(item, meta, location);
 		}
 	}

@@ -1,6 +1,7 @@
 package extrabiomes.utility;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import extrabiomes.api.Stuff;
 
@@ -14,7 +15,7 @@ public class CreativeTab extends CreativeTabs
 	@Override
 	public Item getTabIconItem() {
 		if(Stuff.scarecrow.isPresent()) return Stuff.scarecrow.get();
-		else return null;
+		else return Item.getItemFromBlock(Blocks.HAY_BLOCK);
 	}
     
 }

@@ -9,16 +9,7 @@ package extrabiomes.handlers;
 import java.util.Collection;
 import java.util.Locale;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import extrabiomes.Extrabiomes;
-import extrabiomes.blocks.BlockAutumnLeaves;
 import extrabiomes.blocks.BlockCatTail;
 import extrabiomes.blocks.BlockCustomFlower;
 import extrabiomes.blocks.BlockCustomFlower.BlockType;
@@ -27,12 +18,9 @@ import extrabiomes.blocks.BlockCustomTallGrass;
 import extrabiomes.blocks.BlockCustomVine;
 import extrabiomes.blocks.BlockEBXLLeaves;
 import extrabiomes.blocks.BlockEBXLLog;
-import extrabiomes.blocks.BlockGreenLeaves;
 import extrabiomes.blocks.BlockKneeLog;
 import extrabiomes.blocks.BlockLeafPile;
 import extrabiomes.blocks.BlockMiniLog;
-import extrabiomes.blocks.BlockMoreLeaves;
-import extrabiomes.blocks.BlockNewLeaves;
 import extrabiomes.blocks.BlockNewQuarterLog;
 import extrabiomes.blocks.BlockNewSapling;
 import extrabiomes.blocks.BlockQuarterLog;
@@ -40,19 +28,12 @@ import extrabiomes.blocks.BlockRedRock;
 import extrabiomes.blocks.BlockWaterPlant;
 import extrabiomes.blocks.GenericTerrainBlock;
 import extrabiomes.events.BlockActiveEvent.RedRockActiveEvent;
-import extrabiomes.handlers.BlockHandler.LeafHandler.Autumn_Leaf_Types;
-import extrabiomes.handlers.BlockHandler.LeafHandler.Green_Leaf_Types;
-import extrabiomes.handlers.BlockHandler.LeafHandler.More_Leaf_Types;
-import extrabiomes.handlers.BlockHandler.LeafHandler.New_Leaf_Types;
-import extrabiomes.handlers.BlockHandler.LogHandler.Log_A_Type;
-import extrabiomes.handlers.BlockHandler.LogHandler.Log_B_Type;
 import extrabiomes.helpers.BiomeHelper;
 import extrabiomes.helpers.ForestryModHelper;
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.items.ItemEBXLLeaves;
 import extrabiomes.items.ItemKneeLog;
 import extrabiomes.items.ItemNewQuarterLog;
-import extrabiomes.items.ItemOldQuarterLog;
 import extrabiomes.lib.BiomeSettings;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
@@ -66,7 +47,6 @@ import extrabiomes.module.summa.worldgen.EelGrassGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.module.summa.worldgen.LeafPileGenerator;
 import extrabiomes.module.summa.worldgen.VineGenerator;
-import extrabiomes.module.summa.worldgen.WorldGenCustomVine;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.renderers.RenderKneeLog;
 import extrabiomes.renderers.RenderMiniLog;
@@ -74,18 +54,26 @@ import extrabiomes.renderers.RenderNewQuarterLog;
 import extrabiomes.renderers.RenderQuarterLog;
 import extrabiomes.subblocks.SubBlockWaterPlant;
 import extrabiomes.utility.MultiItemBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.gen.feature.WorldGenTallGrass;
 
 public abstract class BlockHandler {
 	public static void createBlocks() throws Exception {
 		LogHandler.createLogs();
 		LeafHandler.createLeaves();
 
-		createCattail();
+		/*createCattail();
 		createCrackedSand();
 		createFlowers();
 		createGrass();
 		createVines();
-		createWaterPlants();
+		createWaterPlants();*/
 	}
 
 	private static void createWaterPlants() throws Exception {
@@ -461,6 +449,12 @@ public abstract class BlockHandler {
 			public boolean canDropApples() {
 				return false;
 			}
+			
+			/* FIXME: Add these textures back
+			textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafancy"); 	
+			textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafast"); 	
+			textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavessakura");
+			*/
 		}
 
 		public static enum Green_Leaf_Types implements ILeafSerializable {
@@ -546,7 +540,7 @@ public abstract class BlockHandler {
 				createMoreLeaves();
 				createGreenLeaves();
 				
-				createLeafPile();
+				//createLeafPile();
 			}
 		}
 		
@@ -779,10 +773,10 @@ public abstract class BlockHandler {
 		private static void createLogs() {
 			if (ModuleControlSettings.SUMMA.isEnabled()) {
 				createWood();
-				createMiniLogs();
+				/*createMiniLogs();
 				createQuarterLogs();
 				createNewQuarterLogs();
-				createKneeLogs();
+				createKneeLogs();*/
 			}
 		}
 

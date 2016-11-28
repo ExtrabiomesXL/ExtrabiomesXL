@@ -185,7 +185,7 @@ public abstract class RecipeHandler
             proxy.addRecipe(new ShapelessOreRecipe(new ItemStack(Element.LOG_QUARTER_FIR.get().getItem(), 1, 0), Element.LOG_HUGE_FIR_SE.get()));
         }
     	
-    	if(Element.LOG_REDWOOD.isPresent() && Element.LOG_REDWOOD.isPresent()) {
+    	if(Element.LOG_REDWOOD.isPresent() && Element.LOG_QUARTER_REDWOOD.isPresent()) {
     		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_REDWOOD.get().getItem(), 4, Element.LOG_REDWOOD.get().getItemDamage()),new String[] { "ll","ll" }, 'l', Element.LOG_QUARTER_REDWOOD.get()));
     		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_QUARTER_REDWOOD.get().getItem(), 4, 0), new String[] { "ll","ll" }, 'l', Element.LOG_REDWOOD.get()));
     	}
