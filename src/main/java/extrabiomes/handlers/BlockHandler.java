@@ -491,7 +491,7 @@ public abstract class BlockHandler {
 				createMoreLeaves();
 				createGreenLeaves();
 				
-				//createLeafPile();
+				createLeafPile();
 			}
 		}
 		
@@ -564,22 +564,22 @@ public abstract class BlockHandler {
 			Element.LEAVES_CYPRESS.set(Green_Leaf_Types.CYPRESS.sapling = new ItemStack(block, 1, Green_Leaf_Types.CYPRESS.getMetadata()));
 		}
 
-		  private static void createLeafPile() {
-		    if (!BlockSettings.LEAFPILE.getEnabled())
-		      return;
+		private static void createLeafPile() {
+			if (!BlockSettings.LEAFPILE.getEnabled())
+				return;
 
-		    final BlockLeafPile block = new BlockLeafPile(64, Material.vine);
-		    block.setBlockName("extrabiomes.leafpile").setHardness(0.0F).setTickRandomly(true).setStepSound(Block.soundTypeGrass).setCreativeTab(Extrabiomes.tabsEBXL);
+			final BlockLeafPile block = new BlockLeafPile();
+			block.setUnlocalizedName("extrabiomes.leafpile");
 
-		    final CommonProxy proxy = Extrabiomes.proxy;
-		    proxy.registerBlock(block, "leaf_pile");
-		    Blocks.FIRE.setFireInfo(block, 30, 60);
+			final CommonProxy proxy = Extrabiomes.proxy;
+			proxy.registerBlock(block, "leaf_pile");
+			proxy.registerWorldGenerator(new LeafPileGenerator(block));
+			
+			Blocks.FIRE.setFireInfo(block, 30, 60);
 
-		    Element.LEAFPILE.set(new ItemStack(block));
-
-		    proxy.registerWorldGenerator(new LeafPileGenerator(block));
-		  }
-  }
+			Element.LEAFPILE.set(new ItemStack(block));
+		}
+	  }
   
   public static final class LogHandler {
 		/** 4 log types, name open to change **/

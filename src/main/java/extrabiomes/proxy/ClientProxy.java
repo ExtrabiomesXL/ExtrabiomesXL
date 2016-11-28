@@ -78,7 +78,7 @@ public class ClientProxy extends CommonProxy
     	Set<Block> blocks = new HashSet<Block>(); //TODO: Look back over these
     	
     	/*if (BlockSettings.AUTUMNLEAVES.getEnabled()) {
-    		Block leaves = Block.getBlockFromItem(Element.LEAVES_AUTUMN_BROWN.get().getItem());
+    		Block leaves = getBlock(Element.LEAVES_AUTUMN_BROWN);
     		
 			colours.registerBlockColorHandler(new IBlockColor() {
 				public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
@@ -90,7 +90,7 @@ public class ClientProxy extends CommonProxy
     	
     	if (BlockSettings.NEWLEAVES.getEnabled()) {
     		@SuppressWarnings("unchecked") //Pah, we know it's fine
-			final BlockEBXLLeaves<New_Leaf_Types> leaves = (BlockEBXLLeaves<New_Leaf_Types>) Block.getBlockFromItem(Element.LEAVES_BALD_CYPRESS.get().getItem()); 
+			final BlockEBXLLeaves<New_Leaf_Types> leaves = (BlockEBXLLeaves<New_Leaf_Types>) getBlock(Element.LEAVES_BALD_CYPRESS);
     				
     		colours.registerBlockColorHandler(new IBlockColor() {
 				public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
@@ -113,7 +113,7 @@ public class ClientProxy extends CommonProxy
     	
     	if (BlockSettings.NEWLEAVES.getEnabled()) {
     		@SuppressWarnings("unchecked") //Pah, we know it's fine
-			final BlockEBXLLeaves<More_Leaf_Types> leaves = (BlockEBXLLeaves<More_Leaf_Types>) Block.getBlockFromItem(Element.LEAVES_SAKURA_BLOSSOM.get().getItem()); 
+			final BlockEBXLLeaves<More_Leaf_Types> leaves = (BlockEBXLLeaves<More_Leaf_Types>) getBlock(Element.LEAVES_SAKURA_BLOSSOM);
     				
     		colours.registerBlockColorHandler(new IBlockColor() {
 				public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
@@ -131,7 +131,7 @@ public class ClientProxy extends CommonProxy
     	
     	if (BlockSettings.GREENLEAVES.getEnabled()) {
     		@SuppressWarnings("unchecked") //Pah, we know it's fine
-			final BlockEBXLLeaves<Green_Leaf_Types> leaves = (BlockEBXLLeaves<Green_Leaf_Types>) Block.getBlockFromItem(Element.LEAVES_FIR.get().getItem()); 
+			final BlockEBXLLeaves<Green_Leaf_Types> leaves = (BlockEBXLLeaves<Green_Leaf_Types>) getBlock(Element.LEAVES_FIR); 
     				
     		colours.registerBlockColorHandler(new IBlockColor() {
 				public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
@@ -154,6 +154,18 @@ public class ClientProxy extends CommonProxy
     		blocks.add(leaves);
     	}
     	
+    	if (BlockSettings.LEAFPILE.getEnabled()) {
+    		Block leafPile = getBlock(Element.LEAFPILE);
+    		
+    		colours.registerBlockColorHandler(new IBlockColor() {
+				@Override
+				public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
+					return world != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(world, pos) : ColorizerFoliage.getFoliageColorBasic();
+				}
+			}, leafPile);
+    		blocks.add(leafPile);
+    	}
+    	
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
 			@SuppressWarnings("deprecation")
 			public int getColorFromItemstack(ItemStack stack, int tintIndex) {
@@ -162,5 +174,9 @@ public class ClientProxy extends CommonProxy
 				return colours.colorMultiplier(state, null, null, tintIndex);
 			}
 		}, blocks.toArray(new Block[blocks.size()]));
+    }
+    
+    private static Block getBlock(Element element) {
+    	return Block.getBlockFromItem(element.get().getItem());
     }
 }
