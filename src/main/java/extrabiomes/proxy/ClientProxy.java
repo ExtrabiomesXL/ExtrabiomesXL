@@ -12,8 +12,6 @@ import java.util.Set;
 
 import extrabiomes.blocks.BlockEBXLLeaves;
 import extrabiomes.handlers.BlockHandler.LeafHandler.Green_Leaf_Types;
-import extrabiomes.handlers.BlockHandler.LeafHandler.More_Leaf_Types;
-import extrabiomes.handlers.BlockHandler.LeafHandler.New_Leaf_Types;
 import extrabiomes.lib.BlockSettings;
 import extrabiomes.lib.Element;
 import extrabiomes.lib.ITextureRegisterer;
@@ -77,9 +75,9 @@ public class ClientProxy extends CommonProxy
     	super.onPostInit();
     	
     	final BlockColors colours = Minecraft.getMinecraft().getBlockColors();
-    	Set<Block> blocks = new HashSet<Block>();
+    	Set<Block> blocks = new HashSet<Block>(); //TODO: Look back over these
     	
-    	if (BlockSettings.AUTUMNLEAVES.getEnabled()) {
+    	/*if (BlockSettings.AUTUMNLEAVES.getEnabled()) {
     		Block leaves = Block.getBlockFromItem(Element.LEAVES_AUTUMN_BROWN.get().getItem());
     		
 			colours.registerBlockColorHandler(new IBlockColor() {
@@ -129,7 +127,7 @@ public class ClientProxy extends CommonProxy
 				}
 			}, leaves);
     		blocks.add(leaves);
-    	}
+    	}*/
     	
     	if (BlockSettings.GREENLEAVES.getEnabled()) {
     		@SuppressWarnings("unchecked") //Pah, we know it's fine

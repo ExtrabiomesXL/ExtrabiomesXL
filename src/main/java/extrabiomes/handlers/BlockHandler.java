@@ -47,6 +47,7 @@ import extrabiomes.module.summa.worldgen.EelGrassGenerator;
 import extrabiomes.module.summa.worldgen.FlowerGenerator;
 import extrabiomes.module.summa.worldgen.LeafPileGenerator;
 import extrabiomes.module.summa.worldgen.VineGenerator;
+import extrabiomes.module.summa.worldgen.WorldGenCustomTallGrass;
 import extrabiomes.proxy.CommonProxy;
 import extrabiomes.renderers.RenderKneeLog;
 import extrabiomes.renderers.RenderMiniLog;
@@ -257,7 +258,8 @@ public abstract class BlockHandler {
 
 		ItemStack grassStack = Element.GRASS_BROWN.get();
 		BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(),
-				new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 100);
+				new WorldGenCustomTallGrass(block.getDefaultState()), 100); //TODO: Fix state type once updated TallGrass
+		
 		grassStack = Element.GRASS_BROWN_SHORT.get();
 		BiomeHelper.addWeightedGrassGen(BiomeSettings.MOUNTAINRIDGE.getBiome(),
 				new WorldGenTallGrass(Block.getBlockFromItem(grassStack.getItem()), grassStack.getItemDamage()), 100);
@@ -315,21 +317,6 @@ public abstract class BlockHandler {
 			public boolean canDropApples() {
 				return true;
 			}
-			
-			/* FIXME: Add these textures back
-			textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfancy");
-	        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbrownautumnfast");
-	        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfancy");
-	        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesorangeautumnfast");
-	        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfancy");
-	        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredautumnfast");
-	        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfancy");
-	        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesyellowautumnfast");
-	        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbrownautumn");
-	        textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesorangeautumn");
-	        textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredautumn");
-	        textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesyellowautumn");
-			*/
 		}
 		
 		public static enum New_Leaf_Types implements ILeafSerializable {
@@ -391,21 +378,6 @@ public abstract class BlockHandler {
 			public boolean canDropApples() {
 				return false;
 			}
-			
-			/* FIXME: Add these textures back
-			textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbaldcypressfancy");
-	        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesbaldcypressfast");
-	        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemaplefancy");
-	        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemaplefast");
-	        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemapleshrubfancy");
-	        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesjapanesemapleshrubfast");
-	        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesrainboweucalyptusfancy");
-	        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesrainboweucalyptusfast");
-	        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesbaldcypress");
-	        textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesjapanesemaple");
-	        textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesjapanesemapleshrub");
-	        textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesrainboweucalyptus");
-			*/
 		}
 
 		public static enum More_Leaf_Types implements ILeafSerializable {
@@ -449,12 +421,6 @@ public abstract class BlockHandler {
 			public boolean canDropApples() {
 				return false;
 			}
-			
-			/* FIXME: Add these textures back
-			textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafancy"); 	
-			textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavessakurafast"); 	
-			textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavessakura");
-			*/
 		}
 
 		public static enum Green_Leaf_Types implements ILeafSerializable {
@@ -516,21 +482,6 @@ public abstract class BlockHandler {
 			public boolean canDropApples() {
 				return false;
 			}
-			
-			/* FIXME: Add these textures back
-			textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfancy");
-	        textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesfirfast");
-	        textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfancy");
-	        textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesredwoodfast");
-	        textures[4] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafancy");
-	        textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavesacaciafast");
-	        textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfancy");
-	        textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "leavescypressfast");
-	        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesfir");
-	        textures[9] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesredwood");
-	        textures[10] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavesacacia");
-	        textures[11] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "better_leavescypress");
-			*/
 		}
 
 		private static void createLeaves() {
@@ -614,7 +565,7 @@ public abstract class BlockHandler {
 		}
 
 		  private static void createLeafPile() {
-		    if (!ModuleControlSettings.SUMMA.isEnabled() || !BlockSettings.LEAFPILE.getEnabled())
+		    if (!BlockSettings.LEAFPILE.getEnabled())
 		      return;
 
 		    final BlockLeafPile block = new BlockLeafPile(64, Material.vine);

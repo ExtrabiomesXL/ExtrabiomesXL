@@ -10,17 +10,17 @@
 			"vermillion": {"model": "extrabiomesxl:leaves/vermillion"},
 			"citrine": {"model": "extrabiomesxl:leaves/citrine"},
 			
-			"bald_cypress": {"model": "extrabiomesxl:leaves/umber"},
-			"japanese_maple": {"model": "extrabiomesxl:leaves/goldenrod"},
-			"japanese_maple_shrub": {"model": "extrabiomesxl:leaves/vermillion"},
-			"rainbow_eucalyptus": {"model": "extrabiomesxl:leaves/citrine"},
+			"bald_cypress": {"model": "extrabiomesxl:leaves/bald_cypress"},
+			"japanese_maple": {"model": "extrabiomesxl:leaves/japanese_maple"},
+			"japanese_maple_shrub": {"model": "extrabiomesxl:leaves/japanese_maple_shrub"},
+			"rainbow_eucalyptus": {"model": "extrabiomesxl:leaves/rainbow_eucalyptus"},
 			
-			"sakura_blossom": {"model": "extrabiomesxl:leaves/citrine"},
+			"sakura_blossom": {"model": "extrabiomesxl:leaves/sakura_blossom"},
 			
-			"fir": {"model": "extrabiomesxl:leaves/umber"},
-			"redwood": {"model": "extrabiomesxl:leaves/goldenrod"},
-			"acacia": {"model": "extrabiomesxl:leaves/vermillion"},
-			"cypress": {"model": "extrabiomesxl:leaves/citrine"}
+			"fir": {"model": "extrabiomesxl:leaves/fir"},
+			"redwood": {"model": "extrabiomesxl:leaves/redwood"},
+			"acacia": {"model": "extrabiomesxl:leaves/acacia"},
+			"cypress": {"model": "extrabiomesxl:leaves/cypress"}
 		},
 		"inventory": [{}]
 	}
