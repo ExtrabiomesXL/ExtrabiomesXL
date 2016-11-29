@@ -6,8 +6,6 @@ import extrabiomes.blocks.BlockCustomVine;
 import extrabiomes.helpers.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Facing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 

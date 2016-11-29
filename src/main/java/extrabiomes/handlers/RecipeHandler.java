@@ -185,7 +185,7 @@ public abstract class RecipeHandler
             proxy.addRecipe(new ShapelessOreRecipe(new ItemStack(Element.LOG_QUARTER_FIR.get().getItem(), 1, 0), Element.LOG_HUGE_FIR_SE.get()));
         }
     	
-    	if(Element.LOG_REDWOOD.isPresent() && Element.LOG_REDWOOD.isPresent()) {
+    	if(Element.LOG_REDWOOD.isPresent() && Element.LOG_QUARTER_REDWOOD.isPresent()) {
     		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_REDWOOD.get().getItem(), 4, Element.LOG_REDWOOD.get().getItemDamage()),new String[] { "ll","ll" }, 'l', Element.LOG_QUARTER_REDWOOD.get()));
     		proxy.addRecipe(new ShapedOreRecipe(new ItemStack(Element.LOG_QUARTER_REDWOOD.get().getItem(), 4, 0), new String[] { "ll","ll" }, 'l', Element.LOG_REDWOOD.get()));
     	}
@@ -214,7 +214,7 @@ public abstract class RecipeHandler
         if (Element.LOG_ACACIA.isPresent())
         {
             final ItemStack logAcacia = Element.LOG_ACACIA.get();
-            final ItemStack acaciaPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.ACACIA.metadata());
+            final ItemStack acaciaPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.ACACIA.getMetadata());
             
             // acaciaLog  = acaciaPlanks
             final IRecipe recipe = new ShapelessOreRecipe(acaciaPlanks, logAcacia);
@@ -227,7 +227,7 @@ public abstract class RecipeHandler
         if (Element.LOG_JAPANESE_MAPLE.isPresent())
         {
             final ItemStack logMaple = Element.LOG_JAPANESE_MAPLE.get();
-            final ItemStack maplePlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.JAPANESE_MAPLE.metadata());
+            final ItemStack maplePlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.JAPANESE_MAPLE.getMetadata());
             
             // acaciaLog  = acaciaPlanks
             final IRecipe recipe = new ShapelessOreRecipe(maplePlanks, logMaple);
@@ -240,7 +240,7 @@ public abstract class RecipeHandler
         if (Element.LOG_AUTUMN.isPresent())
         {
             final ItemStack logAutumn = Element.LOG_AUTUMN.get();
-            final ItemStack autumnPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.AUTUMN.metadata());
+            final ItemStack autumnPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.AUTUMN.getMetadata());
             
             // acaciaLog  = acaciaPlanks
             final IRecipe recipe = new ShapelessOreRecipe(autumnPlanks, logAutumn);
@@ -275,7 +275,7 @@ public abstract class RecipeHandler
         {
             if (logCypress.isPresent())
             {
-                final ItemStack cypressPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.CYPRESS.metadata());
+                final ItemStack cypressPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.CYPRESS.getMetadata());
                 
                 // cypressLog  = cypressPlanks
                 final IRecipe recipe = new ShapelessOreRecipe(cypressPlanks, logCypress.get());
@@ -290,7 +290,7 @@ public abstract class RecipeHandler
         {
             if (logSakura.isPresent())
             {
-                final ItemStack sakuraPlanks = new ItemStack(block, 2, BlockCustomWood.BlockType.SAKURA_BLOSSOM.metadata());
+                final ItemStack sakuraPlanks = new ItemStack(block, 2, BlockCustomWood.BlockType.SAKURA_BLOSSOM.getMetadata());
                 
                 // cypressLog  = cypressPlanks
                 final IRecipe recipe = new ShapelessOreRecipe(sakuraPlanks, logSakura.get());
@@ -305,7 +305,7 @@ public abstract class RecipeHandler
         {
             if (logBaldCypress.isPresent())
             {
-                final ItemStack cypressPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.BALD_CYPRESS.metadata());
+                final ItemStack cypressPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.BALD_CYPRESS.getMetadata());
                 
                 // cypressLog  = cypressPlanks
                 final IRecipe recipe = new ShapelessOreRecipe(cypressPlanks, logBaldCypress.get());
@@ -320,7 +320,7 @@ public abstract class RecipeHandler
         {
             if (logRainbow.isPresent())
             {
-                final ItemStack rainbowPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.metadata());
+                final ItemStack rainbowPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.RAINBOW_EUCALYPTUS.getMetadata());
                 
                 // rainbowLog  = rainbowPlanks
                 final IRecipe recipe = new ShapelessOreRecipe(rainbowPlanks, logRainbow.get());
@@ -335,7 +335,7 @@ public abstract class RecipeHandler
         {
             if (firLog.isPresent())
             {
-                final ItemStack firPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.FIR.metadata());
+                final ItemStack firPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.FIR.getMetadata());
                 
                 // firLog  = firPlanks
                 final IRecipe recipe = new ShapelessOreRecipe(firPlanks, firLog.get());
@@ -350,7 +350,7 @@ public abstract class RecipeHandler
         {
             if (redwoodLog.isPresent())
             {
-                final ItemStack redwoodPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.REDWOOD.metadata());
+                final ItemStack redwoodPlanks = new ItemStack(block, 4, BlockCustomWood.BlockType.REDWOOD.getMetadata());
                 
                 // redwoodLog  = redwoodPlanks
                 final IRecipe recipe = new ShapelessOreRecipe(redwoodPlanks, redwoodLog.get());

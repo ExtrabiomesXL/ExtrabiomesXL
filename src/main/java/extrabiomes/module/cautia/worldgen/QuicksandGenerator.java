@@ -33,15 +33,14 @@ public class QuicksandGenerator implements IWorldGenerator
     {
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
-        final Biome biome = world.getBiomeGenForCoords(chunkX,
-                chunkZ);
+        final Biome biome = world.getBiomeGenForCoords(chunkX, chunkZ);
         if (!BiomeSettings.MINIJUNGLE.getBiome().isPresent() || biome != BiomeSettings.MINIJUNGLE.getBiome().get())
             return;
         
         // 1 to 3 attempts with with a bias toward 2
         final int attempts = random.nextInt(1) + random.nextInt(1) + 1;
         for (int i = 0; i < attempts; i++)
-            if (random.nextInt(1) == 0)
+            if (random.nextBoolean())
             {
                 final int x = randomizedCoord(random, chunkX);
                 final int z = randomizedCoord(random, chunkZ);

@@ -23,7 +23,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.LanguageRegistry;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -514,7 +513,7 @@ public class BlockCustomSapling extends BlockFlower
     		}
     		
     		if(lines[0] != "") {
-    		  ToolTipStringFormatter.Format(LanguageRegistry.instance().getStringLocalization("extrabiomes.planting_guide") , listOfLines);
+    		  ToolTipStringFormatter.Format(Extrabiomes.proxy.translate("extrabiomes.planting_guide") , listOfLines);
     			listOfLines.add(lines[0]);
     		}
     	}

@@ -13,6 +13,7 @@ import com.google.common.base.Optional;
 
 import extrabiomes.helpers.LogHelper;
 import extrabiomes.lib.ModuleControlSettings;
+import extrabiomes.module.IModule;
 import extrabiomes.module.cautia.Cautia;
 import extrabiomes.module.fabrica.Fabrica;
 
@@ -60,11 +61,9 @@ enum Module
     
     private boolean     enabled = false;
     
-    @SuppressWarnings("rawtypes")
-    private final Class pluginClass;
+    private final Class<? extends IModule> pluginClass;
     
-    @SuppressWarnings("rawtypes")
-    private Module(Class pluginClass)
+    private Module(Class<? extends IModule> pluginClass)
     {
         this.pluginClass = pluginClass;
     }

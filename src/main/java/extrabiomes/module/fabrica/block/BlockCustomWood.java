@@ -7,55 +7,77 @@
 package extrabiomes.module.fabrica.block;
 
 import java.util.List;
+import java.util.Locale;
 
-import net.minecraft.block.BlockPlanks;
-
+import extrabiomes.Extrabiomes;
+import extrabiomes.lib.IMetaSerializable;
+import extrabiomes.lib.ITextureRegisterer;
+import extrabiomes.lib.PropertyEnum;
+import extrabiomes.utility.ModelUtil;
+import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.Extrabiomes;
-import net.minecraft.world.IBlockAccess;
 
-public class BlockCustomWood extends BlockPlanks
+public class BlockCustomWood extends Block implements ITextureRegisterer
 {
-    public enum BlockType
+    public enum BlockType implements IMetaSerializable
     {
         REDWOOD(0), FIR(1), ACACIA(2), CYPRESS(3), JAPANESE_MAPLE(4), RAINBOW_EUCALYPTUS(5), AUTUMN(6), BALD_CYPRESS(7), SAKURA_BLOSSOM(8);
         
+    	private final String name;
         private final int metadata;
         
         BlockType(int metadata)
         {
+        	this.name = name().toLowerCase(Locale.ENGLISH);
             this.metadata = metadata;
         }
         
-        public int metadata()
+        @Override
+        public String getName() {
+        	return name;
+        }
+        
+        @Override
+        public int getMetadata()
         {
             return metadata;
         }
+        
+        
     }
     
-    private IIcon[] textures = { null, null, null, null, null, null, null, null, null };
+    public static final PropertyEnum<BlockType> TYPE = new PropertyEnum<BlockType>(BlockType.class, BlockType.REDWOOD, 16);
     
     public BlockCustomWood()
     {
-        super();
-        setStepSound(soundTypeWood);
+        super(Material.WOOD);
+        
+        setSoundType(SoundType.WOOD);
         setHardness(2.0F);
         setResistance(5.0F);
-        //Blocks.FIRE.setFireInfo(this, 5, 20);
         setCreativeTab(Extrabiomes.tabsEBXL);
+        
+        Blocks.FIRE.setFireInfo(this, 5, 20);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister)
+    public void registerTexture()
     {
-        textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksredwood");
+    	ModelUtil.registerTextures(this, TYPE.getTypeStates(getDefaultState()));
+        /*textures[0] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksredwood");
         textures[1] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksfir");
         textures[2] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksacacia");
         textures[3] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "plankscypress");
@@ -63,32 +85,51 @@ public class BlockCustomWood extends BlockPlanks
         textures[5] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksrainboweucalyptus");
         textures[6] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksautumn");
         textures[7] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "planksbaldcypress");
-        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "plankssakura");
+        textures[8] = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + "plankssakura");*/
     }
     
     @Override
-    public IIcon getIcon(int side, int metadata)
+    protected BlockStateContainer createBlockState()
     {
-        // Ensure that the texture id is in range
-        if (metadata < 0 || metadata > 8)
-            metadata = 0;
-        return textures[metadata];
+        return new BlockStateContainer(this, TYPE);
     }
     
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return this.getDefaultState().withProperty(TYPE, TYPE.getForMeta(meta));
+    }
+    
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return state.getValue(TYPE).getMetadata();
+    }
+    
+    @Override
+    public int damageDropped(IBlockState state)
+    {
+        return state.getValue(TYPE).getMetadata();
+    }
+
+    @Override
+    public MapColor getMapColor(IBlockState state)
+    {
+        return MapColor.WOOD;//((BlockPlanks.EnumType)state.getValue(TYPE)).getMapColor(); TODO: Maybe do this too?
+    }
+    
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List list)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
         for (final BlockType type : BlockType.values())
         {
-            list.add(new ItemStack(item, 1, type.metadata()));
+            list.add(new ItemStack(item, 1, type.getMetadata()));
         }
     }
 
     @Override
-    public boolean isWood(IBlockAccess world, int x, int y, int z)
-    {
-        return true;
+    public boolean isWood(IBlockAccess world, BlockPos pos) {
+    	return true;
     }
 }

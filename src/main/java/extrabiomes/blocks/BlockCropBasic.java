@@ -11,14 +11,10 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraft.util.Direction;
-
 import com.google.common.collect.Lists;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -109,11 +105,11 @@ public class BlockCropBasic extends BlockFlower {
 
 	@Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
         for (int i = 0; i <= MAX_GROWTH_STAGE; i++)
         {
-            p_149666_3_.add(new ItemStack(p_149666_1_, 1, i));
+            list.add(new ItemStack(item, 1, i));
         }
     }
     

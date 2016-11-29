@@ -6,11 +6,10 @@
 
 package extrabiomes.lib;
 
-import net.minecraft.item.ItemStack;
-
 import com.google.common.base.Optional;
 
-import net.minecraftforge.fml.common.registry.GameData;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public enum Element
 {
@@ -147,7 +146,7 @@ public enum Element
     public String getID()
     {
         if (isPresent())
-            return GameData.getItemRegistry().getNameForObject(get().getItem()).toString();
+            return Item.REGISTRY.getNameForObject(get().getItem()).toString();
         return null;
     }
 

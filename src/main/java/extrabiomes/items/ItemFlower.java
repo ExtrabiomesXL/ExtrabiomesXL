@@ -34,7 +34,7 @@ public class ItemFlower extends MultiItemBlock
     }
 
     @Override
-    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
+    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List<?> listOfLines, boolean sneaking) {
     	block.addInformation(itemForTooltip.getItemDamage(), listOfLines);
     }
     

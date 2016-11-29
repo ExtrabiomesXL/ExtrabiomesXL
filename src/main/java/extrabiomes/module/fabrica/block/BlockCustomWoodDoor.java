@@ -7,8 +7,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import extrabiomes.Extrabiomes;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.IconFlipped;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 

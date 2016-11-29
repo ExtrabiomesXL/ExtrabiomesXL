@@ -8,7 +8,6 @@ package extrabiomes.lib;
 
 import java.util.Locale;
 
-import net.minecraftforge.common.config.Configuration;
 import extrabiomes.utility.EnhancedConfiguration;
 
 public enum ItemSettings
