@@ -1,14 +1,18 @@
 package extrabiomes.handlers;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import net.minecraft.block.Block;
-import net.minecraft.command.CommandBase;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.oredict.OreDictionary;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockNewSapling;
@@ -29,7 +33,7 @@ import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
 import extrabiomes.module.summa.worldgen.WorldGenNewRedwood;
 import extrabiomes.module.summa.worldgen.WorldGenSakuraBlossomTree;
 
-public class EBXLCommandHandler extends CommandBase
+public class EBXLCommandHandler implements ICommand
 {
 
     @Override
@@ -45,11 +49,11 @@ public class EBXLCommandHandler extends CommandBase
     }
     
     private void sendChatMessage(EntityPlayer player, String message) {
-    	player.addChatMessage(new ChatComponentText(message));
+    	player.addChatMessage(new TextComponentString(message));
     }
 
     @Override
-    public void processCommand(ICommandSender icommandsender, String[] cmds)
+    public void execute(MinecraftServer server, ICommandSender icommandsender, String[] cmds)
     {
         if (icommandsender instanceof EntityPlayer)
         {
@@ -537,27 +541,31 @@ public class EBXLCommandHandler extends CommandBase
         while (killList.size() > 0)
         {
             currentBlock = killList.remove();
-            Block block = player.worldObj.getBlock(currentBlock.x(), currentBlock.y(), currentBlock.z());
-            int damage = player.worldObj.getBlockMetadata(currentBlock.x(), currentBlock.y(), currentBlock.z());
-            String blockType = OreDictionary.getOreName(OreDictionary.getOreID(new ItemStack(block, 1, damage)));
-
-            // shorten the coords
-            int x1 = currentBlock.x();
-            int y1 = currentBlock.y();
-            int z1 = currentBlock.z();
-
-            if (blockType.equals("logWood") || blockType.equals("treeLeaves"))
-            {
-                // Add extra blocks to the list
-                killList.add(new Vector3(x1, y1 + 1, z1));
-                killList.add(new Vector3(x1, y1 - 1, z1));
-                killList.add(new Vector3(x1 + 1, y1, z1));
-                killList.add(new Vector3(x1 - 1, y1, z1));
-                killList.add(new Vector3(x1, y1, z1 + 1));
-                killList.add(new Vector3(x1, y1, z1 - 1));
-
-                // Remove the block
-                player.worldObj.setBlockToAir(x1, y1, z1);
+            final BlockPos pos = new BlockPos(currentBlock.x(), currentBlock.y(), currentBlock.z());
+            final IBlockState state = player.worldObj.getBlockState(pos);
+            final int damage = state.getBlock().getMetaFromState(state);
+            int[] oreIDs = OreDictionary.getOreIDs(new ItemStack(state.getBlock(), 1, damage));
+            for( int oreID : oreIDs ) {
+	            String blockType = OreDictionary.getOreName(oreID);
+	
+	            // shorten the coords
+	            int x1 = currentBlock.x();
+	            int y1 = currentBlock.y();
+	            int z1 = currentBlock.z();
+	
+	            if (blockType.equals("logWood") || blockType.equals("treeLeaves"))
+	            {
+	                // Add extra blocks to the list
+	                killList.add(new Vector3(x1, y1 + 1, z1));
+	                killList.add(new Vector3(x1, y1 - 1, z1));
+	                killList.add(new Vector3(x1 + 1, y1, z1));
+	                killList.add(new Vector3(x1 - 1, y1, z1));
+	                killList.add(new Vector3(x1, y1, z1 + 1));
+	                killList.add(new Vector3(x1, y1, z1 - 1));
+	
+	                // Remove the block
+	                player.worldObj.setBlockToAir(new BlockPos(x1, y1, z1));
+	            }
             }
         }
 
@@ -576,8 +584,35 @@ public class EBXLCommandHandler extends CommandBase
         sendChatMessage(player, "/ebxl version");
     }
 
-    @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
+	@Override
+	public int compareTo(ICommand o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<String> getCommandAliases() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args,
+			BlockPos pos) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isUsernameIndex(String[] args, int index) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

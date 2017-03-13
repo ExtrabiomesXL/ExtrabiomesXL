@@ -195,7 +195,7 @@ public enum BlockManager
             proxy.registerBlock(Stuff.slabWood.get(), extrabiomes.module.fabrica.block.ItemWoodSlab.class, "woodslab");
             proxy.registerBlock(thisBlock, extrabiomes.module.fabrica.block.ItemWoodSlab.class, "double_woodslab");
             
-            LogHelper.info("Name: %s", Block.blockRegistry.getNameForObject(thisBlock));
+            LogHelper.info("Name: %s", Block.REGISTRY.getNameForObject(thisBlock));
             
             proxy.registerOreInAllSubblocks("slabWood", Stuff.slabWood.get());
             

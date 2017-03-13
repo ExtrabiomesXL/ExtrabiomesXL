@@ -3,11 +3,10 @@ package extrabiomes.module.summa.worldgen;
 import java.util.Random;
 
 import extrabiomes.blocks.BlockCustomVine;
-import extrabiomes.helpers.LogHelper;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Facing;
+import net.minecraft.block.BlockVine;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -18,34 +17,31 @@ public class WorldGenCustomVine extends WorldGenerator
     WorldGenCustomVine(BlockCustomVine block)
     {
         this.block = block;
-    }
-	
-    public boolean generate(World world, Random rand, int x, int y, int z)
+    }    
+    
+    public boolean generate(World worldIn, Random rand, BlockPos position)
     {
-        int _x = x;
-
-        for (int _z = z; y < 128; ++y)
+        for (; position.getY() < 128; position = position.up())
         {
-        	final Block targetBlock = world.getBlock(x, y, z);
-            if (world.isAirBlock(x, y, z) || (targetBlock.equals(Blocks.vine)) )
+            if (worldIn.isAirBlock(position))
             {
-                for (int j = 2; j <= 5; ++j)
+                for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL.facings())
                 {
-                    if (block.canPlaceBlockOnSide(world, x, y, z, j))
+                    if (block.canPlaceBlockOnSide(worldIn, position, enumfacing))
                     {
-                    	//LogHelper.info("Gloriosa placing at "+x+","+y+","+z);
-                        world.setBlock(x, y, z, block, 1 << Direction.facingToDirection[Facing.oppositeSide[j]], 2);
+                        IBlockState iblockstate = block.getDefaultState().withProperty(BlockVine.NORTH, Boolean.valueOf(enumfacing == EnumFacing.NORTH)).withProperty(BlockVine.EAST, Boolean.valueOf(enumfacing == EnumFacing.EAST)).withProperty(BlockVine.SOUTH, Boolean.valueOf(enumfacing == EnumFacing.SOUTH)).withProperty(BlockVine.WEST, Boolean.valueOf(enumfacing == EnumFacing.WEST));
+                        worldIn.setBlockState(position, iblockstate, 2);
                         break;
                     }
                 }
             }
             else
             {
-                x = _x + rand.nextInt(4) - rand.nextInt(4);
-                z = _z + rand.nextInt(4) - rand.nextInt(4);
+                position = position.add(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));
             }
         }
 
         return true;
     }
+
 }
