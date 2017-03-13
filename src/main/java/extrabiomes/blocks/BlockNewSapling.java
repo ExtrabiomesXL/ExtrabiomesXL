@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 
@@ -438,7 +437,7 @@ public class BlockNewSapling extends BlockFlower
     		}
     		
     		if(lines[0] != "") {
-    		  ToolTipStringFormatter.Format(LanguageRegistry.instance().getStringLocalization("extrabiomes.planting_guide") , listOfLines);
+    		  ToolTipStringFormatter.Format(Extrabiomes.proxy.translate("extrabiomes.planting_guide") , listOfLines);
         	listOfLines.add(lines[0]);
     		}
     	}

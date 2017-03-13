@@ -59,7 +59,7 @@ public class ItemBlockWaterPlant extends ItemBlock
     }
 
     @Override
-    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List listOfLines, boolean sneaking) {
+    public void addInformation(ItemStack itemForTooltip, EntityPlayer playerViewingToolTip, List<String> listOfLines, boolean sneaking) {
     	((BlockWaterPlant)Block.getBlockFromItem(itemForTooltip.getItem())).addInformation(itemForTooltip.getItemDamage(), listOfLines);
     }
 }

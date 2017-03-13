@@ -1,11 +1,11 @@
 package extrabiomes.helpers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("unused") //Some of the patterns aren't used
 public class ToolTipStringFormatter {
   
   private static String defaultColorVal = "7";
@@ -16,32 +16,32 @@ public class ToolTipStringFormatter {
   private static boolean underline = false;
   private static boolean italic = false;
   
-  private static String unicodeControlCode = "\u00A7";
-  private static Pattern controlCode = Pattern.compile("\\\\");
-  private static Pattern codes = Pattern.compile("\\\\.");
-  private static Pattern resetCode = Pattern.compile("\\\\r");
-  private static Pattern codesGood = Pattern.compile("\\\\[0123456789abcdefklmnor]");
-  private static Pattern codesBad = Pattern.compile("\\\\[^0123456789abcdefklmnor]");
+  private static final String unicodeControlCode = "\u00A7";
+  private static final Pattern controlCode = Pattern.compile("\\\\");
+  private static final Pattern codes = Pattern.compile("\\\\.");
+  private static final Pattern resetCode = Pattern.compile("\\\\r");
+  private static final Pattern codesGood = Pattern.compile("\\\\[0123456789abcdefklmnor]");
+  private static final Pattern codesBad = Pattern.compile("\\\\[^0123456789abcdefklmnor]");
   
-  private static Pattern codeObf = Pattern.compile("\\\\k");
-  private static Pattern codeBold = Pattern.compile("\\\\l");
-  private static Pattern codeStrike = Pattern.compile("\\\\m");
-  private static Pattern codeUnder = Pattern.compile("\\\\n");
-  private static Pattern codeItilic = Pattern.compile("\\\\o");
-  private static Pattern codeReset = Pattern.compile("\\\\r");
+  private static final Pattern codeObf = Pattern.compile("\\\\k");
+  private static final Pattern codeBold = Pattern.compile("\\\\l");
+  private static final Pattern codeStrike = Pattern.compile("\\\\m");
+  private static final Pattern codeUnder = Pattern.compile("\\\\n");
+  private static final Pattern codeItilic = Pattern.compile("\\\\o");
+  private static final Pattern codeReset = Pattern.compile("\\\\r");
   
-  public static List Format(String text) {
-    List tmp = new ArrayList<String>();
+  public static List<String> Format(String text) {
+    List<String> tmp = new ArrayList<String>();
     Format(text, tmp);
     
     return tmp;
   }
   
-  public static void Format(String text, List lines) {
+  public static void Format(String text, List<String> lines) {
     Format(text, lines, 20);
   }
   
-  public static void Format(String text, List lines, int targetLength) {
+  public static void Format(String text, List<String> lines, int targetLength) {
     String format = "7";
     
     if(text.length() > 0 && text.charAt(0) == 92){
@@ -52,11 +52,11 @@ public class ToolTipStringFormatter {
     Format(text, lines, targetLength, format);
   }
   
-  public static void Format(String text, List lines, String color) {
+  public static void Format(String text, List<String> lines, String color) {
     Format(text, lines, 20, color);
   }
   
-  public static void Format(String text, List lines, int targetLength, String color) {
+  public static void Format(String text, List<String> lines, int targetLength, String color) {
     String[] wordArray = text.split(" ");
     int words = wordArray.length;
     

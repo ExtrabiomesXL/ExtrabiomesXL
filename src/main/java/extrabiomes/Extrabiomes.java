@@ -52,28 +52,10 @@ public class Extrabiomes {
 
   public static final CreativeTabs tabsEBXL = new CreativeTab("extrabiomesTab");
 
-  public static final String TEXTURE_PATH = Reference.MOD_ID.toLowerCase(Locale.ENGLISH) + ":";
+  public static final String RESOURCE_PATH = Reference.MOD_ID.toLowerCase(Locale.ENGLISH);
+  public static final String TEXTURE_PATH = RESOURCE_PATH + ':';
 
   private static Optional<EventBus> initBus = Optional.of(new EventBus());
-
-  @Mod.EventHandler
-  public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException {
-    proxy.registerRenderInformation();
-  }
-
-  @Mod.EventHandler
-  public static void postInit(FMLPostInitializationEvent event) {
-    PluginManager.activatePlugins();
-    RecipeHandler.init();
-    initBus = Optional.absent();
-    Module.releaseStaticResources();
-
-    LogHelper.info("Successfully Loaded.");
-  }
-
-  public static boolean postInitEvent(Event event) {
-    return initBus.isPresent() ? initBus.get().post(event) : false;
-  }
 
   @Mod.EventHandler
   public static void preInit(FMLPreInitializationEvent event) throws Exception {
@@ -107,18 +89,38 @@ public class Extrabiomes {
 
     BlockHandler.createBlocks();
     ItemHandler.createItems();
-    CropHandler.createCrops();
+    //CropHandler.createCrops();
 
-    BiomeHandler.registerWorldGenerators(config);
+    //BiomeHandler.registerWorldGenerators(config);
     BiomeHandler.enableBiomes();
     BiomeManagerImpl.buildWeightedFloraLists();
 
-    Module.registerModules();
+    //Module.registerModules();
     Module.postEvent(new ModulePreInitEvent());
-    Module.postEvent(new ModuleInitEvent());
 
     // just in case anything else updated config settings
     config.save();
+  }
+  
+  @Mod.EventHandler
+  public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException {
+	  Module.postEvent(new ModuleInitEvent());
+    proxy.registerRenderInformation();
+  }
+
+  @Mod.EventHandler
+  public static void postInit(FMLPostInitializationEvent event) {
+	  proxy.onPostInit();
+    PluginManager.activatePlugins();
+    RecipeHandler.init();
+    initBus = Optional.absent();
+    Module.releaseStaticResources();
+
+    LogHelper.info("Successfully Loaded.");
+  }
+
+  public static boolean postInitEvent(Event event) {
+    return initBus.isPresent() ? initBus.get().post(event) : false;
   }
 
   @Mod.EventHandler

@@ -6,30 +6,28 @@
 
 package extrabiomes.module.cautia.block;
 
+import extrabiomes.Extrabiomes;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.AxisAlignedBB;
-
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.Extrabiomes;
 
 class BlockQuicksand extends Block
 {
     
     BlockQuicksand()
     {
-        super(Material.sand);
+        super(Material.SAND);
         setHardness(4.0F);
-        setStepSound(Block.soundTypeSand);
+        setSoundType(SoundType.SAND);
         setCreativeTab(Extrabiomes.tabsEBXL);
     }
     
-    private IIcon texture;
+    /*private IIcon texture;
     
     @Override
     @SideOnly(Side.CLIENT)
@@ -42,13 +40,12 @@ class BlockQuicksand extends Block
     public IIcon getIcon(int side, int metadata)
     {
         return texture;
-    }
+    }*/
     
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world,
-            int x, int y, int z)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos)
     {
-        return null;
+    	return null;
     }
     
     @Override
@@ -58,8 +55,7 @@ class BlockQuicksand extends Block
     }
     
     @Override
-    public void onEntityCollidedWithBlock(World world, int x, int y,
-            int z, Entity entity)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         entity.setInWeb();
     }

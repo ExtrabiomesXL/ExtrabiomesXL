@@ -4,20 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.command.ICommand;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.oredict.OreDictionary;
 import extrabiomes.blocks.BlockCustomSapling;
 import extrabiomes.blocks.BlockNewSapling;
 import extrabiomes.lib.Element;
-import extrabiomes.lib.Vector3;
 import extrabiomes.module.summa.worldgen.WorldGenAcacia;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree;
 import extrabiomes.module.summa.worldgen.WorldGenAutumnTree.AutumnTreeType;
@@ -29,9 +18,20 @@ import extrabiomes.module.summa.worldgen.WorldGenFirTreeHuge;
 import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleShrub;
 import extrabiomes.module.summa.worldgen.WorldGenJapaneseMapleTree;
 import extrabiomes.module.summa.worldgen.WorldGenLegendOak;
-import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
 import extrabiomes.module.summa.worldgen.WorldGenNewRedwood;
+import extrabiomes.module.summa.worldgen.WorldGenRainbowEucalyptusTree;
 import extrabiomes.module.summa.worldgen.WorldGenSakuraBlossomTree;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandException;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class EBXLCommandHandler implements ICommand
 {
@@ -53,28 +53,28 @@ public class EBXLCommandHandler implements ICommand
     }
 
     @Override
-    public void execute(MinecraftServer server, ICommandSender icommandsender, String[] cmds)
+	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
     {
-        if (icommandsender instanceof EntityPlayer)
+        if (sender instanceof EntityPlayer)
         {
-            EntityPlayer player = (EntityPlayer) icommandsender;
+            EntityPlayer player = (EntityPlayer) sender;
 
-            if (cmds.length == 0)
+            if (args.length == 0)
             {
                 sendChatMessage(player, "use \"/ebxl help\" for the list of valid commands.");
             }
             else
             {
-                if (cmds[0].equals("help"))
+                if (args[0].equals("help"))
                 {
-                    if (cmds.length == 1)
+                    if (args.length == 1)
                     {
                         helpList(player);
                     }
                     else
                     {
                         // Give instructions about a command
-                        if (cmds[1].equals("help"))
+                        if (args[1].equals("help"))
                         {
                             sendChatMessage(player, "\u00A72-ExtrabiomesXl help Command-\u00A7r");
                             sendChatMessage(player, "\u00A7o/ebxl help [command]\u00A7r");
@@ -82,7 +82,7 @@ public class EBXLCommandHandler implements ICommand
                             sendChatMessage(player, "valid commands will be displayed. If [command] is a valid");
                             sendChatMessage(player, "command then details about that command will be dispalyed.");
                         }
-                        else if (cmds[1].equals("spawntree"))
+                        else if (args[1].equals("spawntree"))
                         {
                             sendChatMessage(player, "\u00A72-ExtrabiomesXl spawntree Command-\u00A7r");
                             sendChatMessage(player, "\u00A7o/ebxl spawntree <treetype> <x> <y> <z> [seed]\u00A7r");
@@ -94,28 +94,28 @@ public class EBXLCommandHandler implements ICommand
                             sendChatMessage(player, "fur tree to spawn at 0,100,0 no matter how many times you run");
                             sendChatMessage(player, "the command.");
                         }
-                        else if (cmds[1].equals("version"))
+                        else if (args[1].equals("version"))
                         {
                             sendChatMessage(player, "\u00A72-ExtrabiomesXl version Command-\u00A7r");
                             sendChatMessage(player, "\u00A7o/ebxl version\u00A7r");
                             sendChatMessage(player, "Displays the change log for the current");
                             sendChatMessage(player, "version of ExtrabiomesXL.");
                         }
-                        else if (cmds[1].equals("lastseed"))
+                        else if (args[1].equals("lastseed"))
                         {
                             sendChatMessage(player, "\u00A72-ExtrabiomesXl lastseed Command-\u00A7r");
                             sendChatMessage(player, "\u00A7o/ebxl lastseed <treetype>\u00A7r");
                             sendChatMessage(player, "Displays the last random number that was used to generate");
                             sendChatMessage(player, "the specified tree type for use with the spawntree command.");
                         }
-                        else if (cmds[1].equals("saplingdespawntime"))
+                        else if (args[1].equals("saplingdespawntime"))
                         {
                             sendChatMessage(player, "\u00A72-ExtrabiomesXl saplingdespawntime Command-\u00A7r");
                             sendChatMessage(player, "\u00A7o/ebxl saplingdespawntime [ticks]\u00A7r");
                             sendChatMessage(player, "Display/set the number of ticks that a sapling will exist");
                             sendChatMessage(player, "on the ground before it despawns.");
                         }
-                        else if (cmds[1].equals("killtree"))
+                        else if (args[1].equals("killtree"))
                         {
                             sendChatMessage(player, "\u00A72-ExtrabiomesXl killtree Command-\u00A7r");
                             sendChatMessage(player, "\u00A7o/ebxl killtree <x> <y> <z>\u00A7r");
@@ -127,23 +127,23 @@ public class EBXLCommandHandler implements ICommand
                         }
                     }
                 }
-                else if (cmds[0].equals("kill"))
+                else if (args[0].equals("kill"))
                 {
                     killTree(player, 0, 4, 0);
                 }
-                else if (cmds[0].equals("spawn"))
+                else if (args[0].equals("spawn"))
                 {
                     (new WorldGenSakuraBlossomTree(true)).generate(player.worldObj, player.worldObj.rand, 0, 4, 0);
                 }
-                else if (cmds[0].equals("killtree"))
+                else if (args[0].equals("killtree"))
                 {
-                    if (cmds.length == 4)
+                    if (args.length == 4)
                     {
                         try
                         {
-                            int x = Integer.parseInt(cmds[1]);
-                            int y = Integer.parseInt(cmds[2]);
-                            int z = Integer.parseInt(cmds[3]);
+                            int x = Integer.parseInt(args[1]);
+                            int y = Integer.parseInt(args[2]);
+                            int z = Integer.parseInt(args[3]);
 
                             killTree(player, x, y, z);
                         }
@@ -153,7 +153,7 @@ public class EBXLCommandHandler implements ICommand
                         }
 
                     }
-                    else if (cmds.length == 2 && cmds[1].equals("here"))
+                    else if (args.length == 2 && args[1].equals("here"))
                     {
                         killTree(player, (int) player.posX, (int) player.posY - 1, (int) player.posZ);
                     }
@@ -162,21 +162,21 @@ public class EBXLCommandHandler implements ICommand
                         sendChatMessage(player, "Incorrect format. /ebxl killtree <x> <y> <z>");
                     }
                 }
-                else if (cmds[0].equals("saplingdespawntime"))
+                else if (args[0].equals("saplingdespawntime"))
                 {
-                    if (cmds.length == 1)
+                    if (args.length == 1)
                     {
                         sendChatMessage(player, "Sapling despawn time is currently: " + Integer.toString(BlockCustomSapling.getSaplingLifespan()) + " ticks");
                     }
-                    else if (cmds.length == 2)
+                    else if (args.length == 2)
                     {
-                        int newTime = Integer.parseInt(cmds[1]);
+                        int newTime = Integer.parseInt(args[1]);
 
                         if (newTime >= 0 && newTime <= 10000)
                         {
                             BlockCustomSapling.setSaplingLifespan(newTime);
                             BlockNewSapling.setSaplingLifespan(newTime);
-                            sendChatMessage(player, "Sapling despawn time set to: " + cmds[1] + " ticks");
+                            sendChatMessage(player, "Sapling despawn time set to: " + args[1] + " ticks");
                         }
                         else
                         {
@@ -188,91 +188,91 @@ public class EBXLCommandHandler implements ICommand
                         sendChatMessage(player, "Incorrect format. /ebxl saplingDespawn [newtime]");
                     }
                 }
-                else if (cmds[0].equals("lastseed"))
+                else if (args[0].equals("lastseed"))
                 {
-                    if (cmds.length == 1)
+                    if (args.length == 1)
                     {
                         treeNames(player);
                     }
                     else
                     {
-                        if (cmds[1].equals("acacia"))
+                        if (args[1].equals("acacia"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenAcacia.getLastSeed()));
                         }
-                        else if (cmds[1].equals("cypress"))
+                        else if (args[1].equals("cypress"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenCypressTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("baldcypress"))
+                        else if (args[1].equals("baldcypress"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenBaldCypressTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("rainbow"))
+                        else if (args[1].equals("rainbow"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenRainbowEucalyptusTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("japanesemaple"))
+                        else if (args[1].equals("japanesemaple"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenJapaneseMapleTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("japanesemapleshrub"))
+                        else if (args[1].equals("japanesemapleshrub"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenJapaneseMapleShrub.getLastSeed()));
                         }
-                        else if (cmds[1].equals("fir"))
+                        else if (args[1].equals("fir"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenFirTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("redwood"))
+                        else if (args[1].equals("redwood"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenNewRedwood.getLastSeed()));
                         }
-                        else if (cmds[1].equals("largefir"))
+                        else if (args[1].equals("largefir"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenFirTreeHuge.getLastSeed()));
                         }
-                        else if (cmds[1].equals("brown"))
+                        else if (args[1].equals("brown"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenAutumnTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("orange"))
+                        else if (args[1].equals("orange"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenAutumnTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("red"))
+                        else if (args[1].equals("red"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenAutumnTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("yellow"))
+                        else if (args[1].equals("yellow"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenAutumnTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("largebrown"))
+                        else if (args[1].equals("largebrown"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenBigAutumnTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("largeorange"))
+                        else if (args[1].equals("largeorange"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenBigAutumnTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("largered"))
+                        else if (args[1].equals("largered"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenBigAutumnTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("largeyellow"))
+                        else if (args[1].equals("largeyellow"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenBigAutumnTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("baldcypress"))
+                        else if (args[1].equals("baldcypress"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenBaldCypressTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("sakura"))
+                        else if (args[1].equals("sakura"))
                         {
                             sendChatMessage(player, "The last seed used was: " + Long.toString(WorldGenSakuraBlossomTree.getLastSeed()));
                         }
-                        else if (cmds[1].equals("legend"))
+                        else if (args[1].equals("legend"))
                         {
                             sendChatMessage(player, "The Legend Oak does not currently support seeding.");
                         }
@@ -282,105 +282,105 @@ public class EBXLCommandHandler implements ICommand
                         }
                     }
                 }
-                else if (cmds[0].equals("spawntree"))
+                else if (args[0].equals("spawntree"))
                 {
-                    if (cmds.length == 5)
+                    if (args.length == 5)
                     {
                         try
                         {
-                            int x = Integer.parseInt(cmds[2]);
-                            int y = Integer.parseInt(cmds[3]);
-                            int z = Integer.parseInt(cmds[4]);
+                            int x = Integer.parseInt(args[2]);
+                            int y = Integer.parseInt(args[3]);
+                            int z = Integer.parseInt(args[4]);
 
-                            if (cmds[1].equals("acacia"))
+                            if (args[1].equals("acacia"))
                             {
                                 (new WorldGenAcacia(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("cypress"))
+                            else if (args[1].equals("cypress"))
                             {
                                 (new WorldGenCypressTree(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("baldcypress"))
+                            else if (args[1].equals("baldcypress"))
                             {
                                 (new WorldGenBaldCypressTree(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("rainbow"))
+                            else if (args[1].equals("rainbow"))
                             {
                                 (new WorldGenRainbowEucalyptusTree(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("japanesemaple"))
+                            else if (args[1].equals("japanesemaple"))
                             {
                                 (new WorldGenJapaneseMapleTree(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("japanesemapleshrub"))
+                            else if (args[1].equals("japanesemapleshrub"))
                             {
                                 (new WorldGenJapaneseMapleShrub(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("fir"))
+                            else if (args[1].equals("fir"))
                             {
                                 (new WorldGenFirTree(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("redwood"))
+                            else if (args[1].equals("redwood"))
                             {
                                 (new WorldGenNewRedwood(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("largeFir"))
+                            else if (args[1].equals("largeFir"))
                             {
                                 (new WorldGenFirTreeHuge(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("brown"))
+                            else if (args[1].equals("brown"))
                             {
                                 WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.BROWN);
                                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("orange"))
+                            else if (args[1].equals("orange"))
                             {
                                 WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.ORANGE);
                                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("red"))
+                            else if (args[1].equals("red"))
                             {
                                 WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.PURPLE);
                                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("yellow"))
+                            else if (args[1].equals("yellow"))
                             {
                                 WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.YELLOW);
                                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("largebrown"))
+                            else if (args[1].equals("largebrown"))
                             {
                                 WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
                                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("largeorange"))
+                            else if (args[1].equals("largeorange"))
                             {
                                 WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
                                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("largered"))
+                            else if (args[1].equals("largered"))
                             {
                                 WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
                                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("largeyellow"))
+                            else if (args[1].equals("largeyellow"))
                             {
                                 WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
                                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("sakura"))
+                            else if (args[1].equals("sakura"))
                             {
                                 (new WorldGenSakuraBlossomTree(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
-                            else if (cmds[1].equals("legend"))
+                            else if (args[1].equals("legend"))
                             {
                                 (new WorldGenLegendOak(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                             }
@@ -394,104 +394,104 @@ public class EBXLCommandHandler implements ICommand
                             sendChatMessage(player, "X, Y and Z must be valid numbers.");
                         }
                     }
-                    else if (cmds.length == 6)
+                    else if (args.length == 6)
                     {
                         try
                         {
-                            int x = Integer.parseInt(cmds[2]);
-                            int y = Integer.parseInt(cmds[3]);
-                            int z = Integer.parseInt(cmds[4]);
-                            long seed = Long.parseLong(cmds[5]);
+                            int x = Integer.parseInt(args[2]);
+                            int y = Integer.parseInt(args[3]);
+                            int z = Integer.parseInt(args[4]);
+                            long seed = Long.parseLong(args[5]);
 
-                            if (cmds[1].equals("acacia"))
+                            if (args[1].equals("acacia"))
                             {
                                 (new WorldGenAcacia(true)).generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("cypress"))
+                            else if (args[1].equals("cypress"))
                             {
                                 (new WorldGenCypressTree(true)).generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("baldcypress"))
+                            else if (args[1].equals("baldcypress"))
                             {
                                 (new WorldGenBaldCypressTree(true)).generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("rainbow"))
+                            else if (args[1].equals("rainbow"))
                             {
                                 (new WorldGenRainbowEucalyptusTree(true)).generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("japanesemaple"))
+                            else if (args[1].equals("japanesemaple"))
                             {
                                 (new WorldGenJapaneseMapleTree(true)).generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("japanesemapleshrub"))
+                            else if (args[1].equals("japanesemapleshrub"))
                             {
                                 (new WorldGenJapaneseMapleShrub(true)).generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("fir"))
+                            else if (args[1].equals("fir"))
                             {
                                 (new WorldGenFirTree(true)).generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("redwood"))
+                            else if (args[1].equals("redwood"))
                             {
                                 (new WorldGenNewRedwood(true)).generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("largeFir"))
+                            else if (args[1].equals("largeFir"))
                             {
                                 (new WorldGenFirTreeHuge(true)).generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("brown"))
+                            else if (args[1].equals("brown"))
                             {
                                 WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.BROWN);
                                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("orange"))
+                            else if (args[1].equals("orange"))
                             {
                                 WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.ORANGE);
                                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("red"))
+                            else if (args[1].equals("red"))
                             {
                                 WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.PURPLE);
                                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("yellow"))
+                            else if (args[1].equals("yellow"))
                             {
                                 WorldGenAutumnTree tree = new WorldGenAutumnTree(true, AutumnTreeType.YELLOW);
                                 WorldGenAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("largeBrown"))
+                            else if (args[1].equals("largeBrown"))
                             {
                                 WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.BROWN);
                                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("largeorange"))
+                            else if (args[1].equals("largeorange"))
                             {
                                 WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.ORANGE);
                                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("largered"))
+                            else if (args[1].equals("largered"))
                             {
                                 WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.PURPLE);
                                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("largeyellow"))
+                            else if (args[1].equals("largeyellow"))
                             {
                                 WorldGenBigAutumnTree tree = new WorldGenBigAutumnTree(true, AutumnTreeType.YELLOW);
                                 WorldGenBigAutumnTree.setTrunkBlock(Block.getBlockFromItem(Element.LOG_AUTUMN.get().getItem()), Element.LOG_AUTUMN.get().getItemDamage());
                                 tree.generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("sakura"))
+                            else if (args[1].equals("sakura"))
                             {
                                 (new WorldGenSakuraBlossomTree(true)).generate(player.worldObj, seed, x, y, z);
                             }
-                            else if (cmds[1].equals("legend"))
+                            else if (args[1].equals("legend"))
                             {
                                 (new WorldGenLegendOak(true)).generate(player.worldObj, player.worldObj.rand, x, y, z);
                                 sendChatMessage(player, "The Legend Oak does not currently support seeding.");
@@ -513,7 +513,7 @@ public class EBXLCommandHandler implements ICommand
                 }
                 else
                 {
-                    sendChatMessage(player, "\"/ebxl " + cmds[0] + "\" is not a valid command.");
+                    sendChatMessage(player, "\"/ebxl " + args[0] + "\" is not a valid command.");
                     sendChatMessage(player, "Use \"/ebxl help\" for the list of valid commands.");
                 }
             }
@@ -533,39 +533,46 @@ public class EBXLCommandHandler implements ICommand
 
     private boolean killTree(EntityPlayer player, int x, int y, int z)
     {
-        Queue<Vector3> killList = new LinkedList<Vector3>();
+        Queue<BlockPos> killList = new LinkedList<BlockPos>();
 
-        killList.add(new Vector3(x, y, z));
-        Vector3 currentBlock;
+        killList.add(new BlockPos(x, y, z));
+        BlockPos currentBlock;
 
         while (killList.size() > 0)
         {
             currentBlock = killList.remove();
-            final BlockPos pos = new BlockPos(currentBlock.x(), currentBlock.y(), currentBlock.z());
-            final IBlockState state = player.worldObj.getBlockState(pos);
-            final int damage = state.getBlock().getMetaFromState(state);
-            int[] oreIDs = OreDictionary.getOreIDs(new ItemStack(state.getBlock(), 1, damage));
-            for( int oreID : oreIDs ) {
-	            String blockType = OreDictionary.getOreName(oreID);
-	
-	            // shorten the coords
-	            int x1 = currentBlock.x();
-	            int y1 = currentBlock.y();
-	            int z1 = currentBlock.z();
-	
-	            if (blockType.equals("logWood") || blockType.equals("treeLeaves"))
-	            {
-	                // Add extra blocks to the list
-	                killList.add(new Vector3(x1, y1 + 1, z1));
-	                killList.add(new Vector3(x1, y1 - 1, z1));
-	                killList.add(new Vector3(x1 + 1, y1, z1));
-	                killList.add(new Vector3(x1 - 1, y1, z1));
-	                killList.add(new Vector3(x1, y1, z1 + 1));
-	                killList.add(new Vector3(x1, y1, z1 - 1));
-	
-	                // Remove the block
-	                player.worldObj.setBlockToAir(new BlockPos(x1, y1, z1));
-	            }
+            IBlockState state = player.worldObj.getBlockState(currentBlock);
+            Block block = state.getBlock();
+            int damage = block.getMetaFromState(state);
+            
+            String blockType;
+            boolean logOrLeaf = false;
+            for (int ID : OreDictionary.getOreIDs(new ItemStack(block, 1, damage))) {
+            	 blockType = OreDictionary.getOreName(ID);
+            	 
+            	 if ("logWood".equals(blockType) || "treeLeaves".equals(blockType)) {
+            		 logOrLeaf = true;
+            		 break;
+            	 }
+            }
+
+            if (logOrLeaf)
+            {
+            	// shorten the coords
+                int x1 = currentBlock.getX();
+                int y1 = currentBlock.getY();
+                int z1 = currentBlock.getZ();
+                
+                // Add extra blocks to the list
+                killList.add(new BlockPos(x1, y1 + 1, z1));
+                killList.add(new BlockPos(x1, y1 - 1, z1));
+                killList.add(new BlockPos(x1 + 1, y1, z1));
+                killList.add(new BlockPos(x1 - 1, y1, z1));
+                killList.add(new BlockPos(x1, y1, z1 + 1));
+                killList.add(new BlockPos(x1, y1, z1 - 1));
+
+                // Remove the block
+                player.worldObj.setBlockToAir(currentBlock);
             }
         }
 
@@ -583,36 +590,4 @@ public class EBXLCommandHandler implements ICommand
         sendChatMessage(player, "/ebxl spawntree <treetype> <x> <y> <z> [seed]");
         sendChatMessage(player, "/ebxl version");
     }
-
-	@Override
-	public int compareTo(ICommand o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<String> getCommandAliases() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args,
-			BlockPos pos) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isUsernameIndex(String[] args, int index) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

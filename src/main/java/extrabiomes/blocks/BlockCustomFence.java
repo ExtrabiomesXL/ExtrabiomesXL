@@ -2,35 +2,25 @@ package extrabiomes.blocks;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
-import com.google.common.base.Optional;
-
+import extrabiomes.Extrabiomes;
+import net.minecraft.block.BlockFence;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.Extrabiomes;
-import extrabiomes.module.fabrica.block.BlockCustomWall.BlockType;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFence;
-import net.minecraft.block.BlockFenceGate;
-import net.minecraft.block.material.Material;
-
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemLead;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.AxisAlignedBB;
-
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 
 public class BlockCustomFence extends BlockFence {
   
-  public enum BlockType   {
+  public enum BlockType implements IStringSerializable {
     Acacia(2),
     Autumn(6),
     Baldcypress(7),
@@ -41,31 +31,66 @@ public class BlockCustomFence extends BlockFence {
     Redwood(0),
     Sakura(8);
     
+	private final String name; 
     private final int metadata;
-    public IIcon texture = null;
+    //public IIcon texture = null;
     
     BlockType(int metadata) {
+    	this.name = name().toLowerCase(Locale.ENGLISH);
       this.metadata = metadata;
     }
     
-    public int metadata() {
+    @Override
+	public String getName() {
+		return name;
+	}
+    
+    public int getMetadata() {
       return metadata;
     }
+    
+    public static BlockType getDefault() {
+    	return Redwood;
+    }
+    
+    public static final BlockType[] VALUES = values();
   }
   
-  private IIcon[] textures;
-  private int renderId;
+  public static final PropertyEnum<BlockType> FENCE_TYPE = PropertyEnum.<BlockType>create("type", BlockType.class, BlockType.VALUES);
+  /*private IIcon[] textures;
+  private int renderId;*/
   
   public BlockCustomFence() {
-    super("fence", Material.WOOD);
+    super(/*"fence", */Material.WOOD, Material.WOOD.getMaterialMapColor());
+    
+    setDefaultState(getDefaultState().withProperty(FENCE_TYPE, BlockType.getDefault()));
     this.setHardness(2.0F);
     this.setResistance(5.0F);
-    this.setBlockName("extrabiomes.fence");
+    this.setUnlocalizedName("extrabiomes.fence");
     this.disableStats();
     this.setCreativeTab(Extrabiomes.tabsEBXL);
   }
   
-  @Override
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(FENCE_TYPE).getMetadata();
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		if (meta < 0 || meta >= BlockType.VALUES.length) {
+			return getDefaultState(); //Invalid meta
+		} else {
+			return getDefaultState().withProperty(FENCE_TYPE, BlockType.VALUES[meta]);
+		}
+	}
+
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, FENCE_TYPE, NORTH, EAST, WEST, SOUTH);
+	}
+  
+  /*@Override
   @SideOnly(Side.CLIENT)
   public void registerBlockIcons(IIconRegister iconRegister) {
     textures = new IIcon[BlockType.values().length];
@@ -76,64 +101,48 @@ public class BlockCustomFence extends BlockFence {
   }
   
   @Override
-  public boolean canPlaceTorchOnTop(World world, int x, int y, int z) {
-      return true;
-  }
-  
-  /*
-  @Override
   public IIcon getIcon(int side, int metadata) {
       return BlockType.values()[metadata].texture;
-  }
-  */
+  }*/
   
-  @SuppressWarnings({ "unchecked", "rawtypes" })
+  @Override
+  public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
+	  return true;
+  }
+  
   @Override
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
-    for (final BlockType blockType : BlockType.values()) {
-      itemList.add(new ItemStack(this, 1, blockType.metadata()));
+  public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
+    for (final BlockType blockType : BlockType.VALUES) {
+      itemList.add(new ItemStack(this, 1, blockType.getMetadata()));
     }
   }
 
-  public void setRenderId(int renderId) {
+  /*public void setRenderId(int renderId) {
       this.renderId = renderId;
   }
   
   @Override
   public int getRenderType() {
       return renderId;
-  }
+  }*/
 
   /**
    * Returns true if the specified block can be connected by a fence
    */
   @Override
-  public boolean canConnectFenceTo(IBlockAccess blockAccess, int x, int y, int z) {
-      Block block = blockAccess.getBlock(x, y, z);
+  public boolean canConnectTo(IBlockAccess world, BlockPos pos) {
+      /*Block block = blockAccess.getBlock(x, y, z);
       
       boolean flag = !(block instanceof BlockFenceGate);
       
-      return block != this && flag ? (block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.GOURD : false) : true;
+      return block != this && flag ? (block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.GOURD : false) : true;*/
+	  return super.canConnectTo(world, pos); //TODO: Check if anything different to normal fences has to be done
   }
   
 
-  //public Item getItemDropped(int par1, Random par2Random, int par3)
-  //{
-  //    return ItemBlock.getItemFromBlock(this);
-  //}
   @Override
-  public int damageDropped(int metaData) {
-    if(BlockType.values().length <= metaData) {
-      return 0;
-    }
-    
-    return metaData;
-  }
-
-  @SideOnly(Side.CLIENT)
-  @Override
-  public int getDamageValue(World world, int x, int y, int z) {
-    return world.getBlockMetadata(x, y, z);
+  public int damageDropped(IBlockState state) {
+    return state.getValue(FENCE_TYPE).getMetadata();
   }
 }

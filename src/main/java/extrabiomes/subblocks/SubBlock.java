@@ -1,22 +1,15 @@
 package extrabiomes.subblocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.Extrabiomes;
 
 public class SubBlock {
 
 	protected String textureName;
-	protected IIcon texture;
 	
-	protected int metaData = 0;
-	protected Block parent = null;
+	protected IBlockState parent = null;
 	
 	public SubBlock(String name) {
 		textureName = name;
@@ -25,33 +18,23 @@ public class SubBlock {
 	public String getUnlocalizedName() {
 		return textureName;
 	}
-	
-	@SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister) {
-        texture = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + textureName);
+    
+    public boolean canBlockStay(World world, BlockPos pos) {
+        return canPlaceBlockAt(world, pos);
     }
     
-    public IIcon getIcon(int side, int metaData) {
-        return texture;
-    }
-    
-    public boolean canBlockStay(World world, int x, int y, int z) {
-        return canPlaceBlockAt(world, x, y, z);
-    }
-    
-    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+    public boolean canPlaceBlockAt(World world, BlockPos pos) {
         return true;
     }
 
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor, Block block) {
-        if (!canBlockStay(world, x, y, z)) {
-        	block.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlock(x, y, z, Blocks.AIR);
+    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState neighbor, IBlockState block) {
+        if (!canBlockStay(world, pos)) {
+        	block.getBlock().dropBlockAsItem(world, pos, block, 0);
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
         }
     }
     
-    public void setBlock(Block block, int data) {
+    public void setBlock(IBlockState block) {
     	parent = block;
-    	metaData = data;
     }
 }
