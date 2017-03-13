@@ -6,46 +6,33 @@
 
 package extrabiomes.blocks;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import extrabiomes.Extrabiomes;
-import extrabiomes.api.UseLogTurnerEvent;
-import extrabiomes.handlers.BlockHandler.LogHandler.Log_A_Type;
-import extrabiomes.handlers.BlockHandler.LogHandler.Log_B_Type;
-import extrabiomes.handlers.BlockHandler.LogHandler.QuarterLogs_A_Type;
-//import extrabiomes.helpers.LogHelper;
-import extrabiomes.lib.BlockSettings;
-import extrabiomes.lib.IMetaSerializable;
 import extrabiomes.lib.IQuarterSerializable;
 import extrabiomes.lib.PropertyEnum;
+
+/**
+ * NB: This class is completely broken by the changes in 1.8
+ */
 
 public class BlockQuarterLog<T extends Enum<T> & IQuarterSerializable> extends BlockEBXLLog<T>
 {
     public enum BarkOn
     {
         SW, SE, NW, NE;
+    	
+    	// private Block block;
     }
     
     
@@ -97,34 +84,41 @@ public class BlockQuarterLog<T extends Enum<T> & IQuarterSerializable> extends B
        	return state.getValue(type).getMeta();
     }
     
+    /*
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         super.onBlockPlacedBy(world, pos, state, placer, stack);
-        
+
+        final IBlockState northState = world.getBlockState(pos.north());
+        final int northMeta = northState.getBlock().getMetaFromState(northState);
+        final IBlockState southState = world.getBlockState(pos.south());
+        final int southMeta = southState.getBlock().getMetaFromState(southState);
+        final IBlockState westState = world.getBlockState(pos.west());
+        final int westMeta = westState.getBlock().getMetaFromState(westState);
+        final IBlockState eastState = world.getBlockState(pos.east());
+        final int eastMeta = eastState.getBlock().getMetaFromState(eastState);
+        final IBlockState upState = world.getBlockState(pos.up());
+        final int upMeta = upState.getBlock().getMetaFromState(upState);
+        final IBlockState downState = world.getBlockState(pos.down());
+        final int downMeta = downState.getBlock().getMetaFromState(downState);
+
+        final int thisMeta = state.getBlock().getMetaFromState(state);
+
         switch (state.getValue(AXIS))
         {
         	case Y:
         	{
-            final Block northBlock = world.getBlock(x, y, z - 1);
-            final int northMeta = world.getBlockMetadata(x, y, z - 1);
-            final Block southBlock = world.getBlock(x, y, z + 1);
-            final int southMeta = world.getBlockMetadata(x, y, z + 1);
-            final Block westBlock = world.getBlock(x - 1, y, z);
-            final int westMeta = world.getBlockMetadata(x - 1, y, z);
-            final Block eastBlock = world.getBlock(x + 1, y, z);
-            final int eastMeta = world.getBlockMetadata(x + 1, y, z);
             
-            final int thisMeta = world.getBlockMetadata(x, y, z);
             
             if (thisMeta == northMeta)
             {
-                if (northBlock == BarkOn.NW.block)
+                if (northState.getBlock() == BarkOn.NW.block)
                 {
-                    world.setBlock(x, y, z, BarkOn.SW.block, thisMeta, 3);
+                    world.setBlockState(pos.north(), BarkOn.SW.block, thisMeta, 3);
                     return;
                 }
-                if (northBlock == BarkOn.NE.block)
+                if (northState == BarkOn.NE.block)
                 {
                     world.setBlock(x, y, z, BarkOn.SE.block, thisMeta, 3);
                     return;
@@ -132,12 +126,12 @@ public class BlockQuarterLog<T extends Enum<T> & IQuarterSerializable> extends B
             }
             if (thisMeta == eastMeta)
             {
-                if (eastBlock == BarkOn.NE.block)
+                if (eastState == BarkOn.NE.block)
                 {
                     world.setBlock(x, y, z, BarkOn.NW.block, thisMeta, 3);
                     return;
                 }
-                if (eastBlock == BarkOn.SE.block)
+                if (eastState == BarkOn.SE.block)
                 {
                     world.setBlock(x, y, z, BarkOn.SW.block, thisMeta, 3);
                     return;
@@ -145,12 +139,12 @@ public class BlockQuarterLog<T extends Enum<T> & IQuarterSerializable> extends B
             }
             if (thisMeta == southMeta)
             {
-                if (southBlock == BarkOn.SW.block)
+                if (southState == BarkOn.SW.block)
                 {
                     world.setBlock(x, y, z, BarkOn.NW.block, thisMeta, 3);
                     return;
                 }
-                if (southBlock == BarkOn.SE.block)
+                if (southState == BarkOn.SE.block)
                 {
                     world.setBlock(x, y, z, BarkOn.NE.block, thisMeta, 3);
                     return;
@@ -158,12 +152,12 @@ public class BlockQuarterLog<T extends Enum<T> & IQuarterSerializable> extends B
             }
             if (thisMeta == westMeta)
             {
-                if (westBlock == BarkOn.NW.block)
+                if (westState == BarkOn.NW.block)
                 {
                     world.setBlock(x, y, z, BarkOn.NE.block, thisMeta, 3);
                     return;
                 }
-                if (westBlock == BarkOn.SW.block)
+                if (westState == BarkOn.SW.block)
                 {
                     world.setBlock(x, y, z, BarkOn.SE.block, thisMeta, 3);
                     return;
@@ -173,16 +167,6 @@ public class BlockQuarterLog<T extends Enum<T> & IQuarterSerializable> extends B
         
         	case X:
         	{
-            final Block upBlock = world.getBlock(x, y + 1, z);
-            final int upMeta = world.getBlockMetadata(x, y + 1, z);
-            final Block downBlock = world.getBlock(x, y - 1, z);
-            final int downMeta = world.getBlockMetadata(x, y - 1, z);
-            final Block westBlock = world.getBlock(x - 1, y, z);
-            final int westMeta = world.getBlockMetadata(x - 1, y, z);
-            final Block eastBlock = world.getBlock(x + 1, y, z);
-            final int eastMeta = world.getBlockMetadata(x + 1, y, z);
-            
-            final int thisMeta = world.getBlockMetadata(x, y, z);
             
             if (thisMeta == upMeta)
             {
@@ -240,16 +224,6 @@ public class BlockQuarterLog<T extends Enum<T> & IQuarterSerializable> extends B
         
         	case Z:
         	{
-            final Block northBlock = world.getBlock(x, y, z - 1);
-            final int northMeta = world.getBlockMetadata(x, y, z - 1);
-            final Block southBlock = world.getBlock(x, y, z + 1);
-            final int southMeta = world.getBlockMetadata(x, y, z + 1);
-            final Block upBlock = world.getBlock(x, y + 1, z);
-            final int upMeta = world.getBlockMetadata(x, y + 1, z);
-            final Block downBlock = world.getBlock(x, y - 1, z);
-            final int downMeta = world.getBlockMetadata(x, y - 1, z);
-            
-            final int thisMeta = world.getBlockMetadata(x, y, z);
             
             if (thisMeta == northMeta)
             {
@@ -304,8 +278,9 @@ public class BlockQuarterLog<T extends Enum<T> & IQuarterSerializable> extends B
                 }
             }
         	}
-        }
+        }  
     }
+    */
     
     @Override
     protected boolean canSilkHarvest()
