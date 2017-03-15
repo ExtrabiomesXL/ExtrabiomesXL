@@ -9,6 +9,7 @@ package extrabiomes.module.cautia.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkGenerator;
@@ -33,7 +34,7 @@ public class QuicksandGenerator implements IWorldGenerator
     {
         chunkX = chunkX << 4;
         chunkZ = chunkZ << 4;
-        final Biome biome = world.getBiomeGenForCoords(chunkX, chunkZ);
+        final Biome biome = world.getBiomeGenForCoords(new BlockPos(chunkX, 64, chunkZ));
         if (!BiomeSettings.MINIJUNGLE.getBiome().isPresent() || biome != BiomeSettings.MINIJUNGLE.getBiome().get())
             return;
         
@@ -44,8 +45,8 @@ public class QuicksandGenerator implements IWorldGenerator
             {
                 final int x = randomizedCoord(random, chunkX);
                 final int z = randomizedCoord(random, chunkZ);
-                genPit.generate(world, random, x,
-                        world.getHeightValue(x, z) + 1, z);
+                final BlockPos pos = new BlockPos(x, 0, z);
+                genPit.generate(world, random, pos.up());
             }
     }
     

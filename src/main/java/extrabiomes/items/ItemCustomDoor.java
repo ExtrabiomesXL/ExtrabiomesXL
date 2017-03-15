@@ -25,24 +25,30 @@ public class ItemCustomDoor extends ItemBlock {
   /**
    * Returns 0 for /terrain.png, 1 for /gui/items.png
    */
+  /*
   @SideOnly(Side.CLIENT)
   @Override
   public int getSpriteNumber() {
     return 1;
   }
+  */
   
+  /*
   @Override
   public void registerIcons(IIconRegister iconRegister) {
     itemIcon = iconRegister.registerIcon(Extrabiomes.TEXTURE_PATH + ((BlockCustomWoodDoor) this.field_150939_a).getTextureName());
   }
+  */
   
   /**
    * Gets an icon index based on an item's damage value
    */
+  /*
   @SideOnly(Side.CLIENT)
   public IIcon getIconFromDamage(int p_77617_1_) {
       return itemIcon;
   }
+  */
   
   /**
    * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
