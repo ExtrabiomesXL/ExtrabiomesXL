@@ -17,7 +17,7 @@
 
 [Update Your Repository](#update-your-repository)
 
-####Set Up Java
+#### Set Up Java
 The Java JDK is used to compile this project.
 
 1. Download and install the Java JDK.
@@ -37,13 +37,13 @@ The Java JDK is used to compile this project.
     * Append `;%JAVA_HOME%\bin` EXACTLY AS SHOWN and click `Ok`.  Make sure the location is correct; double-check just to make sure.
 3. Open up your command line and run `javac`.  If it spews out a bunch of possible options and the usage, then you're good to go.
 
-####Set Up Git
+#### Set Up Git
 Git is used to clone this repository and update your local copy.
 
 1. Download and install Git [here](http://git-scm.com/download/).
 	* *Optional*: Download and install a Git GUI client, such as SourceTree, Github for Windows/Mac, TortoiseGit, etc.  A nice list is available [here](http://git-scm.com/downloads/guis).
 
-####Set Up This Project
+#### Set Up This Project
 This section assumes that you're using the command-line version of Git.
 
 1. Open up your command line.
@@ -58,7 +58,7 @@ This section assumes that you're using the command-line version of Git.
 		\-This project's files (should have `build.gradle`, etc.)
 ***
 
-####Compile This Project
+#### Compile This Project
 1. Execute `gradlew build`. If you did everything right, `BUILD SUCCESSFUL` will be displayed after it finishes.
     * If you see `BUILD FAILED`, check the error output (it should be right around `BUILD FAILED`), fix everything (if possible), and try again.
 3. Navigate to `mcdev\ExtrabiomesXL\build\libs`.
@@ -66,7 +66,7 @@ This section assumes that you're using the command-line version of Git.
     *  Additionally, you should see two more `.jar` files named `[A.A.AA]ExtrabiomesXL-deobf-B.B.jar` and `[A.A.AA]ExtrabiomesXL-deobf-B.B-src.jar`. These are, respectively, the development modfile and the source code. The development mod file can be used when testing mods that are under development.
 4. Copy the first jar into your Minecraft mods folder, and you are done!
 
-####Update Your Repository
+#### Update Your Repository
 In order to get the most up-to-date builds, you'll have to periodically update your local repository and recompile this project.
 
 1. Open up your command line.
